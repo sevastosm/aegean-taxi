@@ -1,0 +1,129 @@
+.mapContainer {
+  background-color: rgb(226, 226, 226);
+  display: block;
+  height: 40vh;
+  left: 0px;
+  pointer-events: auto;
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  z-index: 0;
+}
+
+.formContainer {
+  min-height: 104vh;
+  position: relative;
+  width: 100vw;
+  z-index: 99;
+  background-color: rgb(255, 255, 255);
+}
+
+.main {
+  display: flex;
+  flex: 1 1 0%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  height: 104vh;
+}
+
+.directionsLine {
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  position: absolute;
+  width: 2px;
+  height: 43%;
+  top: 32px;
+  left: 31px;
+}
+
+.inputContainer {
+  width: 100%;
+  input {
+    padding: 10px !important;
+    width: 100%;
+    &::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: #757575;
+      opacity: 1; /* Firefox */
+    }
+
+    &:-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: #757575;
+    }
+
+    &::-ms-input-placeholder {
+      /* Microsoft Edge */
+      color: #757575;
+    }
+    &:focus {
+      outline: none;
+      // border: 2px solid rgba(0, 0, 0, 0.87) !important;
+      background-color: rgb(255, 255, 255) !important;
+    }
+  }
+}
+
+.onBlurStyles {
+  outline: none;
+  background-color: rgb(238, 238, 238);
+}
+
+.onFocusStyles {
+  outline: none;
+  border: 2px solid rgba(0, 0, 0, 0.87) !important;
+  background-color: rgb(255, 255, 255) !important;
+
+  .square {
+    top: 0px;
+    left: 0px;
+  }
+}
+
+.square {
+  margin-top: 0 !important;
+  font-size: 8px;
+  color: black !important;
+  position: relative;
+  top: 2px;
+  left: 2px;
+}
+
+.connectionLine {
+  background-color: rgb(0, 0, 0);
+  color: black !important;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  position: absolute;
+  width: 2px;
+  height: 46px;
+  top: 46px;
+  left: 13px;
+}
+
+.connectionLineOnOpen {
+  top: 101px !important;
+}
+
+.clearButton {
+  padding: 10px;
+}
+
+.downArrow {
+  position: "absolute";
+  top: 10px;
+  left: 40px;
+}
+
+.backArrow {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+}

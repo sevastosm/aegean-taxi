@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "aegean-2023",
+    "prod": "aegeantaxi-84ff2"
+  },
+  "targets": {},
+  "etags": {}
+}

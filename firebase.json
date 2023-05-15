@@ -1,0 +1,14 @@
+{
+  "hosting": {
+    "public": "out",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "appAssociation": "AUTO",
+    "rewrites": [
+      {
+        "source": "!/appstore/**",
+        "destination": "/index.html"
+      },
+      { "source": "/appstore/**", "dynamicLinks": true }
+    ]
+  }
+}
