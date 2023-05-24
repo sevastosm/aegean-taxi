@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import NextLink from "next/link";
+import { usePathname } from "next/navigation";
 
 // MUI
 import { Link as MUILink } from "@mui/material";
@@ -30,14 +31,17 @@ import whatsApp from "public/assets/whatsapp_btn.svg";
 import phoneIcon from "public/assets/phone-call-icon.svg";
 
 export default function FooterLayout() {
+  const pathname = usePathname();
+
+  const showWhatsAppButton = pathname === "/book-online/" ? "none" : "initial";
   const [showCookiesBanner, setShowCookiesBanner] = useState(true);
 
-  const getCookieValue = (cname:string) => {
+  const getCookieValue = (cname: string) => {
     let name = cname + "=";
-    let ca = document.cookie.split(';');
-    for(let i = 0; i < ca.length; i++) {
+    let ca = document.cookie.split(";");
+    for (let i = 0; i < ca.length; i++) {
       let c = ca[i];
-      while (c.charAt(0) == ' ') {
+      while (c.charAt(0) == " ") {
         c = c.substring(1);
       }
       if (c.indexOf(name) == 0) {
@@ -45,7 +49,7 @@ export default function FooterLayout() {
       }
     }
     return "";
-  }
+  };
 
   useEffect(() => {
     const hasCookie = getCookieValue("aegeanShowCookies");
@@ -61,7 +65,7 @@ export default function FooterLayout() {
 
   return (
     <footer className="footer">
-      <Container maxWidth={"lg"} sx={{ pt: 4 }}>
+      <Container maxWidth={"lg"} sx={{ pt: 4, zIndex: 9999 }}>
         <Grid container spacing={1}>
           <Grid item xs={12} md={3}>
             <Image src={logo_white} alt="Aegean logo" />
@@ -143,11 +147,10 @@ export default function FooterLayout() {
                     <MUILink
                       underline="none"
                       color="#fff"
-                      href="https://m.aegeantaxi.com/"
+                      href="/book-online"
                       component={NextLink}
                       rel="canonical"
                       variant="body1"
-                      target="_blank"
                     >
                       Book Online
                     </MUILink>
@@ -456,7 +459,12 @@ export default function FooterLayout() {
           p: 1,
         }}
       >
-        <Box sx={{ marginRight: 1 }}>
+        <Box
+          sx={{
+            marginRight: 1,
+            display: { xs: showWhatsAppButton, md: "initial" },
+          }}
+        >
           <a href="https://wa.me/306934702974" target="_blank" className="mr-4">
             <Image
               src={whatsApp}

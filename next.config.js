@@ -7,6 +7,10 @@ const nextConfig = {
   output: "export",
   images: {
     unoptimized: true,
+    domains: [
+      'carkystorage.blob.core.windows.net',
+      'carkystoragetest.blob.core.windows.net',
+    ],
   },
   poweredByHeader: false,
   trailingSlash: true,

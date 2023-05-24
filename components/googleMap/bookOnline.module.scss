@@ -6,7 +6,7 @@
   pointer-events: auto;
   position: fixed;
   right: 0px;
-  top: 75px;
+  top: 0px;
   z-index: 0;
 }
 
@@ -68,6 +68,7 @@
   }
 }
 
+
 .onBlurStyles {
   outline: none;
   background-color: rgb(238, 238, 238);
@@ -85,9 +86,9 @@
 }
 
 .square {
-  margin-top: 0 !important;
+  margin-top: 0!important;
   font-size: 8px;
-  color: black !important;
+  color: black!important;
   position: relative;
   top: 2px;
   left: 2px;
@@ -95,7 +96,7 @@
 
 .connectionLine {
   background-color: rgb(0, 0, 0);
-  color: black !important;
+  color: black!important;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -103,22 +104,22 @@
   position: absolute;
   width: 2px;
   height: 46px;
-  top: 46px;
-  left: 13px;
+  top: 63px;
+  left: 29px;
 }
 
 .connectionLineOnOpen {
   top: 101px !important;
 }
 
-.clearButton {
+.clearButton{
   padding: 10px;
 }
 
 .downArrow {
-  position: "absolute";
-  top: 5px;
-  right: 5px;
+  position: 'absolute';
+  top: 10px;
+  left: 40px;
 }
 
 .backArrow {

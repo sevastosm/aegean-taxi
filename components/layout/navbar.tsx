@@ -35,7 +35,7 @@ const navItems = [
   { display: "Tours", href: "/tours" },
   { display: "About Us", href: "/about-us" },
   { display: "Partners", href: "/partners" },
-  { display: "Book Online", href: "https://m.aegeantaxi.com/" },
+  { display: "Book Online", href: "/book-online" },
 ];
 
 export default function DrawerAppBar(props: Props) {
@@ -130,7 +130,7 @@ export default function DrawerAppBar(props: Props) {
                   width: "75px",
                 }}
               >
-                <Image src={logo} alt="Aegean logo" height={30} />
+                <Image src={logo} alt="Aegean logo" height={30} priority={true} />
               </Link>
             </Box>
             <Box sx={{ display: { xs: "none", sm: "block" } }}>

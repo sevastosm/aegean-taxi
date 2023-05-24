@@ -1,0 +1,27 @@
+export type BookingState = {
+    apiToken: string,
+    phoneNumber: string,
+    security: {
+      code: string,
+      expires: number,
+    },
+    userVerified: boolean,
+    pickUpLocation: string,
+    dropLocation: string,
+    pickUpDate: string,
+    pickUpTime: string,
+    driver: boolean,
+    driverDetails: any,
+    directions: any,
+    selectedCar: any,
+    orderDetails:any,
+    showNavigatorButton: boolean,
+    nextButton: boolean,
+    firstName: string
+    lastName: string,
+    searchingForDriver: boolean,
+    startLocationLat:any,
+    startLocationLng:any,
+    endLocationLat:any,
+    endLocationLng:any,
+};

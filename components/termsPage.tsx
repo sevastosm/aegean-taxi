@@ -125,7 +125,7 @@ export default function AboutUsPage() {
             generally cease offering or deny access to the Services or any
             portion thereof, immediately at any time without notice if (i) you
             are in breach of these Terms, (ii) it is impractical to give such
-            notice in the circumstances, or (iii) in Aegean ’s opinion, any
+            notice in the circumstances, or (iii) in Aegean &apos;s opinion, any
             delay in such termination would expose Aegean or a third party to
             significant risk of harm or damage.
           </Typography>
@@ -154,8 +154,8 @@ export default function AboutUsPage() {
             }}
           >
             Aegean may amend the Terms related to the Services from time to
-            time. Amendments will be effective upon Aegean ’s posting of such
-            updated Terms at this location or the amended policies or
+            time. Amendments will be effective upon Aegean &apos;s posting of
+            such updated Terms at this location or the amended policies or
             supplemental terms on the applicable Service. Your continued access
             or use of the Services after such posting constitutes your consent
             to be bound by the Terms, as amended.
@@ -169,14 +169,14 @@ export default function AboutUsPage() {
             }}
           >
             Our collection and use of personal information in connection with
-            the Services is as provided in Aegean ’s Privacy and Cookie Policy
-            located at https://aegeantaxi.com/privacy. Aegean may provide to a
-            claims processor or an insurer any necessary information (including
-            your contact information) if there is a complaint, dispute or
-            conflict, which may include an accident, involving you and a Third
-            Party Provider (including a Transportation Provider) and such
-            information or data is necessary to resolve the complaint, dispute
-            or conflict.
+            the Services is as provided in Aegean &apos;s Privacy and Cookie
+            Policy located at https://aegeantaxi.com/privacy. Aegean may provide
+            to a claims processor or an insurer any necessary information
+            (including your contact information) if there is a complaint,
+            dispute or conflict, which may include an accident, involving you
+            and a Third Party Provider (including a Transportation Provider) and
+            such information or data is necessary to resolve the complaint,
+            dispute or conflict.
           </Typography>
 
           {/*  */}
@@ -201,14 +201,14 @@ export default function AboutUsPage() {
             }}
           >
             The Services constitute a technology platform that enables users of
-            Aegean ’s mobile applications or websites provided as part of the
-            Services (each, an “Application”) to pre-book and schedule
+            Aegean &apos;s mobile applications or websites provided as part of
+            the Services (each, an “Application”) to pre-book and schedule
             transportation, logistics, delivery, and/or vendor services with
             independent third party providers of such services, including
             independent third party transportation providers (including
             Transportation Providers as defined in Part 1), independent third
             party logistics and/or delivery providers under agreement with
-            Aegean or certain of Aegean ’s affiliates, and/or independent
+            Aegean or certain of Aegean &apos;s affiliates, and/or independent
             vendors such as restaurants (“Third Party Providers”). Unless
             otherwise agreed by Aegean in a separate written agreement with you,
             the Services are made available solely for your personal,
@@ -258,7 +258,7 @@ export default function AboutUsPage() {
             related materials that may be made available through the Services,
             in each case solely for your personal, non-commercial use. Any
             rights not expressly granted herein are reserved by Aegean and
-            Aegean ’s licensors.
+            Aegean &apos;s licensors.
           </Typography>
           {/*  */}
 
@@ -318,11 +318,11 @@ export default function AboutUsPage() {
             }}
           >
             You acknowledge that portions of the Services may be made available
-            under Aegean ’s various brands or booking options associated with
-            transportation, logistics, delivery or vendor services. You also
-            acknowledge that the Services may be made available under such
+            under Aegean &apos;s various brands or booking options associated
+            with transportation, logistics, delivery or vendor services. You
+            also acknowledge that the Services may be made available under such
             brands, booking or request options by or in connection with: (i)
-            certain of Aegean ’s subsidiaries and affiliates; or (ii)
+            certain of Aegean &apos;s subsidiaries and affiliates; or (ii)
             independent Third Party Providers, including transportation network
             company drivers, transportation charter permit holders or holders of
             similar transportation permits, authorizations or licenses.
@@ -364,8 +364,8 @@ export default function AboutUsPage() {
             beneficiaries are not parties to this contract and are not
             responsible for the provision or support of the Services in any
             manner. Your access to the Services using these devices is subject
-            to terms set forth in the applicable third party beneficiary’s terms
-            of service.
+            to terms set forth in the applicable third party beneficiary&apos;s
+            terms of service.
           </Typography>
           {/*  */}
 
@@ -388,13 +388,14 @@ export default function AboutUsPage() {
               my: 1,
             }}
           >
-            The Services and all rights therein are and shall remain Aegean ’s
-            property or the property of Aegean ’s licensors. Neither these Terms
-            nor your use of the Services convey or grant to you any rights: (i)
-            in or related to the Services except for the limited license granted
-            above; or (ii) to use or reference in any manner Aegean ’s company
-            names, logos, product and service names, trademarks or services
-            marks or those of Aegean ’s licensors.
+            The Services and all rights therein are and shall remain Aegean
+            &apos;s property or the property of Aegean &apos;s licensors.
+            Neither these Terms nor your use of the Services convey or grant to
+            you any rights: (i) in or related to the Services except for the
+            limited license granted above; or (ii) to use or reference in any
+            manner Aegean &apos;s company names, logos, product and service
+            names, trademarks or services marks or those of Aegean &apos;s
+            licensors.
           </Typography>
           {/*  */}
 
@@ -439,7 +440,7 @@ export default function AboutUsPage() {
             failure to maintain accurate, complete, and up-to-date Account
             information, including having an invalid or expired payment method
             on file, may result in your inability to access and use the Services
-            or Aegean ’s termination of this Agreement with you. You are
+            or Aegean &apos;s termination of this Agreement with you. You are
             responsible for all activity that occurs under your Account, and you
             agree to maintain the security and secrecy of your Account username
             and password at all times. Unless otherwise permitted by Aegean in
@@ -456,7 +457,7 @@ export default function AboutUsPage() {
               fontWeight: 700,
             }}
           >
-            User Requirements and Conduct.
+            Compliance with local regulations:
           </Typography>
           <Typography
             variant="body2"
@@ -466,24 +467,35 @@ export default function AboutUsPage() {
               my: 1,
             }}
           >
-            In order to use most aspects of the Services, you must register for
-            and maintain an active personal user Services account (“Account”).
-            You must be at least 18 years of age, or the age of legal majority
-            in your jurisdiction (if different than 18), to obtain an Account.
-            Account registration requires you to submit to Aegean certain
-            personal information, such as your name, address, mobile phone
-            number and age, as well as at least one valid payment method (either
-            a credit card or accepted payment partner). You agree to maintain
-            accurate, complete, and up-to-date information in your Account. Your
-            failure to maintain accurate, complete, and up-to-date Account
-            information, including having an invalid or expired payment method
-            on file, may result in your inability to access and use the Services
-            or Aegean ’s termination of this Agreement with you. You are
-            responsible for all activity that occurs under your Account, and you
-            agree to maintain the security and secrecy of your Account username
-            and password at all times. Unless otherwise permitted by Aegean in
-            writing, you may only possess one Account.
+            You acknowledge that Aegean operates in various jurisdictions with
+            different regulatory frameworks governing the transportation
+            business, and that you are fully aware and informed of these rules
+            and regulations to which you will comply before accessing or
+            requesting Aegeans&apos; services.
           </Typography>
+          <Typography
+            variant="body2"
+            gutterBottom
+            sx={{
+              fontWeight: 400,
+              my: 1,
+            }}
+          >
+            Specifically, when requesting Aegeans&apos; services in Greece with
+            a private transfer service &quot;Επιβατηγo Ιδιωτικής Χρήσης (Ε.Ι.Χ.)
+            αυτοκινήτo με οδηγό μέσω προκρατήσεως&quot; , you are aware that the
+            “order now” option is a pre booking service which can only start 2
+            hours after the order is received. You are aware that the service is
+            a private hire service and not a taxi service, and that the drop off
+            point is only an indication of your preferred route which might
+            change at any time at your discretion. You are aware that the prices
+            shown are just estimates and that the final price for the service is
+            at the discretion of the transport company providing the transport.
+            The price cannot be lower than €36 for a minimum of 30 minutes in
+            some jurisdictions during certain months, and varies accordingly, as
+            stipulated by Greek law 4530/2018
+          </Typography>
+
           {/*  */}
 
           {/*  */}
@@ -569,25 +581,25 @@ export default function AboutUsPage() {
               my: 1,
             }}
           >
-            Aegean may, in Aegean ’s sole discretion, create promotional codes
-            that may be redeemed for Account credit, or other features or
-            benefits related to the Services and/or a Third Party Provider’s
-            services, subject to any additional terms that Aegean establishes on
-            a per promotional code basis (“ Promo Codes”). You agree that Promo
-            Codes: (i) must be used for the intended audience and purpose, and
-            in a lawful manner; (ii) may not be duplicated, sold or transferred
-            in any manner, or made available to the general public (whether
-            posted to a public forum or otherwise), unless expressly permitted
-            by Aegean ; (iii) may be disabled by Aegean at any time for any
-            reason without liability to Aegean ; (iv) may only be used pursuant
-            to the specific terms that Aegeanestablishes for such Promo Code;
-            (v) are not valid for cash; and (vi) may expire prior to your use.
-            Aegean reserves the right to withhold or deduct credits or other
-            features or benefits obtained through the use of Promo Codes by you
-            or any other user in the event that Aegean determines or believes
-            that the use or redemption of the Promo Code was in error,
-            fraudulent, illegal, or in violation of the applicable Promo Code
-            terms or these Terms.
+            Aegean may, in Aegean &apos;s sole discretion, create promotional
+            codes that may be redeemed for Account credit, or other features or
+            benefits related to the Services and/or a Third Party
+            Provider&apos;s services, subject to any additional terms that
+            Aegean establishes on a per promotional code basis (“ Promo Codes”).
+            You agree that Promo Codes: (i) must be used for the intended
+            audience and purpose, and in a lawful manner; (ii) may not be
+            duplicated, sold or transferred in any manner, or made available to
+            the general public (whether posted to a public forum or otherwise),
+            unless expressly permitted by Aegean ; (iii) may be disabled by
+            Aegean at any time for any reason without liability to Aegean ; (iv)
+            may only be used pursuant to the specific terms that
+            Aegeanestablishes for such Promo Code; (v) are not valid for cash;
+            and (vi) may expire prior to your use. Aegean reserves the right to
+            withhold or deduct credits or other features or benefits obtained
+            through the use of Promo Codes by you or any other user in the event
+            that Aegean determines or believes that the use or redemption of the
+            Promo Code was in error, fraudulent, illegal, or in violation of the
+            applicable Promo Code terms or these Terms.
           </Typography>
           {/*  */}
 
@@ -610,8 +622,8 @@ export default function AboutUsPage() {
               my: 1,
             }}
           >
-            Aegean may, in Aegean ’s sole discretion, permit you from time to
-            time to submit, upload, publish or otherwise make available to
+            Aegean may, in Aegean &apos;s sole discretion, permit you from time
+            to time to submit, upload, publish or otherwise make available to
             Aegean through the Services textual, audio, and/or visual content
             and information, including commentary and feedback related to the
             Services, initiation of support requests, and submission of entries
@@ -623,7 +635,7 @@ export default function AboutUsPage() {
             distribute, publicly display, publicly perform, and otherwise
             exploit in any manner such User Content in all formats and
             distribution channels now known or hereafter devised (including in
-            connection with the Services and Aegean ’s business and on
+            connection with the Services and Aegean &apos;s business and on
             third-party sites and services), without further notice to or
             consent from you, and without the requirement of payment to you or
             any other person or entity.
@@ -641,11 +653,11 @@ export default function AboutUsPage() {
             licenses, consents and releases necessary to grant Aegean the
             license to the User Content as set forth above; and (ii) neither the
             User Content nor your submission, uploading, publishing or otherwise
-            making available of such User Content nor Aegean ’s use of the User
-            Content as permitted herein will infringe, misappropriate or violate
-            a third party’s intellectual property or proprietary rights, or
-            rights of publicity or privacy, or result in the violation of any
-            applicable law or regulation.
+            making available of such User Content nor Aegean &apos;s use of the
+            User Content as permitted herein will infringe, misappropriate or
+            violate a third party&apos;s intellectual property or proprietary
+            rights, or rights of publicity or privacy, or result in the
+            violation of any applicable law or regulation.
           </Typography>
           <Typography
             variant="body2"
@@ -660,7 +672,7 @@ export default function AboutUsPage() {
             offensive, as determined by Aegean in its sole discretion, whether
             or not such material may be protected by law. Aegean may, but shall
             not be obligated to, review, monitor, or remove User Content, at
-            Aegean ’s sole discretion and at any time and for any reason,
+            Aegean &apos;s sole discretion and at any time and for any reason,
             without notice to you.
           </Typography>
           {/*  */}
@@ -685,8 +697,8 @@ export default function AboutUsPage() {
             }}
           >
             You are responsible for obtaining the data network access necessary
-            to use the Services. Your mobile network’s data and messaging rates
-            and fees may apply if you access or use the Services from a
+            to use the Services. Your mobile network&apos;s data and messaging
+            rates and fees may apply if you access or use the Services from a
             wireless-enabled device and you shall be responsible for such rates
             and fees. You are responsible for acquiring and updating compatible
             hardware or devices necessary to access and use the Services and
@@ -747,9 +759,9 @@ export default function AboutUsPage() {
             designated in your Account, after which Aegean will send you a
             receipt by email. If your primary Account payment method is
             determined to be expired, invalid or otherwise not able to be
-            charged, you agree that Aegean may, as the Third Party Provider’s
-            disclosed payment collection agent, use a secondary payment method
-            in your Account, if available.
+            charged, you agree that Aegean may, as the Third Party
+            Provider&apos;s disclosed payment collection agent, use a secondary
+            payment method in your Account, if available.
           </Typography>
           <Typography
             variant="body2"
@@ -761,22 +773,22 @@ export default function AboutUsPage() {
           >
             As between you and Aegean , Aegean reserves the right to establish,
             remove and/or revise Charges for any or all services or goods
-            obtained through the use of the Services at any time in Aegean ’s
-            sole discretion. Further, you acknowledge and agree that Charges
-            applicable in certain geographical areas may increase substantially
-            during times of high demand. Aegean will use reasonable efforts to
-            inform you of Charges that may apply, provided that you will be
-            responsible for Charges incurred under your Account regardless of
-            your awareness of such Charges or the amounts thereof. Aegean may
-            from time to time provide certain users with promotional offers and
-            discounts that may result in different amounts charged for the same
-            or similar services or goods obtained through the use of the
-            Services, and you agree that such promotional offers and discounts,
-            unless also made available to you, shall have no bearing on your use
-            of the Services or the Charges applied to you. You may elect to
-            cancel your request for services or goods from a Third Party
-            Provider at any time prior to such Third Party Provider’s arrival,
-            in which case you may be charged a cancellation fee.
+            obtained through the use of the Services at any time in Aegean
+            &apos;s sole discretion. Further, you acknowledge and agree that
+            Charges applicable in certain geographical areas may increase
+            substantially during times of high demand. Aegean will use
+            reasonable efforts to inform you of Charges that may apply, provided
+            that you will be responsible for Charges incurred under your Account
+            regardless of your awareness of such Charges or the amounts thereof.
+            Aegean may from time to time provide certain users with promotional
+            offers and discounts that may result in different amounts charged
+            for the same or similar services or goods obtained through the use
+            of the Services, and you agree that such promotional offers and
+            discounts, unless also made available to you, shall have no bearing
+            on your use of the Services or the Charges applied to you. You may
+            elect to cancel your request for services or goods from a Third
+            Party Provider at any time prior to such Third Party Provider&apos;s
+            arrival, in which case you may be charged a cancellation fee.
           </Typography>
           <Typography
             variant="body2"
@@ -791,19 +803,19 @@ export default function AboutUsPage() {
             respect to taxicab transportation services requested through the
             Application in some jurisdictions, Aegean does not designate any
             portion of your payment as a tip or gratuity to the Third Party
-            Provider. Any representation by Aegean (on Aegean ’s website, in the
-            Application, or in Aegean ’s marketing materials) to the effect that
-            tipping is “voluntary,” “not required,” and/or “included” in the
-            payments you make for services or goods provided is not intended to
-            suggest that Aegean provides any additional amounts, beyond those
-            described above, to the Third Party Provider. You understand and
-            agree that, while you are free to provide additional payment as a
-            gratuity to any Third Party Provider who provides you with services
-            or goods obtained through the Service, you are under no obligation
-            to do so. Gratuities are voluntary. After you have received services
-            or goods obtained through the Service, you will have the opportunity
-            to rate your experience and leave additional feedback about your
-            Third Party Provider.
+            Provider. Any representation by Aegean (on Aegean &apos;s website,
+            in the Application, or in Aegean &apos;s marketing materials) to the
+            effect that tipping is “voluntary,” “not required,” and/or
+            “included” in the payments you make for services or goods provided
+            is not intended to suggest that Aegean provides any additional
+            amounts, beyond those described above, to the Third Party Provider.
+            You understand and agree that, while you are free to provide
+            additional payment as a gratuity to any Third Party Provider who
+            provides you with services or goods obtained through the Service,
+            you are under no obligation to do so. Gratuities are voluntary.
+            After you have received services or goods obtained through the
+            Service, you will have the opportunity to rate your experience and
+            leave additional feedback about your Third Party Provider.
           </Typography>
           {/*  */}
 
@@ -832,7 +844,7 @@ export default function AboutUsPage() {
             normal “wear and tear” damages and necessary cleaning (“Repair or
             Cleaning”). In the event that a Third Party Provider reports the
             need for Repair or Cleaning, and such Repair or Cleaning request is
-            verified by Aegean in Aegean ’s reasonable discretion,
+            verified by Aegean in Aegean &apos;s reasonable discretion,
             Aegeanreserves the right to facilitate payment for the reasonable
             cost of such Repair or Cleaning on behalf of the Third Party
             Provider using your payment method designated in your Account. Such
@@ -861,8 +873,8 @@ export default function AboutUsPage() {
             }}
           >
             You are responsible for obtaining the data network access necessary
-            to use the Services. Your mobile network’s data and messaging rates
-            and fees may apply if you access or use the Services from a
+            to use the Services. Your mobile network&apos;s data and messaging
+            rates and fees may apply if you access or use the Services from a
             wireless-enabled device and you shall be responsible for such rates
             and fees. You are responsible for acquiring and updating compatible
             hardware or devices necessary to access and use the Services and
@@ -950,8 +962,8 @@ export default function AboutUsPage() {
             TRANSACTION OR RELATIONSHIP BETWEEN YOU AND ANY THIRD PARTY
             PROVIDER, EVEN IF Aegean HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH
             DAMAGES. Aegean SHALL NOT BE LIABLE FOR DELAY OR FAILURE IN
-            PERFORMANCE RESULTING FROM CAUSES BEYOND Aegean ’S REASONABLE
-            CONTROL. IN NO EVENT SHALL Aegean ’S TOTAL LIABILITY TO YOU IN
+            PERFORMANCE RESULTING FROM CAUSES BEYOND Aegean &apos;S REASONABLE
+            CONTROL. IN NO EVENT SHALL Aegean &apos;S TOTAL LIABILITY TO YOU IN
             CONNECTION WITH THE SERVICES FOR ALL DAMAGES, LOSSES AND CAUSES OF
             ACTION EXCEED FIVE HUNDRED EUROS (€500).
           </Typography>
@@ -963,7 +975,7 @@ export default function AboutUsPage() {
               my: 1,
             }}
           >
-            Aegean ’s SERVICES MAY BE USED BY YOU TO REQUEST AND SCHEDULE
+            Aegean &apos;s SERVICES MAY BE USED BY YOU TO REQUEST AND SCHEDULE
             TRANSPORTATION, GOODS, LOGISTICS, DELIVERY OR VENDOR SERVICES WITH
             THIRD PARTY PROVIDERS, BUT YOU AGREE THAT Aegean HAS NO
             RESPONSIBILITY OR LIABILITY TO YOU RELATED TO ANY TRANSPORTATION,
@@ -1006,12 +1018,12 @@ export default function AboutUsPage() {
           >
             You agree to indemnify and hold Aegean and its officers, directors,
             employees and agents harmless from any and all claims, demands,
-            losses, liabilities, and expenses (including attorneys’ fees)
+            losses, liabilities, and expenses (including attorneys&apos; fees)
             arising out of or in connection with: (i) your use of the Services
             or services or goods obtained through your use of the Services; (ii)
-            your breach or violation of any of these Terms; (iii) Aegean ’s use
-            of your User Content; or (iv) your violation of the rights of any
-            third party, including Third Party Providers.
+            your breach or violation of any of these Terms; (iii) Aegean &apos;s
+            use of your User Content; or (iv) your violation of the rights of
+            any third party, including Third Party Providers.
           </Typography>
           {/*  */}
 
@@ -1102,8 +1114,8 @@ export default function AboutUsPage() {
               my: 1,
             }}
           >
-            Claims of copyright infringement should be sent to Aegean ’s
-            designated agent. Please visit Aegean ’s web for the designated
+            Claims of copyright infringement should be sent to Aegean &apos;s
+            designated agent. Please visit Aegean &apos;s web for the designated
             address and additional information.
           </Typography>
           {/*  */}
@@ -1152,14 +1164,14 @@ export default function AboutUsPage() {
             }}
           >
             You may not assign or transfer these Terms in whole or in part
-            without Aegean ’s prior written approval. You give your approval to
-            Aegean for it to assign or transfer these Terms in whole or in part,
-            including to: (i) a subsidiary or affiliate; (ii) an acquirer of
-            Aegean ’s equity, business or assets; or (iii) a successor by
-            merger. No joint venture, partnership, employment or agency
-            relationship exists between you, Aegean or any Third Party Provider
-            as a result of the contract between you and Aegean or use of the
-            Services.
+            without Aegean &apos;s prior written approval. You give your
+            approval to Aegean for it to assign or transfer these Terms in whole
+            or in part, including to: (i) a subsidiary or affiliate; (ii) an
+            acquirer of Aegean &apos;s equity, business or assets; or (iii) a
+            successor by merger. No joint venture, partnership, employment or
+            agency relationship exists between you, Aegean or any Third Party
+            Provider as a result of the contract between you and Aegean or use
+            of the Services.
           </Typography>
           <Typography
             variant="body2"

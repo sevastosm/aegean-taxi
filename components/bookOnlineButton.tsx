@@ -21,8 +21,7 @@ export default function BookOnlineButton({
   return (
     <Link
       underline="none"
-      href="https://m.aegeantaxi.com/"
-      target="_blank"
+      href="/book-online"
       component={NextLink}
       sx={{
         textDecoration: "none",

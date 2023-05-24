@@ -17,29 +17,40 @@ import FooterLayout from "components/layout/footer";
 // context
 import { AppContext } from "@/context/appState";
 
+// models
+import { BookingState } from "@/types/bookingState";
+
 export default function MainTemplate({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [currentState, setCurrentState] = useState({
-    apiToken: null,
+  const [currentState, setCurrentState] = useState<BookingState>({
+    apiToken: "",
     phoneNumber: "",
     security: {
-      code: null,
-      expires: null,
+      code: "",
+      expires: 0,
     },
     userVerified: false,
     pickUpLocation: "",
     dropLocation: "",
+    pickUpDate: "",
+    pickUpTime: "",
     driver: false,
     driverDetails: null,
     directions: null,
     selectedCar: null,
-    orderDetails: null,
+    orderDetails:null,
     showNavigatorButton: true,
-    firstname: "",
-    lastname: "",
+    nextButton: false,
+    firstName: "",
+    lastName: "",
+    searchingForDriver: false,
+    startLocationLat:"",
+    startLocationLng:"",
+    endLocationLat:"",
+    endLocationLng:"",
   });
 
   const updateState = (state: any) => {

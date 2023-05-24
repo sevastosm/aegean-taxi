@@ -7,6 +7,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
     },
     {
+      url: "https://aegeantaxi.com/book-online/",
+      lastModified: new Date(),
+    },
+    {
       url: "https://aegeantaxi.com/taxi/",
       lastModified: new Date(),
     },

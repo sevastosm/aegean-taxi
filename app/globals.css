@@ -9,6 +9,8 @@
   margin-top: 40px;
   min-height: 400px;
   color: #fff;
+  z-index: 9999;
+  position: relative;
 }
 
 .grayBg {
@@ -38,4 +40,15 @@
 
 .location {
   text-transform: capitalize;
+}
+
+/* html,
+body,
+body > div:first-child,
+div#__next,
+div#__next > div {
+  height: 100%;
+} */
+div#map {
+  height: 100%;
 }

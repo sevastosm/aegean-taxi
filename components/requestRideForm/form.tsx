@@ -1,52 +1,23 @@
 "use client";
-import React, { useState, useEffect, useContext } from "react";
-import { useRouter } from "next/router";
-import { Loader } from "@googlemaps/js-api-loader";
+import React, { useState, useContext } from "react";
 import NextLink from "next/link";
 
 // Styles
 import styles from "./form.module.scss";
 
 // Material
-import { grey } from "@mui/material/colors";
-import { styled } from "@mui/material/styles";
-import Alert from "@mui/material/Alert";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
-import CircularProgress from "@mui/material/CircularProgress";
 import CropSquareSharp from "@mui/icons-material/CropSquareSharp";
-import Divider from "@mui/material/Divider";
 import FormControl from "@mui/material/FormControl";
-import Icon from "@mui/material/Icon";
 import IconButton from "@mui/material/IconButton";
 import Input from "@mui/material/Input";
 import InputAdornment from "@mui/material/InputAdornment";
-import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import ListItemText from "@mui/material/ListItemText";
-import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
-import MyLocationOutlinedIcon from "@mui/icons-material/MyLocationOutlined";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid"; // Grid version 1
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import Link from "@mui/material/Link";
-
-// Google Maps
-import { Wrapper, Status } from "@googlemaps/react-wrapper";
-
-const loader = new Loader({
-  apiKey: `${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`,
-  version: "weekly",
-  libraries: ["places"],
-});
-
-// components
-// import PredictionListItem from "./../components/predictions-list";
 
 // context
 import { AppContext } from "@/context/appState";
@@ -63,10 +34,6 @@ export default function FormComponent({
   widthMD?: string;
   displayTitle?: boolean;
 }) {
-  // const router = useRouter();
-  const appState = useContext(AppContext);
-
-  const [initGoogle, setGoogle] = useState<boolean>(false);
   const [focusLocation, setFocusLocation] = useState<boolean>(false);
   const [focusDestination, setFocusDestination] = useState<boolean>(false);
   const [pickUpLocaction, setPickUpLocaction] = useState<any>();
@@ -105,7 +72,7 @@ export default function FormComponent({
       >
         <Link
           underline="none"
-          href="https://m.aegeantaxi.com/"
+          href="/book-online"
           component={NextLink}
           variant="body1"
           sx={{
@@ -258,7 +225,7 @@ export default function FormComponent({
         </Box>
       )} */}
           <Grid container spacing={1} mt={1}>
-            <Grid item xs={8} md={6}>
+            <Grid item xs={6} md={6}>
               <Button
                 variant="contained"
                 // onClick={nextButtonHandler}
@@ -268,7 +235,7 @@ export default function FormComponent({
                 Now
               </Button>
             </Grid>
-            <Grid item xs={4} md={6}>
+            <Grid item xs={6} md={6}>
               <Button
                 variant="contained"
                 // onClick={nextButtonHandler}
