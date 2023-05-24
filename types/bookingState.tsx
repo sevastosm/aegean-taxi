@@ -14,6 +14,7 @@ export type BookingState = {
     driverDetails: any,
     directions: any,
     selectedCar: any,
+    selectedCarConfirmed: boolean,
     orderDetails:any,
     showNavigatorButton: boolean,
     nextButton: boolean,

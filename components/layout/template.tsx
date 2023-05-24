@@ -41,6 +41,7 @@ export default function MainTemplate({
     driverDetails: null,
     directions: null,
     selectedCar: null,
+    selectedCarConfirmed: false,
     orderDetails:null,
     showNavigatorButton: true,
     nextButton: false,

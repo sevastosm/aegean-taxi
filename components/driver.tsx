@@ -32,17 +32,31 @@ import VAN from "public/assets/onde-service-types/VAN.png";
 // context
 import { AppContext } from "@/context/appState";
 
+// hooks
+import useStorage from "@/hooks/useStorage";
+
+// models
+import { BookingState } from "@/types/bookingState";
+
 export default function Driver(props: any) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [tripStatus, setTripStatus] = useState<string>();
-  const appState = useContext(AppContext);
+
+  const { getItem } = useStorage();
+  const { setItem } = useStorage();
+  const cookieState = getItem("aegean", "local");
+  const appContext = useContext(AppContext);
+  const contextState: BookingState = appContext.state;
 
   useEffect(() => {
     getOrderInfo();
+    // contextState.searchingForDriver = false;
+    // appContext.updateAppState(contextState);
+    // setItem("aegean", contextState, "local");
 
     return () => {};
-  }, [appState]);
+  }, [appContext]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -58,8 +72,23 @@ export default function Driver(props: any) {
   };
 
   const handleCompleted = () => {
-    props.clearState();
-    router.push("/book-online/verification");
+    contextState.pickUpLocation = "";
+    contextState.dropLocation = "";
+    contextState.directions = null;
+    contextState.selectedCar = null;
+    contextState.driver = false;
+    contextState.driverDetails = null;
+    contextState.orderDetails = null;
+    contextState.selectedCar = null;
+    contextState.selectedCarConfirmed = false;
+    contextState.nextButton = false;
+    contextState.searchingForDriver = false;
+    contextState.pickUpDate = "TODAY";
+    contextState.pickUpTime = "NOW";
+    appContext.updateAppState(contextState);
+    setItem("aegean", contextState, "local");
+
+    router.push("/book-online");
   };
 
   let apiTimeout: any;
@@ -71,7 +100,7 @@ export default function Driver(props: any) {
         {
           method: "GET",
           headers: new Headers({
-            Authorization: `Bearer ${appState.state.apiToken}`,
+            Authorization: `Bearer ${appContext.state.apiToken}`,
             "content-type": "application/json",
           }),
         }
@@ -105,7 +134,7 @@ export default function Driver(props: any) {
                 break;
               case `scheduled`:
                 setTripStatus("Scheduled");
-
+                break;
               case `completed`:
                 setTripStatus("Completed");
                 break;
@@ -235,7 +264,7 @@ export default function Driver(props: any) {
       <Box sx={{ p: 2 }}>
         <Grid container justifyContent="center" alignItems="center" spacing={1}>
           <Grid item xs={12} md={8}>
-            {tripStatus !== "Canceled" &&
+            {tripStatus !== "Cancelled" &&
               tripStatus !== "Completed" &&
               tripStatus !== "On ride" &&
               tripStatus !== "Payment" && (
@@ -249,16 +278,15 @@ export default function Driver(props: any) {
                 </Button>
               )}
 
-            {tripStatus === "Canceled" ||
-              tripStatus === "Completed" && (
-                <Button
-                  variant="contained"
-                  fullWidth={true}
-                  onClick={handleCompleted}
-                >
-                  Start a new trip
-                </Button>
-              )}
+            {(tripStatus === "Cancelled" || tripStatus === "Completed") && (
+              <Button
+                variant="contained"
+                fullWidth={true}
+                onClick={handleCompleted}
+              >
+                Start a new trip
+              </Button>
+            )}
           </Grid>
         </Grid>
 

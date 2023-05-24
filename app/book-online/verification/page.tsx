@@ -503,8 +503,8 @@ export default function VerificationComponent({}: {}) {
 
     // FIXME:
     // Override temporary
-    bookingState.searchingForDriver = true,
-    bookingState.userVerified = true;
+    (bookingState.searchingForDriver = true),
+      (bookingState.userVerified = true);
     bookingContext.updateAppState(bookingState);
     setItem("aegean", bookingState, "local");
     router.push("/book-online");
@@ -567,7 +567,7 @@ export default function VerificationComponent({}: {}) {
                   variant="filled"
                   value={firstName}
                   onChange={handleFirstnameChange}
-                  label="Firstname"
+                  label="First name"
                   fullWidth={true}
                   aria-describedby="standard-weight-helper-text"
                   inputProps={{
@@ -589,7 +589,7 @@ export default function VerificationComponent({}: {}) {
                   variant="filled"
                   value={lastName}
                   onChange={handleLastnameChange}
-                  label="Lastname"
+                  label="Last name"
                   fullWidth={true}
                   aria-describedby="standard-weight-helper-text"
                   inputProps={{
@@ -734,15 +734,16 @@ export default function VerificationComponent({}: {}) {
                 }}
               >
                 <TextField
-                  id="standard-adornment-weight"
+                  id="phoneNumber"
                   value={phone}
                   variant="filled"
                   onChange={handlePhoneChange}
                   fullWidth={true}
-                  aria-describedby="standard-weight-helper-text"
+                  aria-describedby="phone number"
                   inputProps={{
-                    "aria-label": "weight",
-                    // style: { fontSize: 'x-large' },
+                    "aria-label": "phone number",
+                    inputMode: "numeric",
+                    pattern: "[09]*",
                   }}
                   className={styles.inputContainer}
                 />

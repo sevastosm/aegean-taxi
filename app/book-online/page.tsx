@@ -316,8 +316,6 @@ export default function BookOnline() {
   const [predictions, setPredictions] = useState<Array<any>>([]);
   const [locationHandler, setLocationHandler] = useState<string>();
   const [selectedCar, setSelectedCar] = useState<any>();
-  const [selectedCarConfirmed, setSelectedCarConfirmed] =
-    useState<boolean>(false);
   const [triggerCalculate, setTriggerCalculate] = useState<boolean>(false);
   const [error, setError] = useState<any>();
   const [showNavigatorButton, setShowNavigatorButton] = useState<boolean>(true);
@@ -832,7 +830,8 @@ export default function BookOnline() {
   };
 
   const authorizeUser = () => {
-    setSelectedCarConfirmed(true);
+    contextState.selectedCarConfirmed = true;
+    updateSession();
     setOpen(false);
 
     if (bookingState && !bookingState.userVerified) {
@@ -843,6 +842,8 @@ export default function BookOnline() {
   };
 
   const searchDriver = async () => {
+    contextState.searchingForDriver = true;
+    updateSession();
     await validateDateTime();
     //
     // new order
@@ -905,6 +906,7 @@ export default function BookOnline() {
           },
           (error) => {
             setError(error);
+            clearState();
           }
         );
     }
@@ -913,6 +915,8 @@ export default function BookOnline() {
   let apiTimeout: any;
 
   const searchForDriver = (order: any) => {
+    contextState.searchingForDriver = true;
+    updateSession();
     // cancel
     fetch(
       `https://carky-api.azurewebsites.net/api/AdminDashboard/Trips/GetTripDetails?tripId=${order.Id}`,
@@ -936,6 +940,7 @@ export default function BookOnline() {
             setDriverDetails(result.Driver);
             setDriver(true);
 
+            contextState.searchingForDriver = false;
             contextState.driver = true;
             contextState.driverDetails = result.Driver;
             updateSession();
@@ -943,6 +948,7 @@ export default function BookOnline() {
         },
         (error) => {
           setError(error);
+          clearState();
         }
       );
   };
@@ -967,6 +973,7 @@ export default function BookOnline() {
           },
           (error) => {
             setError(error);
+            clearState();
           }
         );
     } else {
@@ -1000,6 +1007,7 @@ export default function BookOnline() {
     contextState.selectedCar = null;
     contextState.nextButton = false;
     contextState.searchingForDriver = false;
+    contextState.selectedCarConfirmed = false;
     contextState.pickUpDate = "TODAY";
     contextState.pickUpTime = "NOW";
     // setItem("aegean", contextState, "local");
@@ -1099,29 +1107,31 @@ export default function BookOnline() {
                     </Typography>
                   </Box>
 
-                  {!predictions.length && showNavigatorButton && !selectCarStep && (
-                    <Box
-                      sx={{
-                        display: "flex",
-                        flexWrap: "nowrap",
-                        mt: 2.5,
-                        cursor: "pointer",
-                      }}
-                      onClick={toggleDeviceNavigator}
-                    >
-                      <Box sx={{ mr: 1 }}>
-                        <MyLocationOutlinedIcon />
+                  {!predictions.length &&
+                    showNavigatorButton &&
+                    !selectCarStep && (
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexWrap: "nowrap",
+                          mt: 2.5,
+                          cursor: "pointer",
+                        }}
+                        onClick={toggleDeviceNavigator}
+                      >
+                        <Box sx={{ mr: 1 }}>
+                          <MyLocationOutlinedIcon />
+                        </Box>
+                        <Box>
+                          <Typography variant="body2" color="text.primary">
+                            Allow location access
+                          </Typography>
+                          <Typography variant="caption" color="text.primary">
+                            For a perfect pick up experience
+                          </Typography>
+                        </Box>
                       </Box>
-                      <Box>
-                        <Typography variant="body2" color="text.primary">
-                          Allow location access
-                        </Typography>
-                        <Typography variant="caption" color="text.primary">
-                          For a perfect pick up experience
-                        </Typography>
-                      </Box>
-                    </Box>
-                  )}
+                    )}
 
                   <Box sx={{ position: "relative" }}>
                     <Box
@@ -1454,7 +1464,7 @@ export default function BookOnline() {
                         onClick={authorizeUser}
                         size="large"
                         fullWidth={true}
-                        disabled={!selectedCar || selectedCarConfirmed}
+                        disabled={!selectedCar || contextState.selectedCarConfirmed}
                       >
                         {selectedCar
                           ? `Confirm ${selectedCar.Name}`
@@ -1479,34 +1489,33 @@ export default function BookOnline() {
               {/* ./Step 2  */}
 
               {/* Step 3 - Search Driver  */}
-              {((orderDetails && !driverDetails) ||
-                contextState.searchingForDriver) && (
-                <>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      flexDirection: "column",
-                      height: "40vh",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <CircularProgress />
-                    Searching for available drivers ...
-                    <Box p={2}>
-                      <Button
-                        color="error"
-                        variant="contained"
-                        size="large"
-                        fullWidth={true}
-                        onClick={cancelTripHandler}
-                      >
-                        Cancel
-                      </Button>
+              {contextState.searchingForDriver && (
+                  <>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        flexDirection: "column",
+                        height: "40vh",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <CircularProgress />
+                      Searching for available drivers ...
+                      <Box p={2}>
+                        <Button
+                          color="error"
+                          variant="contained"
+                          size="large"
+                          fullWidth={true}
+                          onClick={cancelTripHandler}
+                        >
+                          Cancel
+                        </Button>
+                      </Box>
                     </Box>
-                  </Box>
-                </>
-              )}
+                  </>
+                )}
               {/* ./Step 3  */}
 
               {/* Step 4 - Driver */}
