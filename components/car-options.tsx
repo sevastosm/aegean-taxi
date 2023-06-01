@@ -104,7 +104,7 @@ export default function CarOptions(props: any) {
                 variant="h6"
                 component="div"
               >
-                {car.MaxPassengers} 8
+                {car.MaxPassengers}
               </Typography>
             </Grid>
           </Grid>

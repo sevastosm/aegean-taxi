@@ -52,6 +52,7 @@ export default function MainTemplate({
     startLocationLng:"",
     endLocationLat:"",
     endLocationLng:"",
+    rideScheduled: false,
   });
 
   const updateState = (state: any) => {

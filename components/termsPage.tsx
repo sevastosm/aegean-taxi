@@ -87,10 +87,9 @@ export default function AboutUsPage() {
             These Terms of Use (“Terms”) in govern the access or use by you, an
             individual, from within any country in the world of applications
             (including the Aegean Taxi App), websites, content, products, and
-            services (the “Services”) made available by AGNT MON. IKE, a single
-            member private company established in Greece, having its offices at
-            Asklipiou 26-28, Athens, with company registration number:
-            143172003000 (“Aegean”).
+            services (the “Services”) made available by Butler Hospitality and
+            Logistics, located in 16192 Coastal Highway, Lewes, Delaware 19958,
+            USA (“Aegean”).
           </Typography>
           <Typography
             variant="body2"

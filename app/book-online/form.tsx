@@ -33,9 +33,9 @@ import useStorage from "@/hooks/useStorage";
 
 export default function FormComponent({}: {}) {
   const [openDayPicker, setOpenDayPicker] = useState<boolean>(false);
-  const [pickUpDate, setPickUpDate] = useState<string>("TODAY");
+  const [pickUpDate, setPickUpDate] = useState<string>("NOW");
   const [openTimePicker, setOpenTimePicker] = useState<boolean>(false);
-  const [pickUpTime, setPickUpTime] = useState<string>("NOW");
+  const [pickUpTime, setPickUpTime] = useState<string>("LATER");
 
   const [focusLocation, setFocusLocation] = useState<boolean>(false);
   const [focusDestination, setFocusDestination] = useState<boolean>(false);

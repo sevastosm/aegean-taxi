@@ -249,9 +249,9 @@ export default function PrivacyPage() {
           <Grid container spacing={2}>
             <Grid item xs={12} md={6}>
               Aegean taxi provides services to users throughout the world. If
-              you use our services in the European Union or elsewhere, AGNT Mon.
-              IKE. is the data controller. We process personal information
-              inside and outside of the European Union.
+              you use our services in the European Union or elsewhere, Butler
+              Hospitality and Logistics is the data controller. We process
+              personal information inside and outside of the European Union.
               <Typography
                 variant="body1"
                 gutterBottom
@@ -285,7 +285,10 @@ export default function PrivacyPage() {
                   lineHeight: { xs: "22px", md: "30px" },
                 }}
               >
-                <i>AGNT Mon. IKE, Asklipiou 24-26 Athens, Greece</i>
+                <i>
+                  Butler Hospitality and Logistics, 16192 Coastal Highway,
+                  Lewes, Delaware 19958, USA.
+                </i>
               </Typography>
               <Typography
                 variant="body1"
@@ -310,7 +313,7 @@ export default function PrivacyPage() {
                 }}
               >
                 We process personal information inside and outside of the
-                European Union. Aegean taxiTaxi transfers information of users
+                European Union. Aegean Taxi transfers information of users
                 outside the European Union on the basis of mechanisms approved
                 under applicable laws.
               </Typography>
@@ -1296,9 +1299,9 @@ export default function PrivacyPage() {
                   lineHeight: { xs: "22px", md: "30px" },
                 }}
               >
-                Some of Aegean taxi&prime; products, services and features require
-                that we share information with other users or at your request.
-                We may also share your information with our affiliates,
+                Some of Aegean taxi&prime; products, services and features
+                require that we share information with other users or at your
+                request. We may also share your information with our affiliates,
                 subsidiaries and business partners, for legal reasons or in
                 connection with claims or disputes
               </Typography>
@@ -1688,27 +1691,27 @@ export default function PrivacyPage() {
                 usage information, for a minimum of 7 years in connection with
                 regulatory, tax, insurance and other requirements in the places
                 in which it operates. Once such information is no longer
-                necessary to provide Aegean taxi&prime; services, enable customer
-                support, enhance the user experience or for other operational
-                purposes,Aegean taxi takes steps to prevent access to or use of
-                such information for any purpose other than compliance with
-                these requirements or for purposes of safety, security and fraud
-                prevention and detection. You may request deletion of your
-                account at any time through the contact section in the Aegean
-                taxi app, or via Aegean taxi&prime; website. Following such
-                requests, Aegean taxi deletes the information that it is not
-                required to retain. In certain circumstances, Aegean taxi may be
-                unable to delete your account, such as if there is an
-                outstanding credit on your account or an unresolved claim or
-                dispute. Upon resolution of the issue preventing deletion,
-                Aegean taxi will delete your account as described above. Aegean
-                taxi may also retain certain information if necessary for its
-                legitimate business interests, such as fraud prevention and
-                enhancing users&prime; safety and security. For example, if Aegean
-                taxi shuts down a user&prime;s account because of unsafe behaviour or
-                security incidents, Aegean taxi may retain certain information
-                about that account to prevent that user from opening a new
-                Aegean taxi account in the future.
+                necessary to provide Aegean taxi&prime; services, enable
+                customer support, enhance the user experience or for other
+                operational purposes,Aegean taxi takes steps to prevent access
+                to or use of such information for any purpose other than
+                compliance with these requirements or for purposes of safety,
+                security and fraud prevention and detection. You may request
+                deletion of your account at any time through the contact section
+                in the Aegean taxi app, or via Aegean taxi&prime; website.
+                Following such requests, Aegean taxi deletes the information
+                that it is not required to retain. In certain circumstances,
+                Aegean taxi may be unable to delete your account, such as if
+                there is an outstanding credit on your account or an unresolved
+                claim or dispute. Upon resolution of the issue preventing
+                deletion, Aegean taxi will delete your account as described
+                above. Aegean taxi may also retain certain information if
+                necessary for its legitimate business interests, such as fraud
+                prevention and enhancing users&prime; safety and security. For
+                example, if Aegean taxi shuts down a user&prime;s account
+                because of unsafe behaviour or security incidents, Aegean taxi
+                may retain certain information about that account to prevent
+                that user from opening a new Aegean taxi account in the future.
               </Typography>
             </Grid>
           </Grid>
@@ -1777,8 +1780,8 @@ export default function PrivacyPage() {
                 Beginning on 25 May 2018, the processing of personal data of
                 users in the European Union is subject to the EU General Data
                 Protection Regulation (“GDPR”). This section provides
-                information as relates to EU users&prime; rights, and Aegean taxi&prime;
-                responsibilities, under this regulation.
+                information as relates to EU users&prime; rights, and Aegean
+                taxi&prime; responsibilities, under this regulation.
               </Typography>
 
               <Typography
@@ -1893,8 +1896,8 @@ export default function PrivacyPage() {
                 </li>
                 <li key={`hwur11-${2}`}>
                   Please see the “Information retention & deletion” section
-                  above for more information regarding Aegean taxi&prime; retention
-                  and deletion practices.
+                  above for more information regarding Aegean taxi&prime;
+                  retention and deletion practices.
                 </li>
               </Typography>
 
@@ -2051,8 +2054,8 @@ export default function PrivacyPage() {
                 }}
               >
                 <strong>
-                  c. The processing is necessary for Aegean taxi&prime; legitimate
-                  interest
+                  c. The processing is necessary for Aegean taxi&prime;
+                  legitimate interest
                 </strong>
               </Typography>
 
@@ -2067,8 +2070,8 @@ export default function PrivacyPage() {
                 }}
               >
                 <li key={`hwur15-${1}`}>
-                  To maintain and enhance our users&prime; safety and security. For
-                  example, we collect background check information (where
+                  To maintain and enhance our users&prime; safety and security.
+                  For example, we collect background check information (where
                   permitted by law) to prevent unsafe users from providing
                   services through our apps. We also use personal information to
                   prevent use of our services by users who have engaged in
@@ -2162,8 +2165,8 @@ export default function PrivacyPage() {
                 }}
               >
                 <strong>
-                  e. The processing is necessary to fulfil Aegean taxi&prime; legal
-                  obligations
+                  e. The processing is necessary to fulfil Aegean taxi&prime;
+                  legal obligations
                 </strong>
               </Typography>
 
@@ -2376,15 +2379,15 @@ export default function PrivacyPage() {
               >
                 <li key={`hwur19-${1}`}>
                   {" "}
-                  Aegean taxi uses riders&prime; device location services to make it
-                  easier to get a safe, reliable trip whenever you need one.
-                  Location data helps improve our services, including pick-ups,
-                  navigation and customer support.
+                  Aegean taxi uses riders&prime; device location services to
+                  make it easier to get a safe, reliable trip whenever you need
+                  one. Location data helps improve our services, including
+                  pick-ups, navigation and customer support.
                 </li>
                 <li key={`hwur19-${2}`}>
                   {" "}
-                  You may enable/disable or adjust Aegean taxi&prime; collection of
-                  rider location information at any time through the Privacy
+                  You may enable/disable or adjust Aegean taxi&prime; collection
+                  of rider location information at any time through the Privacy
                   settings menu in the Aegean taxi app or via the settings on
                   your mobile device. If you disable the device location
                   services on your device, your use of the Aegean taxi app will
@@ -2530,8 +2533,8 @@ export default function PrivacyPage() {
                 You can make these requests by contacting Aegean taxi hereYou
                 can also edit the name, phone number and email address
                 associated with your account through the Settings menu in Aegean
-                taxi&prime; apps. You can also look up your trip, order and delivery
-                history in the Aegean taxi apps.
+                taxi&prime; apps. You can also look up your trip, order and
+                delivery history in the Aegean taxi apps.
               </Typography>
 
               <Typography

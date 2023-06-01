@@ -332,6 +332,7 @@ export default function BookOnline() {
   const [nextButton, setNextButton] = useState<boolean>(false);
   const [selectCarStep, setSelectCarStep] = useState<boolean>(false);
   const [googleIsDefined, setGoogleIsDefined] = useState<boolean>(false);
+  const [rideScheduled, setRideScheduled] = useState<boolean>(false);
 
   useEffect(() => {
     console.log("set state");
@@ -339,18 +340,18 @@ export default function BookOnline() {
     console.log(11, contextState);
 
     if (cookieState) {
+      setBookingState(() => cookieState);
       appContext.updateAppState(cookieState);
-      setBookingState(cookieState);
     } else if (contextState) {
+      setBookingState(() => contextState);
       appContext.updateAppState(contextState);
-      setBookingState(contextState);
     }
 
-    if (contextState && data && !contextState.apiToken) {
+    if (contextState && data && contextState.apiToken === "") {
       contextState.apiToken = data.access_token;
       setItem("aegean", contextState, "local");
       appContext.updateAppState(contextState);
-      setBookingState(contextState);
+      setBookingState(() => contextState);
     }
 
     return () => {};
@@ -456,11 +457,7 @@ export default function BookOnline() {
     // }
 
     /* Step 3 - Select car  */
-    if (
-      bookingState &&
-      bookingState.orderDetails &&
-      !bookingState.selectedCar
-    ) {
+    if (cookieState && cookieState.orderDetails && !cookieState.selectedCar) {
       console.log("step 3");
       setOrderDetails(null);
       // await calculateAndDisplayRoute();
@@ -469,15 +466,15 @@ export default function BookOnline() {
 
     /* Step 4 - Search for driver  */
     if (
-      bookingState &&
-      bookingState.userVerified &&
-      bookingState.selectedCar &&
-      // !bookingState.orderDetails &&
-      !bookingState.driver
+      cookieState &&
+      cookieState.userVerified &&
+      cookieState.selectedCar &&
+      // !cookieState.orderDetails &&
+      !cookieState.driver
     ) {
       console.log("step 4");
       await calculateAndDisplayRoute();
-      setSelectedCar(bookingState.selectedCar);
+      setSelectedCar(cookieState.selectedCar);
       setTimeout(async () => {
         await searchDriver();
       }, 1500);
@@ -485,15 +482,14 @@ export default function BookOnline() {
 
     // Step 5
     if (
-      bookingState &&
-      bookingState.userVerified &&
-      bookingState.driver &&
-      bookingState.driverDetails
+      cookieState &&
+      cookieState.userVerified &&
+      cookieState.driver &&
+      cookieState.driverDetails
     ) {
       await calculateAndDisplayRoute();
       console.log("step 5");
     }
-
     console.log("end");
   };
 
@@ -553,6 +549,7 @@ export default function BookOnline() {
       setDropLocation(cookieState.dropLocation);
       setDirections(cookieState.directions);
       setDriver(cookieState.driver);
+      setRideScheduled(cookieState.rideScheduled);
       setDriverDetails(cookieState.driverDetails);
       setOrderDetails(cookieState.orderDetails);
       setShowNavigatorButton(cookieState.showNavigatorButton);
@@ -763,14 +760,14 @@ export default function BookOnline() {
   };
 
   const setPickUpDateHandler = (value: any) => {
-    const dateString = dayjs(value).format("DD/MM/YYYY");
+    const dateString = dayjs(value).format("YYYY-MM-DD");
     setPickUpDate(dateString);
     contextState.pickUpDate = dateString;
     updateSession();
   };
 
   const setPickUpTimeHandler = (value: any) => {
-    const dateString = dayjs(value).format("HH:mm:ss");
+    const dateString = dayjs(value).format("HH:mm");
 
     setPickUpTime(dateString);
     contextState.pickUpTime = dateString;
@@ -820,13 +817,34 @@ export default function BookOnline() {
   };
 
   const validateDateTime = () => {
-    if (pickUpDate === "TODAY") {
-      setPickUpDateHandler(dayjs());
-    }
+    let bookLater = false;
 
     if (pickUpTime === "NOW") {
       setPickUpTimeHandler(dayjs());
+    } else {
+      let dateNow = dayjs().add(1, "h");
+      let timeString = pickUpTime.split(":");
+      let futureTime = dayjs()
+        .set("h", parseInt(timeString[0]))
+        .set("m", parseInt(timeString[1]));
+
+      if (pickUpDate === "TODAY" && dateNow.diff(futureTime) <= 3600000) {
+        setPickUpTimeHandler(dayjs().add(1, "h"));
+        bookLater = true;
+      }
     }
+
+    if (pickUpDate === "TODAY") {
+      setPickUpDateHandler(dayjs());
+    } else if (!bookLater) {
+      const dateString = dayjs().format("YYYY-MM-DD");
+      console.log(66666, contextState.pickUpDate, dateString);
+      if (contextState.pickUpDate !== dateString) {
+        bookLater = true;
+      }
+    }
+
+    return bookLater;
   };
 
   const authorizeUser = () => {
@@ -844,71 +862,88 @@ export default function BookOnline() {
   const searchDriver = async () => {
     contextState.searchingForDriver = true;
     updateSession();
-    await validateDateTime();
+    let bookLater = await validateDateTime();
     //
     // new order
-    if (bookingState && bookingState.startLocationLat) {
-      await fetch(
-        `https://carky-api.azurewebsites.net/api/AdminDashboard/Orders/CreateNewOrder`,
-        {
-          method: "POST",
-          headers: new Headers({
-            Authorization: `Bearer ${bookingState.apiToken}`,
-            "content-type": "application/json",
-          }),
-          body: JSON.stringify({
-            CarkyCategoryId: selectedCar
-              ? selectedCar.Id
-              : bookingState.selectedCar.Id,
-            PickupDateTime: {
-              Date: "",
-              Time: "",
-            },
-            PickupLocation: {
-              Name: pickUpLocation,
-              Address: pickUpLocation,
-              Geography: {
-                Lat: bookingState.startLocationLat,
-                Lng: bookingState.startLocationLng,
+    if (contextState && contextState.startLocationLat) {
+      let orderDetailsRes;
+
+      // FIX to handle api madness
+      let BookLater;
+      let pickUpDateLocal = "";
+      let pickUpTimeLocal = "";
+      if (bookLater) {
+        BookLater = { BookLater: bookLater };
+        pickUpDateLocal = `${contextState.pickUpDate}`;
+        pickUpTimeLocal = `${contextState.pickUpTime}`;
+      }
+      // ./FIX to handle api madness
+
+      try {
+        let res = await fetch(
+          `https://carky-api.azurewebsites.net/api/AdminDashboard/Orders/CreateNewOrder`,
+          {
+            method: "POST",
+            headers: new Headers({
+              Authorization: `Bearer ${contextState.apiToken}`,
+              "content-type": "application/json",
+            }),
+            body: JSON.stringify({
+              CarkyCategoryId: selectedCar
+                ? selectedCar.Id
+                : contextState.selectedCar.Id,
+              PickupDateTime: {
+                Date: pickUpDateLocal,
+                Time: pickUpTimeLocal,
               },
-            },
-            DropoffLocation: {
-              // PlaceId: this.state.dropplaceid,
-              Name: dropLocation,
-              Address: dropLocation,
-              Geography: {
-                Lat: bookingState.endLocationLat,
-                Lng: bookingState.endLocationLng,
+              ...BookLater,
+              PickupLocation: {
+                Name: contextState.pickUpLocation,
+                Address: contextState.pickUpLocation,
+                Geography: {
+                  Lat: contextState.startLocationLat,
+                  Lng: contextState.startLocationLng,
+                },
               },
-            },
-            ClientName: bookingState.firstName,
-            ClientSurname: bookingState.lastName,
-            ClientCountryPhoneCode: bookingState.phoneNumber.substring(0, 3),
-            ClientPhoneNumber: bookingState.phoneNumber.substring(3),
-            ClientNotes: "From web app",
-            Price: selectedCar
-              ? selectedCar.Price
-              : bookingState.selectedCar.Price,
-            FinalPrice: selectedCar
-              ? selectedCar.Price
-              : bookingState.selectedCar.Price,
-          }),
-        }
-      )
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            setOrderDetails(result);
-            contextState.orderDetails = result;
-            updateSession();
-            setDriver(true);
-            searchForDriver(result);
-          },
-          (error) => {
-            setError(error);
-            clearState();
+              DropoffLocation: {
+                // PlaceId: this.state.dropplaceid,
+                Name: contextState.dropLocation,
+                Address: contextState.dropLocation,
+                Geography: {
+                  Lat: contextState.endLocationLat,
+                  Lng: contextState.endLocationLng,
+                },
+              },
+              ClientName: contextState.firstName,
+              ClientSurname: contextState.lastName,
+              ClientCountryPhoneCode: contextState.phoneNumber.substring(0, 3),
+              ClientPhoneNumber: contextState.phoneNumber.substring(3),
+              ClientNotes: "From web app",
+              Price: selectedCar
+                ? selectedCar.Price
+                : contextState.selectedCar.Price,
+              FinalPrice: selectedCar
+                ? selectedCar.Price
+                : contextState.selectedCar.Price,
+            }),
           }
         );
+        console.log(res.ok);
+        if (res.ok) {
+          orderDetailsRes = await res.json();
+          contextState.orderDetails = orderDetailsRes;
+          setOrderDetails(orderDetailsRes);
+          updateSession();
+          setDriver(true);
+          searchForDriver(orderDetailsRes);
+        } else {
+          setError("An error has occurred.");
+          clearState();
+        }
+      } catch (error) {
+        setError(error);
+        clearState();
+      }
     }
   };
 
@@ -935,14 +970,22 @@ export default function BookOnline() {
             apiTimeout = setTimeout(() => {
               searchForDriver(order);
             }, 5000);
+          } else if (result.Status === "scheduled") {
+            // scheduled
+            clearTimeout(apiTimeout);
+            contextState.rideScheduled = true;
+            contextState.searchingForDriver = false;
+            setRideScheduled(true);
+
+            updateSession();
           } else {
             clearTimeout(apiTimeout);
-            setDriverDetails(result.Driver);
-            setDriver(true);
 
             contextState.searchingForDriver = false;
             contextState.driver = true;
             contextState.driverDetails = result.Driver;
+            setDriverDetails(result.Driver);
+            setDriver(true);
             updateSession();
           }
         },
@@ -976,10 +1019,8 @@ export default function BookOnline() {
             clearState();
           }
         );
-    } else {
-      clearState();
     }
-
+    clearState();
     setOpen(false);
   };
 
@@ -996,6 +1037,7 @@ export default function BookOnline() {
     setNextButton(false);
     setPickUpDate("TODAY");
     setPickUpTime("NOW");
+    setRideScheduled(false);
 
     contextState.pickUpLocation = "";
     contextState.dropLocation = "";
@@ -1010,6 +1052,10 @@ export default function BookOnline() {
     contextState.selectedCarConfirmed = false;
     contextState.pickUpDate = "TODAY";
     contextState.pickUpTime = "NOW";
+    contextState.startLocationLat = null;
+    contextState.startLocationLng = null;
+    contextState.endLocationLat = null;
+    contextState.endLocationLng = null;
     // setItem("aegean", contextState, "local");
     updateSession();
   };
@@ -1464,7 +1510,9 @@ export default function BookOnline() {
                         onClick={authorizeUser}
                         size="large"
                         fullWidth={true}
-                        disabled={!selectedCar || contextState.selectedCarConfirmed}
+                        disabled={
+                          !selectedCar || contextState.selectedCarConfirmed
+                        }
                       >
                         {selectedCar
                           ? `Confirm ${selectedCar.Name}`
@@ -1472,7 +1520,7 @@ export default function BookOnline() {
                       </Button>
                     </Box>
 
-                    <Box mt={3}>
+                    {/* <Box mt={3}>
                       <Button
                         color="error"
                         variant="contained"
@@ -1482,7 +1530,7 @@ export default function BookOnline() {
                       >
                         Cancel
                       </Button>
-                    </Box>
+                    </Box> */}
                     {/* )} */}
                   </>
                 )}
@@ -1490,32 +1538,32 @@ export default function BookOnline() {
 
               {/* Step 3 - Search Driver  */}
               {contextState.searchingForDriver && (
-                  <>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        flexDirection: "column",
-                        height: "40vh",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <CircularProgress />
-                      Searching for available drivers ...
-                      <Box p={2}>
-                        <Button
-                          color="error"
-                          variant="contained"
-                          size="large"
-                          fullWidth={true}
-                          onClick={cancelTripHandler}
-                        >
-                          Cancel
-                        </Button>
-                      </Box>
+                <>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      flexDirection: "column",
+                      height: "40vh",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <CircularProgress />
+                    Searching for available drivers ...
+                    <Box p={2}>
+                      <Button
+                        color="error"
+                        variant="contained"
+                        size="large"
+                        fullWidth={true}
+                        onClick={cancelTripHandler}
+                      >
+                        Cancel
+                      </Button>
                     </Box>
-                  </>
-                )}
+                  </Box>
+                </>
+              )}
               {/* ./Step 3  */}
 
               {/* Step 4 - Driver */}
@@ -1538,8 +1586,44 @@ export default function BookOnline() {
                   />
                 </>
               )}
-
               {/* ./Step 4 */}
+
+              {/* Scheduled Ride */}
+              {rideScheduled && (
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    flexDirection: "column",
+                    height: "40vh",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Typography variant="body1" component={"div"}>
+                    Your ride for {contextState.pickUpDate} at{" "}
+                    {contextState.pickUpTime}
+                  </Typography>
+                  <Typography variant="body1" component={"div"}>
+                    from {contextState.pickUpLocation} to{" "}
+                  </Typography>
+                  <Typography variant="body1" component={"div"}>
+                    {contextState.dropLocation} is scheduled
+                  </Typography>
+
+                  <Box p={2}>
+                    <Button
+                      color="error"
+                      variant="contained"
+                      size="large"
+                      fullWidth={true}
+                      onClick={cancelTripHandler}
+                    >
+                      Cancel scheduled ride
+                    </Button>
+                  </Box>
+                </Box>
+              )}
+              {/* ./Scheduled Ride */}
 
               {error && (
                 <Box px={3}>

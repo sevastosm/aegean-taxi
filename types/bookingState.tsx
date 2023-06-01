@@ -25,4 +25,5 @@ export type BookingState = {
     startLocationLng:any,
     endLocationLat:any,
     endLocationLng:any,
+    rideScheduled:boolean,
 };

@@ -72,6 +72,9 @@ export default function Driver(props: any) {
   };
 
   const handleCompleted = () => {
+    setOpen(false);
+    props.clearState();
+
     contextState.pickUpLocation = "";
     contextState.dropLocation = "";
     contextState.directions = null;
@@ -83,10 +86,42 @@ export default function Driver(props: any) {
     contextState.selectedCarConfirmed = false;
     contextState.nextButton = false;
     contextState.searchingForDriver = false;
-    contextState.pickUpDate = "TODAY";
-    contextState.pickUpTime = "NOW";
+    contextState.pickUpDate = "NOW";
+    contextState.pickUpTime = "LATER";
+    contextState.startLocationLat = null;
+    contextState.startLocationLng = null;
+    contextState.endLocationLat = null;
+    contextState.endLocationLng = null;
     appContext.updateAppState(contextState);
     setItem("aegean", contextState, "local");
+
+    router.push("/book-online");
+  };
+
+  const handleCanceled = () => {
+    setOpen(false);
+    props.cancelTrip();
+
+    contextState.pickUpLocation = "";
+    contextState.dropLocation = "";
+    contextState.directions = null;
+    contextState.selectedCar = null;
+    contextState.driver = false;
+    contextState.driverDetails = null;
+    contextState.orderDetails = null;
+    contextState.selectedCar = null;
+    contextState.selectedCarConfirmed = false;
+    contextState.nextButton = false;
+    contextState.searchingForDriver = false;
+    contextState.pickUpDate = "NOW";
+    contextState.pickUpTime = "LATER";
+    contextState.startLocationLat = null;
+    contextState.startLocationLng = null;
+    contextState.endLocationLat = null;
+    contextState.endLocationLng = null;
+    appContext.updateAppState(contextState);
+    setItem("aegean", contextState, "local");
+    props.clearState();
 
     router.push("/book-online");
   };
@@ -304,7 +339,7 @@ export default function Driver(props: any) {
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose}>No</Button>
-            <Button onClick={handleConfirm} autoFocus>
+            <Button onClick={handleCanceled} autoFocus>
               Yes
             </Button>
           </DialogActions>
