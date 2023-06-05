@@ -42,6 +42,7 @@ export default function Driver(props: any) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [tripStatus, setTripStatus] = useState<string>();
+  const [driver, setDriver] = useState<any>();
 
   const { getItem } = useStorage();
   const { setItem } = useStorage();
@@ -51,12 +52,9 @@ export default function Driver(props: any) {
 
   useEffect(() => {
     getOrderInfo();
-    // contextState.searchingForDriver = false;
-    // appContext.updateAppState(contextState);
-    // setItem("aegean", contextState, "local");
-
+    getDriverDetails();
     return () => {};
-  }, [appContext]);
+  }, []);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -72,6 +70,7 @@ export default function Driver(props: any) {
   };
 
   const handleCompleted = () => {
+    clearTimeout(apiTimeout);
     setOpen(false);
     props.clearState();
 
@@ -92,13 +91,17 @@ export default function Driver(props: any) {
     contextState.startLocationLng = null;
     contextState.endLocationLat = null;
     contextState.endLocationLng = null;
+    contextState.driverLocation = null;
     appContext.updateAppState(contextState);
     setItem("aegean", contextState, "local");
 
     router.push("/book-online");
   };
 
+  let apiTimeout: any;
+
   const handleCanceled = () => {
+    clearTimeout(apiTimeout);
     setOpen(false);
     props.cancelTrip();
 
@@ -119,6 +122,7 @@ export default function Driver(props: any) {
     contextState.startLocationLng = null;
     contextState.endLocationLat = null;
     contextState.endLocationLng = null;
+    contextState.driverLocation = null;
     appContext.updateAppState(contextState);
     setItem("aegean", contextState, "local");
     props.clearState();
@@ -126,94 +130,95 @@ export default function Driver(props: any) {
     router.push("/book-online");
   };
 
-  let apiTimeout: any;
-  const getOrderInfo = () => {
+  const getDriverDetails = () => {
     // cancel
     if (props.orderDetails) {
       fetch(
-        `https://carky-api.azurewebsites.net/api/AdminDashboard/Trips/GetTripDetails?tripId=${props.orderDetails.Id}`,
+        `${process.env.NEXT_PUBLIC_ONDE_HOSTNAME}/dispatch/v1/order/${contextState.orderDetails.orderId}/offer`,
         {
           method: "GET",
           headers: new Headers({
-            Authorization: `Bearer ${appContext.state.apiToken}`,
-            "content-type": "application/json",
+            Authorization: `${process.env.NEXT_PUBLIC_ONDE_API_TOKEN}`,
           }),
         }
       )
         .then((res) => res.json())
         .then(
           (result) => {
-            console.log(1111, result.Status);
-            switch (result.Status) {
-              case `StatusCancelledByDispatch`:
-              case `StatusCancelledDecidedNotToGo`:
-              case `StatusCancelledSearchExceeded`:
-              case `StatusCancelledByDriver`:
-              case `StatusCancelledNoPassenger`:
-              case `StatusCancelledNoTaxi`:
-              case `StatusCancelledDriverOffline`:
-              case `CancelledByDispatch`:
-              case `CancelledDecidedNotToGo`:
-              case `CancelledSearchExceeded`:
-              case `CancelledByDriver`:
-              case `CancelledNoPassenger`:
-              case `CancelledNoTaxi`:
-              case `CancelledDriverOffline`:
+            setDriver(result);
+          },
+          (error) => {
+            // setError(error);
+          }
+        );
+    }
+
+    setOpen(false);
+  };
+  const getOrderInfo = () => {
+    // cancel
+    if (props.orderDetails && contextState.orderDetails) {
+      fetch(
+        `${process.env.NEXT_PUBLIC_ONDE_HOSTNAME}/dispatch/v1/order/${contextState.orderDetails.orderId}/update`,
+        {
+          method: "GET",
+          headers: new Headers({
+            Authorization: `${process.env.NEXT_PUBLIC_ONDE_API_TOKEN}`,
+          }),
+        }
+      )
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            switch (result.status) {
+              case `CANCELLED_BY_DISPATCH`:
+              case `CANCELLED_BY_DRIVER`:
+              case `CANCELLED_NO_PASSENGER`:
+              case `CANCELLED_DECIDED_NOT_TO_GO`:
+              case `CANCELLED_NO_TAXI`:
+              case `CANCELLED_DRIVER_OFFLINE`:
+              case `CANCELLED_SEARCH_EXCEEDED`:
                 setTripStatus("Cancelled");
                 break;
-              case `dispatched`:
-                setTripStatus("Dispatched");
-                break;
-              case `arrived`:
-                setTripStatus("Arrived");
-                break;
-              case `scheduled`:
-                setTripStatus("Scheduled");
-                break;
-              case `completed`:
-                setTripStatus("Completed");
-                break;
-              case `onride`:
-                setTripStatus("On ride");
-                break;
-              case `StatusAssigned`:
+              case `ASSIGNED`:
                 setTripStatus("Assigned");
                 break;
-              case `StatusStarted`:
+              case `ARRIVED`:
+                setTripStatus("Arrived");
+                break;
+              case `TRANSFERRING`:
+                setTripStatus("Transferring");
+                break;
+              case `REVIEW_SUMMARY`:
+                setTripStatus("Review");
+                break;
+              case `PAYMENT`:
+                setTripStatus("Payment");
+                break;
+              case `STARTED`:
                 setTripStatus("Started");
                 break;
               case `StatusArrived`:
                 setTripStatus("Arrived");
                 break;
-              case `StatusFinishedPaid`:
-              case `StatusFinishedPaidDeprecated`:
-              case `StatusFinishedUnpaid`:
-              case `StatusFinishedUnpaidDeprecated`:
-              case `FinishedPaid`:
-              case `FinishedPaidDeprecated`:
-              case `FinishedUnpaid`:
-              case `FinishedUnpaidDeprecated`:
-                setTripStatus("Finished");
+              case `FINISHED_PAID`:
+              case `FINISHED_UNPAID`:
+                setTripStatus("Completed");
                 break;
-              case `StatusPayment`:
-              case `Payment`:
-                setTripStatus("Payment");
-                break;
-              case `StatusSearch`:
-              case `StatusTransferring`:
-              case `StatusReviewSummary`:
-              case `Search`:
-              case `Transferring`:
-              case `ReviewSummary`:
               default:
                 setTripStatus("Other");
                 break;
             }
 
+            contextState.driverLocation = result.driverLocation;
+            appContext.updateAppState(contextState);
+            setItem("aegean", contextState, "local");
+
             if (tripStatus !== "Completed" && tripStatus !== "Cancelled") {
+              clearTimeout(apiTimeout);
               apiTimeout = setTimeout(() => {
                 getOrderInfo();
-              }, 5000);
+              }, 15000);
             } else {
               clearTimeout(apiTimeout);
             }
@@ -252,44 +257,39 @@ export default function Driver(props: any) {
   return (
     <>
       <Box pt={3}>
-        <Grid container>
-          <Grid item xs={3} md={3}>
-            <Image
-              src={getImage(props.driverDetails.CarkyCategory.toLowerCase())}
-              width={137}
-              height={100}
-              alt={props.driverDetails.CarkyCategory}
-            />
+        {driver && (
+          <Grid container>
+            <Grid item xs={3} md={3}>
+              <Image
+                src={getImage(driver.car.vehicleType.toLowerCase())}
+                width={137}
+                height={100}
+                alt={driver.car.vehicleType}
+              />
+            </Grid>
+            <Grid item xs={9} md={9}>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                }}
+              >
+                <Stack sx={{ textAlign: "right", mt: 3 }}>
+                  <Typography variant="body2">{driver.driver.name}</Typography>
+                  <Typography variant="h6">{driver.car.plateNumber}</Typography>
+                  <Typography variant="caption">
+                    {driver.car.color} {driver.car.model}
+                  </Typography>
+                  <Typography variant="caption">
+                    <Link href={`tel:${driver.Phone}`} color="inherit">
+                      {driver.driver.phone}
+                    </Link>
+                  </Typography>
+                </Stack>
+              </Box>
+            </Grid>
           </Grid>
-          <Grid item xs={9} md={9}>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "flex-end",
-              }}
-            >
-              <Stack sx={{ textAlign: "right", mt: 3 }}>
-                <Typography variant="body2">
-                  {props.driverDetails.FirstName}
-                </Typography>
-                <Typography variant="h6">
-                  {props.driverDetails.CarPlates}
-                </Typography>
-                <Typography variant="caption">
-                  {props.driverDetails.CarColor} {props.driverDetails.Car}
-                </Typography>
-                <Typography variant="caption">
-                  <Link
-                    href={`tel:${props.driverDetails.Phone}`}
-                    color="inherit"
-                  >
-                    {props.driverDetails.Phone}
-                  </Link>
-                </Typography>
-              </Stack>
-            </Box>
-          </Grid>
-        </Grid>
+        )}
       </Box>
 
       <Alert sx={{ my: 2 }} severity="info">
@@ -301,7 +301,8 @@ export default function Driver(props: any) {
           <Grid item xs={12} md={8}>
             {tripStatus !== "Cancelled" &&
               tripStatus !== "Completed" &&
-              tripStatus !== "On ride" &&
+              tripStatus !== "Review" &&
+              tripStatus !== "Transferring" &&
               tripStatus !== "Payment" && (
                 <Button
                   color="error"

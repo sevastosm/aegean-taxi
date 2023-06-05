@@ -63,11 +63,17 @@ export default function CarOptions(props: any) {
     }
   };
 
+
   const cars = props.cars.map((car: any, index: number) => (
-    <ToggleButton size="small" key={index} value={car} aria-label={car.Name}
-    sx={{
-      border: 0
-    }}>
+    <ToggleButton
+      size="small"
+      key={index}
+      value={car}
+      aria-label={car.name}
+      sx={{
+        border: 0,
+      }}
+    >
       <Grid
         container
         justifyContent="flex-start"
@@ -76,22 +82,25 @@ export default function CarOptions(props: any) {
       >
         <Grid item xs={4} md={4}>
           <Image
-            src={getImage(car.Name.toLowerCase())}
+            src={getImage(car.name.toLowerCase())}
             width={100}
             // height={50}
-            alt={car.Name}
+            alt={car.name}
           />
         </Grid>
-        <Grid item xs={6} md={6}>
+        <Grid item xs={5} md={5}>
           <Grid container direction="row" alignItems="center">
-            <Grid item xs={6} sx={{mr:1}}>
+            <Grid item xs={6} sx={{ mr: 1 }}>
               <Typography
                 color={"#000"}
                 align="left"
-                variant="h6"
+                variant="body2"
                 component="div"
+                sx={{
+                  fontWeight:600
+                }}
               >
-                {car.Name}
+                {car.name}
               </Typography>
             </Grid>
             <Grid item height={24}>
@@ -101,23 +110,28 @@ export default function CarOptions(props: any) {
               <Typography
                 color={"#000"}
                 align="left"
-                variant="h6"
+                variant="body2"
                 component="div"
+                sx={{
+                  fontWeight:600
+                }}
               >
-                {car.MaxPassengers}
+                {car.numberOfSeats}
               </Typography>
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={1} md={1}>
+        <Grid item xs={2} md={3}>
           <Typography
             color={"#000"}
             align="left"
-            variant="h6"
-            gutterBottom
-            component="div"
+            variant="body1"
+                component="div"
+                sx={{
+                  fontWeight:600
+                }}
           >
-            {car.Price}€
+            ~ {car.minimumCharge}€
           </Typography>
         </Grid>
       </Grid>

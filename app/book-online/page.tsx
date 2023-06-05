@@ -5,6 +5,8 @@ import useSWR from "swr";
 
 // DayJS
 import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
 
 // MUI
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -62,6 +64,10 @@ import { initialize } from "next/dist/server/lib/render-server";
 // models
 import { BookingState } from "@/types/bookingState";
 
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.tz.setDefault("Europe/Athens");
+
 // Google Maps Component
 function GoogleMapComponent({
   center,
@@ -72,6 +78,8 @@ function GoogleMapComponent({
   geocoderService,
   placesService,
   zoom,
+  driverLocation,
+  state,
   children,
   ...options
 }: {
@@ -83,6 +91,8 @@ function GoogleMapComponent({
   geocoderService: any;
   placesService: any;
   zoom?: number;
+  driverLocation?: any;
+  state?: any;
   children?: any;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -96,12 +106,14 @@ function GoogleMapComponent({
         map: map,
         icon: icon,
         title: title,
+        // animation: google.maps.Animation.BOUNCE
       });
     }
   };
 
   useEffect(() => {
     console.log("init map");
+
     if (ref.current && !mapMapWrapper) {
       if (currentLocation) {
         center = currentLocation;
@@ -159,7 +171,7 @@ function GoogleMapComponent({
   };
 
   useEffect(() => {
-    console.log("map direactions");
+    console.log("map directions");
     if (directions) {
       directionsRenderer.setDirections(directions);
       let leg = directions.routes[0].legs[0];
@@ -220,6 +232,64 @@ function GoogleMapComponent({
     }
   }, [directions]);
 
+  useEffect(() => {
+    console.log("driver location map");
+    console.log(state, state.driverLocation);
+    if (state && state.driverLocation) {
+      console.log(55555, state, state.driverLocation, driverLocation);
+      clearMarkers();
+
+      let newMarkers = [];
+      newMarkers.push(
+        new window.google.maps.Marker({
+          position: {
+            lat: state.driverLocation.lat,
+            lng: state.driverLocation.lng,
+          },
+          map: mapMapWrapper,
+          icon: {
+            path: "M10.001,6.54c-0.793,0-1.438,0.645-1.438,1.438c0,0.792,0.645,1.435,1.438,1.435c0.791,0,1.435-0.644,1.435-1.435C11.437,7.184,10.792,6.54,10.001,6.54z M10.001,8.454c-0.264,0-0.479-0.213-0.479-0.476c0-0.265,0.215-0.479,0.479-0.479c0.263,0,0.477,0.214,0.477,0.479C10.478,8.241,10.265,8.454,10.001,8.454z, M10,3.021c-2.815,0-5.106,2.291-5.106,5.106c0,0.781,0.188,1.549,0.562,2.282c0.011,0.062,0.036,0.12,0.07,0.174l0.125,0.188c0.074,0.123,0.151,0.242,0.225,0.341l3.727,5.65c0.088,0.135,0.238,0.215,0.399,0.215c0.161,0,0.311-0.08,0.4-0.215l3.752-5.68c0.057-0.08,0.107-0.159,0.153-0.232l0.132-0.199c0.033-0.05,0.054-0.104,0.064-0.159c0.401-0.757,0.605-1.551,0.605-2.366C15.107,5.312,12.815,3.021,10,3.021z M13.596,10.152c-0.017,0.03-0.029,0.062-0.039,0.095l-0.056,0.084c-0.043,0.066-0.085,0.133-0.139,0.211L10,15.629l-3.339-5.061c-0.068-0.095-0.132-0.193-0.203-0.309l-0.051-0.078c-0.009-0.031-0.021-0.061-0.038-0.089C6.026,9.458,5.852,8.796,5.852,8.127c0-2.287,1.861-4.148,4.147-4.148c2.288,0,4.149,1.861,4.149,4.148C14.148,8.823,13.963,9.503,13.596,10.152z",
+            fillColor: "#000",
+            fillOpacity: 1,
+            strokeWeight: 0,
+            rotation: 0,
+            scale: 2,
+            anchor: new window.google.maps.Point(10.5, 18),
+          },
+          title: "driver location",
+          animation: google.maps.Animation.BOUNCE,
+        })
+      );
+
+      newMarkers.push(
+        makeMarker(
+          { lat: state.startLocationLat, lng: state.startLocationLng },
+          {
+            path: "M10.001,6.54c-0.793,0-1.438,0.645-1.438,1.438c0,0.792,0.645,1.435,1.438,1.435c0.791,0,1.435-0.644,1.435-1.435C11.437,7.184,10.792,6.54,10.001,6.54z M10.001,8.454c-0.264,0-0.479-0.213-0.479-0.476c0-0.265,0.215-0.479,0.479-0.479c0.263,0,0.477,0.214,0.477,0.479C10.478,8.241,10.265,8.454,10.001,8.454z, M10,3.021c-2.815,0-5.106,2.291-5.106,5.106c0,0.781,0.188,1.549,0.562,2.282c0.011,0.062,0.036,0.12,0.07,0.174l0.125,0.188c0.074,0.123,0.151,0.242,0.225,0.341l3.727,5.65c0.088,0.135,0.238,0.215,0.399,0.215c0.161,0,0.311-0.08,0.4-0.215l3.752-5.68c0.057-0.08,0.107-0.159,0.153-0.232l0.132-0.199c0.033-0.05,0.054-0.104,0.064-0.159c0.401-0.757,0.605-1.551,0.605-2.366C15.107,5.312,12.815,3.021,10,3.021z M13.596,10.152c-0.017,0.03-0.029,0.062-0.039,0.095l-0.056,0.084c-0.043,0.066-0.085,0.133-0.139,0.211L10,15.629l-3.339-5.061c-0.068-0.095-0.132-0.193-0.203-0.309l-0.051-0.078c-0.009-0.031-0.021-0.061-0.038-0.089C6.026,9.458,5.852,8.796,5.852,8.127c0-2.287,1.861-4.148,4.147-4.148c2.288,0,4.149,1.861,4.149,4.148C14.148,8.823,13.963,9.503,13.596,10.152z",
+            fillColor: "#000",
+            fillOpacity: 1,
+            strokeWeight: 0,
+            rotation: 0,
+            scale: 2,
+            anchor: new window.google.maps.Point(10.5, 18),
+          },
+          state.pickUpLocation,
+          mapMapWrapper
+        )
+      );
+
+      setMarkers(newMarkers);
+
+      directionsRenderer.setOptions({
+        polylineOptions: {
+          strokeColor: "#222",
+        },
+      });
+
+      directionsRenderer.setMap(mapMapWrapper);
+    }
+  }, [driverLocation]);
+
   return (
     <>
       <div ref={ref} id="map" />
@@ -278,7 +348,6 @@ const Marker: React.FC<google.maps.MarkerOptions> = (options) => {
 // ./Marker
 
 export default function BookOnline() {
-  const { data } = useSWR({}, tokenFetcher);
   const router = useRouter();
 
   const { getItem } = useStorage();
@@ -308,6 +377,7 @@ export default function BookOnline() {
   const [placesService, setPlacesService] = useState<any>();
   const [geocoderService, setGeocoderService] = useState<any>();
   const [directions, setDirections] = useState<any>();
+  const [driverLocation, setDriverLocation] = useState<any>();
 
   const [pickUpLocation, setPickUpLocation] = useState<any>("");
   const [dropLocation, setDropLocation] = useState<any>("");
@@ -336,26 +406,18 @@ export default function BookOnline() {
 
   useEffect(() => {
     console.log("set state");
-    console.log(1, cookieState);
-    console.log(11, contextState);
-
     if (cookieState) {
+      console.log(1, cookieState);
       setBookingState(() => cookieState);
       appContext.updateAppState(cookieState);
     } else if (contextState) {
+      console.log(11, contextState);
       setBookingState(() => contextState);
       appContext.updateAppState(contextState);
-    }
-
-    if (contextState && data && contextState.apiToken === "") {
-      contextState.apiToken = data.access_token;
-      setItem("aegean", contextState, "local");
-      appContext.updateAppState(contextState);
-      setBookingState(() => contextState);
     }
 
     return () => {};
-  }, [data]);
+  }, []);
 
   const toggleDrawer = () => () => {
     setOpen(!open);
@@ -476,7 +538,7 @@ export default function BookOnline() {
       await calculateAndDisplayRoute();
       setSelectedCar(cookieState.selectedCar);
       setTimeout(async () => {
-        await searchDriver();
+        await createOrder();
       }, 1500);
     }
 
@@ -595,20 +657,59 @@ export default function BookOnline() {
     }
   }, []);
 
+  const validateDateTime = () => {
+    let bookLater = false;
+
+    if (pickUpTime === "NOW") {
+      setPickUpTimeHandler(dayjs());
+    } else {
+      // let dateNow = dayjs().add(1, "h");
+      // let timeString = pickUpTime.split(":");
+      // let futureTime = dayjs()
+      //   .set("h", parseInt(timeString[0]))
+      //   .set("m", parseInt(timeString[1]));
+      // if (pickUpDate === "TODAY" && dateNow.diff(futureTime) <= 3600000) {
+      //   setPickUpTimeHandler(dayjs().add(1, "h"));
+      //   bookLater = true;
+      // }
+    }
+
+    if (pickUpDate === "TODAY") {
+      setPickUpDateHandler(dayjs());
+    } else if (!bookLater) {
+      const dateString = dayjs().format("YYYY-MM-DD");
+      // console.log(66666, contextState.pickUpDate, dateString);
+      if (contextState.pickUpDate !== dateString) {
+        bookLater = true;
+      }
+    }
+
+    return bookLater;
+  };
+
   const gatAvailableRouteCars = async (
     apiToken: string,
     start_location_lat: string,
     start_location_lng: string,
     end_location_lat: string,
     end_location_lng: string
-  ) =>
+  ) => {
+    await validateDateTime();
+    let dayjsLocal = dayjs(
+      `${contextState.pickUpDate} ${contextState.pickUpTime}`
+    );
+
     fetch(
-      `https://carky-api.azurewebsites.net/api/AdminDashboard/Orders/EstimateOrderInfo?model.pickupLocation.geography.lat=${start_location_lat}&model.pickupLocation.geography.lng=${start_location_lng}&model.dropoffLocation.geography.lat=${end_location_lat}&model.dropoffLocation.geography.lng=${end_location_lng}`,
+      // `https://carky-api.azurewebsites.net/api/AdminDashboard/Orders/EstimateOrderInfo?model.pickupLocation.geography.lat=${start_location_lat}&model.pickupLocation.geography.lng=${start_location_lng}&model.dropoffLocation.geography.lat=${end_location_lat}&model.dropoffLocation.geography.lng=${end_location_lng}`,
+      `${
+        process.env.NEXT_PUBLIC_ONDE_HOSTNAME
+      }/dispatch/v1/tariff?origin=${start_location_lat},${start_location_lng}&destination=${end_location_lat},${end_location_lat}&pickupTime=${encodeURIComponent(
+        dayjsLocal.toISOString()
+      )}`,
       {
         method: "GET",
         headers: new Headers({
-          Authorization: `Bearer ${bookingState?.apiToken}`,
-          "content-type": "application/x-www-form-urlencoded",
+          Authorization: `${process.env.NEXT_PUBLIC_ONDE_API_TOKEN}`,
         }),
       }
     )
@@ -617,14 +718,14 @@ export default function BookOnline() {
         (result) => {
           let availCars: any = [];
 
-          for (const resa in result.PricePerCategories) {
-            let cat = carCategories.find(
-              (car) => car.Id === result.PricePerCategories[resa].Id
-            );
+          // for (const tarrif in result.tarrifs) {
+          //   let cat = carCategories.find(
+          //     (car) => car.Id === result.PricePerCategories[tarrif].Id
+          //   );
 
-            availCars.push({ ...result.PricePerCategories[resa], ...cat });
-          }
-          setAvailableCars(availCars);
+          //   availCars.push({ ...result.PricePerCategories[tarrif], ...cat });
+          // }
+          setAvailableCars(result.tariffs);
         },
         (error) => {
           setError(() => "No available route");
@@ -636,6 +737,7 @@ export default function BookOnline() {
           // }
         }
       );
+  };
 
   const calculateAndDisplayRoute = async () => {
     if (
@@ -816,37 +918,6 @@ export default function BookOnline() {
     updateSession();
   };
 
-  const validateDateTime = () => {
-    let bookLater = false;
-
-    if (pickUpTime === "NOW") {
-      setPickUpTimeHandler(dayjs());
-    } else {
-      let dateNow = dayjs().add(1, "h");
-      let timeString = pickUpTime.split(":");
-      let futureTime = dayjs()
-        .set("h", parseInt(timeString[0]))
-        .set("m", parseInt(timeString[1]));
-
-      if (pickUpDate === "TODAY" && dateNow.diff(futureTime) <= 3600000) {
-        setPickUpTimeHandler(dayjs().add(1, "h"));
-        bookLater = true;
-      }
-    }
-
-    if (pickUpDate === "TODAY") {
-      setPickUpDateHandler(dayjs());
-    } else if (!bookLater) {
-      const dateString = dayjs().format("YYYY-MM-DD");
-      console.log(66666, contextState.pickUpDate, dateString);
-      if (contextState.pickUpDate !== dateString) {
-        bookLater = true;
-      }
-    }
-
-    return bookLater;
-  };
-
   const authorizeUser = () => {
     contextState.selectedCarConfirmed = true;
     updateSession();
@@ -855,87 +926,102 @@ export default function BookOnline() {
     if (bookingState && !bookingState.userVerified) {
       router.push("/book-online/verification");
     } else {
-      searchDriver();
+      createOrder();
     }
   };
 
-  const searchDriver = async () => {
+  const createOrder = async () => {
     contextState.searchingForDriver = true;
     updateSession();
-    let bookLater = await validateDateTime();
-    //
+
     // new order
     if (contextState && contextState.startLocationLat) {
       let orderDetailsRes;
-
-      // FIX to handle api madness
-      let BookLater;
-      let pickUpDateLocal = "";
-      let pickUpTimeLocal = "";
-      if (bookLater) {
-        BookLater = { BookLater: bookLater };
-        pickUpDateLocal = `${contextState.pickUpDate}`;
-        pickUpTimeLocal = `${contextState.pickUpTime}`;
-      }
-      // ./FIX to handle api madness
+      let dayjsLocal = dayjs(
+        `${contextState.pickUpDate} ${contextState.pickUpTime}`
+      );
 
       try {
         let res = await fetch(
-          `https://carky-api.azurewebsites.net/api/AdminDashboard/Orders/CreateNewOrder`,
+          `${process.env.NEXT_PUBLIC_ONDE_HOSTNAME}/dispatch/v1/order/`,
           {
             method: "POST",
             headers: new Headers({
-              Authorization: `Bearer ${contextState.apiToken}`,
-              "content-type": "application/json",
+              Authorization: `${process.env.NEXT_PUBLIC_ONDE_API_TOKEN}`,
             }),
             body: JSON.stringify({
-              CarkyCategoryId: selectedCar
-                ? selectedCar.Id
-                : contextState.selectedCar.Id,
-              PickupDateTime: {
-                Date: pickUpDateLocal,
-                Time: pickUpTimeLocal,
-              },
-              ...BookLater,
-              PickupLocation: {
-                Name: contextState.pickUpLocation,
-                Address: contextState.pickUpLocation,
-                Geography: {
-                  Lat: contextState.startLocationLat,
-                  Lng: contextState.startLocationLng,
+              waypoints: [
+                {
+                  exactLatLng: {
+                    lat: contextState.startLocationLat,
+                    lng: contextState.startLocationLng,
+                  },
+                  // premise: "Google Store",
+                  // houseNumber: "22",
+                  street: contextState.pickUpLocation,
+                  // subLocality: "California",
+                  // locality: "California",
+
+                  // city: "Mountain view",
+                  // district: "California",
+                  // province: "California",
+                  // country: "United States",
+                  // postalCode: "94043",
+                  // countryCode: "US",
+                  poiName: contextState.pickUpLocation,
+                  placeLatLng: {
+                    lat: contextState.startLocationLat,
+                    lng: contextState.startLocationLng,
+                  },
                 },
-              },
-              DropoffLocation: {
-                // PlaceId: this.state.dropplaceid,
-                Name: contextState.dropLocation,
-                Address: contextState.dropLocation,
-                Geography: {
-                  Lat: contextState.endLocationLat,
-                  Lng: contextState.endLocationLng,
+                {
+                  exactLatLng: {
+                    lat: contextState.endLocationLat,
+                    lng: contextState.endLocationLng,
+                  },
+                  // premise: "Google Store",
+                  // houseNumber: "22",
+                  street: contextState.dropLocation,
+                  // subLocality: "California",
+                  // locality: "California",
+
+                  // city: "Mountain view",
+                  // district: "California",
+                  // province: "California",
+                  // country: "United States",
+                  // postalCode: "94043",
+                  // countryCode: "US",
+                  poiName: contextState.dropLocation,
+                  placeLatLng: {
+                    lat: contextState.endLocationLat,
+                    lng: contextState.endLocationLng,
+                  },
                 },
+              ],
+              client: {
+                name: `${contextState.firstName} ${contextState.lastName}`,
+                phone: contextState.phoneNumber,
               },
-              ClientName: contextState.firstName,
-              ClientSurname: contextState.lastName,
-              ClientCountryPhoneCode: contextState.phoneNumber.substring(0, 3),
-              ClientPhoneNumber: contextState.phoneNumber.substring(3),
-              ClientNotes: "From web app",
-              Price: selectedCar
-                ? selectedCar.Price
-                : contextState.selectedCar.Price,
-              FinalPrice: selectedCar
-                ? selectedCar.Price
-                : contextState.selectedCar.Price,
+              notes: "From Aegean Taxi Web App",
+              // pickupTime: encodeURIComponent(dayjsLocal.toISOString()),
+              pickupTime: dayjsLocal.toISOString(),
+              unitOfLength: "KILOMETER",
+              numberOfSeats: contextState.selectedCar.numberOfSeats,
+              // paymentMethods: contextState.selectedCar.paymentMethods,
+              paymentMethods: ["CASH"],
+              prepaid: false,
+              tariffId: contextState.selectedCar.tariffId,
             }),
           }
         );
-        console.log(res.ok);
+
         if (res.ok) {
           orderDetailsRes = await res.json();
           contextState.orderDetails = orderDetailsRes;
           setOrderDetails(orderDetailsRes);
           updateSession();
           setDriver(true);
-          searchForDriver(orderDetailsRes);
+          getOrderUpdate(orderDetailsRes);
         } else {
           setError("An error has occurred.");
           clearState();
@@ -949,70 +1035,41 @@ export default function BookOnline() {
 
   let apiTimeout: any;
 
-  const searchForDriver = (order: any) => {
+  const getOrderUpdate = (order: any) => {
     contextState.searchingForDriver = true;
     updateSession();
     // cancel
-    fetch(
-      `https://carky-api.azurewebsites.net/api/AdminDashboard/Trips/GetTripDetails?tripId=${order.Id}`,
-      {
-        method: "GET",
-        headers: new Headers({
-          Authorization: `Bearer ${bookingState?.apiToken}`,
-          "content-type": "application/json",
-        }),
-      }
-    )
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          if (result.Status === "searching") {
-            apiTimeout = setTimeout(() => {
-              searchForDriver(order);
-            }, 5000);
-          } else if (result.Status === "scheduled") {
-            // scheduled
-            clearTimeout(apiTimeout);
-            contextState.rideScheduled = true;
-            contextState.searchingForDriver = false;
-            setRideScheduled(true);
-
-            updateSession();
-          } else {
-            clearTimeout(apiTimeout);
-
-            contextState.searchingForDriver = false;
-            contextState.driver = true;
-            contextState.driverDetails = result.Driver;
-            setDriverDetails(result.Driver);
-            setDriver(true);
-            updateSession();
-          }
-        },
-        (error) => {
-          setError(error);
-          clearState();
-        }
-      );
-  };
-
-  const cancelTripHandler = () => {
-    // cancel
-    if (orderDetails) {
+    if (contextState.orderDetails) {
       fetch(
-        `https://carky-api.azurewebsites.net/api/AdminDashboard/Orders/OrderCancel?orderId=${orderDetails.Id}`,
+        `${process.env.NEXT_PUBLIC_ONDE_HOSTNAME}/dispatch/v1/order/${contextState.orderDetails.orderId}/update`,
         {
-          method: "POST",
+          method: "GET",
           headers: new Headers({
-            Authorization: `Bearer ${bookingState?.apiToken}`,
-            "content-type": "application/json",
+            Authorization: `${process.env.NEXT_PUBLIC_ONDE_API_TOKEN}`,
           }),
         }
       )
         .then((res) => res.json())
         .then(
           (result) => {
-            clearState();
+            if (result.status === "SEARCH") {
+              clearTimeout(apiTimeout);
+              apiTimeout = setTimeout(() => {
+                getOrderUpdate(order);
+              }, 10000);
+            } else {
+              clearTimeout(apiTimeout);
+              let driverDetails = {
+                ...result.driverId,
+                ...result.driverLocation,
+              };
+              contextState.searchingForDriver = false;
+              contextState.driver = true;
+              contextState.driverDetails = driverDetails;
+              setDriverDetails(driverDetails);
+              setDriver(true);
+              updateSession();
+            }
           },
           (error) => {
             setError(error);
@@ -1020,11 +1077,106 @@ export default function BookOnline() {
           }
         );
     }
+  };
+
+  useEffect(() => {
+    if (contextState.driverLocation) {
+      console.log("driver location", contextState.driverLocation);
+      setDriverLocation(() => contextState.driverLocation);
+    }
+    return () => {};
+  }, [contextState]);
+
+  const renderDriverLocation = async () => {
+    if (
+      bookingState &&
+      directionsService &&
+      directionsRenderer &&
+      pickUpLocation &&
+      dropLocation
+    ) {
+      await directionsService
+        .route({
+          origin: {
+            query: pickUpLocation,
+          },
+          destination: {
+            query: dropLocation,
+          },
+          travelMode: google.maps.TravelMode.DRIVING,
+        })
+        .then((response: any) => {
+          console.log(response);
+          setError(null);
+          setDirections(response);
+          contextState.directions = response;
+          contextState.startLocationLat =
+            response.routes[0].legs[0].start_location.lat();
+          contextState.startLocationLng =
+            response.routes[0].legs[0].start_location.lng();
+          contextState.endLocationLat =
+            response.routes[0].legs[0].end_location.lat();
+          contextState.endLocationLng =
+            response.routes[0].legs[0].end_location.lng();
+          updateSession();
+          setItem("aegean", contextState, "local");
+          setPredictions([]);
+          setOpen(false);
+          try {
+            if (!bookingState.selectedCar) {
+              gatAvailableRouteCars(
+                bookingState.apiToken,
+                response.routes[0].legs[0].start_location.lat(),
+                response.routes[0].legs[0].start_location.lng(),
+                response.routes[0].legs[0].end_location.lat(),
+                response.routes[0].legs[0].end_location.lng()
+              );
+            }
+          } catch (error) {
+            setError(() => "No available route");
+            clearDirections();
+          }
+        })
+        .catch(
+          (e: any) => {
+            console.log(e);
+            setError(e.message.split(":").pop());
+            // setOpen(false);
+          }
+          // window.alert('Directions request failed due to ' + e)
+        );
+    }
+  };
+
+  const cancelTripHandler = () => {
+    // cancel
+    if (orderDetails) {
+      fetch(
+        `${process.env.NEXT_PUBLIC_ONDE_HOSTNAME}/dispatch/v1/order/${contextState.orderDetails.orderId}/status`,
+        {
+          method: "PUT",
+          headers: new Headers({
+            Authorization: `${process.env.NEXT_PUBLIC_ONDE_API_TOKEN}`,
+          }),
+          body: JSON.stringify({
+            status: "CANCELLED_BY_DISPATCH",
+          }),
+        }
+      ).then(
+        (res) => clearState(),
+        (error) => {
+          setError(error);
+          clearState();
+        }
+      );
+    }
     clearState();
     setOpen(false);
   };
 
   const clearState = () => {
+    directionsRenderer.setMap(null);
+    clearTimeout(apiTimeout);
     setDirections(null);
     setPickUpLocation("");
     setDropLocation("");
@@ -1038,6 +1190,7 @@ export default function BookOnline() {
     setPickUpDate("TODAY");
     setPickUpTime("NOW");
     setRideScheduled(false);
+    setDriverLocation(null);
 
     contextState.pickUpLocation = "";
     contextState.dropLocation = "";
@@ -1056,6 +1209,7 @@ export default function BookOnline() {
     contextState.startLocationLng = null;
     contextState.endLocationLat = null;
     contextState.endLocationLng = null;
+    contextState.driverLocation = null;
     // setItem("aegean", contextState, "local");
     updateSession();
   };
@@ -1515,7 +1669,7 @@ export default function BookOnline() {
                         }
                       >
                         {selectedCar
-                          ? `Confirm ${selectedCar.Name}`
+                          ? `Confirm ${selectedCar.name}`
                           : `Confirm`}
                       </Button>
                     </Box>
@@ -1579,7 +1733,6 @@ export default function BookOnline() {
                     </Typography>
                   </Box> */}
                   <Driver
-                    driverDetails={driverDetails}
                     cancelTrip={cancelTripHandler}
                     clearState={clearState}
                     orderDetails={orderDetails}
@@ -1676,6 +1829,8 @@ export default function BookOnline() {
                   placesService={placesService}
                   geocoderService={geocoderService}
                   directions={directions}
+                  driverLocation={driverLocation}
+                  state={contextState}
                 />
               )}
             </Wrapper>

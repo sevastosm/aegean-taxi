@@ -34,6 +34,7 @@ export const AppContext = createContext({
     endLocationLat:"",
     endLocationLng:"",
     rideScheduled: false,
+    driverLocation: null,
   },
   updateAppState: (state: any) => {},
 });
@@ -67,6 +68,7 @@ export default function AppContextProvider({ children }: { children: any }) {
     endLocationLat:"",
     endLocationLng:"",
     rideScheduled: false,
+    driverLocation: null,
   });
 
   const updateState = (state: any) => {
