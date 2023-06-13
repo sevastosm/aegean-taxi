@@ -38,6 +38,7 @@ import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import MyLocationOutlinedIcon from "@mui/icons-material/MyLocationOutlined";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
+import { DigitalClock } from "@mui/x-date-pickers/DigitalClock";
 
 // Styles
 import styles from "@/components/requestRideForm/form.module.scss";
@@ -64,6 +65,8 @@ import { initialize } from "next/dist/server/lib/render-server";
 // models
 import { BookingState } from "@/types/bookingState";
 
+import TAXI from "public/assets/car-top.png";
+
 dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.tz.setDefault("Europe/Athens");
@@ -80,6 +83,7 @@ function GoogleMapComponent({
   zoom,
   driverLocation,
   state,
+  removeMarkers,
   children,
   ...options
 }: {
@@ -93,10 +97,11 @@ function GoogleMapComponent({
   zoom?: number;
   driverLocation?: any;
   state?: any;
+  removeMarkers?: boolean;
   children?: any;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [mapMapWrapper, setMapWrapper] = useState<google.maps.Map>();
+  const [mapWrapper, setMapWrapper] = useState<google.maps.Map>();
   const [markers, setMarkers] = useState<Array<any>>([]);
 
   const makeMarker = (position: any, icon: any, title: string, map: any) => {
@@ -106,7 +111,6 @@ function GoogleMapComponent({
         map: map,
         icon: icon,
         title: title,
-        // animation: google.maps.Animation.BOUNCE
       });
     }
   };
@@ -114,22 +118,22 @@ function GoogleMapComponent({
   useEffect(() => {
     console.log("init map");
 
-    if (ref.current && !mapMapWrapper) {
+    if (ref.current && !mapWrapper) {
       if (currentLocation) {
         center = currentLocation;
       }
-      setMapWrapper(
-        new window.google.maps.Map(ref.current, {
-          center,
-          zoom,
-          zoomControl: false,
-          disableDefaultUI: true,
-          gestureHandling: "none",
-          styles: greyMap,
-        })
-      );
 
-      directionsRenderer.setMap(mapMapWrapper);
+      const map = new window.google.maps.Map(ref.current, {
+        center,
+        zoom,
+        zoomControl: false,
+        disableDefaultUI: true,
+        gestureHandling: "none",
+        styles: greyMap,
+      });
+
+      setMapWrapper(() => map);
+      directionsRenderer.setMap(map);
     }
 
     if (currentLocation) {
@@ -147,17 +151,17 @@ function GoogleMapComponent({
             anchor: new window.google.maps.Point(10.5, 18),
           },
           "Current location",
-          mapMapWrapper
+          mapWrapper
         ),
       ]);
 
-      directionsRenderer.setMap(mapMapWrapper);
+      directionsRenderer.setMap(mapWrapper);
 
-      if (mapMapWrapper) {
-        placesService = new google.maps.places.PlacesService(mapMapWrapper);
+      if (mapWrapper) {
+        placesService = new google.maps.places.PlacesService(mapWrapper);
       }
     }
-  }, [ref, mapMapWrapper]);
+  }, [ref, mapWrapper]);
 
   const clearMarkers = () => {
     // remove previous markers
@@ -169,6 +173,20 @@ function GoogleMapComponent({
       setMarkers([]);
     }
   };
+
+  useEffect(() => {
+    if (removeMarkers) {
+      if (markers.length) {
+        markers.forEach((m) => {
+          m.setMap(null);
+        });
+
+        setMarkers([]);
+      }
+    }
+
+    return () => {};
+  }, [removeMarkers, markers]);
 
   useEffect(() => {
     console.log("map directions");
@@ -200,7 +218,7 @@ function GoogleMapComponent({
             anchor: new window.google.maps.Point(10.5, 18),
           },
           leg.start_address,
-          mapMapWrapper
+          mapWrapper
         )
       );
       newMarkers.push(
@@ -216,7 +234,7 @@ function GoogleMapComponent({
             anchor: new window.google.maps.Point(5.5, 20),
           },
           leg.end_address,
-          mapMapWrapper
+          mapWrapper
         )
       );
 
@@ -228,65 +246,92 @@ function GoogleMapComponent({
         },
       });
 
-      directionsRenderer.setMap(mapMapWrapper);
+      directionsRenderer.setMap(mapWrapper);
     }
   }, [directions]);
 
   useEffect(() => {
     console.log("driver location map");
-    console.log(state, state.driverLocation);
+
+    directionsRenderer.setDirections({ routes: [] });
     if (state && state.driverLocation) {
-      console.log(55555, state, state.driverLocation, driverLocation);
-      clearMarkers();
+      const reverseGeocoding = async () => {
+        const data = await geocoderService
+          .geocode({
+            location: {
+              lat: state.driverLocation.lat,
+              lng: state.driverLocation.lng,
+            },
+          })
+          .then((response: any) => {
+            if (response.results[0]) {
+              directionsRenderer.setDirections({ routes: [] });
 
-      let newMarkers = [];
-      newMarkers.push(
-        new window.google.maps.Marker({
-          position: {
-            lat: state.driverLocation.lat,
-            lng: state.driverLocation.lng,
-          },
-          map: mapMapWrapper,
-          icon: {
-            path: "M10.001,6.54c-0.793,0-1.438,0.645-1.438,1.438c0,0.792,0.645,1.435,1.438,1.435c0.791,0,1.435-0.644,1.435-1.435C11.437,7.184,10.792,6.54,10.001,6.54z M10.001,8.454c-0.264,0-0.479-0.213-0.479-0.476c0-0.265,0.215-0.479,0.479-0.479c0.263,0,0.477,0.214,0.477,0.479C10.478,8.241,10.265,8.454,10.001,8.454z, M10,3.021c-2.815,0-5.106,2.291-5.106,5.106c0,0.781,0.188,1.549,0.562,2.282c0.011,0.062,0.036,0.12,0.07,0.174l0.125,0.188c0.074,0.123,0.151,0.242,0.225,0.341l3.727,5.65c0.088,0.135,0.238,0.215,0.399,0.215c0.161,0,0.311-0.08,0.4-0.215l3.752-5.68c0.057-0.08,0.107-0.159,0.153-0.232l0.132-0.199c0.033-0.05,0.054-0.104,0.064-0.159c0.401-0.757,0.605-1.551,0.605-2.366C15.107,5.312,12.815,3.021,10,3.021z M13.596,10.152c-0.017,0.03-0.029,0.062-0.039,0.095l-0.056,0.084c-0.043,0.066-0.085,0.133-0.139,0.211L10,15.629l-3.339-5.061c-0.068-0.095-0.132-0.193-0.203-0.309l-0.051-0.078c-0.009-0.031-0.021-0.061-0.038-0.089C6.026,9.458,5.852,8.796,5.852,8.127c0-2.287,1.861-4.148,4.147-4.148c2.288,0,4.149,1.861,4.149,4.148C14.148,8.823,13.963,9.503,13.596,10.152z",
-            fillColor: "#000",
-            fillOpacity: 1,
-            strokeWeight: 0,
-            rotation: 0,
-            scale: 2,
-            anchor: new window.google.maps.Point(10.5, 18),
-          },
-          title: "driver location",
-          animation: google.maps.Animation.BOUNCE,
-        })
-      );
+              directionsService
+                .route({
+                  origin: {
+                    query: response.results[0].formatted_address,
+                  },
+                  destination: {
+                    query: state.pickUpLocation,
+                  },
+                  travelMode: google.maps.TravelMode.DRIVING,
+                })
+                .then((response: any) => {
+                  console.log(22222, response);
+                  directionsRenderer.setOptions({
+                    polylineOptions: {
+                      strokeColor: "#222",
+                    },
+                  });
+                  directionsRenderer.setDirections(response);
 
-      newMarkers.push(
-        makeMarker(
-          { lat: state.startLocationLat, lng: state.startLocationLng },
-          {
-            path: "M10.001,6.54c-0.793,0-1.438,0.645-1.438,1.438c0,0.792,0.645,1.435,1.438,1.435c0.791,0,1.435-0.644,1.435-1.435C11.437,7.184,10.792,6.54,10.001,6.54z M10.001,8.454c-0.264,0-0.479-0.213-0.479-0.476c0-0.265,0.215-0.479,0.479-0.479c0.263,0,0.477,0.214,0.477,0.479C10.478,8.241,10.265,8.454,10.001,8.454z, M10,3.021c-2.815,0-5.106,2.291-5.106,5.106c0,0.781,0.188,1.549,0.562,2.282c0.011,0.062,0.036,0.12,0.07,0.174l0.125,0.188c0.074,0.123,0.151,0.242,0.225,0.341l3.727,5.65c0.088,0.135,0.238,0.215,0.399,0.215c0.161,0,0.311-0.08,0.4-0.215l3.752-5.68c0.057-0.08,0.107-0.159,0.153-0.232l0.132-0.199c0.033-0.05,0.054-0.104,0.064-0.159c0.401-0.757,0.605-1.551,0.605-2.366C15.107,5.312,12.815,3.021,10,3.021z M13.596,10.152c-0.017,0.03-0.029,0.062-0.039,0.095l-0.056,0.084c-0.043,0.066-0.085,0.133-0.139,0.211L10,15.629l-3.339-5.061c-0.068-0.095-0.132-0.193-0.203-0.309l-0.051-0.078c-0.009-0.031-0.021-0.061-0.038-0.089C6.026,9.458,5.852,8.796,5.852,8.127c0-2.287,1.861-4.148,4.147-4.148c2.288,0,4.149,1.861,4.149,4.148C14.148,8.823,13.963,9.503,13.596,10.152z",
-            fillColor: "#000",
-            fillOpacity: 1,
-            strokeWeight: 0,
-            rotation: 0,
-            scale: 2,
-            anchor: new window.google.maps.Point(10.5, 18),
-          },
-          state.pickUpLocation,
-          mapMapWrapper
-        )
-      );
+                  clearMarkers();
 
-      setMarkers(newMarkers);
+                  let newMarkers = [];
+                  newMarkers.push(
+                    new window.google.maps.Marker({
+                      position: {
+                        lat: state.driverLocation.lat,
+                        lng: state.driverLocation.lng,
+                      },
+                      map: mapWrapper,
+                      icon: TAXI.src,
+                      title: "driver location",
+                      animation: google.maps.Animation.BOUNCE,
+                    })
+                  );
 
-      directionsRenderer.setOptions({
-        polylineOptions: {
-          strokeColor: "#222",
-        },
-      });
+                  newMarkers.push(
+                    makeMarker(
+                      {
+                        lat: state.startLocationLat,
+                        lng: state.startLocationLng,
+                      },
+                      {
+                        path: "M10.001,6.54c-0.793,0-1.438,0.645-1.438,1.438c0,0.792,0.645,1.435,1.438,1.435c0.791,0,1.435-0.644,1.435-1.435C11.437,7.184,10.792,6.54,10.001,6.54z M10.001,8.454c-0.264,0-0.479-0.213-0.479-0.476c0-0.265,0.215-0.479,0.479-0.479c0.263,0,0.477,0.214,0.477,0.479C10.478,8.241,10.265,8.454,10.001,8.454z, M10,3.021c-2.815,0-5.106,2.291-5.106,5.106c0,0.781,0.188,1.549,0.562,2.282c0.011,0.062,0.036,0.12,0.07,0.174l0.125,0.188c0.074,0.123,0.151,0.242,0.225,0.341l3.727,5.65c0.088,0.135,0.238,0.215,0.399,0.215c0.161,0,0.311-0.08,0.4-0.215l3.752-5.68c0.057-0.08,0.107-0.159,0.153-0.232l0.132-0.199c0.033-0.05,0.054-0.104,0.064-0.159c0.401-0.757,0.605-1.551,0.605-2.366C15.107,5.312,12.815,3.021,10,3.021z M13.596,10.152c-0.017,0.03-0.029,0.062-0.039,0.095l-0.056,0.084c-0.043,0.066-0.085,0.133-0.139,0.211L10,15.629l-3.339-5.061c-0.068-0.095-0.132-0.193-0.203-0.309l-0.051-0.078c-0.009-0.031-0.021-0.061-0.038-0.089C6.026,9.458,5.852,8.796,5.852,8.127c0-2.287,1.861-4.148,4.147-4.148c2.288,0,4.149,1.861,4.149,4.148C14.148,8.823,13.963,9.503,13.596,10.152z",
+                        fillColor: "#000",
+                        fillOpacity: 1,
+                        strokeWeight: 0,
+                        rotation: 0,
+                        scale: 2,
+                        anchor: new window.google.maps.Point(10.5, 18),
+                      },
+                      state.pickUpLocation,
+                      mapWrapper
+                    )
+                  );
 
-      directionsRenderer.setMap(mapMapWrapper);
+                  setMarkers(newMarkers);
+
+                  directionsRenderer.setMap(mapWrapper);
+                });
+            }
+          })
+          .catch((e: any) => console.log("Geocoder failed due to: " + e));
+      };
+
+      reverseGeocoding();
     }
   }, [driverLocation]);
 
@@ -296,7 +341,7 @@ function GoogleMapComponent({
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
           // set the map prop on the child component
-          return React.cloneElement(child, { ...mapMapWrapper });
+          return React.cloneElement(child, { ...mapWrapper });
         }
       })}
     </>
@@ -403,6 +448,7 @@ export default function BookOnline() {
   const [selectCarStep, setSelectCarStep] = useState<boolean>(false);
   const [googleIsDefined, setGoogleIsDefined] = useState<boolean>(false);
   const [rideScheduled, setRideScheduled] = useState<boolean>(false);
+  const [removeMarkers, setRemoveMarkers] = useState<boolean>(false);
 
   useEffect(() => {
     console.log("set state");
@@ -424,6 +470,7 @@ export default function BookOnline() {
   };
 
   const toggleFocusLocation = () => () => {
+    setOpenTimePicker(false);
     setFocusLocation(!focusLocation);
     setNearbyLocations([]);
     setCurrentLocationAddress("");
@@ -437,6 +484,7 @@ export default function BookOnline() {
   };
 
   const toggleFocusDestination = () => () => {
+    setOpenTimePicker(false);
     setFocusDestination(!focusDestination);
     setCurrentLocationAddress("");
     setNearbyLocations([]);
@@ -758,7 +806,6 @@ export default function BookOnline() {
           travelMode: google.maps.TravelMode.DRIVING,
         })
         .then((response: any) => {
-          console.log(response);
           setError(null);
           setDirections(response);
           contextState.directions = response;
@@ -843,6 +890,7 @@ export default function BookOnline() {
   };
 
   const setPickUpLocationHandler = (value: string) => {
+    setRemoveMarkers(() => false);
     contextState.pickUpLocation = value;
     updateSession();
     setPickUpLocation(() => value);
@@ -853,6 +901,7 @@ export default function BookOnline() {
   };
 
   const setDropOffLocationHandler = (value: string) => {
+    setRemoveMarkers(() => false);
     contextState.dropLocation = value;
     updateSession();
     setDropLocation(() => value);
@@ -869,6 +918,7 @@ export default function BookOnline() {
   };
 
   const setPickUpTimeHandler = (value: any) => {
+    setOpenTimePicker(false);
     const dateString = dayjs(value).format("HH:mm");
 
     setPickUpTime(dateString);
@@ -906,6 +956,11 @@ export default function BookOnline() {
   };
 
   const clearDirections = () => {
+    setRemoveMarkers(() => true);
+    setDirectionsRenderer(() => directionsRenderer.setMap(null));
+    setDirectionsRenderer(
+      () => new window.google.maps.DirectionsRenderer({ suppressMarkers: true })
+    );
     setDirections(() => null);
     setPickUpLocation("");
     setDropLocation("");
@@ -931,15 +986,17 @@ export default function BookOnline() {
   };
 
   const createOrder = async () => {
-    contextState.searchingForDriver = true;
-    updateSession();
-
     // new order
     if (contextState && contextState.startLocationLat) {
+      contextState.searchingForDriver = true;
+      updateSession();
       let orderDetailsRes;
+      dayjs.tz.setDefault();
       let dayjsLocal = dayjs(
         `${contextState.pickUpDate} ${contextState.pickUpTime}`
       );
+      // console.log(`${contextState.pickUpDate} ${contextState.pickUpTime}`)
+      // console.log(dayjsLocal.format())
 
       try {
         let res = await fetch(
@@ -1004,7 +1061,7 @@ export default function BookOnline() {
               },
               notes: "From Aegean Taxi Web App",
               // pickupTime: encodeURIComponent(dayjsLocal.toISOString()),
-              pickupTime: dayjsLocal.toISOString(),
+              pickupTime: dayjsLocal.format(),
               unitOfLength: "KILOMETER",
               numberOfSeats: contextState.selectedCar.numberOfSeats,
               // paymentMethods: contextState.selectedCar.paymentMethods,
@@ -1036,10 +1093,10 @@ export default function BookOnline() {
   let apiTimeout: any;
 
   const getOrderUpdate = (order: any) => {
-    contextState.searchingForDriver = true;
-    updateSession();
     // cancel
     if (contextState.orderDetails) {
+      contextState.searchingForDriver = true;
+      updateSession();
       fetch(
         `${process.env.NEXT_PUBLIC_ONDE_HOSTNAME}/dispatch/v1/order/${contextState.orderDetails.orderId}/update`,
         {
@@ -1079,73 +1136,12 @@ export default function BookOnline() {
     }
   };
 
-  useEffect(() => {
-    if (contextState.driverLocation) {
-      console.log("driver location", contextState.driverLocation);
-      setDriverLocation(() => contextState.driverLocation);
-    }
-    return () => {};
-  }, [contextState]);
-
-  const renderDriverLocation = async () => {
-    if (
-      bookingState &&
-      directionsService &&
-      directionsRenderer &&
-      pickUpLocation &&
-      dropLocation
-    ) {
-      await directionsService
-        .route({
-          origin: {
-            query: pickUpLocation,
-          },
-          destination: {
-            query: dropLocation,
-          },
-          travelMode: google.maps.TravelMode.DRIVING,
-        })
-        .then((response: any) => {
-          console.log(response);
-          setError(null);
-          setDirections(response);
-          contextState.directions = response;
-          contextState.startLocationLat =
-            response.routes[0].legs[0].start_location.lat();
-          contextState.startLocationLng =
-            response.routes[0].legs[0].start_location.lng();
-          contextState.endLocationLat =
-            response.routes[0].legs[0].end_location.lat();
-          contextState.endLocationLng =
-            response.routes[0].legs[0].end_location.lng();
-          updateSession();
-          setItem("aegean", contextState, "local");
-          setPredictions([]);
-          setOpen(false);
-          try {
-            if (!bookingState.selectedCar) {
-              gatAvailableRouteCars(
-                bookingState.apiToken,
-                response.routes[0].legs[0].start_location.lat(),
-                response.routes[0].legs[0].start_location.lng(),
-                response.routes[0].legs[0].end_location.lat(),
-                response.routes[0].legs[0].end_location.lng()
-              );
-            }
-          } catch (error) {
-            setError(() => "No available route");
-            clearDirections();
-          }
-        })
-        .catch(
-          (e: any) => {
-            console.log(e);
-            setError(e.message.split(":").pop());
-            // setOpen(false);
-          }
-          // window.alert('Directions request failed due to ' + e)
-        );
-    }
+  const updateDriverLocationHandler = (carLocation: any) => {
+    setDirectionsRenderer(() => directionsRenderer.setMap(null));
+    setDirectionsRenderer(
+      () => new window.google.maps.DirectionsRenderer({ suppressMarkers: true })
+    );
+    setDriverLocation(() => carLocation);
   };
 
   const cancelTripHandler = () => {
@@ -1175,7 +1171,11 @@ export default function BookOnline() {
   };
 
   const clearState = () => {
-    directionsRenderer.setMap(null);
+    setRemoveMarkers(() => true);
+    directionsRenderer.setDirections({ routes: [] });
+    // setDirectionsRenderer(
+    //   () => new window.google.maps.DirectionsRenderer({ suppressMarkers: true })
+    // );
     clearTimeout(apiTimeout);
     setDirections(null);
     setPickUpLocation("");
@@ -1210,7 +1210,7 @@ export default function BookOnline() {
     contextState.endLocationLat = null;
     contextState.endLocationLng = null;
     contextState.driverLocation = null;
-    // setItem("aegean", contextState, "local");
+    setItem("aegean", contextState, "local");
     updateSession();
   };
 
@@ -1464,6 +1464,7 @@ export default function BookOnline() {
                           size="large"
                           fullWidth={true}
                           onClick={() => {
+                            setOpenTimePicker(false);
                             setOpenDayPicker(true);
                           }}
                           sx={{ position: "absolute", zIndex: 999 }}
@@ -1506,7 +1507,7 @@ export default function BookOnline() {
                         </Button>
 
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
-                          <DesktopTimePicker
+                          {/* <DesktopTimePicker
                             defaultValue={dayjs()}
                             label=""
                             open={openTimePicker}
@@ -1520,7 +1521,29 @@ export default function BookOnline() {
                             onChange={(value: any) =>
                               setPickUpTimeHandler(value)
                             }
-                          />
+                          /> */}
+                          {openTimePicker && (
+                            <DigitalClock
+                              defaultValue={dayjs()}
+                              // label=""
+                              // open={openTimePicker}
+                              timeStep={5}
+                              disablePast={
+                                pickUpDate === "TODAY" ? true : false
+                              }
+                              sx={{
+                                position: "absolute",
+                                zIndex: 99999,
+                                top: 45,
+                                background: "#fafafa",
+                              }}
+                              // onClose={() => setOpenTimePicker(false)}
+
+                              onChange={(value: any) =>
+                                setPickUpTimeHandler(value)
+                              }
+                            />
+                          )}
                         </LocalizationProvider>
                       </Box>
                     </Grid>
@@ -1669,7 +1692,11 @@ export default function BookOnline() {
                         }
                       >
                         {selectedCar
-                          ? `Confirm ${selectedCar.name}`
+                          ? `Confirm ${
+                              selectedCar.name
+                                ? selectedCar.name
+                                : selectedCar.vehicleType
+                            }`
                           : `Confirm`}
                       </Button>
                     </Box>
@@ -1734,6 +1761,7 @@ export default function BookOnline() {
                   </Box> */}
                   <Driver
                     cancelTrip={cancelTripHandler}
+                    updateDriverLocationHandler={updateDriverLocationHandler}
                     clearState={clearState}
                     orderDetails={orderDetails}
                   />
@@ -1831,6 +1859,7 @@ export default function BookOnline() {
                   directions={directions}
                   driverLocation={driverLocation}
                   state={contextState}
+                  removeMarkers={removeMarkers}
                 />
               )}
             </Wrapper>

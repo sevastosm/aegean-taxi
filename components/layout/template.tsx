@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useContext } from "react";
 import "./../../app/globals.css";
+import { hotjar } from "react-hotjar";
 
 // MUI
 import Box from "@mui/material/Box";
@@ -42,19 +43,23 @@ export default function MainTemplate({
     directions: null,
     selectedCar: null,
     selectedCarConfirmed: false,
-    orderDetails:null,
+    orderDetails: null,
     showNavigatorButton: true,
     nextButton: false,
     firstName: "",
     lastName: "",
     searchingForDriver: false,
-    startLocationLat:"",
-    startLocationLng:"",
-    endLocationLat:"",
-    endLocationLng:"",
+    startLocationLat: "",
+    startLocationLng: "",
+    endLocationLat: "",
+    endLocationLng: "",
     rideScheduled: false,
     driverLocation: null,
   });
+
+  useEffect(() => {
+    hotjar.initialize(3504233, 6);
+  }, []);
 
   const updateState = (state: any) => {
     setCurrentState(state);
@@ -69,7 +74,7 @@ export default function MainTemplate({
           <Box>
             <CssBaseline />
             <DrawerAppBar />
-            <Box component="main" sx={{mt: {xs:2.5, md:'initial'}}}>
+            <Box component="main" sx={{ mt: { xs: 2.5, md: "initial" } }}>
               <Toolbar />
               {children}
             </Box>

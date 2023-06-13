@@ -20,7 +20,7 @@ import BUS from "public/assets/onde-service-types/BUS.png";
 import BUSINESS from "public/assets/onde-service-types/BUSINESS.png";
 import CLASSIK from "public/assets/onde-service-types/CLASSIC.png";
 import ECONOMY_YELLOW from "public/assets/onde-service-types/ECONOMY_yellow.png";
-// import ECONOMY from "public/assets/onde-service-types/ECONOMY.png";
+import ECONOMY from "public/assets/onde-service-types/ECONOMY.png";
 import MICRO_BUS from "public/assets/onde-service-types/MICRO_BUS.png";
 import MINIVAN from "public/assets/onde-service-types/MINIVAN.png";
 import SUV from "public/assets/onde-service-types/SUV.png";
@@ -43,26 +43,41 @@ export default function CarOptions(props: any) {
 
   const getImage = (name: string) => {
     switch (name) {
-      case `econ`:
+      case `economy_yellow`:
         return ECONOMY_YELLOW;
         break;
-
+      case `classik`:
+        return CLASSIK;
+        break;
       case `luxury`:
         return BUSINESS;
         break;
-
+      case `business`:
+        return BUSINESS;
+        break;
       case `suv`:
         return SUV;
+        break;
+      case `bus`:
+        return BUS;
+        break;
+      case `bus`:
+        return BUS;
         break;
 
       case `van`:
         return VAN;
         break;
+      case `micro_bus`:
+        return MICRO_BUS;
+        break;
+      case `minivan`:
+        return MINIVAN;
+        break;
       default:
-        return ECONOMY_YELLOW;
+        return ECONOMY;
     }
   };
-
 
   const cars = props.cars.map((car: any, index: number) => (
     <ToggleButton
@@ -82,10 +97,10 @@ export default function CarOptions(props: any) {
       >
         <Grid item xs={4} md={4}>
           <Image
-            src={getImage(car.name.toLowerCase())}
+            src={getImage(car.vehicleType.toLowerCase())}
             width={100}
             // height={50}
-            alt={car.name}
+            alt={car.vehicleType}
           />
         </Grid>
         <Grid item xs={5} md={5}>
@@ -97,10 +112,10 @@ export default function CarOptions(props: any) {
                 variant="body2"
                 component="div"
                 sx={{
-                  fontWeight:600
+                  fontWeight: 600,
                 }}
               >
-                {car.name}
+                {car.name ? car.name :  car.vehicleType}
               </Typography>
             </Grid>
             <Grid item height={24}>
@@ -113,7 +128,7 @@ export default function CarOptions(props: any) {
                 variant="body2"
                 component="div"
                 sx={{
-                  fontWeight:600
+                  fontWeight: 600,
                 }}
               >
                 {car.numberOfSeats}
@@ -126,10 +141,10 @@ export default function CarOptions(props: any) {
             color={"#000"}
             align="left"
             variant="body1"
-                component="div"
-                sx={{
-                  fontWeight:600
-                }}
+            component="div"
+            sx={{
+              fontWeight: 600,
+            }}
           >
             ~ {car.minimumCharge}€
           </Typography>

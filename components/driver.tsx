@@ -156,7 +156,24 @@ export default function Driver(props: any) {
     setOpen(false);
   };
   const getOrderInfo = () => {
-    // cancel
+
+    // contextState.driverLocation = {
+    //   "lat": 37.4415004,
+    //   "lng": 25.3351517
+    // };
+    // appContext.updateAppState(contextState);
+    // setItem("aegean", contextState, "local");
+    // props.updateDriverLocationHandler({
+    //   "lat": 37.4415004,
+    //   "lng": 25.3351517
+    // })
+
+    // clearTimeout(apiTimeout);
+    // apiTimeout = setTimeout(() => {
+    //   getOrderInfo();
+    // }, 3000);
+
+
     if (props.orderDetails && contextState.orderDetails) {
       fetch(
         `${process.env.NEXT_PUBLIC_ONDE_HOSTNAME}/dispatch/v1/order/${contextState.orderDetails.orderId}/update`,
@@ -213,12 +230,13 @@ export default function Driver(props: any) {
             contextState.driverLocation = result.driverLocation;
             appContext.updateAppState(contextState);
             setItem("aegean", contextState, "local");
+            props.updateDriverLocationHandler(result.driverLocation);
 
             if (tripStatus !== "Completed" && tripStatus !== "Cancelled") {
               clearTimeout(apiTimeout);
               apiTimeout = setTimeout(() => {
                 getOrderInfo();
-              }, 15000);
+              }, 10000);
             } else {
               clearTimeout(apiTimeout);
             }
