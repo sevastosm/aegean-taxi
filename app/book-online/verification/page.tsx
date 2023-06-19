@@ -451,8 +451,6 @@ export default function VerificationComponent({}: {}) {
 
   useEffect(() => {
     if (aegeanState) {
-      // bookingState = aegeanState;
-      // bookingContext.updateState
       bookingContext.updateAppState(aegeanState);
     }
 
@@ -503,24 +501,24 @@ export default function VerificationComponent({}: {}) {
 
     // FIXME:
     // Override temporary
-    (bookingState.searchingForDriver = true),
-      (bookingState.userVerified = true);
-    bookingContext.updateAppState(bookingState);
-    setItem("aegean", bookingState, "local");
-    router.push("/book-online");
+    // (bookingState.searchingForDriver = true),
+    //   (bookingState.userVerified = true);
+    // bookingContext.updateAppState(bookingState);
+    // setItem("aegean", bookingState, "local");
+    // router.push("/book-online");
     // ./Override temporary
 
     // FIXME:
     // Override temporary
-    // sendSms(
-    //   bookingState.apiToken,
-    //   [`00${bookingState.phoneNumber.replace("+", "")}`],
-    //   `Your access code is ${smsCode}`
-    // );
+    sendSms(
+      bookingState.apiToken,
+      [`00${bookingState.phoneNumber.replace("+", "")}`],
+      `Your access code is ${smsCode}`
+    );
 
-    // bookingContext.updateAppState(bookingState);
-    // setItem("aegean", bookingState, "local");
-    // router.push("/book-online/verification/validate");
+    bookingContext.updateAppState(bookingState);
+    setItem("aegean", bookingState, "local");
+    router.push("/book-online/verification/validate");
   }
 
   return (

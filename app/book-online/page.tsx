@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect, useContext, useRef } from "react";
 import { useRouter } from "next/navigation";
-import useSWR from "swr";
 
 // DayJS
 import dayjs from "dayjs";
@@ -11,7 +10,6 @@ import timezone from "dayjs/plugin/timezone";
 // MUI
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { DesktopTimePicker } from "@mui/x-date-pickers/DesktopTimePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import Alert from "@mui/material/Alert";
@@ -53,14 +51,10 @@ import { AppContext } from "@/context/appState";
 // hooks
 import useStorage from "@/hooks/useStorage";
 
-// fetchers
-import { tokenFetcher, sendSms } from "@/utils/fetchers";
-
 // components
 import PredictionListItem from "@/components/predictions-list";
 import CarOptions from "@/components/car-options";
 import Driver from "@/components/driver";
-import { initialize } from "next/dist/server/lib/render-server";
 
 // models
 import { BookingState } from "@/types/bookingState";
@@ -1063,6 +1057,7 @@ export default function BookOnline() {
               // pickupTime: encodeURIComponent(dayjsLocal.toISOString()),
               pickupTime: dayjsLocal.format(),
               unitOfLength: "KILOMETER",
+              vehicleType: contextState.selectedCar.vehicleType,
               numberOfSeats: contextState.selectedCar.numberOfSeats,
               // paymentMethods: contextState.selectedCar.paymentMethods,
               paymentMethods: ["CASH"],
@@ -1531,6 +1526,7 @@ export default function BookOnline() {
                               disablePast={
                                 pickUpDate === "TODAY" ? true : false
                               }
+                              skipDisabled={true}
                               sx={{
                                 position: "absolute",
                                 zIndex: 99999,
