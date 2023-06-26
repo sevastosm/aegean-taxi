@@ -146,7 +146,7 @@ export default function CarOptions(props: any) {
               fontWeight: 600,
             }}
           >
-            ~ {car.minimumCharge}€
+            ~ {Math.ceil(car.cost)}€
           </Typography>
         </Grid>
       </Grid>

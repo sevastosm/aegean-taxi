@@ -747,7 +747,11 @@ export default function BookOnline() {
         process.env.NEXT_PUBLIC_ONDE_HOSTNAME
       }/dispatch/v1/tariff?origin=${start_location_lat},${start_location_lng}&destination=${end_location_lat},${end_location_lat}&pickupTime=${encodeURIComponent(
         dayjsLocal.toISOString()
-      )}`,
+      )}&tripDistance=${
+        contextState.directions.routes[0].legs[0].distance.value
+      }&tripDuration=${
+        contextState.directions.routes[0].legs[0].duration.value * 1000
+      }`,
       {
         method: "GET",
         headers: new Headers({
