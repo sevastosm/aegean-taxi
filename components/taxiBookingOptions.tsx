@@ -31,7 +31,7 @@ export default function TaxiBookingOptions({
 }: {
   showRideApp?: boolean;
 }) {
-  const params = useParams();
+  const params: any = useParams();
   let title = `We made it easier to book your taxi ride <br /> in Greece`;
   let city = "";
 
@@ -52,7 +52,9 @@ export default function TaxiBookingOptions({
   };
 
   if (params.location) {
-    city = (params.location.charAt(0).toUpperCase() + params.location.slice(1)).replace("-taxi-app", "");
+    city = (
+      params.location.charAt(0).toUpperCase() + params.location.slice(1)
+    ).replace("-taxi-app", "");
     title = `We made it easier to book a ride<br /> in ${city}`;
   }
 
@@ -199,7 +201,7 @@ export default function TaxiBookingOptions({
                       sx={{
                         mt: 3,
                         display: { xs: "block", md: "none" },
-                        minHeight: 77
+                        minHeight: 77,
                       }}
                     >
                       Download our {city} taxi app from the stores,
@@ -310,12 +312,12 @@ export default function TaxiBookingOptions({
                     </Typography>
                   </Box>
 
-                   <Typography
+                  <Typography
                     variant="body1"
                     sx={{
                       mt: 3,
                       display: { xs: "block", md: "none" },
-                      minHeight: 77
+                      minHeight: 77,
                     }}
                   >
                     Our {city} 24/7 call center is always available to
@@ -425,12 +427,12 @@ export default function TaxiBookingOptions({
                     </Typography>
                   </Box>
 
-                   <Typography
+                  <Typography
                     variant="body1"
                     sx={{
                       mt: 3,
                       display: { xs: "block", md: "none" },
-                      minHeight: 77
+                      minHeight: 77,
                     }}
                   >
                     Just launch WhatsApp and request a ride
@@ -438,24 +440,24 @@ export default function TaxiBookingOptions({
                   </Typography>
 
                   <Box
-                      sx={{
-                        textAlign: "left",
-                        ml: 15,
-                        mt: 6,
-                        mr: 8,
-                        display: { xs: "none", md: "block" },
-                      }}
-                    >
-                      <WhatsAppButton />
-                    </Box>
-                    <Box
-                      sx={{
-                        display: { xs: "block", md: "none" },
-                        mt: 3,
-                      }}
-                    >
-                      <WhatsAppButton />
-                    </Box>
+                    sx={{
+                      textAlign: "left",
+                      ml: 15,
+                      mt: 6,
+                      mr: 8,
+                      display: { xs: "none", md: "block" },
+                    }}
+                  >
+                    <WhatsAppButton />
+                  </Box>
+                  <Box
+                    sx={{
+                      display: { xs: "block", md: "none" },
+                      mt: 3,
+                    }}
+                  >
+                    <WhatsAppButton />
+                  </Box>
                 </Stack>
               </Grid>
               <Grid
@@ -531,19 +533,21 @@ export default function TaxiBookingOptions({
                     }}
                   >
                     <Typography variant="body1">
-                      Book your ride{city ? ` in ${city}` : ""} online in 2 simple steps
+                      Book your ride{city ? ` in ${city}` : ""} online in 2
+                      simple steps
                     </Typography>
                   </Box>
 
-                   <Typography
+                  <Typography
                     variant="body1"
                     sx={{
                       mt: 3,
                       display: { xs: "block", md: "none" },
-                      minHeight: 77
+                      minHeight: 77,
                     }}
                   >
-                    Book your ride{city ? ` in ${city}` : ""} online in 2 simple steps
+                    Book your ride{city ? ` in ${city}` : ""} online in 2 simple
+                    steps
                   </Typography>
 
                   <Box

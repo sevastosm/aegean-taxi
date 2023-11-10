@@ -7,7 +7,7 @@ import ToursMykonosReviews from "@/components/reviews/toursMykonos";
 import ToursSantoriniReviews from "@/components/reviews/toursSantorini";
 
 export default function ToursReviews() {
-  const params = useParams();
+  const params: any = useParams();
   let reviewsComponent = <ToursLandingReviews />;
 
   if (params.location) {

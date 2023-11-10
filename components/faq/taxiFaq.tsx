@@ -9,12 +9,13 @@ import TaxiCorfuFaq from "@/components/faq/taxiCorfu";
 import TaxiRhodesFaq from "@/components/faq/taxiRhodes";
 
 export default function TaxiFaq() {
-  const params = useParams();
+  const params: any = useParams();
   let reviewsComponent = <Faq />;
 
   if (params.location) {
-    const city =
-      (params.location.charAt(0).toUpperCase() + params.location.slice(1)).replace("-taxi-app", "");;
+    const city = (
+      params.location.charAt(0).toUpperCase() + params.location.slice(1)
+    ).replace("-taxi-app", "");
     switch (city) {
       case "Athens":
         reviewsComponent = <TaxiAthensFaq />;

@@ -6,7 +6,7 @@ import MykonosTopSights from "./mykonosTopSights";
 import SantoriniTopSights from "./santoriniTopSights";
 
 export default function ToursTopSights() {
-  const params = useParams();
+  const params: any = useParams();
   const location = params.location.toLowerCase();
 
   return (

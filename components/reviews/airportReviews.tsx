@@ -7,7 +7,7 @@ import AirportMykonosReviews from "@/components/reviews/airportMykonos";
 import AirportSantoriniReviews from "@/components/reviews/airportSantorini";
 
 export default function AirportReviews() {
-  const params = useParams();
+  const params: any = useParams();
   let reviewsComponent = <AirportLandingReviews />;
 
   if (params.location) {

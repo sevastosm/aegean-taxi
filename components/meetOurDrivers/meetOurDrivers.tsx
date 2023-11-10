@@ -7,7 +7,7 @@ import DriversMykonos from "./toursMykonos";
 import DriversSantorini from "./toursSantorini";
 
 export default function MeetOurDrivers() {
-  const params = useParams();
+  const params: any = useParams();
   let drivers = <DriversTours />;
 
   if (params.location) {

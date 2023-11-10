@@ -6,12 +6,13 @@ import TaxiMykonosFindUs from "@/components/findUs/taxiMykonos";
 import TaxiSantoriniFindUs from "@/components/findUs/taxiSantorini";
 
 export default function TaxiFindUs() {
-  const params = useParams();
+  const params: any = useParams();
   let findUsComponent = <></>;
 
   if (params.location) {
-    const city =
-      (params.location.charAt(0).toUpperCase() + params.location.slice(1)).replace("-taxi-app", "");;
+    const city = (
+      params.location.charAt(0).toUpperCase() + params.location.slice(1)
+    ).replace("-taxi-app", "");
     switch (city) {
       case "Athens":
         findUsComponent = <TaxiAthensFindUs />;

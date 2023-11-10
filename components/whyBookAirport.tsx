@@ -22,7 +22,7 @@ import DRIVERS from "public/assets/drivers-icon.svg";
 import FLIGHT from "public/assets/flight.svg";
 
 export default function WhyBooAirport() {
-  const params = useParams();
+  const params: any = useParams();
 
   let settings = {
     dots: true,
@@ -64,8 +64,7 @@ export default function WhyBooAirport() {
               // lineHeight: { xs: "28px", md: "48px" },
             }}
           >
-            Book your {city} <br /> airport transfer  with
-             Aegean Taxi
+            Book your {city} <br /> airport transfer with Aegean Taxi
           </Typography>
           <Typography
             component="h2"

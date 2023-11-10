@@ -13,7 +13,7 @@ import MYKONOS from "public/assets/tours-mykonos.png";
 import SANTORINI from "public/assets/tours-santorini.jpg";
 
 export default function ToursHeader() {
-  const params = useParams();
+  const params: any = useParams();
   let city;
   let cover = bg;
 

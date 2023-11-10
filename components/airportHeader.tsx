@@ -20,7 +20,7 @@ import bg from "public/assets/taxi-header.png";
 import banner from "public/assets/banner.png";
 
 export default function AirportHeader() {
-  const params = useParams();
+  const params: any = useParams();
   let city;
   let cover = bg;
   if (params.location) {
@@ -40,7 +40,7 @@ export default function AirportHeader() {
   }
 
   return (
-    <Container maxWidth={"lg"} sx={{mb:{xs: 6, md:40}}}>
+    <Container maxWidth={"lg"} sx={{ mb: { xs: 6, md: 40 } }}>
       <Grid container spacing={0}>
         <Grid item xs={12} md={5}>
           <Typography
@@ -146,7 +146,7 @@ export default function AirportHeader() {
             sx={{
               display: { xs: "none", md: "flex" },
               minHeight: "595px",
-              position: 'relative',
+              position: "relative",
               width: 200,
               top: 325,
               right: -350,

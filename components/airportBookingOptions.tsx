@@ -30,11 +30,12 @@ export default function AirportBookingOptions({
 }: {
   showRideApp?: boolean;
 }) {
-  const params = useParams();
+  const params: any = useParams();
   let title = ` in Greece`;
 
   if (params.location) {
-    const city = params.location.charAt(0).toUpperCase() + params.location.slice(1);
+    const city =
+      params.location.charAt(0).toUpperCase() + params.location.slice(1);
     title = ` in ${city}`;
   }
 
@@ -198,7 +199,7 @@ export default function AirportBookingOptions({
                       sx={{
                         mt: 3,
                         display: { xs: "block", md: "none" },
-                        minHeight: 77
+                        minHeight: 77,
                       }}
                     >
                       Get our ride app from the stores,
@@ -308,12 +309,12 @@ export default function AirportBookingOptions({
                     </Typography>
                   </Box>
 
-                   <Typography
+                  <Typography
                     variant="body1"
                     sx={{
                       mt: 3,
                       display: { xs: "block", md: "none" },
-                      minHeight: 77
+                      minHeight: 77,
                     }}
                   >
                     Give us a call with all your arrival/departure details,
@@ -420,12 +421,12 @@ export default function AirportBookingOptions({
                     </Typography>
                   </Box>
 
-                   <Typography
+                  <Typography
                     variant="body1"
                     sx={{
                       mt: 3,
                       display: { xs: "block", md: "none" },
-                      minHeight: 77
+                      minHeight: 77,
                     }}
                   >
                     Just launch whatsapp and request a ride, 24/7
@@ -510,12 +511,12 @@ export default function AirportBookingOptions({
                     </Typography>
                   </Box>
 
-                   <Typography
+                  <Typography
                     variant="body1"
                     sx={{
                       mt: 3,
                       display: { xs: "block", md: "none" },
-                      minHeight: 77
+                      minHeight: 77,
                     }}
                   >
                     Book your airport transfer online

@@ -19,14 +19,15 @@ import Corfu from "public/assets/taxi-corfu.png";
 import Rhodes from "public/assets/taxi-rhodes.png";
 
 export default function TaxiHeader() {
-  const params = useParams();
+  const params: any = useParams();
   let title = `Your Taxi App <br />in Greece`;
   let subHeader = ` in Greece`;
   let cover = bg;
 
   if (params.location) {
-    const city =
-      (params.location.charAt(0).toUpperCase() + params.location.slice(1)).replace("-taxi-app", "");
+    const city = (
+      params.location.charAt(0).toUpperCase() + params.location.slice(1)
+    ).replace("-taxi-app", "");
     title = `Your ${city}<br /> Taxi App`;
     subHeader = ` in ${city}`;
     switch (city) {

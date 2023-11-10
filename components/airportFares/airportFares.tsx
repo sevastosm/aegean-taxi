@@ -6,7 +6,7 @@ import MykonosFares from "./mykonosFares";
 import SantoriniFares from "./santoriniFares";
 
 export default function AirportFares() {
-  const params = useParams();
+  const params: any = useParams();
   const location = params.location.toLowerCase();
 
   return (

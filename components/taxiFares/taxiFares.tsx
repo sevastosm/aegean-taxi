@@ -8,7 +8,7 @@ import CorfuFares from "./corfuFares";
 import RhodesFares from "./rhodesFares";
 
 export default function TaxiFares() {
-  const params = useParams();
+  const params: any = useParams();
   const location = params.location.toLowerCase();
 
   return (

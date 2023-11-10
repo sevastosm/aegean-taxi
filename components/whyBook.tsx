@@ -22,7 +22,7 @@ import DRIVERS from "public/assets/drivers-icon.svg";
 import APP from "public/assets/class-app-icon.svg";
 
 export default function WhyBook() {
-  const params = useParams();
+  const params: any = useParams();
 
   let settings = {
     dots: true,
@@ -49,7 +49,9 @@ export default function WhyBook() {
   let city;
 
   if (params.location) {
-    city = (params.location.charAt(0).toUpperCase() + params.location.slice(1)).replace("-taxi-app", "");
+    city = (
+      params.location.charAt(0).toUpperCase() + params.location.slice(1)
+    ).replace("-taxi-app", "");
     title = `Why Book<br /> with Aegean Taxi App in ${city}`;
   }
 

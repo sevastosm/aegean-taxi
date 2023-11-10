@@ -6,14 +6,14 @@ import MykonosSelectedTours from "./mykonosSelectedTours";
 import SantoriniSelectedTours from "./santoriniSelectedTours";
 
 export default function TaxiFares() {
-  const params = useParams();
-  const location = params.location
+  const params: any = useParams();
+  const location = params.location;
 
   return (
     <>
-      {location === 'athens' && <AthensSelectedTours />}
-      {location === 'mykonos' && <MykonosSelectedTours />}
-      {location === 'santorini' && <SantoriniSelectedTours />}
+      {location === "athens" && <AthensSelectedTours />}
+      {location === "mykonos" && <MykonosSelectedTours />}
+      {location === "santorini" && <SantoriniSelectedTours />}
     </>
   );
 }

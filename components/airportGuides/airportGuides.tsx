@@ -6,7 +6,7 @@ import MykonosGuide from "./mykonosGuide";
 import SantoriniGuide from "./santoriniGuide";
 
 export default function TaxiFares() {
-  const params = useParams();
+  const params: any = useParams();
   const location = params.location.toLowerCase();
 
   return (

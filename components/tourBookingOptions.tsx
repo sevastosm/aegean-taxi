@@ -27,7 +27,7 @@ export default function TourBookingOptions({
 }: {
   showRideApp?: boolean;
 }) {
-  const params = useParams();
+  const params: any = useParams();
   let city;
   if (params.location) {
     city = params.location.charAt(0).toUpperCase() + params.location.slice(1);
@@ -143,12 +143,12 @@ export default function TourBookingOptions({
                     </Typography>
                   </Box>
 
-                   <Typography
+                  <Typography
                     variant="body1"
                     sx={{
                       mt: 3,
                       display: { xs: "block", md: "none" },
-                      minHeight: 77
+                      minHeight: 77,
                     }}
                   >
                     Our call centre is available 24/7
@@ -254,12 +254,12 @@ export default function TourBookingOptions({
                     </Typography>
                   </Box>
 
-                   <Typography
+                  <Typography
                     variant="body1"
                     sx={{
                       mt: 3,
                       display: { xs: "block", md: "none" },
-                      minHeight: 77
+                      minHeight: 77,
                     }}
                   >
                     Just launch WhatsApp and talk to our team about your ideal

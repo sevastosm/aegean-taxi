@@ -7,7 +7,7 @@ import AirportMykonosFaq from "@/components/faq/airportMykonos";
 import AirportSantoriniFaq from "@/components/faq/airportSantorini";
 
 export default function AirportFaq() {
-  const params = useParams();
+  const params: any = useParams();
   let reviewsComponent = <Faq />;
 
   if (params.location) {
@@ -31,5 +31,5 @@ export default function AirportFaq() {
 
   //FIXME: It seems that FAQ is the same for each page
   // return reviewsComponent;
-  return <Faq />
+  return <Faq />;
 }
