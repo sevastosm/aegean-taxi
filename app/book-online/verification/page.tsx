@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/navigation";
 
@@ -29,6 +30,7 @@ import { BookingState } from "@/types/bookingState";
 
 // crypto
 import AES from "crypto-js/aes";
+import { Code } from "@mui/icons-material";
 
 const countryListExcluded = [
   { code: "AD", label: "Andorra", phone: "376" },
@@ -437,7 +439,7 @@ export default function VerificationComponent({}: {}) {
   const bookingContext = useContext<any>(AppContext);
   const bookingState: BookingState = bookingContext.state;
 
-  const { data, error } = useSWR({}, tokenFetcher);
+  // const { data, error } = useSWR({}, tokenFetcher);
 
   const { getItem } = useStorage();
   const { setItem } = useStorage();
@@ -454,15 +456,14 @@ export default function VerificationComponent({}: {}) {
       bookingContext.updateAppState(aegeanState);
     }
 
-    if (bookingState && data && !bookingState.apiToken) {
-      bookingState.apiToken = data.access_token;
+    if (bookingState) {
       setItem("aegean", bookingState, "local");
     }
     return () => {};
-  }, [bookingState, data]);
+  }, [aegeanState, bookingContext, bookingState, setItem]);
 
-  if (error) return <div>There was an error loading the app</div>;
-  if (!data) return <div>Loading...</div>;
+  // if (error) return <div>There was an error loading the app</div>;
+  // if (!data) return <div>Loading...</div>;
 
   const handleChange = (event: SelectChangeEvent) => {
     setCountryCode(event.target.value as string);
@@ -491,6 +492,7 @@ export default function VerificationComponent({}: {}) {
       `${process.env.NEXT_PUBLIC_CRYPTO_KEY}`
     ).toString();
     // bookingState = aegeanState;
+    console.log("SECURITY", securityCode);
     bookingContext.updateAppState(aegeanState);
 
     bookingState.phoneNumber = `+${countryCode}${phone}`;
@@ -511,8 +513,7 @@ export default function VerificationComponent({}: {}) {
     // FIXME:
     // Override temporary
     sendSms(
-      bookingState.apiToken,
-      [`00${bookingState.phoneNumber.replace("+", "")}`],
+      `00${bookingState.phoneNumber.replace("+", "")}`,
       `Your access code is ${smsCode}`
     );
 

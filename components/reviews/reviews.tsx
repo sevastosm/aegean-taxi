@@ -1,5 +1,7 @@
+// @ts-nocheck
 "use client";
 import Image from "next/image";
+import ReadMoreReact from "read-more-react";
 
 // MUI
 import Box from "@mui/material/Box";
@@ -16,11 +18,20 @@ import Slider from "react-slick";
 
 //MUI
 
-import UK from "public/assets/flags/uk.svg";
+import GB from "public/assets/flags/gb.svg";
 import US from "public/assets/flags/us.svg";
 import ES from "public/assets/flags/es.svg";
+import FR from "public/assets/flags/fr.svg";
 
-export default function Reviews() {
+import { locationDetails } from "@/utils/locationDetails";
+
+export default function Reviews({ location }: any) {
+  console.log("Reviews", location);
+  const data =
+    location === "default"
+      ? locationDetails[location]
+      : locationDetails.taxi_locations[location];
+
   let settings = {
     dots: true,
     infinite: true,
@@ -45,6 +56,84 @@ export default function Reviews() {
     ],
   };
 
+  const getFlag = (flag: string) => {
+    if (flag === "uk") {
+      return GB;
+    }
+    if (flag === "america") {
+      return US;
+    }
+    if (flag === "french") {
+      return FR;
+    }
+    if (flag === "spain") {
+      return ES;
+    }
+  };
+
+  const handleReflow = (rleState) => {
+    const { clamped, text } = rleState;
+    // do sth...
+  };
+
+  const Review = ({ item }: any) => (
+    <Stack spacing={2} sx={{ p: 1 }}>
+      <Paper
+        sx={{
+          background: "#244284",
+          color: "#fff",
+          // minHeight: "500px",
+        }}
+      >
+        <Box sx={{ p: 2 }}>
+          <Image src={getFlag(item.flag)} width={60} alt="GB" />
+          <Typography
+            variant="body1"
+            gutterBottom
+            sx={{
+              my: 2,
+              minHeight: { xs: "200px", md: "170px" },
+            }}
+          >
+            <ReadMoreReact
+              text={item.text}
+              min={50}
+              ideal={200}
+              max={500}
+              readMoreText={"Read more..."}
+            />
+          </Typography>
+
+          {/* User */}
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "baseline",
+            }}
+          >
+            <Box
+              component="span"
+              sx={{
+                alignSelf: "flex-end",
+                mt: 3,
+                p: 1,
+                px: 2,
+                textAlign: "center",
+                background: `#fff`,
+                borderRadius: 1,
+                color: "#000",
+                position: "absolute",
+                bottom: "30px",
+              }}
+            >
+              {item.dateName}
+            </Box>
+          </Box>
+        </Box>
+      </Paper>
+    </Stack>
+  );
+
   return (
     <Container maxWidth={"lg"}>
       <Grid container spacing={0}>
@@ -61,8 +150,8 @@ export default function Reviews() {
               mt: 5,
             }}
           >
-            What travelers who booked<br /> a ride with
-             Aegean Taxi say about us
+            What travelers who booked
+            <br /> a ride with Aegean Taxi say about us
           </Typography>
           <Typography
             component="h2"
@@ -82,150 +171,9 @@ export default function Reviews() {
           {/* Slider */}
           <Box sx={{ my: 1, p: { xs: 2, md: 3 } }}>
             <Slider {...settings}>
-              <Stack spacing={2} sx={{ p: 1 }}>
-                <Paper
-                  sx={{
-                    background: "#244284",
-                    color: "#fff",
-                  }}
-                >
-                  <Box sx={{ p: 2 }}>
-                    <Image src={UK} width={60} alt="UK" />
-                    <Typography
-                      variant="body1"
-                      gutterBottom
-                      sx={{
-                        my: 2,
-                        minHeight: { xs: "200px", md: "170px" },
-                      }}
-                    >
-                      I was impressed with the quality of service from this taxi
-                      company. The driver was professional, the car was clean
-                      and comfortable, and the price was affordable. Highly
-                      recommend.
-                    </Typography>
-
-                    {/* User */}
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "baseline",
-                      }}
-                    >
-                      <Box
-                        component="span"
-                        sx={{
-                          alignSelf: "flex-end",
-                          mt: 3,
-                          p: 1,
-                          px: 2,
-                          textAlign: "center",
-                          background: `#fff`,
-                          borderRadius: 1,
-                          color: "#000",
-                        }}
-                      >
-                        Ken - June 2020
-                      </Box>
-                    </Box>
-                  </Box>
-                </Paper>
-              </Stack>
-              <Stack spacing={2} sx={{ p: 1 }}>
-                <Paper
-                  sx={{
-                    background: "#2B6D95",
-                    color: "#fff",
-                  }}
-                >
-                  <Box sx={{ p: 2 }}>
-                    <Image src={US} width={60} alt="US" />
-                    <Typography
-                      variant="body1"
-                      gutterBottom
-                      sx={{
-                        my: 2,
-                        minHeight: { xs: "200px", md: "170px" },
-                      }}
-                    >
-                      I highly recommend Aegean Taxi App for their excellent
-                      service and quality cars. The app is easy to use, and the
-                      drivers are friendly and professional.
-                    </Typography>
-
-                    {/* User */}
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "baseline",
-                      }}
-                    >
-                      <Box
-                        component="span"
-                        sx={{
-                          alignSelf: "flex-end",
-                          mt: 3,
-                          p: 1,
-                          px: 2,
-                          textAlign: "center",
-                          background: `#fff`,
-                          borderRadius: 1,
-                          color: "#000",
-                        }}
-                      >
-                        Nicolas - August 2018
-                      </Box>
-                    </Box>
-                  </Box>
-                </Paper>
-              </Stack>
-              <Stack spacing={2} sx={{ p: 1 }}>
-                <Paper
-                  sx={{
-                    background: "#244284",
-                    color: "#fff",
-                  }}
-                >
-                  <Box sx={{ p: 2 }}>
-                    <Image src={ES} width={60} alt="ES" />
-                    <Typography
-                      variant="body1"
-                      gutterBottom
-                      sx={{
-                        my: 2,
-                        minHeight: { xs: "200px", md: "170px" },
-                      }}
-                    >
-                      I have booked my ride via website. I was also pleased with
-                      the affordable price and the drivers professionalism.
-                    </Typography>
-
-                    {/* User */}
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "baseline",
-                      }}
-                    >
-                      <Box
-                        component="span"
-                        sx={{
-                          alignSelf: "flex-end",
-                          mt: 3,
-                          p: 1,
-                          px: 2,
-                          textAlign: "center",
-                          background: `#fff`,
-                          borderRadius: 1,
-                          color: "#000",
-                        }}
-                      >
-                        Fernando - May 2021
-                      </Box>
-                    </Box>
-                  </Box>
-                </Paper>
-              </Stack>
+              {data?.reviews.map((item: any, i: number) => (
+                <Review key={i} item={item} />
+              ))}
             </Slider>
           </Box>
           {/* ./Slider */}

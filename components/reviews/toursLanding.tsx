@@ -16,7 +16,7 @@ import Slider from "react-slick";
 
 //MUI
 
-import UK from "public/assets/flags/uk.svg";
+import GB from "public/assets/flags/gb.svg";
 import US from "public/assets/flags/us.svg";
 import CA from "public/assets/flags/ca.svg";
 
@@ -91,7 +91,7 @@ export default function ToursLandingReviews() {
                   }}
                 >
                   <Box sx={{ p: 2 }}>
-                    <Image src={UK} width={60} alt="UK" />
+                    <Image src={GB} width={60} alt="GB" />
                     <Typography
                       variant="body1"
                       gutterBottom
@@ -201,10 +201,10 @@ export default function ToursLandingReviews() {
                       }}
                     >
                       I recently went on a full-day tour with Aegean Taxi and it
-                      was one of the best experiences I&apos;ve had in Santorini. The
-                      itinerary was well planned and took us to all the must-see
-                      spots on the island. I would definitely recommend this
-                      tour to anyone visiting Santorini.
+                      was one of the best experiences I&apos;ve had in
+                      Santorini. The itinerary was well planned and took us to
+                      all the must-see spots on the island. I would definitely
+                      recommend this tour to anyone visiting Santorini.
                     </Typography>
 
                     {/* User */}

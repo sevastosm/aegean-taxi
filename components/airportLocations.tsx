@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 "use client";
 import NextLink from "next/link";
 import Image from "next/image";
@@ -23,6 +25,7 @@ import MAP from "public/assets/locations-map.png";
 import ATHENS from "public/assets/Athens.png";
 import MYKONOS from "public/assets/Mykonos.png";
 import SANTORINI from "public/assets/Santorini.png";
+import { locationDetails } from "@/utils/locationDetails";
 
 export default function AirportLocations() {
   let settings = {
@@ -49,6 +52,56 @@ export default function AirportLocations() {
     ],
   };
 
+  const Slides = () => (
+    <Stack spacing={2} sx={{ textAlign: "center", p: 1 }}>
+      <MUILink
+        underline="none"
+        href="/airport-transfers/santorini/"
+        component={NextLink}
+      >
+        <Paper>
+          <Box sx={{ p: 2 }}>
+            <Typography
+              component={"div"}
+              variant="h5"
+              gutterBottom
+              sx={{
+                fontWeight: 500,
+                mb: 2,
+                textAlign: { xs: "left", md: "center" },
+              }}
+            >
+              Santorini
+            </Typography>
+            <Box
+              sx={{
+                minHeight: { xs: 224, md: 345 },
+                backgroundImage: `url('/assets/Santorini.png')`,
+                backgroundSize: "cover",
+                borderRadius: 3,
+                mb: 3,
+              }}
+            ></Box>
+
+            <Typography
+              component="span"
+              variant="body1"
+              sx={{
+                mt: 3,
+                lineHeight: 3,
+                textAlign: "center",
+                borderBottom: `3px solid #000`,
+                width: "75px",
+              }}
+            >
+              Find a ride
+            </Typography>
+          </Box>
+        </Paper>
+      </MUILink>
+    </Stack>
+  );
+
   return (
     <Container maxWidth={"lg"}>
       <Typography
@@ -62,7 +115,8 @@ export default function AirportLocations() {
           // lineHeight: { xs: "28px", md: "48px" },
         }}
       >
-        Schedule your Airport Transfer with Aegean Taxi <br />in the following locations
+        Schedule your Airport Transfer with Aegean Taxi <br />
+        in the following locations
       </Typography>
       <Typography
         component="h2"
@@ -217,7 +271,7 @@ export default function AirportLocations() {
                       <Box
                         sx={{
                           minHeight: { xs: 224, md: 345 },
-                          backgroundImage: `url(${SANTORINI.src})`,
+                          backgroundImage: `url('/assets/Santorini.png')`,
                           backgroundSize: "cover",
                           borderRadius: 3,
                           mb: 3,
@@ -241,6 +295,55 @@ export default function AirportLocations() {
                   </Paper>
                 </MUILink>
               </Stack>
+              {Object.values(locationDetails.airports).map(
+                (innerObject: any, i) => (
+                  <Stack key={i} spacing={2} sx={{ textAlign: "center", p: 1 }}>
+                    <MUILink
+                      underline="none"
+                      href={innerObject?.slide?.href || ""}
+                      component={NextLink}
+                    >
+                      <Paper>
+                        <Box sx={{ p: 2 }}>
+                          <Typography
+                            component={"div"}
+                            variant="h5"
+                            gutterBottom
+                            sx={{
+                              fontWeight: 500,
+                              mb: 2,
+                              textAlign: { xs: "left", md: "center" },
+                            }}
+                          >
+                            {innerObject?.slide?.name}
+                          </Typography>
+                          <Box
+                            sx={{
+                              minHeight: { xs: 224, md: 345 },
+                              backgroundImage: `url(${innerObject?.slide?.photo})`,
+                              backgroundSize: "cover",
+                              mb: 3,
+                              borderRadius: 3,
+                            }}
+                          ></Box>
+                          <Typography
+                            component="span"
+                            variant="body1"
+                            sx={{
+                              mt: 3,
+                              lineHeight: 3,
+                              borderBottom: `3px solid #000`,
+                              width: "75px",
+                            }}
+                          >
+                            Find a ride
+                          </Typography>
+                        </Box>
+                      </Paper>
+                    </MUILink>
+                  </Stack>
+                )
+              )}
             </Slider>
           </Box>
           {/* ./Slider */}

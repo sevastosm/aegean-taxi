@@ -19,8 +19,12 @@ import { Link as MUILink } from "@mui/material";
 import ATHENS from "public/assets/Athens.png";
 import MYKONOS from "public/assets/Mykonos.png";
 import SANTORINI from "public/assets/Santorini.png";
+
 import CORFU from "public/assets/Corfu.png";
 import RHODES from "public/assets/Rhodes.png";
+
+import MILOS from "public/assets/taxi-locations/taxi-milos.jpeg";
+import { locationDetails } from "@/utils/locationDetails";
 
 export default function Locations() {
   let settings = {
@@ -45,6 +49,62 @@ export default function Locations() {
         },
       },
     ],
+  };
+
+  const SlideItems: any = () => {
+    return (
+      <>
+        {Object.values(locationDetails.taxi_locations).map(
+          (innerObject: any, i) => (
+            <Stack key={i} spacing={2} sx={{ textAlign: "center", p: 1 }}>
+              <MUILink
+                underline="none"
+                href={innerObject.slide.href}
+                component={NextLink}
+              >
+                <Paper>
+                  <Box sx={{ p: 2 }}>
+                    <Typography
+                      component={"div"}
+                      variant="h5"
+                      gutterBottom
+                      sx={{
+                        fontWeight: 500,
+                        mb: 2,
+                        textAlign: { xs: "left", md: "center" },
+                      }}
+                    >
+                      {innerObject.slide.name}
+                    </Typography>
+                    <Box
+                      sx={{
+                        minHeight: { xs: 224, md: 345 },
+                        backgroundImage: `url(${innerObject.slide.photo})`,
+                        backgroundSize: "cover",
+                        mb: 3,
+                        borderRadius: 3,
+                      }}
+                    ></Box>
+                    <Typography
+                      component="span"
+                      variant="body1"
+                      sx={{
+                        mt: 3,
+                        lineHeight: 3,
+                        borderBottom: `3px solid #000`,
+                        width: "75px",
+                      }}
+                    >
+                      Find a ride
+                    </Typography>
+                  </Box>
+                </Paper>
+              </MUILink>
+            </Stack>
+          )
+        )}
+      </>
+    );
   };
 
   return (
@@ -81,7 +141,11 @@ export default function Locations() {
       <Box sx={{ my: 5, p: { xs: 2, md: 0 } }}>
         <Slider {...settings}>
           <Stack spacing={2} sx={{ textAlign: "center", p: 1 }}>
-            <MUILink underline="none" href="/taxi/athens-taxi-app" component={NextLink}>
+            <MUILink
+              underline="none"
+              href="/taxi/athens-taxi-app"
+              component={NextLink}
+            >
               <Paper>
                 <Box sx={{ p: 2 }}>
                   <Typography
@@ -123,7 +187,11 @@ export default function Locations() {
             </MUILink>
           </Stack>
           <Stack spacing={2} sx={{ textAlign: "center", p: 1 }}>
-            <MUILink underline="none" href="/taxi/mykonos-taxi-app" component={NextLink}>
+            <MUILink
+              underline="none"
+              href="/taxi/mykonos-taxi-app"
+              component={NextLink}
+            >
               <Paper>
                 <Box sx={{ p: 2 }}>
                   <Typography
@@ -209,7 +277,11 @@ export default function Locations() {
             </MUILink>
           </Stack>
           <Stack spacing={2} sx={{ textAlign: "center", p: 1 }}>
-            <MUILink underline="none" href="/taxi/corfu-taxi-app" component={NextLink}>
+            <MUILink
+              underline="none"
+              href="/taxi/corfu-taxi-app"
+              component={NextLink}
+            >
               <Paper>
                 <Box sx={{ p: 2 }}>
                   <Typography
@@ -250,7 +322,11 @@ export default function Locations() {
             </MUILink>
           </Stack>
           <Stack spacing={2} sx={{ textAlign: "center", p: 1 }}>
-            <MUILink underline="none" href="/taxi/rhodes-taxi-app" component={NextLink}>
+            <MUILink
+              underline="none"
+              href="/taxi/rhodes-taxi-app"
+              component={NextLink}
+            >
               <Paper>
                 <Box sx={{ p: 2 }}>
                   <Typography
@@ -290,6 +366,55 @@ export default function Locations() {
               </Paper>
             </MUILink>
           </Stack>
+          {Object.values(locationDetails.taxi_locations).map(
+            (innerObject: any, i) => (
+              <Stack key={i} spacing={2} sx={{ textAlign: "center", p: 1 }}>
+                <MUILink
+                  underline="none"
+                  href={innerObject.slide.href}
+                  component={NextLink}
+                >
+                  <Paper>
+                    <Box sx={{ p: 2 }}>
+                      <Typography
+                        component={"div"}
+                        variant="h5"
+                        gutterBottom
+                        sx={{
+                          fontWeight: 500,
+                          mb: 2,
+                          textAlign: { xs: "left", md: "center" },
+                        }}
+                      >
+                        {innerObject.slide.name}
+                      </Typography>
+                      <Box
+                        sx={{
+                          minHeight: { xs: 224, md: 345 },
+                          backgroundImage: `url(${innerObject.slide.photo})`,
+                          backgroundSize: "cover",
+                          mb: 3,
+                          borderRadius: 3,
+                        }}
+                      ></Box>
+                      <Typography
+                        component="span"
+                        variant="body1"
+                        sx={{
+                          mt: 3,
+                          lineHeight: 3,
+                          borderBottom: `3px solid #000`,
+                          width: "75px",
+                        }}
+                      >
+                        Find a ride
+                      </Typography>
+                    </Box>
+                  </Paper>
+                </MUILink>
+              </Stack>
+            )
+          )}
         </Slider>
       </Box>
       {/* ./Slider */}

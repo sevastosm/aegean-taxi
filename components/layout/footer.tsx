@@ -29,6 +29,7 @@ import Linkedin from "public/assets/linkedin.png";
 import Twitter from "public/assets/twitter.png";
 import whatsApp from "public/assets/whatsapp_btn.svg";
 import phoneIcon from "public/assets/phone-call-icon.svg";
+import { locationDetails } from "@/utils/locationDetails";
 
 export default function FooterLayout() {
   const pathname = usePathname();
@@ -62,6 +63,46 @@ export default function FooterLayout() {
     setShowCookiesBanner(false);
     document.cookie = "aegeanShowCookies=false";
   };
+
+  const LinkItems = () => (
+    <>
+      {Object.values(locationDetails.taxi_locations).map(
+        (innerObject: any, i) => (
+          <ListItem key={i} sx={{ pl: 0 }}>
+            <MUILink
+              underline="none"
+              color="#fff"
+              href={innerObject.footer.link}
+              component={NextLink}
+              rel="canonical"
+              variant="body1"
+            >
+              {innerObject.footer.name}
+            </MUILink>
+          </ListItem>
+        )
+      )}
+    </>
+  );
+
+  const LinkItemsAirport = () => (
+    <>
+      {Object.values(locationDetails.airports).map((innerObject: any, i) => (
+        <ListItem key={i} sx={{ pl: 0 }}>
+          <MUILink
+            underline="none"
+            color="#fff"
+            href={innerObject.footer.link}
+            component={NextLink}
+            rel="canonical"
+            variant="body1"
+          >
+            {innerObject.footer.name}
+          </MUILink>
+        </ListItem>
+      ))}
+    </>
+  );
 
   return (
     <footer className="footer">
@@ -163,7 +204,7 @@ export default function FooterLayout() {
                   variant="h6"
                   sx={{ borderBottom: "2px #fff solid" }}
                 >
-                  Location
+                  Locations
                 </Typography>
                 <List>
                   <ListItem sx={{ pl: 0 }}>
@@ -226,8 +267,10 @@ export default function FooterLayout() {
                       Rhodes
                     </MUILink>
                   </ListItem>
+                  <LinkItems />
                 </List>
               </Grid>
+              {/* AIRPORTS */}
               <Grid
                 item
                 xs={12}
@@ -278,6 +321,7 @@ export default function FooterLayout() {
                       JTR
                     </MUILink>
                   </ListItem>
+                  <LinkItemsAirport />
                 </List>
               </Grid>
             </Grid>
@@ -453,7 +497,7 @@ export default function FooterLayout() {
             ? { xs: 100, md: 40 }
             : 0 /* Place the button at the bottom of the page */,
           /* // right: 30px, /* Place the button 30px from the right */
-          zIindex: 99980 /* Make sure it does not overlap */,
+          zIndex: 99980 /* Make sure it does not overlap */,
           border: "none" /* Remove borders */,
           outline: "none" /* Remove outline */,
           p: 1,
@@ -465,7 +509,11 @@ export default function FooterLayout() {
             display: { xs: showWhatsAppButton, md: "initial" },
           }}
         >
-          <a href="https://wa.me/306934702974" target="_blank" className="mr-4">
+          <a
+            href="https://wa.me/+306943829494"
+            target="_blank"
+            className="mr-4"
+          >
             <Image
               src={whatsApp}
               width="129"
@@ -475,7 +523,7 @@ export default function FooterLayout() {
           </a>
         </Box>
         <Box sx={{ display: { xs: "none", md: "initial" } }}>
-          <a href="tel:+302152154000" className="">
+          <a href="tel:+306943829494" className="">
             <Image src={phoneIcon} width="46" height="46" alt="Call us" />
           </a>
         </Box>
@@ -486,7 +534,7 @@ export default function FooterLayout() {
             position: "fixed",
             width: "100%",
             bottom: 0,
-            zIindex: 99999,
+            zIndex: 99999,
           }}
           severity="info"
           onClose={hideCookiesBanner}
