@@ -130,7 +130,7 @@ export default function AirportSantoriniFaq() {
               You can hail a Taxi in Santorini from the street, or simply by
               going to one of the designated taxi stands that are located around
               the Island. Downloading the Aegean Taxi app is another way to get
-              a ride, or just send a message on whatsapp on +30 693 470 2974 to
+              a ride, or just send a message on whatsapp on +30 694 382 9494 to
               order one. Using www.aegeantaxi.com is also another way to get a
               ride using the simple online webapp
             </Typography>

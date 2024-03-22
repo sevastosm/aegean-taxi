@@ -473,7 +473,7 @@ export default function AboutUsPage() {
             very easy way to communicate with our drivers and request rides. We
             therefore added whatsapp as a tool which you can use to get a ride.
             Simply click on the link found on the website, or save our number:
-            +306934702974 and text us.
+            +306943829494 and text us.
           </Typography>
 
           <Typography

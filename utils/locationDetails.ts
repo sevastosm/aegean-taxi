@@ -1112,7 +1112,7 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
         },
         {
           q: ` I have a different question`,
-          a: ` Contat us email: contact@aegeantaxi.com Phone: +302152154000 Whatsapp: +306934702974`,
+          a: ` Contat us email: contact@aegeantaxi.com Phone: +302152154000 Whatsapp: +306943829494`,
         },
         {
           q: `What happens if I need to cancel or change my airport transfer booking?`,
@@ -1248,7 +1248,7 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
         },
         {
           q: ` I have a different question`,
-          a: ` Contat us email: contact@aegeantaxi.com Phone: +302152154000 Whatsapp: +306934702974`,
+          a: ` Contat us email: contact@aegeantaxi.com Phone: +302152154000 Whatsapp: +306943829494`,
         },
         {
           q: `What happens if I need to cancel or change my airport transfer booking?`,
@@ -1384,7 +1384,7 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
         },
         {
           q: ` I have a different question`,
-          a: ` Contat us email: contact@aegeantaxi.com Phone: +302152154000 Whatsapp: +306934702974`,
+          a: ` Contat us email: contact@aegeantaxi.com Phone: +302152154000 Whatsapp: +306943829494`,
         },
         {
           q: `What happens if I need to cancel or change my airport transfer booking?`,
@@ -1523,7 +1523,7 @@ You can call RODA services at (+30)22410-26300 or (+30)22410-24129.`,
         },
         {
           q: ` I have a different question`,
-          a: ` Contat us email: contact@aegeantaxi.com Phone: +302152154000 Whatsapp: +306934702974`,
+          a: ` Contat us email: contact@aegeantaxi.com Phone: +302152154000 Whatsapp: +306943829494`,
         },
         {
           q: `What happens if I need to cancel or change my airport transfer booking?`,
@@ -1663,7 +1663,7 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
         },
         {
           q: ` I have a different question`,
-          a: ` Contat us email: contact@aegeantaxi.com Phone: +302152154000 Whatsapp: +306934702974`,
+          a: ` Contat us email: contact@aegeantaxi.com Phone: +302152154000 Whatsapp: +306943829494`,
         },
         {
           q: `What happens if I need to cancel or change my airport transfer booking?`,
@@ -1799,7 +1799,7 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
         },
         {
           q: ` I have a different question`,
-          a: ` Contat us email: contact@aegeantaxi.com Phone: +302152154000 Whatsapp: +306934702974`,
+          a: ` Contat us email: contact@aegeantaxi.com Phone: +302152154000 Whatsapp: `,
         },
         {
           q: `What happens if I need to cancel or change my airport transfer booking?`,
@@ -1936,7 +1936,7 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
         },
         {
           q: ` I have a different question`,
-          a: ` Contat us email: contact@aegeantaxi.com Phone: +302152154000 Whatsapp: +306934702974`,
+          a: ` Contat us email: contact@aegeantaxi.com Phone: +302152154000 Whatsapp: +306943829494`,
         },
         {
           q: `What happens if I need to cancel or change my airport transfer booking?`,
