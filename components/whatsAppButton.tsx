@@ -18,7 +18,7 @@ export default function WhatsAppButton({
 }) {
   return (
     <a
-      href="https://wa.me/306934702974"
+      href="https://wa.me/306943829494"
       target="_blank"
       style={{ textDecoration: "none", color: "#000" }}
     >
