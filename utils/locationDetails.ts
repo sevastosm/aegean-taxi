@@ -981,7 +981,7 @@ Exploring the wonders of Milos Island becomes a seamless experience when you rel
       url: "airport-transfers/milos/",
       footer: {
         link: "/airport-transfers/milos/",
-        name: "Milos",
+        name: "MLO",
       },
     },
 
@@ -1124,7 +1124,7 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
       url: "airport-transfers/Paros/",
       footer: {
         link: "/airport-transfers/paros/",
-        name: "Paros",
+        name: "PAS",
       },
     },
 
@@ -1260,7 +1260,7 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
       url: "airport-transfers/Naxos/",
       footer: {
         link: "/airport-transfers/naxos/",
-        name: "Naxos",
+        name: "JNX",
       },
     },
 
@@ -1396,7 +1396,7 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
       url: "airport-transfers/heraklion/",
       footer: {
         link: "/airport-transfers/heraklion/",
-        name: "Heraklion",
+        name: "HER",
       },
     },
 
@@ -1535,7 +1535,7 @@ You can call RODA services at (+30)22410-26300 or (+30)22410-24129.`,
       url: "airport-transfers/Rhodes/",
       footer: {
         link: "/airport-transfers/rhodes/",
-        name: "Rhodes",
+        name: "RHO",
       },
     },
 
@@ -1675,7 +1675,7 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
       url: "airport-transfers/Kos/",
       footer: {
         link: "/airport-transfers/kos/",
-        name: "Kos",
+        name: "KGS",
       },
     },
 
@@ -1811,7 +1811,7 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
       url: "airport-transfers/chalkidiki/",
       footer: {
         link: "/airport-transfers/chalkidiki/",
-        name: "Chalkidiki",
+        name: "SKG",
       },
     },
 
@@ -1948,7 +1948,7 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
       url: "airport-transfers/corfu/",
       footer: {
         link: "/airport-transfers/corfu/",
-        name: "Corfu",
+        name: "CFU",
       },
     },
   },
