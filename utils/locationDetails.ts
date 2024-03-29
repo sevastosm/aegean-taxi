@@ -844,6 +844,137 @@ export const locationDetails: any = {
           "Book your Chalkidiki Taxi via telephone, whatsapp, website. Or download the Aegean Taxi app and request a ride in 2 simple steps.",
       },
     },
+
+    "kea-tzia-taxi-app": {
+      location: "kea-tzia-taxi-app",
+      name: "Kea-Tzia",
+      prices: [
+        {
+          from: "Kea Port",
+          to: "Ioulis",
+          cost: "20",
+          duration: "15",
+          location: "port",
+        },
+        {
+          from: "Koundouros",
+          to: "Pisses",
+          cost: "15",
+          duration: "10",
+          location: "city",
+        },
+        {
+          from: "Panagia Kastriani",
+          to: "Kea Port",
+          cost: "30",
+          duration: "25",
+          location: "port",
+        },
+        {
+          from: "Vourkari",
+          to: "Koundouros",
+          cost: "45",
+          duration: "40",
+          location: "city",
+        },
+        {
+          from: "Kea Port",
+          to: "Otzias",
+          cost: "15",
+          duration: "10",
+          location: "port",
+        },
+      ],
+      reviews: [
+        {
+          flag: "france",
+          dateName: "Laura - March 2023",
+          text: `we found that booking a ride on Kea/Tzia was very easy with the Web-based service provided by Aegean Taxi on their website. The process is simple, and their professional drivers will ensure you have a comfortable and safe ride. They all speak English and are avaiable 24/7`,
+        },
+        {
+          flag: "america",
+          dateName: "Jo - July 2022",
+          text: `We spent a few days in Kea/Tzia coming from Myconos and used this company for all of our journeys during our stay. All was communicated through WhatsApp. The Aegean Taxi cars were always clean and the drivers made sure we always felt comfortable on our journeys as the roads are pretty unique in Kea/Tzia and locations not easy to find !! `,
+        },
+        {
+          flag: "uk",
+          dateName: "Carter - June 2022",
+          text: `While in Tzia we have used the Aegean Taxi app several times. The application was simple, affordable and convenient, with cheap prices and professional drivers. Very highly recommended service!`,
+        },
+      ],
+
+      faq: [
+        {
+          q: `How can i find a taxi or transfer in Kea/Tzia?`,
+          a: `Apart from the designated taxi stands in the town center or port, the best way is to use a private transfer service. Aegean Taxi offers a great fleet of cars at competitive prices, with english speaking drivers and is available 24/7. You can order a ride from www.aegeantaxi.com using the webapp in 3 simple steps, download the Aegean Taxi app, or simply call the call center on +302152154000`,
+        },
+        {
+          q: `Is it easy to find a taxi in Kea/Tzia?`,
+          a: `No. Taxis in Kea/Tzia can be hard to find, especially in the peak months of July and August. If you want to book your ride in advance or on demend, the best way is to download the Aegean Taxi app or use one of the other 3 methods to book your ride`,
+        },
+        {
+          q: `Are Kea/Tzia Taxis and Transfers safe in Kea/Tzia?`,
+          a: `Yes. Kea/Tzia is a cosidered to be a safe island with no major incidents ever reported related to taxis or transfers. Aegean Taxi employs only professional english speaking drivers who are pre-screened and trained to offer an excellent service`,
+        },
+        {
+          q: `Are taxis and transfers expensive in Kea/Tzia?`,
+          a: `Taxis in Kea/Tzia operate with a government mandated taxi meter, however it is possible to negotiate a flat fare with your driver. Private transfer services are available with a minimum €36 fare for half an hour which is the rate for a standard car. Vans tend to charge higher rates`,
+        },
+        {
+          q: `Is Aegean Taxi working in Kea/Tzia?`,
+          a: `Yes. Aegean Taxi is the leading taxi and transfer service in the island of Kea/Tzia. Tourists can download the Aegean Taxi app from the google or apple stores, register in 3 simple steps and requests rides in Kea/Tzia. Alternative booking methods include the website using the webapp, telephone booking or whatsapp`,
+        },
+        {
+          q: `Do Taxi drivers speak English in Kea/Tzia?`,
+          a: `Aegean Taxi hires only fluent English speakers so all drivers can speak English. It is a legal requirement for transport companies to obtain proof of English profficiency when hiring drivers. This does not apply to Taxi drivers who do not need to be speaking English to become drivers`,
+        },
+        {
+          q: `Do you have to tip taxis in Kea/Tzia?`,
+          a: `Tips are optional for transport providers in Kea/Tzia and one should not expect to have to pay anything extra than the pre arranged or metered fare. When extra services are provided by a driver like carrying luggage or stops along the way, then it is customary to reward drivers for the service`,
+        },
+        {
+          q: `Do taxis run all day and night in Kea/Tzia?`,
+          a: `Most taxis operate throughout the day on the island of Kea/Tzia. Aegean Taxi operates 24/7 and getting a ride is easy at any time using one of the booking methods offered`,
+        },
+        {
+          q: `How can you find a Taxi in Kea/Tzia Port?`,
+          a: `Aegean Taxi Operates to and from Kea/Tzia Port. You can arrange a ride in advance or upon arrival using either the Aegean Taxi Kea/Tzia App, whatsapp, the website or simply call our 24/7 call center to book your ride.`,
+        },
+        {
+          q: `Is there a Taxi app in Tzia/Kea?`,
+          a: `Yes, Aegean Taxi is the first taxi app that started operating in Tzia/Kea and is available to download in Android and iOS`,
+        },
+        {
+          q: `What is the best Taxi app for Tzia/Kea?`,
+          a: `Aegean Taxi is the best Taxi app and port transfer service available in Tzia/Kea. With over 100,000 downloads and a fleet of 500+ drivers, Aegean Taxi is the cheapest and most professional service available`,
+        },
+        {
+          q: `How many taxis are there in Kea/Tzia?`,
+          a: `The Isand has only 14 registered taxis, which cater to the hundreads of thousands of visitors to the island every year. There are a number of private transfer services available on the island which can be pre-booked. The minimum fare is €36`,
+        },
+        {
+          q: `Do I need cash for taxis in Tzia/Kea?`,
+          a: `Yes. There is no government mandate that requires taxi drivers to carry a POS machine to accept card payments, so the majority of the taxis in Mykonos require cash payment. Aegean Taxi accepts all major credit cards, and you can also add your credit card details to pay for your ride when using the Taxi app`,
+        },
+        
+      ],
+      photo: "./public/assets/taxi-locations/taxi-chalkidiki.jpeg",
+      slide: {
+        name: "Kea-Tzia",
+        photo: "/assets/taxi-locations/taxi-chalkidiki.jpeg",
+        href: "/taxi/kea-tzia-taxi-app/",
+      },
+      url: "taxi/kea-tzia-taxi-app/",
+      footer: {
+        link: "/taxi/kea-tzia-taxi-app/",
+        name: "Kea-Tzia",
+      },
+      meta: {
+        title: "Kea/Tzia Taxi App | Affordable Taxi rides | Available 24/7",
+        description:
+          "Book your Kea/Tzia Taxi via telephone, whatsapp, website. Or download the Aegean Taxi app and request a ride in 2 simple steps.",
+      },
+    },
   },
   airports: {
     milos: {
@@ -1799,7 +1930,7 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
         },
         {
           q: ` I have a different question`,
-          a: ` Contat us email: contact@aegeantaxi.com Phone: +302152154000 Whatsapp: `,
+          a: ` Contat us email: contact@aegeantaxi.com Phone: +302152154000 Whatsapp: +306943829494`,
         },
         {
           q: `What happens if I need to cancel or change my airport transfer booking?`,
