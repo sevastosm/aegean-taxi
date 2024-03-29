@@ -18,6 +18,14 @@ import Santorini from "public/assets/taxi-santorini.png";
 import Corfu from "public/assets/taxi-corfu.png";
 import Rhodes from "public/assets/taxi-rhodes.png";
 import Milos from "public/assets/taxi-locations/taxi-milos.jpeg";
+import Bodrum from "public/assets/taxi-locations/taxi-bodrum.jpeg";
+import Tinos from "public/assets/taxi-locations/taxi-tinos.jpeg";
+import Paros from "public/assets/taxi-locations/taxi-paros.jpeg";
+import Naxos from "public/assets/taxi-locations/taxi-naxos.jpeg";
+import Kos from "public/assets/taxi-locations/taxi-kos.jpeg";
+import Heraklion from "public/assets/taxi-locations/taxi-heraklion.jpeg";
+import Chalkidiki from "public/assets/taxi-locations/taxi-chalkidiki.jpeg";
+import Kea from "public/assets/taxi-locations/taxi-kea-tzia.jpeg";
 
 import { locationDetails } from "@/utils/locationDetails";
 
@@ -54,6 +62,27 @@ export default function TaxiHeader() {
       case "Milos":
         cover = Milos;
         break;
+      case "Bodrum":
+        cover = Bodrum;
+        break;
+        case "Tinos":
+          cover = Tinos;
+          break;
+        case "Paros":
+          cover = Paros;
+          break;
+        case "Naxos":
+          cover = Naxos;
+          break;
+        case "Kos":
+          cover = Kos;
+          break;
+        case "Heraklion":
+          cover = Heraklion;
+          break;
+        case "Chalkidiki":
+          cover = Chalkidiki;
+          break;
     }
   }
 
