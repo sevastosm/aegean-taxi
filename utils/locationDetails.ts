@@ -145,6 +145,136 @@ export const locationDetails: any = {
       },
     },
 
+    "bodrum-taxi-app": {
+      location: "bodrum-taxi-app",
+      name: "Bodrum",
+      prices: [
+        {
+          from: "Bodrum Airport",
+          to: "City Center",
+          cost: "50",
+          duration: "50",
+          location: "airport",
+        },
+        {
+          from: "Akyarlar",
+          to: "Cruise Port",
+          cost: "40",
+          duration: "45",
+          location: "city",
+        },
+        {
+          from: "Cruise Port",
+          to: "Golturkbuku",
+          cost: "30",
+          duration: "25",
+          location: "port",
+        },
+        {
+          from: "Turgutreis",
+          to: "Bodrum Airport",
+          cost: "65",
+          duration: "60",
+          location: "city",
+        },
+        {
+          from: "Bodrum Airport",
+          to: "Cruise Port",
+          cost: "50",
+          duration: "55",
+          location: "airport",
+        },
+      ],
+      reviews: [
+        {
+          flag: "french",
+          dateName: "Laura - March 2023",
+          text: `Booking a ride on Bodrum was very easy with the Web-based service provided by Aegean Taxi. The process is simple, and their professional drivers will ensure you have a comfortable and safe ride. They all speak English`,
+        },
+        {
+          flag: "america",
+          dateName: "Jo - July 2022",
+          text: `We spent a week in Bodrum and used this company for all of our journeys during our stay. All was communicated through WhatsApp, so really easy to send a text to communicate. The cars were always clean and the drivers made sure we always felt comfortable on our journeys as the roads are pretty unique in Bodrum!! They were always cheaper than Uber and the drivers have all the local knowledge so better if in traffic! Definitely recommend!!`,
+        },
+        {
+          flag: "uk",
+          dateName: "Carter - June 2022",
+          text: `We have used Aegean Taxi app several times on our stay in Bodrum. It was simple, affordable and convenient, with competitive prices and professional drivers. You can be sure that you will always have a pleasant experience.`,
+        },
+      ],
+
+      faq: [
+        {
+          q: `How can i find a taxi or transfer in Bodrum?`,
+          a: `Apart from the designated taxi stands in the town center airport or port, the best way is to use a private transfer service. Aegean Taxi offers a great fleet of cars at competitive prices, with english speaking drivers and is available 24/7. You can order a ride from www.aegeantaxi.com using the webapp in 3 simple steps, download the Aegean Taxi app, or simply call the call center on +302152154000`,
+        },
+        {
+          q: `Is it easy to find a taxi in Bodrum?`,
+          a: `No. Taxis in Bodrum can be hard to find, especially in the peak months of July and August. If you want to book your ride in advance or on demend, the best way is to download the Aegean Taxi app or use one of the other 3 methods to book your ride`,
+        },
+        {
+          q: `Are Bodrum Taxis and Transfers safe in Bodrum?`,
+          a: `Yes. Bodrum is a cosidered to be safe with no major incidents ever reported related to taxis or transfers. Aegean Taxi employs only professional english speaking drivers who are pre-screened and trained to offer an excellent service`,
+        },
+        {
+          q: `Are taxis and transfers expensive in Bodrum?`,
+          a: `Taxis in Bodrum operate with a government mandated taxi meter, however it is possible to negotiate a flat fare with your driver. Vans tend to charge higher rates`,
+        },
+        {
+          q: `Is Aegean Taxi working in Bodrum?`,
+          a: `Yes. Aegean Taxi is the leading taxi and transfer service in Bodrum. Tourists can download the Aegean Taxi app from the google or apple stores, register in 3 simple steps and requests rides in Bodrum. Alternative booking methods include the website using the webapp, telephone booking or whatsapp`,
+        },
+        {
+          q: `Do Taxi drivers speak English in Bodrum?`,
+          a: `Aegean Taxi hires only fluent English speakers so all drivers can speak English. This does not apply to Taxi drivers who do not need to be speaking English to become drivers`,
+        },
+        {
+          q: `Do you have to tip taxis in Bodrum?`,
+          a: `Tips are optional for transport providers in Bodrum and one should not expect to have to pay anything extra than the pre arranged or metered fare. When extra services are provided by a driver like carrying luggage or stops along the way, then it is customary to reward drivers for the service`,
+        },
+        {
+          q: `Do taxis run all day and night in Bodrum?`,
+          a: `Most taxis operate throughout the day in Bodrum. Aegean Taxi operates 24/7 and getting a ride is easy at any time using one of the booking methods offered`,
+        },
+        {
+          q: `How can you find a Taxi in Bodrum Port?`,
+          a: `Aegean Taxi Operates to and from Bodrum airport and Port. You can arrange a ride in advance or upon arrival using either the Aegean Taxi Bodrum App, whatsapp, the website or simply call our 24/7 call center to book your ride.`,
+        },
+        {
+          q: `Is there a Taxi app in Bodrum?`,
+          a: `Yes, Aegean Taxi is the first taxi app that started operating in Bodrum and is available to download in Android and iOS`,
+        },
+        {
+          q: `What is the best Taxi app for Bodrum?`,
+          a: `Aegean Taxi is the best Taxi app and port transfer service available in Bodrum. With over 100,000 downloads and a fleet of 500+ drivers, Aegean Taxi is the cheapest and most professional service available`,
+        },
+        {
+          q: `How many taxis are there in Bodrum?`,
+          a: `Bodrum has few registered taxis, which cater to the hundreads of thousands of visitors to the area every year. There are a number of private transfer services available on the island which can be pre-booked, like Aegean Taxi`,
+        },
+        {
+          q: `Do I need cash for taxis in Bodrum?`,
+          a: `Yes. There is no government mandate that requires taxi drivers to carry a POS machine to accept card payments, so the majority of the taxis in Mykonos require cash payment. Aegean Taxi accepts all major credit cards, and you can also add your credit card details to pay for your ride when using the Taxi app`,
+        },
+      ],
+      photo: "./public/assets/taxi-locations/taxi-bodrum.jpeg",
+      slide: {
+        name: "Bodrum",
+        photo: "/assets/taxi-locations/taxi-bodrum.jpeg",
+        href: "/taxi/bodrum-taxi-app/",
+      },
+      url: "taxi/bodrum-taxi-app/",
+      footer: {
+        link: "/taxi/bodrum-taxi-app/",
+        name: "Bodrum",
+      },
+      meta: {
+        title: "Bodrum Taxi App | Affordable Taxi rides | Available 24/7",
+        description:
+          "Book your Bodrum Taxi via telephone, whatsapp, website. Or download the Aegean Taxi app and request a ride in 2 simple steps.",
+      },
+    },
+
     "tinos-taxi-app": {
       location: "tinos-taxi-app",
       name: "Tinos",
@@ -887,7 +1017,7 @@ export const locationDetails: any = {
       ],
       reviews: [
         {
-          flag: "france",
+          flag: "french",
           dateName: "Laura - March 2023",
           text: `we found that booking a ride on Kea/Tzia was very easy with the Web-based service provided by Aegean Taxi on their website. The process is simple, and their professional drivers will ensure you have a comfortable and safe ride. They all speak English and are avaiable 24/7`,
         },
@@ -958,10 +1088,10 @@ export const locationDetails: any = {
         },
         
       ],
-      photo: "./public/assets/taxi-locations/taxi-chalkidiki.jpeg",
+      photo: "./public/assets/taxi-locations/taxi-kea-tzia.jpeg",
       slide: {
         name: "Kea-Tzia",
-        photo: "/assets/taxi-locations/taxi-chalkidiki.jpeg",
+        photo: "/assets/taxi-locations/taxi-kea-tzia.jpeg",
         href: "/taxi/kea-tzia-taxi-app/",
       },
       url: "taxi/kea-tzia-taxi-app/",
