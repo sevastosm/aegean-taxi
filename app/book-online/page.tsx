@@ -1853,7 +1853,7 @@ export default function BookOnline() {
             }}
           >
             <Wrapper
-              apiKey={`${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places`}
+              apiKey={`${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
               libraries={["places"]}
               render={render}
               callback={intitializeMap}

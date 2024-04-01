@@ -216,7 +216,7 @@ export default function GoogleMap({
 
   return (
     <Wrapper
-      apiKey={`${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places`}
+      apiKey={`${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
       libraries={["places"]}
       render={render}
     >

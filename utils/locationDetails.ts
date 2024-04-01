@@ -1086,7 +1086,6 @@ export const locationDetails: any = {
           q: `Do I need cash for taxis in Tzia/Kea?`,
           a: `Yes. There is no government mandate that requires taxi drivers to carry a POS machine to accept card payments, so the majority of the taxis in Mykonos require cash payment. Aegean Taxi accepts all major credit cards, and you can also add your credit card details to pay for your ride when using the Taxi app`,
         },
-        
       ],
       photo: "./public/assets/taxi-locations/taxi-kea-tzia.jpeg",
       slide: {
