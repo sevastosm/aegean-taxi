@@ -73,6 +73,7 @@ export default function WaysToRide() {
         sx={{
           fontWeight: 700,
           fontSize: { xs: "26px", md: "36px" },
+          textAlign: "center",
         }}
       >
         Ways to ride

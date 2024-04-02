@@ -26,23 +26,23 @@ export default function LandingHeader() {
               display: { xs: "none", md: "block" },
             }}
           >
-            Arrive.
+            The #1 Taxi App
             <br />
-            Get Around.
+            for the Greek Islands.
             <br />
-            Depart.
           </Typography>
           <Typography
             component="h1"
             variant="h6"
             gutterBottom
             sx={{
-              fontWeight: 400,
+              fontWeight: 700,
               mt: 1,
               display: { xs: "block", md: "none" },
+              textAlign: "center",
             }}
           >
-            Arrive. Get Around. Depart.
+            The #1 Taxi App for the Greek Islands.
           </Typography>
           <Typography
             component="span"

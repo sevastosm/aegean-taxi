@@ -69,10 +69,12 @@ export default function BookingOptions({
           variant="h3"
           gutterBottom
           sx={{
-            textAlign: "left",
+            //textAlign: "left",
+            mt: 6,
             fontWeight: 700,
             fontSize: { xs: "26px", md: "36px" },
             display: { xs: "block", md: "none" },
+            textAlign: "center",
           }}
         >
           We made it easier to book <br /> your taxi ride in Greece

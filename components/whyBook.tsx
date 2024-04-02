@@ -79,6 +79,7 @@ export default function WhyBook() {
               fontWeight: 700,
               fontSize: { xs: "26px", md: "36px" },
               display: { xs: "block", md: "none" },
+              textAlign: "center",
               // lineHeight: { xs: "48px", md: "68px" },
             }}
           >
