@@ -21,7 +21,7 @@ import STAR from "public/assets/star.svg";
 
 export default function WhyTours() {
   let settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     initialSlide: 0,
     slidesToScroll: 1,

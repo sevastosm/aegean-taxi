@@ -19,7 +19,7 @@ import AE from "public/assets/flags/ae.svg";
 
 export default function ToursMykonosReviews() {
   let settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     initialSlide: 0,
     slidesToScroll: 1,
@@ -30,7 +30,7 @@ export default function ToursMykonosReviews() {
       {
         breakpoint: 480,
         settings: {
-          dots: true,
+          dots: false,
           className: "center",
           centerMode: true,
           infinite: true,

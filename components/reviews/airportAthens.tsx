@@ -19,7 +19,7 @@ import ES from "public/assets/flags/es.svg";
 
 export default function AirportAthensReviews() {
   let settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     initialSlide: 0,
     slidesToScroll: 1,
@@ -30,7 +30,7 @@ export default function AirportAthensReviews() {
       {
         breakpoint: 480,
         settings: {
-          dots: true,
+          dots: false,
           className: "center",
           centerMode: true,
           infinite: true,

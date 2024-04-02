@@ -22,7 +22,7 @@ import TRAVEL from "public/assets/cs-travelAgent.jpg";
 
 export default function CaseStudies() {
   let settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     initialSlide: 0,
     slidesToScroll: 3,
@@ -33,7 +33,7 @@ export default function CaseStudies() {
       {
         breakpoint: 480,
         settings: {
-          dots: true,
+          dots: false,
           className: "center",
           centerMode: true,
           infinite: true,
@@ -65,7 +65,7 @@ export default function CaseStudies() {
         <Slider {...settings}>
           <Stack spacing={2} sx={{ textAlign: "center", p: 1 }}>
             <Paper>
-              <Box sx={{ p: 2, minHeight: {xs:540, md:470} }}>
+              <Box sx={{ p: 2, minHeight: { xs: 540, md: 470 } }}>
                 <Typography
                   component={"div"}
                   variant="h5"
@@ -73,11 +73,12 @@ export default function CaseStudies() {
                   sx={{
                     fontWeight: 500,
                     mb: 2,
-                    fontSize: {xs:18, md:24},
+                    fontSize: { xs: 18, md: 24 },
                     textAlign: "left",
                   }}
                 >
-                  Hotel<br/> in Mykonos
+                  Hotel
+                  <br /> in Mykonos
                 </Typography>
                 <Box
                   sx={{
@@ -90,7 +91,9 @@ export default function CaseStudies() {
                   }}
                 ></Box>
 
-                <Box sx={{ textAlign: "left", minHeight: {xs:250, md:150} }}>
+                <Box
+                  sx={{ textAlign: "left", minHeight: { xs: 250, md: 150 } }}
+                >
                   <Typography
                     variant="h6"
                     sx={{
@@ -138,7 +141,7 @@ export default function CaseStudies() {
           </Stack>
           <Stack spacing={2} sx={{ textAlign: "center", p: 1 }}>
             <Paper>
-              <Box sx={{ p: 2, minHeight: {xs:540, md:470} }}>
+              <Box sx={{ p: 2, minHeight: { xs: 540, md: 470 } }}>
                 <Typography
                   component={"div"}
                   variant="h5"
@@ -146,11 +149,12 @@ export default function CaseStudies() {
                   sx={{
                     fontWeight: 500,
                     mb: 2,
-                    fontSize: {xs:18, md:24},
+                    fontSize: { xs: 18, md: 24 },
                     textAlign: "left",
                   }}
                 >
-                  Car testing facility<br/> in Athens
+                  Car testing facility
+                  <br /> in Athens
                 </Typography>
                 <Box
                   sx={{
@@ -163,7 +167,9 @@ export default function CaseStudies() {
                   }}
                 ></Box>
 
-                <Box sx={{ textAlign: "left", minHeight: {xs:250, md:150} }}>
+                <Box
+                  sx={{ textAlign: "left", minHeight: { xs: 250, md: 150 } }}
+                >
                   <Typography
                     variant="h6"
                     sx={{
@@ -210,7 +216,7 @@ export default function CaseStudies() {
           </Stack>
           <Stack spacing={2} sx={{ textAlign: "center", p: 1 }}>
             <Paper>
-              <Box sx={{ p: 2, minHeight: {xs:540, md:470} }}>
+              <Box sx={{ p: 2, minHeight: { xs: 540, md: 470 } }}>
                 <Typography
                   component={"div"}
                   variant="h5"
@@ -218,11 +224,12 @@ export default function CaseStudies() {
                   sx={{
                     fontWeight: 500,
                     mb: 2,
-                    fontSize: {xs:18, md:24},
+                    fontSize: { xs: 18, md: 24 },
                     textAlign: "left",
                   }}
                 >
-                  Restaurant <br/>in Santorini
+                  Restaurant <br />
+                  in Santorini
                 </Typography>
                 <Box
                   sx={{
@@ -235,7 +242,9 @@ export default function CaseStudies() {
                   }}
                 ></Box>
 
-                <Box sx={{ textAlign: "left", minHeight: {xs:250, md:150} }}>
+                <Box
+                  sx={{ textAlign: "left", minHeight: { xs: 250, md: 150 } }}
+                >
                   <Typography
                     variant="h6"
                     sx={{
@@ -282,7 +291,7 @@ export default function CaseStudies() {
           </Stack>
           <Stack spacing={2} sx={{ textAlign: "center", p: 1 }}>
             <Paper>
-              <Box sx={{ p: 2, minHeight: {xs:540, md:470} }}>
+              <Box sx={{ p: 2, minHeight: { xs: 540, md: 470 } }}>
                 <Typography
                   component={"div"}
                   variant="h5"
@@ -290,11 +299,12 @@ export default function CaseStudies() {
                   sx={{
                     fontWeight: 500,
                     mb: 2,
-                    fontSize: {xs:18, md:24},
+                    fontSize: { xs: 18, md: 24 },
                     textAlign: "left",
                   }}
                 >
-                  Shipping company<br/> in Athens
+                  Shipping company
+                  <br /> in Athens
                 </Typography>
                 <Box
                   sx={{
@@ -307,7 +317,9 @@ export default function CaseStudies() {
                   }}
                 ></Box>
 
-                <Box sx={{ textAlign: "left", minHeight: {xs:250, md:150} }}>
+                <Box
+                  sx={{ textAlign: "left", minHeight: { xs: 250, md: 150 } }}
+                >
                   <Typography
                     variant="h6"
                     sx={{
@@ -354,7 +366,7 @@ export default function CaseStudies() {
           </Stack>
           <Stack spacing={2} sx={{ textAlign: "center", p: 1 }}>
             <Paper>
-              <Box sx={{ p: 2, minHeight: {xs:540, md:470} }}>
+              <Box sx={{ p: 2, minHeight: { xs: 540, md: 470 } }}>
                 <Typography
                   component={"div"}
                   variant="h5"
@@ -362,11 +374,12 @@ export default function CaseStudies() {
                   sx={{
                     fontWeight: 500,
                     mb: 2,
-                    fontSize: {xs:18, md:24},
+                    fontSize: { xs: 18, md: 24 },
                     textAlign: "left",
                   }}
                 >
-                  Travel Agent<br/> in Athens
+                  Travel Agent
+                  <br /> in Athens
                 </Typography>
                 <Box
                   sx={{
@@ -379,7 +392,9 @@ export default function CaseStudies() {
                   }}
                 ></Box>
 
-                <Box sx={{ textAlign: "left", minHeight: {xs:250, md:150} }}>
+                <Box
+                  sx={{ textAlign: "left", minHeight: { xs: 250, md: 150 } }}
+                >
                   <Typography
                     variant="h6"
                     sx={{
@@ -425,7 +440,7 @@ export default function CaseStudies() {
           </Stack>
           <Stack spacing={2} sx={{ textAlign: "center", p: 1 }}>
             <Paper>
-              <Box sx={{ p: 2, minHeight: {xs:540, md:470} }}>
+              <Box sx={{ p: 2, minHeight: { xs: 540, md: 470 } }}>
                 <Typography
                   component={"div"}
                   variant="h5"
@@ -433,11 +448,12 @@ export default function CaseStudies() {
                   sx={{
                     fontWeight: 500,
                     mb: 2,
-                    fontSize: {xs:18, md:24},
+                    fontSize: { xs: 18, md: 24 },
                     textAlign: "left",
                   }}
                 >
-                  Concierge<br/> in Athens
+                  Concierge
+                  <br /> in Athens
                 </Typography>
                 <Box
                   sx={{
@@ -450,7 +466,9 @@ export default function CaseStudies() {
                   }}
                 ></Box>
 
-                <Box sx={{ textAlign: "left", minHeight: {xs:250, md:150} }}>
+                <Box
+                  sx={{ textAlign: "left", minHeight: { xs: 250, md: 150 } }}
+                >
                   <Typography
                     variant="h6"
                     sx={{

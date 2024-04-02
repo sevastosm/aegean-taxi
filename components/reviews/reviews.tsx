@@ -33,7 +33,7 @@ export default function Reviews({ location }: any) {
       : locationDetails.taxi_locations[location];
 
   let settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     initialSlide: 0,
     slidesToScroll: 1,
@@ -44,7 +44,7 @@ export default function Reviews({ location }: any) {
       {
         breakpoint: 480,
         settings: {
-          dots: true,
+          dots: false,
           className: "center",
           centerMode: true,
           infinite: true,

@@ -19,7 +19,7 @@ import IT from "public/assets/flags/it.svg";
 
 export default function AirportMykonosReviews() {
   let settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     initialSlide: 0,
     slidesToScroll: 1,
@@ -30,7 +30,7 @@ export default function AirportMykonosReviews() {
       {
         breakpoint: 480,
         settings: {
-          dots: true,
+          dots: false,
           className: "center",
           centerMode: true,
           infinite: true,

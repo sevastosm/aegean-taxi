@@ -23,7 +23,7 @@ import CUSTOM from "public/assets/custom-tours.png";
 
 export default function AthensSelectedTours() {
   let settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     initialSlide: 1,
     slidesToScroll: 1,
@@ -37,7 +37,7 @@ export default function AthensSelectedTours() {
       {
         breakpoint: 480,
         settings: {
-          dots: true,
+          dots: false,
           initialSlide: 0,
           className: "center",
           centerMode: true,

@@ -19,7 +19,7 @@ import GR from "public/assets/flags/gr.svg";
 
 export default function TaxiCorfuReviews() {
   let settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     initialSlide: 0,
     slidesToScroll: 1,
@@ -30,7 +30,7 @@ export default function TaxiCorfuReviews() {
       {
         breakpoint: 480,
         settings: {
-          dots: true,
+          dots: false,
           className: "center",
           centerMode: true,
           infinite: true,

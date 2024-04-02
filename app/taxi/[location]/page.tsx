@@ -87,6 +87,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description,
+    other: {
+      thumbnail: "https://aegeantaxi.com/_next/static/media/taxi.png",
+    },
   };
 }
 

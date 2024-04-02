@@ -17,7 +17,7 @@ import SavingsSharpIcon from "@mui/icons-material/SavingsSharp";
 
 export default function WhyUs() {
   let settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     initialSlide: 0,
     slidesToScroll: 4,
