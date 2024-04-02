@@ -92,7 +92,7 @@ export default function DownloadAppButton({
             target="_blank"
             rel="nofollow"
           >
-            <Image src={Google} height={40} alt="Google Play" />
+            <Image src={Google} height={38} alt="Google Play" />
           </a>
         )}
         {isIOS() && (
@@ -101,7 +101,7 @@ export default function DownloadAppButton({
             target="_blank"
             rel="nofollow"
           >
-            <Image src={Apple} height={40} alt="Apple Store" />
+            <Image src={Apple} height={38} alt="Apple Store" />
           </a>
         )}
       </div>
