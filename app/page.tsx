@@ -11,13 +11,15 @@ export default function Page() {
   return (
     <>
       <LandingHeader />
+      <br />
+      <Locations />
       <WaysToRide />
       <BookingOptions showRideApp={true} />
       <SectionSpacer xst={6} xsb={6} mdt={4} mdb={6}>
         <TransportServices />
       </SectionSpacer>
       <WhyBook />
-      <Locations />
+      
     </>
   );
 }

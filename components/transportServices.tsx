@@ -38,6 +38,7 @@ export default function TransportServices() {
         sx={{
           fontWeight: 700,
           fontSize: { xs: "26px", md: "36px" },
+          textAlign: "center",
         }}
       >
         Transport Services, wherever you go

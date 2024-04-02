@@ -117,6 +117,7 @@ export default function Locations() {
           fontWeight: 700,
           fontSize: { xs: "26px", md: "36px" },
           display: { xs: "none", md: "block" },
+          textAlign: "center",
           // lineHeight: { xs: "28px", md: "48px" },
         }}
       >
@@ -131,10 +132,11 @@ export default function Locations() {
           fontWeight: 700,
           fontSize: { xs: "26px", md: "36px" },
           display: { xs: "block", md: "none" },
+          textAlign: "center",
           // lineHeight: { xs: "48px", md: "68px" },
         }}
       >
-        Aegean is available in the following locations
+        Aegean is available in the <br />  following locations
       </Typography>
 
       {/* Slider */}

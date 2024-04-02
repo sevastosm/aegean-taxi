@@ -383,9 +383,9 @@ export const locationDetails: any = {
         name: "Tinos",
       },
       meta: {
-        title: "Tinos Taxi App | Affordable Taxi rides | Available 24/7",
+        title: "Tinos Taxi App | Book your Taxi or Transfer | Book now or later",
         description:
-          "Book your Tinos Taxi via telephone, whatsapp, website. Or download the Aegean Taxi app and request a ride in 2 simple steps.",
+          "Book your Tinos Taxi via telephone, whatsapp, website. Or download the Aegean Taxi app and book a ride for now or later",
       },
     },
 
@@ -501,9 +501,9 @@ export const locationDetails: any = {
         name: "Paros",
       },
       meta: {
-        title: "Paros Taxi App | Affordable Taxi rides | Available 24/7",
+        title: "Paros Taxi App | Book your Taxi or Transfer | Book now or later",
         description:
-          "Book your Paros Taxi via telephone, whatsapp, website. Or download the Aegean Taxi app and request a ride in 2 simple steps.",
+          "Book your Paros Taxi via telephone, whatsapp, website. Or download the Aegean Taxi app and book a ride for now or later",
       },
     },
 
@@ -619,9 +619,9 @@ export const locationDetails: any = {
         name: "Naxos",
       },
       meta: {
-        title: "Naxos Taxi App | Affordable Taxi rides | Available 24/7",
+        title: "Naxos Taxi App | Book your Taxi or Transfer | Book now or later",
         description:
-          "Book your Naxos Taxi via telephone, whatsapp, website. Or download the Aegean Taxi app and request a ride in 2 simple steps.",
+          "Book your Naxos Taxi via telephone, whatsapp, website. Or download the Aegean Taxi app and book a ride for now or later",
       },
     },
 
@@ -855,9 +855,9 @@ export const locationDetails: any = {
         name: "Heraklion",
       },
       meta: {
-        title: "Heraklion Taxi App | Affordable Taxi rides | Available 24/7",
+        title: "Heraklion Taxi App | Book now or later | Affordable and Available 24/7",
         description:
-          "Book your Heraklion Taxi via telephone, whatsapp, website. Or download the Aegean Taxi app and request a ride in 2 simple steps.",
+          "Book your Heraklion Taxi via telephone, whatsapp, website. Or download the Heraklion Aegean Taxi app and book a ride for now or later.",
       },
     },
 
@@ -969,9 +969,9 @@ export const locationDetails: any = {
         name: "Chalkidiki",
       },
       meta: {
-        title: "Chalkidiki Taxi App | Affordable Taxi rides | Available 24/7",
+        title: "Chalkidiki Taxi App | Book now or later | Affordable and Available 24/7",
         description:
-          "Book your Chalkidiki Taxi via telephone, whatsapp, website. Or download the Aegean Taxi app and request a ride in 2 simple steps.",
+          "Book your Chalkidiki Taxi via telephone, whatsapp, website. Or download the Chalkidiki Aegean Taxi app and book a ride for now or later.",
       },
     },
 
