@@ -70,7 +70,6 @@ export default function BookingOptions({
           gutterBottom
           sx={{
             //textAlign: "left",
-            mt: 6,
             fontWeight: 700,
             fontSize: { xs: "26px", md: "36px" },
             display: { xs: "block", md: "none" },
