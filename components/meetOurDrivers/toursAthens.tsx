@@ -18,7 +18,7 @@ import MARIOS from "public/assets/drivers/marios.png";
 
 export default function DriversAthens() {
   let settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     initialSlide: 0,
     slidesToScroll: 1,
@@ -29,7 +29,7 @@ export default function DriversAthens() {
       {
         breakpoint: 480,
         settings: {
-          dots: true,
+          dots: false,
           className: "center",
           centerMode: true,
           infinite: true,

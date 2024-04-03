@@ -22,7 +22,7 @@ import CA from "public/assets/flags/ca.svg";
 
 export default function ToursLandingReviews() {
   let settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     initialSlide: 0,
     slidesToScroll: 1,
@@ -33,7 +33,7 @@ export default function ToursLandingReviews() {
       {
         breakpoint: 480,
         settings: {
-          dots: true,
+          dots: false,
           className: "center",
           centerMode: true,
           infinite: true,

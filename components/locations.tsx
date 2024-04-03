@@ -28,7 +28,7 @@ import { locationDetails } from "@/utils/locationDetails";
 
 export default function Locations() {
   let settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     initialSlide: 0,
     slidesToScroll: 3,
@@ -39,7 +39,7 @@ export default function Locations() {
       {
         breakpoint: 480,
         settings: {
-          dots: true,
+          dots: false,
           className: "center",
           centerMode: true,
           infinite: true,

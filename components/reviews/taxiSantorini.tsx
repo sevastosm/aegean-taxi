@@ -19,7 +19,7 @@ import AUS from "public/assets/flags/au.svg";
 
 export default function TaxiSantoriniReviews() {
   let settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     initialSlide: 0,
     slidesToScroll: 1,
@@ -30,7 +30,7 @@ export default function TaxiSantoriniReviews() {
       {
         breakpoint: 480,
         settings: {
-          dots: true,
+          dots: false,
           className: "center",
           centerMode: true,
           infinite: true,
@@ -58,8 +58,9 @@ export default function TaxiSantoriniReviews() {
               mt: 5,
             }}
           >
-            What travelers who booked a <br />ride with
-            Aegean Taxi in <br />Santorini say about us
+            What travelers who booked a <br />
+            ride with Aegean Taxi in <br />
+            Santorini say about us
           </Typography>
           <Typography
             component="h2"

@@ -18,7 +18,7 @@ import CUSTOM from "public/assets/tours-santorini-custom.png";
 
 export default function SantoriniSelectedTours() {
   let settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     initialSlide: 1,
     slidesToScroll: 1,
@@ -32,7 +32,7 @@ export default function SantoriniSelectedTours() {
       {
         breakpoint: 480,
         settings: {
-          dots: true,
+          dots: false,
           initialSlide: 0,
           className: "center",
           centerMode: true,

@@ -78,12 +78,24 @@ export default function LandingHeader() {
             sx={{
               display: { xs: "block", md: "flex" },
               minHeight: { xs: "auto", md: "595px" },
+              marginBottom: "20px",
             }}
           >
-            <Form />
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                gap: "5px",
+                alignItems: "center",
+                marginBottom: "20px",
+              }}
+            >
+              <Form />
+              <DownloadAppButton showMd="none" showStoresMD="none" />
+            </div>
           </Box>
           {/* Download the app Button */}
-          <DownloadAppButton showMd="none" showStoresMD="none" />
         </Grid>
       </Grid>
     </Container>

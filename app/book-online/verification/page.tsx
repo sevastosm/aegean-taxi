@@ -1,5 +1,7 @@
 "use client";
 import React from "react";
+import ReCAPTCHA from "react-google-recaptcha";
+
 import { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/navigation";
 
@@ -485,14 +487,15 @@ export default function VerificationComponent({}: {}) {
     return `+${option}`;
   }
 
-  function onSubmit() {
+  const recaptchaRef = React.useRef();
+
+  async function onSubmit() {
     let smsCode = Math.floor(Math.random() * 90000) + 10000;
     let securityCode = AES.encrypt(
       `${smsCode}`,
       `${process.env.NEXT_PUBLIC_CRYPTO_KEY}`
     ).toString();
     // bookingState = aegeanState;
-    console.log("SECURITY", securityCode);
     bookingContext.updateAppState(aegeanState);
 
     bookingState.phoneNumber = `+${countryCode}${phone}`;
@@ -500,6 +503,10 @@ export default function VerificationComponent({}: {}) {
     bookingState.security.expires = new Date().getTime();
     bookingState.firstName = firstName;
     bookingState.lastName = lastName;
+
+    const token = await recaptchaRef?.current.executeAsync();
+
+    console.log("token", token);
 
     // FIXME:
     // Override temporary
@@ -510,6 +517,7 @@ export default function VerificationComponent({}: {}) {
     // router.push("/book-online");
     // ./Override temporary
 
+    return;
     // FIXME:
     // Override temporary
     sendSms(
@@ -760,8 +768,15 @@ export default function VerificationComponent({}: {}) {
           >
             Next
           </Button>
+          <ReCAPTCHA
+            ref={recaptchaRef}
+            size="invisible"
+            sitekey="6LfkGqspAAAAAGMU4cQpWGOSc-sLUpyzhVAVUFZQ"
+          />
         </Grid>
       </Grid>
     </Box>
   );
 }
+
+//6LfkGqspAAAAAGMU4cQpWGOSc-sLUpyzhVAVUFZQ

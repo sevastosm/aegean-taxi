@@ -39,7 +39,7 @@ export default function BookingOptions({
   };
 
   let settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     initialSlide: 0,
     slidesToScroll: 1,

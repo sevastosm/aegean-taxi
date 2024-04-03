@@ -29,7 +29,7 @@ import { locationDetails } from "@/utils/locationDetails";
 
 export default function AirportLocations() {
   let settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     initialSlide: 0,
     slidesToScroll: 1,
@@ -40,7 +40,7 @@ export default function AirportLocations() {
       {
         breakpoint: 480,
         settings: {
-          dots: true,
+          dots: false,
           className: "center",
           centerMode: true,
           infinite: true,

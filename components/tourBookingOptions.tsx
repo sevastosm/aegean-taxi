@@ -34,7 +34,7 @@ export default function TourBookingOptions({
   }
 
   let settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     initialSlide: 0,
     slidesToScroll: 1,

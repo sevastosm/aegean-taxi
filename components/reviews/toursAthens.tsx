@@ -19,7 +19,7 @@ import FR from "public/assets/flags/fr.svg";
 
 export default function ToursAthensReviews() {
   let settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     initialSlide: 0,
     slidesToScroll: 1,
@@ -30,7 +30,7 @@ export default function ToursAthensReviews() {
       {
         breakpoint: 480,
         settings: {
-          dots: true,
+          dots: false,
           className: "center",
           centerMode: true,
           infinite: true,
@@ -72,8 +72,7 @@ export default function ToursAthensReviews() {
               // lineHeight: { xs: "48px", md: "68px" },
             }}
           >
-            What travelers who booked their Athens tour with Aegean Taxi
-            say
+            What travelers who booked their Athens tour with Aegean Taxi say
           </Typography>
         </Grid>
         <Grid item xs={12} md={6}>
@@ -193,12 +192,13 @@ export default function ToursAthensReviews() {
                         minHeight: { xs: "290px", md: "305px" },
                       }}
                     >
-                      It&prime;s the very first booking with Aegean Taxi and I was
-                      super worried but turned out great. All of us enjoyed the
-                      time for sightseeing, learning the culture and history.
-                      The driver managed to take us to all the sites which
-                      posted on the itinerary and also had time to allow us to
-                      enjoy a good authentic lunch at the local restaurant.
+                      It&prime;s the very first booking with Aegean Taxi and I
+                      was super worried but turned out great. All of us enjoyed
+                      the time for sightseeing, learning the culture and
+                      history. The driver managed to take us to all the sites
+                      which posted on the itinerary and also had time to allow
+                      us to enjoy a good authentic lunch at the local
+                      restaurant.
                     </Typography>
 
                     {/* User */}

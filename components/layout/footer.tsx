@@ -488,10 +488,13 @@ export default function FooterLayout() {
       <Box
         className="no-gutter"
         sx={{
-          display: { xs: "flex", md: "flex" },
-          justifyContent: { xs: "center", md: "flex-end" },
+          width: "100%",
+          display: "flex",
+          justifyContent: { xs: "space-between", md: "flex-start" },
+          flexDirection: { xs: "row", md: "row-reverse" },
+
           textAlign: "center",
-          right: { xs: "30%", md: 10 },
+          // right: { xs: "30%", md: 10 },
           position: "fixed" /* Fixed/sticky position */,
           bottom: showCookiesBanner
             ? { xs: 100, md: 40 }
@@ -503,31 +506,19 @@ export default function FooterLayout() {
           p: 1,
         }}
       >
-        <Box
-          sx={{
-            marginRight: 1,
-            display: { xs: showWhatsAppButton, md: "initial" },
-          }}
-        >
-          <a
-            href="https://wa.me/+306943829494"
-            target="_blank"
-            className="mr-4"
-          >
-            <Image
-              src={whatsApp}
-              width="129"
-              height="46"
-              alt="Message us on WhatsApp"
-            />
-          </a>
-        </Box>
-        <Box sx={{ display: { xs: "none", md: "initial" } }}>
-          <a href="tel:+306943829494" className="">
-            <Image src={phoneIcon} width="46" height="46" alt="Call us" />
-          </a>
-        </Box>
+        <a href="tel:+306943829494" className="">
+          <Image src={phoneIcon} width="46" height="38" alt="Call us" />
+        </a>
+        <a href="https://wa.me/+306943829494" target="_blank" className="mr-4">
+          <Image
+            src={whatsApp}
+            width="100"
+            height="38"
+            alt="Message us on WhatsApp"
+          />
+        </a>
       </Box>
+
       {showCookiesBanner && (
         <Alert
           sx={{

@@ -20,7 +20,7 @@ import CUSTOM from "public/assets/tours-mykonos-custom.jpg";
 
 export default function MykonosSelectedTours() {
   let settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     initialSlide: 1,
     slidesToScroll: 1,
@@ -34,7 +34,7 @@ export default function MykonosSelectedTours() {
       {
         breakpoint: 480,
         settings: {
-          dots: true,
+          dots: false,
           initialSlide: 0,
           className: "center",
           centerMode: true,

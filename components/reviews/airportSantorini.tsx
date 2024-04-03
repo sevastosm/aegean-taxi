@@ -19,7 +19,7 @@ import CH from "public/assets/flags/ch.svg";
 
 export default function AirportSantoriniReviews() {
   let settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     initialSlide: 0,
     slidesToScroll: 1,
@@ -30,7 +30,7 @@ export default function AirportSantoriniReviews() {
       {
         breakpoint: 480,
         settings: {
-          dots: true,
+          dots: false,
           className: "center",
           centerMode: true,
           infinite: true,
@@ -58,8 +58,9 @@ export default function AirportSantoriniReviews() {
               mt: 5,
             }}
           >
-            What travelers who booked their<br /> Santorini
-             airport ride<br /> with Aegean Taxi say
+            What travelers who booked their
+            <br /> Santorini airport ride
+            <br /> with Aegean Taxi say
           </Typography>
           <Typography
             component="h2"

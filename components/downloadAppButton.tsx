@@ -10,6 +10,7 @@ import at_logo_blue from "public/assets/at_logo_blue.png";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import Google from "public/assets/google-play-badge.png";
 import Apple from "public/assets/apple-badge-black.png";
+import { useEffect } from "react";
 
 export default function DownloadAppButton({
   showXs = `block`,
@@ -22,9 +23,17 @@ export default function DownloadAppButton({
   showStoresXs?: string;
   showStoresMD?: string;
 }) {
+  function isAndroid() {
+    return /Android/.test(navigator.userAgent);
+  }
+
+  function isIOS() {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window?.MSStream;
+  }
+
   return (
     <>
-      <a
+      {/* <a
         href="https://aegean.page.link/navigate"
         target="_blank"
         rel="nofollow"
@@ -65,36 +74,37 @@ export default function DownloadAppButton({
             </Grid>
           </Grid>
         </Box>
-      </a>
+      </a> */}
 
       {/* App Stores */}
-      <Grid
-        container
-        spacing={2}
-        sx={{
-          pb: { xs: 6, md: 0 },
-          display: { xs: showStoresXs, md: showStoresMD },
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "15px",
+          flexWrap: "wrap",
         }}
       >
-        <Grid item xs={6} md={5}>
+        {isAndroid() && (
           <a
             href="https://play.google.com/store/apps/details?id=aegean.taxi.ride.app.mykonos.santorini.athens.greece.passenger"
             target="_blank"
             rel="nofollow"
           >
-            <Image src={Google} height={40} alt="Google Play" />
+            <Image src={Google} height={38} alt="Google Play" />
           </a>
-        </Grid>
-        <Grid item xs={6} md={5}>
+        )}
+        {isIOS() && (
           <a
             href="https://apps.apple.com/app/id6447252101"
             target="_blank"
             rel="nofollow"
           >
-            <Image src={Apple} height={40} alt="Apple Store" />
+            <Image src={Apple} height={38} alt="Apple Store" />
           </a>
-        </Grid>
-      </Grid>
+        )}
+      </div>
       {/* /. App Stores */}
     </>
   );

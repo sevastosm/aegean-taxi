@@ -18,7 +18,7 @@ import JOHN from "public/assets/drivers/john-mykonos.jpg";
 
 export default function DriversMykonos() {
   let settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     initialSlide: 0,
     slidesToScroll: 1,
@@ -29,7 +29,7 @@ export default function DriversMykonos() {
       {
         breakpoint: 480,
         settings: {
-          dots: true,
+          dots: false,
           className: "center",
           centerMode: true,
           infinite: true,

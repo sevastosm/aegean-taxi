@@ -40,7 +40,7 @@ export default function WaysToRide() {
   };
 
   let settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     initialSlide: 0,
     slidesToScroll: 3,

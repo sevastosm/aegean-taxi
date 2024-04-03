@@ -35,7 +35,7 @@ export async function sendSms(phoneNumbers: string, message: string) {
     phone: phoneNumbers,
   };
 
-  await fetch("https://aegean-service.vercel.app/send", {
+  await fetch("https://aegean-service.onrender.com/send", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
