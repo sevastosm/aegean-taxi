@@ -193,6 +193,7 @@ export default function TaxiBookingOptions({
                         and start riding in minutes
                         {/* Get our ride app from the stores, and start riding
                         <br /> in minutes */}
+                        <DownloadAppButton />
                       </Typography>
                     </Box>
 

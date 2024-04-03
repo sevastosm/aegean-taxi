@@ -18,7 +18,7 @@ export default function WhatsAppButton({
 }) {
   return (
     <a
-      href="https://wa.me/306943829494"
+      href="https://wa.me/+306943829494"
       target="_blank"
       style={{ textDecoration: "none", color: "#000" }}
     >
@@ -38,7 +38,7 @@ export default function WhatsAppButton({
       >
         <Grid container spacing={0} sx={{ background: "#fff", p: 1 }}>
           <Grid item xs={3} md={2} sx={{ mt: 1 }}>
-            <Image src={whatsApp} height={39} alt="Message us on WhatsApp"  />
+            <Image src={whatsApp} height={39} alt="Message us on WhatsApp" />
           </Grid>
           <Grid item xs={7} md={8} sx={{ mt: 2, textAlign: "left" }}>
             <Typography

@@ -31,9 +31,31 @@ export default function DownloadAppButton({
     return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window?.MSStream;
   }
 
-  return (
-    <>
-      {/* <a
+  const ApplicationLink = () => {
+    if (isAndroid()) {
+      return (
+        <a
+          href="https://play.google.com/store/apps/details?id=aegean.taxi.ride.app.mykonos.santorini.athens.greece.passenger"
+          target="_blank"
+          rel="nofollow"
+        >
+          <Image src={Google} height={38} alt="Google Play" />
+        </a>
+      );
+    }
+    if (isIOS()) {
+      return (
+        <a
+          href="https://apps.apple.com/app/id6447252101"
+          target="_blank"
+          rel="nofollow"
+        >
+          <Image src={Apple} height={38} alt="Apple Store" />
+        </a>
+      );
+    }
+    return (
+      <a
         href="https://aegean.page.link/navigate"
         target="_blank"
         rel="nofollow"
@@ -74,7 +96,56 @@ export default function DownloadAppButton({
             </Grid>
           </Grid>
         </Box>
-      </a> */}
+      </a>
+    );
+  };
+
+  return <ApplicationLink />;
+
+  return (
+    <>
+      <a
+        href="https://aegean.page.link/navigate"
+        target="_blank"
+        rel="nofollow"
+      >
+        <Box
+          justifyContent="flex-start"
+          alignItems="flex-start"
+          display="flex"
+          sx={{
+            width: "100%",
+            height: "105px",
+            background: "#EBEBEB",
+            p: 2,
+            display: { xs: showXs, md: showMd },
+            mb: 2,
+            cursor: "pointer",
+          }}
+        >
+          <Grid container spacing={0} sx={{ background: "#fff", p: 1 }}>
+            <Grid item xs={3} md={2} sx={{ mt: 1 }}>
+              <Image src={at_logo_blue} alt="Aegean" height={38} />
+            </Grid>
+            <Grid item xs={7} md={8} sx={{ mt: 2, textAlign: "left" }}>
+              <Typography
+                component="span"
+                variant="body1"
+                gutterBottom
+                sx={{
+                  lineHeight: 1,
+                  mt: 0,
+                }}
+              >
+                Download the App
+              </Typography>
+            </Grid>
+            <Grid item xs={2} sx={{ mt: 1.5 }}>
+              <ArrowRightAltIcon fontSize="large" />
+            </Grid>
+          </Grid>
+        </Box>
+      </a>
 
       {/* App Stores */}
       <div

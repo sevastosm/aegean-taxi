@@ -82,6 +82,7 @@ export default function Reviews({ location }: any) {
         sx={{
           background: "#244284",
           color: "#fff",
+          maxHeight: "400px",
           // minHeight: "500px",
         }}
       >
@@ -92,16 +93,18 @@ export default function Reviews({ location }: any) {
             gutterBottom
             sx={{
               my: 2,
-              minHeight: { xs: "200px", md: "170px" },
+              maxHeight: "100px",
+              overflowY: "scroll",
             }}
           >
-            <ReadMoreReact
+            {item.text}
+            {/* <ReadMoreReact
               text={item.text}
               min={50}
               ideal={200}
-              max={500}
+              max={400}
               readMoreText={"Read more..."}
-            />
+            /> */}
           </Typography>
 
           {/* User */}
@@ -122,8 +125,6 @@ export default function Reviews({ location }: any) {
                 background: `#fff`,
                 borderRadius: 1,
                 color: "#000",
-                position: "absolute",
-                bottom: "30px",
               }}
             >
               {item.dateName}
