@@ -10,7 +10,7 @@ import at_logo_blue from "public/assets/at_logo_blue.png";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import Google from "public/assets/google-play-badge.png";
 import Apple from "public/assets/apple-badge-black.png";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function DownloadAppButton({
   showXs = `block`,
@@ -23,17 +23,24 @@ export default function DownloadAppButton({
   showStoresXs?: string;
   showStoresMD?: string;
 }) {
+  const [windowNavigator, setNavigator] = useState<any>(null);
   function isAndroid() {
-    if (navigator) {
-      return /Android/.test(navigator.userAgent);
+    if (windowNavigator) {
+      return /Android/.test(windowNavigator.userAgent);
     }
   }
 
   function isIOS() {
-    if (navigator) {
-      return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window?.MSStream;
+    if (windowNavigator) {
+      return (
+        /iPad|iPhone|iPod/.test(windowNavigator.userAgent) && !window?.MSStream
+      );
     }
   }
+
+  useEffect(() => {
+    setNavigator(navigator);
+  }, []);
 
   const ApplicationLink = () => {
     if (isAndroid()) {
