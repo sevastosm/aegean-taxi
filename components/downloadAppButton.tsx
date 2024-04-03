@@ -24,11 +24,15 @@ export default function DownloadAppButton({
   showStoresMD?: string;
 }) {
   function isAndroid() {
-    return /Android/.test(navigator.userAgent);
+    if (navigator) {
+      return /Android/.test(navigator.userAgent);
+    }
   }
 
   function isIOS() {
-    return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window?.MSStream;
+    if (navigator) {
+      return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window?.MSStream;
+    }
   }
 
   const ApplicationLink = () => {
