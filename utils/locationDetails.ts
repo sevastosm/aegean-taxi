@@ -1105,6 +1105,136 @@ export const locationDetails: any = {
           "Book your Kea/Tzia Taxi via telephone, whatsapp, website. Or download the Aegean Taxi app and request a ride in 2 simple steps.",
       },
     },
+
+    "kefalonia-taxi-app": {
+      location: "kefalonia-taxi-app",
+      name: "Kefalonia",
+      prices: [
+        {
+          from: "Lixouri",
+          to: "Argostoli",
+          cost: "40",
+          duration: "45",
+          location: "port",
+        },
+        {
+          from: "Kefalonia Airport",
+          to: "Fiskardo",
+          cost: "70",
+          duration: "75",
+          location: "airport",
+        },
+        {
+          from: "Argostoli",
+          to: "Myrtos Beach",
+          cost: "40",
+          duration: "40",
+          location: "city",
+        },
+        {
+          from: "Lixouri",
+          to: "Melissani Cave",
+          cost: "65",
+          duration: "70",
+          location: "port",
+        },
+        {
+          from: "Skala",
+          to: "Kefalonia Airport",
+          cost: "50",
+          duration: "50",
+          location: "airport",
+        },
+      ],
+      reviews: [
+        {
+          flag: "french",
+          dateName: "Laura - March 2023",
+          text: `we found that booking a ride on Kefalonia was very easy with the Web-based service provided by Aegean Taxi on their website. The process is simple, and their professional drivers will ensure you have a comfortable and safe ride. They all speak English and are avaiable 24/7`,
+        },
+        {
+          flag: "america",
+          dateName: "Jo - July 2022",
+          text: `We spent a few days in Kefalonia coming from Myconos and used this company for all of our journeys during our stay. All was communicated through WhatsApp. The Aegean Taxi cars were always clean and the drivers made sure we always felt comfortable on our journeys as the roads are pretty unique in Kefalonia and locations not easy to find !! `,
+        },
+        {
+          flag: "uk",
+          dateName: "Carter - June 2022",
+          text: `While in Kefalonia we have used the Aegean Taxi app several times. The application was simple, affordable and convenient, with cheap prices and professional drivers. Very highly recommended service!`,
+        },
+      ],
+
+      faq: [
+        {
+          q: `How can i find a taxi or transfer in Kefalonia?`,
+          a: `Apart from the designated taxi stands in the town center Airport or port, the best way is to use a private transfer service. Aegean Taxi offers a great fleet of cars at competitive prices, with english speaking drivers and is available 24/7. You can order a ride from www.aegeantaxi.com using the webapp in 3 simple steps, download the Aegean Taxi app, or simply call the call center on +302152154000`,
+        },
+        {
+          q: `Is it easy to find a taxi in Kefalonia?`,
+          a: `No. Taxis in Kefalonia can be hard to find, especially in the peak months of July and August. If you want to book your ride in advance or on demend, the best way is to download the Aegean Taxi app or use one of the other 3 methods to book your ride`,
+        },
+        {
+          q: `Are Kefalonia Taxis and Transfers safe in Kefalonia?`,
+          a: `Yes. Kefalonia is a cosidered to be a safe island with no major incidents ever reported related to taxis or transfers. Aegean Taxi employs only professional english speaking drivers who are pre-screened and trained to offer an excellent service`,
+        },
+        {
+          q: `Are taxis and transfers expensive in Kefalonia?`,
+          a: `Taxis in Kefalonia operate with a government mandated taxi meter, however it is possible to negotiate a flat fare with your driver. Private transfer services are available with a minimum €36 fare for half an hour which is the rate for a standard car. Vans tend to charge higher rates`,
+        },
+        {
+          q: `Is Aegean Taxi working in Kefalonia?`,
+          a: `Yes. Aegean Taxi is the leading taxi and transfer service in the island of Kefalonia. Tourists can download the Aegean Taxi app from the google or apple stores, register in 3 simple steps and requests rides in Kefalonia. Alternative booking methods include the website using the webapp, telephone booking or whatsapp`,
+        },
+        {
+          q: `Do Taxi drivers speak English in Kefalonia?`,
+          a: `Aegean Taxi hires only fluent English speakers so all drivers can speak English. It is a legal requirement for transport companies to obtain proof of English profficiency when hiring drivers. This does not apply to Taxi drivers who do not need to be speaking English to become drivers`,
+        },
+        {
+          q: `Do you have to tip taxis in Kefalonia?`,
+          a: `Tips are optional for transport providers in Kefalonia and one should not expect to have to pay anything extra than the pre arranged or metered fare. When extra services are provided by a driver like carrying luggage or stops along the way, then it is customary to reward drivers for the service`,
+        },
+        {
+          q: `Do taxis run all day and night in Kefalonia?`,
+          a: `Most taxis operate throughout the day on the island of Kefalonia. Aegean Taxi operates 24/7 and getting a ride is easy at any time using one of the booking methods offered`,
+        },
+        {
+          q: `How can you find a Taxi in Kefalonia Airport and Port?`,
+          a: `Aegean Taxi Operates to and from Kefalonia Airport and Port. You can arrange a ride in advance or upon arrival using either the Aegean Taxi Kefalonia App, whatsapp, the website or simply call our 24/7 call center to book your ride.`,
+        },
+        {
+          q: `Is there a Taxi app in Kefalonia?`,
+          a: `Yes, Aegean Taxi is the first taxi app that started operating in Kefalonia and is available to download in Android and iOS`,
+        },
+        {
+          q: `What is the best Taxi app for Kefalonia?`,
+          a: `Aegean Taxi is the best Taxi app for intra island, Airport and port transfer service available in Kefalonia. With over 100,000 downloads and a fleet of 500+ drivers, Aegean Taxi is the cheapest and most professional service available`,
+        },
+        {
+          q: `How many taxis are there in Kefalonia?`,
+          a: `The Isand has few registered taxis, which cater to the hundreads of thousands of visitors to the island every year. There are a number of private transfer services available on the island which can be pre-booked. The minimum fare is €36`,
+        },
+        {
+          q: `Do I need cash for taxis in Kefalonia?`,
+          a: `Yes. There is no government mandate that requires taxi drivers to carry a POS machine to accept card payments, so the majority of the taxis in Mykonos require cash payment. Aegean Taxi accepts all major credit cards, and you can also add your credit card details to pay for your ride when using the Taxi app`,
+        },
+      ],
+      photo: "./public/assets/taxi-locations/taxi-kefalonia.jpeg",
+      slide: {
+        name: "Kefalonia",
+        photo: "/assets/taxi-locations/taxi-kefalonia.jpeg",
+        href: "/taxi/kefalonia-taxi-app/",
+      },
+      url: "taxi/kefalonia-taxi-app/",
+      footer: {
+        link: "/taxi/kefalonia-taxi-app/",
+        name: "Kefalonia",
+      },
+      meta: {
+        title: "Kefalonia Taxi App | Affordable Taxi rides | Available 24/7",
+        description:
+          "Book your Kefalonia Taxi via telephone, whatsapp, website. Or download the Aegean Taxi app and request a ride in 2 simple steps.",
+      },
+    },
   },
   airports: {
     milos: {
