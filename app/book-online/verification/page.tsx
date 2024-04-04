@@ -25,7 +25,7 @@ import useStorage from "@/hooks/useStorage";
 import { AppContext } from "@/context/appState";
 
 // fetchers
-import { tokenFetcher, sendSms } from "@/utils/fetchers";
+import { tokenFetcher, sendSms, verifyToken } from "@/utils/fetchers";
 
 // models
 import { BookingState } from "@/types/bookingState";
@@ -487,7 +487,7 @@ export default function VerificationComponent({}: {}) {
     return `+${option}`;
   }
 
-  const recaptchaRef = React.useRef();
+  const reCaptchaRef = React.useRef<any>(null);
 
   async function onSubmit() {
     let smsCode = Math.floor(Math.random() * 90000) + 10000;
@@ -498,15 +498,33 @@ export default function VerificationComponent({}: {}) {
     // bookingState = aegeanState;
     bookingContext.updateAppState(aegeanState);
 
-    bookingState.phoneNumber = `+${countryCode}${phone}`;
+    const mobileNumber = `+${countryCode}${phone}`;
+
+    bookingState.phoneNumber = mobileNumber;
     bookingState.security.code = securityCode;
     bookingState.security.expires = new Date().getTime();
     bookingState.firstName = firstName;
     bookingState.lastName = lastName;
 
-    const token = await recaptchaRef?.current.executeAsync();
+    const token = await reCaptchaRef?.current.executeAsync();
+    const result: any = await verifyToken({
+      token,
+      firstName,
+      lastName,
+      mobileNumber,
+    }).then((result: any) => {
+      console.log("token-result", result);
+      if (result.data.success) {
+        sendSms(
+          `00${bookingState.phoneNumber.replace("+", "")}`,
+          `Your access code is ${smsCode}`
+        );
 
-    console.log("token", token);
+        bookingContext.updateAppState(bookingState);
+        setItem("aegean", bookingState, "local");
+        router.push("/book-online/verification/validate");
+      }
+    });
 
     // FIXME:
     // Override temporary
@@ -517,17 +535,9 @@ export default function VerificationComponent({}: {}) {
     // router.push("/book-online");
     // ./Override temporary
 
-    return;
+    // return;
     // FIXME:
     // Override temporary
-    sendSms(
-      `00${bookingState.phoneNumber.replace("+", "")}`,
-      `Your access code is ${smsCode}`
-    );
-
-    bookingContext.updateAppState(bookingState);
-    setItem("aegean", bookingState, "local");
-    router.push("/book-online/verification/validate");
   }
 
   return (
@@ -769,9 +779,9 @@ export default function VerificationComponent({}: {}) {
             Next
           </Button>
           <ReCAPTCHA
-            ref={recaptchaRef}
+            ref={reCaptchaRef}
             size="invisible"
-            sitekey="6LfkGqspAAAAAGMU4cQpWGOSc-sLUpyzhVAVUFZQ"
+            sitekey="6Lc_Wq8pAAAAAIXLFQ8NtSy1YwvRYiaXC52e70NP"
           />
         </Grid>
       </Grid>

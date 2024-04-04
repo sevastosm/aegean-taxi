@@ -1,5 +1,5 @@
-export const tokenFetcher = () =>
-  fetch("https://carky-api.azurewebsites.net/token", {
+export const tokenFetcher = async () =>
+  await fetch("https://carky-api.azurewebsites.net/token", {
     method: "POST",
     headers: {
       "content-type": "application/x-www-form-urlencoded",
@@ -10,6 +10,33 @@ export const tokenFetcher = () =>
     .then((data) => {
       return data;
     });
+
+export const verifyToken = async ({
+  token,
+  firstName,
+  lastName,
+  mobileNumber,
+}: any) => {
+  const captcha = token;
+
+  const data = await fetch(
+    "https://us-central1-aegean-service.cloudfunctions.net/api/verify",
+    {
+      method: "POST",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        firstName: firstName,
+        lastName: lastName,
+        mobile: mobileNumber,
+        captcha: captcha,
+      }),
+    }
+  );
+  return await data.json();
+};
 
 export const sendSms0 = (
   apiToken: string,
@@ -35,13 +62,16 @@ export async function sendSms(phoneNumbers: string, message: string) {
     phone: phoneNumbers,
   };
 
-  await fetch("https://aegean-service.onrender.com/send", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
+  await fetch(
+    "https://us-central1-aegean-service.cloudfunctions.net/api/send",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  )
     .then((response) => response.text())
     .then((result) => console.log(result))
     .catch((error) => console.error(error));
