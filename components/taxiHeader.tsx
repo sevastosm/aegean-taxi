@@ -26,6 +26,7 @@ import Kos from "public/assets/taxi-locations/taxi-kos.jpeg";
 import Heraklion from "public/assets/taxi-locations/taxi-heraklion.jpeg";
 import Chalkidiki from "public/assets/taxi-locations/taxi-chalkidiki.jpeg";
 import Kefalonia from "public/assets/taxi-locations/taxi-kefalonia.jpeg";
+import Kea from "public/assets/taxi-locations/taxi-kea.jpeg";
 
 import { locationDetails } from "@/utils/locationDetails";
 
@@ -86,6 +87,9 @@ export default function TaxiHeader() {
         case "Kefalonia":
           cover = Kefalonia;
           break;
+        case "Kea":
+        cover = Kea;
+        break;
     }
   }
 

@@ -975,9 +975,9 @@ export const locationDetails: any = {
       },
     },
 
-    "kea-tzia-taxi-app": {
-      location: "kea-tzia-taxi-app",
-      name: "Kea-Tzia",
+    "kea-taxi-app": {
+      location: "kea-taxi-app",
+      name: "Kea",
       prices: [
         {
           from: "Kea Port",
@@ -1087,15 +1087,15 @@ export const locationDetails: any = {
           a: `Yes. There is no government mandate that requires taxi drivers to carry a POS machine to accept card payments, so the majority of the taxis in Mykonos require cash payment. Aegean Taxi accepts all major credit cards, and you can also add your credit card details to pay for your ride when using the Taxi app`,
         },
       ],
-      photo: "./public/assets/taxi-locations/taxi-kea-tzia.jpeg",
+      photo: "./public/assets/taxi-locations/taxi-kea.jpeg",
       slide: {
         name: "Kea-Tzia",
-        photo: "/assets/taxi-locations/taxi-kea-tzia.jpeg",
-        href: "/taxi/kea-tzia-taxi-app/",
+        photo: "/assets/taxi-locations/taxi-kea.jpeg",
+        href: "/taxi/kea-taxi-app/",
       },
-      url: "taxi/kea-tzia-taxi-app/",
+      url: "taxi/kea-taxi-app/",
       footer: {
-        link: "/taxi/kea-tzia-taxi-app/",
+        link: "/taxi/kea-taxi-app/",
         name: "Kea-Tzia",
       },
       meta: {
