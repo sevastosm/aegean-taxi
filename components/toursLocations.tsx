@@ -20,9 +20,9 @@ import { Link as MUILink } from "@mui/material";
 
 // assets
 import MAP from "public/assets/locations-map.png";
-import ATHENS from "public/assets/Athens.png";
-import MYKONOS from "public/assets/Mykonos.png";
-import SANTORINI from "public/assets/Santorini.png";
+import ATHENS from "public/assets/taxi-athens.jpg";
+import MYKONOS from "public/assets/taxi-mykonos.png";
+import SANTORINI from "public/assets/taxi-santorini.png";
 
 export default function AirportLocations() {
   let settings = {

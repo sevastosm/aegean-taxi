@@ -22,9 +22,9 @@ import { Link as MUILink } from "@mui/material";
 
 // assets
 import MAP from "public/assets/locations-map.png";
-import ATHENS from "public/assets/Athens.png";
-import MYKONOS from "public/assets/Mykonos.png";
-import SANTORINI from "public/assets/Santorini.png";
+import ATHENS from "public/assets/taxi-athens.jpg";
+import MYKONOS from "public/assets/taxi-mykonos.png";
+import SANTORINI from "public/assets/taxi-santorini.png";
 import { locationDetails } from "@/utils/locationDetails";
 
 export default function AirportLocations() {
@@ -76,7 +76,7 @@ export default function AirportLocations() {
             <Box
               sx={{
                 minHeight: { xs: 224, md: 345 },
-                backgroundImage: `url('/assets/Santorini.png')`,
+                backgroundImage: `url('/assets/taxi-santorini.png')`,
                 backgroundSize: "cover",
                 borderRadius: 3,
                 mb: 3,
@@ -271,7 +271,7 @@ export default function AirportLocations() {
                       <Box
                         sx={{
                           minHeight: { xs: 224, md: 345 },
-                          backgroundImage: `url('/assets/Santorini.png')`,
+                          backgroundImage: `url('/assets/taxi-santorini.png')`,
                           backgroundSize: "cover",
                           borderRadius: 3,
                           mb: 3,

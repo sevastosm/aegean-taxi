@@ -16,12 +16,12 @@ import Slider from "react-slick";
 //MUI
 import { Link as MUILink } from "@mui/material";
 
-import ATHENS from "public/assets/Athens.png";
-import MYKONOS from "public/assets/Mykonos.png";
-import SANTORINI from "public/assets/Santorini.png";
+import ATHENS from "public/assets/taxi-athens.jpg";
+import MYKONOS from "public/assets/taxi-mykonos.png";
+import SANTORINI from "public/assets/taxi-santorini.png";
 
-import CORFU from "public/assets/Corfu.png";
-import RHODES from "public/assets/Rhodes.png";
+import CORFU from "public/assets/taxi-corfu.png";
+import RHODES from "public/assets/taxi-rhodes.png";
 
 import MILOS from "public/assets/taxi-locations/taxi-milos.jpeg";
 import { locationDetails } from "@/utils/locationDetails";
