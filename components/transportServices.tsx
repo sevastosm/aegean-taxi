@@ -41,7 +41,7 @@ export default function TransportServices() {
           textAlign: "center",
         }}
       >
-        Transport Services, wherever you go
+        Quality transport services, wherever you go, available 24/7
       </Typography>
 
       {/* tabs */}
@@ -54,6 +54,7 @@ export default function TransportServices() {
               aria-label="transport services tabs"
             >
               <Tab
+                component="h3"
                 label="Taxi"
                 value="1"
                 sx={{
@@ -62,6 +63,7 @@ export default function TransportServices() {
                 }}
               />
               <Tab
+                component="h3"
                 label="Airport Transfers"
                 value="2"
                 sx={{
@@ -70,6 +72,7 @@ export default function TransportServices() {
                 }}
               />
               <Tab
+                component="h3"
                 label="Tours"
                 value="3"
                 sx={{

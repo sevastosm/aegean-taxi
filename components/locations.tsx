@@ -121,8 +121,7 @@ export default function Locations() {
           // lineHeight: { xs: "28px", md: "48px" },
         }}
       >
-        Aegean is available in the following
-        <br /> locations
+        Book a ride online with Aegean Taxi in the following locations
       </Typography>
       <Typography
         component="h2"
@@ -136,7 +135,7 @@ export default function Locations() {
           // lineHeight: { xs: "48px", md: "68px" },
         }}
       >
-        Aegean is available in the <br />  following locations
+        Book a ride online with Aegean Taxi in the following locations
       </Typography>
 
       {/* Slider */}
@@ -151,7 +150,7 @@ export default function Locations() {
               <Paper>
                 <Box sx={{ p: 2 }}>
                   <Typography
-                    component={"div"}
+                    component="h3"
                     variant="h5"
                     gutterBottom
                     sx={{
@@ -197,7 +196,7 @@ export default function Locations() {
               <Paper>
                 <Box sx={{ p: 2 }}>
                   <Typography
-                    component={"div"}
+                    component="h3"
                     variant="h5"
                     gutterBottom
                     sx={{
@@ -242,7 +241,7 @@ export default function Locations() {
               <Paper>
                 <Box sx={{ p: 2 }}>
                   <Typography
-                    component={"div"}
+                    component="h3"
                     variant="h5"
                     gutterBottom
                     sx={{
@@ -287,7 +286,7 @@ export default function Locations() {
               <Paper>
                 <Box sx={{ p: 2 }}>
                   <Typography
-                    component={"div"}
+                    component="h3"
                     variant="h5"
                     gutterBottom
                     sx={{
@@ -332,7 +331,7 @@ export default function Locations() {
               <Paper>
                 <Box sx={{ p: 2 }}>
                   <Typography
-                    component={"div"}
+                    component="h3"
                     variant="h5"
                     gutterBottom
                     sx={{
@@ -379,7 +378,7 @@ export default function Locations() {
                   <Paper>
                     <Box sx={{ p: 2 }}>
                       <Typography
-                        component={"div"}
+                        component="h3"
                         variant="h5"
                         gutterBottom
                         sx={{

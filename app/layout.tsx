@@ -5,9 +5,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 export const metadata = {
-  title: "The #1 Taxi for the Greek Islands | Available 24/7 | Book now or later",
+  title: "Ride with Aegean Taxi | The best taxi app for Greece | Book rides 24/7",
   description:
-    "Aegean Taxi App is the Best way to book a ride in the Greek Islands. To book for now or later simply download the Aegean Taxi App, use the 24/7 call center, book online or via whatsapp",
+    "Aegean Taxi App: the best Taxi & Transfer service for the Greek Islands. Book a ride online, via whatsapp, telephone, or download the Taxi App. Available 24/7",
 };
 
 export default function RootLayout({

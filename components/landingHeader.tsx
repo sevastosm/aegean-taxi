@@ -24,11 +24,12 @@ export default function LandingHeader() {
               fontWeight: 700,
               mt: 6,
               display: { xs: "none", md: "block" },
+              //fontSize: { md: "3.75rem" }, // original 3.75rem
             }}
           >
-            The #1 Taxi App
+            Ride with Aegean Taxi.
             <br />
-            for the Greek Islands.
+            The best Taxi App for the Greek islands
             <br />
           </Typography>
           <Typography
@@ -42,15 +43,16 @@ export default function LandingHeader() {
               textAlign: "center",
             }}
           >
-            The #1 Taxi App for the Greek Islands.
+            Ride with Aegean Taxi.
+            <br /> 
+            The best Taxi App for the Greek islands
           </Typography>
           <Typography
-            component="span"
+            component="p"
             variant="h5"
             sx={{ display: { xs: "none", md: "block" } }}
           >
-            The easy way to book a ride with Aegean Taxi App in Mykonos,
-            Santorini, Athens, Corfu and Rhodes
+            Book a ride 24/7 online. Best prices, available in the most popular destinations
           </Typography>
         </Grid>
         <Grid

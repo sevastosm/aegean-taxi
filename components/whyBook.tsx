@@ -43,7 +43,7 @@ export default function WhyBook() {
     ],
   };
 
-  let title = `Why Book
+  let title = `Why book
   <br />
   with Aegean Taxi App`;
   let city;
@@ -52,7 +52,7 @@ export default function WhyBook() {
     city = (
       params.location.charAt(0).toUpperCase() + params.location.slice(1)
     ).replace("-taxi-app", "");
-    title = `Why Book<br /> with Aegean Taxi App in ${city}`;
+    title = `Why book<br /> with Aegean Taxi App in ${city}`;
   }
 
   return (
@@ -105,6 +105,7 @@ export default function WhyBook() {
           <Stack spacing={2} sx={{ p: { xs: 4, md: 0 } }}>
             <Image src={PRICE} alt="price" width={34} />
             <Typography
+              component="h3"
               variant="h6"
               gutterBottom
               sx={{
@@ -124,6 +125,7 @@ export default function WhyBook() {
           <Stack spacing={2} sx={{ p: { xs: 4, md: 0 } }}>
             <Image src={TWENTY} alt="price" width={34} />
             <Typography
+              component="h3"
               variant="h6"
               gutterBottom
               sx={{
@@ -140,6 +142,7 @@ export default function WhyBook() {
           <Stack spacing={2} sx={{ p: { xs: 4, md: 0 } }}>
             <Image src={DRIVERS} alt="price" width={34} />
             <Typography
+              component="h3"
               variant="h6"
               gutterBottom
               sx={{
@@ -156,6 +159,7 @@ export default function WhyBook() {
           <Stack spacing={2} sx={{ p: { xs: 4, md: 0 } }}>
             <Image src={APP} alt="price" width={34} />
             <Typography
+              component="h3"
               variant="h6"
               gutterBottom
               sx={{

@@ -62,7 +62,7 @@ export default function BookingOptions({
             display: { xs: "none", md: "block" },
           }}
         >
-          We made it easier to book your taxi ride <br /> in Greece
+          Book you ride easily, using the option that works best for you
         </Typography>
         <Typography
           component="h2"
@@ -76,7 +76,7 @@ export default function BookingOptions({
             textAlign: "center",
           }}
         >
-          We made it easier to book <br /> your taxi ride in Greece
+          Book you ride easily, using the option that works best for you
         </Typography>
       </Box>
       <Box
@@ -138,7 +138,7 @@ export default function BookingOptions({
                       }}
                     >
                       <Typography
-                        component={"span"}
+                        component="h3"
                         variant="h4"
                         gutterBottom
                         sx={{
@@ -152,7 +152,7 @@ export default function BookingOptions({
                       </Typography>
                     </Box>
                     <Typography
-                      component={"span"}
+                      component="h3"
                       variant="h6"
                       gutterBottom
                       sx={{
@@ -179,16 +179,19 @@ export default function BookingOptions({
                         display: { xs: "none", md: "block" },
                       }}
                     >
-                      <Typography variant="body1">
-                        Download our taxi app from the stores,
-                        <br />
-                        and start riding in minutes
-                        {/* Get our ride app from the stores, and start riding
-                        <br /> in minutes */}
+                      <Typography 
+                        component="p"
+                        variant="body1">
+                          Download our taxi app from the stores,
+                          <br />
+                          and start riding in minutes
+                          {/* Get our ride app from the stores, and start riding
+                          <br /> in minutes */}
                       </Typography>
                     </Box>
 
                     <Typography
+                      component="p"
                       variant="body1"
                       sx={{
                         mt: 3,
@@ -259,7 +262,7 @@ export default function BookingOptions({
                     }}
                   >
                     <Typography
-                      component={"span"}
+                      component="h3"
                       variant="h4"
                       gutterBottom
                       sx={{
@@ -271,7 +274,7 @@ export default function BookingOptions({
                     </Typography>
                   </Box>
                   <Typography
-                    component={"span"}
+                    component="h3"
                     variant="h6"
                     gutterBottom
                     sx={{
@@ -297,13 +300,16 @@ export default function BookingOptions({
                       display: { xs: "none", md: "block" },
                     }}
                   >
-                    <Typography variant="body1">
+                    <Typography 
+                      component="p"
+                      variant="body1">
                       Our 24/7 call center is always available to help you
                       <br /> book a ride
                     </Typography>
                   </Box>
 
                   <Typography
+                    component="p"
                     variant="body1"
                     sx={{
                       mt: 3,
@@ -370,7 +376,7 @@ export default function BookingOptions({
                     }}
                   >
                     <Typography
-                      component={"span"}
+                      component="h3"
                       variant="h4"
                       gutterBottom
                       sx={{
@@ -384,7 +390,7 @@ export default function BookingOptions({
                     </Typography>
                   </Box>
                   <Typography
-                    component={"span"}
+                    component="h3"
                     variant="h6"
                     gutterBottom
                     sx={{
@@ -410,13 +416,16 @@ export default function BookingOptions({
                       display: { xs: "none", md: "block" },
                     }}
                   >
-                    <Typography variant="body1">
-                      Just launch WhatsApp and request a ride, 24/7. Instant
-                      <br /> confirmation with driver and ETA details.
+                    <Typography 
+                      component="p"
+                      variant="body1">
+                        Just launch WhatsApp and request a ride, 24/7. Instant
+                        <br /> confirmation with driver and ETA details.
                     </Typography>
                   </Box>
 
                   <Typography
+                    component="p"
                     variant="body1"
                     sx={{
                       mt: 3,
@@ -483,7 +492,7 @@ export default function BookingOptions({
                     }}
                   >
                     <Typography
-                      component={"span"}
+                      component="h3"
                       variant="h4"
                       gutterBottom
                       sx={{
@@ -495,7 +504,7 @@ export default function BookingOptions({
                     </Typography>
                   </Box>
                   <Typography
-                    component={"span"}
+                    component="h3"
                     variant="h6"
                     gutterBottom
                     sx={{
@@ -521,13 +530,16 @@ export default function BookingOptions({
                       display: { xs: "none", md: "block" },
                     }}
                   >
-                    <Typography variant="body1">
-                      Mobile friendly instant booking without the need
-                      <br /> to download an app
+                    <Typography 
+                      component="p"
+                      variant="body1">
+                        Mobile friendly instant booking without the need
+                        <br /> to download an app
                     </Typography>
                   </Box>
 
                   <Typography
+                    component="p"
                     variant="body1"
                     sx={{
                       mt: 3,

@@ -72,11 +72,11 @@ export default function WaysToRide() {
         gutterBottom
         sx={{
           fontWeight: 700,
-          fontSize: { xs: "26px", md: "36px" },
+          fontSize: { xs: "25px", md: "36px" },
           textAlign: "center",
         }}
       >
-        Ways to ride
+        From taxis to luxury cars, you can choose the right ride for you
       </Typography>
 
       {/* tabs */}
@@ -85,6 +85,7 @@ export default function WaysToRide() {
           <Box sx={{ borderBottom: 1, borderColor: "#dedede" }}>
             <TabList onChange={handleChange} aria-label="lab API tabs example">
               <Tab
+                component="h3"
                 label="Standard"
                 value="1"
                 sx={{
@@ -93,6 +94,7 @@ export default function WaysToRide() {
                 }}
               />
               <Tab
+                component="h3"
                 label="SUV"
                 value="2"
                 sx={{
@@ -101,6 +103,7 @@ export default function WaysToRide() {
                 }}
               />
               <Tab
+                component="h3"
                 label="VAN"
                 value="3"
                 sx={{
@@ -109,6 +112,7 @@ export default function WaysToRide() {
                 }}
               />
               <Tab
+                component="h3"
                 label="Mini bus"
                 value="4"
                 sx={{
