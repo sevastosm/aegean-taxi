@@ -43,7 +43,7 @@ export default function WhyBook() {
     ],
   };
 
-  let title = `Why book
+  let title = `Why book your ride
   <br />
   with Aegean Taxi App`;
   let city;
@@ -52,7 +52,7 @@ export default function WhyBook() {
     city = (
       params.location.charAt(0).toUpperCase() + params.location.slice(1)
     ).replace("-taxi-app", "");
-    title = `Why book<br /> with Aegean Taxi App in ${city}`;
+    title = `Why book your ride<br /> with Aegean Taxi App in ${city}`;
   }
 
   return (

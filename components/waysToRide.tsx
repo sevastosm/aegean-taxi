@@ -135,6 +135,7 @@ export default function WaysToRide() {
                   <Image src={ECONOMY_YELLOW} alt="ECONOMY" width={256} />
                 </Box>
                 <Typography
+                  component="h3"
                   variant="h6"
                   gutterBottom
                   sx={{
@@ -176,6 +177,7 @@ export default function WaysToRide() {
                   <Image src={CLASSIK} alt="Classic" width={256} />
                 </Box>
                 <Typography
+                  component="h3"
                   variant="h6"
                   gutterBottom
                   sx={{
@@ -219,6 +221,7 @@ export default function WaysToRide() {
                   <Image src={BUSINESS} alt="Business" width={256} />
                 </Box>
                 <Typography
+                  component="h3"
                   variant="h6"
                   gutterBottom
                   sx={{
@@ -268,6 +271,7 @@ export default function WaysToRide() {
                   <Image src={SUV} alt="SUV" width={256} />
                 </Box>
                 <Typography
+                  component="h3"
                   variant="h6"
                   gutterBottom
                   sx={{
@@ -311,6 +315,7 @@ export default function WaysToRide() {
                   <Image src={TESLA_MODEL_X} alt="TESLA MODEL X" width={256} />
                 </Box>
                 <Typography
+                  component="h3"
                   variant="h6"
                   gutterBottom
                   sx={{
@@ -360,6 +365,7 @@ export default function WaysToRide() {
                   <Image src={MINIVAN} alt="Minivan" width={256} />
                 </Box>
                 <Typography
+                  component="h3"
                   variant="h6"
                   gutterBottom
                   sx={{
@@ -403,6 +409,7 @@ export default function WaysToRide() {
                   <Image src={VAN} alt="Van" width={256} />
                 </Box>
                 <Typography
+                  component="h3"
                   variant="h6"
                   gutterBottom
                   sx={{
@@ -452,6 +459,7 @@ export default function WaysToRide() {
                   <Image src={MICRO_BUS} alt="Micro bus" width={256} />
                 </Box>
                 <Typography
+                  component="h3"
                   variant="h6"
                   gutterBottom
                   sx={{
@@ -495,6 +503,7 @@ export default function WaysToRide() {
                   <Image src={BUS} alt="Bus" width={256} />
                 </Box>
                 <Typography
+                  component="h3"
                   variant="h6"
                   gutterBottom
                   sx={{
