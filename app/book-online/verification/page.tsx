@@ -32,7 +32,8 @@ import { BookingState } from "@/types/bookingState";
 
 // crypto
 import AES from "crypto-js/aes";
-import { Code } from "@mui/icons-material";
+import { Code, Elevator, ElevatorSharp } from "@mui/icons-material";
+import { setTimeout } from "timers";
 
 const countryListExcluded = [
   { code: "AD", label: "Andorra", phone: "376" },
@@ -437,6 +438,7 @@ export default function VerificationComponent({}: {}) {
   const [phone, setPhone] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [disabledNext, setDisabledNext] = useState(false);
 
   const bookingContext = useContext<any>(AppContext);
   const bookingState: BookingState = bookingContext.state;
@@ -453,16 +455,16 @@ export default function VerificationComponent({}: {}) {
     }
   }, []);
 
-  useEffect(() => {
-    if (aegeanState) {
-      bookingContext.updateAppState(aegeanState);
-    }
+  // useEffect(() => {
+  //   if (aegeanState) {
+  //     bookingContext.updateAppState(aegeanState);
+  //   }
 
-    if (bookingState) {
-      setItem("aegean", bookingState, "local");
-    }
-    return () => {};
-  }, [aegeanState, bookingContext, bookingState, setItem]);
+  //   if (bookingState) {
+  //     setItem("aegean", bookingState, "local");
+  //   }
+  //   return () => {};
+  // }, [aegeanState, bookingContext, bookingState, setItem]);
 
   // if (error) return <div>There was an error loading the app</div>;
   // if (!data) return <div>Loading...</div>;
@@ -490,6 +492,7 @@ export default function VerificationComponent({}: {}) {
   const reCaptchaRef = React.useRef<any>(null);
 
   async function onSubmit() {
+    setDisabledNext(true);
     let smsCode = Math.floor(Math.random() * 90000) + 10000;
     let securityCode = AES.encrypt(
       `${smsCode}`,
@@ -507,37 +510,27 @@ export default function VerificationComponent({}: {}) {
     bookingState.lastName = lastName;
 
     const token = await reCaptchaRef?.current.executeAsync();
-    const result: any = await verifyToken({
+    await verifyToken({
       token,
       firstName,
       lastName,
       mobileNumber,
     }).then((result: any) => {
-      console.log("token-result", result);
       if (result.data.success) {
         sendSms(
           `00${bookingState.phoneNumber.replace("+", "")}`,
           `Your access code is ${smsCode}`
-        );
-
-        bookingContext.updateAppState(bookingState);
-        setItem("aegean", bookingState, "local");
-        router.push("/book-online/verification/validate");
+        ).then(() => {
+          bookingContext.updateAppState(bookingState);
+          setItem("aegean", bookingState, "local");
+          router.push("/book-online/verification/validate");
+        });
+      } else {
+        setTimeout(() => {
+          setDisabledNext(false);
+        }, 15000);
       }
     });
-
-    // FIXME:
-    // Override temporary
-    // (bookingState.searchingForDriver = true),
-    //   (bookingState.userVerified = true);
-    // bookingContext.updateAppState(bookingState);
-    // setItem("aegean", bookingState, "local");
-    // router.push("/book-online");
-    // ./Override temporary
-
-    // return;
-    // FIXME:
-    // Override temporary
   }
 
   return (
@@ -772,7 +765,9 @@ export default function VerificationComponent({}: {}) {
             variant="contained"
             size="large"
             fullWidth={true}
-            disabled={phone.length < 10 || !firstName || !lastName}
+            disabled={
+              phone.length < 10 || !firstName || !lastName || disabledNext
+            }
             style={{ textTransform: "none" }}
             onClick={onSubmit}
           >
