@@ -108,7 +108,6 @@ export default function VerificationComponent({}: {}) {
     bookingState.security.expires = new Date().getTime();
     bookingState.firstName = firstName;
     bookingState.lastName = lastName;
-    router.push("/book-online/verification/validate");
 
     // sendSms(
     //   `00${bookingState.phoneNumber.replace("+", "")}`,
