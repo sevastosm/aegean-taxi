@@ -44,6 +44,7 @@
   },
   "devDependencies": {
     "@types/crypto-js": "^4.1.1",
+    "@types/react-google-recaptcha": "^2.1.9",
     "sass": "^1.59.3"
   },
   "resolutions": {

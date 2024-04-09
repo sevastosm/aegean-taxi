@@ -1,11 +1,9 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { useRouter } from "next/navigation";
-
-import useSWR from "swr";
 
 import styles from "./styles.module.scss";
 
@@ -34,6 +32,377 @@ import { BookingState } from "@/types/bookingState";
 import AES from "crypto-js/aes";
 import { Code, Elevator, ElevatorSharp } from "@mui/icons-material";
 import { setTimeout } from "timers";
+
+export default function VerificationComponent({}: {}) {
+  const router = useRouter();
+  const [countryCode, setCountryCode] = useState("30");
+  const [phone, setPhone] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [disabledNext, setDisabledNext] = useState(false);
+
+  const bookingContext = useContext<any>(AppContext);
+  const bookingState: BookingState = bookingContext.state;
+
+  // const { data, error } = useSWR({}, tokenFetcher);
+
+  const { getItem, setItem, removeItem } = useStorage();
+  const aegeanState = getItem("aegean", "local");
+
+  // useEffect(() => {
+  //   if (aegeanState && aegeanState.userVerified) {
+  //     router.push("/book-online");
+  //   }
+  // }, [aegeanState]);
+
+  // useEffect(() => {
+  //   if (aegeanState) {
+  //     bookingContext.updateAppState(aegeanState);
+  //   }
+
+  //   if (bookingState) {
+  //     setItem("aegean", bookingState, "local");
+  //   }
+  //   return () => {};
+  // }, [aegeanState, bookingContext, bookingState, setItem]);
+
+  // if (error) return <div>There was an error loading the app</div>;
+  // if (!data) return <div>Loading...</div>;
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setCountryCode(event.target.value as string);
+  };
+
+  const handlePhoneChange = (event: any) => {
+    setPhone(event.target.value as string);
+  };
+
+  const handleFirstnameChange = (event: any) => {
+    setFirstName(event.target.value as string);
+  };
+
+  const handleLastnameChange = (event: any) => {
+    setLastName(event.target.value as string);
+  };
+
+  function renderValue(option: string) {
+    return `+${option}`;
+  }
+
+  const reCaptchaRef = React.useRef<any>(null);
+
+  async function onSubmit() {
+    setDisabledNext(true);
+    let smsCode = Math.floor(Math.random() * 90000) + 10000;
+    let securityCode = AES.encrypt(
+      `${smsCode}`,
+      `${process.env.NEXT_PUBLIC_CRYPTO_KEY}`
+    ).toString();
+    // bookingState = aegeanState;
+    bookingContext.updateAppState(aegeanState);
+
+    const mobileNumber = `+${countryCode}${phone}`;
+
+    bookingState.phoneNumber = mobileNumber;
+    bookingState.security.code = securityCode;
+    bookingState.security.expires = new Date().getTime();
+    bookingState.firstName = firstName;
+    bookingState.lastName = lastName;
+    router.push("/book-online/verification/validate");
+
+    // sendSms(
+    //   `00${bookingState.phoneNumber.replace("+", "")}`,
+    //   `Your access code is ${smsCode}`
+    // ).then(() => {
+    //   bookingContext.updateAppState(bookingState);
+    //   setItem("aegean", bookingState, "local");
+    //   router.push("/book-online/verification/validate");
+    // });
+    const token = await reCaptchaRef?.current.executeAsync();
+    await verifyToken({
+      token,
+      firstName,
+      lastName,
+      mobileNumber,
+    }).then((result: any) => {
+      if (result.data.success) {
+        sendSms(
+          `00${bookingState.phoneNumber.replace("+", "")}`,
+          `Your access code is ${smsCode}`
+        ).then(() => {
+          bookingContext.updateAppState(bookingState);
+          setItem("aegean", bookingState, "local");
+          router.push("/book-online/verification/validate");
+        });
+      } else {
+        setTimeout(() => {
+          setDisabledNext(false);
+        }, 15000);
+      }
+    });
+  }
+
+  const visited = getItem("validationBeenVisited", "local");
+
+  useEffect(() => {
+    if (visited) {
+      removeItem("validationBeenVisited", "local");
+      router.push("/book-online");
+    }
+  }, [visited]);
+
+  return (
+    <Box p={2}>
+      <Grid
+        container
+        spacing={0}
+        columns={10}
+        alignItems="flex-start"
+        justifyContent="center"
+        sx={{
+          minHeight: "100vh",
+          mt: 3,
+        }}
+      >
+        <Grid item xs={12} md={3.2}>
+          <Box>
+            <Typography variant="h5" component="h1">
+              Get moving with Aegean Taxi
+            </Typography>
+            <Typography variant="body1" display="block">
+              Enter your name (required)
+            </Typography>
+          </Box>
+
+          <Box my={2}>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "flex-start",
+                flexDirection: "row",
+              }}
+              className={styles.formWrapper}
+            >
+              <Box
+                sx={{
+                  display: "inline-flex",
+                  marginLeft: "5px",
+                  width: "100%",
+                }}
+              >
+                <TextField
+                  id="firstName"
+                  variant="filled"
+                  value={firstName}
+                  onChange={handleFirstnameChange}
+                  label="First name"
+                  fullWidth={true}
+                  aria-describedby="standard-weight-helper-text"
+                  inputProps={{
+                    "aria-label": "Firstname",
+                    // style: { fontSize: 'x-large' },
+                  }}
+                  className={styles.inputContainer}
+                />
+              </Box>
+              <Box
+                sx={{
+                  display: "inline-flex",
+                  marginLeft: "5px",
+                  width: "100%",
+                }}
+              >
+                <TextField
+                  id="lastName"
+                  variant="filled"
+                  value={lastName}
+                  onChange={handleLastnameChange}
+                  label="Last name"
+                  fullWidth={true}
+                  aria-describedby="standard-weight-helper-text"
+                  inputProps={{
+                    "aria-label": "Lastname",
+                    // style: { fontSize: 'x-large' },
+                  }}
+                  className={styles.inputContainer}
+                />
+              </Box>
+            </Box>
+          </Box>
+
+          <Box>
+            <Typography variant="body1" display="block">
+              Enter your phone number (required)
+            </Typography>
+          </Box>
+
+          <Box my={2}>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "flex-start",
+                flexDirection: "row",
+              }}
+              className={styles.formWrapper}
+            >
+              <Box
+                sx={{
+                  display: "inline-flex",
+                  width: "70px",
+                }}
+              >
+                <FormControl variant="outlined">
+                  <Select
+                    labelId="demo-simple-select-standard-label"
+                    id="demo-simple-select-standard"
+                    value={countryCode}
+                    onChange={handleChange}
+                    defaultValue={"30"}
+                    native={false}
+                    renderValue={renderValue}
+                    name="countryCode"
+                    classes={{
+                      icon: styles.icon,
+                      iconOpen: styles.iconOpen,
+                      select: styles.selectSelect,
+                      nativeInput: styles.fontSize,
+                    }}
+                    className={styles.selectContainer}
+                  >
+                    <MenuItem
+                      className={styles.MenuItem}
+                      role="option"
+                      value="1"
+                    >
+                      +1
+                      <span className={styles.countryLabel}>
+                        United States/Canada
+                      </span>
+                    </MenuItem>
+                    <MenuItem
+                      className={styles.MenuItem}
+                      role="option"
+                      value="44"
+                    >
+                      +44
+                      <span className={styles.countryLabel}>
+                        United Kingdom
+                      </span>
+                    </MenuItem>
+                    <MenuItem
+                      className={styles.MenuItem}
+                      role="option"
+                      value="33"
+                    >
+                      +33
+                      <span className={styles.countryLabel}>France</span>
+                    </MenuItem>
+                    <MenuItem
+                      className={styles.MenuItem}
+                      role="option"
+                      value="30"
+                    >
+                      +30
+                      <span className={styles.countryLabel}>Greece</span>
+                    </MenuItem>
+                    <MenuItem
+                      className={styles.MenuItem}
+                      role="option"
+                      value="39"
+                    >
+                      +39
+                      <span className={styles.countryLabel}>Italy</span>
+                    </MenuItem>
+                    <MenuItem
+                      className={styles.MenuItem}
+                      role="option"
+                      value="49"
+                    >
+                      +49
+                      <span className={styles.countryLabel}>Germany</span>
+                    </MenuItem>
+                    <MenuItem
+                      className={styles.MenuItem}
+                      role="option"
+                      value="41"
+                    >
+                      +41
+                      <span className={styles.countryLabel}>Switzerland</span>
+                    </MenuItem>
+                    <MenuItem
+                      className={styles.MenuItem}
+                      role="option"
+                      value="34"
+                    >
+                      +34
+                      <span className={styles.countryLabel}>Spain</span>
+                    </MenuItem>
+
+                    {countryListExcluded.map((country, index) => (
+                      <MenuItem
+                        className={styles.MenuItem}
+                        key={index}
+                        role="option"
+                        value={country.phone}
+                      >
+                        +{country.phone}
+                        <span className={styles.countryLabel}>
+                          {country.label}
+                        </span>
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </Box>
+              <Box
+                sx={{
+                  display: "inline-flex",
+                  marginLeft: "5px",
+                  width: "100%",
+                }}
+              >
+                <TextField
+                  id="phoneNumber"
+                  value={phone}
+                  variant="filled"
+                  onChange={handlePhoneChange}
+                  fullWidth={true}
+                  aria-describedby="phone number"
+                  inputProps={{
+                    "aria-label": "phone number",
+                    inputMode: "numeric",
+                    pattern: "[09]*",
+                  }}
+                  className={styles.inputContainer}
+                />
+              </Box>
+            </Box>
+          </Box>
+
+          <Button
+            variant="contained"
+            size="large"
+            fullWidth={true}
+            disabled={
+              phone.length < 10 || !firstName || !lastName || disabledNext
+            }
+            style={{ textTransform: "none" }}
+            onClick={onSubmit}
+          >
+            Next
+          </Button>
+          <ReCAPTCHA
+            ref={reCaptchaRef}
+            size="invisible"
+            sitekey="6Lc_Wq8pAAAAAIXLFQ8NtSy1YwvRYiaXC52e70NP"
+          />
+        </Grid>
+      </Grid>
+    </Box>
+  );
+}
+
+//6LfkGqspAAAAAGMU4cQpWGOSc-sLUpyzhVAVUFZQ
 
 const countryListExcluded = [
   { code: "AD", label: "Andorra", phone: "376" },
@@ -431,357 +800,3 @@ const countryListExcluded = [
   { code: "ZM", label: "Zambia", phone: "260" },
   { code: "ZW", label: "Zimbabwe", phone: "263" },
 ];
-
-export default function VerificationComponent({}: {}) {
-  const router = useRouter();
-  const [countryCode, setCountryCode] = useState("30");
-  const [phone, setPhone] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [disabledNext, setDisabledNext] = useState(false);
-
-  const bookingContext = useContext<any>(AppContext);
-  const bookingState: BookingState = bookingContext.state;
-
-  // const { data, error } = useSWR({}, tokenFetcher);
-
-  const { getItem } = useStorage();
-  const { setItem } = useStorage();
-  const aegeanState = getItem("aegean", "local");
-
-  useEffect(() => {
-    if (aegeanState && aegeanState.userVerified) {
-      router.push("/book-online");
-    }
-  }, []);
-
-  // useEffect(() => {
-  //   if (aegeanState) {
-  //     bookingContext.updateAppState(aegeanState);
-  //   }
-
-  //   if (bookingState) {
-  //     setItem("aegean", bookingState, "local");
-  //   }
-  //   return () => {};
-  // }, [aegeanState, bookingContext, bookingState, setItem]);
-
-  // if (error) return <div>There was an error loading the app</div>;
-  // if (!data) return <div>Loading...</div>;
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setCountryCode(event.target.value as string);
-  };
-
-  const handlePhoneChange = (event: any) => {
-    setPhone(event.target.value as string);
-  };
-
-  const handleFirstnameChange = (event: any) => {
-    setFirstName(event.target.value as string);
-  };
-
-  const handleLastnameChange = (event: any) => {
-    setLastName(event.target.value as string);
-  };
-
-  function renderValue(option: string) {
-    return `+${option}`;
-  }
-
-  const reCaptchaRef = React.useRef<any>(null);
-
-  async function onSubmit() {
-    setDisabledNext(true);
-    let smsCode = Math.floor(Math.random() * 90000) + 10000;
-    let securityCode = AES.encrypt(
-      `${smsCode}`,
-      `${process.env.NEXT_PUBLIC_CRYPTO_KEY}`
-    ).toString();
-    // bookingState = aegeanState;
-    bookingContext.updateAppState(aegeanState);
-
-    const mobileNumber = `+${countryCode}${phone}`;
-
-    bookingState.phoneNumber = mobileNumber;
-    bookingState.security.code = securityCode;
-    bookingState.security.expires = new Date().getTime();
-    bookingState.firstName = firstName;
-    bookingState.lastName = lastName;
-
-    const token = await reCaptchaRef?.current.executeAsync();
-    await verifyToken({
-      token,
-      firstName,
-      lastName,
-      mobileNumber,
-    }).then((result: any) => {
-      if (result.data.success) {
-        sendSms(
-          `00${bookingState.phoneNumber.replace("+", "")}`,
-          `Your access code is ${smsCode}`
-        ).then(() => {
-          bookingContext.updateAppState(bookingState);
-          setItem("aegean", bookingState, "local");
-          router.push("/book-online/verification/validate");
-        });
-      } else {
-        setTimeout(() => {
-          setDisabledNext(false);
-        }, 15000);
-      }
-    });
-  }
-
-  return (
-    <Box p={2}>
-      <Grid
-        container
-        spacing={0}
-        columns={10}
-        alignItems="flex-start"
-        justifyContent="center"
-        sx={{
-          minHeight: "100vh",
-          mt: 3,
-        }}
-      >
-        <Grid item xs={12} md={3.2}>
-          <Box>
-            <Typography variant="h5" component="h1">
-              Get moving with Aegean Taxi
-            </Typography>
-            <Typography variant="body1" display="block">
-              Enter your name (required)
-            </Typography>
-          </Box>
-
-          <Box my={2}>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "flex-start",
-                flexDirection: "row",
-              }}
-              className={styles.formWrapper}
-            >
-              <Box
-                sx={{
-                  display: "inline-flex",
-                  marginLeft: "5px",
-                  width: "100%",
-                }}
-              >
-                <TextField
-                  id="firstName"
-                  variant="filled"
-                  value={firstName}
-                  onChange={handleFirstnameChange}
-                  label="First name"
-                  fullWidth={true}
-                  aria-describedby="standard-weight-helper-text"
-                  inputProps={{
-                    "aria-label": "Firstname",
-                    // style: { fontSize: 'x-large' },
-                  }}
-                  className={styles.inputContainer}
-                />
-              </Box>
-              <Box
-                sx={{
-                  display: "inline-flex",
-                  marginLeft: "5px",
-                  width: "100%",
-                }}
-              >
-                <TextField
-                  id="lastName"
-                  variant="filled"
-                  value={lastName}
-                  onChange={handleLastnameChange}
-                  label="Last name"
-                  fullWidth={true}
-                  aria-describedby="standard-weight-helper-text"
-                  inputProps={{
-                    "aria-label": "Lastname",
-                    // style: { fontSize: 'x-large' },
-                  }}
-                  className={styles.inputContainer}
-                />
-              </Box>
-            </Box>
-          </Box>
-
-          <Box>
-            <Typography variant="body1" display="block">
-              Enter your phone number (required)
-            </Typography>
-          </Box>
-
-          <Box my={2}>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "flex-start",
-                flexDirection: "row",
-              }}
-              className={styles.formWrapper}
-            >
-              <Box
-                sx={{
-                  display: "inline-flex",
-                  width: "70px",
-                }}
-              >
-                <FormControl variant="outlined">
-                  <Select
-                    labelId="demo-simple-select-standard-label"
-                    id="demo-simple-select-standard"
-                    value={countryCode}
-                    onChange={handleChange}
-                    defaultValue={"30"}
-                    native={false}
-                    renderValue={renderValue}
-                    name="countryCode"
-                    classes={{
-                      icon: styles.icon,
-                      iconOpen: styles.iconOpen,
-                      select: styles.selectSelect,
-                      nativeInput: styles.fontSize,
-                    }}
-                    className={styles.selectContainer}
-                  >
-                    <MenuItem
-                      className={styles.MenuItem}
-                      role="option"
-                      value="1"
-                    >
-                      +1
-                      <span className={styles.countryLabel}>
-                        United States/Canada
-                      </span>
-                    </MenuItem>
-                    <MenuItem
-                      className={styles.MenuItem}
-                      role="option"
-                      value="44"
-                    >
-                      +44
-                      <span className={styles.countryLabel}>
-                        United Kingdom
-                      </span>
-                    </MenuItem>
-                    <MenuItem
-                      className={styles.MenuItem}
-                      role="option"
-                      value="33"
-                    >
-                      +33
-                      <span className={styles.countryLabel}>France</span>
-                    </MenuItem>
-                    <MenuItem
-                      className={styles.MenuItem}
-                      role="option"
-                      value="30"
-                    >
-                      +30
-                      <span className={styles.countryLabel}>Greece</span>
-                    </MenuItem>
-                    <MenuItem
-                      className={styles.MenuItem}
-                      role="option"
-                      value="39"
-                    >
-                      +39
-                      <span className={styles.countryLabel}>Italy</span>
-                    </MenuItem>
-                    <MenuItem
-                      className={styles.MenuItem}
-                      role="option"
-                      value="49"
-                    >
-                      +49
-                      <span className={styles.countryLabel}>Germany</span>
-                    </MenuItem>
-                    <MenuItem
-                      className={styles.MenuItem}
-                      role="option"
-                      value="41"
-                    >
-                      +41
-                      <span className={styles.countryLabel}>Switzerland</span>
-                    </MenuItem>
-                    <MenuItem
-                      className={styles.MenuItem}
-                      role="option"
-                      value="34"
-                    >
-                      +34
-                      <span className={styles.countryLabel}>Spain</span>
-                    </MenuItem>
-
-                    {countryListExcluded.map((country, index) => (
-                      <MenuItem
-                        className={styles.MenuItem}
-                        key={index}
-                        role="option"
-                        value={country.phone}
-                      >
-                        +{country.phone}
-                        <span className={styles.countryLabel}>
-                          {country.label}
-                        </span>
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </Box>
-              <Box
-                sx={{
-                  display: "inline-flex",
-                  marginLeft: "5px",
-                  width: "100%",
-                }}
-              >
-                <TextField
-                  id="phoneNumber"
-                  value={phone}
-                  variant="filled"
-                  onChange={handlePhoneChange}
-                  fullWidth={true}
-                  aria-describedby="phone number"
-                  inputProps={{
-                    "aria-label": "phone number",
-                    inputMode: "numeric",
-                    pattern: "[09]*",
-                  }}
-                  className={styles.inputContainer}
-                />
-              </Box>
-            </Box>
-          </Box>
-
-          <Button
-            variant="contained"
-            size="large"
-            fullWidth={true}
-            disabled={
-              phone.length < 10 || !firstName || !lastName || disabledNext
-            }
-            style={{ textTransform: "none" }}
-            onClick={onSubmit}
-          >
-            Next
-          </Button>
-          <ReCAPTCHA
-            ref={reCaptchaRef}
-            size="invisible"
-            sitekey="6Lc_Wq8pAAAAAIXLFQ8NtSy1YwvRYiaXC52e70NP"
-          />
-        </Grid>
-      </Grid>
-    </Box>
-  );
-}
-
-//6LfkGqspAAAAAGMU4cQpWGOSc-sLUpyzhVAVUFZQ

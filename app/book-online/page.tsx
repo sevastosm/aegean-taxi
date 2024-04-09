@@ -355,6 +355,7 @@ const render = (status: Status): any => {
       return true;
   }
 };
+
 // /.Google Maps Component
 
 // Marker
@@ -389,7 +390,7 @@ const Marker: React.FC<google.maps.MarkerOptions> = (options) => {
 export default function BookOnline() {
   const router = useRouter();
 
-  const { getItem } = useStorage();
+  const { getItem, removeItem } = useStorage();
   const { setItem } = useStorage();
   const cookieState = getItem("aegean", "local");
   const appContext = useContext(AppContext);
@@ -1226,6 +1227,15 @@ export default function BookOnline() {
     await calculateAndDisplayRoute();
     setOpen(true);
   };
+
+  const visited = getItem("validationBeenVisited", "local");
+
+  useEffect(() => {
+    if (visited) {
+      removeItem("validationBeenVisited", "local");
+      router.push("/book-online");
+    }
+  }, [visited]);
 
   return (
     <Container maxWidth={"lg"} sx={{ mt: 2 }}>
