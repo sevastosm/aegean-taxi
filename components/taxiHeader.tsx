@@ -123,7 +123,7 @@ export default function TaxiHeader() {
             {title.replaceAll("<br />", "")}
           </Typography>
           <Typography
-            component="span"
+            component="p"
             variant="h5"
             sx={{ display: { xs: "none", md: "block" } }}
           >

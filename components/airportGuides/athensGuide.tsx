@@ -15,7 +15,7 @@ export default function AthensGuide() {
   return (
     <Container maxWidth={"lg"}>
       <Typography
-        component="h5"
+        component="h2"
         variant="h5"
         gutterBottom
         sx={{
@@ -45,7 +45,7 @@ export default function AthensGuide() {
           ></Grid>
           <Grid item xs={12} md={5} sx={{ p: { xs: 0, md: 3 } }}>
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -57,6 +57,7 @@ export default function AthensGuide() {
               Airport services
             </Typography>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -101,7 +102,7 @@ export default function AthensGuide() {
           ></Grid>
           <Grid item xs={12} md={5} sx={{ p: { xs: 0, md: 3 } }}>
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -113,6 +114,7 @@ export default function AthensGuide() {
               Taxi Information
             </Typography>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -146,7 +148,7 @@ Whether you're a local or a tourist, taking an Athens taxi is a convenient and a
           ></Grid>
           <Grid item xs={12} md={5} sx={{ p: { xs: 0, md: 3 } }}>
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -158,6 +160,7 @@ Whether you're a local or a tourist, taking an Athens taxi is a convenient and a
               Public Transportation Information
             </Typography>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 800,
@@ -168,6 +171,7 @@ Whether you're a local or a tourist, taking an Athens taxi is a convenient and a
               Metro
             </Typography>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -179,6 +183,7 @@ Whether you're a local or a tourist, taking an Athens taxi is a convenient and a
               “Municipal Theatre” (Piraeus) - Airport`}
             </Typography>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 800,
@@ -190,6 +195,7 @@ Whether you're a local or a tourist, taking an Athens taxi is a convenient and a
             </Typography>
 
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -212,6 +218,7 @@ Whether you're a local or a tourist, taking an Athens taxi is a convenient and a
             </Typography>
 
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 800,
@@ -223,6 +230,7 @@ Whether you're a local or a tourist, taking an Athens taxi is a convenient and a
             </Typography>
 
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -237,6 +245,7 @@ Whether you're a local or a tourist, taking an Athens taxi is a convenient and a
             </Typography>
 
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 800,
@@ -248,6 +257,7 @@ Whether you're a local or a tourist, taking an Athens taxi is a convenient and a
             </Typography>
 
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,

@@ -146,7 +146,7 @@ export default function TaxiBookingOptions({
                       }}
                     >
                       <Typography
-                        component={"span"}
+                        component="h3"
                         variant="h4"
                         gutterBottom
                         sx={{
@@ -160,7 +160,7 @@ export default function TaxiBookingOptions({
                       </Typography>
                     </Box>
                     <Typography
-                      component={"span"}
+                      component="h3"
                       variant="h6"
                       gutterBottom
                       sx={{
@@ -187,7 +187,9 @@ export default function TaxiBookingOptions({
                         display: { xs: "none", md: "block" },
                       }}
                     >
-                      <Typography variant="body1">
+                      <Typography 
+                        component="p"
+                        variant="body1">
                         Download our {city} taxi app from the stores,
                         <br />
                         and start riding in minutes
@@ -198,6 +200,7 @@ export default function TaxiBookingOptions({
                     </Box>
 
                     <Typography
+                      component="p"
                       variant="body1"
                       sx={{
                         mt: 3,
@@ -268,7 +271,7 @@ export default function TaxiBookingOptions({
                     }}
                   >
                     <Typography
-                      component={"span"}
+                      component="h3"
                       variant="h4"
                       gutterBottom
                       sx={{
@@ -280,7 +283,7 @@ export default function TaxiBookingOptions({
                     </Typography>
                   </Box>
                   <Typography
-                    component={"span"}
+                    component="h3"
                     variant="h6"
                     gutterBottom
                     sx={{
@@ -306,7 +309,9 @@ export default function TaxiBookingOptions({
                       display: { xs: "none", md: "block" },
                     }}
                   >
-                    <Typography variant="body1">
+                    <Typography 
+                      component="p"
+                      variant="body1">
                       Our {city} 24/7 call center is always available to help
                       you
                       <br /> book a ride
@@ -314,6 +319,7 @@ export default function TaxiBookingOptions({
                   </Box>
 
                   <Typography
+                    component="p"
                     variant="body1"
                     sx={{
                       mt: 3,
@@ -380,7 +386,7 @@ export default function TaxiBookingOptions({
                     }}
                   >
                     <Typography
-                      component={"span"}
+                      component="h3"
                       variant="h4"
                       gutterBottom
                       sx={{
@@ -394,7 +400,7 @@ export default function TaxiBookingOptions({
                     </Typography>
                   </Box>
                   <Typography
-                    component={"span"}
+                    component="h3"
                     variant="h6"
                     gutterBottom
                     sx={{
@@ -420,7 +426,9 @@ export default function TaxiBookingOptions({
                       display: { xs: "none", md: "block" },
                     }}
                   >
-                    <Typography variant="body1">
+                    <Typography 
+                      component="p"
+                      variant="body1">
                       {/* Just launch WhatsApp and request a ride, 24/7. Instant
                       <br /> confirmation with driver and ETA details. */}
                       Just launch WhatsApp and request a ride
@@ -429,6 +437,7 @@ export default function TaxiBookingOptions({
                   </Box>
 
                   <Typography
+                    component="p"
                     variant="body1"
                     sx={{
                       mt: 3,
@@ -495,7 +504,7 @@ export default function TaxiBookingOptions({
                     }}
                   >
                     <Typography
-                      component={"span"}
+                      component="h3"
                       variant="h4"
                       gutterBottom
                       sx={{
@@ -507,7 +516,7 @@ export default function TaxiBookingOptions({
                     </Typography>
                   </Box>
                   <Typography
-                    component={"span"}
+                    component="h3"
                     variant="h6"
                     gutterBottom
                     sx={{
@@ -533,13 +542,16 @@ export default function TaxiBookingOptions({
                       display: { xs: "none", md: "block" },
                     }}
                   >
-                    <Typography variant="body1">
+                    <Typography 
+                      component="p"
+                      variant="body1">
                       Book your ride{city ? ` in ${city}` : ""} online in 2
                       simple steps
                     </Typography>
                   </Box>
 
                   <Typography
+                    component="p"
                     variant="body1"
                     sx={{
                       mt: 3,

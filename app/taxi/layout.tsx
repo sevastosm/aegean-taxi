@@ -2,9 +2,9 @@ import { Metadata } from 'next';
 
 export const metadata = {
   title:
-    "Taxi App, Affordable Taxi rides in Athens, Mykonos, Santorini | Available 24/7 ",
+    "Taxi App | Book Online 24/7| Mykonos, Santorini, Rhodes, Corfu, Paros+",
   description:
-    "The easiest way to book your taxi and transfer in Greece. Book in 2 simple steps. Quality cars, cheapest prices, english speaking drivers",
+    "Aegean Taxi App: the best Taxi & Transfer service for the Greek Islands. Book a ride online, via whatsapp, telephone, or download the Taxi App. Available 24/7",
 };
 
 export default function TaxiLayout({

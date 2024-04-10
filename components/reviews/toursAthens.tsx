@@ -89,6 +89,7 @@ export default function ToursAthensReviews() {
                   <Box sx={{ p: 2 }}>
                     <Image src={US} width={60} alt="US" />
                     <Typography
+                      component="p"
                       variant="body1"
                       gutterBottom
                       sx={{
@@ -137,6 +138,7 @@ export default function ToursAthensReviews() {
                   <Box sx={{ p: 2 }}>
                     <Image src={CH} width={60} alt="CH" />
                     <Typography
+                      component="p"
                       variant="body1"
                       gutterBottom
                       sx={{
@@ -185,6 +187,7 @@ export default function ToursAthensReviews() {
                   <Box sx={{ p: 2 }}>
                     <Image src={FR} width={60} alt="FR" />
                     <Typography
+                      component="p"
                       variant="body1"
                       gutterBottom
                       sx={{

@@ -15,7 +15,7 @@ export default function MykonosGuide() {
   return (
     <Container maxWidth={"lg"}>
       <Typography
-        component="h5"
+        component="h2"
         variant="h5"
         gutterBottom
         sx={{
@@ -45,7 +45,7 @@ export default function MykonosGuide() {
           ></Grid>
           <Grid item xs={12} md={5} sx={{ p: { xs: 0, md: 3 } }}>
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -57,6 +57,7 @@ export default function MykonosGuide() {
               Airport services
             </Typography>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -91,7 +92,7 @@ export default function MykonosGuide() {
           ></Grid>
           <Grid item xs={12} md={5} sx={{ p: { xs: 0, md: 3 } }}>
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -103,6 +104,7 @@ export default function MykonosGuide() {
               Taxi Information
             </Typography>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -151,7 +153,7 @@ export default function MykonosGuide() {
           ></Grid>
           <Grid item xs={12} md={5} sx={{ p: { xs: 0, md: 3 } }}>
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -163,6 +165,7 @@ export default function MykonosGuide() {
               Public Transportation Information
             </Typography>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 800,
@@ -173,6 +176,7 @@ export default function MykonosGuide() {
               Metro
             </Typography>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,

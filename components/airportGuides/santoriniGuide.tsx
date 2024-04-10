@@ -15,7 +15,7 @@ export default function SantoriniGuide() {
   return (
     <Container maxWidth={"lg"}>
       <Typography
-        component="h5"
+        component="h2"
         variant="h5"
         gutterBottom
         sx={{
@@ -45,7 +45,7 @@ export default function SantoriniGuide() {
           ></Grid>
           <Grid item xs={12} md={5} sx={{ p: { xs: 0, md: 3 } }}>
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -57,6 +57,7 @@ export default function SantoriniGuide() {
               Airport services
             </Typography>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -100,7 +101,7 @@ export default function SantoriniGuide() {
           ></Grid>
           <Grid item xs={12} md={5} sx={{ p: { xs: 0, md: 3 } }}>
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -112,6 +113,7 @@ export default function SantoriniGuide() {
               Taxi Information
             </Typography>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -171,7 +173,7 @@ export default function SantoriniGuide() {
           ></Grid>
           <Grid item xs={12} md={5} sx={{ p: { xs: 0, md: 3 } }}>
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -183,6 +185,7 @@ export default function SantoriniGuide() {
               Public Transportation Information
             </Typography>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 800,
@@ -193,6 +196,7 @@ export default function SantoriniGuide() {
               Metro
             </Typography>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,

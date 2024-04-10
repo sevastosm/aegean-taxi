@@ -89,6 +89,7 @@ export default function ToursMykonosReviews() {
                   <Box sx={{ p: 2 }}>
                     <Image src={GB} width={60} alt="GB" />
                     <Typography
+                      component="p"
                       variant="body1"
                       gutterBottom
                       sx={{
@@ -142,6 +143,7 @@ export default function ToursMykonosReviews() {
                   <Box sx={{ p: 2 }}>
                     <Image src={US} width={60} alt="US" />
                     <Typography
+                      component="p"
                       variant="body1"
                       gutterBottom
                       sx={{
@@ -191,6 +193,7 @@ export default function ToursMykonosReviews() {
                   <Box sx={{ p: 2 }}>
                     <Image src={AE} width={60} alt="AE" />
                     <Typography
+                      component="p"
                       variant="body1"
                       gutterBottom
                       sx={{

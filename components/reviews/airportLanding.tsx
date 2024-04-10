@@ -81,6 +81,7 @@ export default function AirportLandingReviews({ location }: any) {
         <Box sx={{ p: 2 }}>
           <Image src={getFlag(item.flag)} width={60} alt="GB" />
           <Typography
+            component="p"
             variant="body1"
             gutterBottom
             sx={{

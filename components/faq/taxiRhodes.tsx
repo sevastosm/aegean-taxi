@@ -34,7 +34,7 @@ export default function TaxiRhodesFaq() {
             id="booking-header"
           >
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -48,6 +48,7 @@ export default function TaxiRhodesFaq() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -68,7 +69,7 @@ export default function TaxiRhodesFaq() {
             id="question-header"
           >
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -82,6 +83,7 @@ export default function TaxiRhodesFaq() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -101,7 +103,7 @@ export default function TaxiRhodesFaq() {
             id="drivers-header"
           >
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -115,6 +117,7 @@ export default function TaxiRhodesFaq() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -136,7 +139,7 @@ export default function TaxiRhodesFaq() {
             id="question-header"
           >
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -150,6 +153,7 @@ export default function TaxiRhodesFaq() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -170,7 +174,7 @@ export default function TaxiRhodesFaq() {
             id="question-header"
           >
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -184,6 +188,7 @@ export default function TaxiRhodesFaq() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -203,7 +208,7 @@ export default function TaxiRhodesFaq() {
             id="question-header"
           >
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -217,6 +222,7 @@ export default function TaxiRhodesFaq() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -236,7 +242,7 @@ export default function TaxiRhodesFaq() {
             id="question-header"
           >
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -250,6 +256,7 @@ export default function TaxiRhodesFaq() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -268,7 +275,7 @@ export default function TaxiRhodesFaq() {
             id="question-header"
           >
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -282,6 +289,7 @@ export default function TaxiRhodesFaq() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -302,7 +310,7 @@ export default function TaxiRhodesFaq() {
             id="question-header"
           >
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -316,6 +324,7 @@ export default function TaxiRhodesFaq() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,

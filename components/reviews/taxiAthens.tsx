@@ -90,6 +90,7 @@ export default function TaxiAthensReviews() {
                   <Box sx={{ p: 2 }}>
                     <Image src={US} width={60} alt="US" />
                     <Typography
+                      component="p"
                       variant="body1"
                       gutterBottom
                       sx={{
@@ -138,6 +139,7 @@ export default function TaxiAthensReviews() {
                   <Box sx={{ p: 2 }}>
                     <Image src={GB} width={60} alt="GB" />
                     <Typography
+                      component="p"
                       variant="body1"
                       gutterBottom
                       sx={{
@@ -186,6 +188,7 @@ export default function TaxiAthensReviews() {
                   <Box sx={{ p: 2 }}>
                     <Image src={FR} width={60} alt="FR" />
                     <Typography
+                      component="p"
                       variant="body1"
                       gutterBottom
                       sx={{

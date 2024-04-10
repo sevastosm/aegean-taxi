@@ -91,6 +91,7 @@ export default function AirportAthensReviews() {
                   <Box sx={{ p: 2 }}>
                     <Image src={ES} width={60} alt="ES" />
                     <Typography
+                      component="p"
                       variant="body1"
                       gutterBottom
                       sx={{
@@ -140,6 +141,7 @@ export default function AirportAthensReviews() {
                   <Box sx={{ p: 2 }}>
                     <Image src={DE} width={60} alt="DE" />
                     <Typography
+                      component="p"
                       variant="body1"
                       gutterBottom
                       sx={{
@@ -189,6 +191,7 @@ export default function AirportAthensReviews() {
                   <Box sx={{ p: 2 }}>
                     <Image src={GB} width={60} alt="GB" />
                     <Typography
+                      component="p"
                       variant="body1"
                       gutterBottom
                       sx={{

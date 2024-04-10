@@ -115,7 +115,9 @@ export default function WhyBook() {
             >
               Lowest Price guarantee
             </Typography>
-            <Typography variant="body1">
+            <Typography 
+              component="p"
+              variant="body1">
               {city
                 ? `We offer the best rates in ${city}. All fares include taxes, fees, and tolls`
                 : `We have the best rates and all fares include taxes, fees, and
@@ -135,7 +137,9 @@ export default function WhyBook() {
             >
               24/7 customer support
             </Typography>
-            <Typography variant="body1">
+            <Typography 
+              component="p"
+              variant="body1">
               Our {city} team is available 24/7 to offer a more personal service
             </Typography>
           </Stack>
@@ -152,7 +156,9 @@ export default function WhyBook() {
             >
               English Speaking Drivers
             </Typography>
-            <Typography variant="body1">
+            <Typography 
+              component="p"
+              variant="body1">
               Our drivers are fluent in English and hold professional licenses.
             </Typography>
           </Stack>
@@ -169,7 +175,9 @@ export default function WhyBook() {
             >
               A world class app
             </Typography>
-            <Typography variant="body1">
+            <Typography 
+              component="p"
+              variant="body1">
               Download our world class ride app and book your trips.
             </Typography>
           </Stack>

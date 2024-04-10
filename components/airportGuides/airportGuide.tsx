@@ -24,7 +24,7 @@ export default function AirportGuide({ location }: any) {
   return (
     <Container maxWidth={"lg"}>
       <Typography
-        component="h5"
+        component="h2"
         variant="h5"
         gutterBottom
         sx={{
@@ -54,7 +54,7 @@ export default function AirportGuide({ location }: any) {
           ></Grid>
           <Grid item xs={12} md={5} sx={{ p: { xs: 0, md: 3 } }}>
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -66,6 +66,7 @@ export default function AirportGuide({ location }: any) {
               Airport services
             </Typography>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -94,7 +95,7 @@ export default function AirportGuide({ location }: any) {
           ></Grid>
           <Grid item xs={12} md={5} sx={{ p: { xs: 0, md: 3 } }}>
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -106,6 +107,7 @@ export default function AirportGuide({ location }: any) {
               Taxi Information
             </Typography>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -135,7 +137,7 @@ export default function AirportGuide({ location }: any) {
           )}
           <Grid item xs={12} md={5} sx={{ p: { xs: 0, md: 3 } }}>
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -148,6 +150,7 @@ export default function AirportGuide({ location }: any) {
             </Typography>
 
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,

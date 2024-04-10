@@ -91,6 +91,7 @@ export default function AirportSantoriniReviews() {
                   <Box sx={{ p: 2 }}>
                     <Image src={DE} width={60} alt="DE" />
                     <Typography
+                      component="p"
                       variant="body1"
                       gutterBottom
                       sx={{
@@ -141,6 +142,7 @@ export default function AirportSantoriniReviews() {
                   <Box sx={{ p: 2 }}>
                     <Image src={BE} width={60} alt="BE" />
                     <Typography
+                      component="p"
                       variant="body1"
                       gutterBottom
                       sx={{
@@ -191,6 +193,7 @@ export default function AirportSantoriniReviews() {
                   <Box sx={{ p: 2 }}>
                     <Image src={CH} width={60} alt="CH" />
                     <Typography
+                      component="p"
                       variant="body1"
                       gutterBottom
                       sx={{

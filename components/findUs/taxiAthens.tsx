@@ -39,7 +39,7 @@ export default function TaxiAthensFindUs() {
           <Stack spacing={0.5}>
             <div>
               <Typography
-                component="span"
+                component="h3"
                 variant="h6"
                 gutterBottom
                 sx={{ ml: 2, mr: 1 }}
@@ -52,7 +52,7 @@ export default function TaxiAthensFindUs() {
             </div>
             <div>
               <Typography
-                component="span"
+                component="h3"
                 variant="h6"
                 gutterBottom
                 sx={{ ml: 2, mr: 1 }}
@@ -65,7 +65,7 @@ export default function TaxiAthensFindUs() {
             </div>
             <div>
               <Typography
-                component="span"
+                component="h3"
                 variant="h6"
                 gutterBottom
                 sx={{ ml: 2, mr: 1 }}

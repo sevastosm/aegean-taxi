@@ -34,7 +34,7 @@ export default function TaxiCorfuFaq() {
             id="booking-header"
           >
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -48,6 +48,7 @@ export default function TaxiCorfuFaq() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -69,7 +70,7 @@ export default function TaxiCorfuFaq() {
             id="question-header"
           >
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -83,6 +84,7 @@ export default function TaxiCorfuFaq() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -104,7 +106,7 @@ export default function TaxiCorfuFaq() {
             id="drivers-header"
           >
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -118,6 +120,7 @@ export default function TaxiCorfuFaq() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -139,7 +142,7 @@ export default function TaxiCorfuFaq() {
             id="question-header"
           >
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -153,6 +156,7 @@ export default function TaxiCorfuFaq() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -173,7 +177,7 @@ export default function TaxiCorfuFaq() {
             id="question-header"
           >
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -187,6 +191,7 @@ export default function TaxiCorfuFaq() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -207,7 +212,7 @@ export default function TaxiCorfuFaq() {
             id="question-header"
           >
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -221,6 +226,7 @@ export default function TaxiCorfuFaq() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -242,7 +248,7 @@ export default function TaxiCorfuFaq() {
             id="question-header"
           >
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -256,6 +262,7 @@ export default function TaxiCorfuFaq() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -274,7 +281,7 @@ export default function TaxiCorfuFaq() {
             id="question-header"
           >
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -288,6 +295,7 @@ export default function TaxiCorfuFaq() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -308,7 +316,7 @@ export default function TaxiCorfuFaq() {
             id="question-header"
           >
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -322,6 +330,7 @@ export default function TaxiCorfuFaq() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,

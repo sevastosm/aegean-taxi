@@ -25,7 +25,7 @@ export default function RhodesFares() {
         }}
       >
         <Typography
-          component="h4"
+          component="h2"
           variant="h4"
           gutterBottom
           sx={{

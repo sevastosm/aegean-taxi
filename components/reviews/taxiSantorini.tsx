@@ -91,6 +91,7 @@ export default function TaxiSantoriniReviews() {
                   <Box sx={{ p: 2 }}>
                     <Image src={US} width={60} alt="US" />
                     <Typography
+                      component="p"
                       variant="body1"
                       gutterBottom
                       sx={{
@@ -140,6 +141,7 @@ export default function TaxiSantoriniReviews() {
                   <Box sx={{ p: 2 }}>
                     <Image src={ES} width={60} alt="ES" />
                     <Typography
+                      component="p"
                       variant="body1"
                       gutterBottom
                       sx={{
@@ -190,6 +192,7 @@ export default function TaxiSantoriniReviews() {
                   <Box sx={{ p: 2 }}>
                     <Image src={AUS} width={60} alt="AUS" />
                     <Typography
+                      component="p"
                       variant="body1"
                       gutterBottom
                       sx={{

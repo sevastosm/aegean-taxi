@@ -34,7 +34,7 @@ export default function AirportSantoriniFaq() {
             id="booking-header"
           >
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -48,6 +48,7 @@ export default function AirportSantoriniFaq() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -70,7 +71,7 @@ export default function AirportSantoriniFaq() {
             id="question-header"
           >
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -84,6 +85,7 @@ export default function AirportSantoriniFaq() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -106,7 +108,7 @@ export default function AirportSantoriniFaq() {
             id="drivers-header"
           >
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -120,6 +122,7 @@ export default function AirportSantoriniFaq() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -143,7 +146,7 @@ export default function AirportSantoriniFaq() {
             id="question-header"
           >
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -157,6 +160,7 @@ export default function AirportSantoriniFaq() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -178,7 +182,7 @@ export default function AirportSantoriniFaq() {
             id="question-header"
           >
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -192,6 +196,7 @@ export default function AirportSantoriniFaq() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -214,7 +219,7 @@ export default function AirportSantoriniFaq() {
             id="question-header"
           >
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -228,6 +233,7 @@ export default function AirportSantoriniFaq() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -247,7 +253,7 @@ export default function AirportSantoriniFaq() {
             id="question-header"
           >
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -261,6 +267,7 @@ export default function AirportSantoriniFaq() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -283,7 +290,7 @@ export default function AirportSantoriniFaq() {
             id="question-header"
           >
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -297,6 +304,7 @@ export default function AirportSantoriniFaq() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -320,7 +328,7 @@ export default function AirportSantoriniFaq() {
             id="question-header"
           >
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -334,6 +342,7 @@ export default function AirportSantoriniFaq() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -356,7 +365,7 @@ export default function AirportSantoriniFaq() {
             id="question-header"
           >
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -370,6 +379,7 @@ export default function AirportSantoriniFaq() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -389,7 +399,7 @@ export default function AirportSantoriniFaq() {
             id="question-header"
           >
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -403,6 +413,7 @@ export default function AirportSantoriniFaq() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
@@ -426,7 +437,7 @@ export default function AirportSantoriniFaq() {
             id="question-header"
           >
             <Typography
-              component="span"
+              component="h3"
               variant="h5"
               gutterBottom
               sx={{
@@ -440,6 +451,7 @@ export default function AirportSantoriniFaq() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography
+              component="p"
               variant="body1"
               sx={{
                 fontWeight: 400,
