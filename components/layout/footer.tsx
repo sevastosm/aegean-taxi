@@ -381,7 +381,7 @@ export default function FooterLayout() {
                 <a
                   href="https://play.google.com/store/apps/details?id=aegean.taxi.ride.app.mykonos.santorini.athens.greece.passenger"
                   target="_blank"
-                  rel="nofollow"
+                  //rel="nofollow"
                 >
                   <Image src={Google} height={50} alt="Download the Aegean Taxi App for Android" />
                 </a>
@@ -390,7 +390,7 @@ export default function FooterLayout() {
                 <a
                   href="https://apps.apple.com/app/id6447252101"
                   target="_blank"
-                  rel="nofollow"
+                  //rel="nofollow"
                 >
                   <Image src={Apple} height={50} alt="Download the Aegean Taxi App for iOS" />
                 </a>
