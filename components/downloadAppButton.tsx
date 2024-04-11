@@ -46,30 +46,38 @@ export default function DownloadAppButton({
     if (isAndroid()) {
       return (
         <a
+          data-baseweb="link"
           href="https://play.google.com/store/apps/details?id=aegean.taxi.ride.app.mykonos.santorini.athens.greece.passenger"
           target="_blank"
-          rel="nofollow"
         >
-          <Image src={Google} height={38} alt="Google Play" />
+          <Image
+            src={Google}
+            height={38}
+            alt="Download the Aegean Taxi App for Android"
+          />
         </a>
       );
     }
     if (isIOS()) {
       return (
         <a
+          data-baseweb="link"
           href="https://apps.apple.com/app/id6447252101"
           target="_blank"
-          rel="nofollow"
         >
-          <Image src={Apple} height={38} alt="Apple Store" />
+          <Image
+            src={Apple}
+            height={38}
+            alt="Download the Aegean Taxi App for Android"
+          />
         </a>
       );
     }
     return (
       <a
+        data-baseweb="link"
         href="https://aegean.page.link/navigate"
         target="_blank"
-        rel="nofollow"
       >
         <Box
           justifyContent="flex-start"
@@ -87,7 +95,11 @@ export default function DownloadAppButton({
         >
           <Grid container spacing={0} sx={{ background: "#fff", p: 1 }}>
             <Grid item xs={3} md={2} sx={{ mt: 1 }}>
-              <Image src={at_logo_blue} alt="Aegean" height={38} />
+              <Image
+                src={at_logo_blue}
+                alt="Download the Aegean Taxi App for Android"
+                height={38}
+              />
             </Grid>
             <Grid item xs={7} md={8} sx={{ mt: 2, textAlign: "left" }}>
               <Typography
@@ -115,11 +127,7 @@ export default function DownloadAppButton({
 
   return (
     <>
-      <a
-        href="https://aegean.page.link/navigate"
-        target="_blank"
-        rel="nofollow"
-      >
+      <a href="https://aegean.page.link/navigate" target="_blank">
         <Box
           justifyContent="flex-start"
           alignItems="flex-start"
@@ -172,17 +180,12 @@ export default function DownloadAppButton({
           <a
             href="https://play.google.com/store/apps/details?id=aegean.taxi.ride.app.mykonos.santorini.athens.greece.passenger"
             target="_blank"
-            rel="nofollow"
           >
             <Image src={Google} height={38} alt="Google Play" />
           </a>
         )}
         {isIOS() && (
-          <a
-            href="https://apps.apple.com/app/id6447252101"
-            target="_blank"
-            rel="nofollow"
-          >
+          <a href="https://apps.apple.com/app/id6447252101" target="_blank">
             <Image src={Apple} height={38} alt="Apple Store" />
           </a>
         )}

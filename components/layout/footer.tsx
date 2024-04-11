@@ -379,20 +379,28 @@ export default function FooterLayout() {
             <Grid container spacing={2}>
               <Grid item xs={6} md={4}>
                 <a
+                  data-baseweb="link"
                   href="https://play.google.com/store/apps/details?id=aegean.taxi.ride.app.mykonos.santorini.athens.greece.passenger"
                   target="_blank"
-                  //rel="nofollow"
                 >
-                  <Image src={Google} height={50} alt="Download the Aegean Taxi App for Android" />
+                  <Image
+                    src={Google}
+                    height={50}
+                    alt="Download the Aegean Taxi App for Android"
+                  />
                 </a>
               </Grid>
               <Grid item xs={6} md={4}>
                 <a
+                  data-baseweb="link"
                   href="https://apps.apple.com/app/id6447252101"
                   target="_blank"
-                  //rel="nofollow"
                 >
-                  <Image src={Apple} height={50} alt="Download the Aegean Taxi App for iOS" />
+                  <Image
+                    src={Apple}
+                    height={50}
+                    alt="Download the Aegean Taxi App for iOS"
+                  />
                 </a>
               </Grid>
             </Grid>
