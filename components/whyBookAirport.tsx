@@ -99,6 +99,7 @@ export default function WhyBooAirport() {
           <Stack spacing={2} sx={{ p: { xs: 4, md: 0 } }}>
             <Image src={PRICE} alt="price" width={34} />
             <Typography
+              component="h3"
               variant="h6"
               gutterBottom
               sx={{
@@ -108,7 +109,9 @@ export default function WhyBooAirport() {
             >
               Lowest Price guarantee
             </Typography>
-            <Typography variant="body1">
+            <Typography 
+              component="p"
+              variant="body1">
               We have the best rates and all fares include taxes, fees, and
               tolls
             </Typography>
@@ -116,6 +119,7 @@ export default function WhyBooAirport() {
           <Stack spacing={2} sx={{ p: { xs: 4, md: 0 } }}>
             <Image src={RIDE} alt="price" width={34} />
             <Typography
+              component="h3"
               variant="h6"
               gutterBottom
               sx={{
@@ -125,7 +129,9 @@ export default function WhyBooAirport() {
             >
               Comfortable rides
             </Typography>
-            <Typography variant="body1">
+            <Typography 
+              component="p"
+              variant="body1">
               We offer a wide range of vehicles to make sure you can fit
               everyone and everything
             </Typography>
@@ -133,6 +139,7 @@ export default function WhyBooAirport() {
           <Stack spacing={2} sx={{ p: { xs: 4, md: 0 } }}>
             <Image src={DRIVERS} alt="price" width={34} />
             <Typography
+              component="h3"
               variant="h6"
               gutterBottom
               sx={{
@@ -142,13 +149,16 @@ export default function WhyBooAirport() {
             >
               English Speaking Drivers
             </Typography>
-            <Typography variant="body1">
+            <Typography 
+              component="p"
+              variant="body1">
               Our drivers are fluent in English and hold professional licenses.
             </Typography>
           </Stack>
           <Stack spacing={2} sx={{ p: { xs: 4, md: 0 } }}>
             <Image src={FLIGHT} alt="price" width={34} />
             <Typography
+              component="h3"
               variant="h6"
               gutterBottom
               sx={{
@@ -158,7 +168,9 @@ export default function WhyBooAirport() {
             >
               Flight monitoring
             </Typography>
-            <Typography variant="body1">
+            <Typography 
+              component="p"
+              variant="body1">
               we constantly monitor your flight status for a stress free arrival
             </Typography>
           </Stack>

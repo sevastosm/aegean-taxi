@@ -54,21 +54,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       switch (city) {
         case "athens":
           title =
-            "Aegean Taxi - Reliable and Affordable Athens Airport Transfer Services | Book Your Ride Today";
+            "Athens Airport Transfers | Book A Ride Online Today | Available 24/7";
           description =
-            "Book an experienced Athens driver to pick you up. Cheapest prices, great cars, english speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or through the App.";
+            "Book your Athens Airport Taxi or Transfer. Cheap prices, English speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or the Taxi App.";
           break;
         case "mykonos":
           title =
-            "Aegean Taxi - Reliable and Affordable Mykonos Airport Transfer Services | Book Your Ride Today";
+            "Mykonos Airport Transfers | Book A Ride Online Today | Available 24/7";
           description =
-            "Book an experienced Mykonos driver to pick you up. Cheapest prices, great cars, english speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or through the App.";
+            "Book your Mykonos Airport Taxi or Transfer. Cheap prices, English speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or the Taxi App.";
           break;
         case "santorini":
           title =
-            "Aegean Taxi - Reliable and Affordable Santorini Airport Transfer Services | Book Your Ride Today";
+            "Santorini Airport Transfers | Book A Ride Online Today | Available 24/7";
           description =
-            "Book an experienced Santorini driver to pick you up. Cheapest prices, great cars, english speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or through the App.";
+            "Book your Santorini Airport Taxi or Transfer. Cheap prices, English speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or the Taxi App.";
           break;
       }
     } else {

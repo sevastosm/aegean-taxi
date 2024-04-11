@@ -47,17 +47,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       case "athens":
         title = "Athens Tours - Book Your Experience with Aegean Taxi";
         description =
-          "Book your Athens tour with Aegean Taxi and explore the best sights and attractions the city has to offer. Our experienced guides and comfortable vehicles will make your tour a memorable experience.";
+          "Book a Athens Tour online 24/7. Experienced local guides, comfortable vehicles, English speaking drivers, cheap rates. Best Rated Taxi & Transfer in Greece";
         break;
       case "mykonos":
         title = "Mykonos Tours - Book Your Experience with Aegean Taxi";
         description =
-          "Book your Mykonos tour with Aegean Taxi and explore the best sights and attractions the city has to offer. Our experienced guides and comfortable vehicles will make your tour a memorable experience.";
+          "Book a Mykonos Tour online 24/7. Experienced local guides, comfortable vehicles, English speaking drivers, cheap rates. Best Rated Taxi & Transfer in Greece";
         break;
       case "santorini":
         title = "Santorini Tours - Book Your Experience with Aegean Taxi";
         description =
-          "Book your Santorini tour with Aegean Taxi and explore the best sights and attractions the city has to offer. Our experienced guides and comfortable vehicles will make your tour a memorable experience.";
+          "Book a Santorini Tour online 24/7. Experienced local guides, comfortable vehicles, English speaking drivers, cheap rates. Best Rated Taxi & Transfer in Greece";
         break;
     }
   }

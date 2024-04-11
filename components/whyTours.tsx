@@ -98,6 +98,7 @@ export default function WhyTours() {
           <Stack spacing={2} sx={{ p: { xs: 1, md: 1 } }}>
             <Image src={LAMP} alt="price" width={34} />
             <Typography
+              component="h3"
               variant="h6"
               gutterBottom
               sx={{
@@ -107,7 +108,9 @@ export default function WhyTours() {
             >
               Local knowledge
             </Typography>
-            <Typography variant="body1">
+            <Typography 
+              component="p"
+              variant="body1">
               Our tour guides and drivers have extensive knowledge of the local
               area, allowing them to provide a truly immersive experience for
               guests.
@@ -116,6 +119,7 @@ export default function WhyTours() {
           <Stack spacing={2} sx={{ p: { xs: 1, md: 1 } }}>
             <Image src={GEAR} alt="price" width={34} />
             <Typography
+              component="h3"
               variant="h6"
               gutterBottom
               sx={{
@@ -125,7 +129,9 @@ export default function WhyTours() {
             >
               Customizable itineraries
             </Typography>
-            <Typography variant="body1">
+            <Typography 
+              component="p"
+              variant="body1">
               Designed to be flexible and adaptable to suit the needs of each
               individual group. We take into account your interests and
               preferences, creating an itinerary that is unique and tailored to
@@ -135,6 +141,7 @@ export default function WhyTours() {
           <Stack spacing={2} sx={{ p: { xs: 1, md: 1 } }}>
             <Image src={STAR} alt="price" width={34} />
             <Typography
+              component="h3"
               variant="h6"
               gutterBottom
               sx={{
@@ -144,7 +151,9 @@ export default function WhyTours() {
             >
               Exceptional service
             </Typography>
-            <Typography variant="body1">
+            <Typography 
+              component="p"
+              variant="body1">
               We focus on providing the highest level . of service. From the
               best fleet of cars, to professional English speaking drivers and
               guides, our team and service will impress you

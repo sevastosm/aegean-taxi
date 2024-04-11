@@ -383,7 +383,7 @@ export default function FooterLayout() {
                   target="_blank"
                   rel="nofollow"
                 >
-                  <Image src={Google} height={50} alt="Google Play" />
+                  <Image src={Google} height={50} alt="Download the Aegean Taxi App for Android" />
                 </a>
               </Grid>
               <Grid item xs={6} md={4}>
@@ -392,7 +392,7 @@ export default function FooterLayout() {
                   target="_blank"
                   rel="nofollow"
                 >
-                  <Image src={Apple} height={50} alt="Apple Store" />
+                  <Image src={Apple} height={50} alt="Download the Aegean Taxi App for iOS" />
                 </a>
               </Grid>
             </Grid>

@@ -1240,9 +1240,9 @@ export const locationDetails: any = {
       location: "milos",
       meta: {
         title:
-          "Aegean Taxi - Reliable and Affordable Milos Airport Transfer Services | Book Your Ride Today",
+          "Milos Airport Transfers | Book A Ride Online Today | Available 24/7",
         description:
-          "Book an experienced Milos driver to pick you up. Cheapest prices, great cars, english speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or through the App.",
+          "Book your Milos Airport Taxi or Transfer. Cheap prices, English speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or the Taxi App.",
       },
       name: "Milos",
       prices: [
@@ -1380,9 +1380,9 @@ Exploring the wonders of Milos Island becomes a seamless experience when you rel
 
       meta: {
         title:
-          "Aegean Taxi - Reliable and Affordable Paros Airport Transfer Services | Book Your Ride Today",
+          "Paros Airport Transfers | Book A Ride Online Today | Available 24/7",
         description:
-          "Book an experienced Paros driver to pick you up. Cheapest prices, great cars, english speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or through the App.",
+          "Book your Paros Airport Taxi or Transfer. Cheap prices, English speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or the Taxi App.",
       },
       name: "Paros",
       prices: [
@@ -1523,9 +1523,9 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
 
       meta: {
         title:
-          "Aegean Taxi - Reliable and Affordable Naxos Airport Transfer Services | Book Your Ride Today",
+          "Naxos Airport Transfers | Book A Ride Online Today | Available 24/7",
         description:
-          "Book an experienced Naxos driver to pick you up. Cheapest prices, great cars, english speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or through the App.",
+          "Book your Naxos Airport Taxi or Transfer. Cheap prices, English speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or the Taxi App.",
       },
       name: "Naxos",
       prices: [
@@ -1658,9 +1658,9 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
       location: "heraklion",
       meta: {
         title:
-          "Aegean Taxi - Reliable and Affordable Heraklion Airport Transfer Services | Book Your Ride Today",
+          "Heraklion Airport Transfers | Book A Ride Online Today | Available 24/7",
         description:
-          "Book an experienced Heraklion driver to pick you up. Cheapest prices, great cars, english speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or through the App.",
+          "Book your Heraklion Airport Taxi or Transfer. Cheap prices, English speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or the Taxi App.",
       },
       name: "Heraklion",
       prices: [
@@ -1795,9 +1795,9 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
 
       meta: {
         title:
-          "Aegean Taxi - Reliable and Affordable Rhodes Airport Transfer Services | Book Your Ride Today",
+          "Rhodes Airport Transfers | Book A Ride Online Today | Available 24/7",
         description:
-          "Book an experienced Rhodes driver to pick you up. Cheapest prices, great cars, english speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or through the App.",
+          "Book your Rhodes Airport Taxi or Transfer. Cheap prices, English speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or the Taxi App.",
       },
       name: "Rhodes",
       prices: [
@@ -1934,9 +1934,9 @@ You can call RODA services at (+30)22410-26300 or (+30)22410-24129.`,
 
       meta: {
         title:
-          "Aegean Taxi - Reliable and Affordable Kos Airport Transfer Services | Book Your Ride Today",
+          "Kos Airport Transfers | Book A Ride Online Today | Available 24/7",
         description:
-          "Book an experienced Kos driver to pick you up. Cheapest prices, great cars, english speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or through the App.",
+          "Book your Kos Airport Taxi or Transfer. Cheap prices, English speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or the Taxi App.",
       },
       name: "Kos",
       prices: [
@@ -2074,9 +2074,9 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
 
       meta: {
         title:
-          "Aegean Taxi - Reliable and Affordable Chalkidiki Airport Transfer Services | Book Your Ride Today",
+          "Chalkidiki Airport Transfers | Book A Ride Online Today | Available 24/7",
         description:
-          "Book an experienced Chalkidiki driver to pick you up. Cheapest prices, great cars, english speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or through the App.",
+          "Book your Chalkidiki Airport Taxi or Transfer. Cheap prices, English speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or the Taxi App.",
       },
       name: "Chalkidiki",
       prices: [
@@ -2210,9 +2210,9 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
 
       meta: {
         title:
-          "Aegean Taxi - Reliable and Affordable Corfu Airport Transfer Services | Book Your Ride Today",
+          "Corfu Airport Transfers | Book A Ride Online Today | Available 24/7",
         description:
-          "Book an experienced Corfu driver to pick you up. Cheapest prices, great cars, english speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or through the App.",
+          "Book your Corfu Airport Taxi or Transfer. Cheap prices, English speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or the Taxi App.",
       },
       name: "Corfu",
       prices: [

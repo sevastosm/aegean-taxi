@@ -111,7 +111,7 @@ export default function AirportLocations() {
                   <Paper>
                     <Box sx={{ p: 2 }}>
                       <Typography
-                        component={"div"}
+                        component="h3"
                         variant="h5"
                         gutterBottom
                         sx={{
@@ -133,7 +133,7 @@ export default function AirportLocations() {
                       ></Box>
 
                       <Typography
-                        component="span"
+                        component="p"
                         variant="body1"
                         sx={{
                           mt: 3,
@@ -157,7 +157,7 @@ export default function AirportLocations() {
                   <Paper>
                     <Box sx={{ p: 2 }}>
                       <Typography
-                        component={"div"}
+                        component="h3"
                         variant="h5"
                         gutterBottom
                         sx={{
@@ -179,7 +179,7 @@ export default function AirportLocations() {
                       ></Box>
 
                       <Typography
-                        component="span"
+                        component="p"
                         variant="body1"
                         sx={{
                           mt: 3,
@@ -203,7 +203,7 @@ export default function AirportLocations() {
                   <Paper>
                     <Box sx={{ p: 2 }}>
                       <Typography
-                        component={"div"}
+                        component="h3"
                         variant="h5"
                         gutterBottom
                         sx={{
@@ -225,7 +225,7 @@ export default function AirportLocations() {
                       ></Box>
 
                       <Typography
-                        component="span"
+                        component="p"
                         variant="body1"
                         sx={{
                           mt: 3,
