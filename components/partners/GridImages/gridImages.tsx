@@ -31,7 +31,7 @@ export default function GridImages() {
   return (
     <Container maxWidth={"md"}>
       <Typography
-        component="h1"
+        component="h2"
         variant="h4"
         gutterBottom
         sx={{

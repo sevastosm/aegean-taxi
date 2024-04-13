@@ -32,7 +32,7 @@ import { locationDetails } from "@/utils/locationDetails";
 
 export default function TaxiHeader() {
   const params: any = useParams();
-  let title = `Your Taxi App <br />in Greece`;
+  let title = `Your Taxi App in Greece`; // original: `Your Taxi App <br />in Greece`
   let subHeader = ` in Greece`;
   let cover = bg;
 
@@ -42,8 +42,8 @@ export default function TaxiHeader() {
     const city = (
       params.location.charAt(0).toUpperCase() + params.location.slice(1)
     ).replace("-taxi-app", "");
-    title = `Your ${city}<br /> Taxi App`;
-    subHeader = ` in ${city}`;
+    title = `Your ${city} Taxi App`;
+    subHeader = `  in ${city}`;
     switch (city) {
       case "Athens":
         cover = Athens;
@@ -99,7 +99,7 @@ export default function TaxiHeader() {
     <Container maxWidth={"lg"}>
       <Grid container spacing={0}>
         <Grid item xs={12} md={5}>
-          <Typography
+          {/*<Typography
             component="h1"
             variant="h2"
             gutterBottom
@@ -121,7 +121,23 @@ export default function TaxiHeader() {
             }}
           >
             {title.replaceAll("<br />", "")}
+          </Typography>*/}
+
+          <Typography
+            component="h1"
+            gutterBottom
+            sx={{
+              fontWeight: { xs: "700", md: "700" },
+              fontSize: { xs: "1rem", md: "3.75rem" },
+              lineHeight: { xs: "1.5", md: "1.2" },
+              // display: { xs: "block", md: "none" },
+              textAlign: { xs: "center", md: "left" },
+              mt: { xs: "8px", md: "48px" },
+            }}>
+              {title}
           </Typography>
+
+
           <Typography
             component="p"
             variant="h5"
