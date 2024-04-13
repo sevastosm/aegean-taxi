@@ -12,7 +12,7 @@ export default function AboutUsPage() {
   return (
     <Container maxWidth={"lg"}>
       <Typography
-        component="h1"
+        //component="h1"
         variant="h6"
         gutterBottom
         sx={{
@@ -37,7 +37,7 @@ export default function AboutUsPage() {
           }}
         >
           <Typography
-            component="h1"
+            //component="h1"
             variant="h2"
             gutterBottom
             sx={{
@@ -67,14 +67,14 @@ export default function AboutUsPage() {
         <Grid item xs={12} md={12} sx={{}}>
           {/*  */}
           <Typography
-            // component="h1"
+            component="h1"
             variant="h6"
             gutterBottom
             sx={{
               fontWeight: 700,
             }}
           >
-            1. Contractual Relationship
+            1. Aegean Taxi Terms & Conditions
           </Typography>
           <Typography
             variant="body2"

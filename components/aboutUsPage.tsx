@@ -14,7 +14,7 @@ export default function AboutUsPage() {
   return (
     <Container maxWidth={"lg"}>
       <Typography
-        component="h1"
+        //component="h1"
         variant="h6"
         gutterBottom
         sx={{
@@ -39,7 +39,7 @@ export default function AboutUsPage() {
           }}
         >
           <Typography
-            component="h1"
+            //component="h1"
             variant="h2"
             gutterBottom
             sx={{
@@ -76,14 +76,14 @@ export default function AboutUsPage() {
         </Grid>
         <Grid item xs={12} md={6} sx={{}}>
           <Typography
-            // component="h1"
+            component="h1"
             variant="h5"
             gutterBottom
             sx={{
               fontWeight: 700,
             }}
           >
-            Background
+            About Aegean Taxi. The best taxi app and airport transfers in Greece
           </Typography>
           <Typography
             variant="body1"

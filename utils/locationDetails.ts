@@ -1660,7 +1660,7 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
         title:
           "Heraklion Airport Transfers | Book A Ride Online Now | Open 24/7",
         description:
-          "Book your Heraklion Airport Taxi or Transfer. Cheap prices, English speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or the Taxi App.",
+          "Book your Heraklion Airport Taxi or Transfer. Cheap prices, English speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or Taxi App.",
       },
       name: "Heraklion",
       prices: [
@@ -1934,7 +1934,7 @@ You can call RODA services at (+30)22410-26300 or (+30)22410-24129.`,
 
       meta: {
         title:
-          "Kos Airport Transfers | Book A Taxi or Transfer Ride Online | Open 24/7",
+          "Kos Airport KGS | Book a Taxi or Transfer Ride Online | Open 24/7",
         description:
           "Book your Kos Airport Taxi or Transfer. Cheap prices, English speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or the Taxi App.",
       },
@@ -2076,7 +2076,7 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
         title:
           "Chalkidiki Airport Transfers | Book A Taxi Ride Online Now | Open 24/7",
         description:
-          "Book your Chalkidiki Airport Taxi or Transfer. Cheap prices, English speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or the Taxi App.",
+          "Book your Chalkidiki Airport Taxi or Transfer. Cheap prices, English speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or Taxi App.",
       },
       name: "Chalkidiki",
       prices: [
@@ -2210,7 +2210,7 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
 
       meta: {
         title:
-          "Corfu Airport Transfers | Book a Taxi or Transfer Ride Online | Open 24/7",
+          "Corfu Airport CFU | Book a Taxi or Transfer Ride Online | Open 24/7",
         description:
           "Book your Corfu Airport Taxi or Transfer. Cheap prices, English speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or the Taxi App.",
       },

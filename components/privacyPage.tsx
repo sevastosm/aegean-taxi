@@ -40,13 +40,14 @@ export default function PrivacyPage() {
       <Grid container spacing={2} sx={{ mt: { xs: 1, md: 4 } }}>
         <Grid item xs={12} md={12} sx={{}}>
           <Typography
+            component="h1"
             variant="h5"
             gutterBottom
             sx={{
               fontWeight: 700,
             }}
           >
-            Introduction
+            Aegean Taxi App Privacy Policy for using the Aegean Taxi App, website, whatsapp and call Center
           </Typography>
           <Typography
             variant="body1"
