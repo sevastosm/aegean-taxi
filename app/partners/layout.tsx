@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Partners | Become an Aegean Taxi partner and start earning today.",
+  title: "Become an Aegean Taxi Partner | Best Taxi App | Register and Drive",
   description:
     "Join the Aegean Taxi network of partners and start earning. We offer reliable transportation services to travellers. Modern vehicles and experienced drivers",
 };

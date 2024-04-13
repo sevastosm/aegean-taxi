@@ -737,7 +737,7 @@ export const locationDetails: any = {
         name: "Kos",
       },
       meta: {
-        title: "Kos Taxi App | Affordable Taxi rides | Available 24/7",
+        title: "Kos Taxi App | Book Taxi Rides online now or later | Available 24/7",
         description:
           "Book your Kos Taxi via telephone, whatsapp, website. Or download the Aegean Taxi app and request a ride in 2 simple steps.",
       },
@@ -969,7 +969,7 @@ export const locationDetails: any = {
         name: "Chalkidiki",
       },
       meta: {
-        title: "Chalkidiki Taxi App | Book now or later | Affordable and Available 24/7",
+        title: "Chalkidiki Taxi App | Book rides online now or later | Available 24/7",
         description:
           "Book your Chalkidiki Taxi via telephone, whatsapp, website. Or download the Chalkidiki Aegean Taxi app and book a ride for now or later.",
       },
@@ -1240,7 +1240,7 @@ export const locationDetails: any = {
       location: "milos",
       meta: {
         title:
-          "Milos Airport Transfers | Book A Ride Online Today | Available 24/7",
+          "Milos Airport Transfers | Book A Ride Online now | Available 24/7",
         description:
           "Book your Milos Airport Taxi or Transfer. Cheap prices, English speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or the Taxi App.",
       },
@@ -1380,7 +1380,7 @@ Exploring the wonders of Milos Island becomes a seamless experience when you rel
 
       meta: {
         title:
-          "Paros Airport Transfers | Book A Ride Online Today | Available 24/7",
+          "Paros Airport Transfers | Book A Ride Online Now | Available 24/7",
         description:
           "Book your Paros Airport Taxi or Transfer. Cheap prices, English speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or the Taxi App.",
       },
@@ -1523,7 +1523,7 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
 
       meta: {
         title:
-          "Naxos Airport Transfers | Book A Ride Online Today | Available 24/7",
+          "Naxos Airport Transfers | Book A Taxi Ride Online Now | Open 24/7",
         description:
           "Book your Naxos Airport Taxi or Transfer. Cheap prices, English speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or the Taxi App.",
       },
@@ -1658,7 +1658,7 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
       location: "heraklion",
       meta: {
         title:
-          "Heraklion Airport Transfers | Book A Ride Online Today | Available 24/7",
+          "Heraklion Airport Transfers | Book A Ride Online Now | Open 24/7",
         description:
           "Book your Heraklion Airport Taxi or Transfer. Cheap prices, English speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or the Taxi App.",
       },
@@ -1795,7 +1795,7 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
 
       meta: {
         title:
-          "Rhodes Airport Transfers | Book A Ride Online Today | Available 24/7",
+          "Rhodes Airport Transfers | Book A Taxi or Transfer Ride Online | 24/7",
         description:
           "Book your Rhodes Airport Taxi or Transfer. Cheap prices, English speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or the Taxi App.",
       },
@@ -1934,7 +1934,7 @@ You can call RODA services at (+30)22410-26300 or (+30)22410-24129.`,
 
       meta: {
         title:
-          "Kos Airport Transfers | Book A Ride Online Today | Available 24/7",
+          "Kos Airport Transfers | Book A Taxi or Transfer Ride Online | Open 24/7",
         description:
           "Book your Kos Airport Taxi or Transfer. Cheap prices, English speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or the Taxi App.",
       },
@@ -2074,7 +2074,7 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
 
       meta: {
         title:
-          "Chalkidiki Airport Transfers | Book A Ride Online Today | Available 24/7",
+          "Chalkidiki Airport Transfers | Book A Taxi Ride Online Now | Open 24/7",
         description:
           "Book your Chalkidiki Airport Taxi or Transfer. Cheap prices, English speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or the Taxi App.",
       },
@@ -2210,7 +2210,7 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
 
       meta: {
         title:
-          "Corfu Airport Transfers | Book A Ride Online Today | Available 24/7",
+          "Corfu Airport Transfers | Book a Taxi or Transfer Ride Online | Open 24/7",
         description:
           "Book your Corfu Airport Taxi or Transfer. Cheap prices, English speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or the Taxi App.",
       },

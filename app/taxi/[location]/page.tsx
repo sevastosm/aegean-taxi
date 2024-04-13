@@ -56,7 +56,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     } else {
       switch (city) {
         case "athens":
-          title = "Athens Taxi App | Affordable Taxi rides | Available 24/7";
+          title = "Athens Taxi App | Book Taxi Rides online now or later | Available 24/7";
           description =
             "Book your Athens Taxi via telephone, whatsapp, website. Or download the Aegean Taxi app and request a ride in 2 simple steps. ";
           break;
@@ -76,7 +76,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             "Book your Corfu Taxi via telephone, whatsapp, website. Or download the Aegean Taxi app and request a ride in 2 simple steps. ";
           break;
         case "rhodes":
-          title = "Rhodes Taxi App | Affordable Taxi rides | Available 24/7";
+          title = "Rhodes Taxi App | Book Taxi Rides online now or later | Available 24/7";
           description =
             "Book your Rhodes Taxi via telephone, whatsapp, website. Or download the Aegean Taxi app and request a ride in 2 simple steps. ";
           break;

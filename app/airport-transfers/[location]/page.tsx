@@ -54,19 +54,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       switch (city) {
         case "athens":
           title =
-            "Athens Airport Transfers | Book A Ride Online Today | Available 24/7";
+            "Athens Airport Transfers | Book A Ride Online Now | Available 24/7";
           description =
             "Book your Athens Airport Taxi or Transfer. Cheap prices, English speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or the Taxi App.";
           break;
         case "mykonos":
           title =
-            "Mykonos Airport Transfers | Book A Ride Online Today | Available 24/7";
+            "Mykonos Airport Transfers | Book A Ride Online Now | Available 24/7";
           description =
             "Book your Mykonos Airport Taxi or Transfer. Cheap prices, English speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or the Taxi App.";
           break;
         case "santorini":
           title =
-            "Santorini Airport Transfers | Book A Ride Online Today | Available 24/7";
+            "Santorini Airport Transfers | Book A Ride Online Now | Available 24/7";
           description =
             "Book your Santorini Airport Taxi or Transfer. Cheap prices, English speaking drivers, 24/7 customer support. Book online, via whatsapp, telephone, or the Taxi App.";
           break;
