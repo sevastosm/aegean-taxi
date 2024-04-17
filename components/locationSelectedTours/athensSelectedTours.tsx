@@ -13,13 +13,13 @@ import Typography from "@mui/material/Typography";
 // import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
-import ATHENS from "public/assets/athens-tours.jpeg";
-import SOUNION from "public/assets/cape-sounion.jpg";
-import RIVIERA from "public/assets/athenian-riviera.jpg";
-import DELPHI from "public/assets/delphi.jpg";
-import METEORA from "public/assets/meteora.jpg";
-import OLYMPIA from "public/assets/olympia.jpg";
-import CUSTOM from "public/assets/custom-tours.png";
+import ATHENS from "public/assets/athens-tours.webp";
+import SOUNION from "public/assets/cape-sounion.webp";
+import RIVIERA from "public/assets/athenian-riviera.webp";
+import DELPHI from "public/assets/delphi.webp";
+import METEORA from "public/assets/meteora.webp";
+import OLYMPIA from "public/assets/olympia.webp";
+import CUSTOM from "public/assets/custom-tours.webp";
 
 export default function AthensSelectedTours() {
   let settings = {

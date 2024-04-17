@@ -10,7 +10,7 @@ import Grid from "@mui/material/Grid"; // Grid version 1
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 
-import Logo from "public/assets/at_logo_blue.png";
+import Logo from "public/assets/at_logo_blue.webp";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 
 export default function BookOnlineButton({

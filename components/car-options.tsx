@@ -16,16 +16,16 @@ import { Box } from "@mui/system";
 // import luxury from "./../public/assets/luxury.png";
 // import van from "./../public/assets/van.png";
 
-import BUS from "public/assets/onde-service-types/BUS.png";
-import BUSINESS from "public/assets/onde-service-types/BUSINESS.png";
-import CLASSIK from "public/assets/onde-service-types/CLASSIC.png";
-import ECONOMY_YELLOW from "public/assets/onde-service-types/ECONOMY_yellow.png";
-import ECONOMY from "public/assets/onde-service-types/ECONOMY.png";
-import MICRO_BUS from "public/assets/onde-service-types/MICRO_BUS.png";
-import MINIVAN from "public/assets/onde-service-types/MINIVAN.png";
-import SUV from "public/assets/onde-service-types/SUV.png";
-import TESLA_MODEL_X from "public/assets/onde-service-types/TESLA_MODEL_X.png";
-import VAN from "public/assets/onde-service-types/VAN.png";
+import BUS from "public/assets/onde-service-types/BUS.webp";
+import BUSINESS from "public/assets/onde-service-types/BUSINESS.webp";
+import CLASSIK from "public/assets/onde-service-types/CLASSIC.webp";
+import ECONOMY_YELLOW from "public/assets/onde-service-types/ECONOMY_yellow.webp";
+import ECONOMY from "public/assets/onde-service-types/ECONOMY.webp";
+import MICRO_BUS from "public/assets/onde-service-types/MICRO_BUS.webp";
+import MINIVAN from "public/assets/onde-service-types/MINIVAN.webp";
+import SUV from "public/assets/onde-service-types/SUV.webp";
+import TESLA_MODEL_X from "public/assets/onde-service-types/TESLA_MODEL_X.webp";
+import VAN from "public/assets/onde-service-types/VAN.webp";
 
 export default function CarOptions(props: any) {
   const [view, setView] = React.useState<any>(null);

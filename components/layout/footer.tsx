@@ -20,13 +20,13 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
 // components
-import logo_white from "public/assets/AT_White-logo.png";
-import Google from "public/assets/google-play-badge.png";
-import Apple from "public/assets/apple-badge-black.png";
-import Instagram from "public/assets/instagram.png";
-import Facebook from "public/assets/facebook.png";
-import Linkedin from "public/assets/linkedin.png";
-import Twitter from "public/assets/twitter.png";
+import logo_white from "public/assets/AT_White-logo.webp";
+import Google from "public/assets/google-play-badge.webp";
+import Apple from "public/assets/apple-badge-black.webp";
+import Instagram from "public/assets/instagram.webp";
+import Facebook from "public/assets/facebook.webp";
+import Linkedin from "public/assets/linkedin.webp";
+import Twitter from "public/assets/twitter.webp";
 import whatsApp from "public/assets/whatsapp_btn.svg";
 import phoneIcon from "public/assets/phone-call-icon.svg";
 import { locationDetails } from "@/utils/locationDetails";

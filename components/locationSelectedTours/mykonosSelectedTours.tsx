@@ -13,10 +13,10 @@ import Typography from "@mui/material/Typography";
 // import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
-import MYKONOS from "public/assets/mykonos-tours.jpeg";
-import DAY from "public/assets/tours-mykonos-full-day.jpg";
-import NIGHT from "public/assets/tours-mykonos-night.jpg";
-import CUSTOM from "public/assets/tours-mykonos-custom.jpg";
+import MYKONOS from "public/assets/mykonos-tours.webp";
+import DAY from "public/assets/tours-mykonos-full-day.webp";
+import NIGHT from "public/assets/tours-mykonos-night.webp";
+import CUSTOM from "public/assets/tours-mykonos-custom.webp";
 
 export default function MykonosSelectedTours() {
   let settings = {

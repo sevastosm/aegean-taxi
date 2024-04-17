@@ -7,7 +7,7 @@ import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid"; // Grid version 1
 import Typography from "@mui/material/Typography";
 
-import bg from "public/assets/privacy.png";
+import bg from "public/assets/privacy.webp";
 
 export default function PrivacyPage() {
   return (

@@ -12,9 +12,9 @@ import Stack from "@mui/material/Stack";
 import Slider from "react-slick";
 
 // assets
-import MICHAEL from "public/assets/drivers/michael.jpg";
-import GEORGE from "public/assets/drivers/george.jpg";
-import JOHN from "public/assets/drivers/john-mykonos.jpg";
+import MICHAEL from "public/assets/drivers/michael.webp";
+import GEORGE from "public/assets/drivers/george.webp";
+import JOHN from "public/assets/drivers/john-mykonos.webp";
 
 export default function DriversMykonos() {
   let settings = {

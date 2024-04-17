@@ -6,7 +6,7 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid"; // Grid version 1
 import Typography from "@mui/material/Typography";
 
-import bg from "public/assets/aboutus-background.png";
+import bg from "public/assets/aboutus-background.webp";
 
 export default function AboutUsPage() {
   return (

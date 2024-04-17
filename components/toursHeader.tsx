@@ -8,9 +8,9 @@ import Grid from "@mui/material/Grid"; // Grid version 1
 import Typography from "@mui/material/Typography";
 
 // components
-import bg from "public/assets/tours-header.png";
-import MYKONOS from "public/assets/tours-mykonos.png";
-import SANTORINI from "public/assets/tours-santorini.jpg";
+import bg from "public/assets/tours-header.webp";
+import MYKONOS from "public/assets/tours-mykonos.webp";
+import SANTORINI from "public/assets/tours-santorini.webp";
 
 export default function ToursHeader() {
   const params: any = useParams();

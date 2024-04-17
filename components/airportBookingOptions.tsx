@@ -15,11 +15,11 @@ import Stack from "@mui/material/Stack";
 import Slider from "react-slick";
 
 //
-import CAR from "public/assets/horizontal-car.png";
-import PHONE from "public/assets/phone-booking.png";
-import WEB from "public/assets/app-booking.png";
-import WHATSAPP from "public/assets/whatsapp-booking.png";
-import RIDEAPP from "public/assets/ride-app.png";
+import CAR from "public/assets/horizontal-car.webp";
+import PHONE from "public/assets/phone-booking.webp";
+import WEB from "public/assets/app-booking.webp";
+import WHATSAPP from "public/assets/whatsapp-booking.webp";
+import RIDEAPP from "public/assets/ride-app.webp";
 
 // components
 

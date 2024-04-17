@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 
 // assets
-import MYKONOS from "public/assets/mykonos-top-sights.jpg";
+import MYKONOS from "public/assets/mykonos-top-sights.webp";
 
 export default function MykonosTopSights() {
   return (

@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 
 // assets
-import ATHENS from "public/assets/athens-top-sights.png";
+import ATHENS from "public/assets/athens-top-sights.webp";
 
 export default function AthensTopSights() {
   return (

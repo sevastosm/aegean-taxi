@@ -11,13 +11,13 @@ import Typography from "@mui/material/Typography";
 // components
 import Form from "components/requestRideForm/form";
 
-import bg from "public/assets/taxi-header.png";
+import bg from "public/assets/taxi-header.webp";
 // FIXME: No images available
 // import Athens from "public/assets/airport-athens.jpg";
 // import Mykonos from "public/assets/airport-mykonos.png";
 // import Santorini from "public/assets/airport-santorini.png";
 
-import banner from "public/assets/banner.png";
+import banner from "public/assets/banner.webp";
 
 export default function AirportHeader() {
   const params: any = useParams();

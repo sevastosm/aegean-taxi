@@ -12,9 +12,9 @@ import Stack from "@mui/material/Stack";
 import Slider from "react-slick";
 
 // assets
-import MICHAEL from "public/assets/drivers/michael.jpg";
-import JOHN from "public/assets/drivers/john.png";
-import NIKOS from "public/assets/drivers/nikos.jpg";
+import MICHAEL from "public/assets/drivers/michael.webp";
+import JOHN from "public/assets/drivers/john.webp";
+import NIKOS from "public/assets/drivers/nikos.webp";
 
 export default function DriversTours() {
   let settings = {

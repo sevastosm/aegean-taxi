@@ -12,9 +12,9 @@ import Stack from "@mui/material/Stack";
 import Slider from "react-slick";
 
 // assets
-import NIKOS from "public/assets/drivers/nikos-athens.png";
-import JOHN from "public/assets/drivers/john.png";
-import MARIOS from "public/assets/drivers/marios.png";
+import NIKOS from "public/assets/drivers/nikos-athens.webp";
+import JOHN from "public/assets/drivers/john.webp";
+import MARIOS from "public/assets/drivers/marios.webp";
 
 export default function DriversAthens() {
   let settings = {

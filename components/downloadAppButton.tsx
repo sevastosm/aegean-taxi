@@ -6,10 +6,10 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid"; // Grid version 1
 import Typography from "@mui/material/Typography";
 
-import at_logo_blue from "public/assets/at_logo_blue.png";
+import at_logo_blue from "public/assets/at_logo_blue.webp";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
-import Google from "public/assets/google-play-badge.png";
-import Apple from "public/assets/apple-badge-black.png";
+import Google from "public/assets/google-play-badge.webp";
+import Apple from "public/assets/apple-badge-black.webp";
 import { useEffect, useState } from "react";
 
 export default function DownloadAppButton({

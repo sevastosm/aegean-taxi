@@ -11,22 +11,22 @@ import Typography from "@mui/material/Typography";
 import Form from "components/requestRideForm/form";
 import DownloadAppButton from "components/downloadAppButton";
 
-import bg from "public/assets/taxi-header.png";
-import Athens from "public/assets/taxi-athens.jpg";
-import Mykonos from "public/assets/taxi-mykonos.png";
-import Santorini from "public/assets/taxi-santorini.png";
-import Corfu from "public/assets/taxi-corfu.png";
-import Rhodes from "public/assets/taxi-rhodes.png";
-import Milos from "public/assets/taxi-locations/taxi-milos.jpeg";
-import Bodrum from "public/assets/taxi-locations/taxi-bodrum.jpeg";
-import Tinos from "public/assets/taxi-locations/taxi-tinos.jpeg";
-import Paros from "public/assets/taxi-locations/taxi-paros.jpeg";
-import Naxos from "public/assets/taxi-locations/taxi-naxos.jpeg";
-import Kos from "public/assets/taxi-locations/taxi-kos.jpeg";
-import Heraklion from "public/assets/taxi-locations/taxi-heraklion.jpeg";
-import Chalkidiki from "public/assets/taxi-locations/taxi-chalkidiki.jpeg";
-import Kefalonia from "public/assets/taxi-locations/taxi-kefalonia.jpeg";
-import Kea from "public/assets/taxi-locations/taxi-kea.jpeg";
+import bg from "public/assets/taxi-header.webp";
+import Athens from "public/assets/taxi-athens.webp";
+import Mykonos from "public/assets/taxi-mykonos.webp";
+import Santorini from "public/assets/taxi-santorini.webp";
+import Corfu from "public/assets/taxi-corfu.webp";
+import Rhodes from "public/assets/taxi-rhodes.webp";
+import Milos from "public/assets/taxi-locations/taxi-milos.webp";
+import Bodrum from "public/assets/taxi-locations/taxi-bodrum.webp";
+import Tinos from "public/assets/taxi-locations/taxi-tinos.webp";
+import Paros from "public/assets/taxi-locations/taxi-paros.webp";
+import Naxos from "public/assets/taxi-locations/taxi-naxos.webp";
+import Kos from "public/assets/taxi-locations/taxi-kos.webp";
+import Heraklion from "public/assets/taxi-locations/taxi-heraklion.webp";
+import Chalkidiki from "public/assets/taxi-locations/taxi-chalkidiki.webp";
+import Kefalonia from "public/assets/taxi-locations/taxi-kefalonia.webp";
+import Kea from "public/assets/taxi-locations/taxi-kea.webp";
 
 import { locationDetails } from "@/utils/locationDetails";
 

@@ -21,10 +21,10 @@ import Slider from "react-slick";
 import { Link as MUILink } from "@mui/material";
 
 // assets
-import MAP from "public/assets/locations-map.png";
-import ATHENS from "public/assets/taxi-athens.jpg";
-import MYKONOS from "public/assets/taxi-mykonos.png";
-import SANTORINI from "public/assets/taxi-santorini.png";
+import MAP from "public/assets/locations-map.webp";
+import ATHENS from "public/assets/taxi-athens.webp";
+import MYKONOS from "public/assets/taxi-mykonos.webp";
+import SANTORINI from "public/assets/taxi-santorini.webp";
 import { locationDetails } from "@/utils/locationDetails";
 
 export default function AirportLocations() {
@@ -76,7 +76,7 @@ export default function AirportLocations() {
             <Box
               sx={{
                 minHeight: { xs: 224, md: 345 },
-                backgroundImage: `url('/assets/taxi-santorini.png')`,
+                backgroundImage: `url('/assets/taxi-santorini.webp')`,
                 backgroundSize: "cover",
                 borderRadius: 3,
                 mb: 3,
@@ -271,7 +271,7 @@ export default function AirportLocations() {
                       <Box
                         sx={{
                           minHeight: { xs: 224, md: 345 },
-                          backgroundImage: `url('/assets/taxi-santorini.png')`,
+                          backgroundImage: `url('/assets/taxi-santorini.webp')`,
                           backgroundSize: "cover",
                           borderRadius: 3,
                           mb: 3,

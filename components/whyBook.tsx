@@ -15,7 +15,7 @@ import Stack from "@mui/material/Stack";
 import Slider from "react-slick";
 
 //
-import CAR from "public/assets/whyus-car.png";
+import CAR from "public/assets/whyus-car.webp";
 import PRICE from "public/assets/price-icon.svg";
 import TWENTY from "public/assets/24-icon.svg";
 import DRIVERS from "public/assets/drivers-icon.svg";

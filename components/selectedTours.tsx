@@ -13,10 +13,10 @@ import Typography from "@mui/material/Typography";
 // import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
-import ATHENS from "public/assets/athens-tours.jpeg";
-import MYKONOS from "public/assets/mykonos-tours.jpeg";
-import SANTORINI from "public/assets/santorini-tours.jpeg";
-import CUSTOM from "public/assets/custom-tours.png";
+import ATHENS from "public/assets/athens-tours.webp";
+import MYKONOS from "public/assets/mykonos-tours.webp";
+import SANTORINI from "public/assets/santorini-tours.webp";
+import CUSTOM from "public/assets/custom-tours.webp";
 
 export default function SelectedTours() {
   let settings = {

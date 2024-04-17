@@ -15,8 +15,8 @@ import Stack from "@mui/material/Stack";
 import Slider from "react-slick";
 
 //
-import PHONE from "public/assets/phone-booking.png";
-import WHATSAPP from "public/assets/whatsapp-booking.png";
+import PHONE from "public/assets/phone-booking.webp";
+import WHATSAPP from "public/assets/whatsapp-booking.webp";
 import WhatsAppButton from "components/whatsAppButton";
 
 // components

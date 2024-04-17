@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid"; // Grid version 1
 import Typography from "@mui/material/Typography";
 
-import CALLUS from "public/assets/phone-icon.png";
+import CALLUS from "public/assets/phone-icon.webp";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 
 export default function CallUsButton({

@@ -7,9 +7,9 @@ import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Grid";
 
 // assets
-import ATHENS from "public/assets/athens-airport.jpg";
-import TAXI from "public/assets/taxi-guide.png";
-import TRANSPORT from "public/assets/transport-guide.png";
+import ATHENS from "public/assets/athens-airport.webp";
+import TAXI from "public/assets/taxi-guide.webp";
+import TRANSPORT from "public/assets/transport-guide.webp";
 
 export default function AthensGuide() {
   return (

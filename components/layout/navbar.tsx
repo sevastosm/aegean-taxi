@@ -17,7 +17,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 
 //
-import logo from "public/assets/Aegean-01.png";
+import logo from "public/assets/Aegean-01.webp";
 import { Phone } from "@mui/icons-material";
 
 interface Props {

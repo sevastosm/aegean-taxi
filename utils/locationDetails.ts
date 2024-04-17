@@ -127,10 +127,10 @@ export const locationDetails: any = {
           a: `Aegean Taxi Operates to and from Milos Port. You can arrange a ride in advance or upon arrival using either the Aegean Taxi Milos App, whatsapp, the website or simply call our 24/7 call center to book your ride.`,
         },
       ],
-      photo: "./public/assets/taxi-locations/taxi-milos.jpeg",
+      photo: "./public/assets/taxi-locations/taxi-milos.webp",
       slide: {
         name: "Milos",
-        photo: "/assets/taxi-locations/taxi-milos.jpeg",
+        photo: "/assets/taxi-locations/taxi-milos.webp",
         href: "/taxi/milos-taxi-app/",
       },
       url: "taxi/milos-taxi-app/",
@@ -257,10 +257,10 @@ export const locationDetails: any = {
           a: `Yes. There is no government mandate that requires taxi drivers to carry a POS machine to accept card payments, so the majority of the taxis in Mykonos require cash payment. Aegean Taxi accepts all major credit cards, and you can also add your credit card details to pay for your ride when using the Taxi app`,
         },
       ],
-      photo: "./public/assets/taxi-locations/taxi-bodrum.jpeg",
+      photo: "./public/assets/taxi-locations/taxi-bodrum.webp",
       slide: {
         name: "Bodrum",
-        photo: "/assets/taxi-locations/taxi-bodrum.jpeg",
+        photo: "/assets/taxi-locations/taxi-bodrum.webp",
         href: "/taxi/bodrum-taxi-app/",
       },
       url: "taxi/bodrum-taxi-app/",
@@ -371,10 +371,10 @@ export const locationDetails: any = {
           a: `Aegean Taxi Operates to and from Tinos Port. You can arrange a ride in advance or upon arrival using either the Aegean Taxi Tinos App, whatsapp, the website or simply call our 24/7 call center to book your ride.`,
         },
       ],
-      photo: "./public/assets/taxi-locations/taxi-tinos.jpeg",
+      photo: "./public/assets/taxi-locations/taxi-tinos.webp",
       slide: {
         name: "Tinos",
-        photo: "/assets/taxi-locations/taxi-tinos.jpeg",
+        photo: "/assets/taxi-locations/taxi-tinos.webp",
         href: "/taxi/tinos-taxi-app/",
       },
       url: "taxi/tinos-taxi-app/",
@@ -489,10 +489,10 @@ export const locationDetails: any = {
           a: `Aegean Taxi Operates to and from Paros Port. You can arrange a ride in advance or upon arrival using either the Aegean Taxi Paros App, whatsapp, the website or simply call our 24/7 call center to book your ride.`,
         },
       ],
-      photo: "./public/assets/taxi-locations/taxi-paros.jpeg",
+      photo: "./public/assets/taxi-locations/taxi-paros.webp",
       slide: {
         name: "Paros",
-        photo: "/assets/taxi-locations/taxi-paros.jpeg",
+        photo: "/assets/taxi-locations/taxi-paros.webp",
         href: "/taxi/paros-taxi-app/",
       },
       url: "taxi/paros-taxi-app/",
@@ -607,10 +607,10 @@ export const locationDetails: any = {
           a: `Aegean Taxi Operates to and from Naxos Port. You can arrange a ride in advance or upon arrival using either the Aegean Taxi Naxos App, whatsapp, the website or simply call our 24/7 call center to book your ride.`,
         },
       ],
-      photo: "./public/assets/taxi-locations/taxi-naxos.jpeg",
+      photo: "./public/assets/taxi-locations/taxi-naxos.webp",
       slide: {
         name: "Naxos",
-        photo: "/assets/taxi-locations/taxi-naxos.jpeg",
+        photo: "/assets/taxi-locations/taxi-naxos.webp",
         href: "/taxi/naxos-taxi-app/",
       },
       url: "taxi/naxos-taxi-app/",
@@ -725,10 +725,10 @@ export const locationDetails: any = {
           a: `Aegean Taxi Operates to and from Kos Port. You can arrange a ride in advance or upon arrival using either the Aegean Taxi Kos App, whatsapp, the website or simply call our 24/7 call center to book your ride.`,
         },
       ],
-      photo: "./public/assets/taxi-locations/taxi-kos.jpeg",
+      photo: "./public/assets/taxi-locations/taxi-kos.webp",
       slide: {
         name: "Kos",
-        photo: "/assets/taxi-locations/taxi-kos.jpeg",
+        photo: "/assets/taxi-locations/taxi-kos.webp",
         href: "/taxi/kos-taxi-app/",
       },
       url: "taxi/kos-taxi-app/",
@@ -843,10 +843,10 @@ export const locationDetails: any = {
           a: `Aegean Taxi Operates to and from Heraklion Port. You can arrange a ride in advance or upon arrival using either the Aegean Taxi Heraklion App, whatsapp, the website or simply call our 24/7 call center to book your ride.`,
         },
       ],
-      photo: "./public/assets/taxi-locations/taxi-heraklion.jpeg",
+      photo: "./public/assets/taxi-locations/taxi-heraklion.webp",
       slide: {
         name: "Heraklion",
-        photo: "/assets/taxi-locations/taxi-heraklion.jpeg",
+        photo: "/assets/taxi-locations/taxi-heraklion.webp",
         href: "/taxi/heraklion-taxi-app/",
       },
       url: "taxi/heraklion-taxi-app/",
@@ -957,10 +957,10 @@ export const locationDetails: any = {
           a: `Aegean Taxi Operates to and from Thessaloniki International Airport Macedonia (SKG). You can arrange a ride in advance or upon arrival using either the Aegean Taxi Chalkidiki App, whatsapp, the website or simply call our 24/7 call center to book your ride.`,
         },
       ],
-      photo: "./public/assets/taxi-locations/taxi-chalkidiki.jpeg",
+      photo: "./public/assets/taxi-locations/taxi-chalkidiki.webp",
       slide: {
         name: "Chalkidiki",
-        photo: "/assets/taxi-locations/taxi-chalkidiki.jpeg",
+        photo: "/assets/taxi-locations/taxi-chalkidiki.webp",
         href: "/taxi/chalkidiki-taxi-app/",
       },
       url: "taxi/chalkidiki-taxi-app/",
@@ -1087,10 +1087,10 @@ export const locationDetails: any = {
           a: `Yes. There is no government mandate that requires taxi drivers to carry a POS machine to accept card payments, so the majority of the taxis in Mykonos require cash payment. Aegean Taxi accepts all major credit cards, and you can also add your credit card details to pay for your ride when using the Taxi app`,
         },
       ],
-      photo: "./public/assets/taxi-locations/taxi-kea.jpeg",
+      photo: "./public/assets/taxi-locations/taxi-kea.webp",
       slide: {
         name: "Kea-Tzia",
-        photo: "/assets/taxi-locations/taxi-kea.jpeg",
+        photo: "/assets/taxi-locations/taxi-kea.webp",
         href: "/taxi/kea-taxi-app/",
       },
       url: "taxi/kea-taxi-app/",
@@ -1217,10 +1217,10 @@ export const locationDetails: any = {
           a: `Yes. There is no government mandate that requires taxi drivers to carry a POS machine to accept card payments, so the majority of the taxis in Mykonos require cash payment. Aegean Taxi accepts all major credit cards, and you can also add your credit card details to pay for your ride when using the Taxi app`,
         },
       ],
-      photo: "./public/assets/taxi-locations/taxi-kefalonia.jpeg",
+      photo: "./public/assets/taxi-locations/taxi-kefalonia.webp",
       slide: {
         name: "Kefalonia",
-        photo: "/assets/taxi-locations/taxi-kefalonia.jpeg",
+        photo: "/assets/taxi-locations/taxi-kefalonia.webp",
         href: "/taxi/kefalonia-taxi-app/",
       },
       url: "taxi/kefalonia-taxi-app/",
@@ -1296,7 +1296,7 @@ export const locationDetails: any = {
       ],
       slide: {
         name: "Milos",
-        photo: "/assets/taxi-locations/taxi-milos.jpeg",
+        photo: "/assets/taxi-locations/taxi-milos.webp",
         href: "/airport-transfers/milos/",
       },
 
@@ -1367,7 +1367,7 @@ Exploring the wonders of Milos Island becomes a seamless experience when you rel
 `,
         },
       ],
-      photo: "./public/assets/taxi-locations/taxi-milos.jpeg",
+      photo: "./public/assets/taxi-locations/taxi-milos.webp",
       url: "airport-transfers/milos/",
       footer: {
         link: "/airport-transfers/milos/",
@@ -1434,7 +1434,7 @@ Exploring the wonders of Milos Island becomes a seamless experience when you rel
       ],
       slide: {
         name: "Paros",
-        photo: "/assets/taxi-locations/taxi-paros.jpeg",
+        photo: "/assets/taxi-locations/taxi-paros.webp",
         href: "/airport-transfers/paros/",
       },
       airport_Guide: {
@@ -1510,7 +1510,7 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
 `,
         },
       ],
-      photo: "./public/assets/taxi-locations/taxi-paros.jpeg",
+      photo: "./public/assets/taxi-locations/taxi-paros.webp",
       url: "airport-transfers/Paros/",
       footer: {
         link: "/airport-transfers/paros/",
@@ -1577,7 +1577,7 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
       ],
       slide: {
         name: "Naxos",
-        photo: "/assets/taxi-locations/taxi-naxos.jpeg",
+        photo: "/assets/taxi-locations/taxi-naxos.webp",
         href: "/airport-transfers/naxos/",
       },
       airport_Guide: {
@@ -1646,7 +1646,7 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
 `,
         },
       ],
-      photo: "./public/assets/taxi-locations/taxi-naxos.jpeg",
+      photo: "./public/assets/taxi-locations/taxi-naxos.webp",
       url: "airport-transfers/Naxos/",
       footer: {
         link: "/airport-transfers/naxos/",
@@ -1712,7 +1712,7 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
       ],
       slide: {
         name: "Heraklion",
-        photo: "/assets/taxi-locations/taxi-heraklion.jpeg",
+        photo: "/assets/taxi-locations/taxi-heraklion.webp",
         href: "/airport-transfers/heraklion/",
       },
 
@@ -1782,7 +1782,7 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
 `,
         },
       ],
-      photo: "./public/assets/taxi-locations/taxi-heraklion.jpeg",
+      photo: "./public/assets/taxi-locations/taxi-heraklion.webp",
       url: "airport-transfers/heraklion/",
       footer: {
         link: "/airport-transfers/heraklion/",
@@ -1850,7 +1850,7 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
 
       slide: {
         name: "Rhodes",
-        photo: "/assets/taxi-locations/taxi-rhodes.png", // photo needed
+        photo: "/assets/taxi-locations/taxi-rhodes.webp", // photo needed
         href: "/airport-transfers/rhodes/",
       },
 
@@ -1921,7 +1921,7 @@ You can call RODA services at (+30)22410-26300 or (+30)22410-24129.`,
 `,
         },
       ],
-      photo: "./public/assets/taxi-locations/taxi-rhodes.jpeg",
+      photo: "./public/assets/taxi-locations/taxi-rhodes.webp",
       url: "airport-transfers/Rhodes/",
       footer: {
         link: "/airport-transfers/rhodes/",
@@ -1988,7 +1988,7 @@ You can call RODA services at (+30)22410-26300 or (+30)22410-24129.`,
       ],
       slide: {
         name: "Kos",
-        photo: "/assets/taxi-locations/taxi-kos.jpeg",
+        photo: "/assets/taxi-locations/taxi-kos.webp",
         href: "/airport-transfers/kos/",
       },
 
@@ -2061,7 +2061,7 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
 `,
         },
       ],
-      photo: "./public/assets/taxi-locations/taxi-kos.jpeg",
+      photo: "./public/assets/taxi-locations/taxi-kos.webp",
       url: "airport-transfers/Kos/",
       footer: {
         link: "/airport-transfers/kos/",
@@ -2128,7 +2128,7 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
       ],
       slide: {
         name: "Chalkidiki",
-        photo: "/assets/taxi-locations/taxi-chalkidiki.jpeg",
+        photo: "/assets/taxi-locations/taxi-chalkidiki.webp",
         href: "/airport-transfers/chalkidiki/",
       },
       airport_Guide: {
@@ -2197,7 +2197,7 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
 `,
         },
       ],
-      photo: "./public/assets/taxi-locations/taxi-chalkidiki.jpeg",
+      photo: "./public/assets/taxi-locations/taxi-chalkidiki.webp",
       url: "airport-transfers/chalkidiki/",
       footer: {
         link: "/airport-transfers/chalkidiki/",
@@ -2264,7 +2264,7 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
       ],
       slide: {
         name: "Corfu",
-        photo: "/assets/taxi-locations/taxi-corfu.jpeg", // photo needed
+        photo: "/assets/taxi-locations/taxi-corfu.webp", // photo needed
         href: "/airport-transfers/corfu/",
       },
       airport_Guide: {
@@ -2334,7 +2334,7 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
 `,
         },
       ],
-      photo: "./public/assets/taxi-locations/taxi-corfu.jpeg",
+      photo: "./public/assets/taxi-locations/taxi-corfu.webp",
       url: "airport-transfers/corfu/",
       footer: {
         link: "/airport-transfers/corfu/",

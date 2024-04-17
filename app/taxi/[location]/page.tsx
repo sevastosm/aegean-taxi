@@ -103,7 +103,7 @@ export default function Page({ params }: { params: Props }) {
         <WhyBook />
       </SectionSpacer>
       <TaxiReviews />
-      <TaxiFindUs />
+      {/*<TaxiFindUs />*/}
       <TaxiFares params={params} />
       <TaxiFaq />
     </>

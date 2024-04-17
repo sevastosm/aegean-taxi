@@ -15,7 +15,7 @@ import Stack from "@mui/material/Stack";
 import Slider from "react-slick";
 
 //
-import PLANE from "public/assets/plane-travel.png";
+import PLANE from "public/assets/plane-travel.webp";
 import PRICE from "public/assets/price-icon.svg";
 import RIDE from "public/assets/ride.svg";
 import DRIVERS from "public/assets/drivers-icon.svg";

@@ -14,7 +14,7 @@ import Stack from "@mui/material/Stack";
 import Slider from "react-slick";
 
 //
-import TOURS from "public/assets/whyus-tours.png";
+import TOURS from "public/assets/whyus-tours.webp";
 import LAMP from "public/assets/lamp.svg";
 import GEAR from "public/assets/gear.svg";
 import STAR from "public/assets/star.svg";

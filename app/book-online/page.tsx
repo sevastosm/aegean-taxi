@@ -59,7 +59,7 @@ import Driver from "@/components/driver";
 // models
 import { BookingState } from "@/types/bookingState";
 
-import TAXI from "public/assets/car-top.png";
+import TAXI from "public/assets/car-top.webp";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);

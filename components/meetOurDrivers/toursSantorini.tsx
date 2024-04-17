@@ -12,9 +12,9 @@ import Stack from "@mui/material/Stack";
 import Slider from "react-slick";
 
 // assets
-import NIKOS from "public/assets/drivers/nikos.jpg";
-import COSTAS from "public/assets/drivers/costas-santorini.jpg";
-import ALEX from "public/assets/drivers/alex.png";
+import NIKOS from "public/assets/drivers/nikos.webp";
+import COSTAS from "public/assets/drivers/costas-santorini.webp";
+import ALEX from "public/assets/drivers/alex.webp";
 
 export default function DriversSantorini() {
   let settings = {

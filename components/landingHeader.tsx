@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import Form from "components/requestRideForm/form";
 import DownloadAppButton from "components/downloadAppButton";
 
-import bg from "public/assets/landing-header.png";
+import bg from "public/assets/landing-header.webp";
 
 export default function LandingHeader() {
   return (

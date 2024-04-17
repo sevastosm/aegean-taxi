@@ -12,9 +12,9 @@ import Typography from "@mui/material/Typography";
 import Slider from "react-slick";
 
 //
-import DAY from "public/assets/tours-santorini-half-day.jpg";
-import NIGHT from "public/assets/tours-santorini-night.jpg";
-import CUSTOM from "public/assets/tours-santorini-custom.png";
+import DAY from "public/assets/tours-santorini-half-day.webp";
+import NIGHT from "public/assets/tours-santorini-night.webp";
+import CUSTOM from "public/assets/tours-santorini-custom.webp";
 
 export default function SantoriniSelectedTours() {
   let settings = {

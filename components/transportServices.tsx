@@ -18,9 +18,9 @@ import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import InsertInvitationSharpIcon from "@mui/icons-material/InsertInvitationSharp";
 
 import Stack from "@mui/material/Stack";
-import TRANSPORT from "public/assets/professional-transport.png";
-import AIRPORT from "public/assets/airport_transfers.png";
-import TOURS from "public/assets/tours.jpg";
+import TRANSPORT from "public/assets/professional-transport.webp";
+import AIRPORT from "public/assets/airport_transfers.webp";
+import TOURS from "public/assets/tours.webp";
 
 export default function TransportServices() {
   const [value, setValue] = useState("1");

@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 
 // assets
-import SANTORINI from "public/assets/santorini-top-sights.jpg";
+import SANTORINI from "public/assets/santorini-top-sights.webp";
 
 export default function SantoriniTopSights() {
   return (
