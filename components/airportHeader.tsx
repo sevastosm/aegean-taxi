@@ -11,7 +11,7 @@ import Typography from "@mui/material/Typography";
 // components
 import Form from "components/requestRideForm/form";
 
-import bg from "public/assets/taxi-header.webp";
+import bg from "public/assets/airport-header.webp";
 // FIXME: No images available
 // import Athens from "public/assets/airport-athens.jpg";
 // import Mykonos from "public/assets/airport-mykonos.png";

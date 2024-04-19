@@ -7,7 +7,7 @@ import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Grid";
 
 // assets
-import ATHENS from "public/assets/athens-airport.webp";
+import ATHENS from "public/assets/airport-services.webp";
 import TAXI from "public/assets/taxi-guide.webp";
 import TRANSPORT from "public/assets/transport-guide.webp";
 import { locationDetails } from "../../utils/locationDetails";
