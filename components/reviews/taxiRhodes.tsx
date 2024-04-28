@@ -96,7 +96,8 @@ export default function TaxiRhodesReviews() {
                       gutterBottom
                       sx={{
                         my: 2,
-                        minHeight: { xs: "220px", md: "240px" },
+                        maxHeight: "100px",
+                        overflowY: "scroll",
                       }}
                     >
                       If i had to describe aegean taxi in one word, it would be
@@ -147,7 +148,8 @@ export default function TaxiRhodesReviews() {
                       gutterBottom
                       sx={{
                         my: 2,
-                        minHeight: { xs: "220px", md: "240px" },
+                        maxHeight: "100px",
+                        overflowY: "scroll",
                       }}
                     >
                       I used the service during my stay in Rhodes in June.
@@ -197,7 +199,8 @@ export default function TaxiRhodesReviews() {
                       gutterBottom
                       sx={{
                         my: 2,
-                        minHeight: { xs: "220px", md: "240px" },
+                        maxHeight: "100px",
+                        overflowY: "scroll",
                       }}
                     >
                       My experience with Aegean Taxi has been truly wonderful!

@@ -27,9 +27,9 @@ export default function TaxiRhodesFaq() {
       </Typography>
 
       <Box sx={{ my: 3 }}>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="booking-content"
             id="booking-header"
           >
@@ -39,8 +39,8 @@ export default function TaxiRhodesFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               Can I pay the taxi with card in Rhodes?
@@ -52,8 +52,8 @@ export default function TaxiRhodesFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               There is no government mandate that requires taxi drivers in
@@ -62,9 +62,9 @@ export default function TaxiRhodesFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -74,8 +74,8 @@ export default function TaxiRhodesFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               How much is a taxi from Rhodes Old Town to the airport?
@@ -87,8 +87,8 @@ export default function TaxiRhodesFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               A usual day fare for a ride between Rhodes international airport
@@ -96,9 +96,9 @@ export default function TaxiRhodesFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="drivers-content"
             id="drivers-header"
           >
@@ -108,8 +108,8 @@ export default function TaxiRhodesFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               Are taxis available at Rhodes Airport?
@@ -121,8 +121,8 @@ export default function TaxiRhodesFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Yes. You can easily find a taxi at the designated taxi ranks
@@ -132,9 +132,9 @@ export default function TaxiRhodesFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -144,8 +144,8 @@ export default function TaxiRhodesFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               Do you tip taxi drivers in Rhodes?
@@ -157,8 +157,8 @@ export default function TaxiRhodesFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Tips are optional for transport providers in Rhodes and one should
@@ -167,9 +167,9 @@ export default function TaxiRhodesFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -179,8 +179,8 @@ export default function TaxiRhodesFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               Are there buses in Rhodes?
@@ -192,8 +192,8 @@ export default function TaxiRhodesFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Yes. Rhodes operates a frequent bus service to and from most of
@@ -201,9 +201,9 @@ export default function TaxiRhodesFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -213,8 +213,8 @@ export default function TaxiRhodesFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               Can you get around Rhodes without a car?
@@ -226,8 +226,8 @@ export default function TaxiRhodesFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Rhodes is a large island and getting to the various points of
@@ -235,9 +235,9 @@ export default function TaxiRhodesFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -247,8 +247,8 @@ export default function TaxiRhodesFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               What colours are Taxis in Rhodes?
@@ -260,17 +260,17 @@ export default function TaxiRhodesFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               All taxis in Rhodes are blue colour
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -280,8 +280,8 @@ export default function TaxiRhodesFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               Do taxis run all day and night?
@@ -293,8 +293,8 @@ export default function TaxiRhodesFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Most taxis operate throughout the day on the island of Rhodes.
@@ -303,9 +303,9 @@ export default function TaxiRhodesFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -315,8 +315,8 @@ export default function TaxiRhodesFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               Are taxis available at Rhodes port?
@@ -328,8 +328,8 @@ export default function TaxiRhodesFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Yes. You can easily find a taxi at the designated taxi ranks

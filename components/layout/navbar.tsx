@@ -16,6 +16,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 
+import phoneIcon from "public/assets/phone-call-icon.svg";
+
 //
 import logo from "public/assets/Aegean-01.webp";
 import { Phone } from "@mui/icons-material";
@@ -124,7 +126,7 @@ export default function DrawerAppBar(props: Props) {
                 component={NextLink}
                 variant="body1"
                 sx={{
-                  mt: 3,
+                  mt: 2,
                   lineHeight: 3,
                   // borderBottom: `3px solid #000`,
                   width: "75px",
@@ -169,7 +171,9 @@ export default function DrawerAppBar(props: Props) {
                 component={Link}
                 color="primary"
                 sx={{ textTransform: "unset" }}
-                startIcon={<Phone />}
+                endIcon={
+                  <Image src={phoneIcon} width="40" height="33" alt="Call us" />
+                }
                 href="tel:00302152154000"
               >
                 +30 215 215 4000

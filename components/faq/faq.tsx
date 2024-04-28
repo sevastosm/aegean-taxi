@@ -17,7 +17,7 @@ export default function Faq({ location, type }: any) {
   const QuestionList = ({ data }: any) => (
     <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
       <AccordionSummary
-        expandIcon={<ExpandMoreIcon />}
+        expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
         aria-controls="booking-content"
         id="booking-header"
       >
@@ -57,7 +57,7 @@ export default function Faq({ location, type }: any) {
         gutterBottom
         sx={{
           fontWeight: 700,
-          fontSize: { xs: "26px", md: "36px" },
+          fontSize: { xs: "28px", md: "36px" },
           // lineHeight: { xs: "48px", md: "68px" },
           mt: 5,
         }}
@@ -73,9 +73,11 @@ export default function Faq({ location, type }: any) {
         </Box>
       ) : (
         <Box sx={{ my: 3 }}>
-          <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+          <Accordion sx={{ py: 0 }}>
             <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
+              sx={{ color: "black", padding: "0px auto" }}
+              className="AccordionSummary-test"
+              expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
               aria-controls="booking-content"
               id="booking-header"
             >
@@ -85,30 +87,30 @@ export default function Faq({ location, type }: any) {
                 gutterBottom
                 sx={{
                   fontWeight: 500,
-                  fontSize: "20px",
-                  color: `rgba(0, 0, 0, 0.6)`,
+                  fontSize: "15px",
+                  // color: `rgba(0, 0, 0, 0.6)`,
                 }}
               >
                 What happens after I complete my booking?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{ py: 0 }}>
               <Typography
                 component="p"
                 variant="body1"
                 sx={{
                   fontWeight: 400,
-                  fontSize: { xs: "16px", md: "16px" },
-                  lineHeight: { xs: "40px", md: "51px" },
+                  fontSize: "15px",
+                  lineHeight: "24px",
                 }}
               >
                 {`After the booking is completed, you will receive a confirmation email of your order. About 3-4 days prior to your arrival, you will receive your driver’s details, including their photo and contact information. We also send email and SMS updates regarding your ride, up until the moment you meet at the arrival gate. Drivers know exactly where to meet you and what to do in case of a delay so rest assured that everything will go according to plan.`}
               </Typography>
             </AccordionDetails>
           </Accordion>
-          <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+          <Accordion sx={{ py: 0 }}>
             <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
+              expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
               aria-controls="question-content"
               id="question-header"
             >
@@ -118,8 +120,8 @@ export default function Faq({ location, type }: any) {
                 gutterBottom
                 sx={{
                   fontWeight: 500,
-                  fontSize: "20px",
-                  color: `rgba(0, 0, 0, 0.6)`,
+                  fontSize: "15px",
+                  lineHeight: "24px",
                 }}
               >
                 Is it more expensive than a taxi ride?
@@ -131,8 +133,8 @@ export default function Faq({ location, type }: any) {
                 variant="body1"
                 sx={{
                   fontWeight: 400,
-                  fontSize: { xs: "16px", md: "16px" },
-                  lineHeight: { xs: "40px", md: "51px" },
+                  fontSize: "15px",
+                  lineHeight: "24px",
                 }}
               >
                 We try to match the price you would pay for a regular taxi ride.
@@ -144,9 +146,9 @@ export default function Faq({ location, type }: any) {
               </Typography>
             </AccordionDetails>
           </Accordion>
-          <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+          <Accordion sx={{ py: 0 }}>
             <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
+              expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
               aria-controls="drivers-content"
               id="drivers-header"
             >
@@ -156,8 +158,8 @@ export default function Faq({ location, type }: any) {
                 gutterBottom
                 sx={{
                   fontWeight: 500,
-                  fontSize: "20px",
-                  color: `rgba(0, 0, 0, 0.6)`,
+                  fontSize: "15px",
+                  lineHeight: "24px",
                 }}
               >
                 How do you select your drivers?
@@ -181,9 +183,9 @@ export default function Faq({ location, type }: any) {
               </Typography>
             </AccordionDetails>
           </Accordion>
-          <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+          <Accordion sx={{ py: 0 }}>
             <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
+              expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
               aria-controls="question-content"
               id="question-header"
             >
@@ -193,8 +195,8 @@ export default function Faq({ location, type }: any) {
                 gutterBottom
                 sx={{
                   fontWeight: 500,
-                  fontSize: "20px",
-                  color: `rgba(0, 0, 0, 0.6)`,
+                  fontSize: "15px",
+                  lineHeight: "24px",
                 }}
               >
                 I have a different question
@@ -206,8 +208,8 @@ export default function Faq({ location, type }: any) {
                 variant="body1"
                 sx={{
                   fontWeight: 400,
-                  fontSize: { xs: "16px", md: "16px" },
-                  lineHeight: { xs: "40px", md: "51px" },
+                  fontSize: "15px",
+                  lineHeight: "24px",
                 }}
               >
                 Contact us <br />

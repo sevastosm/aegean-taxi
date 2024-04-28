@@ -198,6 +198,7 @@ export default function FooterLayout() {
                   </ListItem>
                 </List>
               </Grid>
+
               <Grid item xs={12} md={4}>
                 <Typography
                   component={"span"}
@@ -271,12 +272,7 @@ export default function FooterLayout() {
                 </List>
               </Grid>
               {/* AIRPORTS */}
-              <Grid
-                item
-                xs={12}
-                md={4}
-                sx={{ display: { xs: "none", md: "block" } }}
-              >
+              <Grid item xs={12} md={4}>
                 <Typography
                   component={"span"}
                   variant="h6"
@@ -499,13 +495,13 @@ export default function FooterLayout() {
           width: "100%",
           display: "flex",
           justifyContent: { xs: "space-between", md: "flex-start" },
-          flexDirection: { xs: "row", md: "row-reverse" },
+          //flexDirection: { xs: "row", md: "row-reverse" },
 
           textAlign: "center",
           // right: { xs: "30%", md: 10 },
           position: "fixed" /* Fixed/sticky position */,
           bottom: showCookiesBanner
-            ? { xs: 100, md: 40 }
+            ? { xs: 50, md: 40 }
             : 0 /* Place the button at the bottom of the page */,
           /* // right: 30px, /* Place the button 30px from the right */
           zIndex: 99980 /* Make sure it does not overlap */,
@@ -514,9 +510,9 @@ export default function FooterLayout() {
           p: 1,
         }}
       >
-        <a href="tel:+306943829494" className="">
+        {/* <a href="tel:+306943829494" className="">
           <Image src={phoneIcon} width="46" height="38" alt="Call us" />
-        </a>
+        </a> */}
         <a href="https://wa.me/+306943829494" target="_blank" className="mr-4">
           <Image
             src={whatsApp}
@@ -530,8 +526,9 @@ export default function FooterLayout() {
       {showCookiesBanner && (
         <Alert
           sx={{
-            position: "fixed",
+            position: { xs: "relative", md: "fixed" },
             width: "100%",
+            whiteSpace: "nowrap",
             bottom: 0,
             zIndex: 99999,
           }}

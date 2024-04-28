@@ -96,7 +96,8 @@ export default function TaxiSantoriniReviews() {
                       gutterBottom
                       sx={{
                         my: 2,
-                        minHeight: { xs: "265px", md: "265px" },
+                        maxHeight: "100px",
+                        overflowY: "scroll",
                       }}
                     >
                       Aegean Taxi offers a hassle-free service in Santorini. We
@@ -146,7 +147,8 @@ export default function TaxiSantoriniReviews() {
                       gutterBottom
                       sx={{
                         my: 2,
-                        minHeight: { xs: "265px", md: "265px" },
+                        maxHeight: "100px",
+                        overflowY: "scroll",
                       }}
                     >
                       We used Aegean Taxi during our stay in Santorini. Every
@@ -197,7 +199,8 @@ export default function TaxiSantoriniReviews() {
                       gutterBottom
                       sx={{
                         my: 2,
-                        minHeight: { xs: "265px", md: "265px" },
+                        maxHeight: "100px",
+                        overflowY: "scroll",
                       }}
                     >
                       Excellent service! We used them on many occasions and they

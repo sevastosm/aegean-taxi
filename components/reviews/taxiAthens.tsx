@@ -95,7 +95,8 @@ export default function TaxiAthensReviews() {
                       gutterBottom
                       sx={{
                         my: 2,
-                        minHeight: { xs: "200px", md: "170px" },
+                        maxHeight: "100px",
+                        overflowY: "scroll",
                       }}
                     >
                       I had a fantastic experience with Aegean taxi app in
@@ -144,7 +145,8 @@ export default function TaxiAthensReviews() {
                       gutterBottom
                       sx={{
                         my: 2,
-                        minHeight: { xs: "200px", md: "170px" },
+                        maxHeight: "100px",
+                        overflowY: "scroll",
                       }}
                     >
                       Impressed with Aegean Taxi. I booked online first and then
@@ -172,7 +174,7 @@ export default function TaxiAthensReviews() {
                           color: "#000",
                         }}
                       >
-                        Taylor - September 2017
+                        Taylor - August 2017
                       </Box>
                     </Box>
                   </Box>
@@ -193,7 +195,8 @@ export default function TaxiAthensReviews() {
                       gutterBottom
                       sx={{
                         my: 2,
-                        minHeight: { xs: "200px", md: "170px" },
+                        maxHeight: "100px",
+                        overflowY: "scroll",
                       }}
                     >
                       Booked via WhatsApp in 30 seconds while in Athens. Very

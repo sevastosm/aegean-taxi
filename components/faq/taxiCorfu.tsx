@@ -27,9 +27,9 @@ export default function TaxiCorfuFaq() {
       </Typography>
 
       <Box sx={{ my: 3 }}>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="booking-content"
             id="booking-header"
           >
@@ -39,8 +39,8 @@ export default function TaxiCorfuFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               Are taxis available at Corfu Airport?
@@ -52,8 +52,8 @@ export default function TaxiCorfuFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Yes. it is easy to find a taxi at the designated taxi ranks
@@ -63,9 +63,9 @@ export default function TaxiCorfuFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -75,8 +75,8 @@ export default function TaxiCorfuFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               Are taxis available at Corfu port?
@@ -88,8 +88,8 @@ export default function TaxiCorfuFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Yes. You can easily find a taxi at the designated taxi ranks
@@ -99,9 +99,9 @@ export default function TaxiCorfuFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="drivers-content"
             id="drivers-header"
           >
@@ -111,8 +111,8 @@ export default function TaxiCorfuFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               Are taxis easy to get in Corfu?
@@ -124,8 +124,8 @@ export default function TaxiCorfuFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               It is relatively straightforward to find an available taxi in
@@ -135,9 +135,9 @@ export default function TaxiCorfuFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -147,8 +147,8 @@ export default function TaxiCorfuFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               Are taxis in Corfu metered?
@@ -160,8 +160,8 @@ export default function TaxiCorfuFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Yes. It is a legal requirement for all licensed taxis to turn on
@@ -170,9 +170,9 @@ export default function TaxiCorfuFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -182,8 +182,8 @@ export default function TaxiCorfuFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               Do I need cash for taxis in Corfu?
@@ -195,8 +195,8 @@ export default function TaxiCorfuFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Yes. There is no government mandate that forces taxi drivers to
@@ -205,9 +205,9 @@ export default function TaxiCorfuFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -217,8 +217,8 @@ export default function TaxiCorfuFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               What is the best transportation in Corfu?
@@ -230,8 +230,8 @@ export default function TaxiCorfuFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Corfu offers a range of transport modes, depending on the
@@ -241,9 +241,9 @@ export default function TaxiCorfuFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -253,8 +253,8 @@ export default function TaxiCorfuFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               What colours are Taxis in Corfu?
@@ -266,17 +266,17 @@ export default function TaxiCorfuFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               All Corfu taxis are blue colour
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -286,8 +286,8 @@ export default function TaxiCorfuFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               Do taxis run all day and night?
@@ -299,8 +299,8 @@ export default function TaxiCorfuFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Most taxis operate throughout the day on the island of Corfu.
@@ -309,9 +309,9 @@ export default function TaxiCorfuFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -321,8 +321,8 @@ export default function TaxiCorfuFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               Are there buses in Corfu island?
@@ -334,8 +334,8 @@ export default function TaxiCorfuFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Yes. Corfu operates a frequent bus service to and from most of the

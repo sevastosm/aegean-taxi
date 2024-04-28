@@ -27,9 +27,9 @@ export default function TaxiMykonosFaq() {
       </Typography>
 
       <Box sx={{ my: 3 }}>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="booking-content"
             id="booking-header"
           >
@@ -39,8 +39,8 @@ export default function TaxiMykonosFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               How can i find a taxi or transfer in Mykonos?
@@ -52,8 +52,8 @@ export default function TaxiMykonosFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Apart from the designated taxi stands in the town center, port or
@@ -66,9 +66,9 @@ export default function TaxiMykonosFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -78,8 +78,8 @@ export default function TaxiMykonosFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               Is it easy to find a taxi in Mykonos?
@@ -91,8 +91,8 @@ export default function TaxiMykonosFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               No. Taxis in Mykonos can be hard to find, especially in the peak
@@ -102,9 +102,9 @@ export default function TaxiMykonosFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="drivers-content"
             id="drivers-header"
           >
@@ -114,8 +114,8 @@ export default function TaxiMykonosFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               Are Mykonos Taxis and Transfers safe in Mykonos?
@@ -127,8 +127,8 @@ export default function TaxiMykonosFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Yes. Mykonos is a cosidered to be a safe island with no major
@@ -138,9 +138,9 @@ export default function TaxiMykonosFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -150,8 +150,8 @@ export default function TaxiMykonosFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               What is the best way to find a taxi from Mykonos town?
@@ -163,8 +163,8 @@ export default function TaxiMykonosFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Mykonos town has 2 designated taxi ranks in the areas of Remezzo
@@ -173,9 +173,9 @@ export default function TaxiMykonosFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -185,8 +185,8 @@ export default function TaxiMykonosFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               How much are the taxis or transfers from Mykonos Airport or Port ?
@@ -197,8 +197,8 @@ export default function TaxiMykonosFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               A usual taxi fare from Mykonos airport to town is about €20, and
@@ -207,9 +207,9 @@ export default function TaxiMykonosFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -219,8 +219,8 @@ export default function TaxiMykonosFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               Are taxis and transfers expensive?
@@ -231,8 +231,8 @@ export default function TaxiMykonosFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Taxis in Mykonos operate with a government mandated taxi meter,
@@ -243,9 +243,9 @@ export default function TaxiMykonosFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -255,8 +255,8 @@ export default function TaxiMykonosFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               Are there buses in Mykonos?
@@ -268,8 +268,8 @@ export default function TaxiMykonosFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Yes. Mykonos operates a frequent bus service to and from most of
@@ -280,9 +280,9 @@ export default function TaxiMykonosFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -292,8 +292,8 @@ export default function TaxiMykonosFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               How many taxis are there in Mykonos?
@@ -305,8 +305,8 @@ export default function TaxiMykonosFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Mykonos island has only 34 registered taxis, which cater to the
@@ -316,9 +316,9 @@ export default function TaxiMykonosFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -328,8 +328,8 @@ export default function TaxiMykonosFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               Is Aegean Taxi working in Mykonos?
@@ -341,8 +341,8 @@ export default function TaxiMykonosFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Yes. Aegean Taxi is the leading taxi and transfer service in the
@@ -353,9 +353,9 @@ export default function TaxiMykonosFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -365,8 +365,8 @@ export default function TaxiMykonosFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               Do Taxi drivers speak English in Mykonos?
@@ -378,8 +378,8 @@ export default function TaxiMykonosFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Aegean Taxi hires only fluent English speakers so all drivers can
@@ -390,9 +390,9 @@ export default function TaxiMykonosFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -402,8 +402,8 @@ export default function TaxiMykonosFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               What colors are Taxis in Mykonos?
@@ -415,17 +415,17 @@ export default function TaxiMykonosFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Mykonos Taxis are painted in silver color
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -435,8 +435,8 @@ export default function TaxiMykonosFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               Do you have to tip taxis in Mykonos?
@@ -448,8 +448,8 @@ export default function TaxiMykonosFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Tips are optional for transport providers in Mykonos and one
@@ -460,9 +460,9 @@ export default function TaxiMykonosFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -472,8 +472,8 @@ export default function TaxiMykonosFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               Do I need cash for taxis in Mykonos?
@@ -485,8 +485,8 @@ export default function TaxiMykonosFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Yes. There is no government mandate that requires taxi drivers to
@@ -497,9 +497,9 @@ export default function TaxiMykonosFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -509,8 +509,8 @@ export default function TaxiMykonosFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               Do taxis run all day and night in Mykonos?
@@ -522,8 +522,8 @@ export default function TaxiMykonosFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Most taxis operate throughout the day on the island of Mykonos.

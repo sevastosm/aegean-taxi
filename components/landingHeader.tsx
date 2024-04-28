@@ -36,12 +36,13 @@ export default function LandingHeader() {
             component="h1"
             gutterBottom
             sx={{
-              fontWeight: { xs: "700", md: "700" },
+              fontWeight: { xs: "500", md: "700" },
               fontSize: { xs: "1rem", md: "3.75rem" },
-              lineHeight: { xs: "1.5", md: "1.2" },
+              lineHeight: { xs: "2", md: "1.2" },
               // display: { xs: "block", md: "none" },
               textAlign: { xs: "center", md: "left" },
-              mt: { xs: "8px", md: "48px" },
+              mt: { xs: "22px", md: "48px" },
+              mb: { xs: "22px" },
             }}
           >
             Ride with Aegean Taxi.
@@ -83,6 +84,7 @@ export default function LandingHeader() {
               display: { xs: "block", md: "flex" },
               minHeight: { xs: "auto", md: "595px" },
               marginBottom: "20px",
+              width: "100%",
             }}
           >
             <div

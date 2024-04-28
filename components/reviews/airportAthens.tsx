@@ -96,7 +96,8 @@ export default function AirportAthensReviews() {
                       gutterBottom
                       sx={{
                         my: 2,
-                        minHeight: { xs: "200px", md: "195px" },
+                        maxHeight: "100px",
+                        overflowY: "scroll",
                       }}
                     >
                       Arranging my airport transfer in Athens with the Aegean
@@ -146,7 +147,8 @@ export default function AirportAthensReviews() {
                       gutterBottom
                       sx={{
                         my: 2,
-                        minHeight: { xs: "200px", md: "195px" },
+                        maxHeight: "100px",
+                        overflowY: "scroll",
                       }}
                     >
                       For a hassle-free airport transfer in Athens, I highly
@@ -196,7 +198,8 @@ export default function AirportAthensReviews() {
                       gutterBottom
                       sx={{
                         my: 2,
-                        minHeight: { xs: "200px", md: "195px" },
+                        maxHeight: "100px",
+                        overflowY: "scroll",
                       }}
                     >
                       If you need a reliable airport transfer in Athens no look

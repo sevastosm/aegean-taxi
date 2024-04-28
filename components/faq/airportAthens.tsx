@@ -27,9 +27,9 @@ export default function AirportAthensFaq() {
       </Typography>
 
       <Box sx={{ my: 3 }}>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="booking-content"
             id="booking-header"
           >
@@ -39,8 +39,8 @@ export default function AirportAthensFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               Are taxis in Athens safe?
@@ -52,8 +52,8 @@ export default function AirportAthensFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Yes. Taxis in Athens have a great safety record and tourists can
@@ -65,9 +65,9 @@ export default function AirportAthensFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -77,8 +77,8 @@ export default function AirportAthensFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               Where to find a taxi in Athens?
@@ -90,8 +90,8 @@ export default function AirportAthensFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Taxis can be found in a number of designated taxi ranks throughout
@@ -103,9 +103,9 @@ export default function AirportAthensFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="drivers-content"
             id="drivers-header"
           >
@@ -115,8 +115,8 @@ export default function AirportAthensFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               Is it hard to get a taxi in Athens?
@@ -128,8 +128,8 @@ export default function AirportAthensFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               No. Getting a ride in Athens is relatively easy due to large
@@ -137,9 +137,9 @@ export default function AirportAthensFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -149,8 +149,8 @@ export default function AirportAthensFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               How many taxis are there in Athens?
@@ -162,8 +162,8 @@ export default function AirportAthensFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Athens has in excess of 13,000 licensed taxis available, in
@@ -172,9 +172,9 @@ export default function AirportAthensFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -184,8 +184,8 @@ export default function AirportAthensFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               How long do taxis run in Athens?
@@ -197,8 +197,8 @@ export default function AirportAthensFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Taxis in Athens are available 24/4 and can be found throughout the
@@ -206,9 +206,9 @@ export default function AirportAthensFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -218,8 +218,8 @@ export default function AirportAthensFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               What Colour are taxis in Athens?
@@ -231,17 +231,17 @@ export default function AirportAthensFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               All Athens taxis are yellow in color
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -251,8 +251,8 @@ export default function AirportAthensFaq() {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontSize: "15px",
+                // color: `rgba(0, 0, 0, 0.6)`,
               }}
             >
               Is transport expensive in Athens?
@@ -264,8 +264,8 @@ export default function AirportAthensFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Getting around in Athens is relatively cheap compared to all other

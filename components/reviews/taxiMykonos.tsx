@@ -96,7 +96,8 @@ export default function TaxiMykonosReviews() {
                       gutterBottom
                       sx={{
                         my: 2,
-                        minHeight: { xs: "385px", md: "400px" },
+                        maxHeight: "100px",
+                        overflowY: "scroll",
                       }}
                     >
                       Booking a ride on Mykonos Island has never been easier
@@ -146,7 +147,8 @@ export default function TaxiMykonosReviews() {
                       gutterBottom
                       sx={{
                         my: 2,
-                        minHeight: { xs: "385px", md: "400px" },
+                        maxHeight: "100px",
+                        overflowY: "scroll",
                       }}
                     >
                       We spent a week in Mykonos and used this company for all
@@ -200,7 +202,8 @@ export default function TaxiMykonosReviews() {
                       gutterBottom
                       sx={{
                         my: 2,
-                        minHeight: { xs: "385px", md: "400px" },
+                        maxHeight: "100px",
+                        overflowY: "scroll",
                       }}
                     >
                       We have used Aegean Taxi app several times on our stay in

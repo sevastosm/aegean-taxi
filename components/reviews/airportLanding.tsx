@@ -86,16 +86,11 @@ export default function AirportLandingReviews({ location }: any) {
             gutterBottom
             sx={{
               my: 2,
-              // minHeight: { xs: "200px", md: "170px" },
+              maxHeight: "100px",
+              overflowY: "scroll",
             }}
           >
-            <ReadMoreReact
-              text={item.text}
-              min={60}
-              ideal={80}
-              max={81}
-              readMoreText={"Read more..."}
-            />
+            {item.text}
           </Typography>
 
           {/* User */}

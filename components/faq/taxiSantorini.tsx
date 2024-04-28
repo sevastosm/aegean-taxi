@@ -27,9 +27,9 @@ export default function TaxiSantoriniFaq() {
       </Typography>
 
       <Box sx={{ my: 3 }}>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="booking-content"
             id="booking-header"
           >
@@ -38,9 +38,9 @@ export default function TaxiSantoriniFaq() {
               variant="h5"
               gutterBottom
               sx={{
-                fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontWeight: 400,
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               How much does a taxi cost on Santorini?
@@ -52,8 +52,8 @@ export default function TaxiSantoriniFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Taxi fares in Santorini are dictacted by government regulations
@@ -64,9 +64,9 @@ export default function TaxiSantoriniFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -75,9 +75,9 @@ export default function TaxiSantoriniFaq() {
               variant="h5"
               gutterBottom
               sx={{
-                fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontWeight: 400,
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Is it easy to get a taxi in Santorini?
@@ -89,8 +89,8 @@ export default function TaxiSantoriniFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Due to the limited number of taxis on the island, dispatch times
@@ -101,9 +101,9 @@ export default function TaxiSantoriniFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="drivers-content"
             id="drivers-header"
           >
@@ -112,9 +112,9 @@ export default function TaxiSantoriniFaq() {
               variant="h5"
               gutterBottom
               sx={{
-                fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontWeight: 400,
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               How to find a taxi in Santorini?
@@ -126,8 +126,8 @@ export default function TaxiSantoriniFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               You can hail a Taxi in Santorini from the street, or simply by
@@ -139,9 +139,9 @@ export default function TaxiSantoriniFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -150,9 +150,9 @@ export default function TaxiSantoriniFaq() {
               variant="h5"
               gutterBottom
               sx={{
-                fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontWeight: 400,
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Do you tip taxi drivers in Santorini?
@@ -164,8 +164,8 @@ export default function TaxiSantoriniFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Tipping your driver is entirely on your discretion and depends on
@@ -175,9 +175,9 @@ export default function TaxiSantoriniFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -186,9 +186,9 @@ export default function TaxiSantoriniFaq() {
               variant="h5"
               gutterBottom
               sx={{
-                fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontWeight: 400,
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Do taxis in Santorini take cash or card?
@@ -200,8 +200,8 @@ export default function TaxiSantoriniFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               The preferred payment method for taxis in Santorini is cash, since
@@ -212,9 +212,9 @@ export default function TaxiSantoriniFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -223,9 +223,9 @@ export default function TaxiSantoriniFaq() {
               variant="h5"
               gutterBottom
               sx={{
-                fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontWeight: 400,
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               How much is a taxi from Oia to Fira?
@@ -237,8 +237,8 @@ export default function TaxiSantoriniFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Fares for this ride vary from €30 to €60 euros, depending on the
@@ -246,9 +246,9 @@ export default function TaxiSantoriniFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -257,9 +257,9 @@ export default function TaxiSantoriniFaq() {
               variant="h5"
               gutterBottom
               sx={{
-                fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontWeight: 400,
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Is Fira or Oia better?
@@ -271,8 +271,8 @@ export default function TaxiSantoriniFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Both locations within Santorini island are unique and offer a
@@ -283,9 +283,9 @@ export default function TaxiSantoriniFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -294,9 +294,9 @@ export default function TaxiSantoriniFaq() {
               variant="h5"
               gutterBottom
               sx={{
-                fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontWeight: 400,
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Is Aegean Taxi working in Santorini?
@@ -308,8 +308,8 @@ export default function TaxiSantoriniFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Yes. Aegean Taxi is the leading taxi and transfer service in the
@@ -321,9 +321,9 @@ export default function TaxiSantoriniFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -332,9 +332,9 @@ export default function TaxiSantoriniFaq() {
               variant="h5"
               gutterBottom
               sx={{
-                fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontWeight: 400,
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Do drivers speak English in Santorini?
@@ -346,8 +346,8 @@ export default function TaxiSantoriniFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Aegean Taxi hires only fluent English speakers so all drivers can
@@ -358,9 +358,9 @@ export default function TaxiSantoriniFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -369,9 +369,9 @@ export default function TaxiSantoriniFaq() {
               variant="h5"
               gutterBottom
               sx={{
-                fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontWeight: 400,
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               What colours are Taxis in Santorini?
@@ -383,8 +383,8 @@ export default function TaxiSantoriniFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               All licenced taxis in Santorini are silver or grey. Aegean Taxi
@@ -392,9 +392,9 @@ export default function TaxiSantoriniFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -403,9 +403,9 @@ export default function TaxiSantoriniFaq() {
               variant="h5"
               gutterBottom
               sx={{
-                fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontWeight: 400,
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Do you need to tip your driver in Santorini?
@@ -417,8 +417,8 @@ export default function TaxiSantoriniFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Tips are optional for transport providers in Santorini and there
@@ -430,9 +430,9 @@ export default function TaxiSantoriniFaq() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+        <Accordion sx={{ py: 0 }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
             aria-controls="question-content"
             id="question-header"
           >
@@ -441,9 +441,9 @@ export default function TaxiSantoriniFaq() {
               variant="h5"
               gutterBottom
               sx={{
-                fontWeight: 500,
-                fontSize: "20px",
-                color: `rgba(0, 0, 0, 0.6)`,
+                fontWeight: 400,
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Do I need cash for taxis in Santorini?
@@ -455,8 +455,8 @@ export default function TaxiSantoriniFaq() {
               variant="body1"
               sx={{
                 fontWeight: 400,
-                fontSize: { xs: "16px", md: "16px" },
-                lineHeight: { xs: "40px", md: "51px" },
+                fontSize: "15px",
+                lineHeight: "24px",
               }}
             >
               Yes. There is no government mandate that requires taxi drivers in
