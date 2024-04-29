@@ -80,7 +80,7 @@
 
   .square {
     top: 0px;
-    left: 0px;
+    left: 2px;
   }
 }
 
@@ -126,4 +126,9 @@
   top: 10px;
   left: 10px;
   z-index: 2;
+}
+
+
+.setfixed {
+  position: fixed;
 }

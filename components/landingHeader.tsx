@@ -10,6 +10,8 @@ import Form from "components/requestRideForm/form";
 import DownloadAppButton from "components/downloadAppButton";
 
 import bg from "public/assets/landing-header.webp";
+import Observer from "./requestRideForm/Observer";
+import { display } from "@mui/system";
 
 export default function LandingHeader() {
   return (
@@ -34,15 +36,14 @@ export default function LandingHeader() {
           </Typography> */}
           <Typography
             component="h1"
-            gutterBottom
             sx={{
               fontWeight: { xs: "500", md: "700" },
               fontSize: { xs: "1rem", md: "3.75rem" },
-              lineHeight: { xs: "2", md: "1.2" },
+              lineHeight: { xs: "1.5", md: "1.2" },
               // display: { xs: "block", md: "none" },
               textAlign: { xs: "center", md: "left" },
-              mt: { xs: "22px", md: "48px" },
-              mb: { xs: "22px" },
+              mt: { xs: "0px", md: "48px" },
+              mb: { xs: "10px" },
             }}
           >
             Ride with Aegean Taxi.
@@ -71,10 +72,10 @@ export default function LandingHeader() {
             sx={{
               display: { xs: "block", md: "none" },
               width: "100%",
-              height: "230px",
+              height: "206px",
               backgroundImage: `url(${bg.src})`,
               backgroundSize: "cover",
-              backgroundPosition: "0 60%",
+              backgroundPosition: "0 50%",
             }}
           ></Box>
           <Box
@@ -98,7 +99,6 @@ export default function LandingHeader() {
               }}
             >
               <Form />
-              <DownloadAppButton showMd="none" showStoresMD="none" />
             </div>
           </Box>
           {/* Download the app Button */}

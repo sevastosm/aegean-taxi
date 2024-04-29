@@ -1391,7 +1391,26 @@ export default function BookOnline() {
                                 position="end"
                                 className={styles.square}
                               >
-                                <CropSquareSharp fontSize="inherit" />
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="10"
+                                  height="10"
+                                  viewBox="0 0 10 10"
+                                  fill="none"
+                                >
+                                  <ellipse
+                                    cx="5.37223"
+                                    cy="4.83582"
+                                    rx="4.53044"
+                                    ry="4.83582"
+                                    fill="black"
+                                  />
+                                  <path
+                                    d="M9.40267 4.83582C9.40267 7.26165 7.56796 9.17164 5.37223 9.17164C3.17651 9.17164 1.3418 7.26165 1.3418 4.83582C1.3418 2.40999 3.17651 0.5 5.37223 0.5C7.56796 0.5 9.40267 2.40999 9.40267 4.83582Z"
+                                    stroke="black"
+                                    stroke-opacity="0.6"
+                                  />
+                                </svg>
                               </InputAdornment>
                             }
                             endAdornment={
@@ -1446,7 +1465,31 @@ export default function BookOnline() {
                                 position="end"
                                 className={styles.square}
                               >
-                                <CropSquareSharp fontSize="inherit" />
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="10"
+                                  height="10"
+                                  viewBox="0 0 10 10"
+                                  fill="none"
+                                >
+                                  <rect
+                                    x="0.841797"
+                                    y="0.328369"
+                                    width="9.06088"
+                                    height="9.67164"
+                                    rx="1"
+                                    fill="black"
+                                  />
+                                  <rect
+                                    x="1.3418"
+                                    y="0.828369"
+                                    width="8.06088"
+                                    height="8.67164"
+                                    rx="0.5"
+                                    stroke="black"
+                                    stroke-opacity="0.6"
+                                  />
+                                </svg>
                               </InputAdornment>
                             }
                             endAdornment={

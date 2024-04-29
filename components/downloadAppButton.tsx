@@ -8,8 +8,9 @@ import Typography from "@mui/material/Typography";
 
 import at_logo_blue from "public/assets/at_logo_blue.webp";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
-import Google from "public/assets/google-play-badge.webp";
-import Apple from "public/assets/apple-badge-black.webp";
+import Google from "public/assets/storeIcons/google-play.svg";
+import Apple from "public/assets/storeIcons/apple.svg";
+
 import { useEffect, useState } from "react";
 
 export default function DownloadAppButton({
@@ -52,7 +53,7 @@ export default function DownloadAppButton({
         >
           <Image
             src={Google}
-            height={38}
+            height={45}
             alt="Download the Aegean Taxi App for Android"
           />
         </a>
@@ -67,7 +68,7 @@ export default function DownloadAppButton({
         >
           <Image
             src={Apple}
-            height={38}
+            height={45}
             alt="Download the Aegean Taxi App for iOS"
           />
         </a>

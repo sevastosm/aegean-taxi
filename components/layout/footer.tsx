@@ -494,7 +494,7 @@ export default function FooterLayout() {
         sx={{
           width: "100%",
           display: "flex",
-          justifyContent: { xs: "space-between", md: "flex-start" },
+          justifyContent: "flex-end",
           //flexDirection: { xs: "row", md: "row-reverse" },
 
           textAlign: "center",
@@ -513,7 +513,11 @@ export default function FooterLayout() {
         {/* <a href="tel:+306943829494" className="">
           <Image src={phoneIcon} width="46" height="38" alt="Call us" />
         </a> */}
-        <a href="https://wa.me/+306943829494" target="_blank" className="mr-4">
+        <a
+          href="https://wa.me/+306943829494"
+          target="_blank"
+          className="mr-4 watchAppBottom"
+        >
           <Image
             src={whatsApp}
             width="100"

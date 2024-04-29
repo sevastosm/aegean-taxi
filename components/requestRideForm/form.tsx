@@ -25,6 +25,8 @@ import { AppContext } from "@/context/appState";
 // hooks
 import useStorage from "@/hooks/useStorage";
 import { Bolt } from "@mui/icons-material";
+import DownloadAppButton from "../downloadAppButton";
+import Observer from "./Observer";
 
 export default function FormComponent({
   elevation = 0,
@@ -110,11 +112,10 @@ export default function FormComponent({
               <Typography
                 component="span"
                 variant="h5"
-                gutterBottom
                 sx={{
                   fontWeight: "bold",
-                  fontSize: 32,
-                  marginTop: "25px",
+                  // fontSize: 32,
+                  marginTop: { xs: "10px", md: "auto" },
                 }}
               >
                 Request a ride now
@@ -298,6 +299,19 @@ export default function FormComponent({
               Check Prices
             </Button>
           </Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              width: "100%",
+              marginTop: "12px",
+            }}
+          >
+            <DownloadAppButton showMd="none" showStoresMD="none" />
+            <Observer />
+          </Box>
+
           {/* {nextButton && (
         <Box mt={3} px={3}>
           <Button

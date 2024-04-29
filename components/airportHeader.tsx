@@ -82,7 +82,6 @@ export default function AirportHeader() {
             {city} Airport Transfers made easy
           </Typography> */}
 
-
           <Typography
             component="h1"
             gutterBottom
@@ -92,9 +91,10 @@ export default function AirportHeader() {
               lineHeight: { xs: "1.5", md: "1.2" },
               // display: { xs: "block", md: "none" },
               textAlign: { xs: "center", md: "left" },
-              mt: { xs: "8px", md: "48px" },
-            }}>
-              {city} Airport Transfers made easy
+              mt: { xs: "0px", md: "48px" },
+            }}
+          >
+            {city} Airport Transfers made easy
           </Typography>
 
           <Box
@@ -125,10 +125,10 @@ export default function AirportHeader() {
             sx={{
               display: { xs: "block", md: "none" },
               width: "100%",
-              height: "230px",
+              height: "206px",
               backgroundImage: `url(${cover.src})`,
               backgroundSize: "cover",
-              backgroundPosition: "0 60%",
+              backgroundPosition: "0 50%",
             }}
           ></Box>
           <Box

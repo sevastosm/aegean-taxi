@@ -1,0 +1,13 @@
+.inserted .watchAppTop{
+     visibility: hidden; 
+}
+.inserted .watchAppBottom {
+    visibility: visible;
+}
+.watchAppTop {
+    visibility: visible;
+    display: block;
+}
+.watchAppBottom {
+    visibility: hidden;
+}

@@ -125,6 +125,7 @@ export default function Reviews({ location }: any) {
                 background: `#fff`,
                 borderRadius: 1,
                 color: "#000",
+                fontSize: "12px",
               }}
             >
               {item.dateName}

@@ -66,28 +66,28 @@ export default function TaxiHeader() {
       case "Bodrum":
         cover = Bodrum;
         break;
-        case "Tinos":
-          cover = Tinos;
-          break;
-        case "Paros":
-          cover = Paros;
-          break;
-        case "Naxos":
-          cover = Naxos;
-          break;
-        case "Kos":
-          cover = Kos;
-          break;
-        case "Heraklion":
-          cover = Heraklion;
-          break;
-        case "Chalkidiki":
-          cover = Chalkidiki;
-          break;
-        case "Kefalonia":
-          cover = Kefalonia;
-          break;
-        case "Kea":
+      case "Tinos":
+        cover = Tinos;
+        break;
+      case "Paros":
+        cover = Paros;
+        break;
+      case "Naxos":
+        cover = Naxos;
+        break;
+      case "Kos":
+        cover = Kos;
+        break;
+      case "Heraklion":
+        cover = Heraklion;
+        break;
+      case "Chalkidiki":
+        cover = Chalkidiki;
+        break;
+      case "Kefalonia":
+        cover = Kefalonia;
+        break;
+      case "Kea":
         cover = Kea;
         break;
     }
@@ -132,11 +132,11 @@ export default function TaxiHeader() {
               lineHeight: { xs: "1.5", md: "1.2" },
               // display: { xs: "block", md: "none" },
               textAlign: { xs: "center", md: "left" },
-              mt: { xs: "8px", md: "48px" },
-            }}>
-              {title}
+              mt: { xs: "0px", md: "48px" },
+            }}
+          >
+            {title}
           </Typography>
-
 
           <Typography
             component="p"
@@ -160,10 +160,10 @@ export default function TaxiHeader() {
             sx={{
               display: { xs: "block", md: "none" },
               width: "100%",
-              height: "230px",
+              height: "206px",
               backgroundImage: `url(${cover.src})`,
               backgroundSize: "cover",
-              backgroundPosition: "0 60%",
+              backgroundPosition: "5p0 %",
             }}
           ></Box>
           <Box
@@ -177,7 +177,7 @@ export default function TaxiHeader() {
             <Form />
           </Box>
           {/* Download the app Button */}
-          <DownloadAppButton showMd="none" showStoresMD="none" />
+          {/* <DownloadAppButton showMd="none" showStoresMD="none" /> */}
         </Grid>
       </Grid>
     </Container>

@@ -170,7 +170,7 @@ export default function DrawerAppBar(props: Props) {
               <Button
                 component={Link}
                 color="primary"
-                sx={{ textTransform: "unset" }}
+                sx={{ textTransform: "unset", fontSize: "13px" }}
                 endIcon={
                   <Image src={phoneIcon} width="40" height="33" alt="Call us" />
                 }

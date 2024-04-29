@@ -21,7 +21,7 @@ export default function MykonosFares() {
         sx={{
           display: { xs: "none", md: "flex" },
           justifyContent: "center",
-          p: 1,
+          p: 0.4,
         }}
       >
         <Typography
@@ -63,27 +63,25 @@ export default function MykonosFares() {
             sx={{
               // background: "#244284",
               // color: "#fff",
-              p: 1,
+              p: 0.5,
             }}
           >
             <Grid container>
               <Grid item xs={2.2} md={1}>
-                <Image src={AIRPORT} alt="airport" />
+                <Image src={AIRPORT} alt="airport" height={40} />
               </Grid>
-              <Grid item xs={1} md={0.5} sx={{ mt: 1 }}>
-                <Image src={ARROW} alt="arrow" height={65} />
+              <Grid item xs={1} md={0.5}>
+                <Image src={ARROW} alt="arrow" height={40} />
               </Grid>
               <Grid item xs={5.7} md={8}>
                 <Stack
                   direction="column"
                   justifyContent="space-between"
                   alignItems="flex-start"
-                  spacing={2}
                 >
                   <Typography
                     component="div"
                     variant="h5"
-                    gutterBottom
                     sx={{
                       fontWeight: 700,
                       fontSize: { xs: "18px", md: "24px" },
@@ -94,11 +92,10 @@ export default function MykonosFares() {
 
                   <Typography
                     component="div"
-                    variant="body2"
-                    gutterBottom
                     sx={{
                       fontWeight: 500,
                       fontSize: { xs: "14px", md: "18px" },
+                      marginTop: "0px",
                     }}
                   >
                     Town
@@ -110,12 +107,10 @@ export default function MykonosFares() {
                   direction="column"
                   justifyContent="space-between"
                   alignItems="flex-start"
-                  spacing={2}
                 >
                   <Typography
                     component="div"
                     variant="h5"
-                    gutterBottom
                     sx={{
                       fontWeight: 700,
                       fontSize: { xs: "18px", md: "28px" },
@@ -127,11 +122,11 @@ export default function MykonosFares() {
                   <Typography
                     component="div"
                     variant="body2"
-                    gutterBottom
                     sx={{
                       fontWeight: 500,
                       fontSize: { xs: "12px", md: "14px" },
                       color: "#A09D9D",
+                      marginTop: "0px",
                     }}
                   >
                     15 mins
@@ -145,15 +140,15 @@ export default function MykonosFares() {
             sx={{
               // background: "#244284",
               // color: "#fff",
-              p: 1,
+              p: 0.4,
             }}
           >
             <Grid container>
               <Grid item xs={2.2} md={1}>
-                <Image src={CITY} alt="city centre" />
+                <Image src={CITY} alt="city centre" height={40} />
               </Grid>
-              <Grid item xs={1} md={0.5} sx={{ mt: 1 }}>
-                <Image src={ARROW} alt="arrow" height={65} />
+              <Grid item xs={1} md={0.5}>
+                <Image src={ARROW} alt="arrow" height={45} />
               </Grid>
               <Grid item xs={5.7} md={8}>
                 <Stack
@@ -165,7 +160,6 @@ export default function MykonosFares() {
                   <Typography
                     component="div"
                     variant="h5"
-                    gutterBottom
                     sx={{
                       fontWeight: 700,
                       fontSize: { xs: "18px", md: "24px" },
@@ -177,10 +171,10 @@ export default function MykonosFares() {
                   <Typography
                     component="div"
                     variant="body2"
-                    gutterBottom
                     sx={{
                       fontWeight: 500,
                       fontSize: { xs: "14px", md: "18px" },
+                      marginTop: "0px",
                     }}
                   >
                     Mykonos Port
@@ -209,11 +203,11 @@ export default function MykonosFares() {
                   <Typography
                     component="div"
                     variant="body2"
-                    gutterBottom
                     sx={{
                       fontWeight: 500,
                       fontSize: { xs: "12px", md: "14px" },
                       color: "#A09D9D",
+                      marginTop: "0px",
                     }}
                   >
                     15 mins
@@ -227,15 +221,15 @@ export default function MykonosFares() {
             sx={{
               // background: "#244284",
               // color: "#fff",
-              p: 1,
+              p: 0.4,
             }}
           >
             <Grid container>
               <Grid item xs={2.2} md={1}>
-                <Image src={PORT} alt="Port" />
+                <Image src={PORT} alt="Port" height={40} />
               </Grid>
-              <Grid item xs={1} md={0.5} sx={{ mt: 1 }}>
-                <Image src={ARROW} alt="arrow" height={65} />
+              <Grid item xs={1} md={0.5}>
+                <Image src={ARROW} alt="arrow" height={45} />
               </Grid>
               <Grid item xs={5.7} md={8}>
                 <Stack
@@ -309,15 +303,15 @@ export default function MykonosFares() {
             sx={{
               // background: "#244284",
               // color: "#fff",
-              p: 1,
+              p: 0.4,
             }}
           >
             <Grid container>
               <Grid item xs={2.2} md={1}>
                 <Image src={CITY} alt="City" />
               </Grid>
-              <Grid item xs={1} md={0.5} sx={{ mt: 1 }}>
-                <Image src={ARROW} alt="arrow" height={65} />
+              <Grid item xs={1} md={0.5}>
+                <Image src={ARROW} alt="arrow" height={45} />
               </Grid>
               <Grid item xs={5.7} md={8}>
                 <Stack
@@ -391,15 +385,15 @@ export default function MykonosFares() {
             sx={{
               // background: "#244284",
               // color: "#fff",
-              p: 1,
+              p: 0.4,
             }}
           >
             <Grid container>
               <Grid item xs={2.2} md={1}>
                 <Image src={CITY} alt="city" />
               </Grid>
-              <Grid item xs={1} md={0.5} sx={{ mt: 1 }}>
-                <Image src={ARROW} alt="arrow" height={65} />
+              <Grid item xs={1} md={0.5}>
+                <Image src={ARROW} alt="arrow" height={45} />
               </Grid>
               <Grid item xs={5.7} md={8}>
                 <Stack
@@ -474,15 +468,15 @@ export default function MykonosFares() {
             sx={{
               // background: "#244284",
               // color: "#fff",
-              p: 1,
+              p: 0.4,
             }}
           >
             <Grid container>
               <Grid item xs={2.2} md={1}>
                 <Image src={CITY} alt="city" />
               </Grid>
-              <Grid item xs={1} md={0.5} sx={{ mt: 1 }}>
-                <Image src={ARROW} alt="arrow" height={65} />
+              <Grid item xs={1} md={0.5}>
+                <Image src={ARROW} alt="arrow" height={45} />
               </Grid>
               <Grid item xs={5.7} md={8}>
                 <Stack
