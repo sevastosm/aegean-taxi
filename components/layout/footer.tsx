@@ -494,7 +494,7 @@ export default function FooterLayout() {
       </Container>
       {/* Floating whatsapp hideOnMobile*/}
       <Box
-        className="no-gutter"
+        className="no-gutter watchAppBottom"
         sx={{
           width: "100%",
           display: "flex",
@@ -522,12 +522,7 @@ export default function FooterLayout() {
           target="_blank"
           className="mr-4 watchAppBottom"
         >
-          <Image
-            src={whatsApp}
-            width="100"
-            height="38"
-            alt="Message us on WhatsApp"
-          />
+          <Image src={whatsApp} height="45" alt="Message us on WhatsApp" />
         </a>
       </Box>
 

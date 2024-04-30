@@ -3,7 +3,8 @@
 import React, { useRef, useEffect, useState } from "react";
 import "./style.css"; // Import CSS file for styling
 import Image from "next/image";
-import whatsApp from "public/assets/storeIcons/watchapp.png";
+import whatsApp from "public/assets/whatsapp_btn.svg";
+
 import { Box, display } from "@mui/system";
 
 const Observer = () => {

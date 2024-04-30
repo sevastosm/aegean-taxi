@@ -94,10 +94,11 @@ export default function FormComponent({
               position: "absolute",
               background: "transparent",
               width: "100%",
-              height: "160px",
+              height: "232px",
               bottom: "0",
               zIndex: 1,
               cursor: "pointer",
+              top: "0px",
             }}
           ></div>
 
@@ -299,18 +300,6 @@ export default function FormComponent({
               Check Prices
             </Button>
           </Box>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              width: "100%",
-              marginTop: "12px",
-            }}
-          >
-            <DownloadAppButton showMd="none" showStoresMD="none" />
-            <Observer />
-          </Box>
 
           {/* {nextButton && (
         <Box mt={3} px={3}>
@@ -325,6 +314,18 @@ export default function FormComponent({
         </Box>
       )} */}
         </Link>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            width: "100%",
+            marginTop: "12px",
+          }}
+        >
+          <DownloadAppButton showMd="none" showStoresMD="none" />
+          <Observer />
+        </Box>
       </Paper>
     </>
   );

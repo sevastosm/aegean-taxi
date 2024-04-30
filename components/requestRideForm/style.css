@@ -3,6 +3,8 @@
 }
 .inserted .watchAppBottom {
     visibility: visible;
+    top: auto !important;
+    background:"red";
 }
 .watchAppTop {
     visibility: visible;
@@ -10,4 +12,6 @@
 }
 .watchAppBottom {
     visibility: hidden;
+    
+    top: 100% !important;
 }
