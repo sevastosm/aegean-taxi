@@ -22,8 +22,10 @@ import GB from "public/assets/flags/gb.svg";
 import US from "public/assets/flags/us.svg";
 import ES from "public/assets/flags/es.svg";
 import FR from "public/assets/flags/fr.svg";
+import IT from "public/assets/flags/it.svg";
 
 import { locationDetails } from "@/utils/locationDetails";
+import { Review } from "./reviews";
 
 export default function AirportLandingReviews({ location }: any) {
   console.log("AirportLandingReviews", location);
@@ -68,58 +70,10 @@ export default function AirportLandingReviews({ location }: any) {
     if (flag === "spain") {
       return ES;
     }
+    if (flag === "italy") {
+      return IT;
+    }
   };
-
-  const Review = ({ item }: any) => (
-    <Stack spacing={2} sx={{ p: 1 }}>
-      <Paper
-        sx={{
-          background: "#244284",
-          color: "#fff",
-        }}
-      >
-        <Box sx={{ p: 2 }}>
-          <Image src={getFlag(item.flag)} width={60} alt="GB" />
-          <Typography
-            component="p"
-            variant="body1"
-            gutterBottom
-            sx={{
-              my: 2,
-              maxHeight: "100px",
-              overflowY: "scroll",
-            }}
-          >
-            {item.text}
-          </Typography>
-
-          {/* User */}
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "baseline",
-            }}
-          >
-            <Box
-              component="span"
-              sx={{
-                alignSelf: "flex-end",
-                mt: 3,
-                p: 1,
-                px: 2,
-                textAlign: "center",
-                background: `#fff`,
-                borderRadius: 1,
-                color: "#000",
-              }}
-            >
-              {item.dateName}
-            </Box>
-          </Box>
-        </Box>
-      </Paper>
-    </Stack>
-  );
 
   return (
     <Container maxWidth={"lg"}>

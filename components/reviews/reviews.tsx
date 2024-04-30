@@ -22,40 +22,11 @@ import GB from "public/assets/flags/gb.svg";
 import US from "public/assets/flags/us.svg";
 import ES from "public/assets/flags/es.svg";
 import FR from "public/assets/flags/fr.svg";
+import IT from "public/assets/flags/it.svg";
 
 import { locationDetails } from "@/utils/locationDetails";
 
-export default function Reviews({ location }: any) {
-  console.log("Reviews", location);
-  const data =
-    location === "default"
-      ? locationDetails[location]
-      : locationDetails.taxi_locations[location];
-
-  let settings = {
-    dots: false,
-    infinite: true,
-    initialSlide: 0,
-    slidesToScroll: 1,
-    slidesToShow: 2,
-    speed: 500,
-    swipeToSlide: true,
-    responsive: [
-      {
-        breakpoint: 480,
-        settings: {
-          dots: false,
-          className: "center",
-          centerMode: true,
-          infinite: true,
-          centerPadding: "30",
-          slidesToShow: 1,
-          speed: 500,
-        },
-      },
-    ],
-  };
-
+export const Review = ({ item }: any) => {
   const getFlag = (flag: string) => {
     if (flag === "uk") {
       return GB;
@@ -69,14 +40,11 @@ export default function Reviews({ location }: any) {
     if (flag === "spain") {
       return ES;
     }
+    if (flag === "italy") {
+      return IT;
+    }
   };
-
-  const handleReflow = (rleState) => {
-    const { clamped, text } = rleState;
-    // do sth...
-  };
-
-  const Review = ({ item }: any) => (
+  return (
     <Stack spacing={2} sx={{ p: 1 }}>
       <Paper
         sx={{
@@ -135,6 +103,61 @@ export default function Reviews({ location }: any) {
       </Paper>
     </Stack>
   );
+};
+
+export default function Reviews({ location }: any) {
+  console.log("Reviews", location);
+  const data =
+    location === "default"
+      ? locationDetails[location]
+      : locationDetails.taxi_locations[location];
+
+  let settings = {
+    dots: false,
+    infinite: true,
+    initialSlide: 0,
+    slidesToScroll: 1,
+    slidesToShow: 2,
+    speed: 500,
+    swipeToSlide: true,
+    responsive: [
+      {
+        breakpoint: 480,
+        settings: {
+          dots: false,
+          className: "center",
+          centerMode: true,
+          infinite: true,
+          centerPadding: "30",
+          slidesToShow: 1,
+          speed: 500,
+        },
+      },
+    ],
+  };
+
+  const getFlag = (flag: string) => {
+    if (flag === "uk") {
+      return GB;
+    }
+    if (flag === "america") {
+      return US;
+    }
+    if (flag === "french") {
+      return FR;
+    }
+    if (flag === "spain") {
+      return ES;
+    }
+    if (flag === "italy") {
+      return IT;
+    }
+  };
+
+  const handleReflow = (rleState) => {
+    const { clamped, text } = rleState;
+    // do sth...
+  };
 
   return (
     <Container maxWidth={"lg"}>

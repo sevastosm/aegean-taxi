@@ -67,40 +67,44 @@ export default function FooterLayout() {
   const LinkItems = () => (
     <>
       {Object.values(locationDetails.taxi_locations).map(
-        (innerObject: any, i) => (
-          <ListItem key={i} sx={{ pl: 0 }}>
-            <MUILink
-              underline="none"
-              color="#fff"
-              href={innerObject.footer.link}
-              component={NextLink}
-              rel="canonical"
-              variant="body1"
-            >
-              {innerObject.footer.name}
-            </MUILink>
-          </ListItem>
-        )
+        (innerObject: any, i) =>
+          innerObject.footer?.link && (
+            <ListItem key={i} sx={{ pl: 0 }}>
+              <MUILink
+                underline="none"
+                color="#fff"
+                href={innerObject.footer.link}
+                component={NextLink}
+                rel="canonical"
+                variant="body1"
+              >
+                {innerObject.footer.name}
+              </MUILink>
+            </ListItem>
+          )
       )}
     </>
   );
 
   const LinkItemsAirport = () => (
     <>
-      {Object.values(locationDetails.airports).map((innerObject: any, i) => (
-        <ListItem key={i} sx={{ pl: 0 }}>
-          <MUILink
-            underline="none"
-            color="#fff"
-            href={innerObject.footer.link}
-            component={NextLink}
-            rel="canonical"
-            variant="body1"
-          >
-            {innerObject.footer.name}
-          </MUILink>
-        </ListItem>
-      ))}
+      {Object.values(locationDetails.airports).map(
+        (innerObject: any, i) =>
+          innerObject.footer?.link && (
+            <ListItem key={i} sx={{ pl: 0 }}>
+              <MUILink
+                underline="none"
+                color="#fff"
+                href={innerObject.footer.link}
+                component={NextLink}
+                rel="canonical"
+                variant="body1"
+              >
+                {innerObject.footer.name}
+              </MUILink>
+            </ListItem>
+          )
+      )}
     </>
   );
 

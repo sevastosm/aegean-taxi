@@ -15,12 +15,7 @@ import PORT from "public/assets/port.svg";
 import CITY from "public/assets/city-centre.svg";
 import { locationDetails } from "../../utils/locationDetails";
 
-export default function AirportsFares({ location }: any) {
-  const data =
-    location === "default"
-      ? locationDetails[location]
-      : locationDetails.airports[location];
-
+export const PricesMap = ({ dits }: any) => {
   const getImage = (type: any) => {
     if (type === "airport") {
       return AIRPORT;
@@ -32,13 +27,12 @@ export default function AirportsFares({ location }: any) {
       return CITY;
     }
   };
-
-  const PricesMap = ({ dits }: any) => (
+  return (
     <Paper
       sx={{
         // background: "#244284",
         // color: "#fff",
-        p: 1,
+        px: 1,
       }}
     >
       <Grid container>
@@ -46,22 +40,20 @@ export default function AirportsFares({ location }: any) {
           <Image src={getImage(dits.location)} alt={dits.location} />
         </Grid>
         <Grid item xs={1} md={0.5} sx={{ mt: 1 }}>
-          <Image src={ARROW} alt="arrow" height={65} />
+          <Image src={ARROW} alt="arrow" height={35} />
         </Grid>
         <Grid item xs={5.7} md={8}>
           <Stack
             direction="column"
             justifyContent="space-between"
             alignItems="flex-start"
-            spacing={2}
           >
             <Typography
               component="div"
               variant="h5"
-              gutterBottom
               sx={{
                 fontWeight: 700,
-                fontSize: { xs: "18px", md: "24px" },
+                fontSize: { xs: "16px", md: "18px" },
               }}
             >
               {dits.from}
@@ -73,7 +65,7 @@ export default function AirportsFares({ location }: any) {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: { xs: "14px", md: "18px" },
+                fontSize: { xs: "14px", md: "16px" },
               }}
             >
               {dits.to}
@@ -85,15 +77,13 @@ export default function AirportsFares({ location }: any) {
             direction="column"
             justifyContent="space-between"
             alignItems="flex-start"
-            spacing={2}
           >
             <Typography
               component="div"
               variant="h5"
-              gutterBottom
               sx={{
                 fontWeight: 700,
-                fontSize: { xs: "18px", md: "28px" },
+                fontSize: { xs: "18px", md: "px" },
               }}
             >
               From {dits.cost}€
@@ -105,7 +95,7 @@ export default function AirportsFares({ location }: any) {
               gutterBottom
               sx={{
                 fontWeight: 500,
-                fontSize: { xs: "12px", md: "14px" },
+                fontSize: { xs: "12px", md: "13px" },
                 color: "#A09D9D",
               }}
             >
@@ -116,6 +106,13 @@ export default function AirportsFares({ location }: any) {
       </Grid>
     </Paper>
   );
+};
+
+export default function AirportsFares({ location }: any) {
+  const data =
+    location === "default"
+      ? locationDetails[location]
+      : locationDetails.airports[location];
 
   return (
     <Container maxWidth={"lg"}>

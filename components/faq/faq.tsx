@@ -15,7 +15,7 @@ export default function Faq({ location, type }: any) {
   const data = locationDetails[type][location];
 
   const QuestionList = ({ data }: any) => (
-    <Accordion sx={{ py: { xs: 2, md: 1.5 } }}>
+    <Accordion sx={{ py: 0 }}>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon sx={{ fill: "#000" }} />}
         aria-controls="booking-content"
@@ -27,8 +27,8 @@ export default function Faq({ location, type }: any) {
           gutterBottom
           sx={{
             fontWeight: 500,
-            fontSize: "20px",
-            color: `rgba(0, 0, 0, 0.6)`,
+            fontSize: "15px",
+            // color: `rgba(0, 0, 0, 0.6)`,
           }}
         >
           {data.q}
@@ -40,8 +40,8 @@ export default function Faq({ location, type }: any) {
           variant="body1"
           sx={{
             fontWeight: 400,
-            fontSize: { xs: "16px", md: "16px" },
-            lineHeight: { xs: "40px", md: "51px" },
+            fontSize: "15px",
+            lineHeight: "24px",
           }}
         >
           {data.a}

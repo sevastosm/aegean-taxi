@@ -14,6 +14,30 @@ import AIRPORT from "public/assets/airport.svg";
 import PORT from "public/assets/port.svg";
 import CITY from "public/assets/city-centre.svg";
 
+const hotSpots = [
+  {
+    from: "Mykonos Airport",
+    to: "Town",
+    cost: "16",
+    duration: "15",
+    location: "airport",
+  },
+  {
+    from: "Town",
+    to: "Mykonos Port",
+    cost: "12",
+    duration: "15",
+    location: "city",
+  },
+  {
+    from: "Mykonos Airport",
+    to: "Mykonos Port",
+    cost: "16",
+    duration: "15",
+    location: "airport",
+  },
+];
+
 export default function MykonosFares() {
   return (
     <Container maxWidth={"lg"}>

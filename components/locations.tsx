@@ -370,49 +370,51 @@ export default function Locations() {
           {Object.values(locationDetails.taxi_locations).map(
             (innerObject: any, i) => (
               <Stack key={i} spacing={2} sx={{ textAlign: "center", p: 1 }}>
-                <MUILink
-                  underline="none"
-                  href={innerObject.slide.href}
-                  component={NextLink}
-                >
-                  <Paper>
-                    <Box sx={{ p: 2 }}>
-                      <Typography
-                        component="h3"
-                        variant="h5"
-                        gutterBottom
-                        sx={{
-                          fontWeight: 500,
-                          mb: 2,
-                          textAlign: { xs: "left", md: "center" },
-                        }}
-                      >
-                        {innerObject.slide.name}
-                      </Typography>
-                      <Box
-                        sx={{
-                          minHeight: { xs: 224, md: 345 },
-                          backgroundImage: `url(${innerObject.slide.photo})`,
-                          backgroundSize: "cover",
-                          mb: 3,
-                          borderRadius: 3,
-                        }}
-                      ></Box>
-                      <Typography
-                        component="span"
-                        variant="body1"
-                        sx={{
-                          mt: 3,
-                          lineHeight: 3,
-                          borderBottom: `3px solid #000`,
-                          width: "75px",
-                        }}
-                      >
-                        Find a ride
-                      </Typography>
-                    </Box>
-                  </Paper>
-                </MUILink>
+                {innerObject.slide?.href && (
+                  <MUILink
+                    underline="none"
+                    href={innerObject.slide.href}
+                    component={NextLink}
+                  >
+                    <Paper>
+                      <Box sx={{ p: 2 }}>
+                        <Typography
+                          component="h3"
+                          variant="h5"
+                          gutterBottom
+                          sx={{
+                            fontWeight: 500,
+                            mb: 2,
+                            textAlign: { xs: "left", md: "center" },
+                          }}
+                        >
+                          {innerObject.slide.name}
+                        </Typography>
+                        <Box
+                          sx={{
+                            minHeight: { xs: 224, md: 345 },
+                            backgroundImage: `url(${innerObject.slide.photo})`,
+                            backgroundSize: "cover",
+                            mb: 3,
+                            borderRadius: 3,
+                          }}
+                        ></Box>
+                        <Typography
+                          component="span"
+                          variant="body1"
+                          sx={{
+                            mt: 3,
+                            lineHeight: 3,
+                            borderBottom: `3px solid #000`,
+                            width: "75px",
+                          }}
+                        >
+                          Find a ride
+                        </Typography>
+                      </Box>
+                    </Paper>
+                  </MUILink>
+                )}
               </Stack>
             )
           )}

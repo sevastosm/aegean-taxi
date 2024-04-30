@@ -1,3 +1,5 @@
+import zIndex from "@mui/material/styles/zIndex";
+
 export const locationDetails: any = {
   default: {
     reviews: [
@@ -21,6 +23,558 @@ export const locationDetails: any = {
     ],
   },
   taxi_locations: {
+    "mykonos-taxi-app": {
+      location: "mykonos-taxi-app",
+      prices: [
+        {
+          from: "Mykonos Airport",
+          to: "Town",
+          cost: "16",
+          duration: "15",
+          location: "airport",
+        },
+        {
+          from: "Town",
+          to: "Mykonos Port",
+          cost: "12",
+          duration: "15",
+          location: "city",
+        },
+        {
+          from: "Mykonos Airport",
+          to: "Mykonos Port",
+          cost: "18",
+          duration: "20",
+          location: "airport",
+        },
+        {
+          from: "Town",
+          to: "Nammos",
+          cost: "15",
+          duration: "20",
+          location: "city",
+        },
+        {
+          from: "Town",
+          to: "Alemagou",
+          cost: "16",
+          duration: "20",
+          location: "city",
+        },
+        {
+          from: "Town",
+          to: "Scorpios",
+          cost: "18",
+          duration: "20",
+          location: "city",
+        },
+      ],
+      faq: [
+        {
+          q: `How can i find a taxi or transfer in Mykonos?
+`,
+          a: `Apart from the designated taxi stands in the town center, port or airport, the best way is to use a private transfer service. Aegean Taxi offers a great fleet of cars at competitive prices, with english speaking drivers and is available 24/7. You can order a ride from www.aegeantaxi.com using the webapp in 3 simple steps, download the Aegean Taxi app, or simply call the call center on +302152154000
+`,
+        },
+        {
+          q: `Is it easy to find a taxi in Mykonos?
+
+`,
+          a: `No. Taxis in Mykonos can be hard to find, especially in the peak months of July and August. If you want to book your ride in advance or on demend, the best way is to download the Aegean Taxi app or use one of the other 3 methods to book your ride
+`,
+        },
+        {
+          q: `Are Mykonos Taxis and Transfers safe in Mykonos?
+`,
+          a: `Yes. Mykonos is a cosidered to be a safe island with no major incidents ever reported related to taxis or transfers. Aegean Taxi employs only professional english speaking drivers who are pre-screened and trained to offer an excellent service
+`,
+        },
+        {
+          q: `What is the best way to find a taxi from Mykonos town?a
+`,
+          a: `Mykonos town has 2 designated taxi ranks in the areas of Remezzo and Fabrika. The best way to book your taxi is via Aegean Taxi, using the taxi app or calling the 24/7 call center
+`,
+        },
+        {
+          q: `How much are the taxis or transfers from Mykonos Airport or Port ?
+`,
+          a: `A usual taxi fare from Mykonos airport to town is about €20, and from the port usually the same. You can book your airport or port ride using Aegean taxi while in Mykonos.
+`,
+        },
+        {
+          q: `Are taxis and transfers expensive?
+`,
+          a: `Taxis in Mykonos operate with a government mandated taxi meter, however it is possible to negotiate a flat fare with your driver. Private transfer services are available with a minimum €36 fare for half an hour which is the rate for a standard car. Vans tend to charge higher rates
+`,
+        },
+        {
+          q: `Are there buses in Mykonos?
+`,
+          a: `Yes. Mykonos operates a frequent bus service to and from most of the popular destinations on the island. The main bus stop is at Fabrika and tourists can buy tickets before entering the bus. Fares vary and range from €3-€10 for a single tickets. In the peak months buses are usually crowded and there may be a waitting line.
+`,
+        },
+        {
+          q: `How many taxis are there in Mykonos?
+`,
+          a: `Mykonos island has only 34 registered taxis, which cater to the hundreads of thousands of visitors to the island every year. There are a number of private transfer services available on the island which can be pre-booked. The minimum fare is €36
+`,
+        },
+        {
+          q: `Is Aegean Taxi working in Mykonos?
+`,
+          a: `Yes. Aegean Taxi is the leading taxi and transfer service in the island of Mykonos. Tourists can download the Aegean Taxi app from the google or apple stores, register in 3 simple steps and requests rides in Mykonos. Alternative booking methods include the website using the webapp, telephone booking or whatsapp`,
+        },
+        {
+          q: `Do Taxi drivers speak English in Mykonos?
+`,
+          a: `Aegean Taxi hires only fluent English speakers so all drivers can speak English. It is a legal requirement for transport companies to obtain proof of English profficiency when hiring drivers. This does not apply to Taxi drivers who do not need to be speaking English to become drivers
+`,
+        },
+        {
+          q: `What colours are Taxis in Mykonos?
+`,
+          a: `Mykonos Taxis are painted in silver colour
+`,
+        },
+        {
+          q: `Do you have to tip taxis in Mykonos?
+`,
+          a: `Tips are optional for transport providers in Mykonos and one should not expect to have to pay anything extra than the pre arranged or metered fare. When extra services are provided by a driver like carrying luggage or stops along the way, then it is customary to reward drivers for the service
+`,
+        },
+        {
+          q: `Do I need cash for taxis in Mykonos?
+`,
+          a: `Yes. There is no government mandate that requires taxi drivers to carry a POS machine to accept card payments, so the majority of the taxis in Mykonos require cash payment. Aegean Taxi accepts all major credit cards, and you can also add your credit card details to pay for your ride when using the Taxi app
+`,
+        },
+        {
+          q: `Do taxis run all day and night in Mykonos?
+`,
+          a: `Most taxis operate throughout the day on the island of Mykonos. Aegean Taxi operates 24/7 and getting a ride is easy at any time using one of the booking methods offered
+`,
+        },
+        {
+          q: `Is there a Taxi app in Mykonos?
+`,
+          a: `Yes, Aegean Taxi is the first taxi app that started operating in Mykonos and is available to download in Android and iOS
+`,
+        },
+        {
+          q: `What is the best Taxi app for Mykonos?
+`,
+          a: `Aegean Taxi is the best Taxi app and airport or port transfer service available in Mykonos. With over 100,000 downloads and a fleet of 500+ drivers, Aegean Taxi is the cheapest and most professional service available in Mykonos
+`,
+        },
+      ],
+      reviews: [
+        {
+          flag: "spain",
+          dateName: "Pablo - March 2023",
+          text: `We have used Aegean Taxi app several times on our stay in Mykonos. It was simple, affordable and convenient, with competitive prices and professional drivers. You can be sure that you will always have a pleasant experience.`,
+        },
+        {
+          flag: "uk",
+          dateName: "Laura - March 2022",
+          text: `Booking a ride on Mykonos Island has never been easier with the Web-based service provided by Aegean Taxi. The process is simple, and their professional drivers will ensure you have a comfortable and safe ride.`,
+        },
+        {
+          flag: "america",
+          dateName: "Jo - June 2023",
+          text: `We spent a week in Mykonos and used this company for all of our journeys during our stay. All was communicated through WhatsApp, so really easy to send a text to communicate. The cars were always clean and the drivers made sure we always felt comfortable on our journeys as the roads are pretty unique in Mykonos!! They were always cheaper than Uber and the drivers have all the local knowledge so better if in traffic! Definitely recommend!!`,
+        },
+      ],
+    },
+    "santorini-taxi-app": {
+      location: "santorini-taxi-app",
+      prices: [
+        {
+          from: "Santorini Airport",
+          to: "Fira",
+          cost: "18",
+          duration: "15",
+          location: "airport",
+        },
+        {
+          from: "Fira",
+          to: "Athinios Port",
+          cost: "25",
+          duration: "25",
+          location: "city",
+        },
+        {
+          from: "Santorini Airport",
+          to: "Athinios Port",
+          cost: "32",
+          duration: "40",
+          location: "airport",
+        },
+        {
+          from: "Athinios Port",
+          to: "Oia",
+          cost: "38",
+          duration: "50",
+          location: "port",
+        },
+        {
+          from: "Oia",
+          to: "Santorini Airport",
+          cost: "29",
+          duration: "30",
+          location: "city",
+        },
+      ],
+      faq: [
+        {
+          q: `How much does a taxi cost on Santorini?`,
+
+          a: `Taxi fares in Santorini are dictacted by government regulations and based on time and distance of each specific ride. Private transfers have a minimum fare of €36 for a 30 minute ride and might depend on the type of car selected and the distance of the route. Aegean Taxi offers the most competitive rates`,
+        },
+        {
+          q: `Is it easy to get a taxi in Santorini?`,
+
+          a: `Due to the limited number of taxis on the island, dispatch times vary depending by month, and it can be anything from 10 minutes to 45 minutes. It is usually a lot faster to call Aegean Taxi on +30 2152154000 to call for a ride, or download the Aegean Taxi app for Santorini
+`,
+        },
+        {
+          q: `How to find a taxi in Santorini?`,
+
+          a: `You can hail a Taxi in Santorini from the street, or simply by going to one of the designated taxi stands that are located around the Island. Downloading the Aegean Taxi app is another way to get a ride, or just send a message on whatsapp on +30 694 382 9494 to order one. Using www.aegeantaxi.com is also another way to get a ride using the simple online webapp`,
+        },
+        {
+          q: `How much is a taxi from Oia to Fira?`,
+
+          a: `The preferred payment method for taxis in Santorini is cash, since there is still no legal requirement for drivers to carry a POS machine. Aegean taxi accepts all major credit cards which can be added on the account section after downloading the taxi app and completing the registration`,
+        },
+        {
+          q: `Is Fira or Oia better?`,
+
+          a: `Both locations within Santorini island are unique and offer a different ambience and setting. Depending on your group requirements, Oia is considered a romanting sunset spot with great restaurants for dinner, while vibrant Fira offers a number of options for shopping, dinner and night time entertainment`,
+        },
+        {
+          q: `Is Aegean Taxi working in Santorini?`,
+
+          a: `Yes. Aegean Taxi is the leading taxi and transfer service in the island of Santorini and is available from early April until the end of October. Tourists can download the Aegean Taxi app from the google or apple stores, register in 3 simple steps and requests rides in Santorini. Alternative booking methods include the website using the webapp, telephone booking or whatsapp`,
+        },
+        {
+          q: `Do drivers speak English in Santorini?`,
+
+          a: `Aegean Taxi hires only fluent English speakers so all drivers can speak English in Santorini. It is a legal requirement for transfer companies to obtain proof of English profficiency when hiring fleet drivers. This does not apply to Taxi drivers who do not need to be speaking English to become drivers`,
+        },
+        {
+          q: `What colours are Taxis in Santorini?`,
+
+          a: `All licenced taxis in Santorini are silver or grey. Aegean Taxi operates a fleet of luxury cars with most cars in black colour`,
+        },
+        {
+          q: `Do you need to tip your driver in Santorini?`,
+
+          a: `Tips are optional for transport providers in Santorini and there is no suggested percentage of the fare that should be added on top of the fare. So one should not expect to have to pay anything extra than the pre arranged or metered fare. When extra services are provided by a driver like carrying luggage or stops along the way, then it is customary to reward drivers for the service`,
+        },
+        {
+          q: `Do I need cash for taxis in Santorini?`,
+
+          a: `Yes. There is no government mandate that requires taxi drivers in Santorini to carry a POS machine to accept card payments, so the majority of the taxis in Santorini require cash payment. Aegean Taxi accepts all major credit cards, and you can also add your credit card details to pay for your ride when using the Taxi app`,
+        },
+      ],
+      reviews: [
+        {
+          flag: "america",
+          dateName: "Elijah - March 2023",
+          text: `Aegean Taxi offers a hassle-free service in Santorini. We book our rides with just a phone call where confirmed all the details. The drivers were amazing and with local knowledge.`,
+        },
+        {
+          flag: "spain",
+          dateName: "Sergio - March 2023",
+          text: `We used Aegean Taxi during our stay in Santorini. Every comunication was via Whatsapp and the best thing was being able to pin our location as there was some points where we were not entirely sure! All drivers were amazing, very polite, and friendly. Definitely recommend!`,
+        },
+        {
+          flag: "uk",
+          dateName: "Mike - July 2023",
+          text: `Excellent service! We used them on many occasions and they are very professional. The app was very easy to use and very precise with ETA. Would recommend and use it again!`,
+        },
+      ],
+    },
+    "corfu-taxi-app": {
+      location: "corfu-taxi-app",
+      prices: [
+        {
+          from: "Corfu Airport",
+          to: "Corfu Town",
+          cost: "15",
+          duration: "10",
+          location: "airport",
+        },
+        {
+          from: "Lefkimi",
+          to: "Corfu Port",
+          cost: "50",
+          duration: "55",
+          location: "city",
+        },
+        {
+          from: "Corfu Airport",
+          to: "Corfu Port",
+          cost: "15",
+          duration: "10",
+          location: "airport",
+        },
+        {
+          from: "City Town",
+          to: "Achilion",
+          cost: "25",
+          duration: "20",
+          location: "city",
+        },
+        {
+          from: "Palaiokastritsa",
+          to: "Corfu Airport",
+          cost: "45",
+          duration: "35",
+          location: "city",
+        },
+      ],
+      faq: [
+        {
+          q: `Are taxis available at Corfu Airport?`,
+          a: `Yes. it is easy to find a taxi at the designated taxi ranks outside Rhodes airport arrivals. Alternatively you can pre-book a ride using Aegean Taxi, using one of the available booking methods on our website (taxi app, webapp, call, whatsapp)`,
+        },
+        {
+          q: `Are taxis available at Corfu port?`,
+          a: `Yes. You can easily find a taxi at the designated taxi ranks within the corfu port area. Alternatively you can pre-book a ride using Aegean Taxi, using one of the available booking methods on our website`,
+        },
+        {
+          q: `Are taxis easy to get in Corfu?`,
+          a: `It is relatively straightforward to find an available taxi in Corfu. There are designated pick up spots on the airport and port, and also taxi ranks throughout town. Hailing a taxi from the street is also possible.`,
+        },
+        {
+          q: `Are taxis in Corfu metered?`,
+          a: `Yes. It is a legal requirement for all licensed taxis to turn on the meter before starting a ride. Private transfer services have to communicate a pre arranged fare which starts at €36`,
+        },
+        {
+          q: `Do I need cash for taxis in Corfu?`,
+          a: `Yes. There is no government mandate that forces taxi drivers to carry a POS machine to accept card payments, so the majority of the taxis in Corfu require cash payment.`,
+        },
+        {
+          q: `What is the best transportation in Corfu?`,
+          a: `Corfu offers a range of transport modes, depending on the destination. Tourists can choose from taxis, buses, private transfer services or to simply rent a car to get around the island of Corfu`,
+        },
+        {
+          q: `What colours are Taxis in Corfu?`,
+          a: `All Corfu taxis are blue colour`,
+        },
+        {
+          q: `Do taxis run all day and night?`,
+          a: `Most taxis operate throughout the day on the island of Corfu. Aegean Taxi operates 24/7 and getting a ride is easy using one of the booking methods offered`,
+        },
+        {
+          q: `Are there buses in Corfu island?`,
+          a: `Yes. Corfu operates a frequent bus service to and from most of the popular destinations on the island and getting a bus is a safe and cheap way to get around`,
+        },
+      ],
+      reviews: [
+        {
+          flag: "french",
+          dateName: "Oliver - August 2023",
+          text: `If i had to describe aegean taxi in one word, it would be “Excellent”. I used their service 4 times while in Rhodes. I found them waiting for me at the airport and during my stay they were always on time. The App is very easy to use. I highly recommend it!!!`,
+        },
+        {
+          flag: "spain",
+          dateName: "Maria - March 2023",
+          text: `My experience with Aegean Taxi has been truly wonderful! They are always on time and friendly :) I found myself driving around exhausting so it was relaxing to leave the work to the greek born professionals!`,
+        },
+        ,
+        {
+          flag: "uk",
+          dateName: "Kristina - March 2023",
+          text: `I used the service during my stay in Rhodes in June. Reliable and high quality service, took a big headache away and helped me and my family enjoy the island free of transport stress!`,
+        },
+      ],
+    },
+    "rhodes-taxi-app": {
+      location: "rhodes-taxi-app",
+      prices: [
+        {
+          from: "Rhodes Airport",
+          to: "Rhodes Town",
+          cost: "30",
+          duration: "20",
+          location: "airport",
+        },
+        {
+          from: "Lindos",
+          to: "Rhodes Airport",
+          cost: "70",
+          duration: "50",
+          location: "city",
+        },
+        {
+          from: "Rhodes Port",
+          to: "Lindos",
+          cost: "65",
+          duration: "45",
+          location: "port",
+        },
+        {
+          from: "Rhodes Town",
+          to: "Faliraki",
+          cost: "20",
+          duration: "15",
+          location: "city",
+        },
+        {
+          from: "Faliraki",
+          to: "Rhodes Airport",
+          cost: "30",
+          duration: "20",
+          location: "port",
+        },
+      ],
+      faq: [
+        {
+          q: `Can I pay the taxi with card in Rhodes?`,
+          a: `There is no government mandate that requires taxi drivers in Rhodes to carry a POS machine to accept card payments, so the majority of the taxis in Rhodes require cash payment.`,
+        },
+        {
+          q: `How much is a taxi from Rhodes Old Town to the airport?`,
+          a: `A usual day fare for a ride between Rhodes international airport and Rhodes town is about €30`,
+        },
+        {
+          q: `Do you tip taxi drivers in Rhodes?`,
+          a: `Tips are optional for transport providers in Rhodes and one should not expect to have to pay anything extra than the pre arranged or metered fare`,
+        },
+        {
+          q: `Are there buses in Rhodes?`,
+          a: `Yes. Rhodes operates a frequent bus service to and from most of the popular destinations on the island.`,
+        },
+        {
+          q: `Can you get around Rhodes without a car?`,
+          a: `Rhodes is a large island and getting to the various points of interest is not possible without a method of transport.`,
+        },
+        {
+          q: `What colors are Taxis in Rhodes?`,
+          a: `All taxis in Rhodes are blue color`,
+        },
+        {
+          q: `Do taxis run all day and night?`,
+          a: `Most taxis operate throughout the day on the island of Rhodes. Aegean Taxi operates 24/7 and getting a ride is easy using one of the booking methods offered`,
+        },
+        {
+          q: `Are taxis available at Rhodes port?`,
+          a: `Yes. You can easily find a taxi at the designated taxi ranks within the port area. Alternatively you can pre-book a ride using Aegean Taxi, using one of the available booking methods on our website (taxi app, webapp, call, whatsapp)`,
+        },
+      ],
+      reviews: [
+        {
+          flag: "uk",
+          dateName: "Mike - March 2023",
+          text: `I used the service during my stay in Rhodes in June. Reliable and high quality service, took a big headache away and helped me and my family enjoy the island free of transport stress!`,
+        },
+        {
+          flag: "america",
+          dateName: "Mark - March 2023",
+          text: `I used the service during my stay in Rhodes in June. Reliable and high quality service, took a big headache away and helped me and my family enjoy the island free of transport stress!`,
+        },
+        ,
+        {
+          flag: "italy",
+          dateName: "Nick - March 2023",
+          text: `My experience with Aegean Taxi has been truly wonderful! They are always on time and friendly :) I found myself driving around exhausting so it was relaxing to leave the work to the greek born professionals!`,
+        },
+      ],
+    },
+
+    "athens-taxi-app": {
+      location: "athens-taxi-app",
+      prices: [
+        {
+          from: "Athens Airport",
+          to: "City Center",
+          cost: "45",
+          duration: "45",
+          location: "airport",
+        },
+        {
+          from: "City Center",
+          to: "Piraeus Port",
+          cost: "30",
+          duration: "30",
+          location: "city",
+        },
+        {
+          from: "Athens Airport",
+          to: "Piraeus Port",
+          cost: "55",
+          duration: "50",
+          location: "port",
+        },
+        {
+          from: "City Center",
+          to: "Rafina Port",
+          cost: "45",
+          duration: "55",
+          location: "port",
+        },
+        {
+          from: "Athens Airport",
+          to: "Rafina Port",
+          cost: "30",
+          duration: "20",
+          location: "airport",
+        },
+      ],
+      faq: [
+        {
+          q: `Are taxis in Athens safe?`,
+          a: `Yes. Taxis in Athens have a great safety record and tourists can feel comfortable using any of the licensed services available. Aegean Taxi has the highest safety score amongst transport comopanies, and offers added security by sharing the driver and ride details which are available when a booking using one of the suggested methods (taxi app, webapp, call, whatsapp)`,
+        },
+        {
+          q: `Where to find a taxi in Athens?
+`,
+          a: `Taxis can be found in a number of designated taxi ranks throughout the city, at the arrivals area on the Athens International Airport, and on all ports. Hailling a taxi from the street is also easy, one has to look at the taxi light at the top of every car, when this is illuminated, it means that the taxi is free and available for hire
+
+`,
+        },
+        {
+          q: `Is it hard to get a taxi in Athens?`,
+          a: `No. Getting a ride in Athens is relatively easy due to large availability of cars.`,
+        },
+        {
+          q: `How many taxis are there in Athens?`,
+          a: `Athens has in excess of 13,000 licensed taxis available, in addition to a number of limousine and private transfer cars available`,
+        },
+        {
+          q: `How long do taxis run in Athens?`,
+          a: `Taxis in Athens are available 24/4 and can be found throughout the day in designated taxi ranks or on the street`,
+        },
+        {
+          q: `What color are taxis in Athens?`,
+          a: `All Athens taxis are yellow in color`,
+        },
+        {
+          q: `Is transport expensive in Athens?`,
+          a: `Getting around in Athens is relatively cheap compared to all other European capitals. The minimum flag fare in Athens starts from €4 and every trip is charged according to time and distance`,
+        },
+      ],
+      reviews: [
+        {
+          flag: "french",
+          dateName: "Nikos - March 2023",
+          text: `Impressed with Aegean Taxi. I booked online first and then downloaded their app. The car was clean and comfortable and they were cheaper than everyone else`,
+        },
+        {
+          flag: "uk",
+          dateName: "Laura - March 2022",
+          text: `Booked via WhatsApp in 30 seconds while in Athens. Very friendly driver. Safe, experienced and a very good guide for the city`,
+        },
+        {
+          flag: "italy",
+          dateName: "Maria - March 2024",
+          text: `I had a fantastic experience with Aegean taxi app in Athens! It was easy to use, the driver arrived on time and was friendly and professional.`,
+        },
+      ],
+    },
+
     "milos-taxi-app": {
       location: "milos-taxi-app",
       name: "Milos",
@@ -383,7 +937,8 @@ export const locationDetails: any = {
         name: "Tinos",
       },
       meta: {
-        title: "Tinos Taxi App | Book your Taxi or Transfer | Book now or later",
+        title:
+          "Tinos Taxi App | Book your Taxi or Transfer | Book now or later",
         description:
           "Book your Tinos Taxi via telephone, whatsapp, website. Or download the Aegean Taxi app and book a ride for now or later",
       },
@@ -501,7 +1056,8 @@ export const locationDetails: any = {
         name: "Paros",
       },
       meta: {
-        title: "Paros Taxi App | Book your Taxi or Transfer | Book now or later",
+        title:
+          "Paros Taxi App | Book your Taxi or Transfer | Book now or later",
         description:
           "Book your Paros Taxi via telephone, whatsapp, website. Or download the Aegean Taxi app and book a ride for now or later",
       },
@@ -619,7 +1175,8 @@ export const locationDetails: any = {
         name: "Naxos",
       },
       meta: {
-        title: "Naxos Taxi App | Book your Taxi or Transfer | Book now or later",
+        title:
+          "Naxos Taxi App | Book your Taxi or Transfer | Book now or later",
         description:
           "Book your Naxos Taxi via telephone, whatsapp, website. Or download the Aegean Taxi app and book a ride for now or later",
       },
@@ -737,7 +1294,8 @@ export const locationDetails: any = {
         name: "Kos",
       },
       meta: {
-        title: "Kos Taxi App | Book Taxi Rides online now or later | Available 24/7",
+        title:
+          "Kos Taxi App | Book Taxi Rides online now or later | Available 24/7",
         description:
           "Book your Kos Taxi via telephone, whatsapp, website. Or download the Aegean Taxi app and request a ride in 2 simple steps.",
       },
@@ -855,7 +1413,8 @@ export const locationDetails: any = {
         name: "Heraklion",
       },
       meta: {
-        title: "Heraklion Taxi App | Book now or later | Affordable and Available 24/7",
+        title:
+          "Heraklion Taxi App | Book now or later | Affordable and Available 24/7",
         description:
           "Book your Heraklion Taxi via telephone, whatsapp, website. Or download the Heraklion Aegean Taxi app and book a ride for now or later.",
       },
@@ -969,7 +1528,8 @@ export const locationDetails: any = {
         name: "Chalkidiki",
       },
       meta: {
-        title: "Chalkidiki Taxi App | Book rides online now or later | Available 24/7",
+        title:
+          "Chalkidiki Taxi App | Book rides online now or later | Available 24/7",
         description:
           "Book your Chalkidiki Taxi via telephone, whatsapp, website. Or download the Chalkidiki Aegean Taxi app and book a ride for now or later.",
       },
@@ -1236,6 +1796,241 @@ export const locationDetails: any = {
     },
   },
   airports: {
+    mykonos: {
+      prices: [
+        {
+          from: "Mykonos Airport",
+          to: "Town",
+          cost: "16",
+          duration: "15",
+          location: "city",
+        },
+        {
+          from: "Mykonos Airport",
+          to: "Mykonos Port",
+          cost: "18",
+          duration: "20",
+          location: "port",
+        },
+        {
+          from: "Mykonos Airport",
+          to: "Platys Gialos",
+          cost: "19",
+          duration: "25",
+          location: "city",
+        },
+        {
+          from: "Mykonos Airport",
+          to: "Paragka",
+          cost: "13",
+          duration: "15",
+          location: "city",
+        },
+      ],
+      faq: [
+        {
+          q: `How can i find a taxi or transfer in Mykonos?
+`,
+          a: `Apart from the designated taxi stands in the town center, port or airport, the best way is to use a private transfer service. Aegean Taxi offers a great fleet of cars at competitive prices, with english speaking drivers and is available 24/7. You can order a ride from www.aegeantaxi.com using the webapp in 3 simple steps, download the Aegean Taxi app, or simply call the call center on +302152154000
+`,
+        },
+        {
+          q: `Is it easy to find a taxi in Mykonos?
+
+`,
+          a: `No. Taxis in Mykonos can be hard to find, especially in the peak months of July and August. If you want to book your ride in advance or on demend, the best way is to download the Aegean Taxi app or use one of the other 3 methods to book your ride
+`,
+        },
+        {
+          q: `Are Mykonos Taxis and Transfers safe in Mykonos?
+`,
+          a: `Yes. Mykonos is a cosidered to be a safe island with no major incidents ever reported related to taxis or transfers. Aegean Taxi employs only professional english speaking drivers who are pre-screened and trained to offer an excellent service
+`,
+        },
+        {
+          q: `What is the best way to find a taxi from Mykonos town?a
+`,
+          a: `Mykonos town has 2 designated taxi ranks in the areas of Remezzo and Fabrika. The best way to book your taxi is via Aegean Taxi, using the taxi app or calling the 24/7 call center
+`,
+        },
+        {
+          q: `How much are the taxis or transfers from Mykonos Airport or Port ?
+`,
+          a: `A usual taxi fare from Mykonos airport to town is about €20, and from the port usually the same. You can book your airport or port ride using Aegean taxi while in Mykonos.
+`,
+        },
+        {
+          q: `Are taxis and transfers expensive?
+`,
+          a: `Taxis in Mykonos operate with a government mandated taxi meter, however it is possible to negotiate a flat fare with your driver. Private transfer services are available with a minimum €36 fare for half an hour which is the rate for a standard car. Vans tend to charge higher rates
+`,
+        },
+        {
+          q: `Are there buses in Mykonos?
+`,
+          a: `Yes. Mykonos operates a frequent bus service to and from most of the popular destinations on the island. The main bus stop is at Fabrika and tourists can buy tickets before entering the bus. Fares vary and range from €3-€10 for a single tickets. In the peak months buses are usually crowded and there may be a waitting line.
+`,
+        },
+        {
+          q: `How many taxis are there in Mykonos?
+`,
+          a: `Mykonos island has only 34 registered taxis, which cater to the hundreads of thousands of visitors to the island every year. There are a number of private transfer services available on the island which can be pre-booked. The minimum fare is €36
+`,
+        },
+        {
+          q: `Is Aegean Taxi working in Mykonos?
+`,
+          a: `Yes. Aegean Taxi is the leading taxi and transfer service in the island of Mykonos. Tourists can download the Aegean Taxi app from the google or apple stores, register in 3 simple steps and requests rides in Mykonos. Alternative booking methods include the website using the webapp, telephone booking or whatsapp`,
+        },
+        {
+          q: `Do Taxi drivers speak English in Mykonos?
+`,
+          a: `Aegean Taxi hires only fluent English speakers so all drivers can speak English. It is a legal requirement for transport companies to obtain proof of English profficiency when hiring drivers. This does not apply to Taxi drivers who do not need to be speaking English to become drivers
+`,
+        },
+        {
+          q: `What colours are Taxis in Mykonos?
+`,
+          a: `Mykonos Taxis are painted in silver colour
+`,
+        },
+        {
+          q: `Do you have to tip taxis in Mykonos?
+`,
+          a: `Tips are optional for transport providers in Mykonos and one should not expect to have to pay anything extra than the pre arranged or metered fare. When extra services are provided by a driver like carrying luggage or stops along the way, then it is customary to reward drivers for the service
+`,
+        },
+        {
+          q: `Do I need cash for taxis in Mykonos?
+`,
+          a: `Yes. There is no government mandate that requires taxi drivers to carry a POS machine to accept card payments, so the majority of the taxis in Mykonos require cash payment. Aegean Taxi accepts all major credit cards, and you can also add your credit card details to pay for your ride when using the Taxi app
+`,
+        },
+        {
+          q: `Do taxis run all day and night in Mykonos?
+`,
+          a: `Most taxis operate throughout the day on the island of Mykonos. Aegean Taxi operates 24/7 and getting a ride is easy at any time using one of the booking methods offered
+`,
+        },
+        {
+          q: `Is there a Taxi app in Mykonos?
+`,
+          a: `Yes, Aegean Taxi is the first taxi app that started operating in Mykonos and is available to download in Android and iOS
+`,
+        },
+        {
+          q: `What is the best Taxi app for Mykonos?
+`,
+          a: `Aegean Taxi is the best Taxi app and airport or port transfer service available in Mykonos. With over 100,000 downloads and a fleet of 500+ drivers, Aegean Taxi is the cheapest and most professional service available in Mykonos
+`,
+        },
+      ],
+      reviews: [
+        {
+          flag: "america",
+          dateName: "William - August 2023",
+          text: `     Aegean Taxi is good value and a reliable service. Our
+                      driver Kostas showed up on time and was super helpful and
+                      full of useful local knowledge. We will be very happy to
+                      use him again on our departure and highly recommend their
+                      service.`,
+        },
+        {
+          flag: "uk",
+          dateName: "Luca - May 2018",
+          text: `They were incredible. Very fast to respond and easy to
+                      book on short notice. Helped us get to the airport and
+                      were right on time for both trips. Beautiful cars and
+                      lovely drivers. Highly recommend this for easy transfers
+                      in Mykonos. Thank you!`,
+        },
+        {
+          flag: "italy",
+          dateName: "Tatiana - August 2021",
+          text: `For a hassle-free airport transfer in Athens, I highly recommend Aegean Taxi. Booking on their user-friendly website was a breeze, the car was comfortable, and the driver was professional and punctual.`,
+        },
+      ],
+    },
+    athens: {
+      prices: [
+        {
+          from: "Athens Airport",
+          to: "City Centre",
+          cost: "45",
+          duration: "55",
+          location: "city",
+        },
+        {
+          from: "Athens Airport",
+          to: "Piraeus Port",
+          cost: "55",
+          duration: "50",
+          location: "port",
+        },
+        {
+          from: "Athens Airport",
+          to: "Athenian Riviera",
+          cost: "45",
+          duration: "40",
+          location: "city",
+        },
+        {
+          from: "Athens Airport",
+          to: "Rafina Port",
+          cost: "27",
+          duration: "25",
+          location: "port",
+        },
+      ],
+      faq: [
+        {
+          q: `Are taxis in Athens safe?`,
+          a: `Yes. Taxis in Athens have a great safety record and tourists can feel comfortable using any of the licensed services available. Aegean Taxi has the highest safety score amongst transport comopanies, and offers added security by sharing the driver and ride details which are available when a booking using one of the suggested methods (taxi app, webapp, call, whatsapp)`,
+        },
+        {
+          q: `Where to find a taxi in Athens?`,
+          a: `Taxis can be found in a number of designated taxi ranks throughout the city, at the arrivals area on the Athens International Airport, and on all ports. Hailling a taxi from the street is also easy, one has to look at the taxi light at the top of every car, when this is illuminated, it means that the taxi is free and available for hire`,
+        },
+        {
+          q: `Is it hard to get a taxi in Athens?`,
+          a: `No. Getting a ride in Athens is relatively easy due to large availability of cars.`,
+        },
+        {
+          q: `How many taxis are there in Athens?`,
+          a: `Athens has in excess of 13,000 licensed taxis available, in addition to a number of limousine and private transfer cars available`,
+        },
+        {
+          q: `How long do taxis run in Athens?`,
+          a: `Taxis in Athens are available 24/4 and can be found throughout the day in designated taxi ranks or on the street`,
+        },
+        {
+          q: `What color are taxis in Athens?`,
+          a: `All Athens taxis are yellow in color`,
+        },
+        {
+          q: `Is transport expensive in Athens?`,
+          a: `Getting around in Athens is relatively cheap compared to all other European capitals. The minimum flag fare in Athens starts from €4 and every trip is charged according to time and distance`,
+        },
+      ],
+      reviews: [
+        {
+          flag: "italy",
+          dateName: "Tatiana - August 2021",
+          text: `For a hassle-free airport transfer in Athens, I highly recommend Aegean Taxi. Booking on their user-friendly website was a breeze, the car was comfortable, and the driver was professional and punctual.`,
+        },
+        {
+          flag: "america",
+          dateName: "Lily - May 2018",
+          text: `If you need a reliable airport transfer in Athens no look further than Aegean Taxi. Their customer support was excellent, the price was reasonable, and their service was perfect. Highly recommended!`,
+        },
+        {
+          flag: "uk",
+          dateName: "Tatiana - August 2021",
+          text: `For a hassle-free airport transfer in Athens, I highly recommend Aegean Taxi. Booking on their user-friendly website was a breeze, the car was comfortable, and the driver was professional and punctual.`,
+        },
+      ],
+    },
+
     milos: {
       location: "milos",
       meta: {
@@ -2340,6 +3135,108 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
         link: "/airport-transfers/corfu/",
         name: "CFU",
       },
+    },
+    santorini: {
+      prices: [
+        {
+          from: "Santorini Airport",
+          to: "Fira",
+          cost: "18",
+          duration: "15",
+          location: "airport",
+        },
+        {
+          from: "Santorini Airport",
+          to: "Athinios Port",
+          cost: "32",
+          duration: "40",
+          location: "port",
+        },
+        {
+          from: "Santorini Airport",
+          to: "Oia",
+          cost: "29",
+          duration: "30",
+          location: "city",
+        },
+        {
+          from: "Santorini Airport",
+          to: "Perissa",
+          cost: "27",
+          duration: "35",
+          location: "port",
+        },
+      ],
+      faq: [
+        {
+          q: `How much does a taxi cost on Santorini?`,
+
+          a: `Taxi fares in Santorini are dictacted by government regulations and based on time and distance of each specific ride. Private transfers have a minimum fare of €36 for a 30 minute ride and might depend on the type of car selected and the distance of the route. Aegean Taxi offers the most competitive rates`,
+        },
+        {
+          q: `Is it easy to get a taxi in Santorini?`,
+
+          a: `Due to the limited number of taxis on the island, dispatch times vary depending by month, and it can be anything from 10 minutes to 45 minutes. It is usually a lot faster to call Aegean Taxi on +30 2152154000 to call for a ride, or download the Aegean Taxi app for Santorini
+`,
+        },
+        {
+          q: `How to find a taxi in Santorini?`,
+
+          a: `You can hail a Taxi in Santorini from the street, or simply by going to one of the designated taxi stands that are located around the Island. Downloading the Aegean Taxi app is another way to get a ride, or just send a message on whatsapp on +30 694 382 9494 to order one. Using www.aegeantaxi.com is also another way to get a ride using the simple online webapp`,
+        },
+        {
+          q: `How much is a taxi from Oia to Fira?`,
+
+          a: `The preferred payment method for taxis in Santorini is cash, since there is still no legal requirement for drivers to carry a POS machine. Aegean taxi accepts all major credit cards which can be added on the account section after downloading the taxi app and completing the registration`,
+        },
+        {
+          q: `Is Fira or Oia better?`,
+
+          a: `Both locations within Santorini island are unique and offer a different ambience and setting. Depending on your group requirements, Oia is considered a romanting sunset spot with great restaurants for dinner, while vibrant Fira offers a number of options for shopping, dinner and night time entertainment`,
+        },
+        {
+          q: `Is Aegean Taxi working in Santorini?`,
+
+          a: `Yes. Aegean Taxi is the leading taxi and transfer service in the island of Santorini and is available from early April until the end of October. Tourists can download the Aegean Taxi app from the google or apple stores, register in 3 simple steps and requests rides in Santorini. Alternative booking methods include the website using the webapp, telephone booking or whatsapp`,
+        },
+        {
+          q: `Do drivers speak English in Santorini?`,
+
+          a: `Aegean Taxi hires only fluent English speakers so all drivers can speak English in Santorini. It is a legal requirement for transfer companies to obtain proof of English profficiency when hiring fleet drivers. This does not apply to Taxi drivers who do not need to be speaking English to become drivers`,
+        },
+        {
+          q: `What colours are Taxis in Santorini?`,
+
+          a: `All licenced taxis in Santorini are silver or grey. Aegean Taxi operates a fleet of luxury cars with most cars in black colour`,
+        },
+        {
+          q: `Do you need to tip your driver in Santorini?`,
+
+          a: `Tips are optional for transport providers in Santorini and there is no suggested percentage of the fare that should be added on top of the fare. So one should not expect to have to pay anything extra than the pre arranged or metered fare. When extra services are provided by a driver like carrying luggage or stops along the way, then it is customary to reward drivers for the service`,
+        },
+        {
+          q: `Do I need cash for taxis in Santorini?`,
+
+          a: `Yes. There is no government mandate that requires taxi drivers in Santorini to carry a POS machine to accept card payments, so the majority of the taxis in Santorini require cash payment. Aegean Taxi accepts all major credit cards, and you can also add your credit card details to pay for your ride when using the Taxi app`,
+        },
+      ],
+      reviews: [
+        {
+          flag: "america",
+          dateName: "Tobias - August 2023",
+          text: `Excellent service, price agreed by WhatsApp which was very convenient. Received numerous texts with up dates on driver, reg of car etc. Very comfortable journey, clean and air-conditioning. Driver Nikos was very helpful with our luggage. Will use again.`,
+        },
+        {
+          flag: "italy",
+          dateName: "Jack - August 2023",
+          text: `Amazing experience! I just use their services in Santorini and I am very satisfied. Affordable prices, polite driver and I was surprised by the fluency he had with English Language.`,
+        },
+        {
+          flag: "french",
+          dateName: "Adam - August 2023",
+          text: `Pre-booked via the app two weeks ago to take us from airport to Fira. The driver was waiting with my name on his board outside of the arrivals. He kind enough to help us with the luggage. The price was more than fair. Highly recommended!`,
+        },
+      ],
     },
   },
 };
