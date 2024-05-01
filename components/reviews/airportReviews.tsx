@@ -5,7 +5,5 @@ import AirportLandingReviews from "@/components/reviews/airportLanding";
 
 export default function AirportReviews() {
   const params: any = useParams();
-  let reviewsComponent = <AirportLandingReviews />;
-
-  return reviewsComponent;
+  return <AirportLandingReviews location={params.location} />;
 }

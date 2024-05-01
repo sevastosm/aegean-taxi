@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useContext } from "react";
 import "./../../app/globals.css";
-import { hotjar } from "react-hotjar";
+// import { hotjar } from "react-hotjar";
 
 // MUI
 import Box from "@mui/material/Box";
@@ -57,9 +57,9 @@ export default function MainTemplate({
     driverLocation: null,
   });
 
-  useEffect(() => {
-    hotjar.initialize(3504233, 6);
-  }, []);
+  // useEffect(() => {
+  //   hotjar.initialize(3504233, 6);
+  // }, []);
 
   const updateState = (state: any) => {
     setCurrentState(state);

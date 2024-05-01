@@ -1797,6 +1797,8 @@ export const locationDetails: any = {
   },
   airports: {
     mykonos: {
+      location: "mykonos",
+
       prices: [
         {
           from: "Mykonos Airport",
@@ -1952,6 +1954,7 @@ export const locationDetails: any = {
       ],
     },
     athens: {
+      location: "athens",
       prices: [
         {
           from: "Athens Airport",
@@ -3137,6 +3140,7 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
       },
     },
     santorini: {
+      location: "santorini",
       prices: [
         {
           from: "Santorini Airport",
