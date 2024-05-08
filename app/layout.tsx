@@ -5,9 +5,14 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 export const metadata = {
-  title: "Ride with Aegean Taxi | The best taxi app for Greece | Book rides 24/7",
+  title:
+    "Ride with Aegean Taxi | The best taxi app for Greece | Book rides 24/7",
   description:
     "Aegean Taxi App: the best Taxi & Transfer service for the Greek Islands. Book a ride online, via whatsapp, telephone, or download the Taxi App. Available 24/7",
+  other: {
+    thumbnail:
+      "https://aegeantaxi.com/_next/static/media/ECONOMY_yellow.665a091a.webp",
+  },
 };
 
 export default function RootLayout({
