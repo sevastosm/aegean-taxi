@@ -1,4 +1,9 @@
 "use client";
+
+/**
+ * Resents fake ride form Landing page"
+ */
+
 import React, { useState, useContext } from "react";
 import NextLink from "next/link";
 
@@ -39,15 +44,6 @@ export default function FormComponent({
 }) {
   const [focusLocation, setFocusLocation] = useState<boolean>(false);
   const [focusDestination, setFocusDestination] = useState<boolean>(false);
-  const [pickUpLocaction, setPickUpLocaction] = useState<any>();
-  const [dropLocation, setDropLocation] = useState<any>();
-  const [predictions, setPredictions] = useState<Array<any>>([]);
-  const [triggerCalculate, setTriggerCalculate] = useState<boolean>(false);
-  const [locationHandler, setLocationHandler] = useState<string>();
-
-  const [autocompleteService, setAutocompleteService] = useState<any>();
-  const [placesService, setPlacesService] = useState<any>();
-  const [geocoderService, setGeocoderService] = useState<any>();
 
   const [nearbyLocations, setNearbyLocations] = useState<Array<any>>([]);
   const [currentLocationAddress, setCurrentLocationAddress] =
@@ -156,7 +152,7 @@ export default function FormComponent({
                     onFocus={toggleFocusLocation()}
                     onBlur={toggleFocusLocation()}
                     className={styles.inputContainer}
-                    placeholder="Add a pick up location"
+                    placeholder="Enter pickup location"
                     disabled
                     startAdornment={
                       <InputAdornment position="end" className={styles.square}>
@@ -231,7 +227,7 @@ export default function FormComponent({
                     onFocus={toggleFocusDestination()}
                     onBlur={toggleFocusDestination()}
                     className={styles.inputContainer}
-                    placeholder="Enter your destination"
+                    placeholder="Enter dropoff location"
                     startAdornment={
                       <InputAdornment position="end" className={styles.square}>
                         <svg

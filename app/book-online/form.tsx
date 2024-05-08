@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import dayjs from "dayjs";
 
 // Styles
@@ -22,14 +22,7 @@ import EventSharpIcon from "@mui/icons-material/EventSharp";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { DesktopTimePicker } from "@mui/x-date-pickers/DesktopTimePicker";
-
-// context
-import { AppContext } from "@/context/appState";
-
-// hooks
-import useStorage from "@/hooks/useStorage";
 
 export default function FormComponent({}: {}) {
   const [openDayPicker, setOpenDayPicker] = useState<boolean>(false);
@@ -39,15 +32,6 @@ export default function FormComponent({}: {}) {
 
   const [focusLocation, setFocusLocation] = useState<boolean>(false);
   const [focusDestination, setFocusDestination] = useState<boolean>(false);
-  const [pickUpLocaction, setPickUpLocaction] = useState<any>();
-  const [dropLocation, setDropLocation] = useState<any>();
-  const [predictions, setPredictions] = useState<Array<any>>([]);
-  const [triggerCalculate, setTriggerCalculate] = useState<boolean>(false);
-  const [locationHandler, setLocationHandler] = useState<string>();
-
-  const [autocompleteService, setAutocompleteService] = useState<any>();
-  const [placesService, setPlacesService] = useState<any>();
-  const [geocoderService, setGeocoderService] = useState<any>();
 
   const [nearbyLocations, setNearbyLocations] = useState<Array<any>>([]);
   const [currentLocationAddress, setCurrentLocationAddress] =
@@ -126,7 +110,7 @@ export default function FormComponent({}: {}) {
                   onFocus={toggleFocusLocation()}
                   onBlur={toggleFocusLocation()}
                   className={styles.inputContainer}
-                  placeholder="Add a pick up location"
+                  placeholder="Enter pickup location"
                   startAdornment={
                     <InputAdornment position="end" className={styles.square}>
                       <CropSquareSharp fontSize="inherit" />
@@ -174,7 +158,7 @@ export default function FormComponent({}: {}) {
                   onFocus={toggleFocusDestination()}
                   onBlur={toggleFocusDestination()}
                   className={styles.inputContainer}
-                  placeholder="Enter your destination"
+                  placeholder="Enter drop-off location"
                   startAdornment={
                     <InputAdornment position="end" className={styles.square}>
                       <CropSquareSharp fontSize="inherit" />
@@ -214,7 +198,7 @@ export default function FormComponent({}: {}) {
       )} */}
         <Grid container spacing={1} mt={1}>
           <Grid item xs={6} md={6}>
-            <Box sx={{ position: "relative" }}>
+            <Box sx={{ position: "relative", color: "#000" }}>
               <Button
                 startIcon={<EventSharpIcon />}
                 variant="contained"

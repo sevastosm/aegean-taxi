@@ -184,7 +184,7 @@ export default function FormComponent() {
               onFocus={toggleFocusLocation()}
               onBlur={toggleFocusLocation()}
               className={styles.inputContainer}
-              placeholder="Add a pick up location"
+              placeholder="Enter pickup location"
               startAdornment={
                 <InputAdornment position="end" className={styles.square}>
                   <CropSquareSharp fontSize="inherit" />
@@ -229,7 +229,7 @@ export default function FormComponent() {
               onFocus={toggleFocusDestination()}
               onBlur={toggleFocusDestination()}
               className={styles.inputContainer}
-              placeholder="Enter your destination"
+              placeholder="Enter dropoff location"
               startAdornment={
                 <InputAdornment position="end" className={styles.square}>
                   <CropSquareSharp fontSize="inherit" />

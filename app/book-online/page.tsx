@@ -1385,7 +1385,7 @@ export default function BookOnline() {
                             onFocus={toggleFocusLocation()}
                             onBlur={toggleBlurLocation()}
                             className={styles.inputContainer}
-                            placeholder="Add a pick up location"
+                            placeholder="Enter pickup location"
                             startAdornment={
                               <InputAdornment
                                 position="end"
@@ -1459,7 +1459,7 @@ export default function BookOnline() {
                             onFocus={toggleFocusDestination()}
                             onBlur={toggleBlurDestination()}
                             className={styles.inputContainer}
-                            placeholder="Enter your destination"
+                            placeholder="Enter dropoff location"
                             startAdornment={
                               <InputAdornment
                                 position="end"
