@@ -34,17 +34,28 @@ export default function LandingHeader() {
           <Typography
             component="h1"
             sx={{
-              fontWeight: { xs: "500", md: "700" },
+              fontWeight: { xs: "700", md: "700" },
+              fontSize: { xs: "1.9rem", md: "3.75rem" },
+              lineHeight: { xs: "1", md: "1.2" },
+              // display: { xs: "block", md: "none" },
+              textAlign: { xs: "center", md: "left" },
+              mt: { xs: "0px", md: "48px" },
+            }}
+          >
+            Ride with Aegean Taxi
+          </Typography>
+          <Typography
+            component="h2"
+            sx={{
+              fontWeight: { xs: "700", md: "700" },
               fontSize: { xs: "1rem", md: "3.75rem" },
               lineHeight: { xs: "1.5", md: "1.2" },
               // display: { xs: "block", md: "none" },
               textAlign: { xs: "center", md: "left" },
-              mt: { xs: "0px", md: "48px" },
+              mt: { xs: "10px", md: "auto" },
               mb: { xs: "10px" },
             }}
           >
-            Ride with Aegean Taxi.
-            <br />
             The best Taxi App for the Greek islands
           </Typography>
           <Typography

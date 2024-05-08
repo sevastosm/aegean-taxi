@@ -78,7 +78,7 @@ export default function DownloadAppButton({
     }
     return (
       <a
-        style={{ display: "flex" }}
+        style={{ display: "flex", textDecoration: "none" }}
         data-baseweb="link"
         href="https://aegean.page.link/navigate"
         target="_blank"
@@ -89,38 +89,45 @@ export default function DownloadAppButton({
           display="flex"
           sx={{
             width: "100%",
-            height: "105px",
-            background: "#EBEBEB",
-            p: 2,
             display: { xs: showXs, md: showMd },
-            mb: 2,
             cursor: "pointer",
+            border: "2px solid #234283",
+            borderRadius: "8px",
+            padding: "2px",
           }}
         >
-          <Grid container spacing={0} sx={{ background: "#fff", p: 1 }}>
-            <Grid item xs={3} md={2} sx={{ mt: 1 }}>
+          <Grid
+            container
+            sx={{
+              background: "#fff",
+              display: "flex",
+              alignItems: "center",
+              gap: "1px",
+            }}
+          >
+            <Grid item sx={{ paddingTop: "5px" }}>
               <Image
                 src={at_logo_blue}
                 alt="Download the Aegean Taxi App for Android and iOS"
-                height={38}
+                height={25}
               />
             </Grid>
-            <Grid item xs={7} md={8} sx={{ mt: 2, textAlign: "left" }}>
+            <Grid item md={8}>
               <Typography
                 component="span"
-                variant="body1"
-                gutterBottom
                 sx={{
-                  lineHeight: 1,
-                  mt: 0,
+                  fontSize: "14px",
+                  textDecoration: "none",
+                  color: "#234283",
+                  fontWeight: "bold",
                 }}
               >
                 Download the App
               </Typography>
             </Grid>
-            <Grid item xs={2} sx={{ mt: 1.5 }}>
+            {/* <Grid item xs={2} sx={{ mt: 1.5 }}>
               <ArrowRightAltIcon fontSize="large" />
-            </Grid>
+            </Grid> */}
           </Grid>
         </Box>
       </a>

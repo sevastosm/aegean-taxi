@@ -43,58 +43,31 @@ export default function AirportHeader() {
     <Container maxWidth={"lg"} sx={{ mb: { xs: 6, md: 40 } }}>
       <Grid container spacing={0}>
         <Grid item xs={12} md={5}>
-          {/*<Typography
-            component="h1"
-            variant="h2"
-            gutterBottom
-            sx={{
-              fontWeight: 700,
-              fontSize: 50,
-              mt: 6,
-              display: { xs: "none", md: "block" },
-            }}
-          >
-            {city && (
-              <>
-                {city} Airport <br /> Transfers made easy
-                <br />
-              </>
-            )}
-            {!city && (
-              <>
-                Airport Transfers
-                <br />
-                made easy
-                <br />
-              </>
-            )}
-          </Typography>
           <Typography
             component="h1"
-            variant="h6"
-            gutterBottom
-            sx={{
-              fontWeight: 400,
-              mt: 1,
-              display: { xs: "block", md: "none" },
-            }}
-          >
-            {city} Airport Transfers made easy
-          </Typography> */}
-
-          <Typography
-            component="h1"
-            gutterBottom
             sx={{
               fontWeight: { xs: "700", md: "700" },
-              fontSize: { xs: "1rem", md: "3.75rem" },
+              fontSize: { xs: "1.5rem", md: "3.75rem" },
+              lineHeight: { xs: "1", md: "1.2" },
+              // display: { xs: "block", md: "none" },
+              textAlign: { xs: "center", md: "left" },
+              mt: { xs: "5px", md: "48px" },
+            }}
+          >
+            {city ? city + " Airport Transfers" : "Airport Transfers made easy"}
+          </Typography>
+          <Typography
+            component="h2"
+            sx={{
+              fontWeight: { xs: "700", md: "700" },
+              fontSize: { xs: "1.2rem", md: "3.75rem" },
               lineHeight: { xs: "1.5", md: "1.2" },
               // display: { xs: "block", md: "none" },
               textAlign: { xs: "center", md: "left" },
-              mt: { xs: "0px", md: "48px" },
+              mb: { xs: "15px" },
             }}
           >
-            {city} Airport Transfers made easy
+            {city && "made easy"}
           </Typography>
 
           <Box

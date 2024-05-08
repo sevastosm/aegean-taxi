@@ -128,7 +128,7 @@ export default function TaxiHeader() {
             gutterBottom
             sx={{
               fontWeight: { xs: "700", md: "700" },
-              fontSize: { xs: "1rem", md: "3.75rem" },
+              fontSize: { xs: "1.7rem", md: "3.75rem" },
               lineHeight: { xs: "1.5", md: "1.2" },
               // display: { xs: "block", md: "none" },
               textAlign: { xs: "center", md: "left" },
