@@ -518,9 +518,10 @@ export default function FooterLayout() {
           <Image src={phoneIcon} width="46" height="38" alt="Call us" />
         </a> */}
         <a
+          style={{ display: "flex" }}
           href="https://wa.me/+306943829494"
           target="_blank"
-          className="mr-4 watchAppBottom"
+          className="mr-4 watchAppBottom watchApp"
         >
           <Image src={whatsApp} height="45" alt="Message us on WhatsApp" />
         </a>

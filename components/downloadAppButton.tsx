@@ -47,6 +47,7 @@ export default function DownloadAppButton({
     if (isAndroid()) {
       return (
         <a
+          style={{ display: "flex", width: "135px" }}
           data-baseweb="link"
           href="https://play.google.com/store/apps/details?id=aegean.taxi.ride.app.mykonos.santorini.athens.greece.passenger"
           target="_blank"
@@ -62,6 +63,7 @@ export default function DownloadAppButton({
     if (isIOS()) {
       return (
         <a
+          style={{ display: "flex", width: "135px" }}
           data-baseweb="link"
           href="https://apps.apple.com/app/id6447252101"
           target="_blank"
@@ -76,6 +78,7 @@ export default function DownloadAppButton({
     }
     return (
       <a
+        style={{ display: "flex" }}
         data-baseweb="link"
         href="https://aegean.page.link/navigate"
         target="_blank"
