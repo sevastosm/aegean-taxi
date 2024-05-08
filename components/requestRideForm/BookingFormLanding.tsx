@@ -1,5 +1,3 @@
-"use client";
-
 /**
  * Resents fake ride form Landing page"
  */
@@ -32,6 +30,7 @@ import useStorage from "@/hooks/useStorage";
 import { Bolt } from "@mui/icons-material";
 import DownloadAppButton from "../downloadAppButton";
 import Observer from "./Observer";
+import HeaderWrapper from "../layout/HeaderWrapper";
 
 export default function FormComponent({
   elevation = 0,
@@ -64,7 +63,7 @@ export default function FormComponent({
   };
 
   return (
-    <>
+    <HeaderWrapper>
       <Paper
         elevation={elevation}
         sx={{
@@ -280,7 +279,7 @@ export default function FormComponent({
                   />
                 </FormControl>
               </Box>
-              <div className={`${styles.connectionLine} `}></div>
+              <div className={`${styles["connectionLine-landing"]} `}></div>
             </Box>
             <Button
               sx={{
@@ -323,6 +322,6 @@ export default function FormComponent({
           <Observer />
         </Box>
       </Paper>
-    </>
+    </HeaderWrapper>
   );
 }

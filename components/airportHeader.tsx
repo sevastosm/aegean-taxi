@@ -9,7 +9,7 @@ import Grid from "@mui/material/Grid"; // Grid version 1
 import Typography from "@mui/material/Typography";
 
 // components
-import Form from "components/requestRideForm/form";
+import Form from "@/components/requestRideForm/BookingFormLanding";
 
 import bg from "public/assets/airport-header.webp";
 // FIXME: No images available

@@ -8,7 +8,7 @@ import Grid from "@mui/material/Grid"; // Grid version 1
 import Typography from "@mui/material/Typography";
 
 // components
-import Form from "components/requestRideForm/form";
+import BookingFormLanding from "@/components/requestRideForm/BookingFormLanding";
 import DownloadAppButton from "components/downloadAppButton";
 
 import bg from "public/assets/taxi-header.webp";
@@ -174,7 +174,7 @@ export default function TaxiHeader() {
               minHeight: { xs: "auto", md: "595px" },
             }}
           >
-            <Form />
+            <BookingFormLanding />
           </Box>
           {/* Download the app Button */}
           {/* <DownloadAppButton showMd="none" showStoresMD="none" /> */}

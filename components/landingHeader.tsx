@@ -6,12 +6,9 @@ import Grid from "@mui/material/Grid"; // Grid version 1
 import Typography from "@mui/material/Typography";
 
 // components
-import Form from "components/requestRideForm/form";
-import DownloadAppButton from "components/downloadAppButton";
+import BookingFormLanding from "@/components/requestRideForm/BookingFormLanding";
 
 import bg from "public/assets/landing-header.webp";
-import Observer from "./requestRideForm/Observer";
-import { display } from "@mui/system";
 
 export default function LandingHeader() {
   return (
@@ -98,7 +95,7 @@ export default function LandingHeader() {
                 marginBottom: "20px",
               }}
             >
-              <Form />
+              <BookingFormLanding />
             </div>
           </Box>
           {/* Download the app Button */}
