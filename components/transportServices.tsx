@@ -41,7 +41,7 @@ export default function TransportServices() {
           textAlign: "center",
         }}
       >
-        Quality transport services, wherever you go, available 24/7
+        Quality Transport Services, wherever you go in Greece, available 24/7
       </Typography>
 
       {/* tabs */}
@@ -97,7 +97,7 @@ export default function TransportServices() {
                     }}
                   >
                     Choose our fastest pickup option when you
-                    <br /> need a quick ride.
+                    <br /> need a quick Taxi ride  in Greece
                   </Typography>
                   <Typography
                     component={"span"}
@@ -108,7 +108,7 @@ export default function TransportServices() {
                       display: { xs: "block", md: "none" },
                     }}
                   >
-                    Choose our fastest pickup option when you need a quick ride.
+                    Choose our fastest pickup option when you need a quick Taxi ride  in Greece
                   </Typography>
 
                   <Stack spacing={0}>
@@ -203,9 +203,9 @@ export default function TransportServices() {
                       display: { xs: "none", md: "block" },
                     }}
                   >
-                    Book your airport transfer in advance,
+                    Book your airport transfer in advance.
                     <br />
-                    for a stress free arrival.
+                    Taxis vailable in all airports in Greece
                   </Typography>
                   <Typography
                     component={"span"}
@@ -216,8 +216,7 @@ export default function TransportServices() {
                       display: { xs: "block", md: "none" },
                     }}
                   >
-                    Book your airport transfer in advance, for a stress free
-                    arrival.
+                    Book your airport transfer in advance. Taxis vailable in all airports in Greece
                   </Typography>
 
                   <Stack spacing={0}>
