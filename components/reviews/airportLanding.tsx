@@ -30,8 +30,8 @@ import { Review } from "./reviews";
 export default function AirportLandingReviews({ location }: any) {
   console.log("AirportLandingReviews", location);
   const data = location
-    ? locationDetails.airports[location]
-    : locationDetails.default;
+    ? locationDetails.airports[location]?.reviews
+    : locationDetails.default.airport_reviews;
 
   let settings = {
     dots: false,
@@ -112,7 +112,7 @@ export default function AirportLandingReviews({ location }: any) {
           {/* Slider */}
           <Box sx={{ my: 1, p: { xs: 2, md: 3 } }}>
             <Slider {...settings}>
-              {data?.reviews.map((item: any, i: number) => (
+              {data.map((item: any, i: number) => (
                 <Review key={i} item={item} />
               ))}
             </Slider>
