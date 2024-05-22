@@ -1327,7 +1327,7 @@ export default function BookOnline() {
                     </Typography>
                   </Box> */}
                   <Typography
-                    component="h2"
+                    component="h1"
                     sx={{
                       display: `${open ? "none" : "block"}`,
                       fontWeight: "bold",

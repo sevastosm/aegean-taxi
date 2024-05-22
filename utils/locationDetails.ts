@@ -848,7 +848,7 @@ export const locationDetails: any = {
         },
         {
           q: `Do I need cash for taxis in Bodrum?`,
-          a: `Yes. There is no government mandate that requires taxi drivers to carry a POS machine to accept card payments, so the majority of the taxis in Mykonos require cash payment. Aegean Taxi accepts all major credit cards, and you can also add your credit card details to pay for your ride when using the Taxi app`,
+          a: `Yes. There is no government mandate that requires Bodrum taxi drivers to carry a POS machine to accept card payments, so the majority of the taxis in Mykonos require cash payment. Aegean Taxi accepts all major credit cards, and you can also add your credit card details to pay for your ride when using the Taxi app`,
         },
       ],
       photo: "./public/assets/taxi-locations/taxi-bodrum.webp",
@@ -1049,7 +1049,7 @@ export const locationDetails: any = {
       faq: [
         {
           q: `How can i find a taxi or transfer in Paros?`,
-          a: `Apart from the designated taxi stands in the town center, port or airport, the best way is to use a private transfer service. Aegean Taxi offers a great fleet of cars at competitive prices, with english speaking drivers and is available 24/7. You can order a ride from www.aegeantaxi.com using the webapp in 3 simple steps, download the Aegean Taxi app, or simply call the call center on +302152154000`,
+          a: `Apart from the designated taxi stands in the town center of Paros, port or airport, the best way is to use a private transfer service. Aegean Taxi offers a great fleet of cars at competitive prices, with english speaking drivers and is available 24/7. You can order a ride from www.aegeantaxi.com using the webapp in 3 simple steps, download the Aegean Taxi app, or simply call the call center on +302152154000`,
         },
         {
           q: `Is it easy to find a taxi in Paros?`,
@@ -1069,7 +1069,7 @@ export const locationDetails: any = {
         },
         {
           q: `Do Taxi drivers speak English in Paros?`,
-          a: `Aegean Taxi hires only fluent English speakers so all drivers can speak English. It is a legal requirement for transport companies to obtain proof of English profficiency when hiring drivers. This does not apply to Taxi drivers who do not need to be speaking English to become drivers`,
+          a: `Aegean Taxi in Paros hires only fluent English speakers so all drivers can speak English. It is a legal requirement for transport companies to obtain proof of English profficiency when hiring drivers. This does not apply to Taxi drivers who do not need to be speaking English to become drivers`,
         },
         {
           q: `Do you have to tip taxis in Paros?`,
@@ -1168,7 +1168,7 @@ export const locationDetails: any = {
       faq: [
         {
           q: `How can i find a taxi or transfer in Naxos?`,
-          a: `Apart from the designated taxi stands in the town center, port or airport, the best way is to use a private transfer service. Aegean Taxi offers a great fleet of cars at competitive prices, with english speaking drivers and is available 24/7. You can order a ride from www.aegeantaxi.com using the webapp in 3 simple steps, download the Aegean Taxi app, or simply call the call center on +302152154000`,
+          a: `Apart from the designated taxi stands in the town center of Naxos, port or airport, the best way is to use a private transfer service. Aegean Taxi offers a great fleet of cars at competitive prices, with english speaking drivers and is available 24/7. You can order a ride from www.aegeantaxi.com using the webapp in 3 simple steps, download the Aegean Taxi app, or simply call the call center on +302152154000`,
         },
         {
           q: `Is it easy to find a taxi in Naxos?`,
@@ -1188,7 +1188,7 @@ export const locationDetails: any = {
         },
         {
           q: `Do Taxi drivers speak English in Naxos?`,
-          a: `Aegean Taxi hires only fluent English speakers so all drivers can speak English. It is a legal requirement for transport companies to obtain proof of English profficiency when hiring drivers. This does not apply to Taxi drivers who do not need to be speaking English to become drivers`,
+          a: `Aegean Taxi in Naxos hires only fluent English speakers so all drivers can speak English. It is a legal requirement for transport companies to obtain proof of English profficiency when hiring drivers. This does not apply to Taxi drivers who do not need to be speaking English to become drivers`,
         },
         {
           q: `Do you have to tip taxis in Naxos?`,
@@ -1287,7 +1287,7 @@ export const locationDetails: any = {
       faq: [
         {
           q: `How can i find a taxi or transfer in Kos?`,
-          a: `Apart from the designated taxi stands in the town center, port or airport, the best way is to use a private transfer service. Aegean Taxi offers a great fleet of cars at competitive prices, with english speaking drivers and is available 24/7. You can order a ride from www.aegeantaxi.com using the webapp in 3 simple steps, download the Aegean Taxi app, or simply call the call center on +302152154000`,
+          a: `Apart from the designated taxi stands in the town center of Kos, port or airport, the best way is to use a private transfer service. Aegean Taxi offers a great fleet of cars at competitive prices, with english speaking drivers and is available 24/7. You can order a ride from www.aegeantaxi.com using the webapp in 3 simple steps, download the Aegean Taxi app, or simply call the call center on +302152154000`,
         },
         {
           q: `Is it easy to find a taxi in Kos?`,
@@ -1307,7 +1307,7 @@ export const locationDetails: any = {
         },
         {
           q: `Do Taxi drivers speak English in Kos?`,
-          a: `Aegean Taxi hires only fluent English speakers so all drivers can speak English. It is a legal requirement for transport companies to obtain proof of English profficiency when hiring drivers. This does not apply to Taxi drivers who do not need to be speaking English to become drivers`,
+          a: `Aegean Taxi in Kos hires only fluent English speakers so all drivers can speak English. It is a legal requirement for transport companies to obtain proof of English profficiency when hiring drivers. This does not apply to Taxi drivers who do not need to be speaking English to become drivers`,
         },
         {
           q: `Do you have to tip taxis in Kos?`,
@@ -1406,7 +1406,7 @@ export const locationDetails: any = {
       faq: [
         {
           q: `How can i find a taxi or transfer in Heraklion?`,
-          a: `Apart from the designated taxi stands in the town center, port or airport, the best way is to use a private transfer service. Aegean Taxi offers a great fleet of cars at competitive prices, with english speaking drivers and is available 24/7. You can order a ride from www.aegeantaxi.com using the webapp in 3 simple steps, download the Aegean Taxi app, or simply call the call center on +302152154000`,
+          a: `Apart from the designated taxi stands in the town center of Heraklion, port or airport, the best way is to use a private transfer service. Aegean Taxi offers a great fleet of cars at competitive prices, with english speaking drivers and is available 24/7. You can order a ride from www.aegeantaxi.com using the webapp in 3 simple steps, download the Aegean Taxi app, or simply call the call center on +302152154000`,
         },
         {
           q: `Is it easy to find a taxi in Heraklion?`,
@@ -1426,7 +1426,7 @@ export const locationDetails: any = {
         },
         {
           q: `Do Taxi drivers speak English in Heraklion?`,
-          a: `Aegean Taxi hires only fluent English speakers so all drivers can speak English. It is a legal requirement for transport companies to obtain proof of English profficiency when hiring drivers. This does not apply to Taxi drivers who do not need to be speaking English to become drivers`,
+          a: `Aegean Taxi in Heraklion hires only fluent English speakers so all drivers can speak English. It is a legal requirement for transport companies to obtain proof of English profficiency when hiring drivers. This does not apply to Taxi drivers who do not need to be speaking English to become drivers`,
         },
         {
           q: `Do you have to tip taxis in Heraklion?`,
@@ -1525,7 +1525,7 @@ export const locationDetails: any = {
       faq: [
         {
           q: `How can i find a taxi or transfer in Chalkidiki?`,
-          a: `Apart from the designated taxi stands in the town center, port or airport, the best way is to use a private transfer service. Aegean Taxi offers a great fleet of cars at competitive prices, with english speaking drivers and is available 24/7. You can order a ride from www.aegeantaxi.com using the webapp in 3 simple steps, download the Aegean Taxi app, or simply call the call center on +302152154000`,
+          a: `Apart from the designated taxi stands in the town center of Chalkidiki, port or airport, the best way is to use a private transfer service. Aegean Taxi offers a great fleet of cars at competitive prices, with english speaking drivers and is available 24/7. You can order a ride from www.aegeantaxi.com using the webapp in 3 simple steps, download the Aegean Taxi app, or simply call the call center on +302152154000`,
         },
         {
           q: `Is it easy to find a taxi in Chalkidiki?`,
@@ -1545,7 +1545,7 @@ export const locationDetails: any = {
         },
         {
           q: `Do Taxi drivers speak English in Chalkidiki?`,
-          a: `Aegean Taxi hires only fluent English speakers so all drivers can speak English. It is a legal requirement for transport companies to obtain proof of English profficiency when hiring drivers. This does not apply to Taxi drivers who do not need to be speaking English to become drivers`,
+          a: `Aegean Taxi in Chalkidiki hires only fluent English speakers so all drivers can speak English. It is a legal requirement for transport companies to obtain proof of English profficiency when hiring drivers. This does not apply to Taxi drivers who do not need to be speaking English to become drivers`,
         },
         {
           q: `Do you have to tip taxis in Chalkidiki?`,
@@ -1660,7 +1660,7 @@ export const locationDetails: any = {
         },
         {
           q: `Do Taxi drivers speak English in Kea/Tzia?`,
-          a: `Aegean Taxi hires only fluent English speakers so all drivers can speak English. It is a legal requirement for transport companies to obtain proof of English profficiency when hiring drivers. This does not apply to Taxi drivers who do not need to be speaking English to become drivers`,
+          a: `Aegean Taxi in Kea hires only fluent English speakers so all drivers can speak English. It is a legal requirement for transport companies to obtain proof of English profficiency when hiring drivers. This does not apply to Taxi drivers who do not need to be speaking English to become drivers`,
         },
         {
           q: `Do you have to tip taxis in Kea/Tzia?`,
@@ -1688,7 +1688,7 @@ export const locationDetails: any = {
         },
         {
           q: `Do I need cash for taxis in Tzia/Kea?`,
-          a: `Yes. There is no government mandate that requires taxi drivers to carry a POS machine to accept card payments, so the majority of the taxis in Mykonos require cash payment. Aegean Taxi accepts all major credit cards, and you can also add your credit card details to pay for your ride when using the Taxi app`,
+          a: `Yes. There is no government mandate that requires Kea taxi drivers to carry a POS machine to accept card payments, so the majority of the taxis in Mykonos require cash payment. Aegean Taxi accepts all major credit cards, and you can also add your credit card details to pay for your ride when using the Taxi app`,
         },
       ],
       photo: "./public/assets/taxi-locations/taxi-kea.webp",
@@ -1790,7 +1790,7 @@ export const locationDetails: any = {
         },
         {
           q: `Do Taxi drivers speak English in Kefalonia?`,
-          a: `Aegean Taxi hires only fluent English speakers so all drivers can speak English. It is a legal requirement for transport companies to obtain proof of English profficiency when hiring drivers. This does not apply to Taxi drivers who do not need to be speaking English to become drivers`,
+          a: `Aegean Taxi in Kefalonia hires only fluent English speakers so all drivers can speak English. It is a legal requirement for transport companies to obtain proof of English profficiency when hiring drivers. This does not apply to Taxi drivers who do not need to be speaking English to become drivers`,
         },
         {
           q: `Do you have to tip taxis in Kefalonia?`,
@@ -1818,7 +1818,7 @@ export const locationDetails: any = {
         },
         {
           q: `Do I need cash for taxis in Kefalonia?`,
-          a: `Yes. There is no government mandate that requires taxi drivers to carry a POS machine to accept card payments, so the majority of the taxis in Mykonos require cash payment. Aegean Taxi accepts all major credit cards, and you can also add your credit card details to pay for your ride when using the Taxi app`,
+          a: `Yes. There is no government mandate that requires Kefalonia taxi drivers to carry a POS machine to accept card payments, so the majority of the taxis in Mykonos require cash payment. Aegean Taxi accepts all major credit cards, and you can also add your credit card details to pay for your ride when using the Taxi app`,
         },
       ],
       photo: "./public/assets/taxi-locations/taxi-kefalonia.webp",
@@ -1877,7 +1877,7 @@ export const locationDetails: any = {
         {
           q: `How can i find a taxi or transfer in Mykonos?
 `,
-          a: `Apart from the designated taxi stands in the town center, port or airport, the best way is to use a private transfer service. Aegean Taxi offers a great fleet of cars at competitive prices, with english speaking drivers and is available 24/7. You can order a ride from www.aegeantaxi.com using the webapp in 3 simple steps, download the Aegean Taxi app, or simply call the call center on +302152154000
+          a: `Apart from the designated taxi stands in the town center of Mykonos, port or airport, the best way is to use a private transfer service. Aegean Taxi offers a great fleet of cars at competitive prices, with english speaking drivers and is available 24/7. You can order a ride from www.aegeantaxi.com using the webapp in 3 simple steps, download the Aegean Taxi app, or simply call the call center on +302152154000
 `,
         },
         {
@@ -1931,7 +1931,7 @@ export const locationDetails: any = {
         {
           q: `Do Taxi drivers speak English in Mykonos?
 `,
-          a: `Aegean Taxi hires only fluent English speakers so all drivers can speak English. It is a legal requirement for transport companies to obtain proof of English profficiency when hiring drivers. This does not apply to Taxi drivers who do not need to be speaking English to become drivers
+          a: `Aegean Taxi in Mykonos hires only fluent English speakers so all drivers can speak English. It is a legal requirement for transport companies to obtain proof of English profficiency when hiring drivers. This does not apply to Taxi drivers who do not need to be speaking English to become drivers
 `,
         },
         {
@@ -1949,7 +1949,7 @@ export const locationDetails: any = {
         {
           q: `Do I need cash for taxis in Mykonos?
 `,
-          a: `Yes. There is no government mandate that requires taxi drivers to carry a POS machine to accept card payments, so the majority of the taxis in Mykonos require cash payment. Aegean Taxi accepts all major credit cards, and you can also add your credit card details to pay for your ride when using the Taxi app
+          a: `Yes. There is no government mandate that requires Mykonos taxi drivers to carry a POS machine to accept card payments, so the majority of the taxis in Mykonos require cash payment. Aegean Taxi accepts all major credit cards, and you can also add your credit card details to pay for your ride when using the Taxi app
 `,
         },
         {
@@ -1975,7 +1975,7 @@ export const locationDetails: any = {
         {
           flag: "america",
           dateName: "William - August 2023",
-          text: `     Aegean Taxi is good value and a reliable service. Our
+          text: `     Aegean Taxi is good value and a reliable Airport transfer service in Mykonos. Our
                       driver Kostas showed up on time and was super helpful and
                       full of useful local knowledge. We will be very happy to
                       use him again on our departure and highly recommend their
@@ -2190,23 +2190,15 @@ Exploring the wonders of Milos Island becomes a seamless experience when you rel
         {
           q: `What happens if my flight is delayed or cancelled?
 `,
-          a: `We understand that flight delays and cancellations are sometimes unavoidable. If your flight is delayed, we'll monitor your flight status and adjust your pickup time accordingly. If your flight is cancelled, just let us know and we'll reschedule your transfer at no extra charge.
-`,
-        },
-        {
-          q: ` Is it possible to book an airport transfer for someone else?
-`,
-          a: `Yes, you can make a booking on behalf of someone else. When you make your booking, simply enter the passenger's name and contact information. You can also add any special requests or instructions, such as wheelchair accessibility or extra luggage, so that we can provide the best possible service.
-`,
+          a: `We understand that flight delays and cancellations are sometimes unavoidable when booking a taxi or transfer in advance from Milos Airport.`,
         },
         {
           q: ` Is it possible to book an airport transfer for someone else?`,
-          a: `Yes, you can make a booking on behalf of someone else. When you make your booking, simply enter the passenger's name and contact information. You can also add any special requests or instructions, such as wheelchair accessibility or extra luggage, so that we can provide the best possible service.`,
+          a: `Yes, you can make a booking for an airport transfer in Milos on behalf of someone else. When you make your booking, simply enter the passenger's name and contact information. You can also add any special requests or instructions, such as wheelchair accessibility or extra luggage, so that we can provide the best possible service.`,
         },
         {
           q: `What happens if I need to cancel or change my airport transfer booking?`,
-          a: `We understand that travel plans can change, so we offer flexible cancellation and change policies. If you need to cancel your booking, just let us know at least 24 hours in advance and we'll provide a full refund. If you need to change your booking, just contact us and we'll do our best to accommodate your request. Please note that changes may be subject to availability and additional charges may apply if there is a price difference between your original booking and the new booking.
-`,
+          a: `We understand that travel plans can change, so we offer flexible cancellation and change policies when booking your Milos Airport Transfer or Taxi. If you need to cancel your booking, just let us know at least 24 hours in advance and we'll provide a full refund. If you need to change your booking, just contact us and we'll do our best to accommodate your request. Please note that changes may be subject to availability and additional charges may apply if there is a price difference between your original booking and the new booking.`,
         },
       ],
       photo: "./public/assets/taxi-locations/taxi-milos.webp",
@@ -2261,7 +2253,7 @@ Exploring the wonders of Milos Island becomes a seamless experience when you rel
         {
           flag: "america",
           dateName: "James - August 2021",
-          text: `Choosing Aegean Taxi was a great decision for my airport transfer. I make the booking with a phonecall, the price was fair, and the service was top-notch.`,
+          text: `Choosing Aegean Taxi was a great decision for my Paros airport transfer. I make the booking with a phonecall, the price was fair, and the service was top-notch.`,
         },
         {
           flag: "spain",
@@ -2271,7 +2263,7 @@ Exploring the wonders of Milos Island becomes a seamless experience when you rel
         {
           flag: "uk",
           dateName: "Kate - July 2019",
-          text: `Aegean Taxi's app makes booking a breeze, and their professional drivers provide smooth rides to the airport. Competitive pricing and quality service make to recommend them for airport transfers.`,
+          text: `Aegean Taxi's app makes booking an airport transfer in Paros a breeze, and their professional drivers provide smooth rides to the airport. Competitive pricing and quality service make to recommend them for airport transfers.`,
         },
       ],
       slide: {
@@ -2333,13 +2325,12 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
         {
           q: `What happens if my flight is delayed or cancelled?
 `,
-          a: `We understand that flight delays and cancellations are sometimes unavoidable. If your flight is delayed, we'll monitor your flight status and adjust your pickup time accordingly. If your flight is cancelled, just let us know and we'll reschedule your transfer at no extra charge.
-`,
+          a: `We understand that flight delays and/or cancellations are sometimes unavoidable when booking a taxi or transfer in advance from Paros International Airport.`,
         },
         {
           q: ` Is it possible to book an airport transfer for someone else?
 `,
-          a: `Yes, you can make a booking on behalf of someone else. When you make your booking, simply enter the passenger's name and contact information. You can also add any special requests or instructions, such as wheelchair accessibility or extra luggage, so that we can provide the best possible service.
+          a: `Yes, you can make a booking for an airport transfer in Paros International Airport on behalf of someone else. When you make your booking, simply enter the passenger's name and contact information. You can also add any special requests or instructions, such as wheelchair accessibility or extra luggage, so that we can provide the best possible service.
 `,
         },
         {
@@ -2348,7 +2339,7 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
         },
         {
           q: `What happens if I need to cancel or change my airport transfer booking?`,
-          a: `We understand that travel plans can change, so we offer flexible cancellation and change policies. If you need to cancel your booking, just let us know at least 24 hours in advance and we'll provide a full refund. If you need to change your booking, just contact us and we'll do our best to accommodate your request. Please note that changes may be subject to availability and additional charges may apply if there is a price difference between your original booking and the new booking.
+          a: `We understand that travel plans can change, so we offer flexible cancellation and change policies when booking your Paros Airport Transfer or Taxi. If you need to cancel your booking, just let us know at least 24 hours in advance and we'll provide a full refund. If you need to change your booking, just contact us and we'll do our best to accommodate your request. Please note that changes may be subject to availability and additional charges may apply if there is a price difference between your original booking and the new booking.
 `,
         },
       ],
@@ -2404,7 +2395,7 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
         {
           flag: "america",
           dateName: "William - May 2023",
-          text: `Aegean Taxi is good value and a reliable service. Our driver Kostas showed up on time and was super helpful and full of useful local knowledge. We will be very happy to use him again on our departure and highly recommend their service.`,
+          text: `Aegean Taxi is good value and a reliable Airport transfer service in Naxos. Our driver Manolis showed up on time and was super helpful and full of useful local knowledge. We will be very happy to use him again on our departure and highly recommend their service.`,
         },
         {
           flag: "french",
@@ -2469,13 +2460,13 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
         {
           q: `What happens if my flight is delayed or cancelled?
 `,
-          a: `We understand that flight delays and cancellations are sometimes unavoidable. If your flight is delayed, we'll monitor your flight status and adjust your pickup time accordingly. If your flight is cancelled, just let us know and we'll reschedule your transfer at no extra charge.
+          a: `We understand that flight delays or cancellations are sometimes unavoidable when booking a taxi or transfer in advance from Naxos Airport. If your flight is delayed, we'll monitor your flight status and adjust your pickup time accordingly. If your flight is cancelled, just let us know and we'll reschedule your transfer at no extra charge.
 `,
         },
         {
           q: ` Is it possible to book an airport transfer for someone else?
 `,
-          a: `Yes, you can make a booking on behalf of someone else. When you make your booking, simply enter the passenger's name and contact information. You can also add any special requests or instructions, such as wheelchair accessibility or extra luggage, so that we can provide the best possible service.
+          a: `Yes, you can make a booking for an airport transfer in Naxos Airport on behalf of someone else. When you make your booking, simply enter the passenger's name and contact information. You can also add any special requests or instructions, such as wheelchair accessibility or extra luggage, so that we can provide the best possible service.
 `,
         },
         {
@@ -2484,7 +2475,7 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
         },
         {
           q: `What happens if I need to cancel or change my airport transfer booking?`,
-          a: `We understand that travel plans can change, so we offer flexible cancellation and change policies. If you need to cancel your booking, just let us know at least 24 hours in advance and we'll provide a full refund. If you need to change your booking, just contact us and we'll do our best to accommodate your request. Please note that changes may be subject to availability and additional charges may apply if there is a price difference between your original booking and the new booking.
+          a: `We understand that travel plans can change, so we offer flexible cancellation and change policies when booking your Naxos Airport Transfer or Taxi. If you need to cancel your booking, just let us know at least 24 hours in advance and we'll provide a full refund. If you need to change your booking, just contact us and we'll do our best to accommodate your request. Please note that changes may be subject to availability and additional charges may apply if there is a price difference between your original booking and the new booking.
 `,
         },
       ],
@@ -2539,7 +2530,7 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
         {
           flag: "uk",
           dateName: "Oliver - May 2023",
-          text: `Aegean Taxi's app makes booking a breeze, and their professional drivers provide smooth rides to the airport. Competitive pricing and quality service make to recommend them for airport transfers.`,
+          text: `Aegean Taxi's app makes booking an airport transfer in Heraklion a breeze, and their professional drivers provide smooth rides to the airport. Competitive pricing and quality service make to recommend them for airport transfers.`,
         },
         {
           flag: "spain",
@@ -2549,7 +2540,7 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
         {
           flag: "america",
           dateName: "James - August 2022",
-          text: `Choosing Aegean Taxi was a great decision for my airport transfer. I make the booking with a phonecall, the price was fair, and the service was top-notch.`,
+          text: `Choosing Aegean Taxi was a great decision for my Heraklion airport transfer. I make the booking with a phonecall, the price was fair, and the service was top-notch.`,
         },
       ],
       slide: {
@@ -2605,13 +2596,13 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
         {
           q: `What happens if my flight is delayed or cancelled?
 `,
-          a: `We understand that flight delays and cancellations are sometimes unavoidable. If your flight is delayed, we'll monitor your flight status and adjust your pickup time accordingly. If your flight is cancelled, just let us know and we'll reschedule your transfer at no extra charge.
+          a: `We know very well that flight delays and cancellations are sometimes unavoidable when booking a taxi or transfer in advance from Heraklion Airport. If your flight is delayed, we'll monitor your flight status and adjust your pickup time accordingly. If your flight is cancelled, just let us know and we'll reschedule your transfer at no extra charge.
 `,
         },
         {
           q: ` Is it possible to book an airport transfer for someone else?
 `,
-          a: `Yes, you can make a booking on behalf of someone else. When you make your booking, simply enter the passenger's name and contact information. You can also add any special requests or instructions, such as wheelchair accessibility or extra luggage, so that we can provide the best possible service.
+          a: `Yes, you can make a booking for an airport transfer in Heraklion International Airport on behalf of someone else. When you make your booking, simply enter the passenger's name and contact information. You can also add any special requests or instructions, such as wheelchair accessibility or extra luggage, so that we can provide the best possible service.
 `,
         },
         {
@@ -2620,7 +2611,7 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
         },
         {
           q: `What happens if I need to cancel or change my airport transfer booking?`,
-          a: `We understand that travel plans can change, so we offer flexible cancellation and change policies. If you need to cancel your booking, just let us know at least 24 hours in advance and we'll provide a full refund. If you need to change your booking, just contact us and we'll do our best to accommodate your request. Please note that changes may be subject to availability and additional charges may apply if there is a price difference between your original booking and the new booking.
+          a: `We understand that travel plans can change, so we offer flexible cancellation and change policies when booking your Heraklion Airport Transfer or Taxi. If you need to cancel your booking, just let us know at least 24 hours in advance and we'll provide a full refund. If you need to change your booking, just contact us and we'll do our best to accommodate your request. Please note that changes may be subject to availability and additional charges may apply if there is a price difference between your original booking and the new booking.
 `,
         },
       ],
@@ -2676,7 +2667,7 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
         {
           flag: "america",
           dateName: "William - May 2023",
-          text: `Aegean Taxi is good value and a reliable service. Our driver Kostas showed up on time and was super helpful and full of useful local knowledge. We will be very happy to use him again on our departure and highly recommend their service.`,
+          text: `Aegean Taxi is good value and a reliable Airport transfer service in Rhodes. Our driver Tsabikos showed up on time and was super helpful and full of useful local knowledge. We will be very happy to use him again on our departure and highly recommend their service.`,
         },
         {
           flag: "spain",
@@ -2744,13 +2735,13 @@ You can call RODA services at (+30)22410-26300 or (+30)22410-24129.`,
         {
           q: `What happens if my flight is delayed or cancelled?
 `,
-          a: `We understand that flight delays and cancellations are sometimes unavoidable. If your flight is delayed, we'll monitor your flight status and adjust your pickup time accordingly. If your flight is cancelled, just let us know and we'll reschedule your transfer at no extra charge.
+          a: `We understand that delays or flight cancellations are unavoidable when booking a taxi or transfer online in advance from Rhodes International Airport. If your flight is delayed, we'll monitor your flight status and adjust your pickup time accordingly. If your flight is cancelled, just let us know and we'll reschedule your transfer at no extra charge.
 `,
         },
         {
           q: ` Is it possible to book an airport transfer for someone else?
 `,
-          a: `Yes, you can make a booking on behalf of someone else. When you make your booking, simply enter the passenger's name and contact information. You can also add any special requests or instructions, such as wheelchair accessibility or extra luggage, so that we can provide the best possible service.
+          a: `Yes, you can make a booking for an airport transfer in Rhodes International Airport on behalf of someone else. When you make your booking, simply enter the passenger's name and contact information. You can also add any special requests or instructions, such as wheelchair accessibility or extra luggage, so that we can provide the best possible service.
 `,
         },
         {
@@ -2759,7 +2750,7 @@ You can call RODA services at (+30)22410-26300 or (+30)22410-24129.`,
         },
         {
           q: `What happens if I need to cancel or change my airport transfer booking?`,
-          a: `We understand that travel plans can change, so we offer flexible cancellation and change policies. If you need to cancel your booking, just let us know at least 24 hours in advance and we'll provide a full refund. If you need to change your booking, just contact us and we'll do our best to accommodate your request. Please note that changes may be subject to availability and additional charges may apply if there is a price difference between your original booking and the new booking.
+          a: `We understand that travel plans can change, so we offer flexible cancellation and change policies when booking your Rhodes Airport Transfer or Taxi. If you need to cancel your booking, just let us know at least 24 hours in advance and we'll provide a full refund. If you need to change your booking, just contact us and we'll do our best to accommodate your request. Please note that changes may be subject to availability and additional charges may apply if there is a price difference between your original booking and the new booking.
 `,
         },
       ],
@@ -2884,13 +2875,13 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
         {
           q: `What happens if my flight is delayed or cancelled?
 `,
-          a: `We understand that flight delays and cancellations are sometimes unavoidable. If your flight is delayed, we'll monitor your flight status and adjust your pickup time accordingly. If your flight is cancelled, just let us know and we'll reschedule your transfer at no extra charge.
+          a: `Flight delays and cancellations are sometimes unavoidable, as we very well know, when booking a taxi or transfer in advance from Kos International Airport. If your flight is delayed, we'll monitor your flight status and adjust your pickup time accordingly. If your flight is cancelled, just let us know and we'll reschedule your transfer at no extra charge.
 `,
         },
         {
           q: ` Is it possible to book an airport transfer for someone else?
 `,
-          a: `Yes, you can make a booking on behalf of someone else. When you make your booking, simply enter the passenger's name and contact information. You can also add any special requests or instructions, such as wheelchair accessibility or extra luggage, so that we can provide the best possible service.
+          a: `Yes, you can make a booking for an airport transfer in Kos International Airport on behalf of someone else. When you make your booking, simply enter the passenger's name and contact information. You can also add any special requests or instructions, such as wheelchair accessibility or extra luggage, so that we can provide the best possible service.
 `,
         },
         {
@@ -2899,7 +2890,7 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
         },
         {
           q: `What happens if I need to cancel or change my airport transfer booking?`,
-          a: `We understand that travel plans can change, so we offer flexible cancellation and change policies. If you need to cancel your booking, just let us know at least 24 hours in advance and we'll provide a full refund. If you need to change your booking, just contact us and we'll do our best to accommodate your request. Please note that changes may be subject to availability and additional charges may apply if there is a price difference between your original booking and the new booking.
+          a: `We understand that travel plans can change, so we offer flexible cancellation and change policies when booking your Kos Airport Transfer or Taxi. If you need to cancel your booking, just let us know at least 24 hours in advance and we'll provide a full refund. If you need to change your booking, just contact us and we'll do our best to accommodate your request. Please note that changes may be subject to availability and additional charges may apply if there is a price difference between your original booking and the new booking.
 `,
         },
       ],
@@ -2965,7 +2956,7 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
         {
           flag: "america",
           dateName: "William - August 2022",
-          text: `Aegean Taxi is good value and a reliable service. Our driver Kostas showed up on time and was super helpful and full of useful local knowledge. We will be very happy to use him again on our departure and highly recommend their service.`,
+          text: `Aegean Taxi is good value and a reliable Airport transfer service in Thessaloniki. Our driver Dimitris showed up on time and was super helpful and full of useful local knowledge. We will be very happy to use him again on our departure and highly recommend their service.`,
         },
       ],
       slide: {
@@ -3020,13 +3011,13 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
         {
           q: `What happens if my flight is delayed or cancelled?
 `,
-          a: `We understand that flight delays and cancellations are sometimes unavoidable. If your flight is delayed, we'll monitor your flight status and adjust your pickup time accordingly. If your flight is cancelled, just let us know and we'll reschedule your transfer at no extra charge.
+          a: `We understand very well that flight delays or even cancellations are sometimes unavoidable. Especially when booking a taxi or transfer in advance from Thessaloniki Airport. If your flight is delayed, we'll monitor your flight status and adjust your pickup time accordingly. If your flight is cancelled, just let us know and we'll reschedule your transfer at no extra charge.
 `,
         },
         {
           q: ` Is it possible to book an airport transfer for someone else?
 `,
-          a: `Yes, you can make a booking on behalf of someone else. When you make your booking, simply enter the passenger's name and contact information. You can also add any special requests or instructions, such as wheelchair accessibility or extra luggage, so that we can provide the best possible service.
+          a: `Yes, you can make a booking for an airport transfer in Thessaloniki International Airport on behalf of someone else. When you make your booking, simply enter the passenger's name and contact information. You can also add any special requests or instructions, such as wheelchair accessibility or extra luggage, so that we can provide the best possible service.
 `,
         },
         {
@@ -3035,7 +3026,7 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
         },
         {
           q: `What happens if I need to cancel or change my airport transfer booking?`,
-          a: `We understand that travel plans can change, so we offer flexible cancellation and change policies. If you need to cancel your booking, just let us know at least 24 hours in advance and we'll provide a full refund. If you need to change your booking, just contact us and we'll do our best to accommodate your request. Please note that changes may be subject to availability and additional charges may apply if there is a price difference between your original booking and the new booking.
+          a: `We understand that travel plans can change, so we offer flexible cancellation and change policies when booking your Thessaloniki Airport Transfer or Taxi. If you need to cancel your booking, just let us know at least 24 hours in advance and we'll provide a full refund. If you need to change your booking, just contact us and we'll do our best to accommodate your request. Please note that changes may be subject to availability and additional charges may apply if there is a price difference between your original booking and the new booking.
 `,
         },
       ],
@@ -3091,7 +3082,7 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
         {
           flag: "america",
           dateName: "James - May 2023",
-          text: `Choosing Aegean Taxi was a great decision for my airport transfer. I make the booking with a phonecall, the price was fair, and the service was top-notch.`,
+          text: `Choosing Aegean Taxi was a great decision for my Corfu airport transfer. I make the booking with a phonecall, the price was fair, and the service was top-notch.`,
         },
         {
           flag: "spain",
@@ -3101,7 +3092,7 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
         {
           flag: "uk",
           dateName: "Oliver - August 2021",
-          text: `Aegean Taxi's app makes booking a breeze, and their professional drivers provide smooth rides to the airport. Competitive pricing and quality service make to recommend them for airport transfers.`,
+          text: `Aegean Taxi's app makes booking an airport transfer in Corfu a breeze, and their professional drivers provide smooth rides to the airport. Competitive pricing and quality service make to recommend them for airport transfers.`,
         },
       ],
       slide: {
@@ -3157,13 +3148,13 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
         {
           q: `What happens if my flight is delayed or cancelled?
 `,
-          a: `We understand that flight delays and cancellations are sometimes unavoidable. If your flight is delayed, we'll monitor your flight status and adjust your pickup time accordingly. If your flight is cancelled, just let us know and we'll reschedule your transfer at no extra charge.
+          a: `Cancellations and delays are unavoidable when booking a taxi or transfer from Corfu Airport, especially when booked in advance. If your flight is delayed, we'll monitor your flight status and adjust your pickup time accordingly. If your flight is cancelled, just let us know and we'll reschedule your transfer at no extra charge.
 `,
         },
         {
           q: ` Is it possible to book an airport transfer for someone else?
 `,
-          a: `Yes, you can make a booking on behalf of someone else. When you make your booking, simply enter the passenger's name and contact information. You can also add any special requests or instructions, such as wheelchair accessibility or extra luggage, so that we can provide the best possible service.
+          a: `Yes, you can make a booking for an airport transfer in Corfu International Airport on behalf of someone else. When you make your booking, simply enter the passenger's name and contact information. You can also add any special requests or instructions, such as wheelchair accessibility or extra luggage, so that we can provide the best possible service.
 `,
         },
         {
@@ -3172,7 +3163,7 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
         },
         {
           q: `What happens if I need to cancel or change my airport transfer booking?`,
-          a: `We understand that travel plans can change, so we offer flexible cancellation and change policies. If you need to cancel your booking, just let us know at least 24 hours in advance and we'll provide a full refund. If you need to change your booking, just contact us and we'll do our best to accommodate your request. Please note that changes may be subject to availability and additional charges may apply if there is a price difference between your original booking and the new booking.
+          a: `We understand that travel plans can change, so we offer flexible cancellation and change policies when booking your Corfu Airport Transfer or Taxi. If you need to cancel your booking, just let us know at least 24 hours in advance and we'll provide a full refund. If you need to change your booking, just contact us and we'll do our best to accommodate your request. Please note that changes may be subject to availability and additional charges may apply if there is a price difference between your original booking and the new booking.
 `,
         },
       ],
