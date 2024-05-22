@@ -154,7 +154,7 @@ export const locationDetails: any = {
         {
           q: `Do taxis run all day and night in Mykonos?
 `,
-          a: `Most taxis operate throughout the day on the island of Mykonos. Aegean Taxi operates 24/7 and getting a ride is easy at any time using one of the booking methods offered`,
+          a: `Most Mykonos taxis operate throughout the day on the island of Mykonos. Aegean Taxi operates 24/7 and getting a ride is easy at any time using one of the booking methods offered`,
         },
         {
           q: `Is there a Taxi app in Mykonos?
@@ -1955,7 +1955,7 @@ export const locationDetails: any = {
         {
           q: `Do taxis run all day and night in Mykonos?
 `,
-          a: `Most taxis operate throughout the day on the island of Mykonos. Aegean Taxi operates 24/7 and getting a ride is easy at any time using one of the booking methods offered
+          a: `Most Mykonos Airport taxis operate throughout the day on the island of Mykonos. Aegean Taxi operates 24/7 and getting a ride is easy at any time using one of the booking methods offered
 `,
         },
         {
@@ -2127,7 +2127,7 @@ export const locationDetails: any = {
         {
           flag: "spain",
           dateName: "Adam - April 2022",
-          text: `Excellent service, price agreed by WhatsApp which was very convenient. Received numerous texts with up dates on driver, reg of car etc. Very comfortable journey, clean and air-conditioning. Driver Nikos was very helpful with our luggage. Will use again.
+          text: `We had an excellent experience when booking our airport transfer in Milos airport with Aegean Taxi. The price was agreed in advance because we booked via whatsapp. Received numerous texts with up dates on driver, reg of car etc. Very comfortable journey, clean and air-conditioning. Driver Nikos was very helpful with our luggage. Will use again.
 `,
         },
         {
@@ -2812,7 +2812,7 @@ You can call RODA services at (+30)22410-26300 or (+30)22410-24129.`,
         {
           flag: "french",
           dateName: "Adam - April 2022",
-          text: `Excellent service, price agreed by WhatsApp which was very convenient. Received numerous texts with up dates on driver, reg of car etc. Very comfortable journey, clean and air-conditioning. Driver Nikos was very helpful with our luggage. Will use again.`,
+          text: `We had an excellent experience when booking our airport transfer in Kos with Aegean Taxi. The price was agreed by WhatsApp which was very convenient. Received numerous texts with up dates on driver, reg of car etc. Very comfortable journey, clean and air-conditioning. Driver Nikos was very helpful with our luggage. Will use again.`,
         },
         {
           flag: "america",

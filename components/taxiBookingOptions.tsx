@@ -190,9 +190,9 @@ export default function TaxiBookingOptions({
                       <Typography 
                         component="p"
                         variant="body1">
-                        Download our {city} taxi app from the stores,
+                        Download our {city} taxi app from the apple or google play stores.
                         <br />
-                        and start riding in minutes
+                        Register, book a taxi ride, and start a trip in minutes
                         {/* Get our ride app from the stores, and start riding
                         <br /> in minutes */}
                         <DownloadAppButton />
@@ -208,9 +208,9 @@ export default function TaxiBookingOptions({
                         minHeight: 77,
                       }}
                     >
-                      Download our {city} taxi app from the stores,
+                      Download our {city} taxi app from the apple or google play stores.
                       <br />
-                      and start riding in minutes
+                      Register, book a taxi ride, and start a trip in minutes
                       {/* Get our ride app from the stores,
                       <br /> and start riding in minutes */}
                     </Typography>
@@ -279,7 +279,7 @@ export default function TaxiBookingOptions({
                         fontWeight: 700,
                       }}
                     >
-                      Phone Booking
+                      {city} Taxi Phone
                     </Typography>
                   </Box>
                   <Typography
@@ -292,7 +292,7 @@ export default function TaxiBookingOptions({
                       display: { xs: "block", md: "none" },
                     }}
                   >
-                    Phone Booking
+                    {city} Taxi Phone
                   </Typography>
                   <Box
                     justifyContent="center"
@@ -312,9 +312,8 @@ export default function TaxiBookingOptions({
                     <Typography 
                       component="p"
                       variant="body1">
-                      Our {city} 24/7 call center is always available to help
-                      you
-                      <br /> book a ride
+                      Our {city} taxi call center is available 24/7. Book a taxi
+                      <br /> ride or transfer in seconds. Reserve for now or later
                     </Typography>
                   </Box>
 
@@ -327,8 +326,8 @@ export default function TaxiBookingOptions({
                       minHeight: 77,
                     }}
                   >
-                    Our {city} 24/7 call center is always available to
-                    <br /> help you book a ride
+                    Our {city} taxi call center is available 24/7. Book a taxi
+                    <br /> ride or transfer in seconds. Reserve for now or later
                   </Typography>
 
                   <Box
@@ -431,8 +430,10 @@ export default function TaxiBookingOptions({
                       variant="body1">
                       {/* Just launch WhatsApp and request a ride, 24/7. Instant
                       <br /> confirmation with driver and ETA details. */}
-                      Just launch WhatsApp and request a ride
-                      {city ? ` in ${city}` : ""}, 24/7
+                      {/*Just launch WhatsApp and request a ride
+                      {city ? ` in ${city}` : ""}, 24/7*/}
+                      {city ? `${city}` : ""} WhatsApp taxi booking 24/7. Use Whatsapp to request to book a ride
+                      {city ? ` in ${city}` : ""}. Online and always available, to book now or later
                     </Typography>
                   </Box>
 
@@ -445,8 +446,8 @@ export default function TaxiBookingOptions({
                       minHeight: 77,
                     }}
                   >
-                    Just launch WhatsApp and request a ride
-                    {city ? ` in ${city}` : ""}, 24/7
+                    {city ? `${city}` : ""} WhatsApp taxi booking 24/7. Use Whatsapp to request to book a ride
+                    {city ? ` in ${city}` : ""}. Online and always available, to book now or later
                   </Typography>
 
                   <Box
@@ -512,7 +513,7 @@ export default function TaxiBookingOptions({
                         fontWeight: 700,
                       }}
                     >
-                      Web App
+                      Book Online
                     </Typography>
                   </Box>
                   <Typography
@@ -525,7 +526,7 @@ export default function TaxiBookingOptions({
                       display: { xs: "block", md: "none" },
                     }}
                   >
-                    Web App
+                    Book Online
                   </Typography>
                   <Box
                     justifyContent="center"
@@ -545,8 +546,8 @@ export default function TaxiBookingOptions({
                     <Typography 
                       component="p"
                       variant="body1">
-                      Book your ride{city ? ` in ${city}` : ""} online in 2
-                      simple steps
+                      Book a taxi ride online{city ? ` in ${city}` : ""} in 2 simple
+                      steps. Cheap rides available 24/7 to book now or later.
                     </Typography>
                   </Box>
 
@@ -559,8 +560,8 @@ export default function TaxiBookingOptions({
                       minHeight: 77,
                     }}
                   >
-                    Book your ride{city ? ` in ${city}` : ""} online in 2 simple
-                    steps
+                    Book a taxi ride online{city ? ` in ${city}` : ""} in 2 simple
+                    steps. Cheap rides available 24/7 to book now or later.
                   </Typography>
 
                   <Box
