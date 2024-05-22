@@ -800,7 +800,7 @@ export const locationDetails: any = {
       faq: [
         {
           q: `How can i find a taxi or transfer in Bodrum?`,
-          a: `Apart from the designated taxi stands in the town center airport or port, the best way is to use a private transfer service. Aegean Taxi offers a great fleet of cars at competitive prices, with english speaking drivers and is available 24/7. You can order a ride from www.aegeantaxi.com using the webapp in 3 simple steps, download the Aegean Taxi app, or simply call the call center on +302152154000`,
+          a: `Apart from the designated taxi stands in Bodrum town center airport or port, the best way is to use a private transfer service. Aegean Taxi offers a great fleet of cars at competitive prices, with english speaking drivers and is available 24/7. You can order a ride from www.aegeantaxi.com using the webapp in 3 simple steps, download the Aegean Taxi app, or simply call the call center on +302152154000`,
         },
         {
           q: `Is it easy to find a taxi in Bodrum?`,
@@ -1770,7 +1770,7 @@ export const locationDetails: any = {
       faq: [
         {
           q: `How can i find a taxi or transfer in Kefalonia?`,
-          a: `Apart from the designated taxi stands in the town center Airport or port, the best way is to use a private transfer service. Aegean Taxi offers a great fleet of cars at competitive prices, with english speaking drivers and is available 24/7. You can order a ride from www.aegeantaxi.com using the webapp in 3 simple steps, download the Aegean Taxi app, or simply call the call center on +302152154000`,
+          a: `Apart from the designated taxi stands in Kefalonia town center Airport or port, the best way is to use a private transfer service. Aegean Taxi offers a great fleet of cars at competitive prices, with english speaking drivers and is available 24/7. You can order a ride from www.aegeantaxi.com using the webapp in 3 simple steps, download the Aegean Taxi app, or simply call the call center on +302152154000`,
         },
         {
           q: `Is it easy to find a taxi in Kefalonia?`,
@@ -1993,10 +1993,11 @@ export const locationDetails: any = {
         {
           flag: "italy",
           dateName: "Tatiana - August 2021",
-          text: `For a hassle-free airport transfer in Athens, I highly recommend Aegean Taxi. Booking on their user-friendly website was a breeze, the car was comfortable, and the driver was professional and punctual.`,
+          text: `For a hassle-free airport transfer in Mykonos, I highly recommend Aegean Taxi. Booking on their user-friendly website was a breeze, the car was comfortable, and the driver was professional and punctual.`,
         },
       ],
     },
+
     athens: {
       location: "athens",
       prices: [
@@ -2258,7 +2259,7 @@ Exploring the wonders of Milos Island becomes a seamless experience when you rel
         {
           flag: "spain",
           dateName: "Marco - May 2022",
-          text: `Aegean Taxi provided a seamless experience for my airport transfer. Booking online was easy, the car was comfortable, and the driver was professional. Highly recommend!`,
+          text: `Aegean Taxi provided a seamless experience for my Paros airport transfer. Booking online was easy, the car was comfortable, and the driver was professional. Highly recommend!`,
         },
         {
           flag: "uk",
@@ -2405,7 +2406,7 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
         {
           flag: "uk",
           dateName: "Edward - August 2022",
-          text: `They were incredible. Very fast to respond and easy to book on short notice. Helped us get to the airport and were right on time for both trips. Beautiful cars and lovely drivers. Highly recommend this for easy transfers in Naxos. Thank you!`,
+          text: `They were incredible. Very fast to respond when arranging our Naxos airport transport, and easy to book on short notice. Helped us get to the airport and were right on time for both trips. Beautiful cars and lovely drivers. Highly recommend this for easy transfers in Naxos. Thank you!`,
         },
       ],
       slide: {
@@ -2535,7 +2536,7 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
         {
           flag: "spain",
           dateName: "Marco - May 2022",
-          text: `Aegean Taxi provided a seamless experience for my airport transfer. Booking online was easy, the car was comfortable, and the driver was professional. Highly recommend!`,
+          text: `Aegean Taxi provided a seamless experience for my Heraklion airport transfer. Booking online was easy, the car was comfortable, and the driver was professional. Highly recommend!`,
         },
         {
           flag: "america",
@@ -2677,7 +2678,7 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
         {
           flag: "uk",
           dateName: "Ed - August 2021",
-          text: `They were incredible. Very fast to respond and easy to book on short notice. Helped us get to the airport and were right on time for both trips. Beautiful cars and lovely drivers. Highly recommend this for easy transfers in Naxos. Thank you!`,
+          text: `They were incredible. Very fast to respond when arranging our Rhodes airport transport, and easy to book on short notice. Helped us get to the airport and were right on time for both trips. Beautiful cars and lovely drivers. Highly recommend this for easy transfers in Naxos. Thank you!`,
         },
       ],
 
@@ -3087,7 +3088,7 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
         {
           flag: "spain",
           dateName: "Maco - July 2022",
-          text: `Aegean Taxi provided a seamless experience for my airport transfer. Booking online was easy, the car was comfortable, and the driver was professional. Highly recommend!`,
+          text: `Aegean Taxi provided a seamless experience for my Corfu airport transfer. Booking online was easy, the car was comfortable, and the driver was professional. Highly recommend!`,
         },
         {
           flag: "uk",

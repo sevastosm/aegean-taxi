@@ -572,7 +572,7 @@ export default function AthensSelectedTours() {
                     minHeight: { xs: 150, md: 130 },
                   }}
                 >
-                  Want a custom tour tailored to your needs? we got you covered.
+                  Want a custom Athens tour tailored to your needs? we got you covered.
                   Contact us and we will create a custom tour for you
                 </Typography>
 

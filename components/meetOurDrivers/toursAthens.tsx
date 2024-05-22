@@ -69,7 +69,7 @@ export default function DriversAthens() {
               lineHeight: { xs: "26px", md: "30px" },
             }}
           >
-            We employ only the best and treat them fairly. All our drivers speak
+            We employ only the best and treat them fairly. All our Athens Taxi drivers speak
             English, are professionally trained, and know the areas they work in
             like the back of their hands. Whatever the occasion, you can rest
             assured that we will get you where you need to be on time!

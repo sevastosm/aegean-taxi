@@ -180,7 +180,7 @@ export default function SelectedTours() {
                     minHeight: { xs: 150, md: 100 },
                   }}
                 >
-                  Explore the beauty of Mykonos. Discover charming windmills,
+                  Explore the beauty of the island of Mykonos. Discover charming windmills,
                   picturesque beaches, and traditional villages
                 </Typography>
 
@@ -335,7 +335,7 @@ export default function SelectedTours() {
                     minHeight: { xs: 150, md: 100 },
                   }}
                 >
-                  Want a custom tour tailored to your needs? we got you covered.
+                  If you want a custom tour tailored to your needs, we got you covered.
                   Contact us and we will create a custom tour for you
                 </Typography>
 

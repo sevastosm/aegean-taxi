@@ -341,7 +341,7 @@ export default function MykonosSelectedTours() {
                     minHeight: { xs: 280, md: 195 },
                   }}
                 >
-                  Want a custom tour tailored to your needs? we got you covered.
+                  Want a custom Mykonos tour tailored to your needs? we got you covered.
                   Contact us and we will create a custom tour for you
                 </Typography>
 
