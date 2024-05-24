@@ -23,7 +23,7 @@ export const locationDetails: any = {
       {
         flag: "uk",
         dateName: "Oliver - August 2021",
-        text: `We booked our Athens Mykonos and Santorini Airport transfers via the Aegean Taxi website. The whole process was a breeze! But the surprise came after the first rice, we got an brand new Mercedes SUV, and all their cars were similar. Impressed by their professional drivers who provides smooth rides to the airport. Competitive pricing and quality service, they are open 24/7 with a polite and helpfull call center! i am obliged to reccomend them for anyone needing airport transfers in Greece!`,
+        text: `We booked our Athens Mykonos and Santorini Airport transfers via the Aegean Taxi website. The whole process was a breeze! But the surprise came after the first rice, we got an brand new Mercedes SUV, and all their cars were similar. Impressed by their professional drivers who provides smooth rides to the airport. Competitive pricing and quality service, they are open 24/7 with a polite and helpful call center! i am obliged to recommend them for anyone needing airport transfers in Greece!`,
       },
       {
         flag: "italy",
@@ -302,7 +302,7 @@ export const locationDetails: any = {
         {
           flag: "america",
           dateName: "Elijah - March 2023",
-          text: `The most organised friendly and punctual Santorini Taxi! Aegean Taxi made booking our rides over a phone call really easy, and followed up via whatsapp, where they confirmed all the details. The drivers were amaizing and with local knowledge. Prices cheap and they were alwasy 5 minutes away!`,
+          text: `The most organised friendly and punctual Santorini Taxi! Aegean Taxi made booking our rides over a phone call really easy, and followed up via whatsapp, where they confirmed all the details. The drivers were amaizing and with local knowledge. Prices cheap and they were always 5 minutes away!`,
         },
         {
           flag: "spain",
@@ -374,7 +374,7 @@ export const locationDetails: any = {
         },
         {
           q: `Do I need cash for taxis in Corfu?`,
-          a: `Most Corfu Taxis are accepting credi cards. However, there is no government mandate that forces Corfu taxi drivers to carry a POS machine. Its alwasy best ot cary some cash with you when looking for a Corfu cab.`,
+          a: `Most Corfu Taxis are accepting credi cards. However, there is no government mandate that forces Corfu taxi drivers to carry a POS machine. Its always best ot cary some cash with you when looking for a Corfu cab.`,
         },
         {
           q: `What is the best transportation in Corfu?`,
@@ -410,7 +410,7 @@ export const locationDetails: any = {
         {
           flag: "spain",
           dateName: "Maria - March 2023",
-          text: `The best taxi company for transportation in Corfu island. Reliable, proffesionals and always very polite! Whatsapp booking is easy, I used their service for the last 2 years in Mykonos and santorini, and I was very satisfied. It's more affordable even compared with moving with your own car. Highly reccomended!`,
+          text: `The best taxi company for transportation in Corfu island. Reliable, proffesionals and always very polite! Whatsapp booking is easy, I used their service for the last 2 years in Mykonos and santorini, and I was very satisfied. It's more affordable even compared with moving with your own car. Highly recommended!`,
         },
         ,
         {
@@ -605,7 +605,7 @@ export const locationDetails: any = {
         {
           flag: "french",
           dateName: "Marie - June 2017",
-          text: `Booked a taxi via whatsapp in 30 seconds while in Athens. Very friendly driver. Safe, experienced and a very good guide for the city. We didnt know that they are in all main islands in Greece, so we used them in many other locations and worked flawlesly`,
+          text: `Booked a taxi via whatsapp in 30 seconds while in Athens. Very friendly driver. Safe, experienced and a very good guide for the city. We didn't know that they are in all main islands in Greece, so we used them in many other locations and worked flawlesly`,
         },
       ],
     },
@@ -1037,7 +1037,7 @@ export const locationDetails: any = {
         {
           flag: "spain",
           dateName: "Costas - August 2020",
-          text: `Aegean Taxi is the best option for transportation in Paros island. Reliable, proffesionals and always very polite! I used their service twice in Paros and I was very satisfied. It's more affordable even compared with moving with your own car. Highly reccomended especially for port and airport transfers`,
+          text: `Aegean Taxi is the best option for transportation in Paros island. Reliable, proffesionals and always very polite! I used their service twice in Paros and I was very satisfied. It's more affordable even compared with moving with your own car. Highly recommended especially for port and airport transfers`,
         },
         {
           flag: "uk",

@@ -35,7 +35,7 @@ export default function Solutions() {
       >
         We offer 2 solutions to make it easy for you or your clients to book
         their rides.
-        <br /> Pick the one that best suits your needs, or combine both for a
+        <br /> Register for the one that best suits your needs, or combine both for a
         high
         <br /> conversion and impact.
       </Typography>

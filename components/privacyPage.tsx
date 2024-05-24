@@ -134,7 +134,7 @@ export default function PrivacyPage() {
                 }}
               >
                 This policy applies to users of Aegean taxi services anywhere in
-                the world, including users of Aegean taxi&prime;s apps,
+                the world, including users of Aegean taxi&prime;s apps (available on Appstore and Google Play),
                 websites, features or other services.
               </Typography>
             </Grid>
@@ -2445,13 +2445,13 @@ export default function PrivacyPage() {
                   lineHeight: { xs: "22px", md: "30px" },
                 }}
               >
-                Most mobile platforms (iOS, Android, etc.) have defined certain
+                Most mobile platforms (Apple iOS, Google Android, etc.) have defined certain
                 types of device data that apps cannot access without your
                 consent. These platforms have different permission systems for
-                obtaining your consent. The iOS platform will alert you the
+                obtaining your consent. The Apple iOS platform will alert you the
                 first time the Aegean taxi app wants permission to access
                 certain types of data and will let you consent (or not consent)
-                to that request. Android devices will notify you of the
+                to that request. Google Android devices will notify you of the
                 permissions that the Aegean taxi app seeks before you first use
                 the app. Your use of the app constitutes your consent.
               </Typography>
