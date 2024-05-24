@@ -2182,8 +2182,7 @@ Exploring the wonders of Milos Island becomes a seamless experience when you rel
           heading: "Public Transportation Information",
           info: `During the summer season public transportation (bus) is available. The Airport station is about 100m away from the Airport.
 `,
-          link_title: "More information may be found at the following link:",
-          link: "https://milosbuses.com/?lang=en",
+          
         },
       },
 
@@ -2317,8 +2316,7 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
 For travelers arriving at Paros Airport, convenient bus services are available to connect you to the island's main towns and beaches. The buses run regularly throughout the day, and the schedule may vary depending on the season, so it's advisable to check the current timetable online or at the airport upon arrival. The cost of a one-way ticket is typically around €5, making it an affordable transportation option. 
 The journey from Paros Airport to popular destinations like Parikia or Naoussa takes approximately 20-30 minutes. For the most up-to-date information, you can visit the official website of Paros public buses at www.ktelparou.gr. 
           `,
-          link_title: "More information may be found at the following link:",
-          link: "https://www.ktelparou.gr.",
+          
         },
       },
 
@@ -2452,8 +2450,7 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
         transportation: {
           heading: "Public Transportation Information",
           info: `Naxos Island offers convenient bus services connecting Naxos Airport (or the Naxos Port) to various destinations across the island. Bus schedules are typically designed to align with flight arrivals and departures. However, it's recommended to check the most current timetable either online or at the airport/port upon your arrival, as schedules may vary seasonally. A one-way bus ticket from the airport/port to popular destinations like Naxos Town (Chora) or Agios Prokopios usually costs around €5, making it a budget-friendly transportation choice. The bus journey from Naxos Airport to the island's main towns or beaches takes approximately 10-15 minutes.`,
-          link_title: "More information may be found at the following link:",
-          link: "https://www.naxosbuses.com/.",
+          
         },
       },
 
@@ -2588,8 +2585,7 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
         transportation: {
           heading: "Public Transportation Information",
           info: `Bus service is provided between the Airport and Heraklion city center. Tickets can be purchased by the bus conductor.`,
-          link_title: "More information may be found at the following link:",
-          link: "https://astiko-irakleiou.gr/en/",
+          
         },
       },
 
@@ -2727,8 +2723,7 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
           heading: "Public Transportation Information",
           info: `Bus service is provided between the Airport and the city of Rhodes. The bus stop is located between the old and the new Terminal.
 You can call RODA services at (+30)22410-26300 or (+30)22410-24129.`,
-          link_title: "More information may be found at the following link:",
-          link: "https://www.rodospublictransport.gr/index.php?c=schedule&p=busstop&uid=329.",
+          
         },
       },
 
@@ -2865,10 +2860,9 @@ You can call RODA services at (+30)22410-26300 or (+30)22410-24129.`,
           heading: "Public Transportation Information",
           info: ` 
  	
-Transit bus service is provided between the Airport and the city of Kos, Mastichari, Kardamena and Kefalos. There is a public bus stop 50m from the terminal building. Tickets can be purchased by the bus driver.  `,
+Transit bus service is provided between the Airport and the city of Kos, Mastichari, Kardamena and Kefalos. There is a public bus stop 50m from the terminal building. Tickets can be purchased by the bus driver.`,
 
-          link_title: "More information may be found at the following link:",
-          link: "http://www.ktel-kos.gr/site_en/",
+          
         },
       },
 
@@ -3003,8 +2997,7 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
         transportation: {
           heading: "Public Transportation Information",
           info: `Bus service is provided between the Airport and the city of Thessaloniki, with connections to the Central Railway Station and the "Makedonia" Regional Coach Terminal (KTEL). The bus stop is located at the departures area, in front of entrance 3 of T1. Tickets can be purchased by the bus driver.`,
-          link_title: "More information may be found at the following link:",
-          link: "https://oasth.gr/",
+          
         },
       },
 
@@ -3140,8 +3133,7 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
           heading: "Public Transportation Information",
           info: `Bus service is provided between the Airport and the city of Corfu. The bus stop is located in front of the Terminal Building A.
 `,
-          link_title: "More information may be found at the following link:",
-          link: "http://www.astikoktelkerkyras.gr/dataeg.php?cat=28801",
+          
         },
       },
 
