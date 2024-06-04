@@ -1,5 +1,7 @@
 // components
 import Script from "next/script";
+import { GoogleTagManager } from "@next/third-parties/google";
+
 import MainTemplate from "components/layout/template";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -22,21 +24,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      {/* <!-- Google tag (gtag.js) --> */}
-      <Script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-Z7YJXM0X70"
-        strategy="afterInteractive"
-      />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){window.dataLayer.push(arguments);}
-          gtag('js', new Date());
-
-          gtag('config', 'G-Z7YJXM0X70');
-        `}
-      </Script>
+      <GoogleTagManager gtmId={"GTM-T4T7VVQ"} />
       <body>
         {/* Google Tag Manager (noscript) */}
         <noscript>
