@@ -383,7 +383,7 @@ export default function VerificationComponent({}: {}) {
             size="large"
             fullWidth={true}
             disabled={
-              phone.length < 10 || !firstName || !lastName || disabledNext
+              phone.length < 9 || !firstName || !lastName || disabledNext
             }
             style={{ textTransform: "none" }}
             onClick={onSubmit}
