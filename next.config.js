@@ -8,7 +8,7 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   experimental: {
-    appDir: true,
+    // appDir: true,
     typedRoutes: true,
   },
   output: "export",
