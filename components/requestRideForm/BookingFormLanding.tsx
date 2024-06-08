@@ -67,7 +67,7 @@ export default function FormComponent({
       <Paper
         elevation={elevation}
         sx={{
-          width: { xs: "100%", md: widthMD },
+          width: { xs: "100%", md: widthMD, background: "white",zIndex:1 },
           padding: { xs: "0", md: 2 },
         }}
       >

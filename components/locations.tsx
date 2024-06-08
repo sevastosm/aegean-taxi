@@ -25,6 +25,7 @@ import RHODES from "public/assets/taxi-rhodes.webp";
 
 import MILOS from "public/assets/taxi-locations/taxi-milos.webp";
 import { locationDetails } from "@/utils/locationDetails";
+import { SxImage } from "./ui/SxImage";
 
 export default function Locations() {
   let settings = {
@@ -141,232 +142,6 @@ export default function Locations() {
       {/* Slider */}
       <Box sx={{ my: 5, p: { xs: 2, md: 0 } }}>
         <Slider {...settings}>
-          <Stack spacing={2} sx={{ textAlign: "center", p: 1 }}>
-            <MUILink
-              underline="none"
-              href="/taxi/athens-taxi-app"
-              component={NextLink}
-            >
-              <Paper>
-                <Box sx={{ p: 2 }}>
-                  <Typography
-                    component="h3"
-                    variant="h5"
-                    gutterBottom
-                    sx={{
-                      fontWeight: 500,
-                      mb: 2,
-                      textAlign: { xs: "left", md: "center" },
-                    }}
-                  >
-                    Athens
-                  </Typography>
-                  <Box
-                    sx={{
-                      minHeight: { xs: 224, md: 345 },
-                      backgroundImage: `url(${ATHENS.src})`,
-                      backgroundSize: "cover",
-                      mb: 3,
-                      borderRadius: 3,
-                    }}
-                  ></Box>
-
-                  <Typography
-                    component="span"
-                    variant="body1"
-                    sx={{
-                      mt: 3,
-                      lineHeight: 3,
-                      borderBottom: `3px solid #000`,
-                      width: "75px",
-                    }}
-                  >
-                    Find a ride
-                  </Typography>
-                </Box>
-              </Paper>
-            </MUILink>
-          </Stack>
-          <Stack spacing={2} sx={{ textAlign: "center", p: 1 }}>
-            <MUILink
-              underline="none"
-              href="/taxi/mykonos-taxi-app"
-              component={NextLink}
-            >
-              <Paper>
-                <Box sx={{ p: 2 }}>
-                  <Typography
-                    component="h3"
-                    variant="h5"
-                    gutterBottom
-                    sx={{
-                      fontWeight: 500,
-                      mb: 2,
-                      textAlign: { xs: "left", md: "center" },
-                    }}
-                  >
-                    Mykonos
-                  </Typography>
-                  <Box
-                    sx={{
-                      minHeight: { xs: 224, md: 345 },
-                      backgroundImage: `url(${MYKONOS.src})`,
-                      backgroundSize: "cover",
-                      mb: 3,
-                      borderRadius: 3,
-                    }}
-                  ></Box>
-                  <Typography
-                    component="span"
-                    variant="body1"
-                    sx={{
-                      mt: 3,
-                      lineHeight: 3,
-                      borderBottom: `3px solid #000`,
-                      width: "75px",
-                    }}
-                  >
-                    Find a ride
-                  </Typography>
-                </Box>
-              </Paper>
-            </MUILink>
-          </Stack>
-          <Stack spacing={2} sx={{ textAlign: "center", p: 1 }}>
-            <MUILink
-              underline="none"
-              href="/taxi/santorini-taxi-app"
-              component={NextLink}
-            >
-              <Paper>
-                <Box sx={{ p: 2 }}>
-                  <Typography
-                    component="h3"
-                    variant="h5"
-                    gutterBottom
-                    sx={{
-                      fontWeight: 500,
-                      mb: 2,
-                      textAlign: { xs: "left", md: "center" },
-                    }}
-                  >
-                    Santorini
-                  </Typography>
-                  <Box
-                    sx={{
-                      minHeight: { xs: 224, md: 345 },
-                      backgroundImage: `url(${SANTORINI.src})`,
-                      backgroundSize: "cover",
-                      mb: 3,
-                      borderRadius: 3,
-                    }}
-                  ></Box>
-                  <Typography
-                    component="span"
-                    variant="body1"
-                    sx={{
-                      mt: 3,
-                      lineHeight: 3,
-                      borderBottom: `3px solid #000`,
-                      width: "75px",
-                    }}
-                  >
-                    Find a ride
-                  </Typography>
-                </Box>
-              </Paper>
-            </MUILink>
-          </Stack>
-          <Stack spacing={2} sx={{ textAlign: "center", p: 1 }}>
-            <MUILink
-              underline="none"
-              href="/taxi/corfu-taxi-app"
-              component={NextLink}
-            >
-              <Paper>
-                <Box sx={{ p: 2 }}>
-                  <Typography
-                    component="h3"
-                    variant="h5"
-                    gutterBottom
-                    sx={{
-                      fontWeight: 500,
-                      mb: 2,
-                      textAlign: { xs: "left", md: "center" },
-                    }}
-                  >
-                    Corfu
-                  </Typography>
-                  <Box
-                    sx={{
-                      minHeight: { xs: 224, md: 345 },
-                      backgroundImage: `url(${CORFU.src})`,
-                      backgroundSize: "cover",
-                      mb: 3,
-                      borderRadius: 3,
-                    }}
-                  ></Box>
-                  <Typography
-                    component="span"
-                    variant="body1"
-                    sx={{
-                      mt: 3,
-                      lineHeight: 3,
-                      borderBottom: `3px solid #000`,
-                      width: "75px",
-                    }}
-                  >
-                    Find a ride
-                  </Typography>
-                </Box>
-              </Paper>
-            </MUILink>
-          </Stack>
-          <Stack spacing={2} sx={{ textAlign: "center", p: 1 }}>
-            <MUILink
-              underline="none"
-              href="/taxi/rhodes-taxi-app"
-              component={NextLink}
-            >
-              <Paper>
-                <Box sx={{ p: 2 }}>
-                  <Typography
-                    component="h3"
-                    variant="h5"
-                    gutterBottom
-                    sx={{
-                      fontWeight: 500,
-                      mb: 2,
-                      textAlign: { xs: "left", md: "center" },
-                    }}
-                  >
-                    Rhodes
-                  </Typography>
-                  <Box
-                    sx={{
-                      minHeight: { xs: 224, md: 345 },
-                      backgroundImage: `url(${RHODES.src})`,
-                      backgroundSize: "cover",
-                      mb: 3,
-                      borderRadius: 3,
-                    }}
-                  ></Box>
-                  <Typography
-                    component="span"
-                    variant="body1"
-                    sx={{
-                      mt: 3,
-                      lineHeight: 3,
-                      borderBottom: `3px solid #000`,
-                      width: "75px",
-                    }}
-                  >
-                    Find a ride
-                  </Typography>
-                </Box>
-              </Paper>
-            </MUILink>
-          </Stack>
           {Object.values(locationDetails.taxi_locations).map(
             (innerObject: any, i) => (
               <Stack key={i} spacing={2} sx={{ textAlign: "center", p: 1 }}>
@@ -390,15 +165,20 @@ export default function Locations() {
                         >
                           {innerObject.slide.name}
                         </Typography>
-                        <Box
+                        <SxImage
+                          src={innerObject.slide.photo}
+                          width={200}
+                          height={200}
+                          alt={innerObject.slide.alt}
                           sx={{
                             minHeight: { xs: 224, md: 345 },
                             backgroundImage: `url(${innerObject.slide.photo})`,
-                            backgroundSize: "cover",
+                            objectFit: "cover",
                             mb: 3,
                             borderRadius: 3,
+                            width:"100%"
                           }}
-                        ></Box>
+                        />
                         <Typography
                           component="span"
                           variant="body1"

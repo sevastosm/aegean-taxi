@@ -31,38 +31,18 @@ import MINIVAN from "public/assets/onde-service-types/MINIVAN.webp";
 import SUV from "public/assets/onde-service-types/SUV.webp";
 import TESLA_MODEL_X from "public/assets/onde-service-types/TESLA_MODEL_X.webp";
 import VAN from "public/assets/onde-service-types/VAN.webp";
+import { locationDetails } from "@/utils/locationDetails";
+import { Console } from "console";
 
-export default function WaysToRide() {
-  const [value, setValue] = useState("1");
+export default function WaysToRide({data}:any) {
+  const [value, setValue] = useState(0);
 
-  const handleChange = (event: SyntheticEvent, newValue: string) => {
+
+  console.log("WaysToRide",data);
+
+  const handleChange = (event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
-  };
-
-  let settings = {
-    dots: false,
-    infinite: true,
-    initialSlide: 0,
-    slidesToScroll: 3,
-    slidesToShow: 3,
-    speed: 500,
-    swipeToSlide: true,
-    responsive: [
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
-
-  const setSettings = (slidesLength = 3) => {
-    settings.slidesToScroll = slidesLength;
-    settings.slidesToShow = slidesLength;
-    return settings;
-  };
+  }
 
   return (
     <Container maxWidth={"lg"}>
@@ -84,460 +64,236 @@ export default function WaysToRide() {
         <TabContext value={value}>
           <Box sx={{ borderBottom: 1, borderColor: "#dedede" }}>
             <TabList onChange={handleChange} aria-label="lab API tabs example">
-              <Tab
-                component="h3"
-                label="Standard"
-                value="1"
-                sx={{
-                  textTransform: "none",
-                  fontSize: { xs: "14px", md: "16px" },
-                }}
-              />
-              <Tab
-                component="h3"
-                label="SUV"
-                value="2"
-                sx={{
-                  textTransform: "none",
-                  fontSize: { xs: "14px", md: "16px" },
-                }}
-              />
-              <Tab
-                component="h3"
-                label="VAN"
-                value="3"
-                sx={{
-                  textTransform: "none",
-                  fontSize: { xs: "14px", md: "16px" },
-                }}
-              />
-              <Tab
-                component="h3"
-                label="Mini bus"
-                value="4"
-                sx={{
-                  textTransform: "none",
-                  fontSize: { xs: "14px", md: "16px" },
-                }}
-              />
+              {data.tabs.map((tab: any, i: number) => {
+                return (
+                  <Tab
+                    key={i}
+                    component="h3"
+                    label={tab.label}
+                    value={i}
+                    sx={{
+                      textTransform: "none",
+                      fontSize: { xs: "14px", md: "16px" },
+                    }}
+                  />
+                );
+              })}
             </TabList>
           </Box>
-          <TabPanel value="1">
-            {/* Standard Slider */}
-            <Slider {...settings}>
-              <Stack spacing={2} sx={{ textAlign: "center" }}>
-                <Box
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  sx={{ textAlign: "center" }}
-                >
-                  <Image src={ECONOMY_YELLOW} alt="ECONOMY" width={256} />
-                </Box>
-                <Typography
-                  component="h3"
-                  variant="h6"
-                  gutterBottom
-                  sx={{
-                    mt: "0 !important",
-                  }}
-                >
-                  Taxi
-                </Typography>
-                <Box
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  sx={{ textAlign: "center" }}
-                >
-                  <Stack direction="row" spacing={1}>
-                    <Chip
-                      icon={<DirectionsCarIcon />}
-                      label="4"
-                      color="primary"
-                      size="small"
-                    />
-                    <Chip
-                      icon={<LuggageIcon />}
-                      label="3"
-                      color="primary"
-                      size="small"
-                    />
-                  </Stack>
-                </Box>
-                <Typography variant="body2">Budget friendly rides</Typography>
-              </Stack>
-              <Stack spacing={2} sx={{ textAlign: "center" }}>
-                <Box
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  sx={{ textAlign: "center" }}
-                >
-                  <Image src={CLASSIK} alt="Classic" width={256} />
-                </Box>
-                <Typography
-                  component="h3"
-                  variant="h6"
-                  gutterBottom
-                  sx={{
-                    mt: "0 !important",
-                  }}
-                >
-                  Comfort
-                </Typography>
-                <Box
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  sx={{ textAlign: "center" }}
-                >
-                  <Stack direction="row" spacing={1}>
-                    <Chip
-                      icon={<DirectionsCarIcon />}
-                      label="4"
-                      color="primary"
-                      size="small"
-                    />
-                    <Chip
-                      icon={<LuggageIcon />}
-                      label="4"
-                      color="primary"
-                      size="small"
-                    />
-                  </Stack>
-                </Box>
-                <Typography variant="body2">
-                  Our most afordable rides
-                </Typography>
-              </Stack>
-              <Stack spacing={2} sx={{ textAlign: "center" }}>
-                <Box
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  sx={{ textAlign: "center" }}
-                >
-                  <Image src={BUSINESS} alt="Business" width={256} />
-                </Box>
-                <Typography
-                  component="h3"
-                  variant="h6"
-                  gutterBottom
-                  sx={{
-                    mt: "0 !important",
-                  }}
-                >
-                  Sedan
-                </Typography>
-                <Box
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  sx={{ textAlign: "center" }}
-                >
-                  <Stack direction="row" spacing={1}>
-                    <Chip
-                      icon={<DirectionsCarIcon />}
-                      label="4"
-                      color="primary"
-                      size="small"
-                    />
-                    <Chip
-                      icon={<LuggageIcon />}
-                      label="4"
-                      color="primary"
-                      size="small"
-                    />
-                  </Stack>
-                </Box>
-                <Typography variant="body2">
-                  Premium rides in our best sedans
-                </Typography>
-              </Stack>
-            </Slider>
-            {/* /. Standard Slider */}
-          </TabPanel>
-          <TabPanel value="2">
-            {/* SUV Slider */}
-            <Slider {...setSettings(2)}>
-              <Stack spacing={2} sx={{ textAlign: "center" }}>
-                <Box
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  sx={{ textAlign: "center" }}
-                >
-                  <Image src={SUV} alt="SUV" width={256} />
-                </Box>
-                <Typography
-                  component="h3"
-                  variant="h6"
-                  gutterBottom
-                  sx={{
-                    mt: "0 !important",
-                  }}
-                >
-                  Premium
-                </Typography>
-                <Box
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  sx={{ textAlign: "center" }}
-                >
-                  <Stack direction="row" spacing={1}>
-                    <Chip
-                      icon={<DirectionsCarIcon />}
-                      label="4"
-                      color="primary"
-                      size="small"
-                    />
-                    <Chip
-                      icon={<LuggageIcon />}
-                      label="4"
-                      color="primary"
-                      size="small"
-                    />
-                  </Stack>
-                </Box>
-                <Typography variant="body2">
-                  Spacious cars with extra seats
-                </Typography>
-              </Stack>
-              <Stack spacing={2} sx={{ textAlign: "center" }}>
-                <Box
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  sx={{ textAlign: "center" }}
-                >
-                  <Image src={TESLA_MODEL_X} alt="TESLA MODEL X" width={256} />
-                </Box>
-                <Typography
-                  component="h3"
-                  variant="h6"
-                  gutterBottom
-                  sx={{
-                    mt: "0 !important",
-                  }}
-                >
-                  Luxury
-                </Typography>
-                <Box
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  sx={{ textAlign: "center" }}
-                >
-                  <Stack direction="row" spacing={1}>
-                    <Chip
-                      icon={<DirectionsCarIcon />}
-                      label="4"
-                      color="primary"
-                      size="small"
-                    />
-                    <Chip
-                      icon={<LuggageIcon />}
-                      label="5"
-                      color="primary"
-                      size="small"
-                    />
-                  </Stack>
-                </Box>
-                <Typography variant="body2">
-                  More space, more luxury.
-                </Typography>
-              </Stack>
-            </Slider>
-            {/* /. SUV Slider */}
-          </TabPanel>
-          <TabPanel value="3">
-            {/* VAN Slider */}
-            <Slider {...setSettings(2)}>
-              <Stack spacing={2} sx={{ textAlign: "center" }}>
-                <Box
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  sx={{ textAlign: "center" }}
-                >
-                  <Image src={MINIVAN} alt="Minivan" width={256} />
-                </Box>
-                <Typography
-                  component="h3"
-                  variant="h6"
-                  gutterBottom
-                  sx={{
-                    mt: "0 !important",
-                  }}
-                >
-                  Minivan
-                </Typography>
-                <Box
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  sx={{ textAlign: "center" }}
-                >
-                  <Stack direction="row" spacing={1}>
-                    <Chip
-                      icon={<DirectionsCarIcon />}
-                      label="7"
-                      color="primary"
-                      size="small"
-                    />
-                    <Chip
-                      icon={<LuggageIcon />}
-                      label="5"
-                      color="primary"
-                      size="small"
-                    />
-                  </Stack>
-                </Box>
-                <Typography variant="body2">
-                  Spacious rides for larger groups.
-                </Typography>
-              </Stack>
-              <Stack spacing={2} sx={{ textAlign: "center" }}>
-                <Box
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  sx={{ textAlign: "center" }}
-                >
-                  <Image src={VAN} alt="Van" width={256} />
-                </Box>
-                <Typography
-                  component="h3"
-                  variant="h6"
-                  gutterBottom
-                  sx={{
-                    mt: "0 !important",
-                  }}
-                >
-                  Van
-                </Typography>
-                <Box
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  sx={{ textAlign: "center" }}
-                >
-                  <Stack direction="row" spacing={1}>
-                    <Chip
-                      icon={<DirectionsCarIcon />}
-                      label="8"
-                      color="primary"
-                      size="small"
-                    />
-                    <Chip
-                      icon={<LuggageIcon />}
-                      label="6"
-                      color="primary"
-                      size="small"
-                    />
-                  </Stack>
-                </Box>
-                <Typography variant="body2">
-                  Spacious rides for larger groups.
-                </Typography>
-              </Stack>
-            </Slider>
-            {/* /. VAN Slider */}
-          </TabPanel>
-          <TabPanel value="4">
-            <Slider {...setSettings(2)}>
-              {/* MiniBus Slider */}
-              <Stack spacing={2} sx={{ textAlign: "center" }}>
-                <Box
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  sx={{ textAlign: "center" }}
-                >
-                  <Image src={MICRO_BUS} alt="Micro bus" width={256} />
-                </Box>
-                <Typography
-                  component="h3"
-                  variant="h6"
-                  gutterBottom
-                  sx={{
-                    mt: "0 !important",
-                  }}
-                >
-                  Minibus
-                </Typography>
-                <Box
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  sx={{ textAlign: "center" }}
-                >
-                  <Stack direction="row" spacing={1}>
-                    <Chip
-                      icon={<DirectionsCarIcon />}
-                      label="10"
-                      color="primary"
-                      size="small"
-                    />
-                    <Chip
-                      icon={<LuggageIcon />}
-                      label="8"
-                      color="primary"
-                      size="small"
-                    />
-                  </Stack>
-                </Box>
-                <Typography variant="body2">
-                  Versatile rides to fit all.
-                </Typography>
-              </Stack>
-              <Stack spacing={2} sx={{ textAlign: "center" }}>
-                <Box
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  sx={{ textAlign: "center" }}
-                >
-                  <Image src={BUS} alt="Bus" width={256} />
-                </Box>
-                <Typography
-                  component="h3"
-                  variant="h6"
-                  gutterBottom
-                  sx={{
-                    mt: "0 !important",
-                  }}
-                >
-                  Bus
-                </Typography>
-                <Box
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  sx={{ textAlign: "center" }}
-                >
-                  <Stack direction="row" spacing={1}>
-                    <Chip
-                      icon={<DirectionsCarIcon />}
-                      label="14"
-                      color="primary"
-                      size="small"
-                    />
-                    <Chip
-                      icon={<LuggageIcon />}
-                      label="12"
-                      color="primary"
-                      size="small"
-                    />
-                  </Stack>
-                </Box>
-                <Typography variant="body2">Our luxury buses.</Typography>
-              </Stack>
-            </Slider>
-            {/* MiniBus Slider */}
-          </TabPanel>
+          {data.tabs.map((tab: any, i: number) => {
+            let settings = {
+              dots: false,
+              infinite: true,
+              initialSlide: 0,
+              slidesToScroll: 3,
+              slidesToShow: tab.slides.length,
+              speed: 500,
+              swipeToSlide: true,
+              responsive: [
+                {
+                  breakpoint: 480,
+                  settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                  },
+                },
+              ],
+            };
+            return (
+              <TabPanel key={i} value={i}>
+                <Slider {...settings}>
+                  {tab.slides.map((item: any, key: number) => (
+                    <Stack key={key} spacing={2} sx={{ textAlign: "center" }}>
+                      <Box
+                        display="flex"
+                        justifyContent="center"
+                        alignItems="center"
+                        sx={{ textAlign: "center" }}
+                      >
+                        <Image
+                          src={item.image}
+                          alt={item.alt}
+                          width={256}
+                          height={200}
+                        />
+                      </Box>
+                      <Typography
+                        component="h3"
+                        variant="h6"
+                        gutterBottom
+                        sx={{
+                          mt: "0 !important",
+                        }}
+                      >
+                        {item.name}
+                      </Typography>
+                      <Box
+                        display="flex"
+                        justifyContent="center"
+                        alignItems="center"
+                        sx={{ textAlign: "center" }}
+                      >
+                        <Stack direction="row" spacing={1}>
+                          <Chip
+                            icon={<DirectionsCarIcon />}
+                            label="4"
+                            color="primary"
+                            size="small"
+                          />
+                          <Chip
+                            icon={<LuggageIcon />}
+                            label="3"
+                            color="primary"
+                            size="small"
+                          />
+                        </Stack>
+                      </Box>
+                      <Typography variant="body2">
+                        Budget friendly rides
+                      </Typography>
+                    </Stack>
+                  ))}
+                  {/* <Stack spacing={2} sx={{ textAlign: "center" }}>
+                        <Box
+                          display="flex"
+                          justifyContent="center"
+                          alignItems="center"
+                          sx={{ textAlign: "center" }}
+                        >
+                          <Image
+                            src={ECONOMY_YELLOW}
+                            alt="{location.ways_to_ride.economy_alt.classic}"
+                            width={256}
+                          />
+                        </Box>
+                        <Typography
+                          component="h3"
+                          variant="h6"
+                          gutterBottom
+                          sx={{
+                            mt: "0 !important",
+                          }}
+                        >
+                          Taxi
+                        </Typography>
+                        <Box
+                          display="flex"
+                          justifyContent="center"
+                          alignItems="center"
+                          sx={{ textAlign: "center" }}
+                        >
+                          <Stack direction="row" spacing={1}>
+                            <Chip
+                              icon={<DirectionsCarIcon />}
+                              label="4"
+                              color="primary"
+                              size="small"
+                            />
+                            <Chip
+                              icon={<LuggageIcon />}
+                              label="3"
+                              color="primary"
+                              size="small"
+                            />
+                          </Stack>
+                        </Box>
+                        <Typography variant="body2">
+                          Budget friendly rides
+                        </Typography>
+                      </Stack>
+                      <Stack spacing={2} sx={{ textAlign: "center" }}>
+                        <Box
+                          display="flex"
+                          justifyContent="center"
+                          alignItems="center"
+                          sx={{ textAlign: "center" }}
+                        >
+                          <Image src={CLASSIK} alt="Classic" width={256} />
+                        </Box>
+                        <Typography
+                          component="h3"
+                          variant="h6"
+                          gutterBottom
+                          sx={{
+                            mt: "0 !important",
+                          }}
+                        >
+                          Comfort
+                        </Typography>
+                        <Box
+                          display="flex"
+                          justifyContent="center"
+                          alignItems="center"
+                          sx={{ textAlign: "center" }}
+                        >
+                          <Stack direction="row" spacing={1}>
+                            <Chip
+                              icon={<DirectionsCarIcon />}
+                              label="4"
+                              color="primary"
+                              size="small"
+                            />
+                            <Chip
+                              icon={<LuggageIcon />}
+                              label="4"
+                              color="primary"
+                              size="small"
+                            />
+                          </Stack>
+                        </Box>
+                        <Typography variant="body2">
+                          Our most afordable rides
+                        </Typography>
+                      </Stack>
+                      <Stack spacing={2} sx={{ textAlign: "center" }}>
+                        <Box
+                          display="flex"
+                          justifyContent="center"
+                          alignItems="center"
+                          sx={{ textAlign: "center" }}
+                        >
+                          <Image src={BUSINESS} alt="Business" width={256} />
+                        </Box>
+                        <Typography
+                          component="h3"
+                          variant="h6"
+                          gutterBottom
+                          sx={{
+                            mt: "0 !important",
+                          }}
+                        >
+                          Sedan
+                        </Typography>
+                        <Box
+                          display="flex"
+                          justifyContent="center"
+                          alignItems="center"
+                          sx={{ textAlign: "center" }}
+                        >
+                          <Stack direction="row" spacing={1}>
+                            <Chip
+                              icon={<DirectionsCarIcon />}
+                              label="4"
+                              color="primary"
+                              size="small"
+                            />
+                            <Chip
+                              icon={<LuggageIcon />}
+                              label="4"
+                              color="primary"
+                              size="small"
+                            />
+                          </Stack>
+                        </Box>
+                        <Typography variant="body2">
+                          Premium rides in our best sedans
+                        </Typography>
+                      </Stack> */}
+                </Slider>
+                {/* /. Standard Slider */}
+              </TabPanel>
+            );
+          })}
         </TabContext>
       </Box>
     </Container>

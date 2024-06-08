@@ -9,8 +9,12 @@ import Typography from "@mui/material/Typography";
 import BookingFormLanding from "@/components/requestRideForm/BookingFormLanding";
 
 import bg from "public/assets/landing-header.webp";
+import { SxImage } from "./ui/SxImage";
+import { locationDetails } from "@/utils/locationDetails";
 
 export default function LandingHeader() {
+   const atlText = locationDetails.landing.alt_header;
+
   return (
     <Container maxWidth={"lg"}>
       <Grid container spacing={0}>
@@ -72,20 +76,25 @@ export default function LandingHeader() {
           xs={12}
           md={7}
           sx={{
-            backgroundImage: { xs: "none", md: `url(${bg.src})` },
-            backgroundSize: "cover",
+            position: "relative",      
           }}
         >
-          <Box
-            sx={{
-              display: { xs: "block", md: "none" },
-              width: "100%",
-              height: "206px",
-              backgroundImage: `url(${bg.src})`,
-              backgroundSize: "cover",
-              backgroundPosition: "0 50%",
-            }}
-          ></Box>
+         
+            <SxImage
+              src={bg.src}
+              width={200}
+              height={200}
+              alt={atlText}
+              sx={{
+                width: "100%",
+                height: { xs: "200px", md: "100%" },
+                // backgroundColor: "primary.dark",
+                objectFit: { xs: "cover", md: "cover" },
+                objectPosition: { xs: "0 50%", md: "0 50%" },
+                position: { xs: "relative", md: "absolute" },
+              }}
+            />
+          
           <Box
             justifyContent="center"
             alignItems="center"
@@ -104,6 +113,7 @@ export default function LandingHeader() {
                 gap: "5px",
                 alignItems: "center",
                 marginBottom: "20px",
+                background: "#fff",
               }}
             >
               <BookingFormLanding />

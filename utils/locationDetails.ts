@@ -1,6 +1,78 @@
 import zIndex from "@mui/material/styles/zIndex";
 
 export const locationDetails: any = {
+  landing: {
+    alt_header: "Ride with Aegean Taxi",
+    ways_to_ride: {
+      tabs: [
+        {
+          label: "Standard",
+          slides: [
+            {
+              name: "classic",
+              image: "/assets/onde-service-types/ECONOMY_yellow.webp",
+              alt: "classic",
+            },
+            {
+              name: "comfort",
+              image: "/assets/onde-service-types/CLASSIC.webp",
+              alt: "comfort",
+            },
+            {
+              name: "sedan",
+              image: "/assets/onde-service-types/BUSINESS.webp",
+              alt: "sedan",
+            },
+          ],
+        },
+        {
+          label: "SUV",
+          slides: [
+            {
+              name: "premium",
+              image: "/assets/onde-service-types/SUV.webp",
+              alt: "premium",
+            },
+            {
+              name: "luxury",
+              image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
+              alt: "luxury",
+            },
+          ],
+        },
+        {
+          label: "VAN",
+          slides: [
+            {
+              name: "Mini van",
+              image: "/assets/onde-service-types/MINIVAN.webp",
+              alt: "Mini van",
+            },
+            {
+              name: "van",
+              image: "/assets/onde-service-types/VAN.webp",
+              alt: "van",
+            },
+          ],
+        },
+        {
+          label: "Mini bus",
+          slides: [
+            {
+              name: "mini bus",
+              image: "/assets/onde-service-types/MICRO_BUS.webp",
+              alt: "mini bus",
+            },
+            {
+              name: "bus",
+              image: "/assets/onde-service-types/BUS.webp",
+              alt: "bus",
+            },
+          ],
+        },
+      ],
+    },
+  },
   default: {
     reviews: [
       {
@@ -38,7 +110,80 @@ export const locationDetails: any = {
     ],
   },
   taxi_locations: {
+    alt_header: "Ride with Aegean Taxi",
+
+    ways_to_ride: {
+      tabs: [
+        {
+          label: "Standard",
+          slides: [
+            {
+              name: "classic",
+              image: "/assets/onde-service-types/ECONOMY_yellow.webp",
+              alt: "classic",
+            },
+            {
+              name: "comfort",
+              image: "/assets/onde-service-types/CLASSIC.webp",
+              alt: "comfort",
+            },
+            {
+              name: "sedan",
+              image: "/assets/onde-service-types/BUSINESS.webp",
+              alt: "sedan",
+            },
+          ],
+        },
+        {
+          label: "SUV",
+          slides: [
+            {
+              name: "premium",
+              image: "/assets/onde-service-types/SUV.webp",
+              alt: "premium",
+            },
+            {
+              name: "luxury",
+              image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
+              alt: "luxury",
+            },
+          ],
+        },
+        {
+          label: "VAN",
+          slides: [
+            {
+              name: "Mini van",
+              image: "/assets/onde-service-types/MINIVAN.webp",
+              alt: "Mini van",
+            },
+            {
+              name: "van",
+              image: "/assets/onde-service-types/VAN.webp",
+              alt: "van",
+            },
+          ],
+        },
+        {
+          label: "Mini bus",
+          slides: [
+            {
+              name: "mini bus",
+              image: "/assets/onde-service-types/MICRO_BUS.webp",
+              alt: "mini bus",
+            },
+            {
+              name: "bus",
+              image: "/assets/onde-service-types/BUS.webp",
+              alt: "bus",
+            },
+          ],
+        },
+      ],
+    },
     "mykonos-taxi-app": {
+      alt_header: "Ride with Aegean Taxi Mykonos",
+
       location: "mykonos-taxi-app",
       prices: [
         {
@@ -191,8 +336,85 @@ export const locationDetails: any = {
           text: `We have used Aegean Taxi app several times on our stay in Mykonos. It was simple, affordable and convenient, with competitive prices and professional drivers. You can be sure that you will always have a pleasant experience.`,
         },
       ],
+      slide: {
+        name: "Mykonos",
+        photo: "/assets/taxi-mykonos.webp",
+        href: "/taxi/mykonos-taxi-app/",
+        alt: "Mykonos",
+      },
+      ways_to_ride: {
+        tabs: [
+          {
+            label: "Standard",
+            slides: [
+              {
+                name: "classic",
+                image: "/assets/onde-service-types/ECONOMY_yellow.webp",
+                alt: "classic Mykonos",
+              },
+              {
+                name: "comfort",
+                image: "/assets/onde-service-types/CLASSIC.webp",
+                alt: "comfort Mykonos",
+              },
+              {
+                name: "sedan",
+                image: "/assets/onde-service-types/BUSINESS.webp",
+                alt: "sedan Mykonos",
+              },
+            ],
+          },
+          {
+            label: "SUV",
+            slides: [
+              {
+                name: "premium",
+                image: "/assets/onde-service-types/SUV.webp",
+                alt: "premium",
+              },
+              {
+                name: "luxury",
+                image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
+                alt: "luxury",
+              },
+            ],
+          },
+          {
+            label: "VAN",
+            slides: [
+              {
+                name: "Mini van",
+                image: "/assets/onde-service-types/MINIVAN.webp",
+                alt: "Mini van",
+              },
+              {
+                name: "van",
+                image: "/assets/onde-service-types/VAN.webp",
+                alt: "van",
+              },
+            ],
+          },
+          {
+            label: "Mini bus",
+            slides: [
+              {
+                name: "mini bus",
+                image: "/assets/onde-service-types/MICRO_BUS.webp",
+                alt: "mini bus",
+              },
+              {
+                name: "bus",
+                image: "/assets/onde-service-types/BUS.webp",
+                alt: "bus",
+              },
+            ],
+          },
+        ],
+      },
     },
     "santorini-taxi-app": {
+      alt_header: "Ride with Aegean Taxi",
+
       location: "santorini-taxi-app",
       prices: [
         {
@@ -298,6 +520,12 @@ export const locationDetails: any = {
           a: `Yes, Aegean Taxi Santorini offers 24/7 customer support and online whatsapp booking. You can add our Santorini whatsapp taxi number to book online +30 694 382 9494 `,
         },
       ],
+      slide: {
+        name: "Santorini",
+        photo: "/assets/taxi-santorini.webp",
+        href: "/taxi/santorini-taxi-app/",
+        alt: "Santorini",
+      },
       reviews: [
         {
           flag: "america",
@@ -315,8 +543,79 @@ export const locationDetails: any = {
           text: `Excellent service! We used the Santorini Taxi app from Aegean to book our rides on many occasions and they are very professional. The app was very easy to use and very precise with ETA. Would recommend and use it again! They also operate in most Greek islands and offer Santorini Airport Transfers, which are more affordable and cheap than any other taxi service we inquired.`,
         },
       ],
+      ways_to_ride: {
+        tabs: [
+          {
+            label: "Standard",
+            slides: [
+              {
+                name: "classic",
+                image: "/assets/onde-service-types/ECONOMY_yellow.webp",
+                alt: "classic",
+              },
+              {
+                name: "comfort",
+                image: "/assets/onde-service-types/CLASSIC.webp",
+                alt: "comfort",
+              },
+              {
+                name: "sedan",
+                image: "/assets/onde-service-types/BUSINESS.webp",
+                alt: "sedan",
+              },
+            ],
+          },
+          {
+            label: "SUV",
+            slides: [
+              {
+                name: "premium",
+                image: "/assets/onde-service-types/SUV.webp",
+                alt: "premium",
+              },
+              {
+                name: "luxury",
+                image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
+                alt: "luxury",
+              },
+            ],
+          },
+          {
+            label: "VAN",
+            slides: [
+              {
+                name: "Mini van",
+                image: "/assets/onde-service-types/MINIVAN.webp",
+                alt: "Mini van",
+              },
+              {
+                name: "van",
+                image: "/assets/onde-service-types/VAN.webp",
+                alt: "van",
+              },
+            ],
+          },
+          {
+            label: "Mini bus",
+            slides: [
+              {
+                name: "mini bus",
+                image: "/assets/onde-service-types/MICRO_BUS.webp",
+                alt: "mini bus",
+              },
+              {
+                name: "bus",
+                image: "/assets/onde-service-types/BUS.webp",
+                alt: "bus",
+              },
+            ],
+          },
+        ],
+      },
     },
     "corfu-taxi-app": {
+      alt_header: "Ride with Aegean Taxi",
+
       location: "corfu-taxi-app",
       prices: [
         {
@@ -401,6 +700,12 @@ export const locationDetails: any = {
           a: `Yes, Aegean Taxi Corfu offers 24/7 customer support and online whatsapp booking. You can add our Corfu whatsapp taxi number to book online +30 694 382 9494 `,
         },
       ],
+      slide: {
+        name: "Corfu",
+        photo: "/assets/taxi-corfu.webp",
+        href: "/taxi/corfu-taxi-app/",
+        alt: "Corfu",
+      },
       reviews: [
         {
           flag: "america",
@@ -419,8 +724,79 @@ export const locationDetails: any = {
           text: `Great Taxi service and very easy to use; most importantly it worked properly  during rush hours. Driver was gentle despite the chaos,opened doors even offered water out of courtesy.`,
         },
       ],
+      ways_to_ride: {
+        tabs: [
+          {
+            label: "Standard",
+            slides: [
+              {
+                name: "classic",
+                image: "/assets/onde-service-types/ECONOMY_yellow.webp",
+                alt: "classic",
+              },
+              {
+                name: "comfort",
+                image: "/assets/onde-service-types/CLASSIC.webp",
+                alt: "comfort",
+              },
+              {
+                name: "sedan",
+                image: "/assets/onde-service-types/BUSINESS.webp",
+                alt: "sedan",
+              },
+            ],
+          },
+          {
+            label: "SUV",
+            slides: [
+              {
+                name: "premium",
+                image: "/assets/onde-service-types/SUV.webp",
+                alt: "premium",
+              },
+              {
+                name: "luxury",
+                image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
+                alt: "luxury",
+              },
+            ],
+          },
+          {
+            label: "VAN",
+            slides: [
+              {
+                name: "Mini van",
+                image: "/assets/onde-service-types/MINIVAN.webp",
+                alt: "Mini van",
+              },
+              {
+                name: "van",
+                image: "/assets/onde-service-types/VAN.webp",
+                alt: "van",
+              },
+            ],
+          },
+          {
+            label: "Mini bus",
+            slides: [
+              {
+                name: "mini bus",
+                image: "/assets/onde-service-types/MICRO_BUS.webp",
+                alt: "mini bus",
+              },
+              {
+                name: "bus",
+                image: "/assets/onde-service-types/BUS.webp",
+                alt: "bus",
+              },
+            ],
+          },
+        ],
+      },
     },
     "rhodes-taxi-app": {
+      alt_header: "Ride with Aegean Taxi",
+
       location: "rhodes-taxi-app",
       prices: [
         {
@@ -501,6 +877,12 @@ export const locationDetails: any = {
           a: `Yes, Aegean Taxi Rhodes offers 24/7 customer support and online whatsapp booking. You can add our Rhodes whatsapp taxi number to book online +30 694 382 9494 `,
         },
       ],
+      slide: {
+        name: "Rhodes",
+        photo: "/assets/taxi-rhodes.webp",
+        href: "/taxi/rhodes-taxi-app/",
+        alt: "Rhodes",
+      },
       reviews: [
         {
           flag: "french",
@@ -520,9 +902,80 @@ export const locationDetails: any = {
           text: `My experience with Aegean Taxi in Rhodes has been truly wonderful! They were always on time and friendly :) The application works very well, and they have a 24/7 call center to help you book a taxi from anywhere in Rhodes! `,
         },
       ],
+      ways_to_ride: {
+        tabs: [
+          {
+            label: "Standard",
+            slides: [
+              {
+                name: "classic",
+                image: "/assets/onde-service-types/ECONOMY_yellow.webp",
+                alt: "classic",
+              },
+              {
+                name: "comfort",
+                image: "/assets/onde-service-types/CLASSIC.webp",
+                alt: "comfort",
+              },
+              {
+                name: "sedan",
+                image: "/assets/onde-service-types/BUSINESS.webp",
+                alt: "sedan",
+              },
+            ],
+          },
+          {
+            label: "SUV",
+            slides: [
+              {
+                name: "premium",
+                image: "/assets/onde-service-types/SUV.webp",
+                alt: "premium",
+              },
+              {
+                name: "luxury",
+                image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
+                alt: "luxury",
+              },
+            ],
+          },
+          {
+            label: "VAN",
+            slides: [
+              {
+                name: "Mini van",
+                image: "/assets/onde-service-types/MINIVAN.webp",
+                alt: "Mini van",
+              },
+              {
+                name: "van",
+                image: "/assets/onde-service-types/VAN.webp",
+                alt: "van",
+              },
+            ],
+          },
+          {
+            label: "Mini bus",
+            slides: [
+              {
+                name: "mini bus",
+                image: "/assets/onde-service-types/MICRO_BUS.webp",
+                alt: "mini bus",
+              },
+              {
+                name: "bus",
+                image: "/assets/onde-service-types/BUS.webp",
+                alt: "bus",
+              },
+            ],
+          },
+        ],
+      },
     },
 
     "athens-taxi-app": {
+      alt_header: "Ride with Aegean Taxi",
+
       location: "athens-taxi-app",
       prices: [
         {
@@ -591,6 +1044,12 @@ export const locationDetails: any = {
           a: `Getting around in Athens with a taxi is relatively cheap when the fares are compared to other European capitals. The minimum flag fare in Athens starts from €4 and every trip is charged according to time spent and distance covered, adding extras for tolls and suitcases.`,
         },
       ],
+      slide: {
+        name: "Athens",
+        photo: "/assets/taxi-athens.webp",
+        href: "/taxi/athens-taxi-app/",
+        alt: "Athens",
+      },
       reviews: [
         {
           flag: "america",
@@ -608,9 +1067,80 @@ export const locationDetails: any = {
           text: `Booked a taxi via whatsapp in 30 seconds while in Athens. Very friendly driver. Safe, experienced and a very good guide for the city. We didn't know that they are in all main islands in Greece, so we used them in many other locations and worked flawlesly`,
         },
       ],
+      ways_to_ride: {
+        tabs: [
+          {
+            label: "Standard",
+            slides: [
+              {
+                name: "classic",
+                image: "/assets/onde-service-types/ECONOMY_yellow.webp",
+                alt: "classic",
+              },
+              {
+                name: "comfort",
+                image: "/assets/onde-service-types/CLASSIC.webp",
+                alt: "comfort",
+              },
+              {
+                name: "sedan",
+                image: "/assets/onde-service-types/BUSINESS.webp",
+                alt: "sedan",
+              },
+            ],
+          },
+          {
+            label: "SUV",
+            slides: [
+              {
+                name: "premium",
+                image: "/assets/onde-service-types/SUV.webp",
+                alt: "premium",
+              },
+              {
+                name: "luxury",
+                image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
+                alt: "luxury",
+              },
+            ],
+          },
+          {
+            label: "VAN",
+            slides: [
+              {
+                name: "Mini van",
+                image: "/assets/onde-service-types/MINIVAN.webp",
+                alt: "Mini van",
+              },
+              {
+                name: "van",
+                image: "/assets/onde-service-types/VAN.webp",
+                alt: "van",
+              },
+            ],
+          },
+          {
+            label: "Mini bus",
+            slides: [
+              {
+                name: "mini bus",
+                image: "/assets/onde-service-types/MICRO_BUS.webp",
+                alt: "mini bus",
+              },
+              {
+                name: "bus",
+                image: "/assets/onde-service-types/BUS.webp",
+                alt: "bus",
+              },
+            ],
+          },
+        ],
+      },
     },
 
     "milos-taxi-app": {
+      alt_header: "Ride with Aegean Taxi",
+
       location: "milos-taxi-app",
       name: "Milos",
       prices: [
@@ -726,6 +1256,7 @@ export const locationDetails: any = {
         name: "Milos",
         photo: "/assets/taxi-locations/taxi-milos.webp",
         href: "/taxi/milos-taxi-app/",
+        alt: "Milos",
       },
       url: "taxi/milos-taxi-app/",
       footer: {
@@ -737,9 +1268,81 @@ export const locationDetails: any = {
         description:
           "Book your Milos Taxi via telephone, whatsapp, website. Or download the Aegean Taxi app and request a ride in 2 simple steps.",
       },
+      ways_to_ride: {
+        tabs: [
+          {
+            label: "Standard",
+            slides: [
+              {
+                name: "classic",
+                image: "/assets/onde-service-types/ECONOMY_yellow.webp",
+                alt: "classic",
+              },
+              {
+                name: "comfort",
+                image: "/assets/onde-service-types/CLASSIC.webp",
+                alt: "comfort",
+              },
+              {
+                name: "sedan",
+                image: "/assets/onde-service-types/BUSINESS.webp",
+                alt: "sedan",
+              },
+            ],
+          },
+          {
+            label: "SUV",
+            slides: [
+              {
+                name: "premium",
+                image: "/assets/onde-service-types/SUV.webp",
+                alt: "premium",
+              },
+              {
+                name: "luxury",
+                image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
+                alt: "luxury",
+              },
+            ],
+          },
+          {
+            label: "VAN",
+            slides: [
+              {
+                name: "Mini van",
+                image: "/assets/onde-service-types/MINIVAN.webp",
+                alt: "Mini van",
+              },
+              {
+                name: "van",
+                image: "/assets/onde-service-types/VAN.webp",
+                alt: "van",
+              },
+            ],
+          },
+          {
+            label: "Mini bus",
+            slides: ["mini bus", "bus"],
+            slides: [
+              {
+                name: "mini bus",
+                image: "/assets/onde-service-types/MICRO_BUS.webp",
+                alt: "mini bus",
+              },
+              {
+                name: "bus",
+                image: "/assets/onde-service-types/BUS.webp",
+                alt: "bus",
+              },
+            ],
+          },
+        ],
+      },
     },
 
     "bodrum-taxi-app": {
+      alt_header: "Ride with Aegean Taxi",
+
       location: "bodrum-taxi-app",
       name: "Bodrum",
       prices: [
@@ -856,6 +1459,7 @@ export const locationDetails: any = {
         name: "Bodrum",
         photo: "/assets/taxi-locations/taxi-bodrum.webp",
         href: "/taxi/bodrum-taxi-app/",
+        alt: "Bodrum",
       },
       url: "taxi/bodrum-taxi-app/",
       footer: {
@@ -870,6 +1474,8 @@ export const locationDetails: any = {
     },
 
     "tinos-taxi-app": {
+      alt_header: "Ride with Aegean Taxi",
+
       location: "tinos-taxi-app",
       name: "Tinos",
       prices: [
@@ -974,6 +1580,7 @@ export const locationDetails: any = {
         name: "Tinos",
         photo: "/assets/taxi-locations/taxi-tinos.webp",
         href: "/taxi/tinos-taxi-app/",
+        alt: "Tinos",
       },
       url: "taxi/tinos-taxi-app/",
       footer: {
@@ -989,6 +1596,8 @@ export const locationDetails: any = {
     },
 
     "paros-taxi-app": {
+      alt_header: "Ride with Aegean Taxi",
+
       location: "paros-taxi-app",
       name: "Paros",
       prices: [
@@ -1093,6 +1702,7 @@ export const locationDetails: any = {
         name: "Paros",
         photo: "/assets/taxi-locations/taxi-paros.webp",
         href: "/taxi/paros-taxi-app/",
+        alt: "Paros",
       },
       url: "taxi/paros-taxi-app/",
       footer: {
@@ -1108,6 +1718,8 @@ export const locationDetails: any = {
     },
 
     "naxos-taxi-app": {
+      alt_header: "Ride with Aegean Taxi",
+
       location: "naxos-taxi-app",
       name: "Naxos",
       prices: [
@@ -1212,6 +1824,7 @@ export const locationDetails: any = {
         name: "Naxos",
         photo: "/assets/taxi-locations/taxi-naxos.webp",
         href: "/taxi/naxos-taxi-app/",
+        alt: "Naxos",
       },
       url: "taxi/naxos-taxi-app/",
       footer: {
@@ -1227,6 +1840,8 @@ export const locationDetails: any = {
     },
 
     "kos-taxi-app": {
+      alt_header: "Ride with Aegean Taxi",
+
       location: "kos-taxi-app",
       name: "Kos",
       prices: [
@@ -1331,6 +1946,7 @@ export const locationDetails: any = {
         name: "Kos",
         photo: "/assets/taxi-locations/taxi-kos.webp",
         href: "/taxi/kos-taxi-app/",
+        alt: "Kos",
       },
       url: "taxi/kos-taxi-app/",
       footer: {
@@ -1346,6 +1962,8 @@ export const locationDetails: any = {
     },
 
     "heraklion-taxi-app": {
+      alt_header: "Ride with Aegean Taxi",
+
       location: "heraklion-taxi-app",
       name: "Heraklion",
       prices: [
@@ -1450,6 +2068,7 @@ export const locationDetails: any = {
         name: "Heraklion",
         photo: "/assets/taxi-locations/taxi-heraklion.webp",
         href: "/taxi/heraklion-taxi-app/",
+        alt: "Heraklion",
       },
       url: "taxi/heraklion-taxi-app/",
       footer: {
@@ -1465,6 +2084,8 @@ export const locationDetails: any = {
     },
 
     "chalkidiki-taxi-app": {
+      alt_header: "Ride with Aegean Taxi",
+
       location: "chalkidiki-taxi-app",
       name: "Chalkidiki",
       prices: [
@@ -1565,6 +2186,7 @@ export const locationDetails: any = {
         name: "Chalkidiki",
         photo: "/assets/taxi-locations/taxi-chalkidiki.webp",
         href: "/taxi/chalkidiki-taxi-app/",
+        alt: "HeChalkidikiraklion",
       },
       url: "taxi/chalkidiki-taxi-app/",
       footer: {
@@ -1580,6 +2202,8 @@ export const locationDetails: any = {
     },
 
     "kea-taxi-app": {
+      alt_header: "Ride with Aegean Taxi",
+
       location: "kea-taxi-app",
       name: "Kea",
       prices: [
@@ -1696,6 +2320,7 @@ export const locationDetails: any = {
         name: "Kea-Tzia",
         photo: "/assets/taxi-locations/taxi-kea.webp",
         href: "/taxi/kea-taxi-app/",
+        alt: "Kea-Tzia",
       },
       url: "taxi/kea-taxi-app/",
       footer: {
@@ -1710,6 +2335,8 @@ export const locationDetails: any = {
     },
 
     "kefalonia-taxi-app": {
+      alt_header: "Ride with Aegean Taxi",
+
       location: "kefalonia-taxi-app",
       name: "Kefalonia",
       prices: [
@@ -1826,6 +2453,7 @@ export const locationDetails: any = {
         name: "Kefalonia",
         photo: "/assets/taxi-locations/taxi-kefalonia.webp",
         href: "/taxi/kefalonia-taxi-app/",
+        alt: "Kefalonia",
       },
       url: "taxi/kefalonia-taxi-app/",
       footer: {
@@ -1840,9 +2468,80 @@ export const locationDetails: any = {
     },
   },
   airports: {
-    mykonos: {
-      location: "mykonos",
+    alt_header: "Airport transfers with Aegean Taxi",
 
+    ways_to_ride: {
+      tabs: [
+        {
+          label: "Standard",
+          slides: [
+            {
+              name: "classic",
+              image: "/assets/onde-service-types/ECONOMY_yellow.webp",
+              alt: "classic",
+            },
+            {
+              name: "comfort",
+              image: "/assets/onde-service-types/CLASSIC.webp",
+              alt: "comfort",
+            },
+            {
+              name: "sedan",
+              image: "/assets/onde-service-types/BUSINESS.webp",
+              alt: "sedan",
+            },
+          ],
+        },
+        {
+          label: "SUV",
+          slides: [
+            {
+              name: "premium",
+              image: "/assets/onde-service-types/SUV.webp",
+              alt: "premium",
+            },
+            {
+              name: "luxury",
+              image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
+              alt: "luxury",
+            },
+          ],
+        },
+        {
+          label: "VAN",
+          slides: [
+            {
+              name: "Mini van",
+              image: "/assets/onde-service-types/MINIVAN.webp",
+              alt: "Mini van",
+            },
+            {
+              name: "van",
+              image: "/assets/onde-service-types/VAN.webp",
+              alt: "van",
+            },
+          ],
+        },
+        {
+          label: "Mini bus",
+          slides: [
+            {
+              name: "mini bus",
+              image: "/assets/onde-service-types/MICRO_BUS.webp",
+              alt: "mini bus",
+            },
+            {
+              name: "bus",
+              image: "/assets/onde-service-types/BUS.webp",
+              alt: "bus",
+            },
+          ],
+        },
+      ],
+    },
+    mykonos: {
+      alt_header: "Mykonos Airport",
+      location: "mykonos",
       prices: [
         {
           from: "Mykonos Airport",
@@ -1996,9 +2695,79 @@ export const locationDetails: any = {
           text: `For a hassle-free airport transfer in Mykonos, I highly recommend Aegean Taxi. Booking on their user-friendly website was a breeze, the car was comfortable, and the driver was professional and punctual.`,
         },
       ],
+      ways_to_ride: {
+        tabs: [
+          {
+            label: "Standard",
+            slides: [
+              {
+                name: "classic",
+                image: "/assets/onde-service-types/ECONOMY_yellow.webp",
+                alt: "classic Mykonos Airport",
+              },
+              {
+                name: "comfort",
+                image: "/assets/onde-service-types/CLASSIC.webp",
+                alt: "comfort Mykonos Airport",
+              },
+              {
+                name: "sedan",
+                image: "/assets/onde-service-types/BUSINESS.webp",
+                alt: "sedan Mykonos Ariport",
+              },
+            ],
+          },
+          {
+            label: "SUV",
+            slides: [
+              {
+                name: "premium",
+                image: "/assets/onde-service-types/SUV.webp",
+                alt: "premium",
+              },
+              {
+                name: "luxury",
+                image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
+                alt: "luxury",
+              },
+            ],
+          },
+          {
+            label: "VAN",
+            slides: [
+              {
+                name: "Mini van",
+                image: "/assets/onde-service-types/MINIVAN.webp",
+                alt: "Mini van",
+              },
+              {
+                name: "van",
+                image: "/assets/onde-service-types/VAN.webp",
+                alt: "van",
+              },
+            ],
+          },
+          {
+            label: "Mini bus",
+            slides: [
+              {
+                name: "mini bus",
+                image: "/assets/onde-service-types/MICRO_BUS.webp",
+                alt: "mini bus",
+              },
+              {
+                name: "bus",
+                image: "/assets/onde-service-types/BUS.webp",
+                alt: "bus",
+              },
+            ],
+          },
+        ],
+      },
     },
 
     athens: {
+      alt_header: "Athens Airport",
       location: "athens",
       prices: [
         {
@@ -2077,9 +2846,79 @@ export const locationDetails: any = {
           text: `For a hassle-free airport transfer in Athens, I highly recommend Aegean Taxi. Booking on their user-friendly website was a breeze, the car was comfortable, and the driver was professional and punctual.`,
         },
       ],
+      ways_to_ride: {
+        tabs: [
+          {
+            label: "Standard",
+            slides: [
+              {
+                name: "classic",
+                image: "/assets/onde-service-types/ECONOMY_yellow.webp",
+                alt: "classic",
+              },
+              {
+                name: "comfort",
+                image: "/assets/onde-service-types/CLASSIC.webp",
+                alt: "comfort",
+              },
+              {
+                name: "sedan",
+                image: "/assets/onde-service-types/BUSINESS.webp",
+                alt: "sedan",
+              },
+            ],
+          },
+          {
+            label: "SUV",
+            slides: [
+              {
+                name: "premium",
+                image: "/assets/onde-service-types/SUV.webp",
+                alt: "premium",
+              },
+              {
+                name: "luxury",
+                image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
+                alt: "luxury",
+              },
+            ],
+          },
+          {
+            label: "VAN",
+            slides: [
+              {
+                name: "Mini van",
+                image: "/assets/onde-service-types/MINIVAN.webp",
+                alt: "Mini van",
+              },
+              {
+                name: "van",
+                image: "/assets/onde-service-types/VAN.webp",
+                alt: "van",
+              },
+            ],
+          },
+          {
+            label: "Mini bus",
+            slides: [
+              {
+                name: "mini bus",
+                image: "/assets/onde-service-types/MICRO_BUS.webp",
+                alt: "mini bus",
+              },
+              {
+                name: "bus",
+                image: "/assets/onde-service-types/BUS.webp",
+                alt: "bus",
+              },
+            ],
+          },
+        ],
+      },
     },
 
     milos: {
+      alt_header: "Milos Airport",
       location: "milos",
       meta: {
         title:
@@ -2182,7 +3021,6 @@ Exploring the wonders of Milos Island becomes a seamless experience when you rel
           heading: "Public Transportation Information",
           info: `During the summer season public transportation (bus) is available. The Airport station is about 100m away from the Airport.
 `,
-          
         },
       },
 
@@ -2207,9 +3045,80 @@ Exploring the wonders of Milos Island becomes a seamless experience when you rel
         link: "/airport-transfers/milos/",
         name: "MLO",
       },
+      ways_to_ride: {
+        tabs: [
+          {
+            label: "Standard",
+            slides: [
+              {
+                name: "classic",
+                image: "/assets/onde-service-types/ECONOMY_yellow.webp",
+                alt: "classic",
+              },
+              {
+                name: "comfort",
+                image: "/assets/onde-service-types/CLASSIC.webp",
+                alt: "comfort",
+              },
+              {
+                name: "sedan",
+                image: "/assets/onde-service-types/BUSINESS.webp",
+                alt: "sedan",
+              },
+            ],
+          },
+          {
+            label: "SUV",
+            slides: [
+              {
+                name: "premium",
+                image: "/assets/onde-service-types/SUV.webp",
+                alt: "premium",
+              },
+              {
+                name: "luxury",
+                image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
+                alt: "luxury",
+              },
+            ],
+          },
+          {
+            label: "VAN",
+            slides: [
+              {
+                name: "Mini van",
+                image: "/assets/onde-service-types/MINIVAN.webp",
+                alt: "Mini van",
+              },
+              {
+                name: "van",
+                image: "/assets/onde-service-types/VAN.webp",
+                alt: "van",
+              },
+            ],
+          },
+          {
+            label: "Mini bus",
+            slides: [
+              {
+                name: "mini bus",
+                image: "/assets/onde-service-types/MICRO_BUS.webp",
+                alt: "mini bus",
+              },
+              {
+                name: "bus",
+                image: "/assets/onde-service-types/BUS.webp",
+                alt: "bus",
+              },
+            ],
+          },
+        ],
+      },
     },
 
     paros: {
+      alt_header: "Paros Airport",
+
       location: "paros",
 
       meta: {
@@ -2316,7 +3225,6 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
 For travelers arriving at Paros Airport, convenient bus services are available to connect you to the island's main towns and beaches. The buses run regularly throughout the day, and the schedule may vary depending on the season, so it's advisable to check the current timetable online or at the airport upon arrival. The cost of a one-way ticket is typically around €5, making it an affordable transportation option. 
 The journey from Paros Airport to popular destinations like Parikia or Naoussa takes approximately 20-30 minutes. For the most up-to-date information, you can visit the official website of Paros public buses at www.ktelparou.gr. 
           `,
-          
         },
       },
 
@@ -2348,9 +3256,80 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
         link: "/airport-transfers/paros/",
         name: "PAS",
       },
+      ways_to_ride: {
+        tabs: [
+          {
+            label: "Standard",
+            slides: [
+              {
+                name: "classic",
+                image: "/assets/onde-service-types/ECONOMY_yellow.webp",
+                alt: "classic",
+              },
+              {
+                name: "comfort",
+                image: "/assets/onde-service-types/CLASSIC.webp",
+                alt: "comfort",
+              },
+              {
+                name: "sedan",
+                image: "/assets/onde-service-types/BUSINESS.webp",
+                alt: "sedan",
+              },
+            ],
+          },
+          {
+            label: "SUV",
+            slides: [
+              {
+                name: "premium",
+                image: "/assets/onde-service-types/SUV.webp",
+                alt: "premium",
+              },
+              {
+                name: "luxury",
+                image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
+                alt: "luxury",
+              },
+            ],
+          },
+          {
+            label: "VAN",
+            slides: [
+              {
+                name: "Mini van",
+                image: "/assets/onde-service-types/MINIVAN.webp",
+                alt: "Mini van",
+              },
+              {
+                name: "van",
+                image: "/assets/onde-service-types/VAN.webp",
+                alt: "van",
+              },
+            ],
+          },
+          {
+            label: "Mini bus",
+            slides: [
+              {
+                name: "mini bus",
+                image: "/assets/onde-service-types/MICRO_BUS.webp",
+                alt: "mini bus",
+              },
+              {
+                name: "bus",
+                image: "/assets/onde-service-types/BUS.webp",
+                alt: "bus",
+              },
+            ],
+          },
+        ],
+      },
     },
 
     naxos: {
+      alt_header: "Naxos Airport",
+
       location: "naxos",
 
       meta: {
@@ -2450,7 +3429,6 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
         transportation: {
           heading: "Public Transportation Information",
           info: `Naxos Island offers convenient bus services connecting Naxos Airport (or the Naxos Port) to various destinations across the island. Bus schedules are typically designed to align with flight arrivals and departures. However, it's recommended to check the most current timetable either online or at the airport/port upon your arrival, as schedules may vary seasonally. A one-way bus ticket from the airport/port to popular destinations like Naxos Town (Chora) or Agios Prokopios usually costs around €5, making it a budget-friendly transportation choice. The bus journey from Naxos Airport to the island's main towns or beaches takes approximately 10-15 minutes.`,
-          
         },
       },
 
@@ -2483,9 +3461,80 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
         link: "/airport-transfers/naxos/",
         name: "JNX",
       },
+      ways_to_ride: {
+        tabs: [
+          {
+            label: "Standard",
+            slides: [
+              {
+                name: "classic",
+                image: "/assets/onde-service-types/ECONOMY_yellow.webp",
+                alt: "classic",
+              },
+              {
+                name: "comfort",
+                image: "/assets/onde-service-types/CLASSIC.webp",
+                alt: "comfort",
+              },
+              {
+                name: "sedan",
+                image: "/assets/onde-service-types/BUSINESS.webp",
+                alt: "sedan",
+              },
+            ],
+          },
+          {
+            label: "SUV",
+            slides: [
+              {
+                name: "premium",
+                image: "/assets/onde-service-types/SUV.webp",
+                alt: "premium",
+              },
+              {
+                name: "luxury",
+                image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
+                alt: "luxury",
+              },
+            ],
+          },
+          {
+            label: "VAN",
+            slides: [
+              {
+                name: "Mini van",
+                image: "/assets/onde-service-types/MINIVAN.webp",
+                alt: "Mini van",
+              },
+              {
+                name: "van",
+                image: "/assets/onde-service-types/VAN.webp",
+                alt: "van",
+              },
+            ],
+          },
+          {
+            label: "Mini bus",
+            slides: [
+              {
+                name: "mini bus",
+                image: "/assets/onde-service-types/MICRO_BUS.webp",
+                alt: "mini bus",
+              },
+              {
+                name: "bus",
+                image: "/assets/onde-service-types/BUS.webp",
+                alt: "bus",
+              },
+            ],
+          },
+        ],
+      },
     },
 
     heraklion: {
+      alt_header: "Heraklion Airport",
+
       location: "heraklion",
       meta: {
         title:
@@ -2585,7 +3634,6 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
         transportation: {
           heading: "Public Transportation Information",
           info: `Bus service is provided between the Airport and Heraklion city center. Tickets can be purchased by the bus conductor.`,
-          
         },
       },
 
@@ -2618,9 +3666,80 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
         link: "/airport-transfers/heraklion/",
         name: "HER",
       },
+      ways_to_ride: {
+        tabs: [
+          {
+            label: "Standard",
+            slides: [
+              {
+                name: "classic",
+                image: "/assets/onde-service-types/ECONOMY_yellow.webp",
+                alt: "classic",
+              },
+              {
+                name: "comfort",
+                image: "/assets/onde-service-types/CLASSIC.webp",
+                alt: "comfort",
+              },
+              {
+                name: "sedan",
+                image: "/assets/onde-service-types/BUSINESS.webp",
+                alt: "sedan",
+              },
+            ],
+          },
+          {
+            label: "SUV",
+            slides: [
+              {
+                name: "premium",
+                image: "/assets/onde-service-types/SUV.webp",
+                alt: "premium",
+              },
+              {
+                name: "luxury",
+                image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
+                alt: "luxury",
+              },
+            ],
+          },
+          {
+            label: "VAN",
+            slides: [
+              {
+                name: "Mini van",
+                image: "/assets/onde-service-types/MINIVAN.webp",
+                alt: "Mini van",
+              },
+              {
+                name: "van",
+                image: "/assets/onde-service-types/VAN.webp",
+                alt: "van",
+              },
+            ],
+          },
+          {
+            label: "Mini bus",
+            slides: [
+              {
+                name: "mini bus",
+                image: "/assets/onde-service-types/MICRO_BUS.webp",
+                alt: "mini bus",
+              },
+              {
+                name: "bus",
+                image: "/assets/onde-service-types/BUS.webp",
+                alt: "bus",
+              },
+            ],
+          },
+        ],
+      },
     },
 
     rhodes: {
+      alt_header: "Rhodes Airport",
+
       location: "rhodes",
 
       meta: {
@@ -2723,7 +3842,6 @@ The journey from Paros Airport to popular destinations like Parikia or Naoussa t
           heading: "Public Transportation Information",
           info: `Bus service is provided between the Airport and the city of Rhodes. The bus stop is located between the old and the new Terminal.
 You can call RODA services at (+30)22410-26300 or (+30)22410-24129.`,
-          
         },
       },
 
@@ -2756,9 +3874,80 @@ You can call RODA services at (+30)22410-26300 or (+30)22410-24129.`,
         link: "/airport-transfers/rhodes/",
         name: "RHO",
       },
+      ways_to_ride: {
+        tabs: [
+          {
+            label: "Standard",
+            slides: [
+              {
+                name: "classic",
+                image: "/assets/onde-service-types/ECONOMY_yellow.webp",
+                alt: "classic",
+              },
+              {
+                name: "comfort",
+                image: "/assets/onde-service-types/CLASSIC.webp",
+                alt: "comfort",
+              },
+              {
+                name: "sedan",
+                image: "/assets/onde-service-types/BUSINESS.webp",
+                alt: "sedan",
+              },
+            ],
+          },
+          {
+            label: "SUV",
+            slides: [
+              {
+                name: "premium",
+                image: "/assets/onde-service-types/SUV.webp",
+                alt: "premium",
+              },
+              {
+                name: "luxury",
+                image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
+                alt: "luxury",
+              },
+            ],
+          },
+          {
+            label: "VAN",
+            slides: [
+              {
+                name: "Mini van",
+                image: "/assets/onde-service-types/MINIVAN.webp",
+                alt: "Mini van",
+              },
+              {
+                name: "van",
+                image: "/assets/onde-service-types/VAN.webp",
+                alt: "van",
+              },
+            ],
+          },
+          {
+            label: "Mini bus",
+            slides: [
+              {
+                name: "mini bus",
+                image: "/assets/onde-service-types/MICRO_BUS.webp",
+                alt: "mini bus",
+              },
+              {
+                name: "bus",
+                image: "/assets/onde-service-types/BUS.webp",
+                alt: "bus",
+              },
+            ],
+          },
+        ],
+      },
     },
 
     kos: {
+      alt_header: "Kos Airport",
+
       location: "kos",
 
       meta: {
@@ -2861,8 +4050,6 @@ You can call RODA services at (+30)22410-26300 or (+30)22410-24129.`,
           info: ` 
  	
 Transit bus service is provided between the Airport and the city of Kos, Mastichari, Kardamena and Kefalos. There is a public bus stop 50m from the terminal building. Tickets can be purchased by the bus driver.`,
-
-          
         },
       },
 
@@ -2895,9 +4082,80 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
         link: "/airport-transfers/kos/",
         name: "KGS",
       },
+      ways_to_ride: {
+        tabs: [
+          {
+            label: "Standard",
+            slides: [
+              {
+                name: "classic",
+                image: "/assets/onde-service-types/ECONOMY_yellow.webp",
+                alt: "classic",
+              },
+              {
+                name: "comfort",
+                image: "/assets/onde-service-types/CLASSIC.webp",
+                alt: "comfort",
+              },
+              {
+                name: "sedan",
+                image: "/assets/onde-service-types/BUSINESS.webp",
+                alt: "sedan",
+              },
+            ],
+          },
+          {
+            label: "SUV",
+            slides: [
+              {
+                name: "premium",
+                image: "/assets/onde-service-types/SUV.webp",
+                alt: "premium",
+              },
+              {
+                name: "luxury",
+                image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
+                alt: "luxury",
+              },
+            ],
+          },
+          {
+            label: "VAN",
+            slides: [
+              {
+                name: "Mini van",
+                image: "/assets/onde-service-types/MINIVAN.webp",
+                alt: "Mini van",
+              },
+              {
+                name: "van",
+                image: "/assets/onde-service-types/VAN.webp",
+                alt: "van",
+              },
+            ],
+          },
+          {
+            label: "Mini bus",
+            slides: [
+              {
+                name: "mini bus",
+                image: "/assets/onde-service-types/MICRO_BUS.webp",
+                alt: "mini bus",
+              },
+              {
+                name: "bus",
+                image: "/assets/onde-service-types/BUS.webp",
+                alt: "bus",
+              },
+            ],
+          },
+        ],
+      },
     },
 
     chalkidiki: {
+      alt_header: "Chalkidiki Airport",
+
       location: "chalkidiki",
 
       meta: {
@@ -2997,7 +4255,6 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
         transportation: {
           heading: "Public Transportation Information",
           info: `Bus service is provided between the Airport and the city of Thessaloniki, with connections to the Central Railway Station and the "Makedonia" Regional Coach Terminal (KTEL). The bus stop is located at the departures area, in front of entrance 3 of T1. Tickets can be purchased by the bus driver.`,
-          
         },
       },
 
@@ -3030,9 +4287,80 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
         link: "/airport-transfers/chalkidiki/",
         name: "SKG",
       },
+      ways_to_ride: {
+        tabs: [
+          {
+            label: "Standard",
+            slides: [
+              {
+                name: "classic",
+                image: "/assets/onde-service-types/ECONOMY_yellow.webp",
+                alt: "classic",
+              },
+              {
+                name: "comfort",
+                image: "/assets/onde-service-types/CLASSIC.webp",
+                alt: "comfort",
+              },
+              {
+                name: "sedan",
+                image: "/assets/onde-service-types/BUSINESS.webp",
+                alt: "sedan",
+              },
+            ],
+          },
+          {
+            label: "SUV",
+            slides: [
+              {
+                name: "premium",
+                image: "/assets/onde-service-types/SUV.webp",
+                alt: "premium",
+              },
+              {
+                name: "luxury",
+                image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
+                alt: "luxury",
+              },
+            ],
+          },
+          {
+            label: "VAN",
+            slides: [
+              {
+                name: "Mini van",
+                image: "/assets/onde-service-types/MINIVAN.webp",
+                alt: "Mini van",
+              },
+              {
+                name: "van",
+                image: "/assets/onde-service-types/VAN.webp",
+                alt: "van",
+              },
+            ],
+          },
+          {
+            label: "Mini bus",
+            slides: [
+              {
+                name: "mini bus",
+                image: "/assets/onde-service-types/MICRO_BUS.webp",
+                alt: "mini bus",
+              },
+              {
+                name: "bus",
+                image: "/assets/onde-service-types/BUS.webp",
+                alt: "bus",
+              },
+            ],
+          },
+        ],
+      },
     },
 
     corfu: {
+      alt_header: "Corfu Airport",
+
       location: "corfu",
 
       meta: {
@@ -3133,7 +4461,6 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
           heading: "Public Transportation Information",
           info: `Bus service is provided between the Airport and the city of Corfu. The bus stop is located in front of the Terminal Building A.
 `,
-          
         },
       },
 
@@ -3166,8 +4493,79 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
         link: "/airport-transfers/corfu/",
         name: "CFU",
       },
+      ways_to_ride: {
+        tabs: [
+          {
+            label: "Standard",
+            slides: [
+              {
+                name: "classic",
+                image: "/assets/onde-service-types/ECONOMY_yellow.webp",
+                alt: "classic",
+              },
+              {
+                name: "comfort",
+                image: "/assets/onde-service-types/CLASSIC.webp",
+                alt: "comfort",
+              },
+              {
+                name: "sedan",
+                image: "/assets/onde-service-types/BUSINESS.webp",
+                alt: "sedan",
+              },
+            ],
+          },
+          {
+            label: "SUV",
+            slides: [
+              {
+                name: "premium",
+                image: "/assets/onde-service-types/SUV.webp",
+                alt: "premium",
+              },
+              {
+                name: "luxury",
+                image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
+                alt: "luxury",
+              },
+            ],
+          },
+          {
+            label: "VAN",
+            slides: [
+              {
+                name: "Mini van",
+                image: "/assets/onde-service-types/MINIVAN.webp",
+                alt: "Mini van",
+              },
+              {
+                name: "van",
+                image: "/assets/onde-service-types/VAN.webp",
+                alt: "van",
+              },
+            ],
+          },
+          {
+            label: "Mini bus",
+            slides: [
+              {
+                name: "mini bus",
+                image: "/assets/onde-service-types/MICRO_BUS.webp",
+                alt: "mini bus",
+              },
+              {
+                name: "bus",
+                image: "/assets/onde-service-types/BUS.webp",
+                alt: "bus",
+              },
+            ],
+          },
+        ],
+      },
     },
     santorini: {
+      alt_header: "Santorini Airport",
+
       location: "santorini",
       prices: [
         {
@@ -3269,6 +4667,75 @@ Transit bus service is provided between the Airport and the city of Kos, Mastich
           text: `Pre-booked via the app two weeks ago to take us from airport to Fira. The driver was waiting with my name on his board outside of the arrivals. He kind enough to help us with the luggage. The price was more than fair. Highly recommended!`,
         },
       ],
+      ways_to_ride: {
+        tabs: [
+          {
+            label: "Standard",
+            slides: [
+              {
+                name: "classic",
+                image: "/assets/onde-service-types/ECONOMY_yellow.webp",
+                alt: "classic",
+              },
+              {
+                name: "comfort",
+                image: "/assets/onde-service-types/CLASSIC.webp",
+                alt: "comfort",
+              },
+              {
+                name: "sedan",
+                image: "/assets/onde-service-types/BUSINESS.webp",
+                alt: "sedan",
+              },
+            ],
+          },
+          {
+            label: "SUV",
+            slides: [
+              {
+                name: "premium",
+                image: "/assets/onde-service-types/SUV.webp",
+                alt: "premium",
+              },
+              {
+                name: "luxury",
+                image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
+                alt: "luxury",
+              },
+            ],
+          },
+          {
+            label: "VAN",
+            slides: [
+              {
+                name: "Mini van",
+                image: "/assets/onde-service-types/MINIVAN.webp",
+                alt: "Mini van",
+              },
+              {
+                name: "van",
+                image: "/assets/onde-service-types/VAN.webp",
+                alt: "van",
+              },
+            ],
+          },
+          {
+            label: "Mini bus",
+            slides: [
+              {
+                name: "mini bus",
+                image: "/assets/onde-service-types/MICRO_BUS.webp",
+                alt: "mini bus",
+              },
+              {
+                name: "bus",
+                image: "/assets/onde-service-types/BUS.webp",
+                alt: "bus",
+              },
+            ],
+          },
+        ],
+      },
     },
   },
 };
