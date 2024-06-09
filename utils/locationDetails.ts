@@ -1471,6 +1471,75 @@ export const locationDetails: any = {
         description:
           "Book your Bodrum Taxi via telephone, whatsapp, website. Or download the Aegean Taxi app and request a ride in 2 simple steps.",
       },
+      ways_to_ride: {
+        tabs: [
+          {
+            label: "Standard",
+            slides: [
+              {
+                name: "classic",
+                image: "/assets/onde-service-types/ECONOMY_yellow.webp",
+                alt: "classic",
+              },
+              {
+                name: "comfort",
+                image: "/assets/onde-service-types/CLASSIC.webp",
+                alt: "comfort",
+              },
+              {
+                name: "sedan",
+                image: "/assets/onde-service-types/BUSINESS.webp",
+                alt: "sedan",
+              },
+            ],
+          },
+          {
+            label: "SUV",
+            slides: [
+              {
+                name: "premium",
+                image: "/assets/onde-service-types/SUV.webp",
+                alt: "premium",
+              },
+              {
+                name: "luxury",
+                image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
+                alt: "luxury",
+              },
+            ],
+          },
+          {
+            label: "VAN",
+            slides: [
+              {
+                name: "Mini van",
+                image: "/assets/onde-service-types/MINIVAN.webp",
+                alt: "Mini van",
+              },
+              {
+                name: "van",
+                image: "/assets/onde-service-types/VAN.webp",
+                alt: "van",
+              },
+            ],
+          },
+          {
+            label: "Mini bus",
+            slides: [
+              {
+                name: "mini bus",
+                image: "/assets/onde-service-types/MICRO_BUS.webp",
+                alt: "mini bus",
+              },
+              {
+                name: "bus",
+                image: "/assets/onde-service-types/BUS.webp",
+                alt: "bus",
+              },
+            ],
+          },
+        ],
+      },
     },
 
     "tinos-taxi-app": {
@@ -1592,6 +1661,75 @@ export const locationDetails: any = {
           "Tinos Taxi App | Book your Taxi or Transfer | Book now or later",
         description:
           "Book your Tinos Taxi via telephone, whatsapp, website. Or download the Aegean Taxi app and book a ride for now or later",
+      },
+      ways_to_ride: {
+        tabs: [
+          {
+            label: "Standard",
+            slides: [
+              {
+                name: "classic",
+                image: "/assets/onde-service-types/ECONOMY_yellow.webp",
+                alt: "classic",
+              },
+              {
+                name: "comfort",
+                image: "/assets/onde-service-types/CLASSIC.webp",
+                alt: "comfort",
+              },
+              {
+                name: "sedan",
+                image: "/assets/onde-service-types/BUSINESS.webp",
+                alt: "sedan",
+              },
+            ],
+          },
+          {
+            label: "SUV",
+            slides: [
+              {
+                name: "premium",
+                image: "/assets/onde-service-types/SUV.webp",
+                alt: "premium",
+              },
+              {
+                name: "luxury",
+                image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
+                alt: "luxury",
+              },
+            ],
+          },
+          {
+            label: "VAN",
+            slides: [
+              {
+                name: "Mini van",
+                image: "/assets/onde-service-types/MINIVAN.webp",
+                alt: "Mini van",
+              },
+              {
+                name: "van",
+                image: "/assets/onde-service-types/VAN.webp",
+                alt: "van",
+              },
+            ],
+          },
+          {
+            label: "Mini bus",
+            slides: [
+              {
+                name: "mini bus",
+                image: "/assets/onde-service-types/MICRO_BUS.webp",
+                alt: "mini bus",
+              },
+              {
+                name: "bus",
+                image: "/assets/onde-service-types/BUS.webp",
+                alt: "bus",
+              },
+            ],
+          },
+        ],
       },
     },
 
@@ -1715,6 +1853,75 @@ export const locationDetails: any = {
         description:
           "Book your Paros Taxi via telephone, whatsapp, website. Or download the Aegean Taxi app and book a ride for now or later",
       },
+      ways_to_ride: {
+        tabs: [
+          {
+            label: "Standard",
+            slides: [
+              {
+                name: "classic",
+                image: "/assets/onde-service-types/ECONOMY_yellow.webp",
+                alt: "classic",
+              },
+              {
+                name: "comfort",
+                image: "/assets/onde-service-types/CLASSIC.webp",
+                alt: "comfort",
+              },
+              {
+                name: "sedan",
+                image: "/assets/onde-service-types/BUSINESS.webp",
+                alt: "sedan",
+              },
+            ],
+          },
+          {
+            label: "SUV",
+            slides: [
+              {
+                name: "premium",
+                image: "/assets/onde-service-types/SUV.webp",
+                alt: "premium",
+              },
+              {
+                name: "luxury",
+                image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
+                alt: "luxury",
+              },
+            ],
+          },
+          {
+            label: "VAN",
+            slides: [
+              {
+                name: "Mini van",
+                image: "/assets/onde-service-types/MINIVAN.webp",
+                alt: "Mini van",
+              },
+              {
+                name: "van",
+                image: "/assets/onde-service-types/VAN.webp",
+                alt: "van",
+              },
+            ],
+          },
+          {
+            label: "Mini bus",
+            slides: [
+              {
+                name: "mini bus",
+                image: "/assets/onde-service-types/MICRO_BUS.webp",
+                alt: "mini bus",
+              },
+              {
+                name: "bus",
+                image: "/assets/onde-service-types/BUS.webp",
+                alt: "bus",
+              },
+            ],
+          },
+        ],
+      },
     },
 
     "naxos-taxi-app": {
@@ -1836,6 +2043,75 @@ export const locationDetails: any = {
           "Naxos Taxi App | Book your Taxi or Transfer | Book now or later",
         description:
           "Book your Naxos Taxi via telephone, whatsapp, website. Or download the Aegean Taxi app and book a ride for now or later",
+      },
+      ways_to_ride: {
+        tabs: [
+          {
+            label: "Standard",
+            slides: [
+              {
+                name: "classic",
+                image: "/assets/onde-service-types/ECONOMY_yellow.webp",
+                alt: "classic",
+              },
+              {
+                name: "comfort",
+                image: "/assets/onde-service-types/CLASSIC.webp",
+                alt: "comfort",
+              },
+              {
+                name: "sedan",
+                image: "/assets/onde-service-types/BUSINESS.webp",
+                alt: "sedan",
+              },
+            ],
+          },
+          {
+            label: "SUV",
+            slides: [
+              {
+                name: "premium",
+                image: "/assets/onde-service-types/SUV.webp",
+                alt: "premium",
+              },
+              {
+                name: "luxury",
+                image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
+                alt: "luxury",
+              },
+            ],
+          },
+          {
+            label: "VAN",
+            slides: [
+              {
+                name: "Mini van",
+                image: "/assets/onde-service-types/MINIVAN.webp",
+                alt: "Mini van",
+              },
+              {
+                name: "van",
+                image: "/assets/onde-service-types/VAN.webp",
+                alt: "van",
+              },
+            ],
+          },
+          {
+            label: "Mini bus",
+            slides: [
+              {
+                name: "mini bus",
+                image: "/assets/onde-service-types/MICRO_BUS.webp",
+                alt: "mini bus",
+              },
+              {
+                name: "bus",
+                image: "/assets/onde-service-types/BUS.webp",
+                alt: "bus",
+              },
+            ],
+          },
+        ],
       },
     },
 
@@ -1959,6 +2235,75 @@ export const locationDetails: any = {
         description:
           "Book your Kos Taxi via telephone, whatsapp, website. Or download the Aegean Taxi app and request a ride in 2 simple steps.",
       },
+      ways_to_ride: {
+        tabs: [
+          {
+            label: "Standard",
+            slides: [
+              {
+                name: "classic",
+                image: "/assets/onde-service-types/ECONOMY_yellow.webp",
+                alt: "classic",
+              },
+              {
+                name: "comfort",
+                image: "/assets/onde-service-types/CLASSIC.webp",
+                alt: "comfort",
+              },
+              {
+                name: "sedan",
+                image: "/assets/onde-service-types/BUSINESS.webp",
+                alt: "sedan",
+              },
+            ],
+          },
+          {
+            label: "SUV",
+            slides: [
+              {
+                name: "premium",
+                image: "/assets/onde-service-types/SUV.webp",
+                alt: "premium",
+              },
+              {
+                name: "luxury",
+                image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
+                alt: "luxury",
+              },
+            ],
+          },
+          {
+            label: "VAN",
+            slides: [
+              {
+                name: "Mini van",
+                image: "/assets/onde-service-types/MINIVAN.webp",
+                alt: "Mini van",
+              },
+              {
+                name: "van",
+                image: "/assets/onde-service-types/VAN.webp",
+                alt: "van",
+              },
+            ],
+          },
+          {
+            label: "Mini bus",
+            slides: [
+              {
+                name: "mini bus",
+                image: "/assets/onde-service-types/MICRO_BUS.webp",
+                alt: "mini bus",
+              },
+              {
+                name: "bus",
+                image: "/assets/onde-service-types/BUS.webp",
+                alt: "bus",
+              },
+            ],
+          },
+        ],
+      },
     },
 
     "heraklion-taxi-app": {
@@ -2081,6 +2426,75 @@ export const locationDetails: any = {
         description:
           "Book your Heraklion Taxi via telephone, whatsapp, website. Or download the Heraklion Aegean Taxi app and book a ride for now or later.",
       },
+      ways_to_ride: {
+        tabs: [
+          {
+            label: "Standard",
+            slides: [
+              {
+                name: "classic",
+                image: "/assets/onde-service-types/ECONOMY_yellow.webp",
+                alt: "classic",
+              },
+              {
+                name: "comfort",
+                image: "/assets/onde-service-types/CLASSIC.webp",
+                alt: "comfort",
+              },
+              {
+                name: "sedan",
+                image: "/assets/onde-service-types/BUSINESS.webp",
+                alt: "sedan",
+              },
+            ],
+          },
+          {
+            label: "SUV",
+            slides: [
+              {
+                name: "premium",
+                image: "/assets/onde-service-types/SUV.webp",
+                alt: "premium",
+              },
+              {
+                name: "luxury",
+                image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
+                alt: "luxury",
+              },
+            ],
+          },
+          {
+            label: "VAN",
+            slides: [
+              {
+                name: "Mini van",
+                image: "/assets/onde-service-types/MINIVAN.webp",
+                alt: "Mini van",
+              },
+              {
+                name: "van",
+                image: "/assets/onde-service-types/VAN.webp",
+                alt: "van",
+              },
+            ],
+          },
+          {
+            label: "Mini bus",
+            slides: [
+              {
+                name: "mini bus",
+                image: "/assets/onde-service-types/MICRO_BUS.webp",
+                alt: "mini bus",
+              },
+              {
+                name: "bus",
+                image: "/assets/onde-service-types/BUS.webp",
+                alt: "bus",
+              },
+            ],
+          },
+        ],
+      },
     },
 
     "chalkidiki-taxi-app": {
@@ -2198,6 +2612,75 @@ export const locationDetails: any = {
           "Chalkidiki Taxi App | Book rides online now or later | Available 24/7",
         description:
           "Book your Chalkidiki Taxi via telephone, whatsapp, website. Or download the Chalkidiki Aegean Taxi app and book a ride for now or later.",
+      },
+      ways_to_ride: {
+        tabs: [
+          {
+            label: "Standard",
+            slides: [
+              {
+                name: "classic",
+                image: "/assets/onde-service-types/ECONOMY_yellow.webp",
+                alt: "classic",
+              },
+              {
+                name: "comfort",
+                image: "/assets/onde-service-types/CLASSIC.webp",
+                alt: "comfort",
+              },
+              {
+                name: "sedan",
+                image: "/assets/onde-service-types/BUSINESS.webp",
+                alt: "sedan",
+              },
+            ],
+          },
+          {
+            label: "SUV",
+            slides: [
+              {
+                name: "premium",
+                image: "/assets/onde-service-types/SUV.webp",
+                alt: "premium",
+              },
+              {
+                name: "luxury",
+                image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
+                alt: "luxury",
+              },
+            ],
+          },
+          {
+            label: "VAN",
+            slides: [
+              {
+                name: "Mini van",
+                image: "/assets/onde-service-types/MINIVAN.webp",
+                alt: "Mini van",
+              },
+              {
+                name: "van",
+                image: "/assets/onde-service-types/VAN.webp",
+                alt: "van",
+              },
+            ],
+          },
+          {
+            label: "Mini bus",
+            slides: [
+              {
+                name: "mini bus",
+                image: "/assets/onde-service-types/MICRO_BUS.webp",
+                alt: "mini bus",
+              },
+              {
+                name: "bus",
+                image: "/assets/onde-service-types/BUS.webp",
+                alt: "bus",
+              },
+            ],
+          },
+        ],
       },
     },
 
@@ -2332,6 +2815,75 @@ export const locationDetails: any = {
         description:
           "Book your Kea/Tzia Taxi via telephone, whatsapp, website. Or download the Aegean Taxi app and request a ride in 2 simple steps.",
       },
+      ways_to_ride: {
+        tabs: [
+          {
+            label: "Standard",
+            slides: [
+              {
+                name: "classic",
+                image: "/assets/onde-service-types/ECONOMY_yellow.webp",
+                alt: "classic",
+              },
+              {
+                name: "comfort",
+                image: "/assets/onde-service-types/CLASSIC.webp",
+                alt: "comfort",
+              },
+              {
+                name: "sedan",
+                image: "/assets/onde-service-types/BUSINESS.webp",
+                alt: "sedan",
+              },
+            ],
+          },
+          {
+            label: "SUV",
+            slides: [
+              {
+                name: "premium",
+                image: "/assets/onde-service-types/SUV.webp",
+                alt: "premium",
+              },
+              {
+                name: "luxury",
+                image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
+                alt: "luxury",
+              },
+            ],
+          },
+          {
+            label: "VAN",
+            slides: [
+              {
+                name: "Mini van",
+                image: "/assets/onde-service-types/MINIVAN.webp",
+                alt: "Mini van",
+              },
+              {
+                name: "van",
+                image: "/assets/onde-service-types/VAN.webp",
+                alt: "van",
+              },
+            ],
+          },
+          {
+            label: "Mini bus",
+            slides: [
+              {
+                name: "mini bus",
+                image: "/assets/onde-service-types/MICRO_BUS.webp",
+                alt: "mini bus",
+              },
+              {
+                name: "bus",
+                image: "/assets/onde-service-types/BUS.webp",
+                alt: "bus",
+              },
+            ],
+          },
+        ],
+      },
     },
 
     "kefalonia-taxi-app": {
@@ -2464,6 +3016,75 @@ export const locationDetails: any = {
         title: "Kefalonia Taxi App | Affordable Taxi rides | Available 24/7",
         description:
           "Book your Kefalonia Taxi via telephone, whatsapp, website. Or download the Aegean Taxi app and request a ride in 2 simple steps.",
+      },
+      ways_to_ride: {
+        tabs: [
+          {
+            label: "Standard",
+            slides: [
+              {
+                name: "classic",
+                image: "/assets/onde-service-types/ECONOMY_yellow.webp",
+                alt: "classic",
+              },
+              {
+                name: "comfort",
+                image: "/assets/onde-service-types/CLASSIC.webp",
+                alt: "comfort",
+              },
+              {
+                name: "sedan",
+                image: "/assets/onde-service-types/BUSINESS.webp",
+                alt: "sedan",
+              },
+            ],
+          },
+          {
+            label: "SUV",
+            slides: [
+              {
+                name: "premium",
+                image: "/assets/onde-service-types/SUV.webp",
+                alt: "premium",
+              },
+              {
+                name: "luxury",
+                image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
+                alt: "luxury",
+              },
+            ],
+          },
+          {
+            label: "VAN",
+            slides: [
+              {
+                name: "Mini van",
+                image: "/assets/onde-service-types/MINIVAN.webp",
+                alt: "Mini van",
+              },
+              {
+                name: "van",
+                image: "/assets/onde-service-types/VAN.webp",
+                alt: "van",
+              },
+            ],
+          },
+          {
+            label: "Mini bus",
+            slides: [
+              {
+                name: "mini bus",
+                image: "/assets/onde-service-types/MICRO_BUS.webp",
+                alt: "mini bus",
+              },
+              {
+                name: "bus",
+                image: "/assets/onde-service-types/BUS.webp",
+                alt: "bus",
+              },
+            ],
+          },
+        ],
       },
     },
   },
