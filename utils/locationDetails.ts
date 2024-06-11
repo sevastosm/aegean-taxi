@@ -2,7 +2,7 @@ import zIndex from "@mui/material/styles/zIndex";
 
 export const locationDetails: any = {
   landing: {
-    alt_header: "Ride with Aegean Taxi",
+    alt_header: "Aegean Taxi: Greek Taxi App",
     ways_to_ride: {
       tabs: [
         {
@@ -11,17 +11,17 @@ export const locationDetails: any = {
             {
               name: "classic",
               image: "/assets/onde-service-types/ECONOMY_yellow.webp",
-              alt: "classic",
+              alt: "Taxi Mykonos",
             },
             {
               name: "comfort",
               image: "/assets/onde-service-types/CLASSIC.webp",
-              alt: "comfort",
+              alt: "Taxi Santorini",
             },
             {
               name: "sedan",
               image: "/assets/onde-service-types/BUSINESS.webp",
-              alt: "sedan",
+              alt: "Taxi Rhodes",
             },
           ],
         },
@@ -31,12 +31,12 @@ export const locationDetails: any = {
             {
               name: "premium",
               image: "/assets/onde-service-types/SUV.webp",
-              alt: "premium",
+              alt: "Taxi Corfu",
             },
             {
               name: "luxury",
               image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
-              alt: "luxury",
+              alt: "Taxi Kos",
             },
           ],
         },
@@ -46,12 +46,12 @@ export const locationDetails: any = {
             {
               name: "Mini van",
               image: "/assets/onde-service-types/MINIVAN.webp",
-              alt: "Mini van",
+              alt: "Taxi Milos",
             },
             {
               name: "van",
               image: "/assets/onde-service-types/VAN.webp",
-              alt: "van",
+              alt: "Taxi Paros",
             },
           ],
         },
@@ -61,12 +61,12 @@ export const locationDetails: any = {
             {
               name: "mini bus",
               image: "/assets/onde-service-types/MICRO_BUS.webp",
-              alt: "mini bus",
+              alt: "Taxi Heraklion",
             },
             {
               name: "bus",
               image: "/assets/onde-service-types/BUS.webp",
-              alt: "bus",
+              alt: "Taxi Naxos",
             },
           ],
         },
@@ -340,7 +340,7 @@ export const locationDetails: any = {
         name: "Mykonos",
         photo: "/assets/taxi-mykonos.webp",
         href: "/taxi/mykonos-taxi-app/",
-        alt: "Mykonos",
+        alt: "Mykonos Taxi",
       },
       ways_to_ride: {
         tabs: [
@@ -524,7 +524,7 @@ export const locationDetails: any = {
         name: "Santorini",
         photo: "/assets/taxi-santorini.webp",
         href: "/taxi/santorini-taxi-app/",
-        alt: "Santorini",
+        alt: "Santorini Taxi",
       },
       reviews: [
         {
@@ -704,7 +704,7 @@ export const locationDetails: any = {
         name: "Corfu",
         photo: "/assets/taxi-corfu.webp",
         href: "/taxi/corfu-taxi-app/",
-        alt: "Corfu",
+        alt: "Corfu Taxi",
       },
       reviews: [
         {
@@ -881,7 +881,7 @@ export const locationDetails: any = {
         name: "Rhodes",
         photo: "/assets/taxi-rhodes.webp",
         href: "/taxi/rhodes-taxi-app/",
-        alt: "Rhodes",
+        alt: "Rhodes Taxi",
       },
       reviews: [
         {
@@ -972,7 +972,6 @@ export const locationDetails: any = {
         ],
       },
     },
-
     "athens-taxi-app": {
       alt_header: "Ride with Aegean Taxi",
 
@@ -1048,7 +1047,7 @@ export const locationDetails: any = {
         name: "Athens",
         photo: "/assets/taxi-athens.webp",
         href: "/taxi/athens-taxi-app/",
-        alt: "Athens",
+        alt: "Athens Taxi",
       },
       reviews: [
         {
@@ -1256,7 +1255,7 @@ export const locationDetails: any = {
         name: "Milos",
         photo: "/assets/taxi-locations/taxi-milos.webp",
         href: "/taxi/milos-taxi-app/",
-        alt: "Milos",
+        alt: "Milos Taxi",
       },
       url: "taxi/milos-taxi-app/",
       footer: {
@@ -1459,7 +1458,7 @@ export const locationDetails: any = {
         name: "Bodrum",
         photo: "/assets/taxi-locations/taxi-bodrum.webp",
         href: "/taxi/bodrum-taxi-app/",
-        alt: "Bodrum",
+        alt: "Bodrum Taxi",
       },
       url: "taxi/bodrum-taxi-app/",
       footer: {
@@ -1649,7 +1648,7 @@ export const locationDetails: any = {
         name: "Tinos",
         photo: "/assets/taxi-locations/taxi-tinos.webp",
         href: "/taxi/tinos-taxi-app/",
-        alt: "Tinos",
+        alt: "Tinos Taxi",
       },
       url: "taxi/tinos-taxi-app/",
       footer: {
@@ -1840,7 +1839,7 @@ export const locationDetails: any = {
         name: "Paros",
         photo: "/assets/taxi-locations/taxi-paros.webp",
         href: "/taxi/paros-taxi-app/",
-        alt: "Paros",
+        alt: "Paros Taxi",
       },
       url: "taxi/paros-taxi-app/",
       footer: {
@@ -2031,7 +2030,7 @@ export const locationDetails: any = {
         name: "Naxos",
         photo: "/assets/taxi-locations/taxi-naxos.webp",
         href: "/taxi/naxos-taxi-app/",
-        alt: "Naxos",
+        alt: "Naxos Taxi",
       },
       url: "taxi/naxos-taxi-app/",
       footer: {
@@ -2222,7 +2221,7 @@ export const locationDetails: any = {
         name: "Kos",
         photo: "/assets/taxi-locations/taxi-kos.webp",
         href: "/taxi/kos-taxi-app/",
-        alt: "Kos",
+        alt: "Kos Taxi",
       },
       url: "taxi/kos-taxi-app/",
       footer: {
@@ -2413,7 +2412,7 @@ export const locationDetails: any = {
         name: "Heraklion",
         photo: "/assets/taxi-locations/taxi-heraklion.webp",
         href: "/taxi/heraklion-taxi-app/",
-        alt: "Heraklion",
+        alt: "Heraklion Taxi",
       },
       url: "taxi/heraklion-taxi-app/",
       footer: {
@@ -2600,7 +2599,7 @@ export const locationDetails: any = {
         name: "Chalkidiki",
         photo: "/assets/taxi-locations/taxi-chalkidiki.webp",
         href: "/taxi/chalkidiki-taxi-app/",
-        alt: "HeChalkidikiraklion",
+        alt: "Chalkidiki Taxi",
       },
       url: "taxi/chalkidiki-taxi-app/",
       footer: {
@@ -2803,7 +2802,7 @@ export const locationDetails: any = {
         name: "Kea-Tzia",
         photo: "/assets/taxi-locations/taxi-kea.webp",
         href: "/taxi/kea-taxi-app/",
-        alt: "Kea-Tzia",
+        alt: "Kea-Tzia Taxi",
       },
       url: "taxi/kea-taxi-app/",
       footer: {
@@ -3005,7 +3004,7 @@ export const locationDetails: any = {
         name: "Kefalonia",
         photo: "/assets/taxi-locations/taxi-kefalonia.webp",
         href: "/taxi/kefalonia-taxi-app/",
-        alt: "Kefalonia",
+        alt: "Kefalonia Taxi",
       },
       url: "taxi/kefalonia-taxi-app/",
       footer: {
