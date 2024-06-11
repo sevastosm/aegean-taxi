@@ -110,7 +110,7 @@ export const locationDetails: any = {
     ],
   },
   taxi_locations: {
-    alt_header: "Ride with Aegean Taxi",
+    alt_header: "Greece Taxi App",
 
     ways_to_ride: {
       tabs: [
@@ -120,17 +120,17 @@ export const locationDetails: any = {
             {
               name: "classic",
               image: "/assets/onde-service-types/ECONOMY_yellow.webp",
-              alt: "classic",
+              alt: "Taxi Mykonos",
             },
             {
               name: "comfort",
               image: "/assets/onde-service-types/CLASSIC.webp",
-              alt: "comfort",
+              alt: "Taxi Santorini",
             },
             {
               name: "sedan",
               image: "/assets/onde-service-types/BUSINESS.webp",
-              alt: "sedan",
+              alt: "Taxi Rhodes",
             },
           ],
         },
@@ -140,12 +140,12 @@ export const locationDetails: any = {
             {
               name: "premium",
               image: "/assets/onde-service-types/SUV.webp",
-              alt: "premium",
+              alt: "Taxi Corfu",
             },
             {
               name: "luxury",
               image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
-              alt: "luxury",
+              alt: "Taxi Kos",
             },
           ],
         },
@@ -155,12 +155,12 @@ export const locationDetails: any = {
             {
               name: "Mini van",
               image: "/assets/onde-service-types/MINIVAN.webp",
-              alt: "Mini van",
+              alt: "Taxi Milos",
             },
             {
               name: "van",
               image: "/assets/onde-service-types/VAN.webp",
-              alt: "van",
+              alt: "Taxi Paros",
             },
           ],
         },
@@ -170,19 +170,19 @@ export const locationDetails: any = {
             {
               name: "mini bus",
               image: "/assets/onde-service-types/MICRO_BUS.webp",
-              alt: "mini bus",
+              alt: "Taxi Heraklion",
             },
             {
               name: "bus",
               image: "/assets/onde-service-types/BUS.webp",
-              alt: "bus",
+              alt: "Taxi Naxos",
             },
           ],
         },
       ],
     },
     "mykonos-taxi-app": {
-      alt_header: "Ride with Aegean Taxi Mykonos",
+      alt_header: "Taxi Mykonos",
 
       location: "mykonos-taxi-app",
       prices: [
@@ -350,17 +350,17 @@ export const locationDetails: any = {
               {
                 name: "classic",
                 image: "/assets/onde-service-types/ECONOMY_yellow.webp",
-                alt: "classic Mykonos",
+                alt: "Myconos Cab",
               },
               {
                 name: "comfort",
                 image: "/assets/onde-service-types/CLASSIC.webp",
-                alt: "comfort Mykonos",
+                alt: "Taxi Mykonos cheap",
               },
               {
                 name: "sedan",
                 image: "/assets/onde-service-types/BUSINESS.webp",
-                alt: "sedan Mykonos",
+                alt: "Mykonos Taxi online",
               },
             ],
           },
@@ -370,12 +370,12 @@ export const locationDetails: any = {
               {
                 name: "premium",
                 image: "/assets/onde-service-types/SUV.webp",
-                alt: "premium",
+                alt: "taxi mykonos 24/7",
               },
               {
                 name: "luxury",
                 image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
-                alt: "luxury",
+                alt: "Mykonos Airport Taxi",
               },
             ],
           },
@@ -385,12 +385,12 @@ export const locationDetails: any = {
               {
                 name: "Mini van",
                 image: "/assets/onde-service-types/MINIVAN.webp",
-                alt: "Mini van",
+                alt: "Mykonos Port Taxi",
               },
               {
                 name: "van",
                 image: "/assets/onde-service-types/VAN.webp",
-                alt: "van",
+                alt: "Taxi Mykonos Book a ride",
               },
             ],
           },
@@ -400,12 +400,12 @@ export const locationDetails: any = {
               {
                 name: "mini bus",
                 image: "/assets/onde-service-types/MICRO_BUS.webp",
-                alt: "mini bus",
+                alt: "Mykonos Taxi iOS",
               },
               {
                 name: "bus",
                 image: "/assets/onde-service-types/BUS.webp",
-                alt: "bus",
+                alt: "Taxi Mykonos Android",
               },
             ],
           },
@@ -413,7 +413,7 @@ export const locationDetails: any = {
       },
     },
     "santorini-taxi-app": {
-      alt_header: "Ride with Aegean Taxi",
+      alt_header: "Taxi Santorini",
 
       location: "santorini-taxi-app",
       prices: [
@@ -551,17 +551,17 @@ export const locationDetails: any = {
               {
                 name: "classic",
                 image: "/assets/onde-service-types/ECONOMY_yellow.webp",
-                alt: "classic",
+                alt: "Santorini Cab",
               },
               {
                 name: "comfort",
                 image: "/assets/onde-service-types/CLASSIC.webp",
-                alt: "comfort",
+                alt: "Taxi Santorini cheap",
               },
               {
                 name: "sedan",
                 image: "/assets/onde-service-types/BUSINESS.webp",
-                alt: "sedan",
+                alt: "Santorini Taxi online",
               },
             ],
           },
@@ -571,12 +571,12 @@ export const locationDetails: any = {
               {
                 name: "premium",
                 image: "/assets/onde-service-types/SUV.webp",
-                alt: "premium",
+                alt: "taxi Santorini 24/7",
               },
               {
                 name: "luxury",
                 image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
-                alt: "luxury",
+                alt: "Santorini Airport Taxi",
               },
             ],
           },
@@ -586,12 +586,12 @@ export const locationDetails: any = {
               {
                 name: "Mini van",
                 image: "/assets/onde-service-types/MINIVAN.webp",
-                alt: "Mini van",
+                alt: "Santorini Port Taxi",
               },
               {
                 name: "van",
                 image: "/assets/onde-service-types/VAN.webp",
-                alt: "van",
+                alt: "Taxi Santorini Book a ride",
               },
             ],
           },
@@ -601,12 +601,12 @@ export const locationDetails: any = {
               {
                 name: "mini bus",
                 image: "/assets/onde-service-types/MICRO_BUS.webp",
-                alt: "mini bus",
+                alt: "Santorini Taxi iOS",
               },
               {
                 name: "bus",
                 image: "/assets/onde-service-types/BUS.webp",
-                alt: "bus",
+                alt: "Taxi Santorini Android",
               },
             ],
           },
@@ -614,7 +614,7 @@ export const locationDetails: any = {
       },
     },
     "corfu-taxi-app": {
-      alt_header: "Ride with Aegean Taxi",
+      alt_header: "Taxi Corfu",
 
       location: "corfu-taxi-app",
       prices: [
@@ -732,17 +732,17 @@ export const locationDetails: any = {
               {
                 name: "classic",
                 image: "/assets/onde-service-types/ECONOMY_yellow.webp",
-                alt: "classic",
+                alt: "Corfu Cab",
               },
               {
                 name: "comfort",
                 image: "/assets/onde-service-types/CLASSIC.webp",
-                alt: "comfort",
+                alt: "Taxi Corfu cheap",
               },
               {
                 name: "sedan",
                 image: "/assets/onde-service-types/BUSINESS.webp",
-                alt: "sedan",
+                alt: "Corfu Taxi online",
               },
             ],
           },
@@ -752,12 +752,12 @@ export const locationDetails: any = {
               {
                 name: "premium",
                 image: "/assets/onde-service-types/SUV.webp",
-                alt: "premium",
+                alt: "taxi Corfu 24/7",
               },
               {
                 name: "luxury",
                 image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
-                alt: "luxury",
+                alt: "Corfu Airport Taxi",
               },
             ],
           },
@@ -767,12 +767,12 @@ export const locationDetails: any = {
               {
                 name: "Mini van",
                 image: "/assets/onde-service-types/MINIVAN.webp",
-                alt: "Mini van",
+                alt: "Corfu Port Taxi",
               },
               {
                 name: "van",
                 image: "/assets/onde-service-types/VAN.webp",
-                alt: "van",
+                alt: "Taxi Corfu Book a ride",
               },
             ],
           },
@@ -782,12 +782,12 @@ export const locationDetails: any = {
               {
                 name: "mini bus",
                 image: "/assets/onde-service-types/MICRO_BUS.webp",
-                alt: "mini bus",
+                alt: "Corfu Taxi iOS",
               },
               {
                 name: "bus",
                 image: "/assets/onde-service-types/BUS.webp",
-                alt: "bus",
+                alt: "Taxi Corfu Android",
               },
             ],
           },
@@ -795,7 +795,7 @@ export const locationDetails: any = {
       },
     },
     "rhodes-taxi-app": {
-      alt_header: "Ride with Aegean Taxi",
+      alt_header: "Taxi Rhodes",
 
       location: "rhodes-taxi-app",
       prices: [
@@ -910,17 +910,17 @@ export const locationDetails: any = {
               {
                 name: "classic",
                 image: "/assets/onde-service-types/ECONOMY_yellow.webp",
-                alt: "classic",
+                alt: "Rhodes Cab",
               },
               {
                 name: "comfort",
                 image: "/assets/onde-service-types/CLASSIC.webp",
-                alt: "comfort",
+                alt: "Taxi Rhodes cheap",
               },
               {
                 name: "sedan",
                 image: "/assets/onde-service-types/BUSINESS.webp",
-                alt: "sedan",
+                alt: "Rhodes Taxi online",
               },
             ],
           },
@@ -930,12 +930,12 @@ export const locationDetails: any = {
               {
                 name: "premium",
                 image: "/assets/onde-service-types/SUV.webp",
-                alt: "premium",
+                alt: "taxi Rhodes 24/7",
               },
               {
                 name: "luxury",
                 image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
-                alt: "luxury",
+                alt: "Rhodes Airport Taxi",
               },
             ],
           },
@@ -945,12 +945,12 @@ export const locationDetails: any = {
               {
                 name: "Mini van",
                 image: "/assets/onde-service-types/MINIVAN.webp",
-                alt: "Mini van",
+                alt: "Rhodes Port Taxi",
               },
               {
                 name: "van",
                 image: "/assets/onde-service-types/VAN.webp",
-                alt: "van",
+                alt: "Taxi Rhodes Book a ride",
               },
             ],
           },
@@ -960,12 +960,12 @@ export const locationDetails: any = {
               {
                 name: "mini bus",
                 image: "/assets/onde-service-types/MICRO_BUS.webp",
-                alt: "mini bus",
+                alt: "Rhodes Taxi iOS",
               },
               {
                 name: "bus",
                 image: "/assets/onde-service-types/BUS.webp",
-                alt: "bus",
+                alt: "Taxi Rhodes Android",
               },
             ],
           },
@@ -973,7 +973,7 @@ export const locationDetails: any = {
       },
     },
     "athens-taxi-app": {
-      alt_header: "Ride with Aegean Taxi",
+      alt_header: "Taxi Athens",
 
       location: "athens-taxi-app",
       prices: [
@@ -1074,17 +1074,17 @@ export const locationDetails: any = {
               {
                 name: "classic",
                 image: "/assets/onde-service-types/ECONOMY_yellow.webp",
-                alt: "classic",
+                alt: "Athens Cab",
               },
               {
                 name: "comfort",
                 image: "/assets/onde-service-types/CLASSIC.webp",
-                alt: "comfort",
+                alt: "Taxi Athens cheap",
               },
               {
                 name: "sedan",
                 image: "/assets/onde-service-types/BUSINESS.webp",
-                alt: "sedan",
+                alt: "Athens Taxi online",
               },
             ],
           },
@@ -1094,12 +1094,12 @@ export const locationDetails: any = {
               {
                 name: "premium",
                 image: "/assets/onde-service-types/SUV.webp",
-                alt: "premium",
+                alt: "taxi Athens 24/7",
               },
               {
                 name: "luxury",
                 image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
-                alt: "luxury",
+                alt: "Athens Airport Taxi",
               },
             ],
           },
@@ -1109,12 +1109,12 @@ export const locationDetails: any = {
               {
                 name: "Mini van",
                 image: "/assets/onde-service-types/MINIVAN.webp",
-                alt: "Mini van",
+                alt: "Athens Port Taxi",
               },
               {
                 name: "van",
                 image: "/assets/onde-service-types/VAN.webp",
-                alt: "van",
+                alt: "Taxi Athens Book a ride",
               },
             ],
           },
@@ -1124,12 +1124,12 @@ export const locationDetails: any = {
               {
                 name: "mini bus",
                 image: "/assets/onde-service-types/MICRO_BUS.webp",
-                alt: "mini bus",
+                alt: "Athens Taxi iOS",
               },
               {
                 name: "bus",
                 image: "/assets/onde-service-types/BUS.webp",
-                alt: "bus",
+                alt: "Taxi Athens Android",
               },
             ],
           },
@@ -1138,7 +1138,7 @@ export const locationDetails: any = {
     },
 
     "milos-taxi-app": {
-      alt_header: "Ride with Aegean Taxi",
+      alt_header: "Taxi Milos",
 
       location: "milos-taxi-app",
       name: "Milos",
@@ -1275,17 +1275,17 @@ export const locationDetails: any = {
               {
                 name: "classic",
                 image: "/assets/onde-service-types/ECONOMY_yellow.webp",
-                alt: "classic",
+                alt: "Milos Cab",
               },
               {
                 name: "comfort",
                 image: "/assets/onde-service-types/CLASSIC.webp",
-                alt: "comfort",
+                alt: "Taxi Milos cheap",
               },
               {
                 name: "sedan",
                 image: "/assets/onde-service-types/BUSINESS.webp",
-                alt: "sedan",
+                alt: "Milos Taxi online",
               },
             ],
           },
@@ -1295,12 +1295,12 @@ export const locationDetails: any = {
               {
                 name: "premium",
                 image: "/assets/onde-service-types/SUV.webp",
-                alt: "premium",
+                alt: "taxi Milos 24/7",
               },
               {
                 name: "luxury",
                 image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
-                alt: "luxury",
+                alt: "Milos Airport Taxi",
               },
             ],
           },
@@ -1310,28 +1310,27 @@ export const locationDetails: any = {
               {
                 name: "Mini van",
                 image: "/assets/onde-service-types/MINIVAN.webp",
-                alt: "Mini van",
+                alt: "Milos Port Taxi",
               },
               {
                 name: "van",
                 image: "/assets/onde-service-types/VAN.webp",
-                alt: "van",
+                alt: "Taxi Milos Book a ride",
               },
             ],
           },
           {
             label: "Mini bus",
-            slides: ["mini bus", "bus"],
             slides: [
               {
                 name: "mini bus",
                 image: "/assets/onde-service-types/MICRO_BUS.webp",
-                alt: "mini bus",
+                alt: "Milos Taxi iOS",
               },
               {
                 name: "bus",
                 image: "/assets/onde-service-types/BUS.webp",
-                alt: "bus",
+                alt: "Taxi Milos Android",
               },
             ],
           },
@@ -1340,7 +1339,7 @@ export const locationDetails: any = {
     },
 
     "bodrum-taxi-app": {
-      alt_header: "Ride with Aegean Taxi",
+      alt_header: "Taxi Bodrum",
 
       location: "bodrum-taxi-app",
       name: "Bodrum",
@@ -1478,17 +1477,17 @@ export const locationDetails: any = {
               {
                 name: "classic",
                 image: "/assets/onde-service-types/ECONOMY_yellow.webp",
-                alt: "classic",
+                alt: "Bodrum Cab",
               },
               {
                 name: "comfort",
                 image: "/assets/onde-service-types/CLASSIC.webp",
-                alt: "comfort",
+                alt: "Taxi Bodrum cheap",
               },
               {
                 name: "sedan",
                 image: "/assets/onde-service-types/BUSINESS.webp",
-                alt: "sedan",
+                alt: "Bodrum Taxi online",
               },
             ],
           },
@@ -1498,12 +1497,12 @@ export const locationDetails: any = {
               {
                 name: "premium",
                 image: "/assets/onde-service-types/SUV.webp",
-                alt: "premium",
+                alt: "taxi Bodrum 24/7",
               },
               {
                 name: "luxury",
                 image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
-                alt: "luxury",
+                alt: "Bodrum Airport Taxi",
               },
             ],
           },
@@ -1513,12 +1512,12 @@ export const locationDetails: any = {
               {
                 name: "Mini van",
                 image: "/assets/onde-service-types/MINIVAN.webp",
-                alt: "Mini van",
+                alt: "Bodrum Port Taxi",
               },
               {
                 name: "van",
                 image: "/assets/onde-service-types/VAN.webp",
-                alt: "van",
+                alt: "Taxi Bodrum Book a ride",
               },
             ],
           },
@@ -1528,12 +1527,12 @@ export const locationDetails: any = {
               {
                 name: "mini bus",
                 image: "/assets/onde-service-types/MICRO_BUS.webp",
-                alt: "mini bus",
+                alt: "Bodrum Taxi iOS",
               },
               {
                 name: "bus",
                 image: "/assets/onde-service-types/BUS.webp",
-                alt: "bus",
+                alt: "Taxi Bodrum Android",
               },
             ],
           },
@@ -1542,7 +1541,7 @@ export const locationDetails: any = {
     },
 
     "tinos-taxi-app": {
-      alt_header: "Ride with Aegean Taxi",
+      alt_header: "Taxi Tinos",
 
       location: "tinos-taxi-app",
       name: "Tinos",
@@ -1669,17 +1668,17 @@ export const locationDetails: any = {
               {
                 name: "classic",
                 image: "/assets/onde-service-types/ECONOMY_yellow.webp",
-                alt: "classic",
+                alt: "Tinos Cab",
               },
               {
                 name: "comfort",
                 image: "/assets/onde-service-types/CLASSIC.webp",
-                alt: "comfort",
+                alt: "Taxi Tinos cheap",
               },
               {
                 name: "sedan",
                 image: "/assets/onde-service-types/BUSINESS.webp",
-                alt: "sedan",
+                alt: "Tinos Taxi online",
               },
             ],
           },
@@ -1689,12 +1688,12 @@ export const locationDetails: any = {
               {
                 name: "premium",
                 image: "/assets/onde-service-types/SUV.webp",
-                alt: "premium",
+                alt: "taxi Tinos 24/7",
               },
               {
                 name: "luxury",
                 image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
-                alt: "luxury",
+                alt: "Tinos Airport Taxi",
               },
             ],
           },
@@ -1704,12 +1703,12 @@ export const locationDetails: any = {
               {
                 name: "Mini van",
                 image: "/assets/onde-service-types/MINIVAN.webp",
-                alt: "Mini van",
+                alt: "Tinos Port Taxi",
               },
               {
                 name: "van",
                 image: "/assets/onde-service-types/VAN.webp",
-                alt: "van",
+                alt: "Taxi Tinos Book a ride",
               },
             ],
           },
@@ -1719,12 +1718,12 @@ export const locationDetails: any = {
               {
                 name: "mini bus",
                 image: "/assets/onde-service-types/MICRO_BUS.webp",
-                alt: "mini bus",
+                alt: "Tinos Taxi iOS",
               },
               {
                 name: "bus",
                 image: "/assets/onde-service-types/BUS.webp",
-                alt: "bus",
+                alt: "Taxi Tinos Android",
               },
             ],
           },
@@ -1733,7 +1732,7 @@ export const locationDetails: any = {
     },
 
     "paros-taxi-app": {
-      alt_header: "Ride with Aegean Taxi",
+      alt_header: "Taxi Paros",
 
       location: "paros-taxi-app",
       name: "Paros",
@@ -1860,17 +1859,17 @@ export const locationDetails: any = {
               {
                 name: "classic",
                 image: "/assets/onde-service-types/ECONOMY_yellow.webp",
-                alt: "classic",
+                alt: "Paros Cab",
               },
               {
                 name: "comfort",
                 image: "/assets/onde-service-types/CLASSIC.webp",
-                alt: "comfort",
+                alt: "Taxi Paros cheap",
               },
               {
                 name: "sedan",
                 image: "/assets/onde-service-types/BUSINESS.webp",
-                alt: "sedan",
+                alt: "Paros Taxi online",
               },
             ],
           },
@@ -1880,12 +1879,12 @@ export const locationDetails: any = {
               {
                 name: "premium",
                 image: "/assets/onde-service-types/SUV.webp",
-                alt: "premium",
+                alt: "taxi Paros 24/7",
               },
               {
                 name: "luxury",
                 image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
-                alt: "luxury",
+                alt: "Paros Airport Taxi",
               },
             ],
           },
@@ -1895,12 +1894,12 @@ export const locationDetails: any = {
               {
                 name: "Mini van",
                 image: "/assets/onde-service-types/MINIVAN.webp",
-                alt: "Mini van",
+                alt: "Paros Port Taxi",
               },
               {
                 name: "van",
                 image: "/assets/onde-service-types/VAN.webp",
-                alt: "van",
+                alt: "Taxi Paros Book a ride",
               },
             ],
           },
@@ -1910,12 +1909,12 @@ export const locationDetails: any = {
               {
                 name: "mini bus",
                 image: "/assets/onde-service-types/MICRO_BUS.webp",
-                alt: "mini bus",
+                alt: "Paros Taxi iOS",
               },
               {
                 name: "bus",
                 image: "/assets/onde-service-types/BUS.webp",
-                alt: "bus",
+                alt: "Taxi Paros Android",
               },
             ],
           },
@@ -1924,7 +1923,7 @@ export const locationDetails: any = {
     },
 
     "naxos-taxi-app": {
-      alt_header: "Ride with Aegean Taxi",
+      alt_header: "Taxi Naxos",
 
       location: "naxos-taxi-app",
       name: "Naxos",
@@ -2051,17 +2050,17 @@ export const locationDetails: any = {
               {
                 name: "classic",
                 image: "/assets/onde-service-types/ECONOMY_yellow.webp",
-                alt: "classic",
+                alt: "Naxos Cab",
               },
               {
                 name: "comfort",
                 image: "/assets/onde-service-types/CLASSIC.webp",
-                alt: "comfort",
+                alt: "Taxi Naxos cheap",
               },
               {
                 name: "sedan",
                 image: "/assets/onde-service-types/BUSINESS.webp",
-                alt: "sedan",
+                alt: "Naxos Taxi online",
               },
             ],
           },
@@ -2071,12 +2070,12 @@ export const locationDetails: any = {
               {
                 name: "premium",
                 image: "/assets/onde-service-types/SUV.webp",
-                alt: "premium",
+                alt: "taxi Naxos 24/7",
               },
               {
                 name: "luxury",
                 image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
-                alt: "luxury",
+                alt: "Naxos Airport Taxi",
               },
             ],
           },
@@ -2086,12 +2085,12 @@ export const locationDetails: any = {
               {
                 name: "Mini van",
                 image: "/assets/onde-service-types/MINIVAN.webp",
-                alt: "Mini van",
+                alt: "Naxos Port Taxi",
               },
               {
                 name: "van",
                 image: "/assets/onde-service-types/VAN.webp",
-                alt: "van",
+                alt: "Taxi Naxos Book a ride",
               },
             ],
           },
@@ -2101,12 +2100,12 @@ export const locationDetails: any = {
               {
                 name: "mini bus",
                 image: "/assets/onde-service-types/MICRO_BUS.webp",
-                alt: "mini bus",
+                alt: "Naxos Taxi iOS",
               },
               {
                 name: "bus",
                 image: "/assets/onde-service-types/BUS.webp",
-                alt: "bus",
+                alt: "Taxi Naxos Android",
               },
             ],
           },
@@ -2115,7 +2114,7 @@ export const locationDetails: any = {
     },
 
     "kos-taxi-app": {
-      alt_header: "Ride with Aegean Taxi",
+      alt_header: "Taxi Kos",
 
       location: "kos-taxi-app",
       name: "Kos",
@@ -2242,17 +2241,17 @@ export const locationDetails: any = {
               {
                 name: "classic",
                 image: "/assets/onde-service-types/ECONOMY_yellow.webp",
-                alt: "classic",
+                alt: "Kos Cab",
               },
               {
                 name: "comfort",
                 image: "/assets/onde-service-types/CLASSIC.webp",
-                alt: "comfort",
+                alt: "Taxi Kos cheap",
               },
               {
                 name: "sedan",
                 image: "/assets/onde-service-types/BUSINESS.webp",
-                alt: "sedan",
+                alt: "Kos Taxi online",
               },
             ],
           },
@@ -2262,12 +2261,12 @@ export const locationDetails: any = {
               {
                 name: "premium",
                 image: "/assets/onde-service-types/SUV.webp",
-                alt: "premium",
+                alt: "taxi Kos 24/7",
               },
               {
                 name: "luxury",
                 image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
-                alt: "luxury",
+                alt: "Kos Airport Taxi",
               },
             ],
           },
@@ -2277,12 +2276,12 @@ export const locationDetails: any = {
               {
                 name: "Mini van",
                 image: "/assets/onde-service-types/MINIVAN.webp",
-                alt: "Mini van",
+                alt: "Kos Port Taxi",
               },
               {
                 name: "van",
                 image: "/assets/onde-service-types/VAN.webp",
-                alt: "van",
+                alt: "Taxi Kos Book a ride",
               },
             ],
           },
@@ -2292,12 +2291,12 @@ export const locationDetails: any = {
               {
                 name: "mini bus",
                 image: "/assets/onde-service-types/MICRO_BUS.webp",
-                alt: "mini bus",
+                alt: "Kos Taxi iOS",
               },
               {
                 name: "bus",
                 image: "/assets/onde-service-types/BUS.webp",
-                alt: "bus",
+                alt: "Taxi Kos Android",
               },
             ],
           },
@@ -2306,7 +2305,7 @@ export const locationDetails: any = {
     },
 
     "heraklion-taxi-app": {
-      alt_header: "Ride with Aegean Taxi",
+      alt_header: "Taxi Heraklion",
 
       location: "heraklion-taxi-app",
       name: "Heraklion",
@@ -2433,17 +2432,17 @@ export const locationDetails: any = {
               {
                 name: "classic",
                 image: "/assets/onde-service-types/ECONOMY_yellow.webp",
-                alt: "classic",
+                alt: "Heraklion Cab",
               },
               {
                 name: "comfort",
                 image: "/assets/onde-service-types/CLASSIC.webp",
-                alt: "comfort",
+                alt: "Taxi Heraklion cheap",
               },
               {
                 name: "sedan",
                 image: "/assets/onde-service-types/BUSINESS.webp",
-                alt: "sedan",
+                alt: "Heraklion Taxi online",
               },
             ],
           },
@@ -2453,12 +2452,12 @@ export const locationDetails: any = {
               {
                 name: "premium",
                 image: "/assets/onde-service-types/SUV.webp",
-                alt: "premium",
+                alt: "taxi Heraklion 24/7",
               },
               {
                 name: "luxury",
                 image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
-                alt: "luxury",
+                alt: "Heraklion Airport Taxi",
               },
             ],
           },
@@ -2468,12 +2467,12 @@ export const locationDetails: any = {
               {
                 name: "Mini van",
                 image: "/assets/onde-service-types/MINIVAN.webp",
-                alt: "Mini van",
+                alt: "Heraklion Port Taxi",
               },
               {
                 name: "van",
                 image: "/assets/onde-service-types/VAN.webp",
-                alt: "van",
+                alt: "Taxi Heraklion Book a ride",
               },
             ],
           },
@@ -2483,12 +2482,12 @@ export const locationDetails: any = {
               {
                 name: "mini bus",
                 image: "/assets/onde-service-types/MICRO_BUS.webp",
-                alt: "mini bus",
+                alt: "Heraklion Taxi iOS",
               },
               {
                 name: "bus",
                 image: "/assets/onde-service-types/BUS.webp",
-                alt: "bus",
+                alt: "Taxi Heraklion Android",
               },
             ],
           },
@@ -2497,7 +2496,7 @@ export const locationDetails: any = {
     },
 
     "chalkidiki-taxi-app": {
-      alt_header: "Ride with Aegean Taxi",
+      alt_header: "Taxi Chalkidiki",
 
       location: "chalkidiki-taxi-app",
       name: "Chalkidiki",
@@ -2620,17 +2619,17 @@ export const locationDetails: any = {
               {
                 name: "classic",
                 image: "/assets/onde-service-types/ECONOMY_yellow.webp",
-                alt: "classic",
+                alt: "Chalkidiki Cab",
               },
               {
                 name: "comfort",
                 image: "/assets/onde-service-types/CLASSIC.webp",
-                alt: "comfort",
+                alt: "Taxi Chalkidiki cheap",
               },
               {
                 name: "sedan",
                 image: "/assets/onde-service-types/BUSINESS.webp",
-                alt: "sedan",
+                alt: "Chalkidiki Taxi online",
               },
             ],
           },
@@ -2640,12 +2639,12 @@ export const locationDetails: any = {
               {
                 name: "premium",
                 image: "/assets/onde-service-types/SUV.webp",
-                alt: "premium",
+                alt: "taxi Chalkidiki 24/7",
               },
               {
                 name: "luxury",
                 image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
-                alt: "luxury",
+                alt: "Chalkidiki Airport Taxi",
               },
             ],
           },
@@ -2655,12 +2654,12 @@ export const locationDetails: any = {
               {
                 name: "Mini van",
                 image: "/assets/onde-service-types/MINIVAN.webp",
-                alt: "Mini van",
+                alt: "Chalkidiki Port Taxi",
               },
               {
                 name: "van",
                 image: "/assets/onde-service-types/VAN.webp",
-                alt: "van",
+                alt: "Taxi Chalkidiki Book a ride",
               },
             ],
           },
@@ -2670,12 +2669,12 @@ export const locationDetails: any = {
               {
                 name: "mini bus",
                 image: "/assets/onde-service-types/MICRO_BUS.webp",
-                alt: "mini bus",
+                alt: "Chalkidiki Taxi iOS",
               },
               {
                 name: "bus",
                 image: "/assets/onde-service-types/BUS.webp",
-                alt: "bus",
+                alt: "Taxi Chalkidiki Android",
               },
             ],
           },
@@ -2684,7 +2683,7 @@ export const locationDetails: any = {
     },
 
     "kea-taxi-app": {
-      alt_header: "Ride with Aegean Taxi",
+      alt_header: "Taxi Kea - Tzia",
 
       location: "kea-taxi-app",
       name: "Kea",
@@ -2822,17 +2821,17 @@ export const locationDetails: any = {
               {
                 name: "classic",
                 image: "/assets/onde-service-types/ECONOMY_yellow.webp",
-                alt: "classic",
+                alt: "Kea - Tzia Cab",
               },
               {
                 name: "comfort",
                 image: "/assets/onde-service-types/CLASSIC.webp",
-                alt: "comfort",
+                alt: "Taxi Kea - Tzia cheap",
               },
               {
                 name: "sedan",
                 image: "/assets/onde-service-types/BUSINESS.webp",
-                alt: "sedan",
+                alt: "Kea - Tzia Taxi online",
               },
             ],
           },
@@ -2842,12 +2841,12 @@ export const locationDetails: any = {
               {
                 name: "premium",
                 image: "/assets/onde-service-types/SUV.webp",
-                alt: "premium",
+                alt: "taxi Kea - Tzia 24/7",
               },
               {
                 name: "luxury",
                 image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
-                alt: "luxury",
+                alt: "Kea - Tzia Airport Taxi",
               },
             ],
           },
@@ -2857,12 +2856,12 @@ export const locationDetails: any = {
               {
                 name: "Mini van",
                 image: "/assets/onde-service-types/MINIVAN.webp",
-                alt: "Mini van",
+                alt: "Kea - Tzia Port Taxi",
               },
               {
                 name: "van",
                 image: "/assets/onde-service-types/VAN.webp",
-                alt: "van",
+                alt: "Taxi Kea - Tzia Book a ride",
               },
             ],
           },
@@ -2872,12 +2871,12 @@ export const locationDetails: any = {
               {
                 name: "mini bus",
                 image: "/assets/onde-service-types/MICRO_BUS.webp",
-                alt: "mini bus",
+                alt: "Kea - Tzia Taxi iOS",
               },
               {
                 name: "bus",
                 image: "/assets/onde-service-types/BUS.webp",
-                alt: "bus",
+                alt: "Taxi Kea - Tzia Android",
               },
             ],
           },
@@ -2886,7 +2885,7 @@ export const locationDetails: any = {
     },
 
     "kefalonia-taxi-app": {
-      alt_header: "Ride with Aegean Taxi",
+      alt_header: "Taxi Kefalonia",
 
       location: "kefalonia-taxi-app",
       name: "Kefalonia",
@@ -3024,17 +3023,17 @@ export const locationDetails: any = {
               {
                 name: "classic",
                 image: "/assets/onde-service-types/ECONOMY_yellow.webp",
-                alt: "classic",
+                alt: "Kefalonia Cab",
               },
               {
                 name: "comfort",
                 image: "/assets/onde-service-types/CLASSIC.webp",
-                alt: "comfort",
+                alt: "Taxi Kefalonia cheap",
               },
               {
                 name: "sedan",
                 image: "/assets/onde-service-types/BUSINESS.webp",
-                alt: "sedan",
+                alt: "Kefalonia Taxi online",
               },
             ],
           },
@@ -3044,12 +3043,12 @@ export const locationDetails: any = {
               {
                 name: "premium",
                 image: "/assets/onde-service-types/SUV.webp",
-                alt: "premium",
+                alt: "taxi Kefalonia 24/7",
               },
               {
                 name: "luxury",
                 image: "/assets/onde-service-types/TESLA_MODEL_X.webp",
-                alt: "luxury",
+                alt: "Kefalonia Airport Taxi",
               },
             ],
           },
@@ -3059,12 +3058,12 @@ export const locationDetails: any = {
               {
                 name: "Mini van",
                 image: "/assets/onde-service-types/MINIVAN.webp",
-                alt: "Mini van",
+                alt: "Kefalonia Port Taxi",
               },
               {
                 name: "van",
                 image: "/assets/onde-service-types/VAN.webp",
-                alt: "van",
+                alt: "Taxi Kefalonia Book a ride",
               },
             ],
           },
@@ -3074,12 +3073,12 @@ export const locationDetails: any = {
               {
                 name: "mini bus",
                 image: "/assets/onde-service-types/MICRO_BUS.webp",
-                alt: "mini bus",
+                alt: "Kefalonia Taxi iOS",
               },
               {
                 name: "bus",
                 image: "/assets/onde-service-types/BUS.webp",
-                alt: "bus",
+                alt: "Taxi Kefalonia Android",
               },
             ],
           },
