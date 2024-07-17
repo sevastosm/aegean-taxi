@@ -29,16 +29,21 @@ import Kefalonia from "public/assets/taxi-locations/taxi-kefalonia.webp";
 import Kea from "public/assets/taxi-locations/taxi-kea.webp";
 
 import { locationDetails } from "@/utils/locationDetails";
+import { SxImage } from "./ui/SxImage";
 
 export default function TaxiHeader() {
   const params: any = useParams();
   let title = `Your Taxi App in Greece`; // original: `Your Taxi App <br />in Greece`
   let subHeader = ` in Greece`;
+  let atlText = "Taxi Transfers";
+
   let cover = bg;
+    atlText = locationDetails.taxi_locations.alt_header;
 
   const data = locationDetails[params.location];
 
   if (params.location) {
+    atlText = locationDetails.taxi_locations[params.location].alt_header;
     const city = (
       params.location.charAt(0).toUpperCase() + params.location.slice(1)
     ).replace("-taxi-app", "");
@@ -152,20 +157,24 @@ export default function TaxiHeader() {
           xs={12}
           md={7}
           sx={{
-            backgroundImage: { xs: "none", md: `url(${cover.src})` },
-            backgroundSize: "cover",
+            position: "relative",
           }}
         >
-          <Box
+          <SxImage
+            src={cover.src}
+            width={200}
+            height={200}
+            alt={atlText}
             sx={{
-              display: { xs: "block", md: "none" },
               width: "100%",
-              height: "206px",
-              backgroundImage: `url(${cover.src})`,
-              backgroundSize: "cover",
-              backgroundPosition: "5p0 %",
+              height: { xs: "200px", md: "100%" },
+              // backgroundColor: "primary.dark",
+              objectFit: { xs: "cover", md: "cover" },
+              objectPosition: { xs: "0 50%", md: "0 50%" },
+              position: { xs: "relative", md: "absolute" },
             }}
-          ></Box>
+          />
+          
           <Box
             justifyContent="center"
             alignItems="center"

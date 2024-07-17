@@ -96,11 +96,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function Page({ params }: { params: Props }) {
+export default function Page({ params }:any ) {
+  const location = params.location.toLowerCase();
+
+  const ways_to_ride = locationDetails.taxi_locations[location].ways_to_ride;
+
+
   return (
     <>
       <TaxiHeader />
-      <WaysToRide />
+      <WaysToRide data={ways_to_ride} />
       <TaxiBookingOptions />
       <SectionSpacer mdt={6}>
         <WhyBook />

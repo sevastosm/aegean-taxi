@@ -87,7 +87,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function Page({ params }: { params: Props }) {
+export default function Page({ params }:any) {
+  const location = params.location.toLowerCase();
+
+
+  const ways_to_ride = locationDetails.airports[location].ways_to_ride;
+
   return (
     <>
       <AirportHeader />
@@ -95,7 +100,7 @@ export default function Page({ params }: { params: Props }) {
         <WhyBooAirport />
       </SectionSpacer>
       <SectionSpacer xst={6} xsb={6} mdt={6} mdb={6}>
-        <WaysToRide />
+        <WaysToRide data={ways_to_ride} />
       </SectionSpacer>
       <AirportBookingOptions />
       <AirportFares />

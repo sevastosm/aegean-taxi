@@ -18,13 +18,23 @@ import bg from "public/assets/airport-header.webp";
 // import Santorini from "public/assets/airport-santorini.png";
 
 import banner from "public/assets/banner.webp";
+import { SxImage } from "./ui/SxImage";
+import { locationDetails } from "@/utils/locationDetails";
+
+
 
 export default function AirportHeader() {
   const params: any = useParams();
   let city;
+  let atlText = 'Airport Transfers'
   let cover = bg;
+
+    atlText = locationDetails.airports.alt_header;
+
   if (params.location) {
+    
     city = params.location.charAt(0).toUpperCase() + params.location.slice(1);
+    atlText = locationDetails.airports[params.location].alt_header;
     // FIXME: No images available
     // switch (city) {
     //   case "Athens":
@@ -90,20 +100,29 @@ export default function AirportHeader() {
           xs={12}
           md={7}
           sx={{
-            backgroundImage: { xs: "none", md: `url(${cover.src})` },
-            backgroundSize: "cover",
+            position: "relative",
           }}
         >
           <Box
             sx={{
-              display: { xs: "block", md: "none" },
-              width: "100%",
-              height: "206px",
-              backgroundImage: `url(${cover.src})`,
-              backgroundSize: "cover",
-              backgroundPosition: "0 50%",
+              position: { xs: "relative", md: "absolute" },
+              
             }}
-          ></Box>
+          >
+            <SxImage
+              src={cover.src}
+              width={200}
+              height={500}
+              alt={atlText}
+              sx={{
+                width: "100%",
+                height: { xs: "200px", md: "auto" },
+                backgroundColor: "primary.dark",
+                objectFit: { xs: "cover", md: "cover" },
+                objectPosition: { xs: "0 50%", md: "none" },
+              }}
+            />
+          </Box>
           <Box
             justifyContent="center"
             alignItems="center"
