@@ -33,6 +33,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
     },
     {
+      url: "https://aegeantaxi.com/orders/",
+      lastModified: new Date(),
+    },
+    {
       url: "https://aegeantaxi.com/taxi/",
       lastModified: new Date(),
     },

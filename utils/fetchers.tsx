@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 export const tokenFetcher = async () =>
   await fetch("https://carky-api.azurewebsites.net/token", {
     method: "POST",
@@ -102,3 +104,82 @@ export async function sendSms(phoneNumbers: string, message: string) {
 //   mode: "cors",
 //   credentials: "include",
 // });
+
+
+
+export const createOrder = async (contextState:any) => {
+  // new order
+  if (contextState && contextState.startLocationLat) {
+    contextState.searchingForDriver = true;
+    let orderDetailsRes;
+    dayjs.tz.setDefault();
+    let dayjsLocal = dayjs(
+      `${contextState.pickUpDate} ${contextState.pickUpTime}`
+    );
+    // console.log(`${contextState.pickUpDate} ${contextState.pickUpTime}`)
+    // console.log(dayjsLocal.format())
+
+    try {
+      let res = await fetch(
+        `${process.env.NEXT_PUBLIC_ONDE_HOSTNAME}/dispatch/v1/order/`,
+        {
+          method: "POST",
+          headers: new Headers({
+            Authorization: `${process.env.NEXT_PUBLIC_ONDE_API_TOKEN}`,
+          }),
+          body: JSON.stringify({
+            waypoints: [
+              {
+                exactLatLng: {
+                  lat: contextState.startLocationLat,
+                  lng: contextState.startLocationLng,
+                },
+                street: contextState.pickUpLocation,       
+                poiName: contextState.pickUpLocation,
+                placeLatLng: {
+                  lat: contextState.startLocationLat,
+                  lng: contextState.startLocationLng,
+                },
+              },
+              {
+                exactLatLng: {
+                  lat: contextState.endLocationLat,
+                  lng: contextState.endLocationLng,
+                },
+                street: contextState.dropLocation,
+                poiName: contextState.dropLocation,
+                placeLatLng: {
+                  lat: contextState.endLocationLat,
+                  lng: contextState.endLocationLng,
+                },
+              },
+            ],
+            client: {
+              name: `${contextState.firstName} ${contextState.lastName}`,
+              phone: contextState.phoneNumber,
+            },
+            notes: "From Aegean Taxi Web App",
+            // pickupTime: encodeURIComponent(dayjsLocal.toISOString()),
+            pickupTime: dayjsLocal.format(),
+            unitOfLength: "KILOMETER",
+            vehicleType: contextState.selectedCar.vehicleType,
+            numberOfSeats: contextState.selectedCar.numberOfSeats,
+            // paymentMethods: contextState.selectedCar.paymentMethods,
+            paymentMethods: ["CASH"],
+            prepaid: false,
+            tariffId: contextState.selectedCar.tariffId,
+          }),
+        }
+      );
+
+      if (res.ok) {
+        return await res.json();
+        //handle ok
+      } else {
+       //handle err
+      }
+    } catch (error) {
+      //handle catch
+    }
+  }
+};
