@@ -109,36 +109,36 @@ export default function VerificationComponent({}: {}) {
     bookingState.firstName = firstName;
     bookingState.lastName = lastName;
 
-    // sendSms(
-    //   `00${bookingState.phoneNumber.replace("+", "")}`,
-    //   `Your access code is ${smsCode}`
-    // ).then(() => {
-    //   bookingContext.updateAppState(bookingState);
-    //   setItem("aegean", bookingState, "local");
-    //   router.push("/book-online/verification/validate");
-    // });
-    const token = await reCaptchaRef?.current.executeAsync();
-    await verifyToken({
-      token,
-      firstName,
-      lastName,
-      mobileNumber,
-    }).then((result: any) => {
-      if (result.data.success) {
-        sendSms(
-          `00${bookingState.phoneNumber.replace("+", "")}`,
-          `Your access code is ${smsCode}`
-        ).then(() => {
-          bookingContext.updateAppState(bookingState);
-          setItem("aegean", bookingState, "local");
-          router.push("/book-online/verification/validate");
-        });
-      } else {
-        setTimeout(() => {
-          setDisabledNext(false);
-        }, 15000);
-      }
+    sendSms(
+      `00${bookingState.phoneNumber.replace("+", "")}`,
+      `Your access code is ${smsCode}`
+    ).then(() => {
+      bookingContext.updateAppState(bookingState);
+      setItem("aegean", bookingState, "local");
+      router.push("/book-online/verification/validate");
     });
+    // const token = await reCaptchaRef?.current.executeAsync();
+    // await verifyToken({
+    //   token,
+    //   firstName,
+    //   lastName,
+    //   mobileNumber,
+    // }).then((result: any) => {
+    //   if (result.data.success) {
+    //     sendSms(
+    //       `00${bookingState.phoneNumber.replace("+", "")}`,
+    //       `Your access code is ${smsCode}`
+    //     ).then(() => {
+    //       bookingContext.updateAppState(bookingState);
+    //       setItem("aegean", bookingState, "local");
+    //       router.push("/book-online/verification/validate");
+    //     });
+    //   } else {
+    //     setTimeout(() => {
+    //       setDisabledNext(false);
+    //     }, 15000);
+    //   }
+    // });
   }
 
   const visited = getItem("validationBeenVisited", "local");

@@ -126,7 +126,7 @@ export default function DrawerAppBar(props: Props) {
                 component={NextLink}
                 variant="body1"
                 sx={{
-                  mt: 2,
+                  
                   lineHeight: 3,
                   // borderBottom: `3px solid #000`,
                   width: "75px",

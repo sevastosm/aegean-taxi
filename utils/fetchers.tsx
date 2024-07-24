@@ -183,3 +183,109 @@ export const createOrder = async (contextState:any) => {
     }
   }
 };
+
+
+
+
+export const cancelOrder = async (orderId:string) => {
+  if (orderId) {
+    fetch(
+      `${process.env.NEXT_PUBLIC_ONDE_HOSTNAME}/dispatch/v1/order/${orderId}/status`,
+      {
+        method: "PUT",
+        headers: new Headers({
+          Authorization: `${process.env.NEXT_PUBLIC_ONDE_API_TOKEN}`,
+        }),
+        body: JSON.stringify({
+          status: "CANCELLED_BY_DISPATCH",
+        }),
+      }
+    ).then(
+      (res) => res,
+      (error) =>error
+    );
+  }
+};
+
+export const getOrderUpdate =async(orderId:string)=>{
+ return await fetch(
+    `${process.env.NEXT_PUBLIC_ONDE_HOSTNAME}/dispatch/v1/order/${orderId}/update`,
+    {
+      method: "GET",
+      headers: new Headers({
+        Authorization: `${process.env.NEXT_PUBLIC_ONDE_API_TOKEN}`,
+      }),
+    }
+  )
+    .then((res) => res.json())
+    .then(
+      (result) => {
+        return result
+      },
+      (error) => {
+        return error
+      }
+    );
+}
+
+export const getOrderData =async(orderId:string)=>{
+  return await fetch(
+     `${process.env.NEXT_PUBLIC_ONDE_HOSTNAME}/dispatch/v1/order/${orderId}/request`,
+     {
+       method: "GET",
+       headers: new Headers({
+         Authorization: `${process.env.NEXT_PUBLIC_ONDE_API_TOKEN}`,
+       }),
+     }
+   )
+     .then((res) => res.json())
+     .then(
+       (result) => {
+         return result
+       },
+       (error) => {
+         return error
+       }
+     );
+ }
+ export const getOrderDetails =async(orderId:string)=>{
+  return await fetch(
+     `${process.env.NEXT_PUBLIC_ONDE_HOSTNAME}/dispatch/v1/order/${orderId}/offer`,
+     {
+       method: "GET",
+       headers: new Headers({
+         Authorization: `${process.env.NEXT_PUBLIC_ONDE_API_TOKEN}`,
+       }),
+     }
+   )
+     .then((res) => res.json())
+     .then(
+       (result) => {
+         return result
+       },
+       (error) => {
+         return error
+       }
+     );
+ }
+
+ export const getDriver =async(orderId:string)=>{
+  return await fetch(
+     `${process.env.NEXT_PUBLIC_ONDE_HOSTNAME}/dispatch/v1/order/${orderId}/request`,
+     {
+       method: "GET",
+       headers: new Headers({
+         Authorization: `${process.env.NEXT_PUBLIC_ONDE_API_TOKEN}`,
+       }),
+     }
+   )
+     .then((res) => res.json())
+     .then(
+       (result) => {
+         return result
+       },
+       (error) => {
+         return error
+       }
+     );
+ }

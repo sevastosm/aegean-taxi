@@ -1,6 +1,8 @@
 "use client";
 import { useState, useEffect, useContext } from "react";
+import "./../../app/tailwind.scss";
 import "./../../app/globals.css";
+
 // import { hotjar } from "react-hotjar";
 
 // MUI
@@ -74,7 +76,7 @@ export default function MainTemplate({
           <Box>
             <CssBaseline />
             <DrawerAppBar />
-            <Box component="main" sx={{ mt: { xs: 2.5, md: "initial" } }}>
+            <Box component="main" sx={{ mt: { xs: 2.5, md: 2.5 } }}>
               <Toolbar />
               {children}
             </Box>
