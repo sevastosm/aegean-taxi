@@ -1110,6 +1110,10 @@ export default function Orders() {
         .then((res) => res.json())
         .then(
           (result) => {
+            if (result.status === "CANCELLED_BY_DISPATCH") {
+              localStorage.removeItem("aegean")
+              router.push(`/`);
+            }
             if (result.status === "SEARCH") {
               clearTimeout(apiTimeout);
               apiTimeout = setTimeout(() => {
@@ -1132,6 +1136,8 @@ export default function Orders() {
           (error) => {
             setError(error);
             clearState();
+            localStorage.removeItem("aegean")
+            router.push(`/`);
           }
         );
     }
