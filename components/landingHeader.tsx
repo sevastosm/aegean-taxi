@@ -11,7 +11,6 @@ import BookingFormLanding from "@/components/requestRideForm/BookingFormLanding"
 import bg from "public/assets/landing-header.webp";
 import { SxImage } from "./ui/SxImage";
 import { locationDetails } from "@/utils/locationDetails";
-import TaxiLocations from "./TaxiLocations";
 
 export default function LandingHeader() {
   const atlText = locationDetails.landing.alt_header;
@@ -19,14 +18,7 @@ export default function LandingHeader() {
   return (
     <Container maxWidth={"lg"}>
       <Grid container spacing={0}>
-        <Grid
-          item
-          xs={12}
-          md={5}
-          sx={{
-            display: { xs: "none", md: "block" },
-          }}
-        >
+        <Grid item xs={12} md={5}>
           {/* <Typography
             component="h1"
             variant="h2"
@@ -49,7 +41,7 @@ export default function LandingHeader() {
               fontWeight: { xs: "700", md: "700" },
               fontSize: { xs: "1.9rem", md: "3.75rem" },
               lineHeight: { xs: "1", md: "1.2" },
-              display: { xs: "block", md: "none" },
+              // display: { xs: "block", md: "none" },
               textAlign: { xs: "center", md: "left" },
               mt: { xs: "0px", md: "48px" },
             }}
@@ -87,7 +79,7 @@ export default function LandingHeader() {
             position: "relative",
           }}
         >
-          {/* <SxImage
+          <SxImage
             src={bg.src}
             width={200}
             height={200}
@@ -100,7 +92,7 @@ export default function LandingHeader() {
               objectPosition: { xs: "0 50%", md: "0 50%" },
               position: { xs: "relative", md: "absolute" },
             }}
-          /> */}
+          />
 
           <Box
             justifyContent="center"
@@ -115,7 +107,7 @@ export default function LandingHeader() {
             <div
               style={{
                 width: "100%",
-                // display: "flex",
+                display: "flex",
                 flexDirection: "column",
                 gap: "5px",
                 alignItems: "center",
@@ -123,8 +115,7 @@ export default function LandingHeader() {
                 background: "#fff",
               }}
             >
-              {/* <BookingFormLanding /> */}
-              <TaxiLocations />
+              <BookingFormLanding />
             </div>
           </Box>
           {/* Download the app Button */}
@@ -133,3 +124,4 @@ export default function LandingHeader() {
     </Container>
   );
 }
+

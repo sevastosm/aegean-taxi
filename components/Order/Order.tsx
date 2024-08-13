@@ -49,7 +49,7 @@ export interface orderData {
 }  
 
 let apiTimeout: any;
-const Order = (props: Props) => {
+const Order = () => {
   const searchParams = useSearchParams();
   const orderId = searchParams.get("orderid");
   const [orderData, setOrderData] = useState<any>(null);
@@ -57,43 +57,42 @@ const Order = (props: Props) => {
 
   const [screen, setScreen] = useState<screen>(null);
 
-  const result ={
-    "driverId": "35b43e0b-162a-4eda-b061-cfab3db25f0c",
-    "driverLocation": {
-        "accuracy": 7.864,
-        "bearing": 198.84123,
-        "speed": 5.356617,
-        "time": "2024-07-24T23:43:32.297Z",
-        "lat": 37.4413335,
-        "lng": 25.334939
+  const result = {
+    driverId: "35b43e0b-162a-4eda-b061-cfab3db25f0c",
+    driverLocation: {
+      accuracy: 7.864,
+      bearing: 198.84123,
+      speed: 5.356617,
+      time: "2024-07-24T23:43:32.297Z",
+      lat: 37.4413335,
+      lng: 25.334939,
     },
-    "status": "STARTED"
-}
+    status: "STARTED",
+  };
 
+  debugger;
 
   const handleOrderUpdate = (orderId: string) => {
-    getOrderUpdate(orderId).then((result:{status:BookingStatus}) => {
-      if (result.status === "SEARCH"||result.status === "STARTED") {
+    getOrderUpdate(orderId).then((result: { status: BookingStatus }) => {
+      if (result.status === "SEARCH" || result.status === "STARTED") {
         clearTimeout(apiTimeout);
         apiTimeout = setTimeout(() => {
           getOrderUpdate(orderId);
         }, 10000);
-      } 
-      if(result.status === "ASSIGNED"){
-        setScreen("reservation-confirmed")
       }
-      if(result.status === "STARTED"){
-        setScreen("reservation-on-the-way")
-        getOrderDetails(orderId).then((setOrderDetails));
+      if (result.status === "ASSIGNED") {
+        setScreen("reservation-confirmed");
       }
-      if(result.status.includes("CANCELLED")){
-        setScreen("reservation-cancelled")
+      if (result.status === "STARTED") {
+        setScreen("reservation-on-the-way");
+        getOrderDetails(orderId).then(setOrderDetails);
+      }
+      if (result.status.includes("CANCELLED")) {
+        setScreen("reservation-cancelled");
         clearTimeout(apiTimeout);
       }
     });
   };
-
- 
 
   useEffect(() => {
     orderId && getOrderData(orderId).then(setOrderData);
@@ -108,9 +107,13 @@ const Order = (props: Props) => {
     }
   }, [orderData]);
 
-  if (screen&&orderData) {
+  if (screen && orderData) {
     return (
-     <OrderDetails orderDetails={orderDetails} screen={screen} orderData={{...orderData,orderId:orderId}} />
+      <OrderDetails
+        orderDetails={orderDetails}
+        screen={screen}
+        orderData={{ ...orderData, orderId: orderId }}
+      />
     );
   }
   // if (screen === "reservation-confirmed") {

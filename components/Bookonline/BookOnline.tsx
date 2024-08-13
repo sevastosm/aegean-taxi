@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useContext, useRef } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter as clientRouter } from "next/router";
 
 // DayJS
 import dayjs from "dayjs";
@@ -60,289 +61,14 @@ import { BookingState } from "@/types/bookingState";
 
 import TAXI from "public/assets/car-top.webp";
 import { greyMap } from "../googleMap/mapStyles";
+import { GoogleMapComponent } from "./GoogleMap";
+import TaxiLocations from "../TaxiLocations";
+import { locationDetails } from "@/utils/locationDetails";
+import HotSpot from "./HotSpot";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.tz.setDefault("Europe/Athens");
-
-// Google Maps Component
-function GoogleMapComponent({
-  center,
-  currentLocation,
-  directions,
-  directionsRenderer,
-  directionsService,
-  geocoderService,
-  placesService,
-  zoom,
-  driverLocation,
-  state,
-  removeMarkers,
-  children,
-  ...options
-}: {
-  center: google.maps.LatLngLiteral;
-  currentLocation?: google.maps.LatLngLiteral;
-  directions?: any;
-  directionsRenderer: any;
-  directionsService: any;
-  geocoderService: any;
-  placesService: any;
-  zoom?: number;
-  driverLocation?: any;
-  state?: any;
-  removeMarkers?: boolean;
-  children?: any;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [mapWrapper, setMapWrapper] = useState<google.maps.Map>();
-  const [markers, setMarkers] = useState<Array<any>>([]);
-
-  const makeMarker = (position: any, icon: any, title: string, map: any) => {
-    if (typeof window !== "undefined") {
-      return new window.google.maps.Marker({
-        position: position,
-        map: map,
-        icon: icon,
-        title: title,
-      });
-    }
-  };
-
-  useEffect(() => {
-    console.log("init map");
-
-    if (ref.current && !mapWrapper) {
-      if (currentLocation) {
-        center = currentLocation;
-      }
-
-      const map = new window.google.maps.Map(ref.current, {
-        center,
-        zoom,
-        zoomControl: false,
-        disableDefaultUI: true,
-        gestureHandling: "none",
-        styles: greyMap,
-      });
-
-      setMapWrapper(() => map);
-      directionsRenderer.setMap(map);
-    }
-
-    if (currentLocation) {
-      clearMarkers();
-      setMarkers([
-        makeMarker(
-          currentLocation,
-          {
-            path: "M10.001,6.54c-0.793,0-1.438,0.645-1.438,1.438c0,0.792,0.645,1.435,1.438,1.435c0.791,0,1.435-0.644,1.435-1.435C11.437,7.184,10.792,6.54,10.001,6.54z M10.001,8.454c-0.264,0-0.479-0.213-0.479-0.476c0-0.265,0.215-0.479,0.479-0.479c0.263,0,0.477,0.214,0.477,0.479C10.478,8.241,10.265,8.454,10.001,8.454z, M10,3.021c-2.815,0-5.106,2.291-5.106,5.106c0,0.781,0.188,1.549,0.562,2.282c0.011,0.062,0.036,0.12,0.07,0.174l0.125,0.188c0.074,0.123,0.151,0.242,0.225,0.341l3.727,5.65c0.088,0.135,0.238,0.215,0.399,0.215c0.161,0,0.311-0.08,0.4-0.215l3.752-5.68c0.057-0.08,0.107-0.159,0.153-0.232l0.132-0.199c0.033-0.05,0.054-0.104,0.064-0.159c0.401-0.757,0.605-1.551,0.605-2.366C15.107,5.312,12.815,3.021,10,3.021z M13.596,10.152c-0.017,0.03-0.029,0.062-0.039,0.095l-0.056,0.084c-0.043,0.066-0.085,0.133-0.139,0.211L10,15.629l-3.339-5.061c-0.068-0.095-0.132-0.193-0.203-0.309l-0.051-0.078c-0.009-0.031-0.021-0.061-0.038-0.089C6.026,9.458,5.852,8.796,5.852,8.127c0-2.287,1.861-4.148,4.147-4.148c2.288,0,4.149,1.861,4.149,4.148C14.148,8.823,13.963,9.503,13.596,10.152z",
-            fillColor: "#000",
-            fillOpacity: 1,
-            strokeWeight: 0,
-            rotation: 0,
-            scale: 2,
-            anchor: new window.google.maps.Point(10.5, 18),
-          },
-          "Current location",
-          mapWrapper
-        ),
-      ]);
-
-      directionsRenderer.setMap(mapWrapper);
-
-      if (mapWrapper) {
-        placesService = new google.maps.places.PlacesService(mapWrapper);
-      }
-    }
-  }, [ref, mapWrapper]);
-
-  const clearMarkers = () => {
-    // remove previous markers
-    if (markers.length) {
-      markers.forEach((m) => {
-        m.setMap(null);
-      });
-
-      setMarkers([]);
-    }
-  };
-
-  useEffect(() => {
-    if (removeMarkers) {
-      if (markers.length) {
-        markers.forEach((m) => {
-          m.setMap(null);
-        });
-
-        setMarkers([]);
-      }
-    }
-
-    return () => {};
-  }, [removeMarkers, markers]);
-
-  useEffect(() => {
-    console.log("map directions");
-    if (directions) {
-      directionsRenderer.setDirections(directions);
-      let leg = directions.routes[0].legs[0];
-
-      // remove previous markers
-      clearMarkers();
-      // if (markers.length) {
-      //   markers.forEach((m) => {
-      //     m.setMap(null);
-      //   });
-
-      //   setMarkers([]);
-      // }
-
-      let newMarkers = [];
-      newMarkers.push(
-        makeMarker(
-          leg.start_location,
-          {
-            path: "M10.001,6.54c-0.793,0-1.438,0.645-1.438,1.438c0,0.792,0.645,1.435,1.438,1.435c0.791,0,1.435-0.644,1.435-1.435C11.437,7.184,10.792,6.54,10.001,6.54z M10.001,8.454c-0.264,0-0.479-0.213-0.479-0.476c0-0.265,0.215-0.479,0.479-0.479c0.263,0,0.477,0.214,0.477,0.479C10.478,8.241,10.265,8.454,10.001,8.454z, M10,3.021c-2.815,0-5.106,2.291-5.106,5.106c0,0.781,0.188,1.549,0.562,2.282c0.011,0.062,0.036,0.12,0.07,0.174l0.125,0.188c0.074,0.123,0.151,0.242,0.225,0.341l3.727,5.65c0.088,0.135,0.238,0.215,0.399,0.215c0.161,0,0.311-0.08,0.4-0.215l3.752-5.68c0.057-0.08,0.107-0.159,0.153-0.232l0.132-0.199c0.033-0.05,0.054-0.104,0.064-0.159c0.401-0.757,0.605-1.551,0.605-2.366C15.107,5.312,12.815,3.021,10,3.021z M13.596,10.152c-0.017,0.03-0.029,0.062-0.039,0.095l-0.056,0.084c-0.043,0.066-0.085,0.133-0.139,0.211L10,15.629l-3.339-5.061c-0.068-0.095-0.132-0.193-0.203-0.309l-0.051-0.078c-0.009-0.031-0.021-0.061-0.038-0.089C6.026,9.458,5.852,8.796,5.852,8.127c0-2.287,1.861-4.148,4.147-4.148c2.288,0,4.149,1.861,4.149,4.148C14.148,8.823,13.963,9.503,13.596,10.152z",
-            fillColor: "#000",
-            fillOpacity: 1,
-            strokeWeight: 0,
-            rotation: 0,
-            scale: 2,
-            anchor: new window.google.maps.Point(10.5, 18),
-          },
-          leg.start_address,
-          mapWrapper
-        )
-      );
-      newMarkers.push(
-        makeMarker(
-          leg.end_location,
-          {
-            path: "M 16.335938 3.917969 L 13.707031 3.917969 L 13.707031 2.882812 C 13.707031 2.082031 13.058594 1.433594 12.257812 1.433594 L 6.324219 1.433594 L 6.324219 1.113281 C 6.324219 0.5 5.824219 0 5.210938 0 C 4.59375 0 4.097656 0.5 4.097656 1.113281 L 4.097656 17.453125 L 3.488281 17.453125 C 2.78125 17.453125 2.210938 18.023438 2.210938 18.726562 C 2.210938 19.429688 2.78125 20 3.488281 20 L 6.933594 20 C 7.640625 20 8.210938 19.429688 8.210938 18.726562 C 8.210938 18.023438 7.640625 17.453125 6.933594 17.453125 L 6.324219 17.453125 L 6.324219 9.449219 L 11.121094 9.449219 L 11.121094 10.480469 C 11.121094 11.285156 11.769531 11.933594 12.570312 11.933594 L 16.335938 11.933594 C 17.136719 11.933594 17.789062 11.285156 17.789062 10.480469 L 17.789062 5.367188 C 17.789062 4.566406 17.136719 3.917969 16.335938 3.917969 Z M 16.335938 3.917969",
-            fillColor: "#000",
-            fillOpacity: 1,
-            strokeWeight: 0,
-            rotation: 0,
-            scale: 1.5,
-            anchor: new window.google.maps.Point(5.5, 20),
-          },
-          leg.end_address,
-          mapWrapper
-        )
-      );
-
-      setMarkers(newMarkers);
-
-      directionsRenderer.setOptions({
-        polylineOptions: {
-          strokeColor: "#222",
-        },
-      });
-
-      directionsRenderer.setMap(mapWrapper);
-    }
-  }, [directions]);
-
-  useEffect(() => {
-    console.log("driver location map");
-
-    directionsRenderer.setDirections({ routes: [] });
-    if (state && state.driverLocation) {
-      const reverseGeocoding = async () => {
-        const data = await geocoderService
-          .geocode({
-            location: {
-              lat: state.driverLocation.lat,
-              lng: state.driverLocation.lng,
-            },
-          })
-          .then((response: any) => {
-            if (response.results[0]) {
-              directionsRenderer.setDirections({ routes: [] });
-
-              directionsService
-                .route({
-                  origin: {
-                    query: response.results[0].formatted_address,
-                  },
-                  destination: {
-                    query: state.pickUpLocation,
-                  },
-                  travelMode: google.maps.TravelMode.DRIVING,
-                })
-                .then((response: any) => {
-                  console.log(22222, response);
-                  directionsRenderer.setOptions({
-                    polylineOptions: {
-                      strokeColor: "#222",
-                    },
-                  });
-                  directionsRenderer.setDirections(response);
-
-                  clearMarkers();
-
-                  let newMarkers = [];
-                  newMarkers.push(
-                    new window.google.maps.Marker({
-                      position: {
-                        lat: state.driverLocation.lat,
-                        lng: state.driverLocation.lng,
-                      },
-                      map: mapWrapper,
-                      icon: TAXI.src,
-                      title: "driver location",
-                      animation: google.maps.Animation.BOUNCE,
-                    })
-                  );
-
-                  newMarkers.push(
-                    makeMarker(
-                      {
-                        lat: state.startLocationLat,
-                        lng: state.startLocationLng,
-                      },
-                      {
-                        path: "M10.001,6.54c-0.793,0-1.438,0.645-1.438,1.438c0,0.792,0.645,1.435,1.438,1.435c0.791,0,1.435-0.644,1.435-1.435C11.437,7.184,10.792,6.54,10.001,6.54z M10.001,8.454c-0.264,0-0.479-0.213-0.479-0.476c0-0.265,0.215-0.479,0.479-0.479c0.263,0,0.477,0.214,0.477,0.479C10.478,8.241,10.265,8.454,10.001,8.454z, M10,3.021c-2.815,0-5.106,2.291-5.106,5.106c0,0.781,0.188,1.549,0.562,2.282c0.011,0.062,0.036,0.12,0.07,0.174l0.125,0.188c0.074,0.123,0.151,0.242,0.225,0.341l3.727,5.65c0.088,0.135,0.238,0.215,0.399,0.215c0.161,0,0.311-0.08,0.4-0.215l3.752-5.68c0.057-0.08,0.107-0.159,0.153-0.232l0.132-0.199c0.033-0.05,0.054-0.104,0.064-0.159c0.401-0.757,0.605-1.551,0.605-2.366C15.107,5.312,12.815,3.021,10,3.021z M13.596,10.152c-0.017,0.03-0.029,0.062-0.039,0.095l-0.056,0.084c-0.043,0.066-0.085,0.133-0.139,0.211L10,15.629l-3.339-5.061c-0.068-0.095-0.132-0.193-0.203-0.309l-0.051-0.078c-0.009-0.031-0.021-0.061-0.038-0.089C6.026,9.458,5.852,8.796,5.852,8.127c0-2.287,1.861-4.148,4.147-4.148c2.288,0,4.149,1.861,4.149,4.148C14.148,8.823,13.963,9.503,13.596,10.152z",
-                        fillColor: "#000",
-                        fillOpacity: 1,
-                        strokeWeight: 0,
-                        rotation: 0,
-                        scale: 2,
-                        anchor: new window.google.maps.Point(10.5, 18),
-                      },
-                      state.pickUpLocation,
-                      mapWrapper
-                    )
-                  );
-
-                  setMarkers(newMarkers);
-
-                  directionsRenderer.setMap(mapWrapper);
-                });
-            }
-          })
-          .catch((e: any) => console.log("Geocoder failed due to: " + e));
-      };
-
-      reverseGeocoding();
-    }
-  }, [driverLocation]);
-
-  return (
-    <>
-      <div ref={ref} id="map" />
-      {React.Children.map(children, (child) => {
-        if (React.isValidElement(child)) {
-          // set the map prop on the child component
-          return React.cloneElement(child, { ...mapWrapper });
-        }
-      })}
-    </>
-  );
-
-  // return <div ref={ref} id="map" />;
-}
 
 const render = (status: Status): any => {
   switch (status) {
@@ -356,39 +82,12 @@ const render = (status: Status): any => {
   }
 };
 
-// /.Google Maps Component
-
-// Marker
-const Marker: React.FC<google.maps.MarkerOptions> = (options) => {
-  const [marker, setMarker] = useState<google.maps.Marker>();
-
-  useEffect(() => {
-    console.log("markers");
-    if (!marker) {
-      setMarker(new google.maps.Marker());
-    }
-
-    // remove marker from map on unmount
-    return () => {
-      if (marker) {
-        marker.setMap(null);
-      }
-    };
-  }, [marker]);
-
-  useEffect(() => {
-    console.log("marker options");
-    if (marker) {
-      marker.setOptions(options);
-    }
-  }, [marker, options]);
-
-  return null;
-};
-// ./Marker
-
 export default function BookOnline() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const locationSearch = searchParams.get("location");
+  console.log("search", locationSearch);
 
   const { getItem, removeItem } = useStorage();
   const { setItem } = useStorage();
@@ -444,6 +143,7 @@ export default function BookOnline() {
   const [googleIsDefined, setGoogleIsDefined] = useState<boolean>(false);
   const [rideScheduled, setRideScheduled] = useState<boolean>(false);
   const [removeMarkers, setRemoveMarkers] = useState<boolean>(false);
+  const [displayHotSpots, setDisplayHotSpots] = useState<boolean>(false);
 
   useEffect(() => {
     console.log("set state");
@@ -471,6 +171,8 @@ export default function BookOnline() {
     setCurrentLocationAddress("");
     setError(null);
     toggleDrawer();
+    setDisplayHotSpots(true);
+    setLocationHandler("pickUp");
   };
 
   const toggleBlurLocation = () => () => {
@@ -485,6 +187,8 @@ export default function BookOnline() {
     setNearbyLocations([]);
     setError(null);
     toggleDrawer();
+    setDisplayHotSpots(true);
+    setLocationHandler("dropOff");
   };
   const toggleBlurDestination = () => () => {
     setError(null);
@@ -897,6 +601,7 @@ export default function BookOnline() {
   };
 
   const setPickUpLocationHandler = (value: string) => {
+    console.log("value", value);
     setRemoveMarkers(() => false);
     contextState.pickUpLocation = value;
     updateSession();
@@ -948,12 +653,18 @@ export default function BookOnline() {
     setPickUpLocation(() => "");
     contextState.pickUpLocation = "";
     updateSession();
+    setNearbyLocations([]);
+    setPredictions([]);
+    setDisplayHotSpots(false);
   };
 
   const handleClearDropOff = () => {
     setDropLocation(() => "");
     contextState.dropLocation = "";
     updateSession();
+    setNearbyLocations([]);
+    setPredictions([]);
+    setDisplayHotSpots(false);
   };
 
   const setSelectedCarHandler = (value: any) => {
@@ -1238,15 +949,18 @@ export default function BookOnline() {
     }
   }, [visited]);
 
+  const hotSpots =
+    locationSearch && locationDetails.taxi_locations[locationSearch]?.hotSpots;
+
   return (
-    <Container maxWidth={"lg"} sx={{ mt: 2 }}>
+    <Container maxWidth={"lg"} sx={{ py: 0 }}>
       <Grid container>
         <Grid
           item
           order={{ xs: 2, md: 1 }}
           xs={12}
           md={7}
-          sx={{ p: { xs: 0, md: 3 } }}
+          sx={{ py: { xs: 0, md: 0 }, px: { xs: 0, md: 3 } }}
         >
           <Box
             sx={{
@@ -1283,9 +997,9 @@ export default function BookOnline() {
             <Paper
               elevation={0}
               sx={{
-                width: { xs: "100%", md: "60%" },
-                padding: 2,
-                paddingTop: open ? 5 : 2,
+                width: { xs: "100%", md: "100%" },
+                // padding: 2,
+                // paddingTop: open ? 5 : 2,
               }}
             >
               {open && (
@@ -1326,6 +1040,7 @@ export default function BookOnline() {
                       Select pick up/drop off details
                     </Typography>
                   </Box> */}
+                  {!locationSearch && <TaxiLocations />}
                   <Typography
                     component="h1"
                     sx={{
@@ -1349,14 +1064,58 @@ export default function BookOnline() {
                       <Box
                         mt={1}
                         sx={{ width: "100%" }}
-                        className={
-                          focusLocation
-                            ? styles.onFocusStyles
-                            : styles.onBlurStyles
-                        }
+                        // className={
+                        //   focusLocation
+                        //     ? styles.onFocusStyles
+                        //     : styles.onBlurStyles
+                        // }
                       >
-                        <FormControl variant="filled" sx={{ width: "100%" }}>
-                          <Input
+                        <Box>
+                          <div className="flex flex-col space-y-4 relative px-2">
+                            <img
+                              src={"/assets/booking-flow/bottomArrow.svg"}
+                              alt="Bottom Pointing Arrow"
+                              className="z-10 h-[45px] w-[20px] absolute top-[37px] left-[15px]"
+                            />
+                            {/* Pickup Location Input */}
+                            <div className="relative flex items-center">
+                              {/* Square placeholder */}
+                              <div className="absolute left-[1px] flex items-center justify-center h-full w-6">
+                                <div className="w-3 h-3 bg-[#244284] ml-2 rounded-full"></div>
+                              </div>
+                              {/* Input field */}
+                              <input
+                                onFocus={toggleFocusLocation()}
+                                onBlur={toggleBlurLocation()}
+                                type="text"
+                                // value={pickupValue}
+                                // onChange={(e) =>
+                                //   handleChange(e, setPickupValue)
+                                // }
+                                value={pickUpLocation}
+                                onChange={(e) => {
+                                  setPickUpLocation(e.target.value);
+                                  getSuggestions(e, "pickUp");
+                                }}
+                                className={`pl-8 pr-8 py-3 border-2 rounded font-semibold focus:outline-none ${
+                                  pickUpLocation
+                                    ? "bg-gray-300"
+                                    : "bg-white border-blue-500"
+                                } w-full`}
+                                placeholder="Enter pick up location"
+                              />
+
+                              {/* Clear button */}
+                              <button
+                                // onClick={() => handleClear(setPickupValue)}
+                                onClick={handleClearPickup}
+                                className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-[#244284] text-white rounded-full w-[25px] h-[25px] flex items-center justify-center mr-2"
+                              >
+                                X
+                              </button>
+                            </div>
+                          </div>
+                          {/* <Input
                             sx={{ fontWeight: "bold" }}
                             id="pickUp"
                             value={pickUpLocation}
@@ -1418,92 +1177,163 @@ export default function BookOnline() {
                                 </IconButton>
                               </InputAdornment>
                             }
-                          />
-                        </FormControl>
+                          /> */}
+                        </Box>
                       </Box>
-                      <Box
-                        mt={1.5}
-                        sx={{ width: "100%" }}
-                        className={
-                          focusDestination
-                            ? styles.onFocusStyles
-                            : styles.onBlurStyles
-                        }
-                      >
-                        <FormControl variant="filled" sx={{ width: "100%" }}>
-                          <Input
-                            sx={{ fontWeight: "bold" }}
-                            id="dropOff"
-                            value={dropLocation}
-                            onChange={(e) => {
-                              setDropLocation(e.target.value);
-                              getSuggestions(e, "dropOff");
-                            }}
-                            disableUnderline={true}
-                            fullWidth={true}
-                            aria-describedby="dropOff"
-                            inputProps={{
-                              "aria-label": "weight",
-                            }}
-                            autoComplete="off"
-                            onFocus={toggleFocusDestination()}
-                            onBlur={toggleBlurDestination()}
-                            className={styles.inputContainer}
-                            placeholder="Enter dropoff location"
-                            startAdornment={
-                              <InputAdornment
-                                position="end"
-                                className={styles.square}
-                              >
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  width="10"
-                                  height="10"
-                                  viewBox="0 0 10 10"
-                                  fill="none"
-                                >
-                                  <rect
-                                    x="0.841797"
-                                    y="0.328369"
-                                    width="9.06088"
-                                    height="9.67164"
-                                    rx="1"
-                                    fill="black"
-                                  />
-                                  <rect
-                                    x="1.3418"
-                                    y="0.828369"
-                                    width="8.06088"
-                                    height="8.67164"
-                                    rx="0.5"
-                                    stroke="black"
-                                    stroke-opacity="0.6"
-                                  />
-                                </svg>
-                              </InputAdornment>
-                            }
-                            endAdornment={
-                              <InputAdornment
-                                position="end"
-                                className={styles.clearButton}
-                              >
-                                <IconButton
-                                  aria-label="clear input"
-                                  onClick={handleClearDropOff}
-                                  edge="end"
-                                >
-                                  {open && dropLocation && (
-                                    <CancelOutlinedIcon />
-                                  )}
-                                </IconButton>
-                              </InputAdornment>
-                            }
-                          />
-                        </FormControl>
+                      <Box sx={{ width: "100%" }}>
+                        <div className="flex flex-col space-y-4 relative px-2 my-4">
+                          {/* Pickup Location Input */}
+                          <div className="relative flex items-center">
+                            {/* Square placeholder */}
+                            <div className="absolute left-0 flex items-center justify-center h-full w-6">
+                              <div className="w-3 h-3 bg-[#244284] ml-2"></div>
+                            </div>
+                            {/* Input field */}
+                            <input
+                              onFocus={toggleFocusDestination()}
+                              onBlur={toggleBlurDestination()}
+                              type="text"
+                              // value={pickupValue}
+                              // onChange={(e) =>
+                              //   handleChange(e, setPickupValue)
+                              // }
+                              value={dropLocation}
+                              onChange={(e) => {
+                                setDropLocation(e.target.value);
+                                getSuggestions(e, "dropOff");
+                              }}
+                              className={`pl-8 pr-8 py-3 border-2 rounded font-semibold focus:outline-none ${
+                                dropLocation
+                                  ? "bg-gray-300"
+                                  : "bg-white border-blue-500"
+                              } w-full`}
+                              placeholder="Enter drop off location"
+                            />
+
+                            {/* Clear button */}
+                            <button
+                              // onClick={() => handleClear(setPickupValue)}
+                              onClick={handleClearDropOff}
+                              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-[#244284] text-white rounded-full w-[25px] h-[25px] flex items-center justify-center mr-2"
+                            >
+                              X
+                            </button>
+                          </div>
+                        </div>
                       </Box>
-                      <div className={`${styles.connectionLine} `}></div>
                     </Box>
                   </Box>
+                  <List
+                    sx={{
+                      width: "100%",
+                      // maxWidth: 360,
+                      bgcolor: "background.paper",
+                    }}
+                  >
+                    {currentLocationAddress &&
+                      currentLocationAddress != "unknown" && (
+                        <>
+                          <ListItem
+                            alignItems="flex-start"
+                            onClick={() =>
+                              setPickUpLocationHandler(currentLocationAddress)
+                            }
+                            key="currentLocation"
+                          >
+                            <ListItemAvatar>
+                              <MyLocationOutlinedIcon />
+                            </ListItemAvatar>
+                            <ListItemText
+                              primary={currentLocationAddress}
+                              secondary={
+                                <React.Fragment>
+                                  <Typography
+                                    sx={{ display: "inline" }}
+                                    component="span"
+                                    variant="body2"
+                                    color="text.primary"
+                                  >
+                                    Your current location
+                                  </Typography>
+                                </React.Fragment>
+                              }
+                            />
+                          </ListItem>
+                          <Divider variant="inset" component="li" />
+                        </>
+                      )}
+
+                    {currentLocationAddress &&
+                      currentLocationAddress == "unknown" && (
+                        <>
+                          <ListItem
+                            alignItems="flex-start"
+                            key="currentLocations"
+                          >
+                            <ListItemAvatar>
+                              <MyLocationOutlinedIcon />
+                            </ListItemAvatar>
+                            <ListItemText primary="Unknown address" />
+                          </ListItem>
+                          <Divider variant="inset" component="li" />
+                        </>
+                      )}
+
+                    {nearbyLocations.length > 0 &&
+                      nearbyLocations.map((location, index) => (
+                        <>
+                          <ListItem
+                            alignItems="flex-start"
+                            onClick={() =>
+                              setPickUpLocationHandler(location.name)
+                            }
+                            key={index}
+                          >
+                            <ListItemAvatar>
+                              <LocationOnRoundedIcon />
+                            </ListItemAvatar>
+                            <ListItemText primary={location.name} />
+                          </ListItem>
+                          <Divider variant="inset" component="li" />
+                        </>
+                      ))}
+
+                    {/* Populate suggestions */}
+                    {predictions.length > 0 &&
+                      !error &&
+                      predictions.map((prediction) => (
+                        <PredictionListItem
+                          key={`${prediction.place_id}-${Math.floor(
+                            Math.random() * 1000
+                          )}`}
+                          description={prediction.description}
+                          locationHandler={
+                            locationHandler === "pickUp"
+                              ? setPickUpLocationHandler
+                              : setDropOffLocationHandler
+                          }
+                        />
+                      ))}
+                    {displayHotSpots &&
+                      locationSearch &&
+                      hotSpots &&
+                      hotSpots.map((spot: any) => (
+                        <div
+                          className="cursor-pointer"
+                          onClick={() =>
+                            locationHandler === "pickUp"
+                              ? setPickUpLocationHandler(spot.destination_name)
+                              : setDropOffLocationHandler(spot.destination_name)
+                          }
+                        >
+                          <HotSpot
+                            destination_name={spot.destination_name}
+                            type={spot.type}
+                            locationHandler={locationHandler}
+                          />
+                        </div>
+                      ))}
+                  </List>
                   <Grid container spacing={1} mt={1} sx={{ minHeight: 50 }}>
                     <Grid item xs={6} md={6}>
                       <Box sx={{ position: "relative" }}>
@@ -1623,98 +1453,6 @@ export default function BookOnline() {
                       </Button>
                     </Box>
                   )}
-
-                  <List
-                    sx={{
-                      width: "100%",
-                      // maxWidth: 360,
-                      bgcolor: "background.paper",
-                    }}
-                  >
-                    {currentLocationAddress &&
-                      currentLocationAddress != "unknown" && (
-                        <>
-                          <ListItem
-                            alignItems="flex-start"
-                            onClick={() =>
-                              setPickUpLocationHandler(currentLocationAddress)
-                            }
-                            key="currentLocation"
-                          >
-                            <ListItemAvatar>
-                              <MyLocationOutlinedIcon />
-                            </ListItemAvatar>
-                            <ListItemText
-                              primary={currentLocationAddress}
-                              secondary={
-                                <React.Fragment>
-                                  <Typography
-                                    sx={{ display: "inline" }}
-                                    component="span"
-                                    variant="body2"
-                                    color="text.primary"
-                                  >
-                                    Your current location
-                                  </Typography>
-                                </React.Fragment>
-                              }
-                            />
-                          </ListItem>
-                          <Divider variant="inset" component="li" />
-                        </>
-                      )}
-
-                    {currentLocationAddress &&
-                      currentLocationAddress == "unknown" && (
-                        <>
-                          <ListItem
-                            alignItems="flex-start"
-                            key="currentLocations"
-                          >
-                            <ListItemAvatar>
-                              <MyLocationOutlinedIcon />
-                            </ListItemAvatar>
-                            <ListItemText primary="Unknown address" />
-                          </ListItem>
-                          <Divider variant="inset" component="li" />
-                        </>
-                      )}
-
-                    {nearbyLocations.length > 0 &&
-                      nearbyLocations.map((location, index) => (
-                        <>
-                          <ListItem
-                            alignItems="flex-start"
-                            onClick={() =>
-                              setPickUpLocationHandler(location.name)
-                            }
-                            key={index}
-                          >
-                            <ListItemAvatar>
-                              <LocationOnRoundedIcon />
-                            </ListItemAvatar>
-                            <ListItemText primary={location.name} />
-                          </ListItem>
-                          <Divider variant="inset" component="li" />
-                        </>
-                      ))}
-
-                    {predictions.length > 0 &&
-                      !error &&
-                      predictions.map((prediction) => (
-                        <PredictionListItem
-                          key={`${prediction.place_id}-${Math.floor(
-                            Math.random() * 1000
-                          )}`}
-                          description={prediction.description}
-                          locationHandler={
-                            locationHandler === "pickUp"
-                              ? setPickUpLocationHandler
-                              : setDropOffLocationHandler
-                          }
-                        />
-                      ))}
-                  </List>
                 </>
               )}
               {/* ./Step 1  */}

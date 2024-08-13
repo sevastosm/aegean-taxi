@@ -183,7 +183,6 @@ export const locationDetails: any = {
     },
     "mykonos-taxi-app": {
       alt_header: "Taxi Mykonos",
-
       location: "mykonos-taxi-app",
       prices: [
         {
@@ -411,10 +410,36 @@ export const locationDetails: any = {
           },
         ],
       },
+      mapUrl: "/assets/booking-flow/mykonos.svg",
+      hotSpots: [
+        {
+          destination_name: "Mykonos Port",
+          lon: "37,4674840576081",
+          lat: "25,3290599573301",
+          plus_code: "F87F+RQ Tourlos",
+          link: "F87F+RQ Tourlos",
+          type: "port",
+        },
+        {
+          destination_name: "Mykonos Airport",
+          lon: "37,4340965742842",
+          lat: "25,3459463785531",
+          plus_code: "C8MW+MC Mykonos",
+          link: "https://maps.app.goo.gl/VGwyBYQ7qRmKVBxFA",
+          type: "airport",
+        },
+        {
+          destination_name: "Mykonos Town",
+          lon: "37,4468956121048",
+          lat: "25,3284214504271",
+          plus_code: "C8WG+JR Μύκονος",
+          link: "https://maps.app.goo.gl/5TFyU93MMGaNM11A7",
+          type: "town",
+        },
+      ],
     },
     "santorini-taxi-app": {
       alt_header: "Taxi Santorini",
-
       location: "santorini-taxi-app",
       prices: [
         {
@@ -612,6 +637,33 @@ export const locationDetails: any = {
           },
         ],
       },
+      mapUrl: "/assets/booking-flow/santorini.svg",
+      hotSpots: [
+        {
+          destination_name: "Santorini Airport",
+          lon: "36,4006305062844",
+          lat: "25,478352933459",
+          plus_code: "CF2H+43 Φηρά",
+          link: "https://maps.app.goo.gl/Rt8ekALzvC1rQh5C6",
+          type: "airport",
+        },
+        {
+          destination_name: "Santorini Port",
+          lon: "36,3914312745408",
+          lat: "25,4364786477547",
+          plus_code: "9CPH+CP Όρμος Αθηνιός",
+          link: "https://maps.app.goo.gl/QtWKP3XYfK8NQVX39",
+          type: "port",
+        },
+        {
+          destination_name: "Fira",
+          lon: "36,4166807493567",
+          lat: "25,4324703882173",
+          plus_code: "",
+          link: "https://maps.app.goo.gl/TzR2kyWSKfupaBGN6",
+          type: "town",
+        },
+      ],
     },
     "corfu-taxi-app": {
       alt_header: "Taxi Corfu",
@@ -793,6 +845,33 @@ export const locationDetails: any = {
           },
         ],
       },
+      mapUrl: "/assets/booking-flow/corfu.svg",
+      hotSpots: [
+        {
+          destination_name: "Corfu Airport",
+          lon: "39,6075337997183",
+          lat: "19,9160168354716",
+          plus_code: "JW47+VX Κέρκυρα",
+          link: "https://maps.app.goo.gl/Ymiiqu4UuXRovV7P6",
+          type: "airport",
+        },
+        {
+          destination_name: "Corfu Port",
+          lon: "39,6297478727166",
+          lat: "19,9009631214371",
+          plus_code: "JWH2+JF Κέρκυρα",
+          link: "https://maps.app.goo.gl/HoTCqtzsmRTvNHzAA",
+          type: "port",
+        },
+        {
+          destination_name: "Corfu Old Town",
+          lon: "39,6250498894543",
+          lat: "19,9245158623195",
+          plus_code: "JWFF+Q2 Κέρκυρα",
+          link: "https://maps.app.goo.gl/Y48a3yNRcqGpM7gN8",
+          type: "town",
+        },
+      ],
     },
     "rhodes-taxi-app": {
       alt_header: "Taxi Rhodes",
@@ -971,10 +1050,36 @@ export const locationDetails: any = {
           },
         ],
       },
+      mapUrl: "/assets/booking-flow/rhodes.svg",
+      hotSpots: [
+        {
+          destination_name: "Rhodes Airport",
+          lon: "36,4027833075837",
+          lat: "28,0917991378926",
+          plus_code: "",
+          link: "https://maps.app.goo.gl/TzR2kyWSKfupaBGN6",
+          type: "airport",
+        },
+        {
+          destination_name: "Faliraki",
+          lon: "36,3347539207443",
+          lat: "28,2070949340207",
+          plus_code: "",
+          link: "https://maps.app.goo.gl/RfKABriRmKXDVfZK9",
+          type: "port",
+        },
+        {
+          destination_name: "Rhodes Old Town",
+          lon: "36,4365544268012",
+          lat: "27,2883723820902",
+          plus_code: "",
+          link: "https://maps.app.goo.gl/T7iCimxi4TRwB3gD6",
+          type: "town",
+        },
+      ],
     },
     "athens-taxi-app": {
       alt_header: "Taxi Athens",
-
       location: "athens-taxi-app",
       prices: [
         {
@@ -1135,6 +1240,33 @@ export const locationDetails: any = {
           },
         ],
       },
+      mapUrl: "/assets/booking-flow/athens.svg",
+      hotSpots: [
+        {
+          destination_name: "Athens Airport",
+          lon: "37,9365632313108",
+          lat: "23,949226899827",
+          plus_code: "WWPX+F6 Σπάτα",
+          link: "https://maps.app.goo.gl/DM3aXWyM9Lxi12qw8",
+          type: "airport",
+        },
+        {
+          destination_name: "Piraeus Port",
+          lon: "37,9485535360547",
+          lat: "23,6437104654842",
+          plus_code: "WJXR+6M Πειραιάς",
+          link: "https://maps.app.goo.gl/hBhdUG33MH4hb3z57",
+          type: "port",
+        },
+        {
+          destination_name: "Athens Center",
+          lon: "37,97552227",
+          lat: "23,7350624360681",
+          plus_code: "XPGP+62 Athens",
+          link: "https://maps.app.goo.gl/96WTtyMRYkBAk9i27",
+          type: "town",
+        },
+      ],
     },
 
     "milos-taxi-app": {
@@ -1336,6 +1468,33 @@ export const locationDetails: any = {
           },
         ],
       },
+      mapUrl: "/assets/booking-flow/milos.svg",
+      hotSpots: [
+        {
+          destination_name: "Milos Airport",
+          lon: "36,7001244211257",
+          lat: "24,474915177555",
+          plus_code: "24C8+Q3 Πάρος",
+          link: "https://maps.app.goo.gl/mXUTYR7BGJRsLbvu9",
+          type: "airport",
+        },
+        {
+          destination_name: "Milos Port",
+          lon: "36,7243440435284",
+          lat: "24,4449716218093",
+          plus_code: "PCFV+HW Αδάμας",
+          link: "https://maps.app.goo.gl/JWumBSkWourB9hhJ9",
+          type: "port",
+        },
+        {
+          destination_name: "Sarakiniko Beach",
+          lon: "36,7428389136067",
+          lat: "24,4586072695198",
+          plus_code: "PFV5+39 Μήλος",
+          link: "https://maps.app.goo.gl/3bo1f5G3Wa9x8jZk8",
+          type: "town",
+        },
+      ],
     },
 
     "bodrum-taxi-app": {
@@ -1920,6 +2079,33 @@ export const locationDetails: any = {
           },
         ],
       },
+      mapUrl: "/assets/booking-flow/paros.svg",
+      hotSpots: [
+        {
+          destination_name: "Paros Airport",
+          lon: "37,0222368520438",
+          lat: "25,1156991308547",
+          plus_code: "24C8+Q3 Πάρος",
+          link: "https://maps.app.goo.gl/mXUTYR7BGJRsLbvu9",
+          type: "airport",
+        },
+        {
+          destination_name: "Paros Port",
+          lon: "37,0872303776048",
+          lat: "25,1544271274778",
+          plus_code: "35P3+R7 Παροικιά",
+          link: "https://maps.app.goo.gl/5kPLFxRpHm27MKdY6",
+          type: "port",
+        },
+        {
+          destination_name: "Naoussa",
+          lon: "37,1234052653581",
+          lat: "25,239579996112",
+          plus_code: "",
+          link: "https://maps.app.goo.gl/hGkDq1hCJ4DNux4j9",
+          type: "town",
+        },
+      ],
     },
 
     "naxos-taxi-app": {
@@ -2111,6 +2297,7 @@ export const locationDetails: any = {
           },
         ],
       },
+      mapUrl: "/assets/booking-flow/naxos.svg",
     },
 
     "kos-taxi-app": {
@@ -2302,6 +2489,33 @@ export const locationDetails: any = {
           },
         ],
       },
+      mapUrl: "/assets/booking-flow/kos.svg",
+      hotSpots: [
+        {
+          destination_name: "Kos Airport",
+          lon: "36,8021547603956",
+          lat: "27,0844639020332",
+          plus_code: "R32R+G6 Αντιμάχεια",
+          link: "https://maps.app.goo.gl/p7mAmuTz9tyV11YV8",
+          type: "airport",
+        },
+        {
+          destination_name: "Mastichari Port",
+          lon: "36,8527590789275",
+          lat: "27,0765296334444",
+          plus_code: "V32G+WJ Μαστιχάρι",
+          link: "https://maps.app.goo.gl/xMEi8hjihmmtQYj39",
+          type: "port",
+        },
+        {
+          destination_name: "Kos Town",
+          lon: "36,8921698207074",
+          lat: "27,2883723820902",
+          plus_code: "",
+          link: "https://maps.app.goo.gl/T7iCimxi4TRwB3gD6",
+          type: "town",
+        },
+      ],
     },
 
     "heraklion-taxi-app": {
@@ -2493,6 +2707,7 @@ export const locationDetails: any = {
           },
         ],
       },
+      mapUrl: "/assets/booking-flow/crete.svg",
     },
 
     "chalkidiki-taxi-app": {
@@ -2882,6 +3097,7 @@ export const locationDetails: any = {
           },
         ],
       },
+      mapUrl: "/assets/booking-flow/kea.svg",
     },
 
     "kefalonia-taxi-app": {
