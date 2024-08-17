@@ -32,15 +32,6 @@ const CarList = ({
     !contextState.searchingForDriver &&
     selectCarStep && (
       <>
-        <Box mt={0}>
-          {/* <Typography align="center" variant="body1">
-        Select car category
-      </Typography> */}
-          <Typography variant="body2">
-            Estimated journey time: {directions.routes[0].legs[0].duration.text}
-          </Typography>
-        </Box>
-
         <CarOptions
           cars={availableCars}
           carSelectHandler={setSelectedCarHandler}
@@ -49,25 +40,16 @@ const CarList = ({
         {console.log("selectedCar", contextState.selectedCar)}
 
         {car && (
-          <Box mt={3}>
-            <Button
-              variant="contained"
+          <div className="flex items-end justify-center px-4 my-4">
+            <button
               onClick={authorizeUser}
-              size="large"
-              fullWidth={true}
-              disabled={!car}
-              //(
-              //     !selectedCar && contextState.userVerified
-              //   ) ||
-              //   (contextState.selectedCarConfirmed &&
-              //     contextState.userVerified)
-              // }
+              className="w-full bg-[#264388] text-white font-semibold text-xl py-4 rounded-md"
             >
               {car
                 ? `Confirm ${car.name ? car.name : car.vehicleType}`
                 : `Confirm`}
-            </Button>
-          </Box>
+            </button>
+          </div>
         )}
 
         {/* <Box mt={3}>

@@ -71,6 +71,8 @@ import NavBack from "./NavBack";
 import BookActions from "./BookActions";
 import Places from "./Places";
 import CarList from "./CarList";
+import SelectTaxi from "./SelectTaxi";
+import Calendars from "./Calendars";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -970,30 +972,32 @@ export default function BookOnline() {
     </div>
   ) : (
     <div className="flex md:gap-20 flex-col md:flex-row min-h-screen max-w-[1200px] m-auto">
-      <div className="w-full h-[300px] relative order-0 md:order-1">
-        <Wrapper
-          apiKey={`${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
-          libraries={["places"]}
-          render={render}
-          callback={intitializeMap}
-        >
-          {!initMap && (
-            <GoogleMapComponent
-              center={center}
-              zoom={zoom}
-              currentLocation={currentLocation}
-              directionsService={directionsService}
-              directionsRenderer={directionsRenderer}
-              placesService={placesService}
-              geocoderService={geocoderService}
-              directions={directions}
-              driverLocation={driverLocation}
-              state={contextState}
-              removeMarkers={removeMarkers}
-            />
-          )}
-        </Wrapper>
-      </div>
+      {!open && (
+        <div className="w-full h-[300px] relative order-0 md:order-1">
+          <Wrapper
+            apiKey={`${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
+            libraries={["places"]}
+            render={render}
+            callback={intitializeMap}
+          >
+            {!initMap && (
+              <GoogleMapComponent
+                center={center}
+                zoom={zoom}
+                currentLocation={currentLocation}
+                directionsService={directionsService}
+                directionsRenderer={directionsRenderer}
+                placesService={placesService}
+                geocoderService={geocoderService}
+                directions={directions}
+                driverLocation={driverLocation}
+                state={contextState}
+                removeMarkers={removeMarkers}
+              />
+            )}
+          </Wrapper>
+        </div>
+      )}
       <div className="px-4 w-full md:w-[50%]">
         <div className="absolute my-4 left-0 top-0">
           <NavBack />
@@ -1042,24 +1046,42 @@ export default function BookOnline() {
             />
           )}
           {selectedPickUp && selectedDropOff && (
-            <BookActions nextButtonHandler={nextButtonHandler} />
-          )}
-          {selectedPickUp && selectedDropOff && (
-            <CarList
-              directions={directions}
-              predictions={predictions}
-              error={error}
-              orderDetails={orderDetails}
-              contextState={contextState}
-              selectCarStep={selectCarStep}
-              availableCars={availableCars}
-              setSelectedCarHandler={setSelectedCarHandler}
-              authorizeUser={authorizeUser}
-              selectedCar={selectedCar}
+            <BookActions
+              nextButtonHandler={nextButtonHandler}
+              calendars={
+                <Calendars
+                  setOpenTimePicker={setOpenTimePicker}
+                  setOpenDayPicker={setOpenDayPicker}
+                  pickUpDate={pickUpDate}
+                  openDayPicker={openDayPicker}
+                  setPickUpDateHandler={setPickUpDateHandler}
+                  pickUpTime={pickUpTime}
+                  openTimePicker={openTimePicker}
+                  setPickUpTimeHandler={setPickUpTimeHandler}
+                />
+              }
             />
+          )}
+          {selectedPickUp && selectedDropOff && selectCarStep && (
+            <>
+              <CarList
+                directions={directions}
+                predictions={predictions}
+                error={error}
+                orderDetails={orderDetails}
+                contextState={contextState}
+                selectCarStep={selectCarStep}
+                availableCars={availableCars}
+                setSelectedCarHandler={setSelectedCarHandler}
+                authorizeUser={authorizeUser}
+                selectedCar={selectedCar}
+              />
+              {/* <SelectTaxi /> */}
+            </>
           )}
         </div>
       </div>
+
       <div className="hidden">
         <Container maxWidth={"lg"} sx={{ py: 0 }}>
           <Grid container>
