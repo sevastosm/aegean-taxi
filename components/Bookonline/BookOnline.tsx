@@ -40,6 +40,7 @@ import Typography from "@mui/material/Typography";
 import { DigitalClock } from "@mui/x-date-pickers/DigitalClock";
 
 // Styles
+// @ts-ignore
 import styles from "@/components/requestRideForm/form.module.scss";
 
 // Google Maps
@@ -65,6 +66,11 @@ import { GoogleMapComponent } from "./GoogleMap";
 import TaxiLocations from "../TaxiLocations";
 import { locationDetails } from "@/utils/locationDetails";
 import HotSpot from "./HotSpot";
+import LocationSearch from "./LocationSearch";
+import NavBack from "./NavBack";
+import BookActions from "./BookActions";
+import Places from "./Places";
+import CarList from "./CarList";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -144,6 +150,8 @@ export default function BookOnline() {
   const [rideScheduled, setRideScheduled] = useState<boolean>(false);
   const [removeMarkers, setRemoveMarkers] = useState<boolean>(false);
   const [displayHotSpots, setDisplayHotSpots] = useState<boolean>(false);
+  const [selectedPickUp, setSelectedPickUp] = useState<string>("");
+  const [selectedDropOff, setSelectedDropOff] = useState<string>("");
 
   useEffect(() => {
     console.log("set state");
@@ -606,6 +614,7 @@ export default function BookOnline() {
     contextState.pickUpLocation = value;
     updateSession();
     setPickUpLocation(() => value);
+    setSelectedPickUp(value);
     updateSession();
     setTriggerCalculate(true);
     setNearbyLocations([]);
@@ -617,6 +626,7 @@ export default function BookOnline() {
     contextState.dropLocation = value;
     updateSession();
     setDropLocation(() => value);
+    setSelectedDropOff(value);
     setTriggerCalculate(true);
     setNearbyLocations([]);
     setPredictions([]);
@@ -651,6 +661,7 @@ export default function BookOnline() {
 
   const handleClearPickup = () => {
     setPickUpLocation(() => "");
+    setSelectedPickUp("");
     contextState.pickUpLocation = "";
     updateSession();
     setNearbyLocations([]);
@@ -660,6 +671,7 @@ export default function BookOnline() {
 
   const handleClearDropOff = () => {
     setDropLocation(() => "");
+    setSelectedDropOff("");
     contextState.dropLocation = "";
     updateSession();
     setNearbyLocations([]);
@@ -952,76 +964,172 @@ export default function BookOnline() {
   const hotSpots =
     locationSearch && locationDetails.taxi_locations[locationSearch]?.hotSpots;
 
-  return (
-    <Container maxWidth={"lg"} sx={{ py: 0 }}>
-      <Grid container>
-        <Grid
-          item
-          order={{ xs: 2, md: 1 }}
-          xs={12}
-          md={7}
-          sx={{ py: { xs: 0, md: 0 }, px: { xs: 0, md: 3 } }}
+  return !locationSearch ? (
+    <div className="px-4">
+      <TaxiLocations />
+    </div>
+  ) : (
+    <div className="flex md:gap-20 flex-col md:flex-row min-h-screen max-w-[1200px] m-auto">
+      <div className="w-full h-[300px] relative order-0 md:order-1">
+        <Wrapper
+          apiKey={`${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
+          libraries={["places"]}
+          render={render}
+          callback={intitializeMap}
         >
-          <Box
+          {!initMap && (
+            <GoogleMapComponent
+              center={center}
+              zoom={zoom}
+              currentLocation={currentLocation}
+              directionsService={directionsService}
+              directionsRenderer={directionsRenderer}
+              placesService={placesService}
+              geocoderService={geocoderService}
+              directions={directions}
+              driverLocation={driverLocation}
+              state={contextState}
+              removeMarkers={removeMarkers}
+            />
+          )}
+        </Wrapper>
+      </div>
+      <div className="px-4 w-full md:w-[50%]">
+        <div className="absolute my-4 left-0 top-0">
+          <NavBack />
+        </div>
+        <div className="pt-4">
+          <Typography
+            component="h1"
             sx={{
-              display: "flex",
-              justifyContent: "center",
-              minHeight: { xs: "104vh", md: "initial" },
-              position: {
-                xs: `${open ? "absolute" : "relative"}`,
-                md: "initial",
-              },
-              width: { xs: `${open ? "100%" : "initial"}`, md: "initial" },
-              zIndex: 99999,
-              margin: { xs: "-15px", md: "initial" },
-              top: open ? "0" : "0vh",
+              fontWeight: "bold",
+              fontSize: 30,
+              textAlign: "center",
             }}
           >
-            {/* Puller  */}
-            <Box
-              onClick={toggleDrawer()}
-              sx={{
-                width: 50,
-                height: 4,
-                backgroundColor: "#ddd",
-                borderRadius: 3,
-                position: "absolute",
-                top: "10px",
-                left: "calc(50% - 25px)",
-                display: { xs: "block", md: "none" },
-              }}
-            ></Box>
-            {/* Puller  */}
-
-            {/* FORM */}
-            <Paper
-              elevation={0}
-              sx={{
-                width: { xs: "100%", md: "100%" },
-                // padding: 2,
-                // paddingTop: open ? 5 : 2,
-              }}
+            Book a taxi online now
+          </Typography>
+        </div>
+        <div className="flex flex-col gap-4 ">
+          <LocationSearch
+            toggleFocusLocation={toggleFocusLocation}
+            toggleBlurLocation={toggleBlurLocation}
+            pickUpLocation={pickUpLocation}
+            setPickUpLocation={setPickUpLocation}
+            getSuggestions={getSuggestions}
+            handleClearPickup={handleClearPickup}
+            toggleFocusDestination={toggleFocusDestination}
+            toggleBlurDestination={toggleBlurDestination}
+            dropLocation={dropLocation}
+            setDropLocation={setDropLocation}
+            handleClearDropOff={handleClearDropOff}
+            selectedPickUp={selectedPickUp}
+            selectedDropOff={selectedDropOff}
+          />
+          {!orderDetails && !contextState.searchingForDriver && (
+            <Places
+              currentLocationAddress={currentLocationAddress}
+              setPickUpLocationHandler={setPickUpLocationHandler}
+              nearbyLocations={nearbyLocations}
+              predictions={predictions}
+              displayHotSpots={displayHotSpots}
+              locationSearch={locationSearch}
+              locationHandler={locationHandler}
+              hotSpots={hotSpots}
+              setDropOffLocationHandler={setDropOffLocationHandler}
+              selectedPickUp={selectedPickUp}
+              selectedDropOff={selectedDropOff}
+            />
+          )}
+          {selectedPickUp && selectedDropOff && (
+            <BookActions nextButtonHandler={nextButtonHandler} />
+          )}
+          {selectedPickUp && selectedDropOff && (
+            <CarList
+              directions={directions}
+              predictions={predictions}
+              error={error}
+              orderDetails={orderDetails}
+              contextState={contextState}
+              selectCarStep={selectCarStep}
+              availableCars={availableCars}
+              setSelectedCarHandler={setSelectedCarHandler}
+              authorizeUser={authorizeUser}
+              selectedCar={selectedCar}
+            />
+          )}
+        </div>
+      </div>
+      <div className="hidden">
+        <Container maxWidth={"lg"} sx={{ py: 0 }}>
+          <Grid container>
+            <Grid
+              item
+              order={{ xs: 2, md: 1 }}
+              xs={12}
+              md={7}
+              sx={{ py: { xs: 0, md: 0 }, px: { xs: 0, md: 3 } }}
             >
-              {open && (
-                <Icon
-                  fontSize="large"
-                  className={styles.downArrow}
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  minHeight: { xs: "104vh", md: "initial" },
+                  position: {
+                    xs: `${open ? "absolute" : "relative"}`,
+                    md: "initial",
+                  },
+                  left: "0px",
+                  width: { xs: `${open ? "100%" : "initial"}`, md: "initial" },
+                  zIndex: 99999,
+                  // margin: { xs: "-15px", md: "initial" },
+                  top: open ? "0" : "0vh",
+                }}
+              >
+                {/* Puller  */}
+                <Box
+                  onClick={toggleDrawer()}
                   sx={{
-                    display: { xs: "initial", md: "none" },
+                    width: 50,
+                    height: 4,
+                    backgroundColor: "#ddd",
+                    borderRadius: 3,
                     position: "absolute",
-                    top: "5px",
-                    right: "5px",
+                    top: "10px",
+                    display: { xs: "block", md: "none" },
+                  }}
+                />
+                {/* Puller  */}
+
+                {/* FORM */}
+                <Paper
+                  elevation={0}
+                  sx={{
+                    width: { xs: "100%", md: "100%" },
+                    // padding: 2,
+                    // paddingTop: open ? 5 : 2,
                   }}
                 >
-                  <KeyboardArrowDownOutlinedIcon onClick={toggleDrawer()} />
-                </Icon>
-              )}
-              {/* Step 1 - Select route  */}
-              {/* {(!directions || !selectCarStep || predictions.length > 0) &&
+                  {open && (
+                    <Icon
+                      fontSize="large"
+                      className={styles.downArrow}
+                      sx={{
+                        display: { xs: "initial", md: "none" },
+                        position: "absolute",
+                        top: "-16px",
+                        right: "17px",
+                      }}
+                    >
+                      <KeyboardArrowDownOutlinedIcon onClick={toggleDrawer()} />
+                    </Icon>
+                  )}
+                  {/* Step 1 - Select route  */}
+                  {/* {(!directions || !selectCarStep || predictions.length > 0) &&
                 !orderDetails && ( */}
-              {!orderDetails && !contextState.searchingForDriver && (
-                <>
-                  {/* <Box
+                  {!orderDetails && !contextState.searchingForDriver && (
+                    <>
+                      {/* <Box
                     sx={{
                       display: { xs: "none", md: "flex" },
                       alignItems: { xs: "center", md: "start" },
@@ -1040,365 +1148,105 @@ export default function BookOnline() {
                       Select pick up/drop off details
                     </Typography>
                   </Box> */}
-                  {!locationSearch && <TaxiLocations />}
-                  <Typography
-                    component="h1"
-                    sx={{
-                      display: `${open ? "none" : "block"}`,
-                      fontWeight: "bold",
-                      fontSize: 30,
-                      textAlign: "center",
-                    }}
-                  >
-                    Book a taxi online now
-                  </Typography>
+                      <div className="pt-4">
+                        <Typography
+                          component="h1"
+                          sx={{
+                            display: `${open ? "none" : "block"}`,
+                            fontWeight: "bold",
+                            fontSize: 30,
+                            textAlign: "center",
+                          }}
+                        >
+                          Book a taxi online now
+                        </Typography>
+                      </div>
 
-                  <Box sx={{ position: "relative" }}>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        flexDirection: "column",
-                      }}
-                    >
-                      <Box
-                        mt={1}
-                        sx={{ width: "100%" }}
-                        // className={
-                        //   focusLocation
-                        //     ? styles.onFocusStyles
-                        //     : styles.onBlurStyles
-                        // }
-                      >
-                        <Box>
-                          <div className="flex flex-col space-y-4 relative px-2">
-                            <img
-                              src={"/assets/booking-flow/bottomArrow.svg"}
-                              alt="Bottom Pointing Arrow"
-                              className="z-10 h-[45px] w-[20px] absolute top-[37px] left-[15px]"
-                            />
-                            {/* Pickup Location Input */}
-                            <div className="relative flex items-center">
-                              {/* Square placeholder */}
-                              <div className="absolute left-[1px] flex items-center justify-center h-full w-6">
-                                <div className="w-3 h-3 bg-[#244284] ml-2 rounded-full"></div>
-                              </div>
-                              {/* Input field */}
-                              <input
-                                onFocus={toggleFocusLocation()}
-                                onBlur={toggleBlurLocation()}
-                                type="text"
-                                // value={pickupValue}
-                                // onChange={(e) =>
-                                //   handleChange(e, setPickupValue)
-                                // }
-                                value={pickUpLocation}
-                                onChange={(e) => {
-                                  setPickUpLocation(e.target.value);
-                                  getSuggestions(e, "pickUp");
-                                }}
-                                className={`pl-8 pr-8 py-3 border-2 rounded font-semibold focus:outline-none ${
-                                  pickUpLocation
-                                    ? "bg-gray-300"
-                                    : "bg-white border-blue-500"
-                                } w-full`}
-                                placeholder="Enter pick up location"
-                              />
-
-                              {/* Clear button */}
-                              <button
-                                // onClick={() => handleClear(setPickupValue)}
-                                onClick={handleClearPickup}
-                                className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-[#244284] text-white rounded-full w-[25px] h-[25px] flex items-center justify-center mr-2"
-                              >
-                                X
-                              </button>
-                            </div>
-                          </div>
-                          {/* <Input
-                            sx={{ fontWeight: "bold" }}
-                            id="pickUp"
-                            value={pickUpLocation}
-                            onChange={(e) => {
-                              setPickUpLocation(e.target.value);
-                              getSuggestions(e, "pickUp");
-                            }}
-                            disableUnderline={true}
-                            fullWidth={true}
-                            aria-describedby="pickUp"
-                            inputProps={{
-                              "aria-label": "weight",
-                            }}
-                            autoComplete="off"
-                            onFocus={toggleFocusLocation()}
-                            onBlur={toggleBlurLocation()}
-                            className={styles.inputContainer}
-                            placeholder="Enter pickup location"
-                            startAdornment={
-                              <InputAdornment
-                                position="end"
-                                className={styles.square}
-                              >
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  width="10"
-                                  height="10"
-                                  viewBox="0 0 10 10"
-                                  fill="none"
-                                >
-                                  <ellipse
-                                    cx="5.37223"
-                                    cy="4.83582"
-                                    rx="4.53044"
-                                    ry="4.83582"
-                                    fill="black"
-                                  />
-                                  <path
-                                    d="M9.40267 4.83582C9.40267 7.26165 7.56796 9.17164 5.37223 9.17164C3.17651 9.17164 1.3418 7.26165 1.3418 4.83582C1.3418 2.40999 3.17651 0.5 5.37223 0.5C7.56796 0.5 9.40267 2.40999 9.40267 4.83582Z"
-                                    stroke="black"
-                                    stroke-opacity="0.6"
-                                  />
-                                </svg>
-                              </InputAdornment>
-                            }
-                            endAdornment={
-                              <InputAdornment
-                                position="end"
-                                className={styles.clearButton}
-                              >
-                                <IconButton
-                                  aria-label="clear input"
-                                  onClick={handleClearPickup}
-                                  edge="end"
-                                >
-                                  {open && pickUpLocation && (
-                                    <CancelOutlinedIcon />
-                                  )}
-                                </IconButton>
-                              </InputAdornment>
-                            }
-                          /> */}
-                        </Box>
-                      </Box>
-                      <Box sx={{ width: "100%" }}>
-                        <div className="flex flex-col space-y-4 relative px-2 my-4">
-                          {/* Pickup Location Input */}
-                          <div className="relative flex items-center">
-                            {/* Square placeholder */}
-                            <div className="absolute left-0 flex items-center justify-center h-full w-6">
-                              <div className="w-3 h-3 bg-[#244284] ml-2"></div>
-                            </div>
-                            {/* Input field */}
-                            <input
-                              onFocus={toggleFocusDestination()}
-                              onBlur={toggleBlurDestination()}
-                              type="text"
-                              // value={pickupValue}
-                              // onChange={(e) =>
-                              //   handleChange(e, setPickupValue)
-                              // }
-                              value={dropLocation}
-                              onChange={(e) => {
-                                setDropLocation(e.target.value);
-                                getSuggestions(e, "dropOff");
-                              }}
-                              className={`pl-8 pr-8 py-3 border-2 rounded font-semibold focus:outline-none ${
-                                dropLocation
-                                  ? "bg-gray-300"
-                                  : "bg-white border-blue-500"
-                              } w-full`}
-                              placeholder="Enter drop off location"
-                            />
-
-                            {/* Clear button */}
-                            <button
-                              // onClick={() => handleClear(setPickupValue)}
-                              onClick={handleClearDropOff}
-                              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-[#244284] text-white rounded-full w-[25px] h-[25px] flex items-center justify-center mr-2"
-                            >
-                              X
-                            </button>
-                          </div>
-                        </div>
-                      </Box>
-                    </Box>
-                  </Box>
-                  <List
-                    sx={{
-                      width: "100%",
-                      // maxWidth: 360,
-                      bgcolor: "background.paper",
-                    }}
-                  >
-                    {currentLocationAddress &&
-                      currentLocationAddress != "unknown" && (
-                        <>
-                          <ListItem
-                            alignItems="flex-start"
-                            onClick={() =>
-                              setPickUpLocationHandler(currentLocationAddress)
-                            }
-                            key="currentLocation"
-                          >
-                            <ListItemAvatar>
-                              <MyLocationOutlinedIcon />
-                            </ListItemAvatar>
-                            <ListItemText
-                              primary={currentLocationAddress}
-                              secondary={
-                                <React.Fragment>
-                                  <Typography
-                                    sx={{ display: "inline" }}
-                                    component="span"
-                                    variant="body2"
-                                    color="text.primary"
-                                  >
-                                    Your current location
-                                  </Typography>
-                                </React.Fragment>
-                              }
-                            />
-                          </ListItem>
-                          <Divider variant="inset" component="li" />
-                        </>
-                      )}
-
-                    {currentLocationAddress &&
-                      currentLocationAddress == "unknown" && (
-                        <>
-                          <ListItem
-                            alignItems="flex-start"
-                            key="currentLocations"
-                          >
-                            <ListItemAvatar>
-                              <MyLocationOutlinedIcon />
-                            </ListItemAvatar>
-                            <ListItemText primary="Unknown address" />
-                          </ListItem>
-                          <Divider variant="inset" component="li" />
-                        </>
-                      )}
-
-                    {nearbyLocations.length > 0 &&
-                      nearbyLocations.map((location, index) => (
-                        <>
-                          <ListItem
-                            alignItems="flex-start"
-                            onClick={() =>
-                              setPickUpLocationHandler(location.name)
-                            }
-                            key={index}
-                          >
-                            <ListItemAvatar>
-                              <LocationOnRoundedIcon />
-                            </ListItemAvatar>
-                            <ListItemText primary={location.name} />
-                          </ListItem>
-                          <Divider variant="inset" component="li" />
-                        </>
-                      ))}
-
-                    {/* Populate suggestions */}
-                    {predictions.length > 0 &&
-                      !error &&
-                      predictions.map((prediction) => (
-                        <PredictionListItem
-                          key={`${prediction.place_id}-${Math.floor(
-                            Math.random() * 1000
-                          )}`}
-                          description={prediction.description}
-                          locationHandler={
-                            locationHandler === "pickUp"
-                              ? setPickUpLocationHandler
-                              : setDropOffLocationHandler
-                          }
+                      <div className="flex-col">
+                        <LocationSearch
+                          toggleFocusLocation={toggleFocusLocation}
+                          toggleBlurLocation={toggleBlurLocation}
+                          pickUpLocation={pickUpLocation}
+                          setPickUpLocation={setPickUpLocation}
+                          getSuggestions={getSuggestions}
+                          handleClearPickup={handleClearPickup}
+                          toggleFocusDestination={toggleFocusDestination}
+                          toggleBlurDestination={toggleBlurDestination}
+                          dropLocation={dropLocation}
+                          setDropLocation={setDropLocation}
+                          handleClearDropOff={handleClearDropOff}
                         />
-                      ))}
-                    {displayHotSpots &&
-                      locationSearch &&
-                      hotSpots &&
-                      hotSpots.map((spot: any) => (
-                        <div
-                          className="cursor-pointer"
-                          onClick={() =>
-                            locationHandler === "pickUp"
-                              ? setPickUpLocationHandler(spot.destination_name)
-                              : setDropOffLocationHandler(spot.destination_name)
-                          }
-                        >
-                          <HotSpot
-                            destination_name={spot.destination_name}
-                            type={spot.type}
-                            locationHandler={locationHandler}
-                          />
-                        </div>
-                      ))}
-                  </List>
-                  <Grid container spacing={1} mt={1} sx={{ minHeight: 50 }}>
-                    <Grid item xs={6} md={6}>
-                      <Box sx={{ position: "relative" }}>
-                        <Button
-                          // startIcon={<EventSharpIcon />}
-                          variant="contained"
-                          size="large"
-                          fullWidth={true}
-                          onClick={() => {
-                            setOpenTimePicker(false);
-                            setOpenDayPicker(true);
-                          }}
-                          sx={{
-                            position: "absolute",
-                            zIndex: 999,
-                            background: "#EEEEEE !important",
-                            color: "#000",
-                            fontWeight: "bold",
-                          }}
-                        >
-                          <Box sx={{ fontWeight: "bold" }}>{pickUpDate}</Box>
-                        </Button>
+                      </div>
 
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                          <DatePicker
-                            label=""
-                            open={openDayPicker}
-                            disablePast={true}
-                            sx={{
-                              position: "absolute",
-                              zIndex: 0,
-                              fontWeight: "bold",
-                            }}
-                            onClose={() => setOpenDayPicker(false)}
-                            slotProps={{ textField: { size: "small" } }}
-                            onChange={(value: any) =>
-                              setPickUpDateHandler(value)
-                            }
-                          />
-                        </LocalizationProvider>
-                      </Box>
-                    </Grid>
-                    <Grid item xs={6} md={6}>
-                      <Box sx={{ position: "relative" }}>
-                        <Button
-                          variant="contained"
-                          // endIcon={<AccessTimeIcon />}
-                          size="large"
-                          fullWidth={true}
-                          onClick={() => {
-                            setOpenTimePicker(true);
-                          }}
-                          sx={{
-                            position: "absolute",
-                            zIndex: 999,
-                            background: "#EEEEEE !important",
-                            color: "#000",
-                            fontWeight: "bold",
-                          }}
-                        >
-                          <Box sx={{ fontWeight: "bold" }}>{pickUpTime}</Box>
-                        </Button>
+                      <Grid container spacing={1} mt={1} sx={{ minHeight: 50 }}>
+                        <Grid item xs={6} md={6}>
+                          <Box sx={{ position: "relative" }}>
+                            <Button
+                              // startIcon={<EventSharpIcon />}
+                              variant="contained"
+                              size="large"
+                              fullWidth={true}
+                              onClick={() => {
+                                setOpenTimePicker(false);
+                                setOpenDayPicker(true);
+                              }}
+                              sx={{
+                                position: "absolute",
+                                zIndex: 999,
+                                background: "#EEEEEE !important",
+                                color: "#000",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              <Box sx={{ fontWeight: "bold" }}>
+                                {pickUpDate}
+                              </Box>
+                            </Button>
 
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                          {/* <DesktopTimePicker
+                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                              <DatePicker
+                                label=""
+                                open={openDayPicker}
+                                disablePast={true}
+                                sx={{
+                                  position: "absolute",
+                                  zIndex: 0,
+                                  fontWeight: "bold",
+                                }}
+                                onClose={() => setOpenDayPicker(false)}
+                                slotProps={{ textField: { size: "small" } }}
+                                onChange={(value: any) =>
+                                  setPickUpDateHandler(value)
+                                }
+                              />
+                            </LocalizationProvider>
+                          </Box>
+                        </Grid>
+                        <Grid item xs={6} md={6}>
+                          <Box sx={{ position: "relative" }}>
+                            <Button
+                              variant="contained"
+                              // endIcon={<AccessTimeIcon />}
+                              size="large"
+                              fullWidth={true}
+                              onClick={() => {
+                                setOpenTimePicker(true);
+                              }}
+                              sx={{
+                                position: "absolute",
+                                zIndex: 999,
+                                background: "#EEEEEE !important",
+                                color: "#000",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              <Box sx={{ fontWeight: "bold" }}>
+                                {pickUpTime}
+                              </Box>
+                            </Button>
+
+                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                              {/* <DesktopTimePicker
                             defaultValue={dayjs()}
                             label=""
                             open={openTimePicker}
@@ -1413,98 +1261,98 @@ export default function BookOnline() {
                               setPickUpTimeHandler(value)
                             }
                           /> */}
-                          {openTimePicker && (
-                            <DigitalClock
-                              defaultValue={dayjs()}
-                              // label=""
-                              // open={openTimePicker}
-                              timeStep={5}
-                              disablePast={
-                                pickUpDate === "TODAY" ? true : false
-                              }
-                              skipDisabled={true}
-                              sx={{
-                                position: "absolute",
-                                zIndex: 99999,
-                                top: 45,
-                                background: "#fafafa",
-                              }}
-                              // onClose={() => setOpenTimePicker(false)}
+                              {openTimePicker && (
+                                <DigitalClock
+                                  defaultValue={dayjs()}
+                                  // label=""
+                                  // open={openTimePicker}
+                                  timeStep={5}
+                                  disablePast={
+                                    pickUpDate === "TODAY" ? true : false
+                                  }
+                                  skipDisabled={true}
+                                  sx={{
+                                    position: "absolute",
+                                    zIndex: 99999,
+                                    top: 45,
+                                    background: "#fafafa",
+                                  }}
+                                  // onClose={() => setOpenTimePicker(false)}
 
-                              onChange={(value: any) =>
-                                setPickUpTimeHandler(value)
-                              }
-                            />
-                          )}
-                        </LocalizationProvider>
-                      </Box>
-                    </Grid>
-                  </Grid>
+                                  onChange={(value: any) =>
+                                    setPickUpTimeHandler(value)
+                                  }
+                                />
+                              )}
+                            </LocalizationProvider>
+                          </Box>
+                        </Grid>
+                      </Grid>
 
-                  {!error && nextButton && (
-                    <Box mt={3}>
-                      <Button
-                        variant="contained"
-                        onClick={nextButtonHandler}
-                        size="large"
-                        fullWidth={true}
-                      >
-                        Next
-                      </Button>
-                    </Box>
+                      {!error && nextButton && (
+                        <Box mt={3}>
+                          <Button
+                            variant="contained"
+                            onClick={nextButtonHandler}
+                            size="large"
+                            fullWidth={true}
+                          >
+                            Next
+                          </Button>
+                        </Box>
+                      )}
+                    </>
                   )}
-                </>
-              )}
-              {/* ./Step 1  */}
-              {/* Step 2 - Select car  */}
-              {directions &&
-                !predictions.length &&
-                !error &&
-                !orderDetails &&
-                !contextState.searchingForDriver &&
-                selectCarStep && (
-                  <>
-                    <Box mt={0}>
-                      {/* <Typography align="center" variant="body1">
+                  {/* ./Step 1  */}
+                  {/* Step 2 - Select car  */}
+                  {directions &&
+                    !predictions.length &&
+                    !error &&
+                    !orderDetails &&
+                    !contextState.searchingForDriver &&
+                    selectCarStep && (
+                      <>
+                        <Box mt={0}>
+                          {/* <Typography align="center" variant="body1">
                         Select car category
                       </Typography> */}
-                      <Typography variant="body2">
-                        Estimated journey time:{" "}
-                        {directions.routes[0].legs[0].duration.text}
-                      </Typography>
-                    </Box>
+                          <Typography variant="body2">
+                            Estimated journey time:{" "}
+                            {directions.routes[0].legs[0].duration.text}
+                          </Typography>
+                        </Box>
 
-                    <CarOptions
-                      cars={availableCars}
-                      carSelectHandler={setSelectedCarHandler}
-                    />
+                        <CarOptions
+                          cars={availableCars}
+                          carSelectHandler={setSelectedCarHandler}
+                        />
 
-                    {/* {selectedCar && ( */}
-                    <Box mt={3}>
-                      <Button
-                        variant="contained"
-                        onClick={authorizeUser}
-                        size="large"
-                        fullWidth={true}
-                        disabled={!selectedCar}
-                        //(
-                        //     !selectedCar && contextState.userVerified
-                        //   ) ||
-                        //   (contextState.selectedCarConfirmed &&
-                        //     contextState.userVerified)
-                        // }
-                      >
-                        {selectedCar
-                          ? `Confirm ${
-                              selectedCar.name
-                                ? selectedCar.name
-                                : selectedCar.vehicleType
-                            }`
-                          : `Confirm`}
-                      </Button>
-                    </Box>
+                        {/* {selectedCar && ( */}
+                        <Box mt={3}>
+                          <Button
+                            variant="contained"
+                            onClick={authorizeUser}
+                            size="large"
+                            fullWidth={true}
+                            disabled={!selectedCar}
+                            //(
+                            //     !selectedCar && contextState.userVerified
+                            //   ) ||
+                            //   (contextState.selectedCarConfirmed &&
+                            //     contextState.userVerified)
+                            // }
+                          >
+                            {selectedCar
+                              ? `Confirm ${
+                                  selectedCar.name
+                                    ? selectedCar.name
+                                    : selectedCar.vehicleType
+                                }`
+                              : `Confirm`}
+                          </Button>
+                        </Box>
 
-                    {/* <Box mt={3}>
+                        {/* <Box mt={3}>
                       <Button
                         color="error"
                         variant="contained"
@@ -1515,43 +1363,43 @@ export default function BookOnline() {
                         Cancel
                       </Button>
                     </Box> */}
-                    {/* )} */}
-                  </>
-                )}
-              {/* ./Step 2  */}
-              {/* Step 3 - Search Driver  */}
-              {contextState.searchingForDriver && (
-                <>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      flexDirection: "column",
-                      height: "40vh",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <CircularProgress />
-                    Searching for available drivers ...
-                    <Box p={2}>
-                      <Button
-                        color="error"
-                        variant="contained"
-                        size="large"
-                        fullWidth={true}
-                        onClick={cancelTripHandler}
+                        {/* )} */}
+                      </>
+                    )}
+                  {/* ./Step 2  */}
+                  {/* Step 3 - Search Driver  */}
+                  {contextState.searchingForDriver && (
+                    <>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          flexDirection: "column",
+                          height: "40vh",
+                          justifyContent: "center",
+                        }}
                       >
-                        Cancel
-                      </Button>
-                    </Box>
-                  </Box>
-                </>
-              )}
-              {/* ./Step 3  */}
-              {/* Step 4 - Driver */}
-              {driver && driverDetails && !error && (
-                <>
-                  {/* <Box pt={4} px={3}>
+                        <CircularProgress />
+                        Searching for available drivers ...
+                        <Box p={2}>
+                          <Button
+                            color="error"
+                            variant="contained"
+                            size="large"
+                            fullWidth={true}
+                            onClick={cancelTripHandler}
+                          >
+                            Cancel
+                          </Button>
+                        </Box>
+                      </Box>
+                    </>
+                  )}
+                  {/* ./Step 3  */}
+                  {/* Step 4 - Driver */}
+                  {driver && driverDetails && !error && (
+                    <>
+                      {/* <Box pt={4} px={3}>
                     <Typography variant="body2">
                       Distance: {directions.routes[0].legs[0].distance.text}
                     </Typography>
@@ -1560,155 +1408,159 @@ export default function BookOnline() {
                       {directions.routes[0].legs[0].duration.text}
                     </Typography>
                   </Box> */}
-                  <Driver
-                    cancelTrip={cancelTripHandler}
-                    updateDriverLocationHandler={updateDriverLocationHandler}
-                    clearState={clearState}
-                    orderDetails={orderDetails}
+                      <Driver
+                        cancelTrip={cancelTripHandler}
+                        updateDriverLocationHandler={
+                          updateDriverLocationHandler
+                        }
+                        clearState={clearState}
+                        orderDetails={orderDetails}
+                      />
+                    </>
+                  )}
+                  {/* ./Step 4 */}
+                  {/* Scheduled Ride */}
+                  {rideScheduled && (
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        flexDirection: "column",
+                        height: "40vh",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Typography variant="body1" component={"div"}>
+                        Your ride for {contextState.pickUpDate} at{" "}
+                        {contextState.pickUpTime}
+                      </Typography>
+                      <Typography variant="body1" component={"div"}>
+                        from {contextState.pickUpLocation} to{" "}
+                      </Typography>
+                      <Typography variant="body1" component={"div"}>
+                        {contextState.dropLocation} is scheduled
+                      </Typography>
+
+                      <Box p={2}>
+                        <Button
+                          color="error"
+                          variant="contained"
+                          size="large"
+                          fullWidth={true}
+                          onClick={cancelTripHandler}
+                        >
+                          Cancel scheduled ride
+                        </Button>
+                      </Box>
+                    </Box>
+                  )}
+                  {/* ./Scheduled Ride */}
+                  {error && (
+                    <Box px={3}>
+                      <Alert variant="filled" severity="error">
+                        There is an error: {error}
+                      </Alert>
+                    </Box>
+                  )}
+                </Paper>
+                {/* /.FORM */}
+              </Box>
+            </Grid>
+            {/* Map */}
+            <Grid
+              item
+              order={{ xs: 1, md: 2 }}
+              xs={12}
+              md={5}
+              sx={{
+                backgroundRepeat: "no-repeat",
+                marginBottom: { xs: "auto", md: "100px" },
+                minHeight: { xs: 260, md: 500 },
+                width: "100%",
+              }}
+            >
+              {/* <Box
+              sx={{
+                display: { xs: "block", md: "initial" },
+                height: { xs: "30vh", md: "100%" },
+                left: { xs: "0px", md: "initial" },
+                pointerEvents: "auto",
+                position: { xs: "fixed", md: "initial" },
+                right: { xs: "0px", md: "initial" },
+                top: { xs: "80px", md: "initial" },
+                zIndex: { xs: 0, md: "initial" },
+              }}
+            >
+              <Wrapper
+                apiKey={`${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
+                libraries={["places"]}
+                render={render}
+                callback={intitializeMap}
+              >
+                {!initMap && (
+                  <GoogleMapComponent
+                    center={center}
+                    zoom={zoom}
+                    currentLocation={currentLocation}
+                    directionsService={directionsService}
+                    directionsRenderer={directionsRenderer}
+                    placesService={placesService}
+                    geocoderService={geocoderService}
+                    directions={directions}
+                    driverLocation={driverLocation}
+                    state={contextState}
+                    removeMarkers={removeMarkers}
                   />
-                </>
-              )}
-              {/* ./Step 4 */}
-              {/* Scheduled Ride */}
-              {rideScheduled && (
+                )}
+              </Wrapper>
+              {!predictions.length && showNavigatorButton && !selectCarStep && (
                 <Box
                   sx={{
                     display: "flex",
-                    alignItems: "center",
-                    flexDirection: "column",
-                    height: "40vh",
-                    justifyContent: "center",
+                    flexWrap: "nowrap",
+                    mt: 2.5,
+                    cursor: "pointer",
+                    position: { xs: "fixed", md: "relative" },
+                    top: { xs: "70px", md: "auto" },
+                    right: { xs: "10px", md: "auto" },
                   }}
+                  onClick={toggleDeviceNavigator}
                 >
-                  <Typography variant="body1" component={"div"}>
-                    Your ride for {contextState.pickUpDate} at{" "}
-                    {contextState.pickUpTime}
-                  </Typography>
-                  <Typography variant="body1" component={"div"}>
-                    from {contextState.pickUpLocation} to{" "}
-                  </Typography>
-                  <Typography variant="body1" component={"div"}>
-                    {contextState.dropLocation} is scheduled
-                  </Typography>
+                  <Box sx={{ mr: 1 }}>
+                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                      <MyLocationOutlinedIcon
+                        sx={{ fontSize: { xs: "15px", md: "auto" } }}
+                      />
 
-                  <Box p={2}>
-                    <Button
-                      color="error"
-                      variant="contained"
-                      size="large"
-                      fullWidth={true}
-                      onClick={cancelTripHandler}
-                    >
-                      Cancel scheduled ride
-                    </Button>
-                  </Box>
-                </Box>
-              )}
-              {/* ./Scheduled Ride */}
-              {error && (
-                <Box px={3}>
-                  <Alert variant="filled" severity="error">
-                    There is an error: {error}
-                  </Alert>
-                </Box>
-              )}
-            </Paper>
-            {/* /.FORM */}
-          </Box>
-        </Grid>
-        {/* Map */}
-        <Grid
-          item
-          order={{ xs: 1, md: 2 }}
-          xs={12}
-          md={5}
-          sx={{
-            backgroundRepeat: "no-repeat",
-            marginBottom: { xs: "auto", md: "100px" },
-            minHeight: { xs: 260, md: 500 },
-            width: "100%",
-          }}
-        >
-          <Box
-            sx={{
-              display: { xs: "block", md: "initial" },
-              height: { xs: "30vh", md: "100%" },
-              left: { xs: "0px", md: "initial" },
-              pointerEvents: "auto",
-              position: { xs: "fixed", md: "initial" },
-              right: { xs: "0px", md: "initial" },
-              top: { xs: "80px", md: "initial" },
-              zIndex: { xs: 0, md: "initial" },
-            }}
-          >
-            <Wrapper
-              apiKey={`${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
-              libraries={["places"]}
-              render={render}
-              callback={intitializeMap}
-            >
-              {!initMap && (
-                <GoogleMapComponent
-                  center={center}
-                  zoom={zoom}
-                  currentLocation={currentLocation}
-                  directionsService={directionsService}
-                  directionsRenderer={directionsRenderer}
-                  placesService={placesService}
-                  geocoderService={geocoderService}
-                  directions={directions}
-                  driverLocation={driverLocation}
-                  state={contextState}
-                  removeMarkers={removeMarkers}
-                />
-              )}
-            </Wrapper>
-            {!predictions.length && showNavigatorButton && !selectCarStep && (
-              <Box
-                sx={{
-                  display: "flex",
-                  flexWrap: "nowrap",
-                  mt: 2.5,
-                  cursor: "pointer",
-                  position: { xs: "fixed", md: "relative" },
-                  top: { xs: "70px", md: "auto" },
-                  right: { xs: "10px", md: "auto" },
-                }}
-                onClick={toggleDeviceNavigator}
-              >
-                <Box sx={{ mr: 1 }}>
-                  <Box sx={{ display: "flex", alignItems: "center" }}>
-                    <MyLocationOutlinedIcon
-                      sx={{ fontSize: { xs: "15px", md: "auto" } }}
-                    />
-
-                    <Box>
-                      <Typography
-                        sx={{
-                          fontSize: { xs: "12px", md: "auto" },
-                        }}
-                        variant="body2"
-                        color="text.primary"
-                      >
-                        &nbsp; Allow location access
-                      </Typography>
+                      <Box>
+                        <Typography
+                          sx={{
+                            fontSize: { xs: "12px", md: "auto" },
+                          }}
+                          variant="body2"
+                          color="text.primary"
+                        >
+                          &nbsp; Allow location access
+                        </Typography>
+                      </Box>
                     </Box>
+                    <Typography
+                      sx={{
+                        display: { xs: "none", md: "block" },
+                      }}
+                      variant="caption"
+                      color="text.primary"
+                    >
+                      For a perfect pick up experience
+                    </Typography>
                   </Box>
-                  <Typography
-                    sx={{
-                      display: { xs: "none", md: "block" },
-                    }}
-                    variant="caption"
-                    color="text.primary"
-                  >
-                    For a perfect pick up experience
-                  </Typography>
                 </Box>
-              </Box>
-            )}
-          </Box>
-        </Grid>
-      </Grid>
-    </Container>
+              )}
+            </Box> */}
+            </Grid>
+          </Grid>
+        </Container>
+      </div>
+    </div>
   );
 }
