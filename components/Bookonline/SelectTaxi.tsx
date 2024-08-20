@@ -6,24 +6,11 @@ const uberVan = "/assets/booking-flow/uberVan.svg";
 const personIcon = "/assets/booking-flow/personIcon.svg";
 const walletIcon = "/assets/booking-flow/walletIcon.svg";
 
-const SelectTaxi = ({ cars, handleChange }: any) => {
-  const [selectedItem, setSelectedItem] = useState("item1");
-  const handleSelect = (item) => {
+const SelectTaxi = ({ cars, handleChange, authorizeUser }: any) => {
+  const [selectedItem, setSelectedItem] = useState(null);
+  const handleSelect = (item: any) => {
     setSelectedItem(item);
     handleChange();
-  };
-
-  const getButtonText = () => {
-    switch (selectedItem) {
-      case "item0":
-        return "Confirm Economy";
-      case "item1":
-        return "Confirm Van";
-      case "item2":
-        return "Confirm Mini Bus";
-      default:
-        return "Select an Item";
-    }
   };
 
   const carImages: any = {
@@ -101,7 +88,10 @@ const SelectTaxi = ({ cars, handleChange }: any) => {
         </p>
       </div>
       <div className="flex items-end justify-center px-4 my-4">
-        <button className="w-full bg-[#264388] text-white font-semibold text-xl py-4 rounded-md">
+        <button
+          onClick={authorizeUser}
+          className="w-full bg-[#264388] text-white font-semibold text-xl py-4 rounded-md"
+        >
           {selectedItem
             ? "Confirm" + " " + selectedItem
             : "Select transportation"}

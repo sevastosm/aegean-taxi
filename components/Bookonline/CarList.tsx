@@ -7,37 +7,28 @@ import CarOptions from "../car-options";
 type Props = {};
 
 const CarList = ({
-  directions,
-  predictions,
-  error,
-  orderDetails,
   contextState,
   selectCarStep,
   availableCars,
   setSelectedCarHandler,
   authorizeUser,
-  selectedCar,
 }: any) => {
-  const [car, setCar] = useState(null);
+  const [car, setCar] = useState<any>(null);
 
   useEffect(() => {
     setCar(contextState.selectedCar);
   }, [contextState.selectedCar]);
 
   return (
-    directions &&
-    !predictions.length &&
-    !error &&
-    !orderDetails &&
-    !contextState.searchingForDriver &&
     selectCarStep && (
       <>
         <CarOptions
           cars={availableCars}
           carSelectHandler={setSelectedCarHandler}
+          authorizeUser={authorizeUser}
         />
 
-        {console.log("selectedCar", contextState.selectedCar)}
+        {/* {console.log("selectedCar", contextState.selectedCar)}
 
         {car && (
           <div className="flex items-end justify-center px-4 my-4">
@@ -50,7 +41,7 @@ const CarList = ({
                 : `Confirm`}
             </button>
           </div>
-        )}
+        )} */}
 
         {/* <Box mt={3}>
       <Button

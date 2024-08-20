@@ -17,12 +17,10 @@ import { locationDetails } from "../../utils/locationDetails";
 import { PricesMap } from "../airportFares/Fares";
 
 export default function Fares({ location }: any) {
-  console.log("location", location);
   const data =
     location === "default"
       ? locationDetails[location]
       : locationDetails.taxi_locations[location];
-  console.log("data", data);
 
   return (
     <Container maxWidth={"lg"}>

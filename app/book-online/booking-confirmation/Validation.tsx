@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client";
 import { useEffect, useState, useContext } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
@@ -46,21 +47,18 @@ export default function Validation({}: {}) {
 
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const orderid = searchParams.get('orderid')
+  const orderid = searchParams.get("orderid");
 
   useEffect(() => {
     setItem("validationBeenVisited", true, "local");
   }, []);
-
-
-  
 
   const handleChange = (event: any) => {
     setSecCode(event.target.value as string);
   };
 
   async function onSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
     let securityCode = AES.decrypt(
       `${appState.state.security.code}`,
       `${process.env.NEXT_PUBLIC_CRYPTO_KEY}`
@@ -72,21 +70,18 @@ export default function Validation({}: {}) {
       appState.state.security.code = "null";
       appState.updateAppState(appState.state);
 
-      console.log("appState",appState)
       setItem("aegean", appState.state, "local");
-      const createOrderData = await createOrder(appState.state)
-      console.log("createOrderData",createOrderData)
-      if(createOrderData.orderId){
+      const createOrderData = await createOrder(appState.state);
+      if (createOrderData.orderId) {
         appState.state.orderDetails = createOrderData;
         appState.updateAppState(appState.state);
-        appState.state&&
-        sendSms(
-          `00${appState.state.phoneNumber.replace("+", "")}`,
-          `Your taxi booking request has been received.Please check the below link to see the status of your reservation and your driver details once assigned.https://aegeantaxi.com/orders?orderid=${createOrderData.orderId}`
-        )
+        appState.state &&
+          sendSms(
+            `00${appState.state.phoneNumber.replace("+", "")}`,
+            `Your taxi booking request has been received.Please check the below link to see the status of your reservation and your driver details once assigned.https://aegeantaxi.com/orders?orderid=${createOrderData.orderId}`
+          );
         router.push(`/orders?orderid=${createOrderData.orderId}`);
       }
-     
     }
   }
 

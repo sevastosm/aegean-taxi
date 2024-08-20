@@ -5,7 +5,7 @@ const nextConfig = {
     // Dangerously allow production builds to successfully complete even if
     // your project has type errors.
     // !! WARN !!
-    ignoreBuildErrors: true,
+    //ignoreBuildErrors: true,
   },
   experimental: {
     // appDir: true,
@@ -15,8 +15,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
     domains: [
-      'carkystorage.blob.core.windows.net',
-      'carkystoragetest.blob.core.windows.net',
+      "carkystorage.blob.core.windows.net",
+      "carkystoragetest.blob.core.windows.net",
     ],
   },
   poweredByHeader: false,

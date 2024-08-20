@@ -28,7 +28,11 @@ import TESLA_MODEL_X from "public/assets/onde-service-types/TESLA_MODEL_X.webp";
 import VAN from "public/assets/onde-service-types/VAN.webp";
 import SelectTaxi from "./Bookonline/SelectTaxi";
 
-export default function CarOptions({ carSelectHandler, cars }: any) {
+export default function CarOptions({
+  carSelectHandler,
+  authorizeUser,
+  cars,
+}: any) {
   const [view, setView] = React.useState<any>(null);
 
   useEffect(() => {
@@ -46,5 +50,11 @@ export default function CarOptions({ carSelectHandler, cars }: any) {
     return null;
   }
 
-  return <SelectTaxi cars={cars} handleChange={handleChange} />;
+  return (
+    <SelectTaxi
+      cars={cars}
+      handleChange={handleChange}
+      authorizeUser={authorizeUser}
+    />
+  );
 }

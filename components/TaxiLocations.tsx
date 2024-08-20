@@ -1,20 +1,5 @@
 import React from "react";
-import Image from "";
 
-const athens = "/assets/booking-flow/athens.svg";
-const mykonos = "/assets/booking-flow/mykonos.svg";
-const santorini = "/assets/booking-flow/santorini.svg";
-const rhodes = "/assets/booking-flow/rhodes.svg";
-const crete = "/assets/booking-flow/crete.svg";
-const corfu = "/assets/booking-flow/corfu.svg";
-const kea = "/assets/booking-flow/kea.svg";
-const kos = "/assets/booking-flow/kos.svg";
-const milos = "/assets/booking-flow/milos.svg";
-const paros = "/assets/booking-flow/paros.svg";
-const naxos = "/assets/booking-flow/naxos.svg";
-const menuBtn = "/assets/booking-flow/menu-btn.svg";
-const logo = "/assets/booking-flow/logo.svg";
-const phoneIcon = "/assets/booking-flow/phoneIcon.svg";
 const car = "/assets/booking-flow/car.svg";
 import { locationDetails } from "@/utils/locationDetails";
 import Link from "next/link";
@@ -56,8 +41,6 @@ const imageOptions = [
   { width: 35, height: 16 },
 ];
 
-const locations: Props[] = [];
-
 const Location = ({ locationName, riders, imageUrl, imageOptions }: Props) => (
   <div className="h-[90px] w-full flex flex-col relative bg-[#E8E8E8] rounded-xl">
     <img
@@ -87,15 +70,12 @@ const Location = ({ locationName, riders, imageUrl, imageOptions }: Props) => (
 );
 
 const { taxi_locations } = locationDetails;
-
-console.log("taxi_locations", taxi_locations);
-
 const mykonosOptions = taxi_locations[availableLocations[0]];
 const santoriniOptions = taxi_locations[availableLocations[1]];
 
 function TaxiLocations() {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 max-w-[700px] m-auto">
       <div className="text-center">
         <h1 className="font-bold text-2xl leading-[28px] md:leading-[56px]">
           Book a Taxi online 24/7

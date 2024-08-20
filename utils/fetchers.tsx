@@ -58,7 +58,6 @@ export const sendSms0 = (
   ).then((r) => r);
 
 export async function sendSms(phoneNumbers: string, message: string) {
-  console.log("phoneNumbers", phoneNumbers, "message", message);
   const data: any = {
     message: message,
     phone: phoneNumbers,

@@ -14,7 +14,6 @@ export default function Validation() {
   const [orderId, setOrderId] = useState<string>("");
   const router = useRouter();
 
-  console.log("appState",appState)
 
   const handleCreateOrder = (orderId:string) => {
     setOrderId(orderId)

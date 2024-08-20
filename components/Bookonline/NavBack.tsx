@@ -10,7 +10,7 @@ const NavBack = (props: Props) => {
       <img
         src={backArrowBlack}
         alt="Back Arrow"
-        className="bg-white p-4 w-[50px] h-[50px] rounded-full ms-4"
+        className="bg-white border border-#3b82f6 p-4 w-[50px] h-[50px] rounded-full ms-4"
       />
     </Link>
   );

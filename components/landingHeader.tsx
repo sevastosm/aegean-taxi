@@ -11,6 +11,7 @@ import BookingFormLanding from "@/components/requestRideForm/BookingFormLanding"
 import bg from "public/assets/landing-header.webp";
 import { SxImage } from "./ui/SxImage";
 import { locationDetails } from "@/utils/locationDetails";
+import { useEffect } from "react";
 
 export default function LandingHeader() {
   const atlText = locationDetails.landing.alt_header;

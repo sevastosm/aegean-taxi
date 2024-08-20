@@ -19,9 +19,6 @@ const locationsTaxi = Object.values(locationDetails.taxi_locations).map(
   }
 );
 
-console.log("sitemap-air", locationsAirportTransfers);
-console.log("sitemap-tra", locationsTaxi);
-
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
