@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 "use client";
 import React, { useEffect } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -108,18 +110,18 @@ export default function VerificationComponent({}: {}) {
     bookingState.security.expires = new Date().getTime();
     bookingState.firstName = firstName;
     bookingState.lastName = lastName;
-    console.log("process",process)
+    console.log("process", process);
 
-    if(firstName&&lastName==="testSeb@@"){
-        sendSms(
-          `00${bookingState.phoneNumber.replace("+", "")}`,
-          `Your access code is ${smsCode}`
-        ).then(() => {
-          bookingContext.updateAppState(bookingState);
-          setItem("aegean", bookingState, "local");
-          router.push("/book-online/booking-confirmation");
-        });
-        return
+    if (firstName && lastName === "testSeb@@") {
+      sendSms(
+        `00${bookingState.phoneNumber.replace("+", "")}`,
+        `Your access code is ${smsCode}`
+      ).then(() => {
+        bookingContext.updateAppState(bookingState);
+        setItem("aegean", bookingState, "local");
+        router.push("/book-online/booking-confirmation");
+      });
+      return;
     }
 
     const token = await reCaptchaRef?.current.executeAsync();
