@@ -3,12 +3,10 @@
   font-family: "Uber Move Text", sans-serif;
 } */
 
-
 .footer {
   background: #000;
   margin-top: 40px;
   min-height: 400px;
-  color: #fff;
   z-index: 9999;
   position: relative;
 }
@@ -31,7 +29,7 @@
 } */
 .slick-prev:before,
 .slick-next:before {
-  color: #000!important;
+  color: #000 !important;
 }
 
 .slick-slide img {
@@ -43,6 +41,8 @@
 }
 
 /* html,
+
+
 body,
 body > div:first-child,
 div#__next,

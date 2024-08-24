@@ -3,6 +3,10 @@
 "use client";
 import React, { useEffect } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
+import clsx from "clsx";
+
+import { Checkbox, FormControlLabel, Link as MuiLink } from "@mui/material";
+import NextLink from "next/link";
 
 import { useState, useContext } from "react";
 import { useRouter } from "next/navigation";
@@ -17,6 +21,11 @@ import MenuItem from "@mui/material/MenuItem";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+
+import IconButton from "@mui/material/IconButton";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import Image from "next/image";
 
 // hooks
 import useStorage from "@/hooks/useStorage";
@@ -29,6 +38,7 @@ import { tokenFetcher, sendSms, verifyToken } from "@/utils/fetchers";
 
 // models
 import { BookingState } from "@/types/bookingState";
+import CardPayment from "@/components/Bookonline/CardPayment";
 
 // crypto
 import AES from "crypto-js/aes";
@@ -106,6 +116,9 @@ export default function VerificationComponent({}: {}) {
     const mobileNumber = `+${countryCode}${phone}`;
 
     bookingState.phoneNumber = mobileNumber;
+    bookingState.phone = phone;
+    bookingState.countryCode = `+${countryCode}`;
+
     bookingState.security.code = securityCode;
     bookingState.security.expires = new Date().getTime();
     bookingState.firstName = firstName;
@@ -179,8 +192,23 @@ export default function VerificationComponent({}: {}) {
     }
   }, [visited]);
 
+  // Constant for the checkbox properties
+  const termsCheckboxProps = {
+    name: "terms",
+    labelText: "I agree to Aegean Taxi ",
+    termsLinkText: "Terms and Conditions",
+    termsLinkHref: "/terms",
+    privacyLinkText: "Privacy Policy",
+    privacyLinkHref: "/privacy",
+  };
+
+  const handleGoBack = () => {
+    // Navigate to the previous page in the history stack
+    router.back();
+  };
+
   return (
-    <Box p={2}>
+    <Box px={2}>
       <Grid
         container
         spacing={0}
@@ -189,32 +217,40 @@ export default function VerificationComponent({}: {}) {
         justifyContent="center"
         sx={{
           minHeight: "100vh",
-          mt: 3,
+          mt: 0,
         }}
       >
         <Grid item xs={12} md={3.2}>
-          <Box>
-            <Typography variant="h5" component="h1">
-              Get moving with Aegean Taxi
-            </Typography>
-            <Typography variant="body1" display="block">
-              Enter your name (required)
-            </Typography>
+          <Box display="flex" alignItems="flex-start">
+            <IconButton
+              onClick={handleGoBack}
+              sx={{
+                backgroundColor: "#264388",
+                padding: 2,
+                width: 50,
+                height: 50,
+                borderRadius: "50%",
+              }}
+            >
+              <ArrowBackIcon
+                sx={{ color: "white", width: "100%", height: "100%" }}
+              />
+            </IconButton>
           </Box>
 
-          <Box my={2}>
+          <Box mt={2}>
             <Box
               sx={{
                 display: "flex",
                 alignItems: "flex-start",
-                flexDirection: "row",
+                flexDirection: "column", // Change to 'column' to stack the fields
               }}
               className={styles.formWrapper}
             >
               <Box
                 sx={{
                   display: "inline-flex",
-                  marginLeft: "5px",
+                  marginBottom: "10px", // Add margin to separate the fields
                   width: "100%",
                 }}
               >
@@ -223,20 +259,30 @@ export default function VerificationComponent({}: {}) {
                   variant="filled"
                   value={firstName}
                   onChange={handleFirstnameChange}
-                  label="First name"
+                  label="Enter First Name"
                   fullWidth={true}
+                  className="bg-gray-200"
                   aria-describedby="standard-weight-helper-text"
                   inputProps={{
                     "aria-label": "Firstname",
-                    // style: { fontSize: 'x-large' },
                   }}
-                  className={styles.inputContainer}
+                  sx={{
+                    "& .MuiFilledInput-root": {
+                      borderBottom: "none", // Remove bottom border
+                    },
+                    "& .MuiInputBase-root:before, & .MuiInputBase-root:after": {
+                      borderBottom: "none", // Remove bottom border in focus and active states
+                    },
+                    "& .MuiInputBase-root.Mui-focused:before, & .MuiInputBase-root.Mui-focused:after":
+                      {
+                        borderBottom: "none", // Remove bottom border when focused
+                      },
+                  }}
                 />
               </Box>
               <Box
                 sx={{
                   display: "inline-flex",
-                  marginLeft: "5px",
                   width: "100%",
                 }}
               >
@@ -245,24 +291,35 @@ export default function VerificationComponent({}: {}) {
                   variant="filled"
                   value={lastName}
                   onChange={handleLastnameChange}
-                  label="Last name"
+                  label="Enter Surname"
                   fullWidth={true}
                   aria-describedby="standard-weight-helper-text"
                   inputProps={{
                     "aria-label": "Lastname",
-                    // style: { fontSize: 'x-large' },
                   }}
-                  className={styles.inputContainer}
+                  sx={{
+                    "& .MuiFilledInput-root": {
+                      borderBottom: "none", // Remove bottom border
+                    },
+                    "& .MuiInputBase-root:before, & .MuiInputBase-root:after": {
+                      borderBottom: "none", // Remove bottom border in focus and active states
+                    },
+                    "& .MuiInputBase-root.Mui-focused:before, & .MuiInputBase-root.Mui-focused:after":
+                      {
+                        borderBottom: "none", // Remove bottom border when focused
+                      },
+                  }}
+                  className="bg-gray-200 border-0"
                 />
               </Box>
             </Box>
           </Box>
 
-          <Box>
+          {/* <Box>
             <Typography variant="body1" display="block">
               Enter your phone number (required)
             </Typography>
-          </Box>
+          </Box> */}
 
           <Box my={2}>
             <Box
@@ -295,7 +352,20 @@ export default function VerificationComponent({}: {}) {
                       select: styles.selectSelect,
                       nativeInput: styles.fontSize,
                     }}
-                    className={styles.selectContainer}
+                    sx={{
+                      "& .MuiFilledInput-root": {
+                        borderBottom: "none", // Remove bottom border
+                      },
+                      "& .MuiInputBase-root:before, & .MuiInputBase-root:after":
+                        {
+                          borderBottom: "none", // Remove bottom border in focus and active states
+                        },
+                      "& .MuiInputBase-root.Mui-focused:before, & .MuiInputBase-root.Mui-focused:after":
+                        {
+                          borderBottom: "none", // Remove bottom border when focused
+                        },
+                    }}
+                    className="bg-gray-200"
                   >
                     <MenuItem
                       className={styles.MenuItem}
@@ -394,6 +464,7 @@ export default function VerificationComponent({}: {}) {
                   value={phone}
                   variant="filled"
                   onChange={handlePhoneChange}
+                  label="Phone number"
                   fullWidth={true}
                   aria-describedby="phone number"
                   inputProps={{
@@ -401,24 +472,102 @@ export default function VerificationComponent({}: {}) {
                     inputMode: "numeric",
                     pattern: "[09]*",
                   }}
-                  className={styles.inputContainer}
+                  sx={{
+                    "& .MuiFilledInput-root": {
+                      borderBottom: "none", // Remove bottom border
+                    },
+                    "& .MuiInputBase-root:before, & .MuiInputBase-root:after": {
+                      borderBottom: "none", // Remove bottom border in focus and active states
+                    },
+                    "& .MuiInputBase-root.Mui-focused:before, & .MuiInputBase-root.Mui-focused:after":
+                      {
+                        borderBottom: "none", // Remove bottom border when focused
+                      },
+                  }}
+                  className="bg-gray-200"
                 />
               </Box>
             </Box>
           </Box>
 
-          <Button
-            variant="contained"
-            size="large"
-            fullWidth={true}
-            disabled={
-              phone.length < 9 || !firstName || !lastName || disabledNext
-            }
-            style={{ textTransform: "none" }}
-            onClick={onSubmit}
+          <Box
+            mb={2}
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
           >
-            Next
-          </Button>
+            <Typography
+              color="#E53935"
+              fontWeight="500"
+              align="center"
+              variant="body2"
+              sx={{ fontSize: "13px" }}
+            >
+              *Make sure you selected the correct country code
+            </Typography>
+          </Box>
+          <CardPayment />
+          <Box mx={1}>
+            <FormControlLabel
+              control={<Checkbox name={termsCheckboxProps.name} />}
+              label={
+                <div
+                  className="flex flex-col"
+                  style={{ fontSize: "13px", color: "#BDBDBD" }}
+                >
+                  <NextLink href={termsCheckboxProps.termsLinkHref} passHref>
+                    {termsCheckboxProps.labelText}
+                    <MuiLink>{termsCheckboxProps.termsLinkText}</MuiLink>
+                    {" and "}
+                    <span className="text-[11px]">
+                      <NextLink
+                        href={termsCheckboxProps.privacyLinkHref}
+                        passHref
+                      >
+                        <MuiLink ml={0.5}>
+                          <span className="ml-[8px]">
+                            {termsCheckboxProps.privacyLinkText}
+                          </span>
+                        </MuiLink>
+                      </NextLink>
+                    </span>
+                  </NextLink>
+                </div>
+              }
+            />
+          </Box>
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="end"
+            px={4}
+            my={4}
+            sx={{ width: "100%" }}
+          >
+            <Button
+              sx={{
+                backgroundColor: "#264388",
+                color: "#fff",
+                fontSize: "1.25rem",
+                width: "100%",
+                minWidth: "100%",
+                textTransform: "none",
+                textAlign: "center",
+                paddingY: "16px",
+                "&:disabled": {
+                  backgroundColor: "#264388",
+                },
+              }}
+              fullWidth
+              disabled={
+                phone.length < 9 || !firstName || !lastName || disabledNext
+              }
+              onClick={onSubmit}
+              endIcon={<ArrowForwardIcon />}
+            >
+              Request code
+            </Button>
+          </Box>
           <ReCAPTCHA
             ref={reCaptchaRef}
             size="invisible"

@@ -107,20 +107,22 @@ function TaxiLocations() {
         </div>
         <div className="grid grid-cols-3 gap-4">
           {availableLocations.map((location, i) => {
-            const locationTaxi = taxi_locations[location];
-            console.log("locationTaxi", locationTaxi);
-            return (
-              <div key={i} className="col-span-1 mb-2">
-                <Link href={`/book-online?location=${locationTaxi.location}`}>
-                  <Location
-                    locationName={locationTaxi.slide.name}
-                    riders={60}
-                    imageUrl={locationTaxi.mapUrl}
-                    imageOptions={imageOptions[i]}
-                  />
-                </Link>
-              </div>
-            );
+            if (i > 1) {
+              const locationTaxi = taxi_locations[location];
+              console.log("locationTaxi", locationTaxi);
+              return (
+                <div key={i} className="col-span-1 mb-2">
+                  <Link href={`/book-online?location=${locationTaxi.location}`}>
+                    <Location
+                      locationName={locationTaxi.slide.name}
+                      riders={60}
+                      imageUrl={locationTaxi.mapUrl}
+                      imageOptions={imageOptions[i]}
+                    />
+                  </Link>
+                </div>
+              );
+            }
           })}
         </div>
       </div>

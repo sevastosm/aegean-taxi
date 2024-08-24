@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import CardPayment from "./CardPayment";
 import menuBtn from "/menu-btn.svg";
 import phoneIcon from "/phoneIcon.svg";
 const uberCar = "/assets/booking-flow/uberCar.svg";
@@ -22,17 +23,15 @@ const SelectTaxi = ({ cars, handleChange, authorizeUser }: any) => {
   return (
     <div className="flex flex-col">
       <div className="flex items-center justify-center">
-        <p className="text-xl font-semibold mt-4 text-[#264388]">
-          Choose a trip
-        </p>
+        <p className="text-xl font-semibold  text-[#264388]">Choose a trip</p>
       </div>
-      <div className="w-full mx-auto bg-white px-4 my-4 rounded-2xl">
-        <div className="space-y-4">
+      <div className="w-full mx-auto bg-white  rounded-2xl">
+        <div className="space-y-2">
           {cars.map((car: any, i: number) => {
             return (
               <div
                 key={i}
-                className={`py-1 px-4 border-[3px] rounded-2xl cursor-pointer flex items-center justify-between ${
+                className={`my-1 px-2 border-[3px] rounded-2xl cursor-pointer flex items-center justify-between ${
                   selectedItem === car.name
                     ? "border-[#264388]"
                     : "border-transparent"
@@ -77,17 +76,8 @@ const SelectTaxi = ({ cars, handleChange, authorizeUser }: any) => {
           })}
         </div>
       </div>
-      <div className="flex flex-col flex-grow items-center justify-center">
-        <img
-          src={walletIcon}
-          alt="Wallet Icon"
-          className="w-[30px] h-[30px] my-2"
-        />
-        <p className="text-black text-lg font-semibold">
-          Card payment available with driver
-        </p>
-      </div>
-      <div className="flex items-end justify-center px-4 my-4">
+      <CardPayment />
+      <div className="flex items-end justify-center my-4">
         <button
           onClick={authorizeUser}
           className="w-full bg-[#264388] text-white font-semibold text-xl py-4 rounded-md"

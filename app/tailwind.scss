@@ -1,3 +1,56 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+// centers the drawer icon on mobile that has position absolute left:50% taking px-4 padding into consideration and substracting 16px
+.MuiBox-root.css-n7uv59 {
+  margin-left: -16px !important;
+}
+
+// gives top margin to the drawer box to avoid overlapping with the back button
+// .px-4.w-full.md\:w-\[50\%\] {
+//   margin-top: 4rem;
+// }
+
+// removes top space from book-online flow page where the map is shown
+.flex.relative.md\:gap-20.flex-col.md\:flex-row.min-h-screen.max-w-\[1200px\].m-auto,
+.flex.md\:gap-20.flex-col.md\:flex-row.min-h-screen.max-w-\[1200px\].m-auto {
+  margin-top: -20px !important;
+}
+
+// adjust navbar logo dimensions globally
+.aegean-logo-navbar {
+  min-width: 119px !important;
+  min-height: 32px !important;
+}
+
+// adjust navbar height globally
+.MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.css-hyum1k-MuiToolbar-root {
+  min-height: 72px !important;
+}
+
+// :book-online/verification code request button style
+button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-colorPrimary.MuiButton-fullWidth.Mui-disabled.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-colorPrimary.MuiButton-fullWidth.css-3lz274-MuiButtonBase-root-MuiButton-root {
+  color: #fff !important;
+  border-radius: 0.375rem;
+}
+
+.MuiBox-root.css-1b76fd0 {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+p.MuiTypography-root.MuiTypography-body1.MuiTypography-alignCenter.css-zp0dsf-MuiTypography-root {
+  margin-left: 0;
+}
+
+.MuiBox-root.css-1a2mho9 {
+  margin-top: -20px !important;
+}
+
+.MuiGrid-root.MuiGrid-container.css-1lym95h-MuiGrid-root {
+  margin-top: -72px;
+}
+
+.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-1.css-exfl4s-MuiGrid-root {
+  margin-left: -16px;
+}

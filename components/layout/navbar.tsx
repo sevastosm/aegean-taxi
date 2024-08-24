@@ -16,10 +16,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 
-import phoneIcon from "public/assets/phone-call-icon.svg";
+import phoneIcon from "public/assets/phoneIcon.svg";
 
 //
-import logo from "public/assets/Aegean-01.webp";
+import logo from "public/assets/aegeanLogo.svg";
 import { Phone } from "@mui/icons-material";
 
 interface Props {
@@ -66,7 +66,7 @@ export default function DrawerAppBar(props: Props) {
             width: "75px",
           }}
         >
-          <Image src={logo} alt="Aegean logo" height={40} />
+          <Image src={logo} alt="Aegean logo" height={30} />
         </Link>
       </Typography>
       <Divider />
@@ -126,7 +126,6 @@ export default function DrawerAppBar(props: Props) {
                 component={NextLink}
                 variant="body1"
                 sx={{
-                  
                   lineHeight: 3,
                   // borderBottom: `3px solid #000`,
                   width: "75px",
@@ -137,6 +136,7 @@ export default function DrawerAppBar(props: Props) {
                   alt="Aegean logo"
                   height={30}
                   priority={true}
+                  className="aegean-logo-navbar"
                 />
               </Link>
             </Box>
@@ -171,8 +171,8 @@ export default function DrawerAppBar(props: Props) {
                 component={Link}
                 color="primary"
                 sx={{ textTransform: "unset", fontSize: "13px" }}
-                endIcon={
-                  <Image src={phoneIcon} width="40" height="33" alt="Call us" />
+                startIcon={
+                  <Image src={phoneIcon} width="24" height="24" alt="Call us" />
                 }
                 href="tel:00302152154000"
               >

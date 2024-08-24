@@ -41,14 +41,11 @@
 .inputContainer::after,
 .inputContainer:hover,
 .inputContainer:hover::before {
-  border-bottom: none !important;
+  border: none !important;
 }
 
 .formWrapper {
-  border-bottom: 2px solid #fff;
-  &:hover {
-    border-bottom: 2px solid rgba(0, 0, 0, 0.87);
-  }
+  border: none !important;
 }
 
 #__next {

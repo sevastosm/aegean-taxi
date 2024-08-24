@@ -1,6 +1,7 @@
 "use client";
-import React, { useState, useEffect, useContext, useCallback } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import React, { useState, useEffect, useContext, useRef } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter as clientRouter } from "next/router";
 
 // DayJS
 import dayjs from "dayjs";
@@ -11,14 +12,29 @@ import timezone from "dayjs/plugin/timezone";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import Alert from "@mui/material/Alert";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import CircularProgress from "@mui/material/CircularProgress";
 import Container from "@mui/material/Container";
+import CropSquareSharp from "@mui/icons-material/CropSquareSharp";
+import Divider from "@mui/material/Divider";
+import EventSharpIcon from "@mui/icons-material/EventSharp";
+import FormControl from "@mui/material/FormControl";
 import Grid from "@mui/material/Grid"; // Grid version 1
 import Icon from "@mui/material/Icon";
+import IconButton from "@mui/material/IconButton";
+import Input from "@mui/material/Input";
+import InputAdornment from "@mui/material/InputAdornment";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import ListItemText from "@mui/material/ListItemText";
+import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
+import MyLocationOutlinedIcon from "@mui/icons-material/MyLocationOutlined";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import { DigitalClock } from "@mui/x-date-pickers/DigitalClock";
@@ -37,15 +53,19 @@ import { AppContext } from "@/context/appState";
 import useStorage from "@/hooks/useStorage";
 
 // components
+import PredictionListItem from "@/components/predictions-list";
 import CarOptions from "@/components/car-options";
 import Driver from "@/components/driver";
 
 // models
 import { BookingState } from "@/types/bookingState";
 
+import TAXI from "public/assets/car-top.webp";
+import { greyMap } from "../googleMap/mapStyles";
 import { GoogleMapComponent } from "./GoogleMap";
 import TaxiLocations from "../TaxiLocations";
 import { locationDetails } from "@/utils/locationDetails";
+import HotSpot from "./HotSpot";
 import LocationSearch from "./LocationSearch";
 import NavBack from "./NavBack";
 import BookActions from "./BookActions";
@@ -72,25 +92,9 @@ const render = (status: Status): any => {
 export default function BookOnline() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const pathname = usePathname();
-  console.log("router.query", router.query);
-
-  // Get a new searchParams string by merging the current
-  // searchParams with a provided key/value pair
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set(name, value);
-
-      return params.toString();
-    },
-    [searchParams]
-  );
 
   const locationSearch = searchParams.get("location");
-  const from = searchParams.get("from");
-
-  console.log("from", from);
+  console.log("search", locationSearch);
 
   const { getItem, removeItem } = useStorage();
   const { setItem } = useStorage();
@@ -616,8 +620,6 @@ export default function BookOnline() {
     setTriggerCalculate(true);
     setNearbyLocations([]);
     setPredictions([]);
-
-    // router.push(pathname + "?" + createQueryString("from", value));
   };
 
   const setDropOffLocationHandler = (value: string) => {
@@ -629,14 +631,11 @@ export default function BookOnline() {
     setTriggerCalculate(true);
     setNearbyLocations([]);
     setPredictions([]);
-    // router.push(pathname + "?" + createQueryString("to", value));
   };
 
   const setPickUpDateHandler = (value: any) => {
     const dateString = dayjs(value).format("YYYY-MM-DD");
-
     setPickUpDate(dateString);
-    // router.push(pathname + "?" + createQueryString("date", dateString));
     contextState.pickUpDate = dateString;
     updateSession();
   };
@@ -646,8 +645,6 @@ export default function BookOnline() {
     const dateString = dayjs(value).format("HH:mm");
 
     setPickUpTime(dateString);
-    // router.push(pathname + "?" + createQueryString("time", dateString));
-
     contextState.pickUpTime = dateString;
     updateSession();
   };
@@ -711,7 +708,12 @@ export default function BookOnline() {
     contextState.selectedCarConfirmed = true;
     updateSession();
     setOpen(false);
-    router.push("/book-online/verification");
+
+    if (bookingState && !bookingState.userVerified) {
+      router.push("/book-online/verification");
+    } else {
+      createOrder();
+    }
   };
 
   const createOrder = async () => {
@@ -960,22 +962,42 @@ export default function BookOnline() {
     }
   }, [visited]);
 
+  useEffect(() => {
+    if (locationSearch) {
+      document.body.classList.remove("inserted");
+
+      const mapOptions =
+        locationDetails.taxi_locations[locationSearch]?.mapOptions;
+      setZoom(mapOptions.zoom);
+      setCenter({
+        lat: mapOptions.lat,
+        lng: mapOptions.lng,
+      });
+    }
+  }, [locationSearch]);
+
   const hotSpots =
     locationSearch && locationDetails.taxi_locations[locationSearch]?.hotSpots;
 
   return !locationSearch ? (
-    <div className="px-4">
-      <TaxiLocations />
+    <div className="flex flex-col min-h-screen">
+      <div className="px-4">
+        <TaxiLocations />
+      </div>
     </div>
   ) : (
     <div className="flex relative md:gap-20 flex-col md:flex-row min-h-screen max-w-[1200px] m-auto">
-      <div className="absolute block md:hidden my-4 left-0 top-0 z-40">
+      <div
+        className={`absolute ${
+          !open ? "block" : "hidden"
+        } md:hidden my-4 left-0 top-0 z-40`}
+      >
         <NavBack />
       </div>
       <div
         className={`w-full ${
           !open ? "block" : "hidden"
-        } md:block h-[300px] md:h-[700px] relative order-0 md:order-1`}
+        } md:block h-[280px] md:h-[700px] relative order-0 md:order-1`}
       >
         <Wrapper
           apiKey={`${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
@@ -1001,36 +1023,37 @@ export default function BookOnline() {
         </Wrapper>
       </div>
 
-      <div className="px-4  w-full md:w-[50%]">
+      <div className="px-4 w-full md:w-[50%]">
         <div className="relative flex flex-col gap-4 ">
-          <Box
-            onClick={toggleDrawer()}
-            sx={{
-              width: 50,
-              height: 4,
-              backgroundColor: "#ddd",
-              borderRadius: 3,
-              position: "absolute",
-              top: "10px",
-              left: "50%",
-              display: { xs: "block", md: "none" },
-              cursor: "pointer",
-            }}
-          ></Box>
-
-          <div className="pt-4">
-            <Typography
-              component="h1"
+          <div onClick={toggleDrawer()} className="flex justify-center pt-4">
+            <Box
               sx={{
-                fontWeight: "bold",
-                fontSize: 30,
-                textAlign: "center",
+                width: 50,
+                height: 4,
+                backgroundColor: "#ddd",
+                borderRadius: 3,
+                display: { xs: "block", md: "none" },
+                cursor: "pointer",
               }}
-            >
-              Book a taxi online now
-            </Typography>
+            />
           </div>
-
+        </div>
+        <Typography
+          component="h1"
+          sx={{
+            fontWeight: "bold",
+            fontSize: 30,
+            textAlign: "center",
+          }}
+        >
+          Book a taxi online now
+        </Typography>
+        <div className="flex flex-col gap-4">
+          {/* <div>
+            {selectedPickUp}
+            {" - "}
+            {selectedDropOff}
+          </div> */}
           <LocationSearch
             toggleFocusLocation={toggleFocusLocation}
             toggleBlurLocation={toggleBlurLocation}
@@ -1059,7 +1082,7 @@ export default function BookOnline() {
             selectedPickUp={selectedPickUp}
             selectedDropOff={selectedDropOff}
           />
-          {!selectCarStep && (
+          {!selectCarStep && selectedPickUp && selectedDropOff && (
             <BookActions
               nextButtonHandler={nextButtonHandler}
               calendars={
@@ -1077,110 +1100,19 @@ export default function BookOnline() {
             />
           )}
           <CarList
+            directions={directions}
+            predictions={predictions}
+            error={error}
             orderDetails={orderDetails}
             contextState={contextState}
             selectCarStep={selectCarStep}
             availableCars={availableCars}
             setSelectedCarHandler={setSelectedCarHandler}
             authorizeUser={authorizeUser}
+            selectedCar={selectedCar}
           />
         </div>
-        {contextState.searchingForDriver && (
-          <>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                flexDirection: "column",
-                height: "40vh",
-                justifyContent: "center",
-              }}
-            >
-              <CircularProgress />
-              Searching for available drivers ...
-              <Box p={2}>
-                <Button
-                  color="error"
-                  variant="contained"
-                  size="large"
-                  fullWidth={true}
-                  onClick={cancelTripHandler}
-                >
-                  Cancel
-                </Button>
-              </Box>
-            </Box>
-          </>
-        )}
-        {/* ./Step 3  */}
-        {/* Step 4 - Driver */}
-        {driver && driverDetails && !error && (
-          <>
-            {/* <Box pt={4} px={3}>
-                    <Typography variant="body2">
-                      Distance: {directions.routes[0].legs[0].distance.text}
-                    </Typography>
-                    <Typography variant="body2">
-                      Estimated journey time:{' '}
-                      {directions.routes[0].legs[0].duration.text}
-                    </Typography>
-                  </Box> */}
-            <Driver
-              cancelTrip={cancelTripHandler}
-              updateDriverLocationHandler={updateDriverLocationHandler}
-              clearState={clearState}
-              orderDetails={orderDetails}
-            />
-          </>
-        )}
-        {/* ./Step 4 */}
-        {/* Scheduled Ride */}
-        {rideScheduled && (
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              flexDirection: "column",
-              height: "40vh",
-              justifyContent: "center",
-            }}
-          >
-            <Typography variant="body1" component={"div"}>
-              Your ride for {contextState.pickUpDate} at{" "}
-              {contextState.pickUpTime}
-            </Typography>
-            <Typography variant="body1" component={"div"}>
-              from {contextState.pickUpLocation} to{" "}
-            </Typography>
-            <Typography variant="body1" component={"div"}>
-              {contextState.dropLocation} is scheduled
-            </Typography>
-
-            <Box p={2}>
-              <Button
-                color="error"
-                variant="contained"
-                size="large"
-                fullWidth={true}
-                onClick={cancelTripHandler}
-              >
-                Cancel scheduled ride
-              </Button>
-            </Box>
-          </Box>
-        )}
-        {/* ./Scheduled Ride */}
-        {error && (
-          <Box px={3}>
-            <Alert variant="filled" severity="error">
-              There is an error: {error}
-            </Alert>
-          </Box>
-        )}
       </div>
-
-      {/* Old shit */}
-
       <div className="hidden">
         <Container maxWidth={"lg"} sx={{ py: 0 }}>
           <Grid container>
@@ -1324,7 +1256,7 @@ export default function BookOnline() {
                               </Box>
                             </Button>
 
-                            {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <LocalizationProvider dateAdapter={AdapterDayjs}>
                               <DatePicker
                                 label=""
                                 open={openDayPicker}
@@ -1340,7 +1272,7 @@ export default function BookOnline() {
                                   setPickUpDateHandler(value)
                                 }
                               />
-                            </LocalizationProvider> */}
+                            </LocalizationProvider>
                           </Box>
                         </Grid>
                         <Grid item xs={6} md={6}>

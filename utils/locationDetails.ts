@@ -437,6 +437,11 @@ export const locationDetails: any = {
           type: "town",
         },
       ],
+      mapOptions: {
+        zoom: 12,
+        lat: 37.451414,
+        lng: 25.2984466,
+      },
     },
     "santorini-taxi-app": {
       alt_header: "Taxi Santorini",
@@ -664,6 +669,11 @@ export const locationDetails: any = {
           type: "town",
         },
       ],
+      mapOptions: {
+        zoom: 12,
+        lat: 36.4071255,
+        lng: 25.3382296,
+      },
     },
     "corfu-taxi-app": {
       alt_header: "Taxi Corfu",
@@ -872,6 +882,11 @@ export const locationDetails: any = {
           type: "town",
         },
       ],
+      mapOptions: {
+        zoom: 12,
+        lat: 39.5908338,
+        lng: 19.5459429,
+      },
     },
     "rhodes-taxi-app": {
       alt_header: "Taxi Rhodes",
@@ -1077,6 +1092,11 @@ export const locationDetails: any = {
           type: "town",
         },
       ],
+      mapOptions: {
+        zoom: 12,
+        lat: 36.1672113,
+        lng: 27.635861,
+      },
     },
     "athens-taxi-app": {
       alt_header: "Taxi Athens",
@@ -1267,6 +1287,11 @@ export const locationDetails: any = {
           type: "town",
         },
       ],
+      mapOptions: {
+        zoom: 12,
+        lat: 37.99083,
+        lng: 23.6971397,
+      },
     },
 
     "milos-taxi-app": {
@@ -1495,6 +1520,11 @@ export const locationDetails: any = {
           type: "town",
         },
       ],
+      mapOptions: {
+        zoom: 12,
+        lat: 36.7093005,
+        lng: 24.3500839,
+      },
     },
 
     "bodrum-taxi-app": {
@@ -1697,6 +1727,11 @@ export const locationDetails: any = {
           },
         ],
       },
+      mapOptions: {
+        zoom: 12,
+        lat: 37.0357887,
+        lng: 27.3921743,
+      },
     },
 
     "tinos-taxi-app": {
@@ -1887,6 +1922,11 @@ export const locationDetails: any = {
             ],
           },
         ],
+      },
+      mapOptions: {
+        zoom: 12,
+        lat: 37.601715,
+        lng: 25.03079,
       },
     },
 
@@ -2106,6 +2146,11 @@ export const locationDetails: any = {
           type: "town",
         },
       ],
+      mapOptions: {
+        zoom: 12,
+        lat: 37.0651212,
+        lng: 25.1132057,
+      },
     },
 
     "naxos-taxi-app": {
@@ -2298,6 +2343,11 @@ export const locationDetails: any = {
         ],
       },
       mapUrl: "/assets/booking-flow/naxos.svg",
+      mapOptions: {
+        zoom: 12,
+        lat: 37.0598572,
+        lng: 25.3048476,
+      },
     },
 
     "kos-taxi-app": {
@@ -2516,6 +2566,11 @@ export const locationDetails: any = {
           type: "town",
         },
       ],
+      mapOptions: {
+        zoom: 12,
+        lat: 36.7935627,
+        lng: 26.9716909,
+      },
     },
 
     "heraklion-taxi-app": {
@@ -2708,6 +2763,11 @@ export const locationDetails: any = {
         ],
       },
       mapUrl: "/assets/booking-flow/crete.svg",
+      mapOptions: {
+        zoom: 12,
+        lat: 35.3220094,
+        lng: 25.0938711,
+      },
     },
 
     "chalkidiki-taxi-app": {
@@ -2894,6 +2954,11 @@ export const locationDetails: any = {
             ],
           },
         ],
+      },
+      mapOptions: {
+        zoom: 12,
+        lat: 40.2732193,
+        lng: 23.0269122,
       },
     },
 
@@ -3098,6 +3163,11 @@ export const locationDetails: any = {
         ],
       },
       mapUrl: "/assets/booking-flow/kea.svg",
+      mapOptions: {
+        zoom: 12,
+        lat: 37.6394077,
+        lng: 24.0909546,
+      },
     },
 
     "kefalonia-taxi-app": {
@@ -3300,6 +3370,11 @@ export const locationDetails: any = {
           },
         ],
       },
+    },
+    mapOptions: {
+      zoom: 12,
+      lat: 38.2748003,
+      lng: 20.3952513,
     },
   },
   airports: {
