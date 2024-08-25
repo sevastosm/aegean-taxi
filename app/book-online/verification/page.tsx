@@ -231,6 +231,7 @@ export default function VerificationComponent({}: {}) {
                   width: 50,
                   height: 50,
                   borderRadius: "50%",
+                  color: "white",
                 }}
               >
                 <ArrowBackIcon
