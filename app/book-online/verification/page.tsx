@@ -221,22 +221,24 @@ export default function VerificationComponent({}: {}) {
         }}
       >
         <Grid item xs={12} md={3.2}>
-          <Box display="flex" alignItems="flex-start">
-            <IconButton
-              onClick={handleGoBack}
-              sx={{
-                backgroundColor: "#264388",
-                padding: 2,
-                width: 50,
-                height: 50,
-                borderRadius: "50%",
-              }}
-            >
-              <ArrowBackIcon
-                sx={{ color: "white", width: "100%", height: "100%" }}
-              />
-            </IconButton>
-          </Box>
+          <div className="block md:hidden">
+            <Box display="flex" alignItems="flex-start">
+              <IconButton
+                onClick={handleGoBack}
+                sx={{
+                  backgroundColor: "#264388 !important",
+                  padding: 2,
+                  width: 50,
+                  height: 50,
+                  borderRadius: "50%",
+                }}
+              >
+                <ArrowBackIcon
+                  sx={{ color: "white", width: "100%", height: "100%" }}
+                />
+              </IconButton>
+            </Box>
+          </div>
 
           <Box mt={2}>
             <Box
