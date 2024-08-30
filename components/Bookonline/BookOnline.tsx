@@ -1,7 +1,6 @@
 "use client";
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useRouter as clientRouter } from "next/router";
 
 // DayJS
 import dayjs from "dayjs";
@@ -12,29 +11,14 @@ import timezone from "dayjs/plugin/timezone";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import Alert from "@mui/material/Alert";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import CircularProgress from "@mui/material/CircularProgress";
 import Container from "@mui/material/Container";
-import CropSquareSharp from "@mui/icons-material/CropSquareSharp";
-import Divider from "@mui/material/Divider";
-import EventSharpIcon from "@mui/icons-material/EventSharp";
-import FormControl from "@mui/material/FormControl";
 import Grid from "@mui/material/Grid"; // Grid version 1
 import Icon from "@mui/material/Icon";
-import IconButton from "@mui/material/IconButton";
-import Input from "@mui/material/Input";
-import InputAdornment from "@mui/material/InputAdornment";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import ListItemText from "@mui/material/ListItemText";
-import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
-import MyLocationOutlinedIcon from "@mui/icons-material/MyLocationOutlined";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import { DigitalClock } from "@mui/x-date-pickers/DigitalClock";
@@ -53,19 +37,15 @@ import { AppContext } from "@/context/appState";
 import useStorage from "@/hooks/useStorage";
 
 // components
-import PredictionListItem from "@/components/predictions-list";
 import CarOptions from "@/components/car-options";
 import Driver from "@/components/driver";
 
 // models
 import { BookingState } from "@/types/bookingState";
 
-import TAXI from "public/assets/car-top.webp";
-import { greyMap } from "../googleMap/mapStyles";
 import { GoogleMapComponent } from "./GoogleMap";
 import TaxiLocations from "../TaxiLocations";
 import { locationDetails } from "@/utils/locationDetails";
-import HotSpot from "./HotSpot";
 import LocationSearch from "./LocationSearch";
 import NavBack from "./NavBack";
 import BookActions from "./BookActions";
@@ -115,7 +95,7 @@ export default function BookOnline() {
   const [pickUpTime, setPickUpTime] = useState<string>("NOW");
 
   const [initMap, setInitMap] = useState<boolean>(true);
-  const [open, setOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(true);
   const [focusLocation, setFocusLocation] = useState<boolean>(false);
   const [focusDestination, setFocusDestination] = useState<boolean>(false);
   const [directionsService, setDirectionsService] = useState<any>();
@@ -923,6 +903,8 @@ export default function BookOnline() {
     setPickUpTime("NOW");
     setRideScheduled(false);
     setDriverLocation(null);
+    setSelectedPickUp("");
+    setSelectedDropOff("");
 
     contextState.pickUpLocation = "";
     contextState.dropLocation = "";
@@ -982,12 +964,28 @@ export default function BookOnline() {
   const hotSpots =
     locationSearch && locationDetails.taxi_locations[locationSearch]?.hotSpots;
 
-
   useEffect(() => {
-    if (!pickUpLocation && !dropLocation) {
+    if (!contextState.pickUpLocation && !contextState.dropLocation) {
       setDisplayHotSpots(true);
     }
-  }); 
+  });
+  useEffect(() => {
+    if (
+      contextState.pickUpLocation === "" &&
+      contextState.dropLocation === ""
+    ) {
+      setDisplayHotSpots(true);
+    }
+  });
+
+  useEffect(() => {
+    setDisplayHotSpots(true);
+  }, []);
+  useEffect(() => {
+    if (displayHotSpots) {
+      setOpen(true);
+    }
+  }, [displayHotSpots]);
 
   return !locationSearch ? (
     <div className="flex flex-col min-h-screen">
@@ -1002,7 +1000,12 @@ export default function BookOnline() {
           !open ? "block" : "hidden"
         } md:hidden my-4 left-0 top-0 z-40`}
       >
-        <NavBack />
+        <NavBack
+          handleClick={() => {
+            setOpen(true);
+            clearState();
+          }}
+        />
       </div>
       <div
         className={`w-full ${

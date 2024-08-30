@@ -32,9 +32,9 @@ const Places = ({
     return null;
   }
 
-  const hotSpotsList = hotSpots.filter(
-    (spot: any) => spot.destination_name !== selectedPickUp
-  );
+  const hotSpotsList =
+    hotSpots &&
+    hotSpots.filter((spot: any) => spot.destination_name !== selectedPickUp);
 
   return (
     <List
