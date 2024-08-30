@@ -150,7 +150,7 @@ export default function BookOnline() {
   const [googleIsDefined, setGoogleIsDefined] = useState<boolean>(false);
   const [rideScheduled, setRideScheduled] = useState<boolean>(false);
   const [removeMarkers, setRemoveMarkers] = useState<boolean>(false);
-  const [displayHotSpots, setDisplayHotSpots] = useState<boolean>(false);
+  const [displayHotSpots, setDisplayHotSpots] = useState<boolean>(true);
   const [selectedPickUp, setSelectedPickUp] = useState<string>("");
   const [selectedDropOff, setSelectedDropOff] = useState<string>("");
 
@@ -904,7 +904,7 @@ export default function BookOnline() {
 
   const clearState = () => {
     setRemoveMarkers(() => true);
-    directionsRenderer.setDirections({ routes: [] });
+    directionsRenderer?.setDirections({ routes: [] });
     // setDirectionsRenderer(
     //   () => new window.google.maps.DirectionsRenderer({ suppressMarkers: true })
     // );
@@ -974,10 +974,20 @@ export default function BookOnline() {
         lng: mapOptions.lng,
       });
     }
+    if (!locationSearch) {
+      clearState();
+    }
   }, [locationSearch]);
 
   const hotSpots =
     locationSearch && locationDetails.taxi_locations[locationSearch]?.hotSpots;
+
+
+  useEffect(() => {
+    if (!pickUpLocation && !dropLocation) {
+      setDisplayHotSpots(true);
+    }
+  }); 
 
   return !locationSearch ? (
     <div className="flex flex-col min-h-screen">

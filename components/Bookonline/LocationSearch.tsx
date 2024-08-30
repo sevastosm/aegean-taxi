@@ -17,11 +17,11 @@ const LocationSearch = ({
   handleClearDropOff,
   selectedPickUp,
 }: any) => {
-  useEffect(() => {
-    if (selectedPickUp) {
-      document.getElementById("dropOff")?.focus();
-    }
-  }, [selectedPickUp]);
+  // useEffect(() => {
+  //   if (selectedPickUp) {
+  //     document.getElementById("dropOff")?.focus();
+  //   }
+  // }, [selectedPickUp]);
 
   return (
     <div className="flex flex-col space-y-4 relative">
@@ -53,7 +53,9 @@ const LocationSearch = ({
               getSuggestions(e, "pickUp");
             }}
             className={`pl-8 pr-8 py-3 border-2 rounded font-semibold focus:outline-none ${
-              pickUpLocation ? "bg-gray-300" : "bg-white border-blue-500"
+              pickUpLocation
+                ? "bg-gray-300"
+                : "bg-white border-blue-500 border-4"
             } w-full`}
             placeholder="Enter pick up location"
           />
@@ -93,7 +95,13 @@ const LocationSearch = ({
             }}
             className={`pl-8 pr-8 py-3 border-2 rounded font-semibold focus:outline-none ${
               dropLocation ? "bg-gray-300" : "bg-white border-blue-500"
-            } w-full`}
+            } 
+            ${
+              pickUpLocation &&
+              !dropLocation &&
+              "bg-white border-blue-500 border-4"
+            }
+            w-full`}
             placeholder="Enter drop off location"
           />
 

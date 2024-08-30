@@ -32,6 +32,10 @@ const Places = ({
     return null;
   }
 
+  const hotSpotsList = hotSpots.filter(
+    (spot: any) => spot.destination_name !== selectedPickUp
+  );
+
   return (
     <List
       sx={{
@@ -115,14 +119,16 @@ const Places = ({
       {displayHotSpots &&
         locationSearch &&
         hotSpots &&
-        hotSpots.map((spot: any) => (
+        hotSpotsList.map((spot: any) => (
           <div
             className="cursor-pointer"
-            onClick={() =>
-              locationHandler === "pickUp"
-                ? setPickUpLocationHandler(spot.destination_name)
-                : setDropOffLocationHandler(spot.destination_name)
-            }
+            onClick={() => {
+              if (!selectedPickUp) {
+                setPickUpLocationHandler(spot.destination_name);
+              } else {
+                setDropOffLocationHandler(spot.destination_name);
+              }
+            }}
           >
             <HotSpot
               destination_name={spot.destination_name}
