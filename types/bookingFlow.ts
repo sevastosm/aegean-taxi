@@ -12,6 +12,7 @@ export interface OrderData {
   prepaid: boolean;
   tariffId: string;
   orderId: string;
+  noOrder?: string;
 }
 interface Client {
   clientId: string;

@@ -24,7 +24,7 @@ const Order = () => {
   const [orderData, setOrderData] = useState<any>(null);
   const [orderDetails, setOrderDetails] = useState<any>(null);
 
-  const [screen, setScreen] = useState<screen>(null);
+  const [screen, setScreen] = useState<screen | null>(null);
 
   const result = {
     driverId: "35b43e0b-162a-4eda-b061-cfab3db25f0c",
@@ -42,8 +42,8 @@ const Order = () => {
   const handleGetOrderData = async () => {
     if (orderId) {
       const data = await getOrderData(orderId);
-      setOrderData(data);
       if (data) {
+        setOrderData(data);
         handleOrderUpdate(orderId);
       }
       console.log("ORDER DATA", data);
@@ -52,7 +52,16 @@ const Order = () => {
 
   const handleOrderUpdate = (orderId: string) => {
     getOrderUpdate(orderId).then((result: { status: BookingStatus }) => {
-      if (result.status === "SEARCH" || result.status === "STARTED") {
+      if (result.status === "SEARCH") {
+        setScreen("reservation-received");
+        clearTimeout(apiTimeout);
+        apiTimeout = setTimeout(() => {
+          handleOrderUpdate(orderId);
+        }, 10000);
+      }
+      if (result.status === "STARTED") {
+        setScreen("reservation-on-the-way");
+        getOrderDetails(orderId).then(setOrderDetails);
         clearTimeout(apiTimeout);
         apiTimeout = setTimeout(() => {
           handleOrderUpdate(orderId);
@@ -61,15 +70,7 @@ const Order = () => {
       if (result.status === "ASSIGNED") {
         setScreen("reservation-confirmed");
       }
-      if (result.status === "STARTED") {
-        setScreen("reservation-on-the-way");
-        getOrderDetails(orderId).then(setOrderDetails);
-      }
       if (result.status.includes("CANCELLED")) {
-        setScreen("reservation-cancelled");
-        clearTimeout(apiTimeout);
-      }
-      if (result.status === "CANCELLED_BY_DISPATCH") {
         setScreen("reservation-cancelled");
         clearTimeout(apiTimeout);
       }
@@ -95,8 +96,10 @@ const Order = () => {
         <OrderDetails
           orderDetails={orderDetails}
           screen={screen}
-          orderData={{ ...orderData, orderId: orderId }}
+          orderData={orderData}
+          orderId={orderId}
         />
+
         {/* <CancelButton orderId={orderId} /> */}
       </>
     );

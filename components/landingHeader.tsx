@@ -4,8 +4,6 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid"; // Grid version 1
 import Typography from "@mui/material/Typography";
-import NextLink from "next/link";
-import { useRouter } from "next/navigation";
 
 // components
 import BookingFormLanding from "@/components/requestRideForm/BookingFormLanding";
@@ -13,23 +11,10 @@ import BookingFormLanding from "@/components/requestRideForm/BookingFormLanding"
 import bg from "public/assets/landing-header.webp";
 import { SxImage } from "./ui/SxImage";
 import { locationDetails } from "@/utils/locationDetails";
-import { useEffect } from "react";
 import Link from "next/link";
-import useStorage from "@/hooks/useStorage";
 
 export default function LandingHeader() {
-  const { getItem, removeItem } = useStorage();
-  const router = useRouter();
-
   const atlText = locationDetails.landing.alt_header;
-  const cookieState = getItem("aegean", "local");
-
-  useEffect(() => {
-    if (cookieState?.orderDetails?.orderId) {
-      router.push(`/order?orderid=${cookieState?.orderDetails?.orderId}`);
-    }
-  }, [cookieState]);
-
   return (
     <Container maxWidth={"lg"}>
       <Grid container spacing={0}>
@@ -94,19 +79,7 @@ export default function LandingHeader() {
             position: "relative",
           }}
         >
-          <Link
-            underline="none"
-            href="/book-online"
-            component={NextLink}
-            variant="body1"
-            sx={{
-              mt: 3,
-              lineHeight: 3,
-              // borderBottom: `3px solid #000`,
-              width: "100%",
-            }}
-            style={{ position: "relative" }}
-          >
+          <Link href="/book-online">
             <SxImage
               src={bg.src}
               width={200}

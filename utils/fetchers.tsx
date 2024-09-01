@@ -244,7 +244,7 @@ export const getOrderData =async(orderId:string)=>{
          return result
        },
        (error) => {
-         return error
+         return { noOrder: "No order found" };
        }
      );
  }
