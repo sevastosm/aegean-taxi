@@ -47,7 +47,7 @@ import { setTimeout } from "timers";
 
 export default function VerificationComponent({}: {}) {
   const router = useRouter();
-  const [countryCode, setCountryCode] = useState("30");
+  const [countryCode, setCountryCode] = useState("0");
   const [phone, setPhone] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -98,7 +98,7 @@ export default function VerificationComponent({}: {}) {
   };
 
   function renderValue(option: string) {
-    return `+${option}`;
+    return option === "0" ? "County code" : `+${option}`;
   }
 
   const reCaptchaRef = React.useRef<any>(null);
@@ -340,7 +340,7 @@ export default function VerificationComponent({}: {}) {
               <Box
                 sx={{
                   display: "inline-flex",
-                  width: "70px",
+                  width: countryCode === "0" ? "200px" : "70px",
                 }}
               >
                 <FormControl variant="outlined">
@@ -349,7 +349,7 @@ export default function VerificationComponent({}: {}) {
                     id="demo-simple-select-standard"
                     value={countryCode}
                     onChange={handleChange}
-                    defaultValue={"30"}
+                    defaultValue={"0"}
                     native={false}
                     renderValue={renderValue}
                     name="countryCode"
@@ -374,6 +374,13 @@ export default function VerificationComponent({}: {}) {
                     }}
                     className="bg-gray-200"
                   >
+                    <MenuItem
+                      className={styles.MenuItem + "px-4"}
+                      role="option"
+                      value="0"
+                    >
+                      Choose county code
+                    </MenuItem>
                     <MenuItem
                       className={styles.MenuItem}
                       role="option"
@@ -554,6 +561,12 @@ export default function VerificationComponent({}: {}) {
           >
             <button
               onClick={onSubmit}
+              disabled={
+                phone.length < 9 ||
+                !firstName ||
+                !lastName ||
+                countryCode === "0"
+              }
               className="bg-[#264388] rounded-lg border-1 text-white font-bold text-[1.25rem] text-center w-full p-4"
             >
               Request code
