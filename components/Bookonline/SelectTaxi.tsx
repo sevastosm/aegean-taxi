@@ -87,6 +87,7 @@ const SelectTaxi = ({
       <CardPayment />
       <div className="flex items-end justify-center my-4">
         <button
+          disabled={!selectedItem}
           onClick={authorizeUser}
           className="w-full bg-[#264388] text-white font-semibold text-xl py-4 rounded-md"
         >

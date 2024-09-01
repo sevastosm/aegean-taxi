@@ -229,22 +229,13 @@ export default function ValidationContent({ handleCreateOrder }) {
                 the whatsapp button to message us directly
               </Typography>
             </Box>{" "}
-            <Button
-              sx={{
-                backgroundColor: "#264388 !important",
-                color: "#ffffff",
-                fontSize: "1.25rem",
-                width: "100%",
-                minWidth: "100%",
-                textTransform: "none",
-                textAlign: "center",
-                paddingY: "16px",
-              }}
-              fullWidth
+            <button
+              disabled={!secCode || secCode?.length < 5}
               onClick={onSubmit}
+              className="w-full bg-[#264388] text-white font-semibold text-xl py-4 rounded-md"
             >
               Book ride
-            </Button>
+            </button>
             {/* <Button
               variant="contained"
               size="large"

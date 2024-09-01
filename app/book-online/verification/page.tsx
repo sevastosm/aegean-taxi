@@ -567,7 +567,7 @@ export default function VerificationComponent({}: {}) {
                 !lastName ||
                 countryCode === "0"
               }
-              className="bg-[#264388] rounded-lg border-1 text-white font-bold text-[1.25rem] text-center w-full p-4"
+              className="w-full bg-[#264388] text-white font-semibold text-xl py-4 rounded-md"
             >
               Request code
             </button>
