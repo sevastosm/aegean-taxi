@@ -158,7 +158,6 @@ export default function BookOnline2() {
   useEffect(() => {
     console.log("set state");
     if (cookieState) {
-      console.log(1, cookieState);
       setBookingState(() => cookieState);
       appContext.updateAppState(cookieState);
     } else if (contextState) {

@@ -3,10 +3,106 @@ import { BookingStatus } from "@/types/bookingFlow";
 import { getOrderData, getOrderDetails, getOrderUpdate } from "@/utils/fetchers";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import CancelButton from "../CancelButton";
 import OrderDetails from "./OrderDetails";
 
 type Props = {};
 
+export type screen =
+  | "reservation-received"
+  | "reservation-confirmed"
+  | "reservation-on-the-way"
+  | "reservation-cancelled"
+  | null;
+
+export interface orderData {}
+
+let apiTimeout: any;
+const Order = () => {
+  const searchParams = useSearchParams();
+  const orderId = searchParams.get("orderid");
+  const [orderData, setOrderData] = useState<any>(null);
+  const [orderDetails, setOrderDetails] = useState<any>(null);
+
+  const [screen, setScreen] = useState<screen>(null);
+
+  const result = {
+    driverId: "35b43e0b-162a-4eda-b061-cfab3db25f0c",
+    driverLocation: {
+      accuracy: 7.864,
+      bearing: 198.84123,
+      speed: 5.356617,
+      time: "2024-07-24T23:43:32.297Z",
+      lat: 37.4413335,
+      lng: 25.334939,
+    },
+    status: "STARTED",
+  };
+
+  const handleGetOrderData = async () => {
+    if (orderId) {
+      const data = await getOrderData(orderId);
+      setOrderData(data);
+      if (data) {
+        handleOrderUpdate(orderId);
+      }
+      console.log("ORDER DATA", data);
+    }
+  };
+
+  const handleOrderUpdate = (orderId: string) => {
+    getOrderUpdate(orderId).then((result: { status: BookingStatus }) => {
+      if (result.status === "SEARCH" || result.status === "STARTED") {
+        clearTimeout(apiTimeout);
+        apiTimeout = setTimeout(() => {
+          handleOrderUpdate(orderId);
+        }, 10000);
+      }
+      if (result.status === "ASSIGNED") {
+        setScreen("reservation-confirmed");
+      }
+      if (result.status === "STARTED") {
+        setScreen("reservation-on-the-way");
+        getOrderDetails(orderId).then(setOrderDetails);
+      }
+      if (result.status.includes("CANCELLED")) {
+        setScreen("reservation-cancelled");
+        clearTimeout(apiTimeout);
+      }
+      if (result.status === "CANCELLED_BY_DISPATCH") {
+        setScreen("reservation-cancelled");
+        clearTimeout(apiTimeout);
+      }
+    });
+  };
+
+  useEffect(() => {
+    handleGetOrderData();
+  }, [orderId]);
+
+  useEffect(() => {
+    if (orderData && orderData?.pickupTime) {
+      orderData && setScreen("reservation-received");
+    } else {
+      setScreen(screen);
+    }
+  }, [orderData]);
+
+  if (orderData) {
+    console.log("ORER DATA ", orderData);
+    return (
+      <>
+        <OrderDetails
+          orderDetails={orderDetails}
+          screen={screen}
+          orderData={{ ...orderData, orderId: orderId }}
+        />
+        {/* <CancelButton orderId={orderId} /> */}
+      </>
+    );
+  }
+};
+export default Order;
 const mocRequest = {
   waypoints: [
     {
@@ -36,96 +132,6 @@ const mocRequest = {
   prepaid: false,
   tariffId: "8f6b6fe0-d353-4e3a-8fe7-92b8827ef139",
 };
-
-export type screen =
-  | "reservation-received"
-  | "reservation-confirmed"
-  | "reservation-on-the-way"
-  | "reservation-cancelled"
-  | null;
-
-export interface orderData {
-  
-}  
-
-let apiTimeout: any;
-const Order = () => {
-  const searchParams = useSearchParams();
-  const orderId = searchParams.get("orderid");
-  const [orderData, setOrderData] = useState<any>(null);
-  const [orderDetails, setOrderDetails] = useState<any>(null);
-
-  const [screen, setScreen] = useState<screen>(null);
-
-  const result = {
-    driverId: "35b43e0b-162a-4eda-b061-cfab3db25f0c",
-    driverLocation: {
-      accuracy: 7.864,
-      bearing: 198.84123,
-      speed: 5.356617,
-      time: "2024-07-24T23:43:32.297Z",
-      lat: 37.4413335,
-      lng: 25.334939,
-    },
-    status: "STARTED",
-  };
-
-  debugger;
-
-  const handleOrderUpdate = (orderId: string) => {
-    getOrderUpdate(orderId).then((result: { status: BookingStatus }) => {
-      if (result.status === "SEARCH" || result.status === "STARTED") {
-        clearTimeout(apiTimeout);
-        apiTimeout = setTimeout(() => {
-          getOrderUpdate(orderId);
-        }, 10000);
-      }
-      if (result.status === "ASSIGNED") {
-        setScreen("reservation-confirmed");
-      }
-      if (result.status === "STARTED") {
-        setScreen("reservation-on-the-way");
-        getOrderDetails(orderId).then(setOrderDetails);
-      }
-      if (result.status.includes("CANCELLED")) {
-        setScreen("reservation-cancelled");
-        clearTimeout(apiTimeout);
-      }
-    });
-  };
-
-  useEffect(() => {
-    orderId && getOrderData(orderId).then(setOrderData);
-    orderId && handleOrderUpdate(orderId);
-  }, [orderId]);
-
-  useEffect(() => {
-    if (orderData && orderData?.pickupTime) {
-      orderData && setScreen("reservation-received");
-    } else {
-      setScreen(screen);
-    }
-  }, [orderData]);
-
-  if (screen && orderData) {
-    return (
-      <OrderDetails
-        orderDetails={orderDetails}
-        screen={screen}
-        orderData={{ ...orderData, orderId: orderId }}
-      />
-    );
-  }
-  // if (screen === "reservation-confirmed") {
-  //   return <div>Reservation-confirmed</div>;
-  // }
-  // if (screen === "reservation-on-the-way") {
-  //   return <div>reservation-on-the-way</div>;
-  // }
-
-  // return <div>{orderData && JSON.stringify(orderData)}</div>;
-};
-export default Order;
 
 
 const mocDetails = {

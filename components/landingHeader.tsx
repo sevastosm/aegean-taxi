@@ -4,6 +4,8 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid"; // Grid version 1
 import Typography from "@mui/material/Typography";
+import NextLink from "next/link";
+import { useRouter } from "next/navigation";
 
 // components
 import BookingFormLanding from "@/components/requestRideForm/BookingFormLanding";
@@ -12,9 +14,21 @@ import bg from "public/assets/landing-header.webp";
 import { SxImage } from "./ui/SxImage";
 import { locationDetails } from "@/utils/locationDetails";
 import { useEffect } from "react";
+import Link from "next/link";
+import useStorage from "@/hooks/useStorage";
 
 export default function LandingHeader() {
+  const { getItem, removeItem } = useStorage();
+  const router = useRouter();
+
   const atlText = locationDetails.landing.alt_header;
+  const cookieState = getItem("aegean", "local");
+
+  useEffect(() => {
+    if (cookieState?.orderDetails?.orderId) {
+      router.push(`/order?orderid=${cookieState?.orderDetails?.orderId}`);
+    }
+  }, [cookieState]);
 
   return (
     <Container maxWidth={"lg"}>
@@ -80,45 +94,59 @@ export default function LandingHeader() {
             position: "relative",
           }}
         >
-          <SxImage
-            src={bg.src}
-            width={200}
-            height={200}
-            alt={atlText}
+          <Link
+            underline="none"
+            href="/book-online"
+            component={NextLink}
+            variant="body1"
             sx={{
-              width: "100%",
-              height: { xs: "200px", md: "100%" },
-              // backgroundColor: "primary.dark",
-              objectFit: { xs: "cover", md: "cover" },
-              objectPosition: { xs: "0 50%", md: "0 50%" },
-              position: { xs: "relative", md: "absolute" },
-            }}
-          />
-
-          <Box
-            justifyContent="center"
-            alignItems="center"
-            sx={{
-              display: { xs: "block", md: "flex" },
-              minHeight: { xs: "auto", md: "595px" },
-              marginBottom: "20px",
+              mt: 3,
+              lineHeight: 3,
+              // borderBottom: `3px solid #000`,
               width: "100%",
             }}
+            style={{ position: "relative" }}
           >
-            <div
-              style={{
+            <SxImage
+              src={bg.src}
+              width={200}
+              height={200}
+              alt={atlText}
+              sx={{
                 width: "100%",
-                display: "flex",
-                flexDirection: "column",
-                gap: "5px",
-                alignItems: "center",
+                height: { xs: "200px", md: "100%" },
+                // backgroundColor: "primary.dark",
+                objectFit: { xs: "cover", md: "cover" },
+                objectPosition: { xs: "0 50%", md: "0 50%" },
+                position: { xs: "relative", md: "absolute" },
+              }}
+            />
+
+            <Box
+              justifyContent="center"
+              alignItems="center"
+              sx={{
+                display: { xs: "block", md: "flex" },
+                minHeight: { xs: "auto", md: "595px" },
                 marginBottom: "20px",
-                background: "#fff",
+                width: "100%",
               }}
             >
-              <BookingFormLanding />
-            </div>
-          </Box>
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "5px",
+                  alignItems: "center",
+                  marginBottom: "20px",
+                  background: "#fff",
+                }}
+              >
+                <BookingFormLanding />
+              </div>
+            </Box>
+          </Link>
           {/* Download the app Button */}
         </Grid>
       </Grid>

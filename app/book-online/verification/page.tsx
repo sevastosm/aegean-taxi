@@ -61,11 +61,11 @@ export default function VerificationComponent({}: {}) {
   const { getItem, setItem, removeItem } = useStorage();
   const aegeanState = getItem("aegean", "local");
 
-  // useEffect(() => {
-  //   if (aegeanState && aegeanState.userVerified) {
-  //     router.push("/book-online");
-  //   }
-  // }, [aegeanState]);
+  useEffect(() => {
+    if (aegeanState && aegeanState.userVerified) {
+      router.push("/book-online");
+    }
+  }, [aegeanState]);
 
   // useEffect(() => {
   //   if (aegeanState) {
@@ -135,6 +135,10 @@ export default function VerificationComponent({}: {}) {
         router.push("/book-online/booking-confirmation");
       });
       return;
+    } else {
+      setTimeout(() => {
+        setDisabledNext(false);
+      }, 15000);
     }
 
     const token = await reCaptchaRef?.current.executeAsync();
@@ -183,14 +187,14 @@ export default function VerificationComponent({}: {}) {
     // });
   }
 
-  const visited = getItem("validationBeenVisited", "local");
+  // const visited = getItem("validationBeenVisited", "local");
 
-  useEffect(() => {
-    if (visited) {
-      removeItem("validationBeenVisited", "local");
-      router.push("/book-online");
-    }
-  }, [visited]);
+  // useEffect(() => {
+  //   if (visited) {
+  //     removeItem("validationBeenVisited", "local");
+  //     router.push("/book-online");
+  //   }
+  // }, [visited]);
 
   // Constant for the checkbox properties
   const termsCheckboxProps = {
@@ -546,30 +550,14 @@ export default function VerificationComponent({}: {}) {
             px={4}
             my={4}
             sx={{ width: "100%" }}
+            disabled={phone.length < 9 || !firstName || !lastName}
           >
-            <Button
-              sx={{
-                backgroundColor: "#264388",
-                color: "#fff",
-                fontSize: "1.25rem",
-                width: "100%",
-                minWidth: "100%",
-                textTransform: "none",
-                textAlign: "center",
-                paddingY: "16px",
-                "&:disabled": {
-                  backgroundColor: "#264388",
-                },
-              }}
-              fullWidth
-              disabled={
-                phone.length < 9 || !firstName || !lastName || disabledNext
-              }
+            <button
               onClick={onSubmit}
-              endIcon={<ArrowForwardIcon />}
+              className="bg-[#264388] rounded-lg border-1 text-white font-bold text-[1.25rem] text-center w-full p-4"
             >
               Request code
-            </Button>
+            </button>
           </Box>
           <ReCAPTCHA
             ref={reCaptchaRef}

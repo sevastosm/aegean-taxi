@@ -2,7 +2,7 @@ import { cancelOrder } from "@/utils/fetchers";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-type Props = { orderId: string,onCancel?:()=>void };
+type Props = { orderId: string; onCancel?: () => void };
 
 const CancelButton = ({ orderId,}: Props) => {
   const router = useRouter();

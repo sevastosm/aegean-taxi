@@ -87,11 +87,12 @@ function OrderDetails({ screen, orderData, orderDetails }: Props) {
           </div>
         </div>
       )}
-     {orderDetails && <DriverDetails details={orderDetails} />}
-      {screen !== "reservation-cancelled" && 
-      <div className="flex items-end justify-center my-4 px-2">
-        <CancelButton orderId={orderData.orderId} />
-      </div>}
+      {orderData?.car && <DriverDetails details={orderDetails} />}
+      {screen !== "reservation-cancelled" && (
+        <div className="flex items-end justify-center my-4 px-2">
+          <CancelButton orderId={orderData.orderId} />
+        </div>
+      )}
     </div>
   );
 }
