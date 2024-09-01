@@ -7,17 +7,25 @@ const uberVan = "/assets/booking-flow/uberVan.svg";
 const personIcon = "/assets/booking-flow/personIcon.svg";
 const walletIcon = "/assets/booking-flow/walletIcon.svg";
 
-const SelectTaxi = ({ cars, handleChange, authorizeUser }: any) => {
+const SelectTaxi = ({
+  cars,
+  handleChange,
+  authorizeUser,
+  carSelectHandler,
+}: any) => {
   const [selectedItem, setSelectedItem] = useState(null);
   const handleSelect = (item: any) => {
     setSelectedItem(item);
-    handleChange();
+    carSelectHandler(item);
+    // handleChange();
   };
 
   const carImages: any = {
     Van: uberVan,
     MiniBus: uberVan,
     Economy: uberCar,
+    Taxi: uberCar,
+    Luxury: uberCar,
   };
 
   return (

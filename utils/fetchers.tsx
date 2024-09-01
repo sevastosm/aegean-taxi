@@ -178,6 +178,7 @@ export const createOrder = async (contextState:any) => {
        //handle err
       }
     } catch (error) {
+      console.log("CREATE ORDER ERROR", error);
       //handle catch
     }
   }

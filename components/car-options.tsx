@@ -33,18 +33,18 @@ export default function CarOptions({
   authorizeUser,
   cars,
 }: any) {
-  const [view, setView] = React.useState<any>(null);
+  // const [view, setView] = React.useState<any>(null);
 
-  useEffect(() => {
-    carSelectHandler(view);
-  }, [carSelectHandler, view]);
+  // useEffect(() => {
+  //   carSelectHandler(view);
+  // }, [carSelectHandler, view]);
 
-  const handleChange = (
-    event: React.MouseEvent<HTMLElement>,
-    nextView: any
-  ) => {
-    setView(nextView);
-  };
+  // const handleChange = (
+  //   event: React.MouseEvent<HTMLElement>,
+  //   nextView: any
+  // ) => {
+  //   setView(nextView);
+  // };
 
   if (cars.length === 0) {
     return null;
@@ -53,7 +53,8 @@ export default function CarOptions({
   return (
     <SelectTaxi
       cars={cars}
-      handleChange={handleChange}
+      // handleChange={handleChange}
+      carSelectHandler={carSelectHandler}
       authorizeUser={authorizeUser}
     />
   );
