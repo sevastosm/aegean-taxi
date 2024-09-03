@@ -30,41 +30,40 @@ const SelectTaxi = ({
 
   return (
     <div className="flex flex-col">
-      <div className="flex items-center justify-center">
-        <p className="text-xl font-semibold  text-[#264388]">Choose a trip</p>
-      </div>
       <div className="w-full mx-auto bg-white  rounded-2xl">
         <div className="space-y-2">
           {cars.map((car: any, i: number) => {
             return (
               <div
                 key={i}
-                className={`my-1 px-2 border-[3px] rounded-2xl cursor-pointer flex items-center justify-between ${
+                className={`my-4 px-3 py-1 border-[3px] rounded-2xl cursor-pointer flex items-center justify-between ${
                   selectedItem === car.name
                     ? "border-[#264388]"
                     : "border-transparent"
                 }`}
                 onClick={() => handleSelect(car.name)}
               >
-                <div className="flex flex-row items-center justify-start">
+                <div className="flex flex-row gap-2 items-center justify-start">
                   <img
                     src={carImages[car.name]}
                     alt="Taxi Icon"
                     className="w-[50px] h-[50px] mr-2"
                   />
                   <div className="flex flex-col items-start justify-start">
-                    <div className="flex flex-row items-center justify-start">
-                      <p className="text-[#264388] font-bold text-lg mx-1">
+                    <div className="flex flex-col justify-start">
+                      <div className="text-[#264388] font-bold text-lg mx-1">
                         {car.name ? car.name : car.vehicleType}
-                      </p>
-                      <img
-                        src={personIcon}
-                        alt="Person Icon"
-                        className="w-[15px] h-[15px] mr-1"
-                      />
-                      <span className="text-base font-normal">
-                        1 - {car.numberOfSeats}
-                      </span>
+                      </div>
+                      <div className="flex gap-2 items-center ">
+                        <img
+                          src={personIcon}
+                          alt="Person Icon"
+                          className="w-[15px] h-[15px] mr-1"
+                        />
+                        <span className="text-base font-normal italic">
+                          1 - {car.numberOfSeats}
+                        </span>
+                      </div>
                     </div>
                     {/* <div className="flex flex-row items-center justify-between">
                       <p className="text-sm mx-1 font-semibold">
@@ -84,16 +83,16 @@ const SelectTaxi = ({
           })}
         </div>
       </div>
-      <CardPayment />
+      <div className="px-4">
+        <CardPayment />
+      </div>
       <div className="flex items-end justify-center my-4">
         <button
           disabled={!selectedItem}
           onClick={authorizeUser}
           className="w-full bg-[#264388] text-white font-semibold text-xl py-4 rounded-md"
         >
-          {selectedItem
-            ? "Confirm" + " " + selectedItem
-            : "Select transportation"}
+          {selectedItem ? "Book" + " " + selectedItem : "Select transportation"}
         </button>
       </div>
     </div>

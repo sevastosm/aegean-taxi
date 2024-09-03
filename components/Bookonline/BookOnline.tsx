@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useContext } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useJsApiLoader } from "@react-google-maps/api";
 
 // DayJS
 import dayjs from "dayjs";
@@ -8,27 +9,14 @@ import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 
 // MUI
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import Alert from "@mui/material/Alert";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid"; // Grid version 1
-import Icon from "@mui/material/Icon";
-import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
-import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
-import { DigitalClock } from "@mui/x-date-pickers/DigitalClock";
 
 // Styles
 // @ts-ignore
-import styles from "@/components/requestRideForm/form.module.scss";
 
 // Google Maps
-import { Wrapper, Status } from "@googlemaps/react-wrapper";
+import { Status } from "@googlemaps/react-wrapper";
 
 // context
 import { AppContext } from "@/context/appState";
@@ -37,37 +25,25 @@ import { AppContext } from "@/context/appState";
 import useStorage from "@/hooks/useStorage";
 
 // components
-import CarOptions from "@/components/car-options";
-import Driver from "@/components/driver";
 
 // models
 import { BookingState } from "@/types/bookingState";
 
-import { GoogleMapComponent } from "./GoogleMap";
 import TaxiLocations from "../TaxiLocations";
 import { locationDetails } from "@/utils/locationDetails";
 import LocationSearch from "./LocationSearch";
-import NavBack from "./NavBack";
 import BookActions from "./BookActions";
 import Places from "./Places";
 import CarList from "./CarList";
 import Calendars from "./Calendars";
+import ToolBar from "./ToolBar";
+import classNames from "classnames";
+import MapComponent from "./MapComponent";
+import { getAvailableRouteCars } from "@/utils/fetchers";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.tz.setDefault("Europe/Athens");
-
-const render = (status: Status): any => {
-  switch (status) {
-    case Status.LOADING:
-      return <CircularProgress />;
-    case Status.FAILURE:
-    // return <ErrorComponent />;
-    case Status.SUCCESS:
-      // return <GoogleMapComponent />;
-      return true;
-  }
-};
 
 export default function BookOnline() {
   const router = useRouter();
@@ -133,6 +109,7 @@ export default function BookOnline() {
   const [displayHotSpots, setDisplayHotSpots] = useState<boolean>(true);
   const [selectedPickUp, setSelectedPickUp] = useState<string>("");
   const [selectedDropOff, setSelectedDropOff] = useState<string>("");
+  const [map, setMap] = React.useState(null);
 
   useEffect(() => {
     console.log("set state");
@@ -149,7 +126,7 @@ export default function BookOnline() {
     return () => {};
   }, []);
 
-  const toggleDrawer = () => () => {
+  const toggleDrawer = () => {
     setOpen(!open);
   };
 
@@ -184,52 +161,6 @@ export default function BookOnline() {
     toggleDrawer();
   };
 
-  const nearbySearchCallback = (results: any, status: any) => {
-    if (status == google.maps.places.PlacesServiceStatus.OK) {
-      setNearbyLocations(results);
-    }
-  };
-
-  const toggleDeviceNavigator = () => {
-    navigator.geolocation.getCurrentPosition(
-      async (position: GeolocationPosition) => {
-        const userLocation = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        };
-        setInitMap(true);
-        setCurrentLocation(userLocation);
-
-        var request = {
-          location: userLocation,
-          radius: 50,
-        };
-
-        placesService.nearbySearch(request, nearbySearchCallback);
-
-        geocoderService
-          .geocode({ location: userLocation })
-          .then((response: any) => {
-            if (response.results[0]) {
-              setCurrentLocationAddress(response.results[0].formatted_address);
-            } else {
-              setCurrentLocationAddress("unknown");
-            }
-          })
-          .catch((e: any) => console.log("Geocoder failed due to: " + e));
-      },
-      () => {},
-      {
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 1000,
-      }
-    );
-    setShowNavigatorButton(false);
-    contextState.showNavigatorButton = false;
-    setItem("aegean", contextState, "local");
-  };
-
   const stateManagement = async () => {
     console.log("state managenment");
     //await calculateAndDisplayRoute();
@@ -262,39 +193,39 @@ export default function BookOnline() {
     }
     // userVerified
 
-    /* Step 4 - Search for driver  */
-    if (
-      cookieState &&
-      cookieState.userVerified &&
-      cookieState.selectedCar &&
-      cookieState.selectedCarConfirmed &&
-      // !cookieState.orderDetails &&
-      !cookieState.driver
-    ) {
-      console.log("step 4");
-      await calculateAndDisplayRoute();
-      setSelectedCar(cookieState.selectedCar);
-      setTimeout(async () => {
-        console.log("TIME SEARHING");
-        if (contextState.orderDetails) {
-          getOrderUpdate(cookieState.orderDetails);
-        } else {
-          await createOrder();
-        }
-      }, 1500);
-    }
+    // /* Step 4 - Search for driver  */
+    // if (
+    //   cookieState &&
+    //   cookieState.userVerified &&
+    //   cookieState.selectedCar &&
+    //   cookieState.selectedCarConfirmed &&
+    //   // !cookieState.orderDetails &&
+    //   !cookieState.driver
+    // ) {
+    //   console.log("step 4");
+    //   await calculateAndDisplayRoute();
+    //   setSelectedCar(cookieState.selectedCar);
+    //   setTimeout(async () => {
+    //     console.log("TIME SEARHING");
+    //     if (contextState.orderDetails) {
+    //       getOrderUpdate(cookieState.orderDetails);
+    //     } else {
+    //       await createOrder();
+    //     }
+    //   }, 1500);
+    // }
 
-    // Step 5
-    if (
-      cookieState &&
-      cookieState.userVerified &&
-      cookieState.driver &&
-      cookieState.driverDetails
-    ) {
-      await calculateAndDisplayRoute();
-      console.log("step 5");
-    }
-    console.log("end");
+    //   // Step 5
+    //   if (
+    //     cookieState &&
+    //     cookieState.userVerified &&
+    //     cookieState.driver &&
+    //     cookieState.driverDetails
+    //   ) {
+    //     await calculateAndDisplayRoute();
+    //     console.log("step 5");
+    //   }
+    //   console.log("end");
   };
 
   const updateSession = () => {
@@ -310,6 +241,11 @@ export default function BookOnline() {
       }, 100);
     }
   }, [focusDestination, focusLocation]);
+
+  const { isLoaded } = useJsApiLoader({
+    id: "google-map-script",
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
+  });
 
   // markers
   useEffect(() => {
@@ -368,13 +304,6 @@ export default function BookOnline() {
     }
   }, [initMap, googleIsDefined]);
 
-  const intitializeMap = (status: string) => {
-    console.log("status", status);
-    if (status === "SUCCESS") {
-      setGoogleIsDefined(true);
-    }
-  };
-
   useEffect(() => {
     console.log("car categories");
     if (bookingState) {
@@ -430,127 +359,46 @@ export default function BookOnline() {
     return bookLater;
   };
 
-  const gatAvailableRouteCars = async (
-    apiToken: string,
-    start_location_lat: string,
-    start_location_lng: string,
-    end_location_lat: string,
-    end_location_lng: string
-  ) => {
-    await validateDateTime();
-    let dayjsLocal = dayjs(
-      `${contextState.pickUpDate} ${contextState.pickUpTime}`
-    );
-
-    fetch(
-      // `https://carky-api.azurewebsites.net/api/AdminDashboard/Orders/EstimateOrderInfo?model.pickupLocation.geography.lat=${start_location_lat}&model.pickupLocation.geography.lng=${start_location_lng}&model.dropoffLocation.geography.lat=${end_location_lat}&model.dropoffLocation.geography.lng=${end_location_lng}`,
-      `${
-        process.env.NEXT_PUBLIC_ONDE_HOSTNAME
-      }/dispatch/v1/tariff?origin=${start_location_lat},${start_location_lng}&destination=${end_location_lat},${end_location_lat}&pickupTime=${encodeURIComponent(
-        dayjsLocal.toISOString()
-      )}&tripDistance=${
-        contextState.directions.routes[0].legs[0].distance.value
-      }&tripDuration=${
-        contextState.directions.routes[0].legs[0].duration.value * 1000
-      }`,
-      {
-        method: "GET",
-        headers: new Headers({
-          Authorization: `${process.env.NEXT_PUBLIC_ONDE_API_TOKEN}`,
-        }),
-      }
-    )
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          let availCars: any = [];
-
-          // for (const tarrif in result.tarrifs) {
-          //   let cat = carCategories.find(
-          //     (car) => car.Id === result.PricePerCategories[tarrif].Id
-          //   );
-
-          //   availCars.push({ ...result.PricePerCategories[tarrif], ...cat });
-          // }
-          setAvailableCars(result.tariffs);
-        },
-        (error) => {
-          setError(() => "No available route");
-          clearDirections();
-          // try {
-          //   setError(error);
-          // } catch (error) {
-          //   setError('No available route');
-          // }
-        }
-      );
-  };
-
-  const calculateAndDisplayRoute = async () => {
+  const calculateAndDisplayRoute = async (response: any = null) => {
     console.log("calculateAndDisplayRoute");
-    if (
-      bookingState &&
-      directionsService &&
-      directionsRenderer &&
-      pickUpLocation &&
-      dropLocation
-    ) {
-      await directionsService
-        .route({
-          origin: {
-            query: pickUpLocation,
-          },
-          destination: {
-            query: dropLocation,
-          },
-          travelMode: google.maps.TravelMode.DRIVING,
-        })
-        .then((response: any) => {
-          setError(null);
-          setDirections(response);
-          contextState.directions = response;
-          contextState.startLocationLat =
-            response.routes[0].legs[0].start_location.lat();
-          contextState.startLocationLng =
-            response.routes[0].legs[0].start_location.lng();
-          contextState.endLocationLat =
-            response.routes[0].legs[0].end_location.lat();
-          contextState.endLocationLng =
-            response.routes[0].legs[0].end_location.lng();
-          updateSession();
-          setItem("aegean", contextState, "local");
-          setPredictions([]);
-          setOpen(false);
-          try {
-            // if (bookingState.selectedCar) {
-            gatAvailableRouteCars(
-              bookingState.apiToken,
-              response.routes[0].legs[0].start_location.lat(),
-              response.routes[0].legs[0].start_location.lng(),
-              response.routes[0].legs[0].end_location.lat(),
-              response.routes[0].legs[0].end_location.lng()
-            );
-            //}
-          } catch (error) {
-            setError(() => "No available route");
-            clearDirections();
-          }
-        })
-        .catch(
-          (e: any) => {
-            console.log(e);
-            setError(e.message.split(":").pop());
-            // setOpen(false);
-          }
-          // window.alert('Directions request failed due to ' + e)
-        );
+    if (response) {
+      contextState.directions = response;
+      contextState.startLocationLat =
+        response.routes[0].legs[0].start_location.lat();
+      contextState.startLocationLng =
+        response.routes[0].legs[0].start_location.lng();
+      contextState.endLocationLat =
+        response.routes[0].legs[0].end_location.lat();
+      contextState.endLocationLng =
+        response.routes[0].legs[0].end_location.lng();
+
+      await validateDateTime();
+      let dayjsLocal = dayjs(
+        `${contextState.pickUpDate} ${contextState.pickUpTime}`
+      );
+      const tariffs = await getAvailableRouteCars(
+        contextState,
+        dayjsLocal,
+        bookingState.apiToken,
+        response.routes[0].legs[0].start_location.lat(),
+        response.routes[0].legs[0].start_location.lng(),
+        response.routes[0].legs[0].end_location.lat(),
+        response.routes[0].legs[0].end_location.lng(),
+        clearDirections
+      );
+      setAvailableCars(tariffs);
+      contextState.tariffs = tariffs;
+      setItem("aegean", contextState, "local");
+      setPredictions([]);
+      setOpen(false);
+      setError(null);
+      setDirections(response);
     }
   };
 
   const displaySuggestions = function (
     predictions: google.maps.places.QueryAutocompletePrediction[] | null,
-    status: google.maps.places.PlacesServiceStatus,
-    target: string
+    status: google.maps.places.PlacesServiceStatus
   ) {
     if (
       (typeof window !== "undefined" &&
@@ -636,7 +484,6 @@ export default function BookOnline() {
       contextState.nextButton = true;
       setItem("aegean", contextState, "local");
       setSelectCarStep(false);
-      calculateAndDisplayRoute();
     }
   }, [pickUpLocation, dropLocation, triggerCalculate]);
 
@@ -696,113 +543,6 @@ export default function BookOnline() {
     //   createOrder();
     // }
   };
-
-  const createOrder = async () => {
-    // new order
-    if (contextState && contextState.startLocationLat) {
-      contextState.searchingForDriver = true;
-      updateSession();
-      let orderDetailsRes;
-      dayjs.tz.setDefault();
-      let dayjsLocal = dayjs(
-        `${contextState.pickUpDate} ${contextState.pickUpTime}`
-      );
-      // console.log(`${contextState.pickUpDate} ${contextState.pickUpTime}`)
-      // console.log(dayjsLocal.format())
-
-      try {
-        let res = await fetch(
-          `${process.env.NEXT_PUBLIC_ONDE_HOSTNAME}/dispatch/v1/order/`,
-          {
-            method: "POST",
-            headers: new Headers({
-              Authorization: `${process.env.NEXT_PUBLIC_ONDE_API_TOKEN}`,
-            }),
-            body: JSON.stringify({
-              waypoints: [
-                {
-                  exactLatLng: {
-                    lat: contextState.startLocationLat,
-                    lng: contextState.startLocationLng,
-                  },
-                  // premise: "Google Store",
-                  // houseNumber: "22",
-                  street: contextState.pickUpLocation,
-                  // subLocality: "California",
-                  // locality: "California",
-
-                  // city: "Mountain view",
-                  // district: "California",
-                  // province: "California",
-                  // country: "United States",
-                  // postalCode: "94043",
-                  // countryCode: "US",
-                  poiName: contextState.pickUpLocation,
-                  placeLatLng: {
-                    lat: contextState.startLocationLat,
-                    lng: contextState.startLocationLng,
-                  },
-                },
-                {
-                  exactLatLng: {
-                    lat: contextState.endLocationLat,
-                    lng: contextState.endLocationLng,
-                  },
-                  // premise: "Google Store",
-                  // houseNumber: "22",
-                  street: contextState.dropLocation,
-                  // subLocality: "California",
-                  // locality: "California",
-
-                  // city: "Mountain view",
-                  // district: "California",
-                  // province: "California",
-                  // country: "United States",
-                  // postalCode: "94043",
-                  // countryCode: "US",
-                  poiName: contextState.dropLocation,
-                  placeLatLng: {
-                    lat: contextState.endLocationLat,
-                    lng: contextState.endLocationLng,
-                  },
-                },
-              ],
-              client: {
-                name: `${contextState.firstName} ${contextState.lastName}`,
-                phone: contextState.phoneNumber,
-              },
-              notes: "From Aegean Taxi Web App",
-              // pickupTime: encodeURIComponent(dayjsLocal.toISOString()),
-              pickupTime: dayjsLocal.format(),
-              unitOfLength: "KILOMETER",
-              vehicleType: contextState.selectedCar.vehicleType,
-              numberOfSeats: contextState.selectedCar.numberOfSeats,
-              // paymentMethods: contextState.selectedCar.paymentMethods,
-              paymentMethods: ["CASH"],
-              prepaid: false,
-              tariffId: contextState.selectedCar.tariffId,
-            }),
-          }
-        );
-
-        if (res.ok) {
-          orderDetailsRes = await res.json();
-          contextState.orderDetails = orderDetailsRes;
-          setOrderDetails(orderDetailsRes);
-          updateSession();
-          setDriver(true);
-          getOrderUpdate(orderDetailsRes);
-        } else {
-          setError("An error has occurred.");
-          clearState();
-        }
-      } catch (error) {
-        setError(error);
-        clearState();
-      }
-    }
-  };
-
   let apiTimeout: any;
 
   const getOrderUpdate = (order: any) => {
@@ -847,40 +587,6 @@ export default function BookOnline() {
           }
         );
     }
-  };
-
-  const updateDriverLocationHandler = (carLocation: any) => {
-    setDirectionsRenderer(() => directionsRenderer.setMap(null));
-    setDirectionsRenderer(
-      () => new window.google.maps.DirectionsRenderer({ suppressMarkers: true })
-    );
-    setDriverLocation(() => carLocation);
-  };
-
-  const cancelTripHandler = () => {
-    // cancel
-    if (orderDetails) {
-      fetch(
-        `${process.env.NEXT_PUBLIC_ONDE_HOSTNAME}/dispatch/v1/order/${contextState.orderDetails.orderId}/status`,
-        {
-          method: "PUT",
-          headers: new Headers({
-            Authorization: `${process.env.NEXT_PUBLIC_ONDE_API_TOKEN}`,
-          }),
-          body: JSON.stringify({
-            status: "CANCELLED_BY_DISPATCH",
-          }),
-        }
-      ).then(
-        (res) => clearState(),
-        (error) => {
-          setError(error);
-          clearState();
-        }
-      );
-    }
-    clearState();
-    setOpen(false);
   };
 
   const clearState = () => {
@@ -931,8 +637,12 @@ export default function BookOnline() {
   const nextButtonHandler = async () => {
     setNextButton(false);
     setSelectCarStep(true);
-    await calculateAndDisplayRoute();
     setOpen(true);
+  };
+
+  const handleBack = () => {
+    setOpen(true);
+    clearState();
   };
 
   const visited = getItem("validationBeenVisited", "local");
@@ -955,6 +665,10 @@ export default function BookOnline() {
         lat: mapOptions.lat,
         lng: mapOptions.lng,
       });
+      contextState.mapCenter = {
+        lat: mapOptions.lat,
+        lng: mapOptions.lng,
+      };
     }
     if (!locationSearch) {
       clearState();
@@ -987,6 +701,14 @@ export default function BookOnline() {
     }
   }, [displayHotSpots]);
 
+  // useEffect(() => {
+  //   if (selectedPickUp && selectedDropOff) {
+  //     if (!open) {
+  //       setOpen(false);
+  //     }
+  //   }
+  // }, [selectedPickUp, selectedDropOff]);
+
   return !locationSearch ? (
     <div className="flex flex-col min-h-screen">
       <div className="px-4">
@@ -994,79 +716,70 @@ export default function BookOnline() {
       </div>
     </div>
   ) : (
-    <div className="flex relative md:gap-20 flex-col md:flex-row min-h-screen max-w-[1200px] m-auto">
-      <div
-        className={`absolute ${
-          !open ? "block" : "hidden"
-        } md:hidden my-4 left-0 top-0 z-40`}
-      >
-        <NavBack
-          handleClick={() => {
-            setOpen(true);
-            clearState();
-          }}
-        />
-      </div>
-      <div
-        className={`w-full ${
-          !open ? "block" : "hidden"
-        } md:block h-[280px] md:h-[700px] relative order-0 md:order-1`}
-      >
-        <Wrapper
-          apiKey={`${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
-          libraries={["places"]}
-          render={render}
-          callback={intitializeMap}
-        >
-          {!initMap && (
-            <GoogleMapComponent
-              center={center}
-              zoom={zoom}
-              currentLocation={currentLocation}
-              directionsService={directionsService}
-              directionsRenderer={directionsRenderer}
-              placesService={placesService}
-              geocoderService={geocoderService}
-              directions={directions}
-              driverLocation={driverLocation}
-              state={contextState}
-              removeMarkers={removeMarkers}
-            />
+    <div className="flex relative md:gap-20 flex-col md:flex-row min-h-screen max-h-[700px] max-w-[1200px] m-auto">
+      <div>
+        <div className="absolute top-3 left-0 z-10 w-full">
+          <ToolBar
+            toggleDrawer={toggleDrawer}
+            handleClick={handleBack}
+            isMapOpen={open}
+          />
+        </div>
+
+          {isLoaded && (
+        <div
+          className={classNames(
+            "w-full md:block h-[280px] md:h-[700px]",
+            "relative order-0 md:order-1",
+            !open ? "block" : "h-0 w-0 invisible",
+            selectedPickUp && selectedDropOff ? "h-[400px]" : "h-[280px]"
           )}
-        </Wrapper>
+        >
+            <MapComponent
+              locationSearch={locationSearch}
+              calculateAndDisplayRoute={calculateAndDisplayRoute}
+            />
+            </div>
+          )}
+          {/* <Wrapper
+            apiKey={`${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
+            libraries={["places"]}
+            render={render}
+            callback={intitializeMap}
+          >
+            {!initMap && (
+              <GoogleMapComponent
+                center={center}
+                zoom={zoom}
+                currentLocation={currentLocation}
+                directionsService={directionsService}
+                directionsRenderer={directionsRenderer}
+                placesService={placesService}
+                geocoderService={geocoderService}
+                directions={directions}
+                driverLocation={driverLocation}
+                state={contextState}
+                removeMarkers={removeMarkers}
+              />
+            )}
+          </Wrapper> */}
       </div>
 
       <div className="px-4 w-full md:w-[50%]">
-        <div className="relative flex flex-col gap-4 ">
-          <div onClick={toggleDrawer()} className="flex justify-center pt-4">
-            <Box
-              sx={{
-                width: 50,
-                height: 4,
-                backgroundColor: "#ddd",
-                borderRadius: 3,
-                display: { xs: "block", md: "none" },
-                cursor: "pointer",
-              }}
-            />
-          </div>
-        </div>
         <Typography
           component="h1"
           sx={{
             fontWeight: "bold",
             fontSize: 30,
             textAlign: "center",
+            visibility: "hidden",
+            width: "0px",
+            height: "0px",
           }}
         >
           Book a taxi online now
         </Typography>
-        <div className="flex flex-col gap-4">
-          {/* <div>
-            {selectedPickUp}
-            {" - "}
-            {selectedDropOff}
-          </div> */}
+        <div className={classNames("flex flex-col gap-4", open && "mt-16")}>
           <LocationSearch
             toggleFocusLocation={toggleFocusLocation}
             toggleBlurLocation={toggleBlurLocation}
@@ -1112,18 +825,20 @@ export default function BookOnline() {
               }
             />
           )}
-          <CarList
-            directions={directions}
-            predictions={predictions}
-            error={error}
-            orderDetails={orderDetails}
-            contextState={contextState}
-            selectCarStep={selectCarStep}
-            availableCars={availableCars}
-            setSelectedCarHandler={setSelectedCarHandler}
-            authorizeUser={authorizeUser}
-            selectedCar={selectedCar}
-          />
+          {availableCars && (
+            <CarList
+              directions={directions}
+              predictions={predictions}
+              error={error}
+              orderDetails={orderDetails}
+              contextState={contextState}
+              selectCarStep={selectCarStep}
+              availableCars={availableCars}
+              setSelectedCarHandler={setSelectedCarHandler}
+              authorizeUser={authorizeUser}
+              selectedCar={selectedCar}
+            />
+          )}
         </div>
       </div>
     </div>

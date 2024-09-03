@@ -27,4 +27,5 @@ export type BookingState = {
   endLocationLng: any;
   rideScheduled: boolean;
   driverLocation: any;
+  tariffs: any;
 };
