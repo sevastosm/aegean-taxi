@@ -242,11 +242,6 @@ export default function BookOnline() {
     }
   }, [focusDestination, focusLocation]);
 
-  const { isLoaded } = useJsApiLoader({
-    id: "google-map-script",
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
-  });
-
   // markers
   useEffect(() => {
     console.log("init google map");
@@ -726,22 +721,21 @@ export default function BookOnline() {
           />
         </div>
 
-          {isLoaded && (
         <div
           className={classNames(
             "w-full md:block h-[280px] md:h-[700px]",
             "relative order-0 md:order-1",
-            !open ? "block" : "h-0 w-0 invisible",
+            !open ? "block" : "hidden",
             selectedPickUp && selectedDropOff ? "h-[400px]" : "h-[280px]"
           )}
         >
-            <MapComponent
-              locationSearch={locationSearch}
-              calculateAndDisplayRoute={calculateAndDisplayRoute}
-            />
-            </div>
-          )}
-          {/* <Wrapper
+          <MapComponent
+            locationSearch={locationSearch}
+            calculateAndDisplayRoute={calculateAndDisplayRoute}
+          />
+        </div>
+
+        {/* <Wrapper
             apiKey={`${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
             libraries={["places"]}
             render={render}

@@ -5,6 +5,7 @@ import {
   DirectionsService,
   DirectionsRenderer,
   InfoWindow,
+  useJsApiLoader,
 } from "@react-google-maps/api";
 import { AppContext } from "@/context/appState";
 import { ZoomInMap } from "@mui/icons-material";
@@ -20,6 +21,10 @@ const center = {
 };
 
 function MapComponent({ calculateAndDisplayRoute, locationSearch }: any) {
+  const { isLoaded } = useJsApiLoader({
+    id: "google-map-script",
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
+  });
   const appContext = useContext(AppContext);
 
   const contextState: BookingState = appContext.state;
@@ -53,22 +58,17 @@ function MapComponent({ calculateAndDisplayRoute, locationSearch }: any) {
     streetViewControl: false,
     rotateControl: false,
     fullscreenControl: false,
-    center: center,
   };
 
   const mapRef = useRef(null);
 
   useEffect(() => {
-    if (origin !== "" && destination !== "") {
+    if (origin !== "" && destination !== "" && isLoaded) {
       const geocoder = new window.google.maps.Geocoder();
 
       geocoder.geocode({ address: origin }, (results, status) => {
         if (status === "OK") {
           setOriginPosition(results[0].geometry.location);
-          console.log(
-            "results[0].geometry.location",
-            results[0].geometry.location
-          );
         } else {
           console.error(
             `Geocode was not successful for the following reason: ${status}`
@@ -97,14 +97,7 @@ function MapComponent({ calculateAndDisplayRoute, locationSearch }: any) {
         (result, status) => {
           if (status === window.google.maps.DirectionsStatus.OK) {
             setDirectionsResponse(result);
-
             calculateAndDisplayRoute(result);
-            setTimeout(() => {
-              setCenter({
-                lat: 37.451414,
-                lng: 25.2984466,
-              });
-            }, 3000);
           } else {
             console.error(`Error fetching directions: ${status}`);
           }
@@ -156,14 +149,27 @@ function MapComponent({ calculateAndDisplayRoute, locationSearch }: any) {
       centerControlDiv.appendChild(centerControlUI);
 
       centerControlUI.addEventListener("click", () => {
-        map.panTo(originPos);
+        const geocoder = new window.google.maps.Geocoder();
+
+        geocoder.geocode(
+          { address: contextState.pickUpLocation },
+          (results, status) => {
+            if (status === "OK") {
+              map.panTo(results[0].geometry.location);
+            } else {
+              console.error(
+                `Geocode was not successful for the following reason: ${status}`
+              );
+            }
+          }
+        );
       });
 
       map.controls[window.google.maps.ControlPosition.RIGHT_BOTTOM].push(
         centerControlDiv
       );
     }
-  }, [map, center]);
+  }, [map]);
 
   // const handleCenterChanged = (data) => {
   //   console.log("handleCenterChanged", map?.getCenter());
@@ -173,47 +179,49 @@ function MapComponent({ calculateAndDisplayRoute, locationSearch }: any) {
   console.log("destinationPosition", destinationPosition);
 
   return (
-    <GoogleMap
-      ref={mapRef}
-      mapContainerStyle={containerStyle}
-      zoom={zoom}
-      onLoad={(mapInstance) => {
-        setMap(mapInstance);
-      }}
-      options={mapOptions}
-      // onCenterChanged={handleCenterChanged}
-      center={centerMap}
-      onUnmount={() => setMap(null)}
-    >
-      {originPosition && (
-        <InfoWindow
-          position={originPosition}
-          options={{ disableAutoPan: true }}
-        >
-          <div style={{ padding: "5px" }}>
-            <p>{origin}</p>
-          </div>
-        </InfoWindow>
-      )}
+    isLoaded && (
+      <GoogleMap
+        ref={mapRef}
+        mapContainerStyle={containerStyle}
+        zoom={zoom}
+        onLoad={(mapInstance) => {
+          setMap(mapInstance);
+        }}
+        options={mapOptions}
+        // onCenterChanged={handleCenterChanged}
+        center={center}
+        onUnmount={() => setMap(null)}
+      >
+        {originPosition && (
+          <InfoWindow
+            position={originPosition}
+            options={{ disableAutoPan: true }}
+          >
+            <div style={{ padding: "5px" }}>
+              <p>{origin}</p>
+            </div>
+          </InfoWindow>
+        )}
 
-      {destinationPosition && (
-        <InfoWindow
-          position={destinationPosition}
-          options={{ disableAutoPan: true }}
-        >
-          <div style={{ padding: "5px" }}>
-            <p>{destination}</p>
-          </div>
-        </InfoWindow>
-      )}
+        {destinationPosition && (
+          <InfoWindow
+            position={destinationPosition}
+            options={{ disableAutoPan: true }}
+          >
+            <div style={{ padding: "5px" }}>
+              <p>{destination}</p>
+            </div>
+          </InfoWindow>
+        )}
 
-      {directionsResponse && (
-        <DirectionsRenderer
-          options={{ suppressMarkers: true, suppressInfoWindows: true }}
-          directions={directionsResponse}
-        />
-      )}
-    </GoogleMap>
+        {directionsResponse && (
+          <DirectionsRenderer
+            options={{ suppressMarkers: true, suppressInfoWindows: true }}
+            directions={directionsResponse}
+          />
+        )}
+      </GoogleMap>
+    )
   );
 }
 
