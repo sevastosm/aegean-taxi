@@ -18,7 +18,7 @@ const ToolBar = ({ toggleDrawer, handleClick, isMapOpen }: any) => {
   };
 
   return (
-    <div className="flex justify-between align-baseline px-4">
+    <div className="flex md:hidden justify-between align-baseline px-4">
       <NavBack handleClick={handleClick} />
       <div onClick={click} className={style}>
         <svg viewBox="0 0 24 24" aria-hidden="true">

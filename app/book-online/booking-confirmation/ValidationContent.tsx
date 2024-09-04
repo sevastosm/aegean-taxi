@@ -94,7 +94,7 @@ export default function ValidationContent({ handleCreateOrder }) {
 
   return (
     <>
-      <div className="px-4">
+      <div className="px-4 max-w-[500px] m-auto">
         <div className="flex flex-col gap-4">
           <div className="flex items-start">
             <button

@@ -711,7 +711,7 @@ export default function BookOnline() {
       </div>
     </div>
   ) : (
-    <div className="flex relative md:gap-20 flex-col md:flex-row min-h-screen max-h-[700px] max-w-[1200px] m-auto">
+    <div className="flex relative md:gap-20 flex-col md:flex-row min-h-screen max-h-[700px] max-w-[1200px] mx-auto -mt-5 md:mt-8">
       <div>
         <div className="absolute top-3 left-0 z-10 w-full">
           <ToolBar
@@ -725,7 +725,7 @@ export default function BookOnline() {
           className={classNames(
             "w-full md:block h-[280px] md:h-[700px]",
             "relative order-0 md:order-1",
-            !open ? "block" : "hidden",
+            !open ? "block" : "hidden md:block",
             selectedPickUp && selectedDropOff ? "h-[330px]" : "h-[280px]"
           )}
         >
@@ -773,7 +773,12 @@ export default function BookOnline() {
         >
           Book a taxi online now
         </Typography>
-        <div className={classNames("flex flex-col gap-4", open && "mt-16")}>
+        <div
+          className={classNames(
+            "flex flex-col gap-4",
+            open && "mt-16 md:mt-auto"
+          )}
+        >
           <LocationSearch
             toggleFocusLocation={toggleFocusLocation}
             toggleBlurLocation={toggleBlurLocation}
