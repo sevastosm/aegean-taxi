@@ -50,7 +50,7 @@ export default function ValidationContent({ handleCreateOrder }) {
   console.log("bookingState", bookingState);
 
   async function onSubmit(e) {
-    e.preventDefault();
+    // e.preventDefault();
     let securityCode = AES.decrypt(
       `${appState.state.security.code}`,
       `${process.env.NEXT_PUBLIC_CRYPTO_KEY}`
@@ -170,7 +170,7 @@ export default function ValidationContent({ handleCreateOrder }) {
           </div>
           <button
             disabled={!secCode || secCode?.length < 5}
-            onclick="onSubmit()"
+            onclick={onSubmit()}
             className="w-full bg-[#264388] text-white font-semibold text-xl py-4 rounded-md"
           >
             <div className="flex relative items-center">
