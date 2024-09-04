@@ -64,18 +64,7 @@ export default function FormComponent({
           padding: { xs: "0", md: 2 },
         }}
       >
-        <div
-          style={{
-            position: "absolute",
-            background: "transparent",
-            width: "100%",
-            height: "232px",
-            bottom: "0",
-            zIndex: 1,
-            cursor: "pointer",
-            top: "0px",
-          }}
-        ></div>
+        <div className="absolute bg-transparent h-[400px] md:h-full w-full z-10 cursor-pointer left-0 top-0"></div>
 
         {displayTitle && (
           <Box
