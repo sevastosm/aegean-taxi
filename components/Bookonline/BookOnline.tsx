@@ -726,7 +726,7 @@ export default function BookOnline() {
             "w-full md:block h-[280px] md:h-[700px]",
             "relative order-0 md:order-1",
             !open ? "block" : "hidden",
-            selectedPickUp && selectedDropOff ? "h-[400px]" : "h-[280px]"
+            selectedPickUp && selectedDropOff ? "h-[330px]" : "h-[280px]"
           )}
         >
           <MapComponent

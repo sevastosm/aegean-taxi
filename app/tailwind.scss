@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
 // centers the drawer icon on mobile that has position absolute left:50% taking px-4 padding into consideration and substracting 16px
 .MuiBox-root.css-n7uv59 {
   margin-left: -16px !important;
@@ -54,3 +52,37 @@ p.MuiTypography-root.MuiTypography-body1.MuiTypography-alignCenter.css-zp0dsf-Mu
 .MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-1.css-exfl4s-MuiGrid-root {
   margin-left: -16px;
 }
+.gm-style .gm-style-iw-c {
+  padding: 0;
+  margin-top: -3px;
+}
+
+.gm-style-iw-ch {
+  display: none !important;
+}
+
+// .gm-style-iw-d {
+//   display: none !important;
+
+// }
+
+// .gm-style .gm-style-iw-t {
+//   position: absolute;
+//   width: 100%;
+// }
+
+// .gm-style .gm-style-iw-a {
+//   left: 40px !important;
+// }
+
+// .gm-style-iw-chr+div.gm-style-iw-d {
+//   display: none !important;
+// }
+.gm-style .gm-style-iw-d {
+  margin-top: 12px;
+  margin-left: 16px;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

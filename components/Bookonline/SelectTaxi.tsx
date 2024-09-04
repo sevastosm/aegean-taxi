@@ -36,7 +36,7 @@ const SelectTaxi = ({
             return (
               <div
                 key={i}
-                className={`my-4 px-3 py-1 border-[3px] rounded-2xl cursor-pointer flex items-center justify-between ${
+                className={`my-2.5 px-3 py-1 border-[3px] rounded-2xl cursor-pointer flex items-center justify-between ${
                   selectedItem === car.name
                     ? "border-[#264388]"
                     : "border-transparent"

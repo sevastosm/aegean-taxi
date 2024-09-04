@@ -2,19 +2,7 @@
 "use client";
 import React from "react";
 import { useEffect, useState, useContext } from "react";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import OtpInput from "react-otp-input";
-
-import Image from "next/image";
-
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-
-// context
+import { useRouter } from "next/navigation";
 import { AppContext } from "@/context/appState";
 
 // hooks
@@ -26,6 +14,10 @@ import { BookingState } from "@/types/bookingState";
 // crypto
 import AES from "crypto-js/aes";
 import { createOrder } from "@/utils/fetchers";
+import OtpInput from "react-otp-input";
+
+// context
+
 var CryptoJS = require("crypto-js");
 
 export default function ValidationContent({ handleCreateOrder }) {
@@ -101,165 +93,104 @@ export default function ValidationContent({ handleCreateOrder }) {
   };
 
   return (
-    <Box
-      sx={{
-        position: "relative", // Set position relative to contain the absolute positioned back button
-        minHeight: "100vh", // Full viewport height
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center", // Center content vertically
-        px: 2, // Horizontal padding
-      }}
-    >
-      <IconButton
-        onClick={handleGoBack}
-        sx={{
-          position: "absolute",
-          top: 16, // Adjust top position as needed
-          left: 16, // Adjust left position as needed
-          backgroundColor: "#264388",
-          padding: 2,
-          width: 50,
-          height: 50,
-          borderRadius: "50%",
-          zIndex: 10, // Ensure button is on top of other content
-        }}
-      >
-        <ArrowBackIcon sx={{ color: "white", width: "100%", height: "100%" }} />
-      </IconButton>
-
-      <Grid container spacing={0} columns={10} justifyContent="center">
-        <Grid item xs={12} md={4}>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Typography
-              variant="body1"
-              component="h1"
-              sx={{
-                fontWeight: "500", // Font weight similar to Tailwind's 'font-semibold'
-                fontSize: "1.15rem", // Font size similar to Tailwind's 'text-xl'
-                color: "#244284", // Specific font color
-                textAlign: "center", // Center text alignment
-                mb: 2, // Margin bottom for spacing
-              }}
-            >
-              Enter the 5-digit code sent to you at
-              <br />
-              <b>{appState.phoneNumber}</b>
-            </Typography>
-            <Grid container spacing={1}>
-              <Grid item xs={3}>
-                <input
-                  disabled
-                  value={bookingState?.countryCode}
-                  className="text-black bg-gray-200 font-semibold p-4 w-full rounded-md"
-                />
-              </Grid>
-              <Grid item xs={9}>
-                <input
-                  disabled
-                  value={bookingState?.phone}
-                  className="text-black bg-gray-200 font-semibold p-4 w-full rounded-md"
-                />
-              </Grid>
-            </Grid>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                px: 1,
-                my: 2,
-              }}
-            >
-              <OtpInput
-                value={secCode}
-                onChange={handleChange}
-                numInputs={5}
-                // renderSeparator={<span >-</span>}
-                inputStyle={{
-                  color: "black",
-                  fontSize: "16px",
-                  width: "50px",
-                  height: "50px",
-                }}
-                inputType="number"
-                renderInput={(props) => (
-                  <input
-                    class="text-black  mx-2 bg-gray-200 text-[26px] font-semibold rounded-md"
-                    {...props}
-                  />
-                )}
-              />
-            </Box>
-            <Box
-              my={4}
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Image
-                src="/assets/whatsAppNew.svg"
-                alt="Wallet Icon"
-                sx={{ margin: "my-2" }}
-                width={50} // Specify the width of the image
-                height={50} // Specify the height of the image
-              />
-              <Typography
-                component="p"
-                sx={{
-                  fontWeight: "500", // Font weight similar to Tailwind's 'font-semibold'
-                  fontSize: "1rem", // Font size similar to Tailwind's 'text-xl'
-                  color: "#000", // Specific font color
-                  textAlign: "center", // Center text alignment
-                  my: 2, // Margin bottom for spacing
-                }}
-              >
-                If you have not received your SMS verification, please click on
-                the whatsapp button to message us directly
-              </Typography>
-            </Box>{" "}
+    <>
+      <div className="px-4">
+        <div className="flex flex-col gap-4">
+          <div className="flex items-start">
             <button
-              disabled={!secCode || secCode?.length < 5}
-              onClick={onSubmit}
-              className="w-full bg-[#264388] text-white font-semibold text-xl py-4 rounded-md"
+              onClick={handleGoBack}
+              className="bg-[#264388] p-2 w-[50px] h-[50px] rounded-full text-white"
             >
-              Book ride
-            </button>
-            {/* <Button
-              variant="contained"
-              size="large"
-              fullWidth
-              sx={{ textTransform: "none", mt: 2 }} // Margin top for spacing
-              onClick={onSubmit}
-            >
-              Next
-            </Button>
-
-            <Box mt={2}>
-              <Link
-                component="button"
-                variant="body2"
-                onClick={() => {
-                  console.info("Resend code clicked.");
-                }}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 105 105"
+                fill="none"
               >
-                Resend code
-              </Link>
-            </Box> */}
-          </Box>
-        </Grid>
-      </Grid>
-    </Box>
+                <circle cx="52.5" cy="52.5" r="52.5" fill="#264388" />
+                <path
+                  d="M22.8787 49.8787C21.7071 51.0503 21.7071 52.9497 22.8787 54.1213L41.9706 73.2132C43.1421 74.3848 45.0416 74.3848 46.2132 73.2132C47.3848 72.0416 47.3848 70.1421 46.2132 68.9706L29.2426 52L46.2132 35.0294C47.3848 33.8579 47.3848 31.9584 46.2132 30.7868C45.0416 29.6152 43.1421 29.6152 41.9706 30.7868L22.8787 49.8787ZM86 49L25 49V55L86 55V49Z"
+                  fill="white"
+                />
+              </svg>
+            </button>
+          </div>
+          <h1 className="font-semibold text-xl text-[#244284] text-center mt-6 ">
+            Enter the 5-digit code sent to you at <br />
+          </h1>
+          <div className="flex gap-4">
+            <div className="">
+              <input
+                disabled
+                value={bookingState?.countryCode}
+                className="font-bold w-[100px] text-2xl  text-center bg-[#F6F6F6] placeholder:text-[#626262] p-2 py-4 border-0 focus:outline-none focus:ring-0"
+              />
+            </div>
+            <div className="w-full">
+              <input
+                disabled
+                value={bookingState?.phone}
+                className="w-full font-bold text-2xl  text-center bg-[#F6F6F6] placeholder:text-[#626262] p-2 py-4 border-0 focus:outline-none focus:ring-0"
+              />
+            </div>
+          </div>
+          <div className="font-semibold text-xl text-[#244284] text-center mb-2 px-6">
+            Make sure you entered the correct country code!
+          </div>
+          <div className="flex w-full items-center justify-center mb-6">
+            <OtpInput
+              value={secCode}
+              onChange={handleChange}
+              numInputs={5}
+              // renderSeparator={<span >-</span>}
+              inputStyle={{
+                color: "black",
+                fontSize: "16px",
+                width: "50px",
+                height: "50px",
+                background: "#F6F6F6",
+                margin: "0 4px",
+                fontWeight: "bold",
+                fontSize: "24px",
+              }}
+              inputType="number"
+              renderInput={(props) => <input {...props} />}
+            />
+          </div>
+          <div className="flex items-center">
+            <img
+              src="/assets/whatsAppNew.svg"
+              alt="Wallet Icon"
+              className="my-2"
+              width="50"
+              height="50"
+            />
+            <p className="font-semibold text-lg text-black text-center my-2">
+              Message us on whatsapp 24/7 customer support
+            </p>
+          </div>
+          <button
+            disabled={!secCode || secCode?.length < 5}
+            onclick="onSubmit()"
+            className="w-full bg-[#264388] text-white font-semibold text-xl py-4 rounded-md"
+          >
+            <div className="flex relative items-center">
+              <div className="w-full text-center">Book ride</div>
+              <div className="w-[50px]  absolute rotate-180 right-0 mr-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 105 105"
+                  fill="none"
+                >
+                  <path
+                    d="M22.8787 49.8787C21.7071 51.0503 21.7071 52.9497 22.8787 54.1213L41.9706 73.2132C43.1421 74.3848 45.0416 74.3848 46.2132 73.2132C47.3848 72.0416 47.3848 70.1421 46.2132 68.9706L29.2426 52L46.2132 35.0294C47.3848 33.8579 47.3848 31.9584 46.2132 30.7868C45.0416 29.6152 43.1421 29.6152 41.9706 30.7868L22.8787 49.8787ZM86 49L25 49V55L86 55V49Z"
+                    fill="white"
+                  />
+                </svg>
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </>
   );
 }

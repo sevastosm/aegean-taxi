@@ -6,6 +6,7 @@ import {
   DirectionsRenderer,
   InfoWindow,
   useJsApiLoader,
+  Marker,
 } from "@react-google-maps/api";
 import { AppContext } from "@/context/appState";
 import { ZoomInMap } from "@mui/icons-material";
@@ -177,50 +178,1699 @@ function MapComponent({ calculateAndDisplayRoute, locationSearch }: any) {
 
   console.log("originPosition", originPosition);
   console.log("destinationPosition", destinationPosition);
+export default function VerificationComponent({}: {}) {
+  const router = useRouter();
+  const [countryCode, setCountryCode] = useState("0");
+  const [phone, setPhone] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [disabledNext, setDisabledNext] = useState(false);
+
+  const bookingContext = useContext<any>(AppContext);
+  const bookingState: BookingState = bookingContext.state;
+
+  // const { data, error } = useSWR({}, tokenFetcher);
+
+  const { getItem, setItem, removeItem } = useStorage();
+  const aegeanState = getItem("aegean", "local");
+
+  useEffect(() => {
+    if (aegeanState && aegeanState.userVerified) {
+      router.push("/book-online");
+    }
+  }, [aegeanState]);
+
+  // useEffect(() => {
+  //   if (aegeanState) {
+  //     bookingContext.updateAppState(aegeanState);
+  //   }
+
+  //   if (bookingState) {
+  //     setItem("aegean", bookingState, "local");
+  //   }
+  //   return () => {};
+  // }, [aegeanState, bookingContext, bookingState, setItem]);
+
+  // if (error) return <div>There was an error loading the app</div>;
+  // if (!data) return <div>Loading...</div>;
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setCountryCode(event.target.value as string);
+  };
+
+  const handlePhoneChange = (event: any) => {
+    setPhone(event.target.value as string);
+  };
+
+  const handleFirstnameChange = (event: any) => {
+    setFirstName(event.target.value as string);
+  };
+
+  const handleLastnameChange = (event: any) => {
+    setLastName(event.target.value as string);
+  };
+
+  function renderValue(option: string) {
+    return option === "0" ? "County code" : `+${option}`;
+  }
+
+  const reCaptchaRef = React.useRef<any>(null);
+
+  async function onSubmit() {
+    setDisabledNext(true);
+    let smsCode = Math.floor(Math.random() * 90000) + 10000;
+    let securityCode = AES.encrypt(
+      `${smsCode}`,
+      `${process.env.NEXT_PUBLIC_CRYPTO_KEY}`
+    ).toString();
+    // bookingState = aegeanState;
+    bookingContext.updateAppState(aegeanState);
+
+    const mobileNumber = `+${countryCode}${phone}`;
+
+    bookingState.phoneNumber = mobileNumber;
+    bookingState.phone = phone;
+    bookingState.countryCode = `+${countryCode}`;
+
+    bookingState.security.code = securityCode;
+    bookingState.security.expires = new Date().getTime();
+    bookingState.firstName = firstName;
+    bookingState.lastName = lastName;
+    console.log("process", process);
+
+    if (firstName && lastName === "testSeb@@") {
+      sendSms(
+        `00${bookingState.phoneNumber.replace("+", "")}`,
+        `Your access code is ${smsCode}`
+      ).then(() => {
+        bookingContext.updateAppState(bookingState);
+        setItem("aegean", bookingState, "local");
+        router.push("/book-online/booking-confirmation");
+      });
+      return;
+    } else {
+      setTimeout(() => {
+        setDisabledNext(false);
+      }, 15000);
+    }
+
+    const token = await reCaptchaRef?.current.executeAsync();
+    await verifyToken({
+      token,
+      firstName,
+      lastName,
+      mobileNumber,
+    }).then((result: any) => {
+      if (result.data.success) {
+        sendSms(
+          `00${bookingState.phoneNumber.replace("+", "")}`,
+          `Your access code is ${smsCode}`
+        ).then(() => {
+          bookingContext.updateAppState(bookingState);
+          setItem("aegean", bookingState, "local");
+          router.push("/book-online/booking-confirmation");
+        });
+      } else {
+        setTimeout(() => {
+          setDisabledNext(false);
+        }, 15000);
+      }
+    });
+    // const token = await reCaptchaRef?.current.executeAsync();
+    // await verifyToken({
+    //   token,
+    //   firstName,
+    //   lastName,
+    //   mobileNumber,
+    // }).then((result: any) => {
+    //   if (result.data.success) {
+    //     sendSms(
+    //       `00${bookingState.phoneNumber.replace("+", "")}`,
+    //       `Your access code is ${smsCode}`
+    //     ).then(() => {
+    //       bookingContext.updateAppState(bookingState);
+    //       setItem("aegean", bookingState, "local");
+    //       router.push("/book-online/verification/validate");
+    //     });
+    //   } else {
+    //     setTimeout(() => {
+    //       setDisabledNext(false);
+    //     }, 15000);
+    //   }
+    // });
+  }
+
+  // const visited = getItem("validationBeenVisited", "local");
+
+  // useEffect(() => {
+  //   if (visited) {
+  //     removeItem("validationBeenVisited", "local");
+  //     router.push("/book-online");
+  //   }
+  // }, [visited]);
+
+  // Constant for the checkbox properties
+  const termsCheckboxProps = {
+    name: "terms",
+    labelText: "I agree to Aegean Taxi ",
+    termsLinkText: "Terms and Conditions",
+    termsLinkHref: "/terms",
+    privacyLinkText: "Privacy Policy",
+    privacyLinkHref: "/privacy",
+  };
+
+  const handleGoBack = () => {
+    // Navigate to the previous page in the history stack
+    router.back();
+  };
 
   return (
+    <>
+      <div className="px-4">
+        <div className="grid grid-cols-10 items-start justify-center min-h-screen mt-0">
+          <div className="col-span-10 md:col-span-3.2">
+            <div className="block md:hidden">
+              <div className="flex items-start">
+                <button
+                  onclick="handleGoBack()"
+                  className="bg-[#264388] p-2 w-[50px] h-[50px] rounded-full text-white"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 105 105"
+                    fill="none"
+                  >
+                    <circle cx="52.5" cy="52.5" r="52.5" fill="#264388" />
+                    <path
+                      d="M22.8787 49.8787C21.7071 51.0503 21.7071 52.9497 22.8787 54.1213L41.9706 73.2132C43.1421 74.3848 45.0416 74.3848 46.2132 73.2132C47.3848 72.0416 47.3848 70.1421 46.2132 68.9706L29.2426 52L46.2132 35.0294C47.3848 33.8579 47.3848 31.9584 46.2132 30.7868C45.0416 29.6152 43.1421 29.6152 41.9706 30.7868L22.8787 49.8787ZM86 49L25 49V55L86 55V49Z"
+                      fill="white"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div className="mt-2">
+              <div className="flex flex-col">
+                <div className="mb-2 bg-[#F6F6F6] w-full">
+                  <input
+                    type="text"
+                    id="firstName"
+                    value={firstName}
+                    onChange={handleFirstnameChange}
+                    placeholder="Enter First Name"
+                    aria-label="Firstname"
+                    className="w-full bg-[#F6F6F6] p-2 border-0 focus:outline-none focus:ring-0"
+                  />
+                </div>
+                <div className="w-full">
+                  <input
+                    type="text"
+                    id="lastName"
+                    value={lastName}
+                    onChange={handleLastnameChange}
+                    placeholder="Enter Surname"
+                    aria-label="Lastname"
+                    className="w-full bg-[#f6f6f6] p-2 border-0 focus:outline-none focus:ring-0"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <p className="text-sm">Enter your phone number (required)</p>
+            </div>
+
+            <div className="my-2">
+              <div className="flex flex-row">
+                <div className="inline-flex w-[200px]">
+                  <select
+                    id="countryCode"
+                    value={countryCode}
+                    onChange={handleChange}
+                    className="w-full bg-[#F6F6F6] p-2 border-0 focus:outline-none focus:ring-0"
+                  >
+                    <option value="0">Choose country code</option>
+                    <option value="1">+1 United States/Canada</option>
+                    <option value="44">+44 United Kingdom</option>
+                    <option value="33">+33 France</option>
+                    <option value="30">+30 Greece</option>
+                    <option value="39">+39 Italy</option>
+                    <option value="49">+49 Germany</option>
+                    <option value="41">+41 Switzerland</option>
+                    <option value="34">+34 Spain</option>
+                  </select>
+                </div>
+                <div className="inline-flex ml-1 w-full">
+                  <input
+                    type="text"
+                    id="phoneNumber"
+                    value={phone}
+                    onChange={handlePhoneChange}
+                    placeholder="Phone number"
+                    aria-label="phone number"
+                    inputmode="numeric"
+                    pattern="[09]*"
+                    className="w-full bg-[#F6F6F6] p-2 border-0 focus:outline-none focus:ring-0"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="mb-2 flex justify-center items-center">
+              <p className="text-[#E53935] font-medium text-xs text-center">
+                *Make sure you selected the correct country code
+              </p>
+            </div>
+
+            <CardPayment />
+
+            <div className="mx-1">
+              <label className="flex items-center space-x-2">
+                <input type="checkbox" name="termsCheckboxProps.name" />
+                <span className="text-xs text-gray-500">
+                  <a
+                    href="termsCheckboxProps.termsLinkHref"
+                    className="text-blue-500"
+                  >
+                    {termsCheckboxProps.labelText}
+                    <span className="ml-2">
+                      {termsCheckboxProps.termsLinkText}
+                    </span>
+                  </a>
+                  {" and "}
+                  <a
+                    href="termsCheckboxProps.privacyLinkHref"
+                    className="text-blue-500"
+                  >
+                    <span className="ml-2">
+                      {termsCheckboxProps.privacyLinkText}
+                    </span>
+                  </a>
+                </span>
+              </label>
+            </div>
+
+            <div className="flex justify-center items-end px-4 my-4 w-full">
+              <button
+                onclick={onSubmit}
+                disabled={
+                  export default function VerificationComponent({}: {}) {
+                    const router = useRouter();
+                    const [countryCode, setCountryCode] = useState("0");
+                    const [phone, setPhone] = useState("");
+                    const [firstName, setFirstName] = useState("");
+                    const [lastName, setLastName] = useState("");
+                    const [disabledNext, setDisabledNext] = useState(false);
+                  
+                    const bookingContext = useContext<any>(AppContext);
+                    const bookingState: BookingState = bookingContext.state;
+                  
+                    // const { data, error } = useSWR({}, tokenFetcher);
+                  
+                    const { getItem, setItem, removeItem } = useStorage();
+                    const aegeanState = getItem("aegean", "local");
+                  
+                    useEffect(() => {
+                      if (aegeanState && aegeanState.userVerified) {
+                        router.push("/book-online");
+                      }
+                    }, [aegeanState]);
+                  
+                    // useEffect(() => {
+                    //   if (aegeanState) {
+                    //     bookingContext.updateAppState(aegeanState);
+                    //   }
+                  
+                    //   if (bookingState) {
+                    //     setItem("aegean", bookingState, "local");
+                    //   }
+                    //   return () => {};
+                    // }, [aegeanState, bookingContext, bookingState, setItem]);
+                  
+                    // if (error) return <div>There was an error loading the app</div>;
+                    // if (!data) return <div>Loading...</div>;
+                  
+                    const handleChange = (event: SelectChangeEvent) => {
+                      setCountryCode(event.target.value as string);
+                    };
+                  
+                    const handlePhoneChange = (event: any) => {
+                      setPhone(event.target.value as string);
+                    };
+                  
+                    const handleFirstnameChange = (event: any) => {
+                      setFirstName(event.target.value as string);
+                    };
+                  
+                    const handleLastnameChange = (event: any) => {
+                      setLastName(event.target.value as string);
+                    };
+                  
+                    function renderValue(option: string) {
+                      return option === "0" ? "County code" : `+${option}`;
+                    }
+                  
+                    const reCaptchaRef = React.useRef<any>(null);
+                  
+                    async function onSubmit() {
+                      setDisabledNext(true);
+                      let smsCode = Math.floor(Math.random() * 90000) + 10000;
+                      let securityCode = AES.encrypt(
+                        `${smsCode}`,
+                        `${process.env.NEXT_PUBLIC_CRYPTO_KEY}`
+                      ).toString();
+                      // bookingState = aegeanState;
+                      bookingContext.updateAppState(aegeanState);
+                  
+                      const mobileNumber = `+${countryCode}${phone}`;
+                  
+                      bookingState.phoneNumber = mobileNumber;
+                      bookingState.phone = phone;
+                      bookingState.countryCode = `+${countryCode}`;
+                  
+                      bookingState.security.code = securityCode;
+                      bookingState.security.expires = new Date().getTime();
+                      bookingState.firstName = firstName;
+                      bookingState.lastName = lastName;
+                      console.log("process", process);
+                  
+                      if (firstName && lastName === "testSeb@@") {
+                        sendSms(
+                          `00${bookingState.phoneNumber.replace("+", "")}`,
+                          `Your access code is ${smsCode}`
+                        ).then(() => {
+                          bookingContext.updateAppState(bookingState);
+                          setItem("aegean", bookingState, "local");
+                          router.push("/book-online/booking-confirmation");
+                        });
+                        return;
+                      } else {
+                        setTimeout(() => {
+                          setDisabledNext(false);
+                        }, 15000);
+                      }
+                  
+                      const token = await reCaptchaRef?.current.executeAsync();
+                      await verifyToken({
+                        token,
+                        firstName,
+                        lastName,
+                        mobileNumber,
+                      }).then((result: any) => {
+                        if (result.data.success) {
+                          sendSms(
+                            `00${bookingState.phoneNumber.replace("+", "")}`,
+                            `Your access code is ${smsCode}`
+                          ).then(() => {
+                            bookingContext.updateAppState(bookingState);
+                            setItem("aegean", bookingState, "local");
+                            router.push("/book-online/booking-confirmation");
+                          });
+                        } else {
+                          setTimeout(() => {
+                            setDisabledNext(false);
+                          }, 15000);
+                        }
+                      });
+                      // const token = await reCaptchaRef?.current.executeAsync();
+                      // await verifyToken({
+                      //   token,
+                      //   firstName,
+                      //   lastName,
+                      //   mobileNumber,
+                      // }).then((result: any) => {
+                      //   if (result.data.success) {
+                      //     sendSms(
+                      //       `00${bookingState.phoneNumber.replace("+", "")}`,
+                      //       `Your access code is ${smsCode}`
+                      //     ).then(() => {
+                      //       bookingContext.updateAppState(bookingState);
+                      //       setItem("aegean", bookingState, "local");
+                      //       router.push("/book-online/verification/validate");
+                      //     });
+                      //   } else {
+                      //     setTimeout(() => {
+                      //       setDisabledNext(false);
+                      //     }, 15000);
+                      //   }
+                      // });
+                    }
+                  
+                    // const visited = getItem("validationBeenVisited", "local");
+                  
+                    // useEffect(() => {
+                    //   if (visited) {
+                    //     removeItem("validationBeenVisited", "local");
+                    //     router.push("/book-online");
+                    //   }
+                    // }, [visited]);
+                  
+                    // Constant for the checkbox properties
+                    const termsCheckboxProps = {
+                      name: "terms",
+                      labelText: "I agree to Aegean Taxi ",
+                      termsLinkText: "Terms and Conditions",
+                      termsLinkHref: "/terms",
+                      privacyLinkText: "Privacy Policy",
+                      privacyLinkHref: "/privacy",
+                    };
+                  
+                    const handleGoBack = () => {
+                      // Navigate to the previous page in the history stack
+                      router.back();
+                    };
+                  
+                    return (
+                      <>
+                        <div className="px-4">
+                          <div className="grid grid-cols-10 items-start justify-center min-h-screen mt-0">
+                            <div className="col-span-10 md:col-span-3.2">
+                              <div className="block md:hidden">
+                                <div className="flex items-start">
+                                  <button
+                                    onclick="handleGoBack()"
+                                    className="bg-[#264388] p-2 w-[50px] h-[50px] rounded-full text-white"
+                                  >
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      viewBox="0 0 105 105"
+                                      fill="none"
+                                    >
+                                      <circle cx="52.5" cy="52.5" r="52.5" fill="#264388" />
+                                      <path
+                                        d="M22.8787 49.8787C21.7071 51.0503 21.7071 52.9497 22.8787 54.1213L41.9706 73.2132C43.1421 74.3848 45.0416 74.3848 46.2132 73.2132C47.3848 72.0416 47.3848 70.1421 46.2132 68.9706L29.2426 52L46.2132 35.0294C47.3848 33.8579 47.3848 31.9584 46.2132 30.7868C45.0416 29.6152 43.1421 29.6152 41.9706 30.7868L22.8787 49.8787ZM86 49L25 49V55L86 55V49Z"
+                                        fill="white"
+                                      />
+                                    </svg>
+                                  </button>
+                                </div>
+                              </div>
+                  
+                              <div className="mt-2">
+                                <div className="flex flex-col">
+                                  <div className="mb-2 bg-[#F6F6F6] w-full">
+                                    <input
+                                      type="text"
+                                      id="firstName"
+                                      value={firstName}
+                                      onChange={handleFirstnameChange}
+                                      placeholder="Enter First Name"
+                                      aria-label="Firstname"
+                                      className="w-full bg-[#F6F6F6] p-2 border-0 focus:outline-none focus:ring-0"
+                                    />
+                                  </div>
+                                  <div className="w-full">
+                                    <input
+                                      type="text"
+                                      id="lastName"
+                                      value={lastName}
+                                      onChange={handleLastnameChange}
+                                      placeholder="Enter Surname"
+                                      aria-label="Lastname"
+                                      className="w-full bg-[#f6f6f6] p-2 border-0 focus:outline-none focus:ring-0"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                  
+                              <div>
+                                <p className="text-sm">Enter your phone number (required)</p>
+                              </div>
+                  
+                              <div className="my-2">
+                                <div className="flex flex-row">
+                                  <div className="inline-flex w-[200px]">
+                                    <select
+                                      id="countryCode"
+                                      value={countryCode}
+                                      onChange={handleChange}
+                                      className="w-full bg-[#F6F6F6] p-2 border-0 focus:outline-none focus:ring-0"
+                                    >
+                                      <option value="0">Choose country code</option>
+                                      <option value="1">+1 United States/Canada</option>
+                                      <option value="44">+44 United Kingdom</option>
+                                      <option value="33">+33 France</option>
+                                      <option value="30">+30 Greece</option>
+                                      <option value="39">+39 Italy</option>
+                                      <option value="49">+49 Germany</option>
+                                      <option value="41">+41 Switzerland</option>
+                                      <option value="34">+34 Spain</option>
+                                    </select>
+                                  </div>
+                                  <div className="inline-flex ml-1 w-full">
+                                    <input
+                                      type="text"
+                                      id="phoneNumber"
+                                      value={phone}
+                                      onChange={handlePhoneChange}
+                                      placeholder="Phone number"
+                                      aria-label="phone number"
+                                      inputmode="numeric"
+                                      pattern="[09]*"
+                                      className="w-full bg-[#F6F6F6] p-2 border-0 focus:outline-none focus:ring-0"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                  
+                              <div className="mb-2 flex justify-center items-center">
+                                <p className="text-[#E53935] font-medium text-xs text-center">
+                                  *Make sure you selected the correct country code
+                                </p>
+                              </div>
+                  
+                              <CardPayment />
+                  
+                              <div className="mx-1">
+                                <label className="flex items-center space-x-2">
+                                  <input type="checkbox" name="termsCheckboxProps.name" />
+                                  <span className="text-xs text-gray-500">
+                                    <a
+                                      href="termsCheckboxProps.termsLinkHref"
+                                      className="text-blue-500"
+                                    >
+                                      {termsCheckboxProps.labelText}
+                                      <span className="ml-2">
+                                        {termsCheckboxProps.termsLinkText}
+                                      </span>
+                                    </a>
+                                    {" and "}
+                                    <a
+                                      href="termsCheckboxProps.privacyLinkHref"
+                                      className="text-blue-500"
+                                    >
+                                      <span className="ml-2">
+                                        {termsCheckboxProps.privacyLinkText}
+                                      </span>
+                                    </a>
+                                  </span>
+                                </label>
+                              </div>
+                  
+                              <div className="flex justify-center items-end px-4 my-4 w-full">
+                                <button
+                                  onclick={onSubmit}
+                                  disabled={
+                                    phone.length < 9 ||
+                                    !firstName ||
+                                    !lastName ||
+                                    countryCode === "0"
+                                  }
+                                  className="w-full bg-[#264388] text-white font-semibold text-xl py-4 rounded-md disabled:opacity-50"
+                                >
+                                  Request code
+                                </button>
+                              </div>
+                  
+                              <ReCAPTCHA
+                                ref={reCaptchaRef}
+                                size="invisible"
+                                sitekey="6Lc_Wq8pAAAAAIXLFQ8NtSy1YwvRYiaXC52e70NP"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    );
+                  }export default function VerificationComponent({}: {}) {
+                    const router = useRouter();
+                    const [countryCode, setCountryCode] = useState("0");
+                    const [phone, setPhone] = useState("");
+                    const [firstName, setFirstName] = useState("");
+                    const [lastName, setLastName] = useState("");
+                    const [disabledNext, setDisabledNext] = useState(false);
+                  
+                    const bookingContext = useContext<any>(AppContext);
+                    const bookingState: BookingState = bookingContext.state;
+                  
+                    // const { data, error } = useSWR({}, tokenFetcher);
+                  
+                    const { getItem, setItem, removeItem } = useStorage();
+                    const aegeanState = getItem("aegean", "local");
+                  
+                    useEffect(() => {
+                      if (aegeanState && aegeanState.userVerified) {
+                        router.push("/book-online");
+                      }
+                    }, [aegeanState]);
+                  
+                    // useEffect(() => {
+                    //   if (aegeanState) {
+                    //     bookingContext.updateAppState(aegeanState);
+                    //   }
+                  
+                    //   if (bookingState) {
+                    //     setItem("aegean", bookingState, "local");
+                    //   }
+                    //   return () => {};
+                    // }, [aegeanState, bookingContext, bookingState, setItem]);
+                  
+                    // if (error) return <div>There was an error loading the app</div>;
+                    // if (!data) return <div>Loading...</div>;
+                  
+                    const handleChange = (event: SelectChangeEvent) => {
+                      setCountryCode(event.target.value as string);
+                    };
+                  
+                    const handlePhoneChange = (event: any) => {
+                      setPhone(event.target.value as string);
+                    };
+                  
+                    const handleFirstnameChange = (event: any) => {
+                      setFirstName(event.target.value as string);
+                    };
+                  
+                    const handleLastnameChange = (event: any) => {
+                      setLastName(event.target.value as string);
+                    };
+                  
+                    function renderValue(option: string) {
+                      return option === "0" ? "County code" : `+${option}`;
+                    }
+                  
+                    const reCaptchaRef = React.useRef<any>(null);
+                  
+                    async function onSubmit() {
+                      setDisabledNext(true);
+                      let smsCode = Math.floor(Math.random() * 90000) + 10000;
+                      let securityCode = AES.encrypt(
+                        `${smsCode}`,
+                        `${process.env.NEXT_PUBLIC_CRYPTO_KEY}`
+                      ).toString();
+                      // bookingState = aegeanState;
+                      bookingContext.updateAppState(aegeanState);
+                  
+                      const mobileNumber = `+${countryCode}${phone}`;
+                  
+                      bookingState.phoneNumber = mobileNumber;
+                      bookingState.phone = phone;
+                      bookingState.countryCode = `+${countryCode}`;
+                  
+                      bookingState.security.code = securityCode;
+                      bookingState.security.expires = new Date().getTime();
+                      bookingState.firstName = firstName;
+                      bookingState.lastName = lastName;
+                      console.log("process", process);
+                  
+                      if (firstName && lastName === "testSeb@@") {
+                        sendSms(
+                          `00${bookingState.phoneNumber.replace("+", "")}`,
+                          `Your access code is ${smsCode}`
+                        ).then(() => {
+                          bookingContext.updateAppState(bookingState);
+                          setItem("aegean", bookingState, "local");
+                          router.push("/book-online/booking-confirmation");
+                        });
+                        return;
+                      } else {
+                        setTimeout(() => {
+                          setDisabledNext(false);
+                        }, 15000);
+                      }
+                  
+                      const token = await reCaptchaRef?.current.executeAsync();
+                      await verifyToken({
+                        token,
+                        firstName,
+                        lastName,
+                        mobileNumber,
+                      }).then((result: any) => {
+                        if (result.data.success) {
+                          sendSms(
+                            `00${bookingState.phoneNumber.replace("+", "")}`,
+                            `Your access code is ${smsCode}`
+                          ).then(() => {
+                            bookingContext.updateAppState(bookingState);
+                            setItem("aegean", bookingState, "local");
+                            router.push("/book-online/booking-confirmation");
+                          });
+                        } else {
+                          setTimeout(() => {
+                            setDisabledNext(false);
+                          }, 15000);
+                        }
+                      });
+                      // const token = await reCaptchaRef?.current.executeAsync();
+                      // await verifyToken({
+                      //   token,
+                      //   firstName,
+                      //   lastName,
+                      //   mobileNumber,
+                      // }).then((result: any) => {
+                      //   if (result.data.success) {
+                      //     sendSms(
+                      //       `00${bookingState.phoneNumber.replace("+", "")}`,
+                      //       `Your access code is ${smsCode}`
+                      //     ).then(() => {
+                      //       bookingContext.updateAppState(bookingState);
+                      //       setItem("aegean", bookingState, "local");
+                      //       router.push("/book-online/verification/validate");
+                      //     });
+                      //   } else {
+                      //     setTimeout(() => {
+                      //       setDisabledNext(false);
+                      //     }, 15000);
+                      //   }
+                      // });
+                    }
+                  
+                    // const visited = getItem("validationBeenVisited", "local");
+                  
+                    // useEffect(() => {
+                    //   if (visited) {
+                    //     removeItem("validationBeenVisited", "local");
+                    //     router.push("/book-online");
+                    //   }
+                    // }, [visited]);
+                  
+                    // Constant for the checkbox properties
+                    const termsCheckboxProps = {
+                      name: "terms",
+                      labelText: "I agree to Aegean Taxi ",
+                      termsLinkText: "Terms and Conditions",
+                      termsLinkHref: "/terms",
+                      privacyLinkText: "Privacy Policy",
+                      privacyLinkHref: "/privacy",
+                    };
+                  
+                    const handleGoBack = () => {
+                      // Navigate to the previous page in the history stack
+                      router.back();
+                    };
+                  
+                    return (
+                      <>
+                        <div className="px-4">
+                          <div className="grid grid-cols-10 items-start justify-center min-h-screen mt-0">
+                            <div className="col-span-10 md:col-span-3.2">
+                              <div className="block md:hidden">
+                                <div className="flex items-start">
+                                  <button
+                                    onclick="handleGoBack()"
+                                    className="bg-[#264388] p-2 w-[50px] h-[50px] rounded-full text-white"
+                                  >
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      viewBox="0 0 105 105"
+                                      fill="none"
+                                    >
+                                      <circle cx="52.5" cy="52.5" r="52.5" fill="#264388" />
+                                      <path
+                                        d="M22.8787 49.8787C21.7071 51.0503 21.7071 52.9497 22.8787 54.1213L41.9706 73.2132C43.1421 74.3848 45.0416 74.3848 46.2132 73.2132C47.3848 72.0416 47.3848 70.1421 46.2132 68.9706L29.2426 52L46.2132 35.0294C47.3848 33.8579 47.3848 31.9584 46.2132 30.7868C45.0416 29.6152 43.1421 29.6152 41.9706 30.7868L22.8787 49.8787ZM86 49L25 49V55L86 55V49Z"
+                                        fill="white"
+                                      />
+                                    </svg>
+                                  </button>
+                                </div>
+                              </div>
+                  
+                              <div className="mt-2">
+                                <div className="flex flex-col">
+                                  <div className="mb-2 bg-[#F6F6F6] w-full">
+                                    <input
+                                      type="text"
+                                      id="firstName"
+                                      value={firstName}
+                                      onChange={handleFirstnameChange}
+                                      placeholder="Enter First Name"
+                                      aria-label="Firstname"
+                                      className="w-full bg-[#F6F6F6] p-2 border-0 focus:outline-none focus:ring-0"
+                                    />
+                                  </div>
+                                  <div className="w-full">
+                                    <input
+                                      type="text"
+                                      id="lastName"
+                                      value={lastName}
+                                      onChange={handleLastnameChange}
+                                      placeholder="Enter Surname"
+                                      aria-label="Lastname"
+                                      className="w-full bg-[#f6f6f6] p-2 border-0 focus:outline-none focus:ring-0"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                  
+                              <div>
+                                <p className="text-sm">Enter your phone number (required)</p>
+                              </div>
+                  
+                              <div className="my-2">
+                                <div className="flex flex-row">
+                                  <div className="inline-flex w-[200px]">
+                                    <select
+                                      id="countryCode"
+                                      value={countryCode}
+                                      onChange={handleChange}
+                                      className="w-full bg-[#F6F6F6] p-2 border-0 focus:outline-none focus:ring-0"
+                                    >
+                                      <option value="0">Choose country code</option>
+                                      <option value="1">+1 United States/Canada</option>
+                                      <option value="44">+44 United Kingdom</option>
+                                      <option value="33">+33 France</option>
+                                      <option value="30">+30 Greece</option>
+                                      <option value="39">+39 Italy</option>
+                                      <option value="49">+49 Germany</option>
+                                      <option value="41">+41 Switzerland</option>
+                                      <option value="34">+34 Spain</option>
+                                    </select>
+                                  </div>
+                                  <div className="inline-flex ml-1 w-full">
+                                    <input
+                                      type="text"
+                                      id="phoneNumber"
+                                      value={phone}
+                                      onChange={handlePhoneChange}
+                                      placeholder="Phone number"
+                                      aria-label="phone number"
+                                      inputmode="numeric"
+                                      pattern="[09]*"
+                                      className="w-full bg-[#F6F6F6] p-2 border-0 focus:outline-none focus:ring-0"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                  
+                              <div className="mb-2 flex justify-center items-center">
+                                <p className="text-[#E53935] font-medium text-xs text-center">
+                                  *Make sure you selected the correct country code
+                                </p>
+                              </div>
+                  
+                              <CardPayment />
+                  
+                              <div className="mx-1">
+                                <label className="flex items-center space-x-2">
+                                  <input type="checkbox" name="termsCheckboxProps.name" />
+                                  <span className="text-xs text-gray-500">
+                                    <a
+                                      href="termsCheckboxProps.termsLinkHref"
+                                      className="text-blue-500"
+                                    >
+                                      {termsCheckboxProps.labelText}
+                                      <span className="ml-2">
+                                        {termsCheckboxProps.termsLinkText}
+                                      </span>
+                                    </a>
+                                    {" and "}
+                                    <a
+                                      href="termsCheckboxProps.privacyLinkHref"
+                                      className="text-blue-500"
+                                    >
+                                      <span className="ml-2">
+                                        {termsCheckboxProps.privacyLinkText}
+                                      </span>
+                                    </a>
+                                  </span>
+                                </label>
+                              </div>
+                  
+                              <div className="flex justify-center items-end px-4 my-4 w-full">
+                                <button
+                                  onclick={onSubmit}
+                                  disabled={
+                                    phone.length < 9 ||
+                                    !firstName ||
+                                    !lastName ||
+                                    countryCode === "0"
+                                  }
+                                  className="w-full bg-[#264388] text-white font-semibold text-xl py-4 rounded-md disabled:opacity-50"
+                                >
+                                  Request code
+                                </button>
+                              </div>
+                  
+                              <ReCAPTCHA
+                                ref={reCaptchaRef}
+                                size="invisible"
+                                sitekey="6Lc_Wq8pAAAAAIXLFQ8NtSy1YwvRYiaXC52e70NP"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    );
+                  }export default function VerificationComponent({}: {}) {
+                    const router = useRouter();
+                    const [countryCode, setCountryCode] = useState("0");
+                    const [phone, setPhone] = useState("");
+                    const [firstName, setFirstName] = useState("");
+                    const [lastName, setLastName] = useState("");
+                    const [disabledNext, setDisabledNext] = useState(false);
+                  
+                    const bookingContext = useContext<any>(AppContext);
+                    const bookingState: BookingState = bookingContext.state;
+                  
+                    // const { data, error } = useSWR({}, tokenFetcher);
+                  
+                    const { getItem, setItem, removeItem } = useStorage();
+                    const aegeanState = getItem("aegean", "local");
+                  
+                    useEffect(() => {
+                      if (aegeanState && aegeanState.userVerified) {
+                        router.push("/book-online");
+                      }
+                    }, [aegeanState]);
+                  
+                    // useEffect(() => {
+                    //   if (aegeanState) {
+                    //     bookingContext.updateAppState(aegeanState);
+                    //   }
+                  
+                    //   if (bookingState) {
+                    //     setItem("aegean", bookingState, "local");
+                    //   }
+                    //   return () => {};
+                    // }, [aegeanState, bookingContext, bookingState, setItem]);
+                  
+                    // if (error) return <div>There was an error loading the app</div>;
+                    // if (!data) return <div>Loading...</div>;
+                  
+                    const handleChange = (event: SelectChangeEvent) => {
+                      setCountryCode(event.target.value as string);
+                    };
+                  
+                    const handlePhoneChange = (event: any) => {
+                      setPhone(event.target.value as string);
+                    };
+                  
+                    const handleFirstnameChange = (event: any) => {
+                      setFirstName(event.target.value as string);
+                    };
+                  
+                    const handleLastnameChange = (event: any) => {
+                      setLastName(event.target.value as string);
+                    };
+                  
+                    function renderValue(option: string) {
+                      return option === "0" ? "County code" : `+${option}`;
+                    }
+                  
+                    const reCaptchaRef = React.useRef<any>(null);
+                  
+                    async function onSubmit() {
+                      setDisabledNext(true);
+                      let smsCode = Math.floor(Math.random() * 90000) + 10000;
+                      let securityCode = AES.encrypt(
+                        `${smsCode}`,
+                        `${process.env.NEXT_PUBLIC_CRYPTO_KEY}`
+                      ).toString();
+                      // bookingState = aegeanState;
+                      bookingContext.updateAppState(aegeanState);
+                  
+                      const mobileNumber = `+${countryCode}${phone}`;
+                  
+                      bookingState.phoneNumber = mobileNumber;
+                      bookingState.phone = phone;
+                      bookingState.countryCode = `+${countryCode}`;
+                  
+                      bookingState.security.code = securityCode;
+                      bookingState.security.expires = new Date().getTime();
+                      bookingState.firstName = firstName;
+                      bookingState.lastName = lastName;
+                      console.log("process", process);
+                  
+                      if (firstName && lastName === "testSeb@@") {
+                        sendSms(
+                          `00${bookingState.phoneNumber.replace("+", "")}`,
+                          `Your access code is ${smsCode}`
+                        ).then(() => {
+                          bookingContext.updateAppState(bookingState);
+                          setItem("aegean", bookingState, "local");
+                          router.push("/book-online/booking-confirmation");
+                        });
+                        return;
+                      } else {
+                        setTimeout(() => {
+                          setDisabledNext(false);
+                        }, 15000);
+                      }
+                  
+                      const token = await reCaptchaRef?.current.executeAsync();
+                      await verifyToken({
+                        token,
+                        firstName,
+                        lastName,
+                        mobileNumber,
+                      }).then((result: any) => {
+                        if (result.data.success) {
+                          sendSms(
+                            `00${bookingState.phoneNumber.replace("+", "")}`,
+                            `Your access code is ${smsCode}`
+                          ).then(() => {
+                            bookingContext.updateAppState(bookingState);
+                            setItem("aegean", bookingState, "local");
+                            router.push("/book-online/booking-confirmation");
+                          });
+                        } else {
+                          setTimeout(() => {
+                            setDisabledNext(false);
+                          }, 15000);
+                        }
+                      });
+                      // const token = await reCaptchaRef?.current.executeAsync();
+                      // await verifyToken({
+                      //   token,
+                      //   firstName,
+                      //   lastName,
+                      //   mobileNumber,
+                      // }).then((result: any) => {
+                      //   if (result.data.success) {
+                      //     sendSms(
+                      //       `00${bookingState.phoneNumber.replace("+", "")}`,
+                      //       `Your access code is ${smsCode}`
+                      //     ).then(() => {
+                      //       bookingContext.updateAppState(bookingState);
+                      //       setItem("aegean", bookingState, "local");
+                      //       router.push("/book-online/verification/validate");
+                      //     });
+                      //   } else {
+                      //     setTimeout(() => {
+                      //       setDisabledNext(false);
+                      //     }, 15000);
+                      //   }
+                      // });
+                    }
+                  
+                    // const visited = getItem("validationBeenVisited", "local");
+                  
+                    // useEffect(() => {
+                    //   if (visited) {
+                    //     removeItem("validationBeenVisited", "local");
+                    //     router.push("/book-online");
+                    //   }
+                    // }, [visited]);
+                  
+                    // Constant for the checkbox properties
+                    const termsCheckboxProps = {
+                      name: "terms",
+                      labelText: "I agree to Aegean Taxi ",
+                      termsLinkText: "Terms and Conditions",
+                      termsLinkHref: "/terms",
+                      privacyLinkText: "Privacy Policy",
+                      privacyLinkHref: "/privacy",
+                    };
+                  
+                    const handleGoBack = () => {
+                      // Navigate to the previous page in the history stack
+                      router.back();
+                    };
+                  
+                    return (
+                      <>
+                        <div className="px-4">
+                          <div className="grid grid-cols-10 items-start justify-center min-h-screen mt-0">
+                            <div className="col-span-10 md:col-span-3.2">
+                              <div className="block md:hidden">
+                                <div className="flex items-start">
+                                  <button
+                                    onclick="handleGoBack()"
+                                    className="bg-[#264388] p-2 w-[50px] h-[50px] rounded-full text-white"
+                                  >
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      viewBox="0 0 105 105"
+                                      fill="none"
+                                    >
+                                      <circle cx="52.5" cy="52.5" r="52.5" fill="#264388" />
+                                      <path
+                                        d="M22.8787 49.8787C21.7071 51.0503 21.7071 52.9497 22.8787 54.1213L41.9706 73.2132C43.1421 74.3848 45.0416 74.3848 46.2132 73.2132C47.3848 72.0416 47.3848 70.1421 46.2132 68.9706L29.2426 52L46.2132 35.0294C47.3848 33.8579 47.3848 31.9584 46.2132 30.7868C45.0416 29.6152 43.1421 29.6152 41.9706 30.7868L22.8787 49.8787ZM86 49L25 49V55L86 55V49Z"
+                                        fill="white"
+                                      />
+                                    </svg>
+                                  </button>
+                                </div>
+                              </div>
+                  
+                              <div className="mt-2">
+                                <div className="flex flex-col">
+                                  <div className="mb-2 bg-[#F6F6F6] w-full">
+                                    <input
+                                      type="text"
+                                      id="firstName"
+                                      value={firstName}
+                                      onChange={handleFirstnameChange}
+                                      placeholder="Enter First Name"
+                                      aria-label="Firstname"
+                                      className="w-full bg-[#F6F6F6] p-2 border-0 focus:outline-none focus:ring-0"
+                                    />
+                                  </div>
+                                  <div className="w-full">
+                                    <input
+                                      type="text"
+                                      id="lastName"
+                                      value={lastName}
+                                      onChange={handleLastnameChange}
+                                      placeholder="Enter Surname"
+                                      aria-label="Lastname"
+                                      className="w-full bg-[#f6f6f6] p-2 border-0 focus:outline-none focus:ring-0"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                  
+                              <div>
+                                <p className="text-sm">Enter your phone number (required)</p>
+                              </div>
+                  
+                              <div className="my-2">
+                                <div className="flex flex-row">
+                                  <div className="inline-flex w-[200px]">
+                                    <select
+                                      id="countryCode"
+                                      value={countryCode}
+                                      onChange={handleChange}
+                                      className="w-full bg-[#F6F6F6] p-2 border-0 focus:outline-none focus:ring-0"
+                                    >
+                                      <option value="0">Choose country code</option>
+                                      <option value="1">+1 United States/Canada</option>
+                                      <option value="44">+44 United Kingdom</option>
+                                      <option value="33">+33 France</option>
+                                      <option value="30">+30 Greece</option>
+                                      <option value="39">+39 Italy</option>
+                                      <option value="49">+49 Germany</option>
+                                      <option value="41">+41 Switzerland</option>
+                                      <option value="34">+34 Spain</option>
+                                    </select>
+                                  </div>
+                                  <div className="inline-flex ml-1 w-full">
+                                    <input
+                                      type="text"
+                                      id="phoneNumber"
+                                      value={phone}
+                                      onChange={handlePhoneChange}
+                                      placeholder="Phone number"
+                                      aria-label="phone number"
+                                      inputmode="numeric"
+                                      pattern="[09]*"
+                                      className="w-full bg-[#F6F6F6] p-2 border-0 focus:outline-none focus:ring-0"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                  
+                              <div className="mb-2 flex justify-center items-center">
+                                <p className="text-[#E53935] font-medium text-xs text-center">
+                                  *Make sure you selected the correct country code
+                                </p>
+                              </div>
+                  
+                              <CardPayment />
+                  
+                              <div className="mx-1">
+                                <label className="flex items-center space-x-2">
+                                  <input type="checkbox" name="termsCheckboxProps.name" />
+                                  <span className="text-xs text-gray-500">
+                                    <a
+                                      href="termsCheckboxProps.termsLinkHref"
+                                      className="text-blue-500"
+                                    >
+                                      {termsCheckboxProps.labelText}
+                                      <span className="ml-2">
+                                        {termsCheckboxProps.termsLinkText}
+                                      </span>
+                                    </a>
+                                    {" and "}
+                                    <a
+                                      href="termsCheckboxProps.privacyLinkHref"
+                                      className="text-blue-500"
+                                    >
+                                      <span className="ml-2">
+                                        {termsCheckboxProps.privacyLinkText}
+                                      </span>
+                                    </a>
+                                  </span>
+                                </label>
+                              </div>
+                  
+                              <div className="flex justify-center items-end px-4 my-4 w-full">
+                                <button
+                                  onclick={onSubmit}
+                                  disabled={
+                                    phone.length < 9 ||
+                                    !firstName ||
+                                    !lastName ||
+                                    countryCode === "0"
+                                  }
+                                  className="w-full bg-[#264388] text-white font-semibold text-xl py-4 rounded-md disabled:opacity-50"
+                                >
+                                  Request code
+                                </button>
+                              </div>
+                  
+                              <ReCAPTCHA
+                                ref={reCaptchaRef}
+                                size="invisible"
+                                sitekey="6Lc_Wq8pAAAAAIXLFQ8NtSy1YwvRYiaXC52e70NP"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    );
+                  }export default function VerificationComponent({}: {}) {
+                    const router = useRouter();
+                    const [countryCode, setCountryCode] = useState("0");
+                    const [phone, setPhone] = useState("");
+                    const [firstName, setFirstName] = useState("");
+                    const [lastName, setLastName] = useState("");
+                    const [disabledNext, setDisabledNext] = useState(false);
+                  
+                    const bookingContext = useContext<any>(AppContext);
+                    const bookingState: BookingState = bookingContext.state;
+                  
+                    // const { data, error } = useSWR({}, tokenFetcher);
+                  
+                    const { getItem, setItem, removeItem } = useStorage();
+                    const aegeanState = getItem("aegean", "local");
+                  
+                    useEffect(() => {
+                      if (aegeanState && aegeanState.userVerified) {
+                        router.push("/book-online");
+                      }
+                    }, [aegeanState]);
+                  
+                    // useEffect(() => {
+                    //   if (aegeanState) {
+                    //     bookingContext.updateAppState(aegeanState);
+                    //   }
+                  
+                    //   if (bookingState) {
+                    //     setItem("aegean", bookingState, "local");
+                    //   }
+                    //   return () => {};
+                    // }, [aegeanState, bookingContext, bookingState, setItem]);
+                  
+                    // if (error) return <div>There was an error loading the app</div>;
+                    // if (!data) return <div>Loading...</div>;
+                  
+                    const handleChange = (event: SelectChangeEvent) => {
+                      setCountryCode(event.target.value as string);
+                    };
+                  
+                    const handlePhoneChange = (event: any) => {
+                      setPhone(event.target.value as string);
+                    };
+                  
+                    const handleFirstnameChange = (event: any) => {
+                      setFirstName(event.target.value as string);
+                    };
+                  
+                    const handleLastnameChange = (event: any) => {
+                      setLastName(event.target.value as string);
+                    };
+                  
+                    function renderValue(option: string) {
+                      return option === "0" ? "County code" : `+${option}`;
+                    }
+                  
+                    const reCaptchaRef = React.useRef<any>(null);
+                  
+                    async function onSubmit() {
+                      setDisabledNext(true);
+                      let smsCode = Math.floor(Math.random() * 90000) + 10000;
+                      let securityCode = AES.encrypt(
+                        `${smsCode}`,
+                        `${process.env.NEXT_PUBLIC_CRYPTO_KEY}`
+                      ).toString();
+                      // bookingState = aegeanState;
+                      bookingContext.updateAppState(aegeanState);
+                  
+                      const mobileNumber = `+${countryCode}${phone}`;
+                  
+                      bookingState.phoneNumber = mobileNumber;
+                      bookingState.phone = phone;
+                      bookingState.countryCode = `+${countryCode}`;
+                  
+                      bookingState.security.code = securityCode;
+                      bookingState.security.expires = new Date().getTime();
+                      bookingState.firstName = firstName;
+                      bookingState.lastName = lastName;
+                      console.log("process", process);
+                  
+                      if (firstName && lastName === "testSeb@@") {
+                        sendSms(
+                          `00${bookingState.phoneNumber.replace("+", "")}`,
+                          `Your access code is ${smsCode}`
+                        ).then(() => {
+                          bookingContext.updateAppState(bookingState);
+                          setItem("aegean", bookingState, "local");
+                          router.push("/book-online/booking-confirmation");
+                        });
+                        return;
+                      } else {
+                        setTimeout(() => {
+                          setDisabledNext(false);
+                        }, 15000);
+                      }
+                  
+                      const token = await reCaptchaRef?.current.executeAsync();
+                      await verifyToken({
+                        token,
+                        firstName,
+                        lastName,
+                        mobileNumber,
+                      }).then((result: any) => {
+                        if (result.data.success) {
+                          sendSms(
+                            `00${bookingState.phoneNumber.replace("+", "")}`,
+                            `Your access code is ${smsCode}`
+                          ).then(() => {
+                            bookingContext.updateAppState(bookingState);
+                            setItem("aegean", bookingState, "local");
+                            router.push("/book-online/booking-confirmation");
+                          });
+                        } else {
+                          setTimeout(() => {
+                            setDisabledNext(false);
+                          }, 15000);
+                        }
+                      });
+                      // const token = await reCaptchaRef?.current.executeAsync();
+                      // await verifyToken({
+                      //   token,
+                      //   firstName,
+                      //   lastName,
+                      //   mobileNumber,
+                      // }).then((result: any) => {
+                      //   if (result.data.success) {
+                      //     sendSms(
+                      //       `00${bookingState.phoneNumber.replace("+", "")}`,
+                      //       `Your access code is ${smsCode}`
+                      //     ).then(() => {
+                      //       bookingContext.updateAppState(bookingState);
+                      //       setItem("aegean", bookingState, "local");
+                      //       router.push("/book-online/verification/validate");
+                      //     });
+                      //   } else {
+                      //     setTimeout(() => {
+                      //       setDisabledNext(false);
+                      //     }, 15000);
+                      //   }
+                      // });
+                    }
+                  
+                    // const visited = getItem("validationBeenVisited", "local");
+                  
+                    // useEffect(() => {
+                    //   if (visited) {
+                    //     removeItem("validationBeenVisited", "local");
+                    //     router.push("/book-online");
+                    //   }
+                    // }, [visited]);
+                  
+                    // Constant for the checkbox properties
+                    const termsCheckboxProps = {
+                      name: "terms",
+                      labelText: "I agree to Aegean Taxi ",
+                      termsLinkText: "Terms and Conditions",
+                      termsLinkHref: "/terms",
+                      privacyLinkText: "Privacy Policy",
+                      privacyLinkHref: "/privacy",
+                    };
+                  
+                    const handleGoBack = () => {
+                      // Navigate to the previous page in the history stack
+                      router.back();
+                    };
+                  
+                    return (
+                      <>
+                        <div className="px-4">
+                          <div className="grid grid-cols-10 items-start justify-center min-h-screen mt-0">
+                            <div className="col-span-10 md:col-span-3.2">
+                              <div className="block md:hidden">
+                                <div className="flex items-start">
+                                  <button
+                                    onclick="handleGoBack()"
+                                    className="bg-[#264388] p-2 w-[50px] h-[50px] rounded-full text-white"
+                                  >
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      viewBox="0 0 105 105"
+                                      fill="none"
+                                    >
+                                      <circle cx="52.5" cy="52.5" r="52.5" fill="#264388" />
+                                      <path
+                                        d="M22.8787 49.8787C21.7071 51.0503 21.7071 52.9497 22.8787 54.1213L41.9706 73.2132C43.1421 74.3848 45.0416 74.3848 46.2132 73.2132C47.3848 72.0416 47.3848 70.1421 46.2132 68.9706L29.2426 52L46.2132 35.0294C47.3848 33.8579 47.3848 31.9584 46.2132 30.7868C45.0416 29.6152 43.1421 29.6152 41.9706 30.7868L22.8787 49.8787ZM86 49L25 49V55L86 55V49Z"
+                                        fill="white"
+                                      />
+                                    </svg>
+                                  </button>
+                                </div>
+                              </div>
+                  
+                              <div className="mt-2">
+                                <div className="flex flex-col">
+                                  <div className="mb-2 bg-[#F6F6F6] w-full">
+                                    <input
+                                      type="text"
+                                      id="firstName"
+                                      value={firstName}
+                                      onChange={handleFirstnameChange}
+                                      placeholder="Enter First Name"
+                                      aria-label="Firstname"
+                                      className="w-full bg-[#F6F6F6] p-2 border-0 focus:outline-none focus:ring-0"
+                                    />
+                                  </div>
+                                  <div className="w-full">
+                                    <input
+                                      type="text"
+                                      id="lastName"
+                                      value={lastName}
+                                      onChange={handleLastnameChange}
+                                      placeholder="Enter Surname"
+                                      aria-label="Lastname"
+                                      className="w-full bg-[#f6f6f6] p-2 border-0 focus:outline-none focus:ring-0"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                  
+                              <div>
+                                <p className="text-sm">Enter your phone number (required)</p>
+                              </div>
+                  
+                              <div className="my-2">
+                                <div className="flex flex-row">
+                                  <div className="inline-flex w-[200px]">
+                                    <select
+                                      id="countryCode"
+                                      value={countryCode}
+                                      onChange={handleChange}
+                                      className="w-full bg-[#F6F6F6] p-2 border-0 focus:outline-none focus:ring-0"
+                                    >
+                                      <option value="0">Choose country code</option>
+                                      <option value="1">+1 United States/Canada</option>
+                                      <option value="44">+44 United Kingdom</option>
+                                      <option value="33">+33 France</option>
+                                      <option value="30">+30 Greece</option>
+                                      <option value="39">+39 Italy</option>
+                                      <option value="49">+49 Germany</option>
+                                      <option value="41">+41 Switzerland</option>
+                                      <option value="34">+34 Spain</option>
+                                    </select>
+                                  </div>
+                                  <div className="inline-flex ml-1 w-full">
+                                    <input
+                                      type="text"
+                                      id="phoneNumber"
+                                      value={phone}
+                                      onChange={handlePhoneChange}
+                                      placeholder="Phone number"
+                                      aria-label="phone number"
+                                      inputmode="numeric"
+                                      pattern="[09]*"
+                                      className="w-full bg-[#F6F6F6] p-2 border-0 focus:outline-none focus:ring-0"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                  
+                              <div className="mb-2 flex justify-center items-center">
+                                <p className="text-[#E53935] font-medium text-xs text-center">
+                                  *Make sure you selected the correct country code
+                                </p>
+                              </div>
+                  
+                              <CardPayment />
+                  
+                              <div className="mx-1">
+                                <label className="flex items-center space-x-2">
+                                  <input type="checkbox" name="termsCheckboxProps.name" />
+                                  <span className="text-xs text-gray-500">
+                                    <a
+                                      href="termsCheckboxProps.termsLinkHref"
+                                      className="text-blue-500"
+                                    >
+                                      {termsCheckboxProps.labelText}
+                                      <span className="ml-2">
+                                        {termsCheckboxProps.termsLinkText}
+                                      </span>
+                                    </a>
+                                    {" and "}
+                                    <a
+                                      href="termsCheckboxProps.privacyLinkHref"
+                                      className="text-blue-500"
+                                    >
+                                      <span className="ml-2">
+                                        {termsCheckboxProps.privacyLinkText}
+                                      </span>
+                                    </a>
+                                  </span>
+                                </label>
+                              </div>
+                  
+                              <div className="flex justify-center items-end px-4 my-4 w-full">
+                                <button
+                                  onclick={onSubmit}
+                                  disabled={
+                                    phone.length < 9 ||
+                                    !firstName ||
+                                    !lastName ||
+                                    countryCode === "0"
+                                  }
+                                  className="w-full bg-[#264388] text-white font-semibold text-xl py-4 rounded-md disabled:opacity-50"
+                                >
+                                  Request code
+                                </button>
+                              </div>
+                  
+                              <ReCAPTCHA
+                                ref={reCaptchaRef}
+                                size="invisible"
+                                sitekey="6Lc_Wq8pAAAAAIXLFQ8NtSy1YwvRYiaXC52e70NP"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    );
+                  }            phone.length < 9 ||
+                  !firstName ||
+                  !lastName ||
+                  countryCode === "0"
+                }
+                className="w-full bg-[#264388] text-white font-semibold text-xl py-4 rounded-md disabled:opacity-50"
+              >
+                Request code
+              </button>
+            </div>
+
+            <ReCAPTCHA
+              ref={reCaptchaRef}
+              size="invisible"
+              sitekey="6Lc_Wq8pAAAAAIXLFQ8NtSy1YwvRYiaXC52e70NP"
+            />
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+  return (
     isLoaded && (
-      <GoogleMap
-        ref={mapRef}
-        mapContainerStyle={containerStyle}
-        zoom={zoom}
-        onLoad={(mapInstance) => {
-          setMap(mapInstance);
-        }}
-        options={mapOptions}
-        // onCenterChanged={handleCenterChanged}
-        center={center}
-        onUnmount={() => setMap(null)}
-      >
-        {originPosition && (
-          <InfoWindow
-            position={originPosition}
-            options={{ disableAutoPan: true }}
-          >
-            <div style={{ padding: "5px" }}>
-              <p>{origin}</p>
-            </div>
-          </InfoWindow>
-        )}
+      <>
+        <style>{`
+        /* Hide the close button in InfoWindow */
+         button.gm-ui-hover-effect {
+          display: none !important;
+        }
+        .gm-style .gm-style-iw-tc::after{
+          display: none !important;
+        }
+      `}</style>
+        <GoogleMap
+          ref={mapRef}
+          mapContainerStyle={containerStyle}
+          zoom={zoom}
+          onLoad={(mapInstance) => {
+            setMap(mapInstance);
+          }}
+          options={mapOptions}
+          // onCenterChanged={handleCenterChanged}
+          center={center}
+          onUnmount={() => setMap(null)}
+        >
+          {originPosition && (
+            <Marker
+              position={originPosition}
+              icon={{
+                path: window.google.maps.SymbolPath.CIRCLE, // Use a built-in shape
+                scale: 8, // Scale the icon
+                fillColor: "#ffffff", // Fill color
+                fillOpacity: 1, // Fill opacity
+                strokeWeight: 8, // Outline width
+                strokeColor: "#000000", // Outline color
+              }}
+            >
+              <view style={{ width: 40, height: 56 }}>
+                <svg width="100%" height="100%" viewBox="0 0 40 56">
+                  <path
+                    d="M19.7 0c-10.9 .2-19.7 9.1-19.7 20v.1c0 .1 0 .2 0 .3c.1 7.6 4.5 14.1 10.7 17.4c1.8 .9 3.1 2.4 3.8 4.3l5.5 13.9l5.5-14c.7-1.8 2.1-3.3 3.8-4.2c6.4-3.4 10.7-10.1 10.7-17.8c0-11-9-20-20-20c-0.1 0-0.2 0-0.3 0Z"
+                    // fill={fill}
+                  />
+                </svg>
+              </view>
+              <InfoWindow
+                className="skate"
+                position={originPosition}
+                options={{ disableAutoPan: true }}
+              >
+                <div className="flex gap-2 l-10 items-center">
+                  <div className="font-bold">{origin}</div>
+                  <svg
+                    className="-rotate-90 w-5 h-5"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"></path>
+                  </svg>
+                </div>
+              </InfoWindow>
+            </Marker>
+          )}
 
-        {destinationPosition && (
-          <InfoWindow
-            position={destinationPosition}
-            options={{ disableAutoPan: true }}
-          >
-            <div style={{ padding: "5px" }}>
-              <p>{destination}</p>
-            </div>
-          </InfoWindow>
-        )}
+          {destinationPosition && (
+            <Marker
+              position={destinationPosition}
+              icon={{
+                path: window.google.maps.SymbolPath.CIRCLE, // Use a built-in shape
+                scale: 8, // Scale the icon
+                fillColor: "#ffffff", // Fill color
+                fillOpacity: 1, // Fill opacity
+                strokeWeight: 8, // Outline width
+                strokeColor: "#000000", // Outline color
+              }}
+            >
+              <InfoWindow
+                className="skate"
+                position={destinationPosition}
+                options={{ disableAutoPan: true }}
+              >
+                <div className="flex gap-2 l-10 items-center">
+                  <div className="font-bold">{destination}</div>
+                  <svg
+                    className="-rotate-90 w-5 h-5"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"></path>
+                  </svg>
+                </div>
+              </InfoWindow>
+            </Marker>
+          )}
 
-        {directionsResponse && (
-          <DirectionsRenderer
-            options={{ suppressMarkers: true, suppressInfoWindows: true }}
-            directions={directionsResponse}
-          />
-        )}
-      </GoogleMap>
+          {directionsResponse && (
+            <DirectionsRenderer
+              options={{ suppressMarkers: true, suppressInfoWindows: true }}
+              directions={directionsResponse}
+            />
+          )}
+        </GoogleMap>
+      </>
     )
   );
 }

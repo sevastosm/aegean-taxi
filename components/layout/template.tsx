@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useContext } from "react";
-import "./../../app/tailwind.scss";
 import "./../../app/globals.css";
+// import "./../../app/tailwind.scss";
 
 // import { hotjar } from "react-hotjar";
 
