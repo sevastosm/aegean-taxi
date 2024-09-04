@@ -711,7 +711,7 @@ export default function BookOnline() {
       </div>
     </div>
   ) : (
-    <div className="flex relative md:gap-20 flex-col md:flex-row min-h-screen max-h-[700px] max-w-[1200px] mx-auto -mt-5 md:mt-8">
+    <div className="flex relative md:gap-20 flex-col md:flex-row min-h-screen max-h-[700px] max-w-[1200px] mx-auto -mt-5 md:mt-1">
       <div>
         <div className="absolute top-3 left-0 z-10 w-full">
           <ToolBar
