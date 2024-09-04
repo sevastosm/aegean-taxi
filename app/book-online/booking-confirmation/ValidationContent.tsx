@@ -29,13 +29,18 @@ export default function ValidationContent({ handleCreateOrder }) {
   const cookieState = getItem("aegean", "local");
   const appContext = useContext(AppContext);
   const [bookingState, setBookingState] = useState<BookingState>();
+  const [invalidCode, setInvalidCode] = useState(false);
 
   useEffect(() => {
     setItem("validationBeenVisited", true, "local");
   }, []);
 
   const handleChange = (value) => {
+    setInvalidCode(false);
+
     setSecCode(value);
+    setBookingState(() => cookieState);
+    appContext.updateAppState(cookieState);
   };
   useEffect(() => {
     console.log("set state");
@@ -49,8 +54,7 @@ export default function ValidationContent({ handleCreateOrder }) {
 
   console.log("bookingState", bookingState);
 
-  async function onSubmit(e) {
-    e.preventDefault();
+  async function onSubmit() {
     let securityCode = AES.decrypt(
       `${appState.state.security.code}`,
       `${process.env.NEXT_PUBLIC_CRYPTO_KEY}`
@@ -73,6 +77,8 @@ export default function ValidationContent({ handleCreateOrder }) {
           handleCreateOrder(data.orderId);
         }
       });
+    } else {
+      setInvalidCode(true);
     }
   }
 
@@ -114,7 +120,7 @@ export default function ValidationContent({ handleCreateOrder }) {
               </svg>
             </button>
           </div>
-          <h1 className="font-semibold text-xl text-[#244284] text-center mt-6 ">
+          <h1 className="font-semibold text-[17px] text-[#244284] text-center mt-6 ">
             Enter the 5-digit code sent to you at <br />
           </h1>
           <div className="flex gap-4">
@@ -133,9 +139,10 @@ export default function ValidationContent({ handleCreateOrder }) {
               />
             </div>
           </div>
-          <div className="font-semibold text-xl text-[#244284] text-center mb-2 px-6">
+
+          {/* <div className="font-semibold text-xl text-[#244284] text-center mb-2 px-6">
             Make sure you entered the correct country code!
-          </div>
+          </div> */}
           <div className="flex w-full items-center justify-center mb-6">
             <OtpInput
               value={secCode}
@@ -156,6 +163,11 @@ export default function ValidationContent({ handleCreateOrder }) {
               renderInput={(props) => <input {...props} />}
             />
           </div>
+          {invalidCode && (
+            <div className="font-semibold text-[14px] text-red-700 text-center mb-2 px-6">
+              <span className="text-red-700 ">Invalid code</span>
+            </div>
+          )}
           <div className="flex items-center">
             <img
               src="/assets/whatsAppNew.svg"
@@ -164,13 +176,13 @@ export default function ValidationContent({ handleCreateOrder }) {
               width="50"
               height="50"
             />
-            <p className="font-semibold text-lg text-black text-center my-2">
+            <p className="font-semibold text-[17px] text-black text-center my-2">
               Message us on whatsapp 24/7 customer support
             </p>
           </div>
           <button
             disabled={!secCode || secCode?.length < 5}
-            onclick={onSubmit}
+            onClick={onSubmit}
             className="w-full bg-[#264388] text-white font-semibold text-xl py-4 rounded-md"
           >
             <div className="flex relative items-center">
