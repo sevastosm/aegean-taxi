@@ -7,6 +7,7 @@ import {
   InfoWindow,
   useJsApiLoader,
   Marker,
+  libraries,
 } from "@react-google-maps/api";
 import { AppContext } from "@/context/appState";
 import { ZoomInMap } from "@mui/icons-material";
@@ -25,6 +26,7 @@ function MapComponent({ calculateAndDisplayRoute, locationSearch }: any) {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
+    libraries,
   });
   const appContext = useContext(AppContext);
 
@@ -59,9 +61,54 @@ function MapComponent({ calculateAndDisplayRoute, locationSearch }: any) {
     streetViewControl: false,
     rotateControl: false,
     fullscreenControl: false,
+    mapId: "c6b58f8fae8c27a7",
   };
 
   const mapRef = useRef(null);
+  const addCustomMarker = async () => {
+    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+
+    if (!directionsResponse) return;
+
+    // const origin = "San Francisco"; // Example origin text (you can dynamically change this)
+    const durationText = directionsResponse.routes[0].legs[0].duration.text;
+
+    // Create a custom HTML element for the marker
+    const markerContent = document.createElement("div");
+    const markerContent2 = document.createElement("div");
+
+    markerContent2.innerHTML = `
+      <div class="flex max-w-[100px] gap-2 bg-white items-center mb-1">
+        <div class="bg-black text-[10px] max-w-[40px] text-center p-1 text-white">${durationText}</div>
+        <div class="font-bold  text-[12px]">${destination}</div>
+      </div>
+    `;
+    markerContent.innerHTML = `
+      <div class="flex max-w-[100px] bg-white  items-center mb-1">
+        <div class="font-bold p-2 text-[12px]">${origin}</div>
+      </div>
+    `;
+
+    // Create the advanced marker with the custom content
+    const marker = new AdvancedMarkerElement({
+      position: originPosition, // Position marker at the origin
+      map,
+      content: markerContent,
+    });
+
+    // Create the advanced marker with the custom content
+    const marker2 = new AdvancedMarkerElement({
+      position: destinationPosition, // Position marker at the origin
+      map,
+      content: markerContent2,
+    });
+  };
+
+  useEffect(() => {
+    if (map && directionsResponse) {
+      addCustomMarker();
+    }
+  }, [map, directionsResponse]);
 
   useEffect(() => {
     if (origin !== "" && destination !== "" && isLoaded) {
@@ -181,106 +228,25 @@ function MapComponent({ calculateAndDisplayRoute, locationSearch }: any) {
 
   return (
     isLoaded && (
-      <>
-        <style>{`
-        /* Hide the close button in InfoWindow */
-         button.gm-ui-hover-effect {
-          display: none !important;
-        }
-        .gm-style .gm-style-iw-tc::after{
-          display: none !important;
-        }
-      `}</style>
-        <GoogleMap
-          ref={mapRef}
-          mapContainerStyle={containerStyle}
-          zoom={zoom}
-          onLoad={(mapInstance) => {
-            setMap(mapInstance);
-          }}
-          options={mapOptions}
-          // onCenterChanged={handleCenterChanged}
-          center={center}
-          onUnmount={() => setMap(null)}
-        >
-          {originPosition && (
-            <Marker
-              position={originPosition}
-              icon={{
-                path: window.google.maps.SymbolPath.CIRCLE, // Use a built-in shape
-                scale: 8, // Scale the icon
-                fillColor: "#ffffff", // Fill color
-                fillOpacity: 1, // Fill opacity
-                strokeWeight: 8, // Outline width
-                strokeColor: "#000000", // Outline color
-              }}
-            >
-              <view style={{ width: 40, height: 56 }}>
-                <svg width="100%" height="100%" viewBox="0 0 40 56">
-                  <path
-                    d="M19.7 0c-10.9 .2-19.7 9.1-19.7 20v.1c0 .1 0 .2 0 .3c.1 7.6 4.5 14.1 10.7 17.4c1.8 .9 3.1 2.4 3.8 4.3l5.5 13.9l5.5-14c.7-1.8 2.1-3.3 3.8-4.2c6.4-3.4 10.7-10.1 10.7-17.8c0-11-9-20-20-20c-0.1 0-0.2 0-0.3 0Z"
-                    // fill={fill}
-                  />
-                </svg>
-              </view>
-              <InfoWindow
-                className="skate"
-                position={originPosition}
-                options={{ disableAutoPan: true }}
-              >
-                <div className="flex gap-2 l-10 items-center">
-                  <div className="font-bold">{origin}</div>
-                  <svg
-                    className="-rotate-90 w-5 h-5"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"></path>
-                  </svg>
-                </div>
-              </InfoWindow>
-            </Marker>
-          )}
-
-          {destinationPosition && (
-            <Marker
-              position={destinationPosition}
-              icon={{
-                path: window.google.maps.SymbolPath.CIRCLE, // Use a built-in shape
-                scale: 8, // Scale the icon
-                fillColor: "#ffffff", // Fill color
-                fillOpacity: 1, // Fill opacity
-                strokeWeight: 8, // Outline width
-                strokeColor: "#000000", // Outline color
-              }}
-            >
-              <InfoWindow
-                className="skate"
-                position={destinationPosition}
-                options={{ disableAutoPan: true }}
-              >
-                <div className="flex gap-2 l-10 items-center">
-                  <div className="font-bold">{destination}</div>
-                  <svg
-                    className="-rotate-90 w-5 h-5"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"></path>
-                  </svg>
-                </div>
-              </InfoWindow>
-            </Marker>
-          )}
-
-          {directionsResponse && (
-            <DirectionsRenderer
-              options={{ suppressMarkers: true, suppressInfoWindows: true }}
-              directions={directionsResponse}
-            />
-          )}
-        </GoogleMap>
-      </>
+      <GoogleMap
+        ref={mapRef}
+        mapContainerStyle={containerStyle}
+        zoom={zoom}
+        onLoad={(mapInstance) => {
+          setMap(mapInstance);
+        }}
+        options={mapOptions}
+        // onCenterChanged={handleCenterChanged}
+        center={center}
+        onUnmount={() => setMap(null)}
+      >
+        {directionsResponse && (
+          <DirectionsRenderer
+            options={{ suppressMarkers: true, suppressInfoWindows: true }}
+            directions={directionsResponse}
+          />
+        )}
+      </GoogleMap>
     )
   );
 }

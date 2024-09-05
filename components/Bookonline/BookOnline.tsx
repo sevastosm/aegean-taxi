@@ -243,61 +243,68 @@ export default function BookOnline() {
   }, [focusDestination, focusLocation]);
 
   // markers
-  useEffect(() => {
-    console.log("init google map");
-    const setMarkers = () => {
-      if (!navigator || !navigator.geolocation) {
-        setShowNavigatorButton(false);
-        contextState.showNavigatorButton = false;
-        setItem("aegean", contextState, "local");
-      }
+  // useEffect(() => {
+  //   console.log("init google map");
+  //   const setMarkers = () => {
+  //     if (!navigator || !navigator.geolocation) {
+  //       setShowNavigatorButton(false);
+  //       contextState.showNavigatorButton = false;
+  //       setItem("aegean", contextState, "local");
+  //     }
 
-      setDirectionsService(() => new window.google.maps.DirectionsService());
-      setDirectionsRenderer(
-        () =>
-          new window.google.maps.DirectionsRenderer({ suppressMarkers: true })
-      );
+  //     setDirectionsService(() => new window.google.maps.DirectionsService());
+  //     setDirectionsRenderer(
+  //       () =>
+  //         new window.google.maps.DirectionsRenderer({ suppressMarkers: true })
+  //     );
 
-      setAutocompleteService(
-        () => new window.google.maps.places.AutocompleteService()
-      );
+  //     setAutocompleteService(
+  //       () => new window.google.maps.places.AutocompleteService()
+  //     );
 
-      setPlacesService(
-        () =>
-          new google.maps.places.PlacesService(document.createElement("div"))
-      );
+  //     setPlacesService(
+  //       () =>
+  //         new google.maps.places.PlacesService(document.createElement("div"))
+  //     );
 
-      setGeocoderService(() => new google.maps.Geocoder());
+  //     setGeocoderService(() => new google.maps.Geocoder());
 
-      setInitMap(false);
-    };
+  //     setInitMap(false);
+  //   };
 
-    if (
-      document.readyState === "complete" &&
-      googleIsDefined &&
-      cookieState &&
-      !initMap
-    ) {
-      setMarkers();
-      setSelectedCar(cookieState.selectedCar);
-      setPickUpLocation(cookieState.pickUpLocation);
-      setDropLocation(cookieState.dropLocation);
-      setDirections(cookieState.directions);
-      setDriver(cookieState.driver);
-      setRideScheduled(cookieState.rideScheduled);
-      setDriverDetails(cookieState.driverDetails);
-      setOrderDetails(cookieState.orderDetails);
-      setShowNavigatorButton(cookieState.showNavigatorButton);
-      setNextButton(cookieState.nextButton);
+  //   if (
+  //     document.readyState === "complete" &&
+  //     googleIsDefined &&
+  //     cookieState &&
+  //     !initMap
+  //   ) {
+  //     setMarkers();
+  //     setSelectedCar(cookieState.selectedCar);
+  //     setPickUpLocation(cookieState.pickUpLocation);
+  //     setDropLocation(cookieState.dropLocation);
+  //     setDirections(cookieState.directions);
+  //     setDriver(cookieState.driver);
+  //     setRideScheduled(cookieState.rideScheduled);
+  //     setDriverDetails(cookieState.driverDetails);
+  //     setOrderDetails(cookieState.orderDetails);
+  //     setShowNavigatorButton(cookieState.showNavigatorButton);
+  //     setNextButton(cookieState.nextButton);
 
-      stateManagement();
-    } else if (document.readyState === "complete" && googleIsDefined) {
-      setMarkers();
-    } else {
-      // window.addEventListener("load", setMarkers);
-      // return () => document.removeEventListener("load", setMarkers);
-    }
-  }, [initMap, googleIsDefined]);
+  //     stateManagement();
+  //   } else if (document.readyState === "complete" && googleIsDefined) {
+  //     setMarkers();
+  //   } else {
+  //     // window.addEventListener("load", setMarkers);
+  //     // return () => document.removeEventListener("load", setMarkers);
+  //   }
+  // }, [initMap, googleIsDefined]);
+
+  // useEffect(() => {
+  //   if (!autocompleteService)
+  //     setAutocompleteService(
+  //       () => new window.google.maps.places.AutocompleteService()
+  //     );
+  // }, [directionsService]);
 
   useEffect(() => {
     console.log("car categories");
@@ -732,6 +739,7 @@ export default function BookOnline() {
           <MapComponent
             locationSearch={locationSearch}
             calculateAndDisplayRoute={calculateAndDisplayRoute}
+            setAutocompleteService={setAutocompleteService}
           />
         </div>
 

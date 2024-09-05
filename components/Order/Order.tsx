@@ -13,6 +13,8 @@ export type screen =
   | "reservation-confirmed"
   | "reservation-on-the-way"
   | "reservation-cancelled"
+  | "ride-started"
+  | "reservation-completed"
   | null;
 
 export interface orderData {}
@@ -23,6 +25,7 @@ const Order = () => {
   const orderId = searchParams.get("orderid");
   const [orderData, setOrderData] = useState<any>(null);
   const [orderDetails, setOrderDetails] = useState<any>(null);
+  const [trackingData, setTrackingData] = useState<any>(null);
 
   const [screen, setScreen] = useState<screen | null>(null);
 
@@ -60,7 +63,17 @@ const Order = () => {
         }, 10000);
       }
       if (result.status === "STARTED") {
+        setTrackingData(result);
         setScreen("reservation-on-the-way");
+        getOrderDetails(orderId).then(setOrderDetails);
+        clearTimeout(apiTimeout);
+        apiTimeout = setTimeout(() => {
+          handleOrderUpdate(orderId);
+        }, 10000);
+      }
+      if (result.status === "TRANSFERRING") {
+        setTrackingData(result);
+        setScreen("ride-started");
         getOrderDetails(orderId).then(setOrderDetails);
         clearTimeout(apiTimeout);
         apiTimeout = setTimeout(() => {
@@ -73,6 +86,10 @@ const Order = () => {
       if (result.status.includes("CANCELLED")) {
         setScreen("reservation-cancelled");
         clearTimeout(apiTimeout);
+      }
+
+      if (result.status === "FINISHED_PAID") {
+        setScreen("reservation-completed");
       }
     });
   };
@@ -90,7 +107,10 @@ const Order = () => {
   }, [orderData]);
 
   if (orderData) {
-    console.log("ORER DATA ", orderData);
+    console.log("ORER--- ORER DATA ", orderData);
+    console.log("ORER--- orderDetails ", orderDetails);
+    console.log("ORER--- trackingData ", trackingData?.status);
+
     return (
       <>
         <OrderDetails
@@ -98,6 +118,7 @@ const Order = () => {
           screen={screen}
           orderData={orderData}
           orderId={orderId}
+          trackingData={trackingData}
         />
 
         {/* <CancelButton orderId={orderId} /> */}
@@ -106,83 +127,3 @@ const Order = () => {
   }
 };
 export default Order;
-const mocRequest = {
-  waypoints: [
-    {
-      street: "Nikaia, Greece",
-      poiName: "Nikaia, Greece",
-      placeLatLng: { lat: 37.9701342, lng: 23.6424349 },
-    },
-    {
-      street: "Pireas, Greece",
-      poiName: "Pireas, Greece",
-      placeLatLng: { lat: 37.9429876, lng: 23.647016 },
-    },
-  ],
-  extraOptions: [],
-  client: {
-    clientId: "32d10170-809a-4020-a2e8-260b452caabf",
-    name: "Sevastos Matzouranis",
-    phone: "+306945498067",
-  },
-  notes: "From Aegean Taxi Web App",
-  unitOfLength: "METER",
-  orderSource: "DISPATCH_API",
-  pickupTime: "2024-09-27T00:15:00.000+03:00",
-  numberOfSeats: 7,
-  vehicleType: "MERCEDES_V_CLASS",
-  paymentMethods: ["CASH"],
-  prepaid: false,
-  tariffId: "8f6b6fe0-d353-4e3a-8fe7-92b8827ef139",
-};
-
-
-const mocDetails = {
-  "eta": "2024-07-25T02:05:12.228+03:00",
-  "driver": {
-      "driverId": "0e8b2133-2d23-4805-9c0b-03fe1575062f",
-      "name": "KRIS GKOUNIS",
-      "email": "kristiangkounis@gmail.com",
-      "imageUrl": "https://onde-images.s3.amazonaws.com/driver_profile/2024-06-05/0e8b2133-2d23-4805-9c0b-03fe1575062f-2e8d0bbf-f4ae-45c5-abba-4d85e9882103.png",
-      "phone": "+306976613318"
-  },
-  "car": {
-      "model": "Mercedes GLA",
-      "color": "Black",
-      "year": 2019,
-      "plateNumber": "XHN 7284",
-      "numberOfSeats": 4,
-      "options": [
-          "AIR_CONDITION",
-          "NON_SMOKING"
-      ],
-      "vehicleType": "BUSINESS"
-  },
-  "tariff": {
-      "tariffId": " 01460183-e7f9-4333-8e7e-954e641d036d",
-      "name": "Economy",
-      "companyName": "South Aegean",
-      "vehicleType": "BUSINESS",
-      "tariffType": "PRECISE",
-      "numberOfSeats": 4,
-      "paymentMethods": [
-          "CASH"
-      ],
-      "currency": "EUR",
-      "unitOfLength": "KILOMETER",
-      "minimumCharge": 36.0,
-      "flagDownFee": 20.0,
-      "perDistanceUnitFee": 0.0,
-      "perHourFee": 72.0,
-      "taximeterMode": "TIME_AND_MILEAGE",
-      "tariffMode": "DISABLED",
-      "driverCanSetCost": true,
-      "fixedFaresAvailable": false,
-      "cost": 36.0,
-      "fixedCost": false,
-      "prepaidSupported": false,
-      "asapBooking": true,
-      "minimumPreBookingDelay": 900000,
-      "preBooking": true
-  }
-}
