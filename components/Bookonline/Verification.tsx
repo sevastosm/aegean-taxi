@@ -31,7 +31,7 @@ import styles from "./styles.module.scss";
 import AES from "crypto-js/aes";
 import { setTimeout } from "timers";
 
-export default function Verification({}: {}) {
+export default function Verification({ }: {}) {
   const router = useRouter();
   const [countryCode, setCountryCode] = useState("0");
   const [phone, setPhone] = useState("");
@@ -201,7 +201,7 @@ export default function Verification({}: {}) {
   return (
     <>
       <div className="px-4 max-w-[500px] m-auto">
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 min-h-[85vh]">
           <div className="block md:hidden">
             <div className="flex items-start">
               <button
@@ -271,9 +271,9 @@ export default function Verification({}: {}) {
                     borderBottom: "none", // Remove bottom border in focus and active states
                   },
                   "& .MuiInputBase-root.Mui-focused:before, & .MuiInputBase-root.Mui-focused:after":
-                    {
-                      borderBottom: "none", // Remove bottom border when focused
-                    },
+                  {
+                    borderBottom: "none", // Remove bottom border when focused
+                  },
                   "& fieldset": {
                     border: "none", // Remove bottom border when focused
                   },

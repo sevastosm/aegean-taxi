@@ -225,7 +225,7 @@ function MapTracking({ orderDetails, tracking = null }) {
 
         {directionsResponse && (
           <DirectionsRenderer
-            options={{ suppressMarkers: true, suppressInfoWindows: true }}
+            options={{ suppressMarkers: true, suppressInfoWindows: true, suppressPolylines: true }}
             directions={directionsResponse}
           />
         )}

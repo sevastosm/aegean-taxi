@@ -27,7 +27,14 @@ const Places = ({
   setDropOffLocationHandler,
   selectedPickUp,
   selectedDropOff,
+  pickUpLocation,
+  dropLocation,
+
 }: any) => {
+
+  console.log("pickUpLocation-p",pickUpLocation)
+  console.log("pickUpLocation-d",dropLocation)
+
   if (selectedPickUp && selectedDropOff) {
     return null;
   }

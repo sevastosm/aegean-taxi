@@ -49,7 +49,7 @@ export default function ValidationContent({ handleCreateOrder }) {
       appContext.updateAppState(cookieState);
     }
 
-    return () => {};
+    return () => { };
   }, []);
 
   console.log("bookingState", bookingState);
@@ -101,7 +101,7 @@ export default function ValidationContent({ handleCreateOrder }) {
   return (
     <>
       <div className="px-4 max-w-[500px] m-auto">
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 min-h-[80vh]">
           <div className="flex items-start">
             <button
               onClick={handleGoBack}
@@ -168,39 +168,41 @@ export default function ValidationContent({ handleCreateOrder }) {
               <span className="text-red-700 ">Invalid code</span>
             </div>
           )}
-          <div className="flex items-center">
-            <img
-              src="/assets/whatsAppNew.svg"
-              alt="Wallet Icon"
-              className="my-2"
-              width="50"
-              height="50"
-            />
-            <p className="font-semibold text-[17px] text-black text-center my-2">
-              Message us on whatsapp 24/7 customer support
-            </p>
-          </div>
-          <button
-            disabled={!secCode || secCode?.length < 5}
-            onClick={onSubmit}
-            className="w-full bg-[#264388] text-white font-semibold text-xl py-4 rounded-md"
-          >
-            <div className="flex relative items-center">
-              <div className="w-full text-center">Book ride</div>
-              <div className="w-[50px]  absolute rotate-180 right-0 mr-4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 105 105"
-                  fill="none"
-                >
-                  <path
-                    d="M22.8787 49.8787C21.7071 51.0503 21.7071 52.9497 22.8787 54.1213L41.9706 73.2132C43.1421 74.3848 45.0416 74.3848 46.2132 73.2132C47.3848 72.0416 47.3848 70.1421 46.2132 68.9706L29.2426 52L46.2132 35.0294C47.3848 33.8579 47.3848 31.9584 46.2132 30.7868C45.0416 29.6152 43.1421 29.6152 41.9706 30.7868L22.8787 49.8787ZM86 49L25 49V55L86 55V49Z"
-                    fill="white"
-                  />
-                </svg>
-              </div>
+          <div className="flex-grow flex flex-col ">
+            <div className="flex flex-grow mb-2 items-end">
+              <img
+                src="/assets/whatsAppNew.svg"
+                alt="Wallet Icon"
+                className="my-2"
+                width="50"
+                height="50"
+              />
+              <p className="font-semibold text-[17px] text-black text-center my-2">
+                Message us on whatsapp 24/7 customer support
+              </p>
             </div>
-          </button>
+            <button
+              disabled={!secCode || secCode?.length < 5}
+              onClick={onSubmit}
+              className="w-full bg-[#264388] text-white font-semibold text-xl py-4 rounded-md"
+            >
+              <div className="flex relative items-center">
+                <div className="w-full text-center">Book ride</div>
+                <div className="w-[50px]  absolute rotate-180 right-0 mr-4">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 105 105"
+                    fill="none"
+                  >
+                    <path
+                      d="M22.8787 49.8787C21.7071 51.0503 21.7071 52.9497 22.8787 54.1213L41.9706 73.2132C43.1421 74.3848 45.0416 74.3848 46.2132 73.2132C47.3848 72.0416 47.3848 70.1421 46.2132 68.9706L29.2426 52L46.2132 35.0294C47.3848 33.8579 47.3848 31.9584 46.2132 30.7868C45.0416 29.6152 43.1421 29.6152 41.9706 30.7868L22.8787 49.8787ZM86 49L25 49V55L86 55V49Z"
+                      fill="white"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </button>
+          </div>
         </div>
       </div>
     </>

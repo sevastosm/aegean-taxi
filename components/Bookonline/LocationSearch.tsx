@@ -1,5 +1,7 @@
 import { Box } from "@mui/material";
 import React, { useEffect } from "react";
+import Places from "./Places";
+import PlacesInput from "./PlacesInput";
 
 type Props = {};
 
@@ -52,11 +54,10 @@ const LocationSearch = ({
               setPickUpLocation(e.target.value);
               getSuggestions(e, "pickUp");
             }}
-            className={`pl-8 pr-8 py-3 border-2 rounded font-semibold focus:outline-none ${
-              pickUpLocation
-                ? "bg-gray-300"
-                : "bg-white border-blue-500 border-4"
-            } w-full`}
+            className={`pl-8 pr-8 py-3 border-2 rounded font-semibold focus:outline-none ${pickUpLocation
+              ? "bg-gray-300"
+              : "bg-white border-blue-500 border-4"
+              } w-full`}
             placeholder="Enter pick up location"
           />
 
@@ -93,14 +94,12 @@ const LocationSearch = ({
               setDropLocation(e.target.value);
               getSuggestions(e, "dropOff");
             }}
-            className={`pl-8 pr-8 py-3 border-2 rounded font-semibold focus:outline-none ${
-              dropLocation ? "bg-gray-300" : "bg-white border-blue-500"
-            } 
-            ${
-              pickUpLocation &&
+            className={`pl-8 pr-8 py-3 border-2 rounded font-semibold focus:outline-none ${dropLocation ? "bg-gray-300" : "bg-white border-blue-500"
+              } 
+            ${pickUpLocation &&
               !dropLocation &&
               "bg-white border-blue-500 border-4"
-            }
+              }
             w-full`}
             placeholder="Enter drop off location"
           />
@@ -115,6 +114,7 @@ const LocationSearch = ({
           </button>
         </div>
       </div>
+      {/* <PlacesInput /> */}
     </div>
   );
 };

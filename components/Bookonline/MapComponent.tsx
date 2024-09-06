@@ -12,6 +12,7 @@ import {
 import { AppContext } from "@/context/appState";
 import { ZoomInMap } from "@mui/icons-material";
 import { locationDetails } from "@/utils/locationDetails";
+import { useGoogleMaps } from "./GoogleMapsProvider";
 
 const containerStyle = {
   width: "100%",
@@ -22,12 +23,9 @@ const center = {
   lng: 25.2984466,
 };
 
-function MapComponent({ calculateAndDisplayRoute, locationSearch }: any) {
-  const { isLoaded } = useJsApiLoader({
-    id: "google-map-script",
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
-    libraries,
-  });
+function MapComponent({ calculateAndDisplayRoute, locationSearch, setAutocompleteService }: any) {
+  const isLoaded = useGoogleMaps();
+
   const appContext = useContext(AppContext);
 
   const contextState: BookingState = appContext.state;
@@ -50,7 +48,6 @@ function MapComponent({ calculateAndDisplayRoute, locationSearch }: any) {
   const [originPosition, setOriginPosition] = useState(null);
   const [destinationPosition, setDestinationPosition] = useState(null);
   const [zoom, setZoom] = useState(11);
-
   const [centerMap, setCenter] = useState(center);
 
   const mapOptions = {
@@ -65,43 +62,63 @@ function MapComponent({ calculateAndDisplayRoute, locationSearch }: any) {
   };
 
   const mapRef = useRef(null);
+  // Refs to store the markers
+  const originMarkerRef = useRef(null);
+  const destinationMarkerRef = useRef(null);
+
+
+
+
+
   const addCustomMarker = async () => {
     const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+    const createCustomMarker = (position, content) => {
+      const marker = new AdvancedMarkerElement({
+        position,
+        map,
+        content,
+      });
+    };
 
     if (!directionsResponse) return;
 
     // const origin = "San Francisco"; // Example origin text (you can dynamically change this)
     const durationText = directionsResponse.routes[0].legs[0].duration.text;
+    // Clear previous markers
+    if (originMarkerRef.current) originMarkerRef.current.setMap(null);
+    if (destinationMarkerRef.current) destinationMarkerRef.current.setMap(null);
 
     // Create a custom HTML element for the marker
-    const markerContent = document.createElement("div");
-    const markerContent2 = document.createElement("div");
+    const originContent = document.createElement("div");
+    const destinationContent = document.createElement("div");
 
-    markerContent2.innerHTML = `
+    destinationContent.innerHTML = `
       <div class="flex max-w-[100px] gap-2 bg-white items-center mb-1">
         <div class="bg-black text-[10px] max-w-[40px] text-center p-1 text-white">${durationText}</div>
         <div class="font-bold  text-[12px]">${destination}</div>
       </div>
     `;
-    markerContent.innerHTML = `
+    originContent.innerHTML = `
       <div class="flex max-w-[100px] bg-white  items-center mb-1">
         <div class="font-bold p-2 text-[12px]">${origin}</div>
       </div>
     `;
 
-    // Create the advanced marker with the custom content
-    const marker = new AdvancedMarkerElement({
-      position: originPosition, // Position marker at the origin
+    // Create and store new markers
+    const originMarker = new AdvancedMarkerElement({
+      position: originPosition,
       map,
-      content: markerContent,
+      content: originContent,
+    });
+    const destinationMarker = new AdvancedMarkerElement({
+      position: destinationPosition,
+      map,
+      content: destinationContent,
     });
 
-    // Create the advanced marker with the custom content
-    const marker2 = new AdvancedMarkerElement({
-      position: destinationPosition, // Position marker at the origin
-      map,
-      content: markerContent2,
-    });
+    // Store the markers in refs for future cleanup
+    originMarkerRef.current = originMarker;
+    destinationMarkerRef.current = destinationMarker;
   };
 
   useEffect(() => {
@@ -109,6 +126,7 @@ function MapComponent({ calculateAndDisplayRoute, locationSearch }: any) {
       addCustomMarker();
     }
   }, [map, directionsResponse]);
+
 
   useEffect(() => {
     if (origin !== "" && destination !== "" && isLoaded) {

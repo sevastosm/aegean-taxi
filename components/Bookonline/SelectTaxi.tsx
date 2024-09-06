@@ -29,18 +29,17 @@ const SelectTaxi = ({
   };
 
   return (
-    <div className="flex flex-col">
-      <div className="w-full mx-auto bg-white  rounded-2xl">
+    <div className="flex flex-col flex-grow">
+      <div className="w-full mx-auto bg-white flex-grow rounded-2xl">
         <div className="space-y-2">
           {cars.map((car: any, i: number) => {
             return (
               <div
                 key={i}
-                className={`my-2.5 px-3 py-1 border-[3px] rounded-2xl cursor-pointer flex items-center justify-between ${
-                  selectedItem === car.name
-                    ? "border-[#264388]"
-                    : "border-transparent"
-                }`}
+                className={`my-2.5 px-3 py-1 border-[3px] rounded-2xl cursor-pointer flex items-center justify-between ${selectedItem === car.name
+                  ? "border-[#264388]"
+                  : "border-transparent"
+                  }`}
                 onClick={() => handleSelect(car.name)}
               >
                 <div className="flex flex-row gap-2 items-center justify-start">
@@ -86,7 +85,7 @@ const SelectTaxi = ({
       <div className="px-4">
         <CardPayment />
       </div>
-      <div className="flex items-end justify-center my-4">
+      <div className="flex items-end justify-center mt-4">
         <button
           disabled={!selectedItem}
           onClick={authorizeUser}

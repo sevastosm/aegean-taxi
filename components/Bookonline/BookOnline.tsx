@@ -11,7 +11,6 @@ import timezone from "dayjs/plugin/timezone";
 // MUI
 import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
-
 // Styles
 // @ts-ignore
 
@@ -40,6 +39,7 @@ import ToolBar from "./ToolBar";
 import classNames from "classnames";
 import MapComponent from "./MapComponent";
 import { getAvailableRouteCars } from "@/utils/fetchers";
+import { useGoogleMaps } from "./GoogleMapsProvider";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -48,6 +48,8 @@ dayjs.tz.setDefault("Europe/Athens");
 export default function BookOnline() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const google = useGoogleMaps();
+
 
   const locationSearch = searchParams.get("location");
   console.log("search", locationSearch);
@@ -123,7 +125,7 @@ export default function BookOnline() {
       appContext.updateAppState(contextState);
     }
 
-    return () => {};
+    return () => { };
   }, []);
 
   const toggleDrawer = () => {
@@ -136,14 +138,14 @@ export default function BookOnline() {
     setNearbyLocations([]);
     setCurrentLocationAddress("");
     setError(null);
-    toggleDrawer();
+
     setDisplayHotSpots(true);
     setLocationHandler("pickUp");
   };
 
   const toggleBlurLocation = () => () => {
     setError(null);
-    toggleDrawer();
+    // toggleDrawer();
   };
 
   const toggleFocusDestination = () => () => {
@@ -152,38 +154,17 @@ export default function BookOnline() {
     setCurrentLocationAddress("");
     setNearbyLocations([]);
     setError(null);
-    toggleDrawer();
+
     setDisplayHotSpots(true);
     setLocationHandler("dropOff");
   };
   const toggleBlurDestination = () => () => {
     setError(null);
-    toggleDrawer();
+    // toggleDrawer();
   };
 
   const stateManagement = async () => {
     console.log("state managenment");
-    //await calculateAndDisplayRoute();
-
-    /* Step 1 - Select route  */
-    // if (
-    //   !bookingState.directions ||
-    //   (bookingState.predictions && bookingState.prediction.length > 0)
-    // ) {
-    //   console.log("step 1");
-    //   await calculateAndDisplayRoute();
-    // }
-
-    // /* Step 2 - Select car  */
-    // else if (
-    //   bookingState.directions &&
-    //   (!bookingState.predictions || !bookingState.predictions.length) &&
-    //   !bookingState.orderDetails
-    // ) {
-    //   console.log("step 2");
-    //   await calculateAndDisplayRoute();
-    //   // clearState();
-    // }
 
     /* Step 3 - Select car  */
     if (cookieState && cookieState.orderDetails && !cookieState.selectedCar) {
@@ -191,41 +172,7 @@ export default function BookOnline() {
       setOrderDetails(null);
       // await calculateAndDisplayRoute();
     }
-    // userVerified
 
-    // /* Step 4 - Search for driver  */
-    // if (
-    //   cookieState &&
-    //   cookieState.userVerified &&
-    //   cookieState.selectedCar &&
-    //   cookieState.selectedCarConfirmed &&
-    //   // !cookieState.orderDetails &&
-    //   !cookieState.driver
-    // ) {
-    //   console.log("step 4");
-    //   await calculateAndDisplayRoute();
-    //   setSelectedCar(cookieState.selectedCar);
-    //   setTimeout(async () => {
-    //     console.log("TIME SEARHING");
-    //     if (contextState.orderDetails) {
-    //       getOrderUpdate(cookieState.orderDetails);
-    //     } else {
-    //       await createOrder();
-    //     }
-    //   }, 1500);
-    // }
-
-    //   // Step 5
-    //   if (
-    //     cookieState &&
-    //     cookieState.userVerified &&
-    //     cookieState.driver &&
-    //     cookieState.driverDetails
-    //   ) {
-    //     await calculateAndDisplayRoute();
-    //     console.log("step 5");
-    //   }
-    //   console.log("end");
   };
 
   const updateSession = () => {
@@ -299,12 +246,17 @@ export default function BookOnline() {
   //   }
   // }, [initMap, googleIsDefined]);
 
-  // useEffect(() => {
-  //   if (!autocompleteService)
-  //     setAutocompleteService(
-  //       () => new window.google.maps.places.AutocompleteService()
-  //     );
-  // }, [directionsService]);
+  useEffect(() => {
+    if (google) {
+      setAutocompleteService(
+        () => new window.google.maps.places.AutocompleteService()
+      );
+      // setPlacesService(
+      //   () =>
+      //     new window.google.maps.PlacesService(document.createElement("div"))
+      // );
+    }
+  }, [google]);
 
   useEffect(() => {
     console.log("car categories");
@@ -659,23 +611,30 @@ export default function BookOnline() {
   useEffect(() => {
     if (locationSearch) {
       document.body.classList.remove("inserted");
+      const button = document.querySelector('.watchAppBottom')
+      if (button) {
+        button.classList.add("!hidden")
+      }
 
-      const mapOptions =
-        locationDetails.taxi_locations[locationSearch]?.mapOptions;
-      setZoom(mapOptions.zoom);
-      setCenter({
-        lat: mapOptions.lat,
-        lng: mapOptions.lng,
-      });
-      contextState.mapCenter = {
-        lat: mapOptions.lat,
-        lng: mapOptions.lng,
-      };
     }
+
+
     if (!locationSearch) {
       clearState();
     }
   }, [locationSearch]);
+
+  useEffect(() => {
+    if (locationSearch) {
+      document.body.classList.remove("inserted");
+      const button = document.querySelector('.watchAppBottom')
+      if (button) {
+
+        button.classList.add("!hidden")
+      }
+    }
+
+  }, [])
 
   const hotSpots =
     locationSearch && locationDetails.taxi_locations[locationSearch]?.hotSpots;
@@ -703,6 +662,10 @@ export default function BookOnline() {
     }
   }, [displayHotSpots]);
 
+  useEffect(() => {
+    document
+  })
+
   // useEffect(() => {
   //   if (selectedPickUp && selectedDropOff) {
   //     if (!open) {
@@ -718,57 +681,35 @@ export default function BookOnline() {
       </div>
     </div>
   ) : (
-    <div className="flex relative md:gap-20 flex-col md:flex-row min-h-screen max-h-[700px] max-w-[1200px] mx-auto -mt-5 md:mt-1">
-      <div>
-        <div className="absolute top-3 left-0 z-10 w-full">
-          <ToolBar
-            toggleDrawer={toggleDrawer}
-            handleClick={handleBack}
-            isMapOpen={open}
-          />
-        </div>
-
-        <div
-          className={classNames(
-            "w-full md:block h-[280px] md:h-[700px]",
-            "relative order-0 md:order-1",
-            !open ? "block" : "hidden md:block",
-            selectedPickUp && selectedDropOff ? "h-[330px]" : "h-[280px]"
-          )}
-        >
-          <MapComponent
-            locationSearch={locationSearch}
-            calculateAndDisplayRoute={calculateAndDisplayRoute}
-            setAutocompleteService={setAutocompleteService}
-          />
-        </div>
-
-        {/* <Wrapper
-            apiKey={`${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
-            libraries={["places"]}
-            render={render}
-            callback={intitializeMap}
-          >
-            {!initMap && (
-              <GoogleMapComponent
-                center={center}
-                zoom={zoom}
-                currentLocation={currentLocation}
-                directionsService={directionsService}
-                directionsRenderer={directionsRenderer}
-                placesService={placesService}
-                geocoderService={geocoderService}
-                directions={directions}
-                driverLocation={driverLocation}
-                state={contextState}
-                removeMarkers={removeMarkers}
-              />
-            )}
-          </Wrapper> */}
+    <div className="flex relative md:gap-20 flex-col md:flex-row min-h-[88vh] max-h-[700px] max-w-[1200px] mx-auto -mt-5 md:mt-1">
+      <div className="absolute top-3 left-0 z-10 w-full">
+        <ToolBar
+          toggleDrawer={toggleDrawer}
+          handleClick={handleBack}
+          isMapOpen={open}
+        />
       </div>
 
-      <div className="px-4 w-full md:w-[50%]">
-        <Typography
+      <div
+        className={classNames(
+          "w-full md:block min-h-[280px] md:h-[700px]",
+          "relative order-0 md:order-1",
+          !open ? "block flex-grow" : "hidden md:block",
+          selectedPickUp && selectedDropOff ? "h-[330px]" : "h-[280px]"
+        )}
+      >
+        <MapComponent
+          locationSearch={locationSearch}
+          calculateAndDisplayRoute={calculateAndDisplayRoute}
+        />
+      </div>
+
+
+      <div className={classNames(
+        selectCarStep && selectedPickUp && selectedDropOff && "flex-grow flex flex-col",
+        "px-4 w-full md:w-[50%]"
+      )}   >
+        {/* <Typography
           component="h1"
           sx={{
             fontWeight: "bold",
@@ -780,11 +721,11 @@ export default function BookOnline() {
           }}
         >
           Book a taxi online now
-        </Typography>
+        </Typography> */}
         <div
           className={classNames(
             "flex flex-col gap-4",
-            open && "mt-16 md:mt-auto"
+            open && "mt-16 md:mt-auto flex-grow"
           )}
         >
           <LocationSearch
@@ -814,37 +755,43 @@ export default function BookOnline() {
             setDropOffLocationHandler={setDropOffLocationHandler}
             selectedPickUp={selectedPickUp}
             selectedDropOff={selectedDropOff}
+            dropLocation={dropLocation}
+            pickUpLocation={pickUpLocation}
           />
           {!selectCarStep && selectedPickUp && selectedDropOff && (
-            <BookActions
-              nextButtonHandler={nextButtonHandler}
-              calendars={
-                <Calendars
-                  setOpenTimePicker={setOpenTimePicker}
-                  setOpenDayPicker={setOpenDayPicker}
-                  pickUpDate={pickUpDate}
-                  openDayPicker={openDayPicker}
-                  setPickUpDateHandler={setPickUpDateHandler}
-                  pickUpTime={pickUpTime}
-                  openTimePicker={openTimePicker}
-                  setPickUpTimeHandler={setPickUpTimeHandler}
-                />
-              }
-            />
+            <div className="flex-grow">
+              <BookActions
+                nextButtonHandler={nextButtonHandler}
+                calendars={
+                  <Calendars
+                    setOpenTimePicker={setOpenTimePicker}
+                    setOpenDayPicker={setOpenDayPicker}
+                    pickUpDate={pickUpDate}
+                    openDayPicker={openDayPicker}
+                    setPickUpDateHandler={setPickUpDateHandler}
+                    pickUpTime={pickUpTime}
+                    openTimePicker={openTimePicker}
+                    setPickUpTimeHandler={setPickUpTimeHandler}
+                  />
+                }
+              />
+            </div>
           )}
           {availableCars && (
-            <CarList
-              directions={directions}
-              predictions={predictions}
-              error={error}
-              orderDetails={orderDetails}
-              contextState={contextState}
-              selectCarStep={selectCarStep}
-              availableCars={availableCars}
-              setSelectedCarHandler={setSelectedCarHandler}
-              authorizeUser={authorizeUser}
-              selectedCar={selectedCar}
-            />
+            <div className="flex-grow min-h-max flex flex-col">
+              <CarList
+                directions={directions}
+                predictions={predictions}
+                error={error}
+                orderDetails={orderDetails}
+                contextState={contextState}
+                selectCarStep={selectCarStep}
+                availableCars={availableCars}
+                setSelectedCarHandler={setSelectedCarHandler}
+                authorizeUser={authorizeUser}
+                selectedCar={selectedCar}
+              />
+            </div>
           )}
         </div>
       </div>

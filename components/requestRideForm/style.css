@@ -1,20 +1,24 @@
-.inserted .watchAppTop{
-     visibility: hidden; 
+.inserted .watchAppTop {
+    visibility: hidden;
     height: 45px;
-        width: 136px;
-        background: #25d366;
-        text-align: center;
-        border-radius: 8px;
+    width: 136px;
+    background: #25d366;
+    text-align: center;
+    border-radius: 8px;
 }
+
 .inserted .watchAppBottom {
     visibility: visible;
     top: auto !important;
-
-    
-
 }
+
+.bookikg .watchAppBottom {
+    display: none;
+}
+
+
 .watchApp {
-height: 45px;
+    height: 45px;
     width: 135px;
     background: #25d366;
     text-align: center;
@@ -24,14 +28,16 @@ height: 45px;
 .watchAppTop {
     visibility: visible;
     display: block;
-   
+
 }
+
 .watchAppBottom {
     visibility: hidden;
-    
-    
+
+
     top: 100% !important;
 }
+
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
