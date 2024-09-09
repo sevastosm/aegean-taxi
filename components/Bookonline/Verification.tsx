@@ -19,7 +19,9 @@ import { sendSms, verifyToken } from "@/utils/fetchers";
 
 // models
 import { BookingState } from "@/types/bookingState";
-import CardPayment from "@/components/Bookonline/CardPayment";
+// import CardPayment from "@/components/Bookonline/CardPayment";
+import CardPaymentBold from "@/components/Bookonline/CardPaymentBold";
+
 import Checkbox from "@mui/material/Checkbox";
 
 import FormControl from "@mui/material/FormControl";
@@ -30,8 +32,9 @@ import styles from "./styles.module.scss";
 // crypto
 import AES from "crypto-js/aes";
 import { setTimeout } from "timers";
+import CardPaymentBlack from "./CardPaymentBold";
 
-export default function Verification({ }: {}) {
+export default function Verification({}: {}) {
   const router = useRouter();
   const [countryCode, setCountryCode] = useState("0");
   const [phone, setPhone] = useState("");
@@ -85,7 +88,7 @@ export default function Verification({ }: {}) {
   };
 
   function renderValue(option: string) {
-    return option === "0" ? "County code" : `+${option}`;
+    return option === "0" ? "Code" : `+${option}`;
   }
 
   const reCaptchaRef = React.useRef<any>(null);
@@ -200,9 +203,9 @@ export default function Verification({ }: {}) {
 
   return (
     <>
-      <div className="px-4 max-w-[500px] m-auto">
+      <div className="flex flex-grow px-4 max-w-[500px] verification-container">
         <div className="flex flex-col gap-4 min-h-[85vh]">
-          <div className="block md:hidden">
+          <div className="block md:hidden mb-5">
             <div className="flex items-start">
               <button
                 onClick={handleGoBack}
@@ -246,7 +249,7 @@ export default function Verification({ }: {}) {
             />
           </div>
 
-          <div className="flex flex-row gap-4 ">
+          <div className="flex flex-row gap-4">
             <div className="inline-flex">
               <Select
                 labelId="demo-simple-select-standard-label"
@@ -264,6 +267,7 @@ export default function Verification({ }: {}) {
                   nativeInput: styles.fontSize,
                 }}
                 sx={{
+                  width: "80px", // Adjust the width to your desired size
                   "& .MuiFilledInput-root": {
                     borderBottom: "none", // Remove bottom border
                   },
@@ -271,9 +275,9 @@ export default function Verification({ }: {}) {
                     borderBottom: "none", // Remove bottom border in focus and active states
                   },
                   "& .MuiInputBase-root.Mui-focused:before, & .MuiInputBase-root.Mui-focused:after":
-                  {
-                    borderBottom: "none", // Remove bottom border when focused
-                  },
+                    {
+                      borderBottom: "none", // Remove bottom border when focused
+                    },
                   "& fieldset": {
                     border: "none", // Remove bottom border when focused
                   },
@@ -284,7 +288,7 @@ export default function Verification({ }: {}) {
                   role="option"
                   value="0"
                 >
-                  Choose county code
+                  Choose country code
                 </MenuItem>
                 <MenuItem className={styles.MenuItem} role="option" value="1">
                   +1
@@ -347,40 +351,46 @@ export default function Verification({ }: {}) {
             />
           </div>
 
-          <CardPayment />
+          <div className="flex flex-grow items-end justify-center">
+            <CardPaymentBold />
+          </div>
 
-          <div className="flex items-center gap-2">
-            <Checkbox
-              sx={{ p: 0, "& .MuiSvgIcon-root": { fontSize: 35 } }}
-              onChange={() => setTerms(!terms)}
-              checked={terms}
-            />
-            <label className="flex items-center space-x-2">
-              {/* <input
+          <div className="flex flex-col flex-grow justify-end my-4 w-full">
+            <div className="flex items-center gap-2 my-4">
+              <Checkbox
+                sx={{ p: 0, "& .MuiSvgIcon-root": { fontSize: 35 } }}
+                onChange={() => setTerms(!terms)}
+                checked={terms}
+              />
+              <label className="flex items-center space-x-2">
+                {/* <input
                 type="checkbox"
                 name="termsCheckboxProps.name"
                 className="h-[35px] w-[35px]"
               /> */}
-              <span className="text-xs text-gray-500">
-                <a
-                  href="termsCheckboxProps.termsLinkHref"
-                  className="text-[#BCBCBC]"
-                >
-                  {termsCheckboxProps.labelText}
-                  <span className="">{termsCheckboxProps.termsLinkText}</span>
-                  {" and "}
-                </a>
-                <a
-                  href="termsCheckboxProps.privacyLinkHref"
-                  className="text-[#000]"
-                >
-                  <span className="">{termsCheckboxProps.privacyLinkText}</span>
-                </a>
-              </span>
-            </label>
-          </div>
+                <span className="text-sm text-gray-500">
+                  <a
+                    href="termsCheckboxProps.termsLinkHref"
+                    className="text-[#BCBCBC]"
+                  >
+                    {termsCheckboxProps.labelText}
+                    <span className="text-[#000]">
+                      {termsCheckboxProps.termsLinkText}
+                    </span>
+                    {" and "}
+                  </a>
+                  <a
+                    href="termsCheckboxProps.privacyLinkHref"
+                    className="text-[#000]"
+                  >
+                    <span className="">
+                      {termsCheckboxProps.privacyLinkText}
+                    </span>
+                  </a>
+                </span>
+              </label>
+            </div>
 
-          <div className="flex justify-center items-end my-4 w-full">
             <button
               onClick={onSubmit}
               disabled={
@@ -415,16 +425,6 @@ export default function Verification({ }: {}) {
             size="invisible"
             sitekey="6Lc_Wq8pAAAAAIXLFQ8NtSy1YwvRYiaXC52e70NP"
           />
-        </div>
-        <div className="grid grid-cols-10 items-start justify-center min-h-screen mt-0">
-          <div className="col-span-10 md:col-span-3.2">
-            <div className="mt-2">
-              <div className="flex flex-col"></div>
-              <div>
-                <div className="my-2"></div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </>

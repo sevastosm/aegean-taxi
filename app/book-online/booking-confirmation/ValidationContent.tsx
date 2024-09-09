@@ -49,7 +49,7 @@ export default function ValidationContent({ handleCreateOrder }) {
       appContext.updateAppState(cookieState);
     }
 
-    return () => { };
+    return () => {};
   }, []);
 
   console.log("bookingState", bookingState);
@@ -120,54 +120,59 @@ export default function ValidationContent({ handleCreateOrder }) {
               </svg>
             </button>
           </div>
-          <h1 className="font-semibold text-[17px] text-[#244284] text-center mt-6 ">
+          <h1 className="font-normal text-[17px] text-[#244284] text-center mt-6 ">
             Enter the 5-digit code sent to you at <br />
           </h1>
-          <div className="flex gap-4">
-            <div className="">
-              <input
-                disabled
-                value={bookingState?.countryCode}
-                className="font-bold w-[100px] text-2xl  text-center bg-[#F6F6F6] placeholder:text-[#626262] p-2 py-4 border-0 focus:outline-none focus:ring-0"
+
+          <div className="flex flex-col items-center gap-2 px-4">
+            <div className="flex gap-1 w-full max-w-md">
+              <div className="flex-shrink-0">
+                <input
+                  disabled
+                  value={bookingState?.countryCode}
+                  className="max-w-[100px] font-bold text-2xl text-center bg-[#F6F6F6] placeholder:text-[#626262] p-2 py-4 border-0 focus:outline-none focus:ring-0"
+                />
+              </div>
+              <div className="flex-shrink-0">
+                <input
+                  disabled
+                  value={bookingState?.phone}
+                  className="w-full font-bold text-2xl text-center bg-[#F6F6F6] placeholder:text-[#626262] p-2 py-4 border-0 focus:outline-none focus:ring-0"
+                />
+              </div>
+            </div>
+
+            <div className="font-normal text-xl text-[#244284] text-center mb-2 px-6">
+              Make sure you entered the correct country code!
+            </div>
+
+            <div className="flex w-full items-center justify-center mb-6 max-w-md">
+              <OtpInput
+                value={secCode}
+                onChange={handleChange}
+                numInputs={5}
+                inputStyle={{
+                  color: "black",
+                  fontSize: "16px",
+                  width: "50px",
+                  height: "50px",
+                  background: "#F6F6F6",
+                  margin: "0 4px",
+                  fontWeight: "bold",
+                  fontSize: "24px",
+                }}
+                inputType="number"
+                renderInput={(props) => <input {...props} />}
               />
             </div>
-            <div className="w-full">
-              <input
-                disabled
-                value={bookingState?.phone}
-                className="w-full font-bold text-2xl  text-center bg-[#F6F6F6] placeholder:text-[#626262] p-2 py-4 border-0 focus:outline-none focus:ring-0"
-              />
-            </div>
+
+            {invalidCode && (
+              <div className="font-semibold text-[14px] text-red-700 text-center mb-2 px-6">
+                <span className="text-red-700">Invalid code</span>
+              </div>
+            )}
           </div>
 
-          {/* <div className="font-semibold text-xl text-[#244284] text-center mb-2 px-6">
-            Make sure you entered the correct country code!
-          </div> */}
-          <div className="flex w-full items-center justify-center mb-6">
-            <OtpInput
-              value={secCode}
-              onChange={handleChange}
-              numInputs={5}
-              // renderSeparator={<span >-</span>}
-              inputStyle={{
-                color: "black",
-                fontSize: "16px",
-                width: "50px",
-                height: "50px",
-                background: "#F6F6F6",
-                margin: "0 4px",
-                fontWeight: "bold",
-                fontSize: "24px",
-              }}
-              inputType="number"
-              renderInput={(props) => <input {...props} />}
-            />
-          </div>
-          {invalidCode && (
-            <div className="font-semibold text-[14px] text-red-700 text-center mb-2 px-6">
-              <span className="text-red-700 ">Invalid code</span>
-            </div>
-          )}
           <div className="flex-grow flex flex-col ">
             <div className="flex flex-grow mb-2 items-end">
               <img

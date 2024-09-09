@@ -50,7 +50,6 @@ export default function BookOnline() {
   const searchParams = useSearchParams();
   const google = useGoogleMaps();
 
-
   const locationSearch = searchParams.get("location");
   console.log("search", locationSearch);
 
@@ -125,7 +124,7 @@ export default function BookOnline() {
       appContext.updateAppState(contextState);
     }
 
-    return () => { };
+    return () => {};
   }, []);
 
   const toggleDrawer = () => {
@@ -172,7 +171,6 @@ export default function BookOnline() {
       setOrderDetails(null);
       // await calculateAndDisplayRoute();
     }
-
   };
 
   const updateSession = () => {
@@ -611,13 +609,11 @@ export default function BookOnline() {
   useEffect(() => {
     if (locationSearch) {
       document.body.classList.remove("inserted");
-      const button = document.querySelector('.watchAppBottom')
+      const button = document.querySelector(".watchAppBottom");
       if (button) {
-        button.classList.add("!hidden")
+        button.classList.add("!hidden");
       }
-
     }
-
 
     if (!locationSearch) {
       clearState();
@@ -627,14 +623,12 @@ export default function BookOnline() {
   useEffect(() => {
     if (locationSearch) {
       document.body.classList.remove("inserted");
-      const button = document.querySelector('.watchAppBottom')
+      const button = document.querySelector(".watchAppBottom");
       if (button) {
-
-        button.classList.add("!hidden")
+        button.classList.add("!hidden");
       }
     }
-
-  }, [])
+  }, []);
 
   const hotSpots =
     locationSearch && locationDetails.taxi_locations[locationSearch]?.hotSpots;
@@ -663,8 +657,8 @@ export default function BookOnline() {
   }, [displayHotSpots]);
 
   useEffect(() => {
-    document
-  })
+    document;
+  });
 
   // useEffect(() => {
   //   if (selectedPickUp && selectedDropOff) {
@@ -681,7 +675,7 @@ export default function BookOnline() {
       </div>
     </div>
   ) : (
-    <div className="flex relative md:gap-20 flex-col md:flex-row min-h-[88vh] max-h-[700px] max-w-[1200px] mx-auto -mt-5 md:mt-1">
+    <div className="flex relative md:gap-20 flex-col md:flex-row min-h-[200px] max-w-[1200px] mx-auto -mt-5 md:mt-1">
       <div className="absolute top-3 left-0 z-10 w-full">
         <ToolBar
           toggleDrawer={toggleDrawer}
@@ -689,26 +683,30 @@ export default function BookOnline() {
           isMapOpen={open}
         />
       </div>
+      <div
+        className={classNames(
+          "w-full flex flex-col flex-grow md:block md:h-[700px]",
+          "relative order-0 md:order-1",
+          !open ? "block" : "hidden md:block",
+          selectedPickUp && selectedDropOff ? "h-[200px]" : "h-[280px]"
+        )}
+      >
+        <div className="flex flex-col flex-grow">
+          <MapComponent
+            locationSearch={locationSearch}
+            calculateAndDisplayRoute={calculateAndDisplayRoute}
+          />
+        </div>
+      </div>
 
       <div
         className={classNames(
-          "w-full md:block min-h-[280px] md:h-[700px]",
-          "relative order-0 md:order-1",
-          !open ? "block flex-grow" : "hidden md:block",
-          selectedPickUp && selectedDropOff ? "h-[330px]" : "h-[280px]"
+          selectCarStep &&
+            selectedPickUp &&
+            selectedDropOff &&
+            "flex flex-col justify-end w-full md:w-[50%]"
         )}
       >
-        <MapComponent
-          locationSearch={locationSearch}
-          calculateAndDisplayRoute={calculateAndDisplayRoute}
-        />
-      </div>
-
-
-      <div className={classNames(
-        selectCarStep && selectedPickUp && selectedDropOff && "flex-grow flex flex-col",
-        "px-4 w-full md:w-[50%]"
-      )}   >
         {/* <Typography
           component="h1"
           sx={{
@@ -724,8 +722,8 @@ export default function BookOnline() {
         </Typography> */}
         <div
           className={classNames(
-            "flex flex-col gap-4",
-            open && "mt-16 md:mt-auto flex-grow"
+            "flex flex-col gap-4 px-4",
+            open && "px-4 mt-16 md:mt-auto flex-grow"
           )}
         >
           <LocationSearch

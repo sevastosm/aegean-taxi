@@ -261,7 +261,7 @@ export default function FormComponent({
             size="large"
             fullWidth={true}
           >
-            Check Prices
+            Check Prices and Book Now
           </Button>
         </Box>
 
