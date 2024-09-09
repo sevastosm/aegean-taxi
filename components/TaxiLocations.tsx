@@ -109,7 +109,7 @@ function TaxiLocations() {
           {availableLocations.map((location, i) => {
             if (i > 1) {
               const locationTaxi = taxi_locations[location];
-              console.log("locationTaxi", locationTaxi);
+
               return (
                 <div key={i} className="col-span-1 mb-2">
                   <Link href={`/book-online?location=${locationTaxi.location}`}>

@@ -43,7 +43,7 @@ export default function ValidationContent({ handleCreateOrder }) {
     appContext.updateAppState(cookieState);
   };
   useEffect(() => {
-    console.log("set state");
+
     if (cookieState) {
       setBookingState(() => cookieState);
       appContext.updateAppState(cookieState);
@@ -52,7 +52,7 @@ export default function ValidationContent({ handleCreateOrder }) {
     return () => { };
   }, []);
 
-  console.log("bookingState", bookingState);
+
 
   async function onSubmit() {
     let securityCode = AES.decrypt(

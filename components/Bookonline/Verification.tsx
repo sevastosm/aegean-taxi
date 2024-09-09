@@ -110,7 +110,7 @@ export default function Verification({ }: {}) {
     bookingState.security.expires = new Date().getTime();
     bookingState.firstName = firstName;
     bookingState.lastName = lastName;
-    console.log("process", process);
+
 
     if (firstName && lastName === "testSeb@@") {
       sendSms(

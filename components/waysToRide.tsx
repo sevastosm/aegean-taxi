@@ -34,11 +34,11 @@ import VAN from "public/assets/onde-service-types/VAN.webp";
 import { locationDetails } from "@/utils/locationDetails";
 import { Console } from "console";
 
-export default function WaysToRide({data}:any) {
+export default function WaysToRide({ data }: any) {
   const [value, setValue] = useState(0);
 
 
-  console.log("WaysToRide",data);
+
 
   const handleChange = (event: SyntheticEvent, newValue: number) => {
     setValue(newValue);

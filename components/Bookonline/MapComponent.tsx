@@ -30,7 +30,7 @@ function MapComponent({ calculateAndDisplayRoute, locationSearch, setAutocomplet
 
   const contextState: BookingState = appContext.state;
 
-  console.log("contextState", contextState);
+
 
   const origin = contextState.pickUpLocation;
 
@@ -238,11 +238,11 @@ function MapComponent({ calculateAndDisplayRoute, locationSearch, setAutocomplet
   }, [map]);
 
   // const handleCenterChanged = (data) => {
-  //   console.log("handleCenterChanged", map?.getCenter());
+  //   );
   // };
 
-  console.log("originPosition", originPosition);
-  console.log("destinationPosition", destinationPosition);
+
+
 
   return (
     isLoaded && (

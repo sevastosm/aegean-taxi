@@ -29,7 +29,7 @@ export async function generateStaticParams() {
     ...locations,
   ];
 
-  console.log("locations---generateStaticParams", JSON.stringify(taxi));
+  );
 
   return taxi.map((taxi: any) => ({
     location: taxi.location,
@@ -39,7 +39,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // read route params
   const location = params.location.toLowerCase();
-  console.log("location----", location);
+
   let title =
     "Aegean Taxi - Reliable and Affordable Athens Airport Transfer Services | Book Your Ride Today";
   let description =
@@ -87,7 +87,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function Page({ params }:any) {
+export default function Page({ params }: any) {
   const location = params.location.toLowerCase();
 
 

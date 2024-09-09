@@ -52,7 +52,7 @@ export default function BookOnline() {
 
 
   const locationSearch = searchParams.get("location");
-  console.log("search", locationSearch);
+
 
   const { getItem, removeItem } = useStorage();
   const { setItem } = useStorage();
@@ -114,13 +114,13 @@ export default function BookOnline() {
   const [map, setMap] = React.useState(null);
 
   useEffect(() => {
-    console.log("set state");
+
     if (cookieState) {
-      console.log(1, cookieState);
+
       setBookingState(() => cookieState);
       appContext.updateAppState(cookieState);
     } else if (contextState) {
-      console.log(11, contextState);
+
       setBookingState(() => contextState);
       appContext.updateAppState(contextState);
     }
@@ -164,11 +164,11 @@ export default function BookOnline() {
   };
 
   const stateManagement = async () => {
-    console.log("state managenment");
+
 
     /* Step 3 - Select car  */
     if (cookieState && cookieState.orderDetails && !cookieState.selectedCar) {
-      console.log("step 3");
+
       setOrderDetails(null);
       // await calculateAndDisplayRoute();
     }
@@ -191,7 +191,7 @@ export default function BookOnline() {
 
   // markers
   // useEffect(() => {
-  //   console.log("init google map");
+  //   
   //   const setMarkers = () => {
   //     if (!navigator || !navigator.geolocation) {
   //       setShowNavigatorButton(false);
@@ -259,7 +259,7 @@ export default function BookOnline() {
   }, [google]);
 
   useEffect(() => {
-    console.log("car categories");
+
     if (bookingState) {
       fetch(
         `https://carky-api.azurewebsites.net/api/AdminDashboard/Cars/GetAllCarkyCategories`,
@@ -304,7 +304,7 @@ export default function BookOnline() {
       setPickUpDateHandler(dayjs());
     } else if (!bookLater) {
       const dateString = dayjs().format("YYYY-MM-DD");
-      // console.log(66666, contextState.pickUpDate, dateString);
+      // 
       if (contextState.pickUpDate !== dateString) {
         bookLater = true;
       }
@@ -314,7 +314,7 @@ export default function BookOnline() {
   };
 
   const calculateAndDisplayRoute = async (response: any = null) => {
-    console.log("calculateAndDisplayRoute");
+
     if (response) {
       contextState.directions = response;
       contextState.startLocationLat =
@@ -359,7 +359,7 @@ export default function BookOnline() {
         status != window.google.maps.places.PlacesServiceStatus.OK) ||
       !predictions
     ) {
-      console.log(status);
+
       return;
     }
 
@@ -392,7 +392,7 @@ export default function BookOnline() {
   };
 
   const setPickUpLocationHandler = (value: string) => {
-    console.log("value", value);
+
     setRemoveMarkers(() => false);
     contextState.pickUpLocation = value;
     updateSession();
@@ -432,7 +432,7 @@ export default function BookOnline() {
   };
 
   useEffect(() => {
-    console.log("calculate route");
+
     if (triggerCalculate && pickUpLocation && dropLocation) {
       setNextButton(true);
       contextState.nextButton = true;

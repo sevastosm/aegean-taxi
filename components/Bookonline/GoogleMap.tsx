@@ -46,7 +46,7 @@ export function GoogleMapComponent({
   };
 
   useEffect(() => {
-    console.log("init map");
+
 
     if (ref.current && !mapWrapper) {
       if (currentLocation) {
@@ -115,11 +115,11 @@ export function GoogleMapComponent({
       }
     }
 
-    return () => {};
+    return () => { };
   }, [removeMarkers, markers]);
 
   useEffect(() => {
-    console.log("map directions");
+
     if (directions) {
       directionsRenderer.setDirections(directions);
       let leg = directions.routes[0].legs[0];
@@ -181,7 +181,7 @@ export function GoogleMapComponent({
   }, [directions]);
 
   useEffect(() => {
-    console.log("driver location map");
+
 
     directionsRenderer.setDirections({ routes: [] });
     if (state && state.driverLocation) {
@@ -208,7 +208,7 @@ export function GoogleMapComponent({
                   travelMode: google.maps.TravelMode.DRIVING,
                 })
                 .then((response: any) => {
-                  console.log(22222, response);
+
                   directionsRenderer.setOptions({
                     polylineOptions: {
                       strokeColor: "#222",
@@ -258,7 +258,7 @@ export function GoogleMapComponent({
                 });
             }
           })
-          .catch((e: any) => console.log("Geocoder failed due to: " + e));
+          .catch((e: any) => );
       };
 
       reverseGeocoding();

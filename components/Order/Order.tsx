@@ -17,7 +17,7 @@ export type screen =
   | "reservation-completed"
   | null;
 
-export interface orderData {}
+export interface orderData { }
 
 let apiTimeout: any;
 const Order = () => {
@@ -49,7 +49,7 @@ const Order = () => {
         setOrderData(data);
         handleOrderUpdate(orderId);
       }
-      console.log("ORDER DATA", data);
+
     }
   };
 
@@ -107,9 +107,9 @@ const Order = () => {
   }, [orderData]);
 
   if (orderData) {
-    console.log("ORER--- ORER DATA ", orderData);
-    console.log("ORER--- orderDetails ", orderDetails);
-    console.log("ORER--- trackingData ", trackingData?.status);
+
+
+
 
     return (
       <>

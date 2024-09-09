@@ -11,7 +11,7 @@ import Typography from "@mui/material/Typography";
 import { locationDetails } from "@/utils/locationDetails";
 
 export default function Faq({ location, type }: any) {
-  console.log("type", type);
+
   const data = locationDetails[type][location];
 
   const QuestionList = ({ data }: any) => (

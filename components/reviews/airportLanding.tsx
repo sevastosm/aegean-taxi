@@ -28,7 +28,7 @@ import { locationDetails } from "@/utils/locationDetails";
 import { Review } from "./reviews";
 
 export default function AirportLandingReviews({ location }: any) {
-  console.log("AirportLandingReviews", location);
+
   const data = location
     ? locationDetails.airports[location]?.reviews
     : locationDetails.default.airport_reviews;

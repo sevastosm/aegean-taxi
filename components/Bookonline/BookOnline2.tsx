@@ -95,7 +95,7 @@ export default function BookOnline2() {
   const searchParams = useSearchParams();
 
   const locationSearch = searchParams.get("location");
-  console.log("search", locationSearch);
+
 
   const { getItem, removeItem } = useStorage();
   const { setItem } = useStorage();
@@ -156,17 +156,17 @@ export default function BookOnline2() {
   const [selectedDropOff, setSelectedDropOff] = useState<string>("");
 
   useEffect(() => {
-    console.log("set state");
+
     if (cookieState) {
       setBookingState(() => cookieState);
       appContext.updateAppState(cookieState);
     } else if (contextState) {
-      console.log(11, contextState);
+
       setBookingState(() => contextState);
       appContext.updateAppState(contextState);
     }
 
-    return () => {};
+    return () => { };
   }, []);
 
   const toggleDrawer = () => () => {
@@ -236,9 +236,9 @@ export default function BookOnline2() {
               setCurrentLocationAddress("unknown");
             }
           })
-          .catch((e: any) => console.log("Geocoder failed due to: " + e));
+          .catch((e: any) => );
       },
-      () => {},
+      () => { },
       {
         enableHighAccuracy: true,
         timeout: 5000,
@@ -251,7 +251,7 @@ export default function BookOnline2() {
   };
 
   const stateManagement = async () => {
-    console.log("state managenment");
+
     //await calculateAndDisplayRoute();
 
     /* Step 1 - Select route  */
@@ -259,7 +259,7 @@ export default function BookOnline2() {
     //   !bookingState.directions ||
     //   (bookingState.predictions && bookingState.prediction.length > 0)
     // ) {
-    //   console.log("step 1");
+    //   
     //   await calculateAndDisplayRoute();
     // }
 
@@ -269,14 +269,14 @@ export default function BookOnline2() {
     //   (!bookingState.predictions || !bookingState.predictions.length) &&
     //   !bookingState.orderDetails
     // ) {
-    //   console.log("step 2");
+    //   
     //   await calculateAndDisplayRoute();
     //   // clearState();
     // }
 
     /* Step 3 - Select car  */
     if (cookieState && cookieState.orderDetails && !cookieState.selectedCar) {
-      console.log("step 3");
+
       setOrderDetails(null);
       // await calculateAndDisplayRoute();
     }
@@ -291,11 +291,11 @@ export default function BookOnline2() {
       // !cookieState.orderDetails &&
       !cookieState.driver
     ) {
-      console.log("step 4");
+
       await calculateAndDisplayRoute();
       setSelectedCar(cookieState.selectedCar);
       setTimeout(async () => {
-        console.log("TIME SEARHING");
+
         if (contextState.orderDetails) {
           getOrderUpdate(cookieState.orderDetails);
         } else {
@@ -312,9 +312,9 @@ export default function BookOnline2() {
       cookieState.driverDetails
     ) {
       await calculateAndDisplayRoute();
-      console.log("step 5");
+
     }
-    console.log("end");
+
   };
 
   const updateSession = () => {
@@ -333,7 +333,7 @@ export default function BookOnline2() {
 
   // markers
   useEffect(() => {
-    console.log("init google map");
+
     const setMarkers = () => {
       if (!navigator || !navigator.geolocation) {
         setShowNavigatorButton(false);
@@ -389,14 +389,14 @@ export default function BookOnline2() {
   }, [initMap, googleIsDefined]);
 
   const intitializeMap = (status: string) => {
-    console.log("status", status);
+
     if (status === "SUCCESS") {
       setGoogleIsDefined(true);
     }
   };
 
   useEffect(() => {
-    console.log("car categories");
+
     if (bookingState) {
       fetch(
         `https://carky-api.azurewebsites.net/api/AdminDashboard/Cars/GetAllCarkyCategories`,
@@ -441,7 +441,7 @@ export default function BookOnline2() {
       setPickUpDateHandler(dayjs());
     } else if (!bookLater) {
       const dateString = dayjs().format("YYYY-MM-DD");
-      // console.log(66666, contextState.pickUpDate, dateString);
+      // 
       if (contextState.pickUpDate !== dateString) {
         bookLater = true;
       }
@@ -464,14 +464,11 @@ export default function BookOnline2() {
 
     fetch(
       // `https://carky-api.azurewebsites.net/api/AdminDashboard/Orders/EstimateOrderInfo?model.pickupLocation.geography.lat=${start_location_lat}&model.pickupLocation.geography.lng=${start_location_lng}&model.dropoffLocation.geography.lat=${end_location_lat}&model.dropoffLocation.geography.lng=${end_location_lng}`,
-      `${
-        process.env.NEXT_PUBLIC_ONDE_HOSTNAME
+      `${process.env.NEXT_PUBLIC_ONDE_HOSTNAME
       }/dispatch/v1/tariff?origin=${start_location_lat},${start_location_lng}&destination=${end_location_lat},${end_location_lat}&pickupTime=${encodeURIComponent(
         dayjsLocal.toISOString()
-      )}&tripDistance=${
-        contextState.directions.routes[0].legs[0].distance.value
-      }&tripDuration=${
-        contextState.directions.routes[0].legs[0].duration.value * 1000
+      )}&tripDistance=${contextState.directions.routes[0].legs[0].distance.value
+      }&tripDuration=${contextState.directions.routes[0].legs[0].duration.value * 1000
       }`,
       {
         method: "GET",
@@ -507,7 +504,7 @@ export default function BookOnline2() {
   };
 
   const calculateAndDisplayRoute = async () => {
-    console.log("calculateAndDisplayRoute");
+
     if (
       bookingState &&
       directionsService &&
@@ -558,7 +555,7 @@ export default function BookOnline2() {
         })
         .catch(
           (e: any) => {
-            console.log(e);
+
             setError(e.message.split(":").pop());
             // setOpen(false);
           }
@@ -577,7 +574,7 @@ export default function BookOnline2() {
         status != window.google.maps.places.PlacesServiceStatus.OK) ||
       !predictions
     ) {
-      console.log(status);
+
       return;
     }
 
@@ -610,7 +607,7 @@ export default function BookOnline2() {
   };
 
   const setPickUpLocationHandler = (value: string) => {
-    console.log("value", value);
+
     setRemoveMarkers(() => false);
     contextState.pickUpLocation = value;
     updateSession();
@@ -650,7 +647,7 @@ export default function BookOnline2() {
   };
 
   useEffect(() => {
-    console.log("calculate route");
+
     if (triggerCalculate && pickUpLocation && dropLocation) {
       setNextButton(true);
       contextState.nextButton = true;
@@ -726,8 +723,8 @@ export default function BookOnline2() {
       let dayjsLocal = dayjs(
         `${contextState.pickUpDate} ${contextState.pickUpTime}`
       );
-      // console.log(`${contextState.pickUpDate} ${contextState.pickUpTime}`)
-      // console.log(dayjsLocal.format())
+      // 
+      // )
 
       try {
         let res = await fetch(
@@ -972,9 +969,8 @@ export default function BookOnline2() {
   ) : (
     <div className="flex md:gap-20 flex-col md:flex-row min-h-screen max-w-[1200px] m-auto">
       <div
-        className={`${
-          !open ? "block" : "hidden"
-        } md:block w-full h-[300px] relative order-0 md:order-1`}
+        className={`${!open ? "block" : "hidden"
+          } md:block w-full h-[300px] relative order-0 md:order-1`}
       >
         <Wrapper
           apiKey={`${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
@@ -1345,19 +1341,18 @@ export default function BookOnline2() {
                             size="large"
                             fullWidth={true}
                             disabled={!selectedCar}
-                            //(
-                            //     !selectedCar && contextState.userVerified
-                            //   ) ||
-                            //   (contextState.selectedCarConfirmed &&
-                            //     contextState.userVerified)
-                            // }
+                          //(
+                          //     !selectedCar && contextState.userVerified
+                          //   ) ||
+                          //   (contextState.selectedCarConfirmed &&
+                          //     contextState.userVerified)
+                          // }
                           >
                             {selectedCar
-                              ? `Confirm ${
-                                  selectedCar.name
-                                    ? selectedCar.name
-                                    : selectedCar.vehicleType
-                                }`
+                              ? `Confirm ${selectedCar.name
+                                ? selectedCar.name
+                                : selectedCar.vehicleType
+                              }`
                               : `Confirm`}
                           </Button>
                         </Box>

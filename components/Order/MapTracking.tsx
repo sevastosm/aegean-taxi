@@ -23,8 +23,8 @@ const center = {
 };
 
 function MapTracking({ orderDetails, tracking = null }) {
-  console.log("orderDetails", orderDetails);
-  console.log("tracking", tracking);
+
+
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
@@ -161,7 +161,7 @@ function MapTracking({ orderDetails, tracking = null }) {
 
   useEffect(() => {
     if (directionsResponse) {
-      console.log("directionsResponse", directionsResponse);
+
 
       animateCar(directionsResponse.routes[0].overview_path);
     }
