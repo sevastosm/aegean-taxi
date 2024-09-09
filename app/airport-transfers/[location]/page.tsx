@@ -28,9 +28,6 @@ export async function generateStaticParams() {
     { location: "santorini" },
     ...locations,
   ];
-
-  );
-
   return taxi.map((taxi: any) => ({
     location: taxi.location,
   }));
@@ -39,7 +36,6 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // read route params
   const location = params.location.toLowerCase();
-
   let title =
     "Aegean Taxi - Reliable and Affordable Athens Airport Transfer Services | Book Your Ride Today";
   let description =
