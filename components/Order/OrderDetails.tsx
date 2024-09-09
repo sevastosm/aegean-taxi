@@ -42,7 +42,7 @@ function OrderDetails({
   orderId,
   trackingData,
 }: Props) {
-  console.log("screen", titleColor[screen]);
+
 
   const color = () => `text-[${titleColor[screen]}]`;
 

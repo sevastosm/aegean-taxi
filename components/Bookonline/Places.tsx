@@ -6,20 +6,22 @@ import {
   Typography,
   Divider,
 } from "@mui/material";
+import { usePathname, useParams, useRouter, useSearchParams } from 'next/navigation'
+
 import error from "next/error";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PredictionListItem from "../predictions-list";
 import HotSpot from "./HotSpot";
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import MyLocationOutlinedIcon from "@mui/icons-material/MyLocationOutlined";
+import useUrl from "@/app/hooks/useUrl";
 
 type Props = {};
 
 const Places = ({
   currentLocationAddress,
   setPickUpLocationHandler,
-  nearbyLocations,
-  predictions,
+  nearbyLocations = [],
   displayHotSpots,
   locationSearch,
   locationHandler,
@@ -29,19 +31,24 @@ const Places = ({
   selectedDropOff,
   pickUpLocation,
   dropLocation,
-
+  origin,
+  destination,
+  focused = null,
+  predictions = null,
+  setPredictions
 }: any) => {
-
-  console.log("pickUpLocation-p",pickUpLocation)
-  console.log("pickUpLocation-d",dropLocation)
-
+  const searchParams = useSearchParams()
+  const { updateUrl } = useUrl(); // Get the updateUrl function from the hook
+  const originParam = searchParams.get('origin')
+  const destinationParam = searchParams.get('destination')
+  const viewHotspots = !originParam && !destinationParam || originParam && !destinationParam
   if (selectedPickUp && selectedDropOff) {
     return null;
   }
 
   const hotSpotsList =
     hotSpots &&
-    hotSpots.filter((spot: any) => spot.destination_name !== selectedPickUp);
+    hotSpots.filter((spot: any) => spot.destination_name !== originParam);
 
   return (
     <List
@@ -116,24 +123,26 @@ const Places = ({
           <PredictionListItem
             key={`${prediction.place_id}-${Math.floor(Math.random() * 1000)}`}
             description={prediction.description}
-            locationHandler={
-              locationHandler === "pickUp"
-                ? setPickUpLocationHandler
-                : setDropOffLocationHandler
+            locationHandler={(value) => {
+              focused === "pickup"
+                ? updateUrl("origin", value)
+                : updateUrl("destination", value)
+              setPredictions([])
+            }
             }
           />
         ))}
-      {displayHotSpots &&
+      {viewHotspots &&
         locationSearch &&
         hotSpots &&
         hotSpotsList.map((spot: any) => (
           <div
             className="cursor-pointer"
             onClick={() => {
-              if (!selectedPickUp) {
-                setPickUpLocationHandler(spot.destination_name);
+              if (!originParam) {
+                updateUrl("origin", spot.destination_name)
               } else {
-                setDropOffLocationHandler(spot.destination_name);
+                updateUrl("destination", spot.destination_name)
               }
             }}
           >

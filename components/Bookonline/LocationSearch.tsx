@@ -1,29 +1,104 @@
+import useUrl from "@/app/hooks/useUrl";
 import { Box } from "@mui/material";
-import React, { useEffect } from "react";
+import { useSearchParams } from "next/navigation";
+import React, { useEffect, useState } from "react";
 import Places from "./Places";
 import PlacesInput from "./PlacesInput";
 
 type Props = {};
 
 const LocationSearch = ({
-  toggleFocusLocation,
-  toggleBlurLocation,
-  pickUpLocation,
-  setPickUpLocation,
-  getSuggestions,
-  handleClearPickup,
-  toggleFocusDestination,
-  toggleBlurDestination,
-  dropLocation,
-  setDropLocation,
-  handleClearDropOff,
-  selectedPickUp,
 }: any) => {
   // useEffect(() => {
   //   if (selectedPickUp) {
   //     document.getElementById("dropOff")?.focus();
   //   }
   // }, [selectedPickUp]);
+
+  // set search from inputs
+
+  const [origin, setOrigin] = useState(undefined)
+  const [focused, setFocused] = useState(undefined)
+  const [destination, setDestinaton] = useState(undefined)
+  const searchParams = useSearchParams()
+
+  const { updateUrl } = useUrl(); // Get the updateUrl function from the hook
+
+
+  const originParam = searchParams.get('origin')
+  const destinationParam = searchParams.get('destination')
+
+
+  const [autocompleteService, setAutocompleteService] = useState<any>();
+  const [predictions, setPredictions] = useState<any>([]);
+
+
+  useEffect(() => {
+    if (google) {
+      setAutocompleteService(
+        () => new window.google.maps.places.AutocompleteService()
+      );
+      // setPlacesService(
+      //   () =>
+      //     new window.google.maps.PlacesService(document.createElement("div"))
+      // );
+    }
+  }, [google]);
+
+  const displaySuggestions = function (
+    predictions: google.maps.places.QueryAutocompletePrediction[] | null,
+    status: google.maps.places.PlacesServiceStatus
+  ) {
+    if (
+      (typeof window !== "undefined" &&
+        status != window.google.maps.places.PlacesServiceStatus.OK) ||
+      !predictions
+    ) {
+
+      return;
+    }
+
+    setPredictions(() => predictions);
+  };
+
+  const getSuggestions = (value) => {
+
+    if (value?.length) {
+      autocompleteService.getQueryPredictions(
+        { input: value },
+        displaySuggestions
+      );
+    }
+  }
+
+
+
+
+
+
+
+
+  useUrl('origin', origin)
+
+
+  const handleClearPickup = () => {
+    updateUrl("origin", null)
+    // updateUrl("destination", null)
+
+    setOrigin("")
+    // handleClearDropOff()
+  }
+  const handleClearDropOff = () => {
+    updateUrl("destination", null)
+    setDestinaton("")
+  }
+
+  useEffect(() => {
+    setOrigin(originParam)
+    setDestinaton(destinationParam)
+  }, [originParam, destinationParam])
+
+
 
   return (
     <div className="flex flex-col space-y-4 relative">
@@ -42,22 +117,26 @@ const LocationSearch = ({
           </div>
           {/* Input field */}
           <input
-            onFocus={toggleFocusLocation()}
-            onBlur={toggleBlurLocation()}
+
+            onFocus={() => setFocused('pickup')}
+            // onBlur={toggleBlurLocation()}
             type="text"
             // value={pickupValue}
-            // onChange={(e) =>
-            //   handleChange(e, setPickupValue)
-            // }
-            value={pickUpLocation}
             onChange={(e) => {
-              setPickUpLocation(e.target.value);
-              getSuggestions(e, "pickUp");
+              setOrigin(e.target.value);
+              getSuggestions(e.target.value)
             }}
-            className={`pl-8 pr-8 py-3 border-2 rounded font-semibold focus:outline-none ${pickUpLocation
+            value={origin}
+
+            // onChange={(e) => {
+            //   setPickUpLocation(e.target.value);
+            //   getSuggestions(e, "pickUp");
+            // }}
+            className={`pl-8 pr-8 py-3 border-2 rounded font-semibold focus:outline-none ${origin
               ? "bg-gray-300"
               : "bg-white border-blue-500 border-4"
-              } w-full`}
+              } w-full`
+            }
             placeholder="Enter pick up location"
           />
 
@@ -72,7 +151,8 @@ const LocationSearch = ({
         </div>
       </div>
       {/* Drop of */}
-      <div className="flex flex-col gap-4 relative ">
+
+      {originParam && <div className="flex flex-col gap-4 relative ">
         {/* Pickup Location Input */}
         <div className="relative flex items-center">
           {/* Square placeholder */}
@@ -82,22 +162,27 @@ const LocationSearch = ({
           {/* Input field */}
           <input
             id="dropOff"
-            onFocus={toggleFocusDestination()}
-            onBlur={toggleBlurDestination()}
+            onFocus={() => setFocused('dropoff')}
+            // onBlur={toggleBlurDestination()}
             type="text"
             // value={pickupValue}
             // onChange={(e) =>
             //   handleChange(e, setPickupValue)
             // }
-            value={dropLocation}
+            value={destination}
             onChange={(e) => {
-              setDropLocation(e.target.value);
-              getSuggestions(e, "dropOff");
-            }}
-            className={`pl-8 pr-8 py-3 border-2 rounded font-semibold focus:outline-none ${dropLocation ? "bg-gray-300" : "bg-white border-blue-500"
+              setDestinaton(e.target.value)
+              getSuggestions(e.target.value)
+            }
+            }
+            // onChange={(e) => {
+            //   setDropLocation(e.target.value);
+            //   getSuggestions(e, "dropOff");
+            // }}
+            className={`pl-8 pr-8 py-3 border-2 rounded font-semibold focus:outline-none ${destination ? "bg-gray-300" : "bg-white border-blue-500"
               } 
-            ${pickUpLocation &&
-              !dropLocation &&
+            ${origin &&
+              !destination &&
               "bg-white border-blue-500 border-4"
               }
             w-full`}
@@ -113,8 +198,8 @@ const LocationSearch = ({
             X
           </button>
         </div>
-      </div>
-      {/* <PlacesInput /> */}
+      </div>}
+      <Places origin={origin} destination={destination} focused={focused} predictions={predictions} setPredictions={setPredictions} />
     </div>
   );
 };
