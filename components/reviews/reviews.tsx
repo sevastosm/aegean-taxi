@@ -106,7 +106,7 @@ export const Review = ({ item }: any) => {
 };
 
 export default function Reviews({ location }: any) {
-  console.log("Reviews", location);
+
   const data =
     location === "default"
       ? locationDetails[location]

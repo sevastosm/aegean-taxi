@@ -758,7 +758,7 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
 .fa-duotone.fa-inverse {
   color: var(--fa-inverse, #fff);
 }</style><link rel="preload" href="http://localhost:3000/_next/static/media/b8222d26e20b2e06-s.p.woff2" as="font" crossorigin="" type="font/woff2"><link rel="stylesheet" href="http://localhost:3000/_next/static/css/app/layout.css?v=1714432460679" data-precedence="next_static/css/app/layout.css"><link rel="preload" as="script" fetchpriority="low" href="./Search results_files/webpack.js"><script src="./Search results_files/main-app.js" async=""></script><script src="./Search results_files/app-pages-internals.js" async=""></script><script src="./Search results_files/layout.js" async=""></script><title>Search results</title><meta name="description" content="Search results for ferry tickets"><link rel="icon" href="http://localhost:3000/favicon.ico" type="image/x-icon" sizes="16x16"><meta name="next-size-adjust"><script src="./Search results_files/polyfills.js" nomodule=""></script><script id="dataslayerLaunchMonitors">
-// console.log('** dataslayer: injecting Launch monitors **');
+// 
 window._satellite = window._satellite || {};
 window._satellite._monitors = window._satellite._monitors || [];
 window._satellite._monitors.push({
@@ -773,7 +773,7 @@ window._satellite._monitors.push({
     );
   },
   ruleCompleted: function(e) {
-    // console.log('** dataslayer: Launch rule completed **', e.rule);
+    // 
     var rule = JSON.parse(JSON.stringify(e.rule));
     var sendRule = function() {
         if (window.dataslayer) {
@@ -785,10 +785,10 @@ window._satellite._monitors.push({
                 },
                 '*'
             );       
-            // console.log('** dataslayer: posted rule '+rule+'**'); 
+            //  
         } else {
             if (document.readyState === 'complete') {
-                // console.log('** dataslayer: giving up on launch **');
+                // 
                 window._dataslayerQueue = window._dataslayerQueue || [];
                 window._dataslayerQueue.push({
                   type: 'dataslayer_launchrulecompleted',
@@ -797,7 +797,7 @@ window._satellite._monitors.push({
                 });
                 return;
             } else {
-                // console.log('** dataslayer: waiting 250ms to repost rule **');
+                // 
                 window.setTimeout(sendRule, 250);
             }
         }

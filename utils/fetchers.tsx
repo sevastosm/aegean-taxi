@@ -106,7 +106,7 @@ export async function sendSms(phoneNumbers: string, message: string) {
 
 
 
-export const createOrder = async (contextState:any) => {
+export const createOrder = async (contextState: any) => {
   // new order
   if (contextState && contextState.startLocationLat) {
     contextState.searchingForDriver = true;
@@ -133,7 +133,7 @@ export const createOrder = async (contextState:any) => {
                   lat: contextState.startLocationLat,
                   lng: contextState.startLocationLng,
                 },
-                street: contextState.pickUpLocation,       
+                street: contextState.pickUpLocation,
                 poiName: contextState.pickUpLocation,
                 placeLatLng: {
                   lat: contextState.startLocationLat,
@@ -175,7 +175,7 @@ export const createOrder = async (contextState:any) => {
         return await res.json();
         //handle ok
       } else {
-       //handle err
+        //handle err
       }
     } catch (error) {
       console.log("CREATE ORDER ERROR", error);
@@ -187,7 +187,7 @@ export const createOrder = async (contextState:any) => {
 
 
 
-export const cancelOrder = async (orderId:string) => {
+export const cancelOrder = async (orderId: string) => {
   if (orderId) {
     fetch(
       `${process.env.NEXT_PUBLIC_ONDE_HOSTNAME}/dispatch/v1/order/${orderId}/status`,
@@ -202,13 +202,13 @@ export const cancelOrder = async (orderId:string) => {
       }
     ).then(
       (res) => res,
-      (error) =>error
+      (error) => error
     );
   }
 };
 
-export const getOrderUpdate =async(orderId:string)=>{
- return await fetch(
+export const getOrderUpdate = async (orderId: string) => {
+  return await fetch(
     `${process.env.NEXT_PUBLIC_ONDE_HOSTNAME}/dispatch/v1/order/${orderId}/update`,
     {
       method: "GET",
@@ -228,116 +228,113 @@ export const getOrderUpdate =async(orderId:string)=>{
     );
 }
 
-export const getOrderData =async(orderId:string)=>{
+export const getOrderData = async (orderId: string) => {
   return await fetch(
-     `${process.env.NEXT_PUBLIC_ONDE_HOSTNAME}/dispatch/v1/order/${orderId}/request`,
-     {
-       method: "GET",
-       headers: new Headers({
-         Authorization: `${process.env.NEXT_PUBLIC_ONDE_API_TOKEN}`,
-       }),
-     }
-   )
-     .then((res) => res.json())
-     .then(
-       (result) => {
-         return result
-       },
-       (error) => {
-         return { noOrder: "No order found" };
-       }
-     );
- }
- export const getOrderDetails =async(orderId:string)=>{
+    `${process.env.NEXT_PUBLIC_ONDE_HOSTNAME}/dispatch/v1/order/${orderId}/request`,
+    {
+      method: "GET",
+      headers: new Headers({
+        Authorization: `${process.env.NEXT_PUBLIC_ONDE_API_TOKEN}`,
+      }),
+    }
+  )
+    .then((res) => res.json())
+    .then(
+      (result) => {
+        return result
+      },
+      (error) => {
+        return { noOrder: "No order found" };
+      }
+    );
+}
+export const getOrderDetails = async (orderId: string) => {
   return await fetch(
-     `${process.env.NEXT_PUBLIC_ONDE_HOSTNAME}/dispatch/v1/order/${orderId}/offer`,
-     {
-       method: "GET",
-       headers: new Headers({
-         Authorization: `${process.env.NEXT_PUBLIC_ONDE_API_TOKEN}`,
-       }),
-     }
-   )
-     .then((res) => res.json())
-     .then(
-       (result) => {
-         return result
-       },
-       (error) => {
-         return error
-       }
-     );
- }
+    `${process.env.NEXT_PUBLIC_ONDE_HOSTNAME}/dispatch/v1/order/${orderId}/offer`,
+    {
+      method: "GET",
+      headers: new Headers({
+        Authorization: `${process.env.NEXT_PUBLIC_ONDE_API_TOKEN}`,
+      }),
+    }
+  )
+    .then((res) => res.json())
+    .then(
+      (result) => {
+        return result
+      },
+      (error) => {
+        return error
+      }
+    );
+}
 
- export const getDriver =async(orderId:string)=>{
+export const getDriver = async (orderId: string) => {
   return await fetch(
-     `${process.env.NEXT_PUBLIC_ONDE_HOSTNAME}/dispatch/v1/order/${orderId}/request`,
-     {
-       method: "GET",
-       headers: new Headers({
-         Authorization: `${process.env.NEXT_PUBLIC_ONDE_API_TOKEN}`,
-       }),
-     }
-   )
-     .then((res) => res.json())
-     .then(
-       (result) => {
-         return result
-       },
-       (error) => {
-         return error
-       }
-     );
- }
+    `${process.env.NEXT_PUBLIC_ONDE_HOSTNAME}/dispatch/v1/order/${orderId}/request`,
+    {
+      method: "GET",
+      headers: new Headers({
+        Authorization: `${process.env.NEXT_PUBLIC_ONDE_API_TOKEN}`,
+      }),
+    }
+  )
+    .then((res) => res.json())
+    .then(
+      (result) => {
+        return result
+      },
+      (error) => {
+        return error
+      }
+    );
+}
 
 
- export const getAvailableRouteCars = async (
-   contextState: any,
-   dayjsLocal: any,
-   apiToken: string,
-   start_location_lat: any,
-   start_location_lng: any,
-   end_location_lat: any,
-   end_location_lng: any,
-   clearDirections: any
- ) => {
-   return fetch(
-     // `https://carky-api.azurewebsites.net/api/AdminDashboard/Orders/EstimateOrderInfo?model.pickupLocation.geography.lat=${start_location_lat}&model.pickupLocation.geography.lng=${start_location_lng}&model.dropoffLocation.geography.lat=${end_location_lat}&model.dropoffLocation.geography.lng=${end_location_lng}`,
-     `${
-       process.env.NEXT_PUBLIC_ONDE_HOSTNAME
-     }/dispatch/v1/tariff?origin=${start_location_lat},${start_location_lng}&destination=${end_location_lat},${end_location_lng}&pickupTime=${encodeURIComponent(
-       dayjsLocal.toISOString()
-     )}&tripDistance=${
-       contextState.directions.routes[0].legs[0].distance.value
-     }&tripDuration=${
-       contextState.directions.routes[0].legs[0].duration.value * 1000
-     }`,
-     {
-       method: "GET",
-       headers: new Headers({
-         Authorization: `${process.env.NEXT_PUBLIC_ONDE_API_TOKEN}`,
-       }),
-     }
-   )
-     .then((res) => res.json())
-     .then(
-       (result) => {
-         // for (const tarrif in result.tarrifs) {
-         //   let cat = carCategories.find(
-         //     (car) => car.Id === result.PricePerCategories[tarrif].Id
-         //   );
+export const getAvailableRouteCars = async (
+  contextState: any,
+  dayjsLocal: any,
+  apiToken: string,
+  start_location_lat: any,
+  start_location_lng: any,
+  end_location_lat: any,
+  end_location_lng: any,
+  clearDirections: any
+) => {
+  return fetch(
+    // `https://carky-api.azurewebsites.net/api/AdminDashboard/Orders/EstimateOrderInfo?model.pickupLocation.geography.lat=${start_location_lat}&model.pickupLocation.geography.lng=${start_location_lng}&model.dropoffLocation.geography.lat=${end_location_lat}&model.dropoffLocation.geography.lng=${end_location_lng}`,
+    `${process.env.NEXT_PUBLIC_ONDE_HOSTNAME
+    }/dispatch/v1/tariff?origin=${start_location_lat},${start_location_lng}&destination=${end_location_lat},${end_location_lng}&pickupTime=${encodeURIComponent(
+      dayjsLocal.toISOString()
+    )}&tripDistance=${contextState.directions.routes[0].legs[0].distance.value
+    }&tripDuration=${contextState.directions.routes[0].legs[0].duration.value * 1000
+    }`,
+    {
+      method: "GET",
+      headers: new Headers({
+        Authorization: `${process.env.NEXT_PUBLIC_ONDE_API_TOKEN}`,
+      }),
+    }
+  )
+    .then((res) => res.json())
+    .then(
+      (result) => {
+        // for (const tarrif in result.tarrifs) {
+        //   let cat = carCategories.find(
+        //     (car) => car.Id === result.PricePerCategories[tarrif].Id
+        //   );
 
-         //   availCars.push({ ...result.PricePerCategories[tarrif], ...cat });
-         // }
-         return result.tariffs;
-       },
-       () => {
-         clearDirections();
-         // try {
-         //   setError(error);
-         // } catch (error) {
-         //   setError('No available route');
-         // }
-       }
-     );
- };
+        //   availCars.push({ ...result.PricePerCategories[tarrif], ...cat });
+        // }
+        return result.tariffs;
+      },
+      () => {
+        clearDirections();
+        // try {
+        //   setError(error);
+        // } catch (error) {
+        //   setError('No available route');
+        // }
+      }
+    );
+};
