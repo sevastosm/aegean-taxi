@@ -3,7 +3,7 @@ const walletIcon = "/assets/booking-flow/walletIcon.svg";
 
 type Props = {};
 
-const CardPayment = () => {
+const CardPaymentBold = () => {
   return (
     <div className="flex gap-4 mt-5 justify-center items-center">
       <img
@@ -11,11 +11,11 @@ const CardPayment = () => {
         alt="Wallet Icon"
         className="w-[30px] h-[30px] my-2"
       />
-      <p className="text-[#264388] text-[15px] font-normal">
+      <p className="text-[#000] text-[16px] font-semibold">
         Card payment available with driver
       </p>
     </div>
   );
 };
 
-export default CardPayment;
+export default CardPaymentBold;

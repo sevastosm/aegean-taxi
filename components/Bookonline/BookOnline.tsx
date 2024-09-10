@@ -41,6 +41,7 @@ import MapComponent from "./MapComponent";
 import { getAvailableRouteCars } from "@/utils/fetchers";
 import { useGoogleMaps } from "./GoogleMapsProvider";
 import GoogleMapComponent from "./GoogleMapComponent";
+import useUrl from "@/app/hooks/useUrl";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -51,7 +52,6 @@ export default function BookOnline() {
   const searchParams = useSearchParams();
   const google = useGoogleMaps();
 
-
   const locationSearch = searchParams.get("location");
 
 
@@ -59,7 +59,7 @@ export default function BookOnline() {
   const { setItem } = useStorage();
   const cookieState = getItem("aegean", "local");
   const appContext = useContext(AppContext);
-  const contextState: BookingState = appContext.state;
+  const contextState: any = appContext.state;
 
   const [zoom, setZoom] = useState(11); // initial zoom
   const [center, setCenter] = useState<google.maps.LatLngLiteral>({
@@ -173,7 +173,6 @@ export default function BookOnline() {
       setOrderDetails(null);
       // await calculateAndDisplayRoute();
     }
-
   };
 
   const updateSession = () => {
@@ -418,18 +417,13 @@ export default function BookOnline() {
 
   const setPickUpDateHandler = (value: any) => {
     const dateString = dayjs(value).format("YYYY-MM-DD");
-    setPickUpDate(dateString);
-    contextState.pickUpDate = dateString;
-    updateSession();
+    updateUrl("pickupdate", dateString)
   };
 
   const setPickUpTimeHandler = (value: any) => {
     setOpenTimePicker(false);
     const dateString = dayjs(value).format("HH:mm");
-
-    setPickUpTime(dateString);
-    contextState.pickUpTime = dateString;
-    updateSession();
+    updateUrl("pickuptime", dateString)
   };
 
   useEffect(() => {
@@ -589,10 +583,14 @@ export default function BookOnline() {
     updateSession();
   };
 
+  const { updateUrl } = useUrl(); // Get the updateUrl function from the hook
+
+
   const nextButtonHandler = async () => {
-    setNextButton(false);
-    setSelectCarStep(true);
-    setOpen(true);
+    // setNextButton(false);
+    // setSelectCarStep(true);
+    // setOpen(true);
+    updateUrl("selectcar", 'selectcar')
   };
 
   const handleBack = () => {
@@ -612,13 +610,11 @@ export default function BookOnline() {
   useEffect(() => {
     if (locationSearch) {
       document.body.classList.remove("inserted");
-      const button = document.querySelector('.watchAppBottom')
+      const button = document.querySelector(".watchAppBottom");
       if (button) {
-        button.classList.add("!hidden")
+        button.classList.add("!hidden");
       }
-
     }
-
 
     if (!locationSearch) {
       clearState();
@@ -628,14 +624,19 @@ export default function BookOnline() {
   useEffect(() => {
     if (locationSearch) {
       document.body.classList.remove("inserted");
-      const button = document.querySelector('.watchAppBottom')
+      const button = document.querySelector(".watchAppBottom");
       if (button) {
-
-        button.classList.add("!hidden")
+        button.classList.add("!hidden");
       }
     }
+  }, []);
 
-  }, [])
+
+  const origin = searchParams.get('origin')
+
+  const destination = searchParams.get('destination')
+  const selectcar = searchParams.get('selectcar')
+
 
   const activeLocation = locationSearch && locationDetails.taxi_locations[locationSearch]
 
@@ -666,16 +667,17 @@ export default function BookOnline() {
   }, [displayHotSpots]);
 
   useEffect(() => {
-    document
-  })
+    document;
+  });
 
-  // useEffect(() => {
-  //   if (selectedPickUp && selectedDropOff) {
-  //     if (!open) {
-  //       setOpen(false);
-  //     }
-  //   }
-  // }, [selectedPickUp, selectedDropOff]);
+  useEffect(() => {
+    if (origin && destination) {
+      setOpen(false);
+    } else {
+      setOpen(true);
+
+    }
+  }, [origin, destination]);
 
   return !locationSearch ? (
     <div className="flex flex-col min-h-screen">
@@ -684,7 +686,7 @@ export default function BookOnline() {
       </div>
     </div>
   ) : (
-    <div className="flex relative md:gap-20 flex-col md:flex-row min-h-[88vh] max-h-[700px] max-w-[1200px] mx-auto -mt-5 md:mt-1">
+    <div className="flex relative md:gap-20 flex-col md:flex-row min-h-[200px] max-w-[1200px] mx-auto -mt-5 md:mt-1">
       <div className="absolute top-3 left-0 z-10 w-full">
         <ToolBar
           toggleDrawer={toggleDrawer}
@@ -692,29 +694,39 @@ export default function BookOnline() {
           isMapOpen={open}
         />
       </div>
+      {/* <div
+        className={classNames(
+          "w-full flex flex-col flex-grow md:block md:h-[700px]",
+          "relative order-0 md:order-1",
+          !open ? "block" : "hidden md:block",
+          selectedPickUp && selectedDropOff ? "h-[200px]" : "h-[280px]"
+        )}
+      >
+        <div className="flex flex-col flex-grow">
+          <MapComponent
+            locationSearch={locationSearch}
+            calculateAndDisplayRoute={calculateAndDisplayRoute}
+          />
+        </div>
+      </div> */}
 
       <div
         className={classNames(
-          "w-full  min-h-[280px] md:h-[700px]",
+          "w-full md:h-[700px]",
           "relative",
-          // !open ? "block flex-grow" : "hidden md:block",
+          !open ? "flex flex-grow h-[280px] min-h-[280px]" : "hidden md:block",
           // selectedPickUp && selectedDropOff ? "h-[330px]" : "h-[280px]",
-          "flex flex-grow h-[280px] min-h-[280px]"
         )}
       >
         <MapComponent
           activeLocation={activeLocation}
-          calculateAndDisplayRoute={calculateAndDisplayRoute}
         />
         {/* <GoogleMapComponent activeLocation={activeLocation} /> */}
       </div>
 
 
-      <div className={classNames(
-        selectCarStep && selectedPickUp && selectedDropOff && "flex-grow flex flex-col",
-        "px-4 w-full md:w-[50%]"
-      )}   >
-        {/* <Typography
+
+      {/* <Typography
           component="h1"
           sx={{
             fontWeight: "bold",
@@ -727,79 +739,81 @@ export default function BookOnline() {
         >
           Book a taxi online now
         </Typography> */}
-        <div
-          className={classNames(
-            "flex flex-col gap-4",
-            open && "mt-16 md:mt-auto flex-grow"
-          )}
-        >
-          <LocationSearch
-            toggleFocusLocation={toggleFocusLocation}
-            toggleBlurLocation={toggleBlurLocation}
-            pickUpLocation={pickUpLocation}
-            setPickUpLocation={setPickUpLocation}
-            getSuggestions={getSuggestions}
-            handleClearPickup={handleClearPickup}
-            toggleFocusDestination={toggleFocusDestination}
-            toggleBlurDestination={toggleBlurDestination}
-            dropLocation={dropLocation}
-            setDropLocation={setDropLocation}
-            handleClearDropOff={handleClearDropOff}
-            selectedPickUp={selectedPickUp}
-            selectedDropOff={selectedDropOff}
-          />
-          <Places
-            currentLocationAddress={currentLocationAddress}
-            setPickUpLocationHandler={setPickUpLocationHandler}
-            nearbyLocations={nearbyLocations}
+      {!selectcar && <div
+        className={classNames(
+          "flex flex-col gap-4 px-4 pb-4",
+          open && "px-4 mt-16 md:mt-auto flex-grow"
+        )}
+      >
+        <LocationSearch
+          toggleFocusLocation={toggleFocusLocation}
+          toggleBlurLocation={toggleBlurLocation}
+          pickUpLocation={pickUpLocation}
+          setPickUpLocation={setPickUpLocation}
+          getSuggestions={getSuggestions}
+          handleClearPickup={handleClearPickup}
+          toggleFocusDestination={toggleFocusDestination}
+          toggleBlurDestination={toggleBlurDestination}
+          dropLocation={dropLocation}
+          setDropLocation={setDropLocation}
+          handleClearDropOff={handleClearDropOff}
+          selectedPickUp={selectedPickUp}
+          selectedDropOff={selectedDropOff}
+        />
+        <Places
+          currentLocationAddress={currentLocationAddress}
+          setPickUpLocationHandler={setPickUpLocationHandler}
+          nearbyLocations={nearbyLocations}
+          predictions={predictions}
+          displayHotSpots={displayHotSpots}
+          locationSearch={locationSearch}
+          locationHandler={locationHandler}
+          hotSpots={hotSpots}
+          setDropOffLocationHandler={setDropOffLocationHandler}
+          selectedPickUp={selectedPickUp}
+          selectedDropOff={selectedDropOff}
+          dropLocation={dropLocation}
+          pickUpLocation={pickUpLocation}
+        />
+        {origin && destination && (
+          <div className="flex-grow">
+            <BookActions
+              nextButtonHandler={nextButtonHandler}
+              calendars={
+                <Calendars
+                  setOpenTimePicker={setOpenTimePicker}
+                  setOpenDayPicker={setOpenDayPicker}
+                  pickUpDate={pickUpDate}
+                  openDayPicker={openDayPicker}
+                  setPickUpDateHandler={setPickUpDateHandler}
+                  pickUpTime={pickUpTime}
+                  openTimePicker={openTimePicker}
+                  setPickUpTimeHandler={setPickUpTimeHandler}
+                />
+              }
+            />
+          </div>
+        )}
+      </div>}
+      {selectcar && (
+        <div className="flex-grow min-h-max flex flex-col">
+          <CarList
+            directions={directions}
             predictions={predictions}
-            displayHotSpots={displayHotSpots}
-            locationSearch={locationSearch}
-            locationHandler={locationHandler}
-            hotSpots={hotSpots}
-            setDropOffLocationHandler={setDropOffLocationHandler}
-            selectedPickUp={selectedPickUp}
-            selectedDropOff={selectedDropOff}
-            dropLocation={dropLocation}
-            pickUpLocation={pickUpLocation}
+            error={error}
+            orderDetails={orderDetails}
+            contextState={contextState}
+            selectCarStep={selectCarStep}
+            availableCars={availableCars}
+            setSelectedCarHandler={setSelectedCarHandler}
+            authorizeUser={authorizeUser}
+            selectedCar={selectedCar}
+            origin={origin}
+            destination={destination}
           />
-          {!selectCarStep && selectedPickUp && selectedDropOff && (
-            <div className="flex-grow">
-              <BookActions
-                nextButtonHandler={nextButtonHandler}
-                calendars={
-                  <Calendars
-                    setOpenTimePicker={setOpenTimePicker}
-                    setOpenDayPicker={setOpenDayPicker}
-                    pickUpDate={pickUpDate}
-                    openDayPicker={openDayPicker}
-                    setPickUpDateHandler={setPickUpDateHandler}
-                    pickUpTime={pickUpTime}
-                    openTimePicker={openTimePicker}
-                    setPickUpTimeHandler={setPickUpTimeHandler}
-                  />
-                }
-              />
-            </div>
-          )}
-          {availableCars && (
-            <div className="flex-grow min-h-max flex flex-col">
-              <CarList
-                directions={directions}
-                predictions={predictions}
-                error={error}
-                orderDetails={orderDetails}
-                contextState={contextState}
-                selectCarStep={selectCarStep}
-                availableCars={availableCars}
-                setSelectedCarHandler={setSelectedCarHandler}
-                authorizeUser={authorizeUser}
-                selectedCar={selectedCar}
-              />
-            </div>
-          )}
         </div>
-      </div>
+      )}
+
     </div>
   );
 }

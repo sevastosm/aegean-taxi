@@ -292,22 +292,20 @@ export const getDriver = async (orderId: string) => {
 
 
 export const getAvailableRouteCars = async (
-  contextState: any,
+  response: any,
   dayjsLocal: any,
-  apiToken: string,
   start_location_lat: any,
   start_location_lng: any,
   end_location_lat: any,
   end_location_lng: any,
-  clearDirections: any
 ) => {
   return fetch(
     // `https://carky-api.azurewebsites.net/api/AdminDashboard/Orders/EstimateOrderInfo?model.pickupLocation.geography.lat=${start_location_lat}&model.pickupLocation.geography.lng=${start_location_lng}&model.dropoffLocation.geography.lat=${end_location_lat}&model.dropoffLocation.geography.lng=${end_location_lng}`,
     `${process.env.NEXT_PUBLIC_ONDE_HOSTNAME
     }/dispatch/v1/tariff?origin=${start_location_lat},${start_location_lng}&destination=${end_location_lat},${end_location_lng}&pickupTime=${encodeURIComponent(
       dayjsLocal.toISOString()
-    )}&tripDistance=${contextState.directions.routes[0].legs[0].distance.value
-    }&tripDuration=${contextState.directions.routes[0].legs[0].duration.value * 1000
+    )}&tripDistance=${response.routes[0].legs[0].distance.value
+    }&tripDuration=${response.routes[0].legs[0].duration.value * 1000
     }`,
     {
       method: "GET",
@@ -328,13 +326,6 @@ export const getAvailableRouteCars = async (
         // }
         return result.tariffs;
       },
-      () => {
-        clearDirections();
-        // try {
-        //   setError(error);
-        // } catch (error) {
-        //   setError('No available route');
-        // }
-      }
+
     );
 };

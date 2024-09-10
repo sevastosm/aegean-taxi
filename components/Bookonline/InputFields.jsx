@@ -39,7 +39,6 @@ const InputFields = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-
       <div className="w-full h-[350px] relative">
         <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
           <Map

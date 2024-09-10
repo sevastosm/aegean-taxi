@@ -21,9 +21,9 @@ const SelectTaxi = ({
   };
 
   const carImages: any = {
+    Economy: uberCar,
     Van: uberVan,
     MiniBus: uberVan,
-    Economy: uberCar,
     Taxi: uberCar,
     Luxury: uberCar,
   };
@@ -36,10 +36,11 @@ const SelectTaxi = ({
             return (
               <div
                 key={i}
-                className={`my-2.5 px-3 py-1 border-[3px] rounded-2xl cursor-pointer flex items-center justify-between ${selectedItem === car.name
-                  ? "border-[#264388]"
-                  : "border-transparent"
-                  }`}
+                className={`my-2.5 px-3 py-1 border-[3px] rounded-2xl cursor-pointer flex items-center justify-between ${
+                  selectedItem === car.name
+                    ? "border-[#264388]"
+                    : "border-transparent"
+                }`}
                 onClick={() => handleSelect(car.name)}
               >
                 <div className="flex flex-row gap-2 items-center justify-start">
@@ -85,7 +86,7 @@ const SelectTaxi = ({
       <div className="px-4">
         <CardPayment />
       </div>
-      <div className="flex items-end justify-center mt-4">
+      <div className="flex items-end justify-center pb-4">
         <button
           disabled={!selectedItem}
           onClick={authorizeUser}

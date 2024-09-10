@@ -8,7 +8,7 @@ const BookActions = ({ nextButtonHandler, calendars }: any) => {
   const [open, setOpen] = useState(false);
   return (
     <div>
-      <div className="flex  flex-grow  justify-between">
+      <div className="flex flex-grow justify-between">
         {!open && (
           <button
             onClick={nextButtonHandler}
@@ -18,7 +18,7 @@ const BookActions = ({ nextButtonHandler, calendars }: any) => {
           </button>
         )}
 
-        <div className={`flex flex-col  gap-4 ${open && "w-full"}`}>
+        <div className={`flex flex-col gap-4 ${open && "w-full"}`}>
           <div className="flex items-center">
             <button
               onClick={() => setOpen(!open)}

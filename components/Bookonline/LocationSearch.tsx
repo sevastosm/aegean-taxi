@@ -78,7 +78,6 @@ const LocationSearch = ({
 
 
 
-  useUrl('origin', origin)
 
 
   const handleClearPickup = () => {
