@@ -57,7 +57,7 @@ export default function BookOnline() {
   const { setItem } = useStorage();
   const cookieState = getItem("aegean", "local");
   const appContext = useContext(AppContext);
-  const contextState: BookingState = appContext.state;
+  const contextState: any = appContext.state;
 
   const [zoom, setZoom] = useState(11); // initial zoom
   const [center, setCenter] = useState<google.maps.LatLngLiteral>({

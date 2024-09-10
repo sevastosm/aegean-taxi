@@ -100,9 +100,9 @@ export default function ValidationContent({ handleCreateOrder }) {
 
   return (
     <>
-      <div className="px-4 max-w-[500px] m-auto">
-        <div className="flex flex-col gap-4 min-h-[80vh]">
-          <div className="flex items-start">
+      <div className="flex px-4 max-w-[500px] m-auto otp-page">
+        <div className="flex flex-col gap-4">
+          <div className="flex items-start flex-grow">
             <button
               onClick={handleGoBack}
               className="bg-[#264388] p-2 w-[50px] h-[50px] rounded-full text-white"
@@ -120,29 +120,29 @@ export default function ValidationContent({ handleCreateOrder }) {
               </svg>
             </button>
           </div>
-          <h1 className="font-normal text-[17px] text-[#244284] text-center mt-6 ">
+          <h1 className="font-semibold text-[18px] text-[#244284] text-center py-4">
             Enter the 5-digit code sent to you at <br />
           </h1>
 
           <div className="flex flex-col items-center gap-2 px-4">
-            <div className="flex gap-1 w-full max-w-md">
+            <div className="flex gap-4 w-full max-w-md px-3">
               <div className="flex-shrink-0">
                 <input
                   disabled
                   value={bookingState?.countryCode}
-                  className="max-w-[100px] font-bold text-2xl text-center bg-[#F6F6F6] placeholder:text-[#626262] p-2 py-4 border-0 focus:outline-none focus:ring-0"
+                  className="max-w-[80px] w-[80px] font-bold text-2xl text-center bg-[#F6F6F6] placeholder:text-[#626262] py-3 border-0 focus:outline-none focus:ring-0"
                 />
               </div>
               <div className="flex-shrink-0">
                 <input
                   disabled
                   value={bookingState?.phone}
-                  className="w-full font-bold text-2xl text-center bg-[#F6F6F6] placeholder:text-[#626262] p-2 py-4 border-0 focus:outline-none focus:ring-0"
+                  className="w-full font-bold text-2xl text-center bg-[#F6F6F6] placeholder:text-[#626262] p-2 py-3 border-0 focus:outline-none focus:ring-0"
                 />
               </div>
             </div>
 
-            <div className="font-normal text-xl text-[#244284] text-center mb-2 px-6">
+            <div className="font-semibold text-xl text-[#244284] text-center mb-2 py-4 px-6">
               Make sure you entered the correct country code!
             </div>
 
@@ -173,8 +173,8 @@ export default function ValidationContent({ handleCreateOrder }) {
             )}
           </div>
 
-          <div className="flex-grow flex flex-col ">
-            <div className="flex flex-grow mb-2 items-end">
+          <div className="flex flex-grow flex-col items-center">
+            <div className="flex flex-grow mb-2 items-end gap-x-4">
               <img
                 src="/assets/whatsAppNew.svg"
                 alt="Wallet Icon"
@@ -182,9 +182,11 @@ export default function ValidationContent({ handleCreateOrder }) {
                 width="50"
                 height="50"
               />
-              <p className="font-semibold text-[17px] text-black text-center my-2">
-                Message us on whatsapp 24/7 customer support
-              </p>
+              <a href="https://wa.me/+306943829494">
+                <p className="font-semibold text-[17px] text-black text-start my-2">
+                  Message us on whatsapp 24/7 customer support
+                </p>
+              </a>
             </div>
             <button
               disabled={!secCode || secCode?.length < 5}

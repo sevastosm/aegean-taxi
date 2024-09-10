@@ -99,6 +99,11 @@ main.MuiBox-root.css-1lsir22 {
   min-height: calc(100vh - 72px);
 }
 
+.flex.px-4.max-w-\[500px\].m-auto.otp-page {
+  height: calc(100vh - 104px);
+  margin-top: -1rem;
+}
+
 // iOS 15 and later Safari browser at the bottom fix
 main.MuiBox-root.css-1lsir22 {
   padding-bottom: env(safe-area-inset-bottom);
