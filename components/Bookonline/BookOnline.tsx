@@ -40,6 +40,7 @@ import classNames from "classnames";
 import MapComponent from "./MapComponent";
 import { getAvailableRouteCars } from "@/utils/fetchers";
 import { useGoogleMaps } from "./GoogleMapsProvider";
+import GoogleMapComponent from "./GoogleMapComponent";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -636,6 +637,8 @@ export default function BookOnline() {
 
   }, [])
 
+  const activeLocation = locationSearch && locationDetails.taxi_locations[locationSearch]
+
   const hotSpots =
     locationSearch && locationDetails.taxi_locations[locationSearch]?.hotSpots;
 
@@ -692,16 +695,18 @@ export default function BookOnline() {
 
       <div
         className={classNames(
-          "w-full md:block min-h-[280px] md:h-[700px]",
-          "relative order-0 md:order-1",
-          !open ? "block flex-grow" : "hidden md:block",
-          selectedPickUp && selectedDropOff ? "h-[330px]" : "h-[280px]"
+          "w-full  min-h-[280px] md:h-[700px]",
+          "relative",
+          // !open ? "block flex-grow" : "hidden md:block",
+          // selectedPickUp && selectedDropOff ? "h-[330px]" : "h-[280px]",
+          "flex flex-grow h-[280px] min-h-[280px]"
         )}
       >
         <MapComponent
-          locationSearch={locationSearch}
+          activeLocation={activeLocation}
           calculateAndDisplayRoute={calculateAndDisplayRoute}
         />
+        {/* <GoogleMapComponent activeLocation={activeLocation} /> */}
       </div>
 
 
