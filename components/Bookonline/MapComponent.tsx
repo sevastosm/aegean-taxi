@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import {
-  GoogleMap,
-  DirectionsRenderer,
-} from "@react-google-maps/api";
+import { GoogleMap, DirectionsRenderer } from "@react-google-maps/api";
 import { AppContext } from "@/context/appState";
 import { useGoogleMaps } from "./GoogleMapsProvider";
 import { useSearchParams } from "next/navigation";
 import { debug } from "console";
+import { updateStorage } from "@/heplers/updateStorage";
+import { locationDetails } from "@/utils/locationDetails";
 
 const containerStyle = {
   width: "100%",
@@ -17,19 +16,24 @@ const center1 = {
   lng: 25.2984466,
 };
 
-function MapComponent({ calculateAndDisplayRoute, activeLocation, setAutocompleteService }: any) {
+function MapComponent({
+  calculateAndDisplayRoute,
+  setAutocompleteService,
+}: any) {
   const isLoaded = useGoogleMaps();
 
-  const appContext = useContext(AppContext);
+  const searchParams = useSearchParams();
+  const google = useGoogleMaps();
 
+  const locationSearch = searchParams.get("location");
 
-  const searchParams = useSearchParams()
+  const activeLocation =
+    locationSearch && locationDetails.taxi_locations[locationSearch];
 
+  const origin = searchParams.get("origin");
 
-  const origin = searchParams.get('origin')
-
-  const destination = searchParams.get('destination')
-
+  const destination = searchParams.get("destination");
+  const tarif = searchParams.get("tarif");
 
   const [map, setMap] = useState(null);
   const [directionsResponse, setDirectionsResponse] = useState(null);
@@ -39,12 +43,12 @@ function MapComponent({ calculateAndDisplayRoute, activeLocation, setAutocomplet
 
   const [showMap, setShowMap] = useState(true); // Control map rendering
 
-  const { mapOptions } = activeLocation
+  const { mapOptions } = activeLocation;
 
   const center = {
     lat: mapOptions.lat,
-    lng: mapOptions.lng
-  }
+    lng: mapOptions.lng,
+  };
   const [centerMap, setCenter] = useState(center);
 
   const options = {
@@ -56,7 +60,7 @@ function MapComponent({ calculateAndDisplayRoute, activeLocation, setAutocomplet
     rotateControl: false,
     fullscreenControl: false,
     mapId: "c6b58f8fae8c27a7",
-    center: centerMap
+    center: centerMap,
   };
 
   const mapRef = useRef(null);
@@ -65,32 +69,24 @@ function MapComponent({ calculateAndDisplayRoute, activeLocation, setAutocomplet
   const destinationMarkerRef = useRef(null);
   const directionsRef = useRef(null);
 
-
-
   // Function to clear directions
   const clearDirections = () => {
     if (directionsRef.current) {
-      directionsRef.current = null // Clear directions
+      directionsRef.current = null; // Clear directions
       setDirectionsResponse(null); // Clear the directions response state
     }
   };
-
-
-
-
 
   const addCustomMarker = async () => {
     originMarkerRef.current?.setMap(null);
     destinationMarkerRef.current?.setMap(null);
     const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
-
     // if (!directionsResponse) return;
 
     // const origin = "San Francisco"; // Example origin text (you can dynamically change this)
     const durationText = directionsResponse.routes[0].legs[0].duration.text;
     // Clear previous markers
-
 
     // Create a custom HTML element for the marker
     const originContent = document.createElement("div");
@@ -125,11 +121,8 @@ function MapComponent({ calculateAndDisplayRoute, activeLocation, setAutocomplet
     destinationMarkerRef.current = destinationMarker;
   };
 
-
-
   useEffect(() => {
     if (origin && destination && isLoaded) {
-
       const geocoder = new window.google.maps.Geocoder();
 
       geocoder.geocode({ address: origin }, (results, status) => {
@@ -162,7 +155,6 @@ function MapComponent({ calculateAndDisplayRoute, activeLocation, setAutocomplet
         (result, status) => {
           if (status === window.google.maps.DirectionsStatus.OK) {
             setDirectionsResponse(result);
-
           } else {
             console.error(`Error fetching directions: ${status}`);
             // clearDirections()
@@ -172,25 +164,17 @@ function MapComponent({ calculateAndDisplayRoute, activeLocation, setAutocomplet
     }
 
     if (!origin && !destination && isLoaded) {
-
-      handleReloadMap()
-
+      handleReloadMap();
     }
-
-
-
-
-  }, [origin, destination, mapRef, isLoaded]);
+  }, [searchParams]);
 
   const handleReloadMap = () => {
     setShowMap(false); // Unmount the map
-    setDirectionsResponse(null)
+    setDirectionsResponse(null);
     setTimeout(() => {
       setShowMap(true); // Remount the map after a short delay
     }, 100);
   };
-
-
 
   useEffect(() => {
     if (map) {
@@ -221,18 +205,15 @@ function MapComponent({ calculateAndDisplayRoute, activeLocation, setAutocomplet
       centerControlUI.addEventListener("click", () => {
         const geocoder = new window.google.maps.Geocoder();
 
-        geocoder.geocode(
-          { address: origin },
-          (results, status) => {
-            if (status === "OK") {
-              map.panTo(results[0].geometry.location);
-            } else {
-              console.error(
-                `Geocode was not successful for the following reason: ${status}`
-              );
-            }
+        geocoder.geocode({ address: origin }, (results, status) => {
+          if (status === "OK") {
+            map.panTo(results[0].geometry.location);
+          } else {
+            console.error(
+              `Geocode was not successful for the following reason: ${status}`
+            );
           }
-        );
+        });
       });
 
       map.controls[window.google.maps.ControlPosition.RIGHT_BOTTOM].push(
@@ -241,47 +222,62 @@ function MapComponent({ calculateAndDisplayRoute, activeLocation, setAutocomplet
     }
   }, [map]);
 
-
   useEffect(() => {
     if (map && directionsResponse) {
       addCustomMarker();
     }
   }, [map, directionsResponse]);
 
+  useEffect(() => {
+    const waypoints = [
+      {
+        exactLatLng: originPosition,
+        street: origin,
+        poiName: origin,
+        placeLatLng: originPosition,
+      },
+      {
+        exactLatLng: destinationPosition,
+        street: destination,
+        poiName: destination,
+        placeLatLng: destinationPosition,
+      },
+    ];
 
+    updateStorage("waypoints", waypoints);
+  }, [originPosition, destinationPosition]);
 
-
-
-
-
-
+  console.log("MAP-RENDER");
 
   return (
-    isLoaded && showMap && (
+    isLoaded &&
+    showMap && (
       <GoogleMap
         ref={mapRef}
         mapContainerStyle={containerStyle}
         zoom={11}
         onLoad={(mapInstance) => {
           setMap(mapInstance);
-          mapRef.current = mapInstance
+          mapRef.current = mapInstance;
         }}
         options={options}
         onUnmount={() => setMap(null)}
       >
-
-        {directionsResponse &&
+        {directionsResponse && (
           <DirectionsRenderer
             ref={directionsRef}
             options={{ suppressMarkers: true, suppressInfoWindows: true }}
             directions={directionsResponse}
-
-
-          />}
-
+          />
+        )}
       </GoogleMap>
     )
   );
 }
-
-export default MapComponent;
+export default React.memo(MapComponent, (prevProps, nextProps) => {
+  return (
+    prevProps.origin === nextProps.origin &&
+    prevProps.destination === nextProps.destination
+  );
+});
+// export default MapComponent;

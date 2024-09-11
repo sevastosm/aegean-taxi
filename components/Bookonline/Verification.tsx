@@ -33,6 +33,7 @@ import styles from "./styles.module.scss";
 import AES from "crypto-js/aes";
 import { setTimeout } from "timers";
 import CardPaymentBlack from "./CardPaymentBold";
+import { updateStorage } from "@/heplers/updateStorage";
 
 export default function Verification({}: {}) {
   const router = useRouter();
@@ -93,6 +94,15 @@ export default function Verification({}: {}) {
 
   const reCaptchaRef = React.useRef<any>(null);
 
+  const handleSubmit = () => {
+    updateStorage("phoneNumber", phone);
+    updateStorage("countryCode", countryCode);
+    updateStorage("firstName", firstName);
+    updateStorage("lastName", lastName);
+
+    onSubmit();
+  };
+
   async function onSubmit() {
     setDisabledNext(true);
     let smsCode = Math.floor(Math.random() * 90000) + 10000;
@@ -101,27 +111,15 @@ export default function Verification({}: {}) {
       `${process.env.NEXT_PUBLIC_CRYPTO_KEY}`
     ).toString();
     // bookingState = aegeanState;
-    bookingContext.updateAppState(aegeanState);
+    updateStorage("securityCode", securityCode);
 
     const mobileNumber = `+${countryCode}${phone}`;
 
-    bookingState.phoneNumber = mobileNumber;
-    bookingState.phone = phone;
-    bookingState.countryCode = `+${countryCode}`;
-
-    bookingState.security.code = securityCode;
-    bookingState.security.expires = new Date().getTime();
-    bookingState.firstName = firstName;
-    bookingState.lastName = lastName;
-
-
     if (firstName && lastName === "testSeb@@") {
       sendSms(
-        `00${bookingState.phoneNumber.replace("+", "")}`,
+        `00${mobileNumber.replace("+", "")}`,
         `Your access code is ${smsCode}`
       ).then(() => {
-        bookingContext.updateAppState(bookingState);
-        setItem("aegean", bookingState, "local");
         router.push("/book-online/booking-confirmation");
       });
       return;
@@ -392,7 +390,7 @@ export default function Verification({}: {}) {
             </div>
 
             <button
-              onClick={onSubmit}
+              onClick={handleSubmit}
               disabled={
                 phone.length < 9 ||
                 !firstName ||

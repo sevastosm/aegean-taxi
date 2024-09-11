@@ -1,17 +1,70 @@
-import React, { useState } from "react";
-import Calendars from "./Calendars";
-const calendarInput = "/assets/booking-flow/calendarInput.svg";
+"use client"; // Mark as client component
 
+import useUrl from "@/app/hooks/useUrl";
+import { updateStorage } from "@/heplers/updateStorage";
+import dayjs from "dayjs";
+import { useRouter, useSearchParams } from "next/navigation";
+import React, { useState } from "react";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
 type Props = {};
 
-const BookActions = ({ nextButtonHandler, calendars }: any) => {
+const calendarInput = "/assets/booking-flow/calendarInput.svg";
+const BookActions = ({ calendars }: any) => {
+  dayjs.extend(utc);
+  dayjs.extend(timezone);
+  dayjs.tz.setDefault("Europe/Athens");
   const [open, setOpen] = useState(false);
+  const searchParams = useSearchParams();
+  const { updateUrl } = useUrl(); // Get the updateUrl function from the hook
+
+  const router = useRouter();
+
+  const handleClick = () => {
+    // Get current query parameters as an object
+    const currentParams = Object.fromEntries(searchParams.entries());
+
+    // Define new parameters to be added or updated
+    const newParams = {
+      ...currentParams, // Keep the existing params
+    };
+    updateUrl("now", null);
+    // Create a query string manually
+    const queryString = new URLSearchParams(newParams).toString();
+
+    // Use router.push with a string for the full URL
+    router.push(`/book-online/trasportation?${queryString}`);
+  };
+
+  const handleBookNow = () => {
+    const currentParams = Object.fromEntries(searchParams.entries());
+
+    // Define new parameters to be added or updated
+    const newParams = {
+      ...currentParams, // Keep the existing params
+    };
+
+    const params = new URLSearchParams(newParams);
+
+    const dateString = dayjs().format("YYYY-MM-DD");
+    const timeString = dayjs().format("HH:mm");
+
+    // updateUrl("now", [dateString, timeString]);
+    updateStorage("pickupdate", dateString);
+    updateStorage("pickuptime", timeString);
+    params.set("pickupdate", dateString);
+    params.set("pickuptime", timeString);
+    params.set("now", "now");
+    // Use router.push with a string for the full URL
+    router.push(`/book-online/trasportation?${params.toString()}`);
+  };
+
   return (
     <div>
       <div className="flex flex-grow justify-between">
         {!open && (
           <button
-            onClick={nextButtonHandler}
+            onClick={handleBookNow}
             className="bg-[#264388] mr-4 flex  items-center justify-center w-[80%] rounded-lg py-3 font-bold text-lg text-white "
           >
             Book for now
@@ -34,7 +87,7 @@ const BookActions = ({ nextButtonHandler, calendars }: any) => {
           </div>
           {open && (
             <button
-              onClick={nextButtonHandler}
+              onClick={handleClick}
               className="bg-[#264388]  flex items-center justify-center w-full rounded-lg py-3 font-bold text-lg text-white "
             >
               Book

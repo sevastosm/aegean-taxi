@@ -3,7 +3,6 @@
 import React from "react";
 import { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/navigation";
-import { AppContext } from "@/context/appState";
 
 // hooks
 import useStorage from "@/hooks/useStorage";
@@ -22,58 +21,32 @@ var CryptoJS = require("crypto-js");
 
 export default function ValidationContent({ handleCreateOrder }) {
   const router = useRouter();
-  const appState = useContext(AppContext);
   const [secCode, setSecCode] = useState<any>(null);
-  const { getItem, removeItem } = useStorage();
-  const { setItem } = useStorage();
-  const cookieState = getItem("aegean", "local");
-  const appContext = useContext(AppContext);
+  const cookieState = localStorage.getItem("bookinginfo");
   const [bookingState, setBookingState] = useState<BookingState>();
   const [invalidCode, setInvalidCode] = useState(false);
 
-  useEffect(() => {
-    setItem("validationBeenVisited", true, "local");
-  }, []);
-
   const handleChange = (value) => {
     setInvalidCode(false);
-
     setSecCode(value);
-    setBookingState(() => cookieState);
-    appContext.updateAppState(cookieState);
   };
   useEffect(() => {
-
     if (cookieState) {
-      setBookingState(() => cookieState);
-      appContext.updateAppState(cookieState);
+      setBookingState(JSON.parse(cookieState));
     }
-
     return () => {};
-  }, []);
-
-
+  }, [cookieState]);
 
   async function onSubmit() {
     let securityCode = AES.decrypt(
-      `${appState.state.security.code}`,
+      `${bookingState.securityCode}`,
       `${process.env.NEXT_PUBLIC_CRYPTO_KEY}`
     );
 
     if (securityCode.toString(CryptoJS.enc.Utf8) === secCode) {
-      (appState.state.searchingForDriver = true),
-        (appState.state.userVerified = true);
-      appState.state.security.code = "null";
-      appState.updateAppState(appState.state);
-      setItem("aegean", appState.state, "local");
-
       // Create order
-      await createOrder(appState.state).then((data) => {
+      await createOrder(bookingState).then((data) => {
         if (data.orderId) {
-          appState.state.orderDetails = data;
-          appState.updateAppState(appState.state);
-          setItem("aegean", appState.state, "local");
-          // Call handleCreateOrder to view BookingFlow
           handleCreateOrder(data.orderId);
         }
       });
@@ -97,6 +70,8 @@ export default function ValidationContent({ handleCreateOrder }) {
       }
     }
   };
+
+  console.log("bookingState", bookingState);
 
   return (
     <>
@@ -136,7 +111,7 @@ export default function ValidationContent({ handleCreateOrder }) {
               <div className="flex-shrink-0">
                 <input
                   disabled
-                  value={bookingState?.phone}
+                  value={bookingState?.phoneNumber}
                   className="w-full font-bold text-2xl text-center bg-[#F6F6F6] placeholder:text-[#626262] p-2 py-3 border-0 focus:outline-none focus:ring-0"
                 />
               </div>

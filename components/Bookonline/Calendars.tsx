@@ -7,20 +7,46 @@ import {
 } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
-import React from "react";
+import React, { useState } from "react";
+import useUrl from "@/app/hooks/useUrl";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+import { updateStorage } from "@/heplers/updateStorage";
+
 
 type Props = {};
 
-const Calendars = ({
-  setOpenTimePicker,
-  setOpenDayPicker,
-  pickUpDate,
-  openDayPicker,
-  setPickUpDateHandler,
-  pickUpTime,
-  openTimePicker,
-  setPickUpTimeHandler,
-}: any) => {
+const Calendars = () => {
+
+  dayjs.extend(utc);
+  dayjs.extend(timezone);
+  dayjs.tz.setDefault("Europe/Athens");
+
+  const { updateUrl } = useUrl()
+
+  const [pickUpDate, setPickUpDate] = useState<string>("TODAY");
+  const [pickUpTime, setPickUpTime] = useState<string>("NOW");
+  const [openDayPicker, setOpenDayPicker] = useState(false)
+  const [openTimePicker, setOpenTimePicker] = useState(false)
+
+  const setPickUpDateHandler = (value: any) => {
+    const dateString = dayjs(value).format("YYYY-MM-DD");
+    setPickUpDate(dateString)
+    updateUrl("pickupdate", dateString)
+    updateStorage("pickupdate", dateString);
+
+  };
+
+  const setPickUpTimeHandler = (value: any) => {
+    setOpenTimePicker(false);
+    const timeString = dayjs(value).format("HH:mm");
+    setPickUpTime(timeString)
+    updateUrl("pickuptime", timeString)
+    updateStorage("pickuptime", timeString);
+
+  };
+
+
   return (
     <Grid container spacing={1} sx={{ minHeight: 50 }}>
       <Grid item xs={6} md={6}>
@@ -57,7 +83,7 @@ const Calendars = ({
               }}
               onClose={() => setOpenDayPicker(false)}
               slotProps={{ textField: { size: "small" } }}
-              onChange={(value: any) => setPickUpDateHandler(value)}
+              onChange={setPickUpDateHandler}
             />
           </LocalizationProvider>
         </Box>
@@ -84,21 +110,7 @@ const Calendars = ({
           </Button>
 
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            {/* <DesktopTimePicker
-                            defaultValue={dayjs()}
-                            label=""
-                            open={openTimePicker}
-                            disablePast={true}
-                            sx={{
-                              position: "absolute",
-                              zIndex: 0,
-                            }}
-                            onClose={() => setOpenTimePicker(false)}
-                            slotProps={{ textField: { size: "small" } }}
-                            onChange={(value: any) =>
-                              setPickUpTimeHandler(value)
-                            }
-                          /> */}
+
             {openTimePicker && (
               <DigitalClock
                 defaultValue={dayjs()}
@@ -115,7 +127,7 @@ const Calendars = ({
                 }}
                 // onClose={() => setOpenTimePicker(false)}
 
-                onChange={(value: any) => setPickUpTimeHandler(value)}
+                onChange={setPickUpTimeHandler}
               />
             )}
           </LocalizationProvider>

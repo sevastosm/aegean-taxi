@@ -6,7 +6,12 @@ import {
   Typography,
   Divider,
 } from "@mui/material";
-import { usePathname, useParams, useRouter, useSearchParams } from 'next/navigation'
+import {
+  usePathname,
+  useParams,
+  useRouter,
+  useSearchParams,
+} from "next/navigation";
 
 import error from "next/error";
 import React, { useEffect, useState } from "react";
@@ -15,6 +20,7 @@ import HotSpot from "./HotSpot";
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import MyLocationOutlinedIcon from "@mui/icons-material/MyLocationOutlined";
 import useUrl from "@/app/hooks/useUrl";
+import { locationDetails } from "@/utils/locationDetails";
 
 type Props = {};
 
@@ -23,9 +29,7 @@ const Places = ({
   setPickUpLocationHandler,
   nearbyLocations = [],
   displayHotSpots,
-  locationSearch,
   locationHandler,
-  hotSpots,
   setDropOffLocationHandler,
   selectedPickUp,
   selectedDropOff,
@@ -35,13 +39,22 @@ const Places = ({
   destination,
   focused = null,
   predictions = null,
-  setPredictions
+  setPredictions,
 }: any) => {
-  const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
   const { updateUrl } = useUrl(); // Get the updateUrl function from the hook
-  const originParam = searchParams.get('origin')
-  const destinationParam = searchParams.get('destination')
-  const viewHotspots = !originParam && !destinationParam || originParam && !destinationParam
+  const originParam = searchParams.get("origin");
+  const destinationParam = searchParams.get("destination");
+
+  const locationSearch = searchParams.get("location");
+
+  const activeLocation =
+    locationSearch && locationDetails.taxi_locations[locationSearch];
+
+  const { hotSpots } = activeLocation;
+
+  const viewHotspots =
+    (!originParam && !destinationParam) || (originParam && !destinationParam);
   if (selectedPickUp && selectedDropOff) {
     return null;
   }
@@ -126,10 +139,9 @@ const Places = ({
             locationHandler={(value) => {
               focused === "pickup"
                 ? updateUrl("origin", value)
-                : updateUrl("destination", value)
-              setPredictions([])
-            }
-            }
+                : updateUrl("destination", value);
+              setPredictions([]);
+            }}
           />
         ))}
       {viewHotspots &&
@@ -140,9 +152,9 @@ const Places = ({
             className="cursor-pointer"
             onClick={() => {
               if (!originParam) {
-                updateUrl("origin", spot.destination_name)
+                updateUrl("origin", spot.destination_name);
               } else {
-                updateUrl("destination", spot.destination_name)
+                updateUrl("destination", spot.destination_name);
               }
             }}
           >

@@ -1,10 +1,11 @@
 import classNames from "classnames";
+import { useRouter } from "next/navigation";
 import React from "react";
 import NavBack from "./NavBack";
 
 type Props = {};
 
-const ToolBar = ({ toggleDrawer, handleClick, isMapOpen }: any) => {
+const ToolBar = ({ toggleDrawer, isMapOpen }: any) => {
   const style = classNames(
     "pointer",
     "h-[50px] w-[50px]",
@@ -12,6 +13,11 @@ const ToolBar = ({ toggleDrawer, handleClick, isMapOpen }: any) => {
     "bg-white border border-#3b82f6 rounded-full",
     !isMapOpen && "rotate-180"
   );
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.back(); // Go back to the previous page
+  };
 
   const click = () => {
     toggleDrawer();

@@ -104,19 +104,12 @@ export async function sendSms(phoneNumbers: string, message: string) {
 //   credentials: "include",
 // });
 
-
-
 export const createOrder = async (contextState: any) => {
   // new order
-  if (contextState && contextState.startLocationLat) {
-    contextState.searchingForDriver = true;
-    let orderDetailsRes;
-    dayjs.tz.setDefault();
+  if (contextState) {
     let dayjsLocal = dayjs(
-      `${contextState.pickUpDate} ${contextState.pickUpTime}`
+      `${contextState.pickupdate} ${contextState.pickuptime}`
     );
-    // console.log(`${contextState.pickUpDate} ${contextState.pickUpTime}`)
-    // console.log(dayjsLocal.format())
 
     try {
       let res = await fetch(
@@ -127,32 +120,7 @@ export const createOrder = async (contextState: any) => {
             Authorization: `${process.env.NEXT_PUBLIC_ONDE_API_TOKEN}`,
           }),
           body: JSON.stringify({
-            waypoints: [
-              {
-                exactLatLng: {
-                  lat: contextState.startLocationLat,
-                  lng: contextState.startLocationLng,
-                },
-                street: contextState.pickUpLocation,
-                poiName: contextState.pickUpLocation,
-                placeLatLng: {
-                  lat: contextState.startLocationLat,
-                  lng: contextState.startLocationLng,
-                },
-              },
-              {
-                exactLatLng: {
-                  lat: contextState.endLocationLat,
-                  lng: contextState.endLocationLng,
-                },
-                street: contextState.dropLocation,
-                poiName: contextState.dropLocation,
-                placeLatLng: {
-                  lat: contextState.endLocationLat,
-                  lng: contextState.endLocationLng,
-                },
-              },
-            ],
+            waypoints: contextState.waypoints,
             client: {
               name: `${contextState.firstName} ${contextState.lastName}`,
               phone: contextState.phoneNumber,
@@ -161,12 +129,12 @@ export const createOrder = async (contextState: any) => {
             // pickupTime: encodeURIComponent(dayjsLocal.toISOString()),
             pickupTime: dayjsLocal.format(),
             unitOfLength: "KILOMETER",
-            vehicleType: contextState.selectedCar.vehicleType,
-            numberOfSeats: contextState.selectedCar.numberOfSeats,
+            vehicleType: contextState.traspontation.vehicleType,
+            numberOfSeats: contextState.traspontation.numberOfSeats,
             // paymentMethods: contextState.selectedCar.paymentMethods,
             paymentMethods: ["CASH"],
             prepaid: false,
-            tariffId: contextState.selectedCar.tariffId,
+            tariffId: contextState.traspontation.tariffId,
           }),
         }
       );
@@ -183,9 +151,6 @@ export const createOrder = async (contextState: any) => {
     }
   }
 };
-
-
-
 
 export const cancelOrder = async (orderId: string) => {
   if (orderId) {
@@ -220,13 +185,13 @@ export const getOrderUpdate = async (orderId: string) => {
     .then((res) => res.json())
     .then(
       (result) => {
-        return result
+        return result;
       },
       (error) => {
-        return error
+        return error;
       }
     );
-}
+};
 
 export const getOrderData = async (orderId: string) => {
   return await fetch(
@@ -241,13 +206,13 @@ export const getOrderData = async (orderId: string) => {
     .then((res) => res.json())
     .then(
       (result) => {
-        return result
+        return result;
       },
       (error) => {
         return { noOrder: "No order found" };
       }
     );
-}
+};
 export const getOrderDetails = async (orderId: string) => {
   return await fetch(
     `${process.env.NEXT_PUBLIC_ONDE_HOSTNAME}/dispatch/v1/order/${orderId}/offer`,
@@ -261,13 +226,13 @@ export const getOrderDetails = async (orderId: string) => {
     .then((res) => res.json())
     .then(
       (result) => {
-        return result
+        return result;
       },
       (error) => {
-        return error
+        return error;
       }
     );
-}
+};
 
 export const getDriver = async (orderId: string) => {
   return await fetch(
@@ -282,14 +247,13 @@ export const getDriver = async (orderId: string) => {
     .then((res) => res.json())
     .then(
       (result) => {
-        return result
+        return result;
       },
       (error) => {
-        return error
+        return error;
       }
     );
-}
-
+};
 
 export const getAvailableRouteCars = async (
   response: any,
@@ -297,15 +261,16 @@ export const getAvailableRouteCars = async (
   start_location_lat: any,
   start_location_lng: any,
   end_location_lat: any,
-  end_location_lng: any,
+  end_location_lng: any
 ) => {
   return fetch(
     // `https://carky-api.azurewebsites.net/api/AdminDashboard/Orders/EstimateOrderInfo?model.pickupLocation.geography.lat=${start_location_lat}&model.pickupLocation.geography.lng=${start_location_lng}&model.dropoffLocation.geography.lat=${end_location_lat}&model.dropoffLocation.geography.lng=${end_location_lng}`,
-    `${process.env.NEXT_PUBLIC_ONDE_HOSTNAME
+    `${
+      process.env.NEXT_PUBLIC_ONDE_HOSTNAME
     }/dispatch/v1/tariff?origin=${start_location_lat},${start_location_lng}&destination=${end_location_lat},${end_location_lng}&pickupTime=${encodeURIComponent(
       dayjsLocal.toISOString()
-    )}&tripDistance=${response.routes[0].legs[0].distance.value
-    }&tripDuration=${response.routes[0].legs[0].duration.value * 1000
+    )}&tripDistance=${response.routes[0].legs[0].distance.value}&tripDuration=${
+      response.routes[0].legs[0].duration.value * 1000
     }`,
     {
       method: "GET",
@@ -315,17 +280,14 @@ export const getAvailableRouteCars = async (
     }
   )
     .then((res) => res.json())
-    .then(
-      (result) => {
-        // for (const tarrif in result.tarrifs) {
-        //   let cat = carCategories.find(
-        //     (car) => car.Id === result.PricePerCategories[tarrif].Id
-        //   );
+    .then((result) => {
+      // for (const tarrif in result.tarrifs) {
+      //   let cat = carCategories.find(
+      //     (car) => car.Id === result.PricePerCategories[tarrif].Id
+      //   );
 
-        //   availCars.push({ ...result.PricePerCategories[tarrif], ...cat });
-        // }
-        return result.tariffs;
-      },
-
-    );
+      //   availCars.push({ ...result.PricePerCategories[tarrif], ...cat });
+      // }
+      return result.tariffs;
+    });
 };

@@ -1,24 +1,28 @@
-import React, { useState, useEffect } from "react";
+import useUrl from "@/app/hooks/useUrl";
+import { updateStorage } from "@/heplers/updateStorage";
+import { useRouter, useSearchParams } from "next/navigation";
+import React, { useState, useEffect, useCallback } from "react";
 import CardPayment from "./CardPayment";
-import menuBtn from "/menu-btn.svg";
-import phoneIcon from "/phoneIcon.svg";
 const uberCar = "/assets/booking-flow/uberCar.svg";
 const uberVan = "/assets/booking-flow/uberVan.svg";
 const personIcon = "/assets/booking-flow/personIcon.svg";
-const walletIcon = "/assets/booking-flow/walletIcon.svg";
 
-const SelectTaxi = ({
-  cars,
-  handleChange,
-  authorizeUser,
-  carSelectHandler,
-}: any) => {
+const SelectTaxi = ({ cars }: any) => {
+  const searchParams = useSearchParams();
+  const tarif = searchParams.get("tarif");
+
+  const router = useRouter();
+
+  const { updateUrl } = useUrl(); // Get the updateUrl function from the hook
   const [selectedItem, setSelectedItem] = useState(null);
-  const handleSelect = (item: any) => {
-    setSelectedItem(item);
-    carSelectHandler(item);
-    // handleChange();
-  };
+  const handleSelect = useCallback(
+    (item: any) => {
+      updateStorage("traspontation", item);
+      setSelectedItem(item.name);
+      updateUrl("tarif", item.tariffId);
+    },
+    [tarif]
+  );
 
   const carImages: any = {
     Economy: uberCar,
@@ -28,11 +32,30 @@ const SelectTaxi = ({
     Luxury: uberCar,
   };
 
+  const handleClick = () => {
+    router.push("/book-online/verification");
+  };
+
+  const shortedCars = cars.sort((a, b) => a.cost - b.cost);
+
+  useEffect(() => {
+    if (tarif && !selectedItem) {
+      const car = shortedCars.find((car: any) => car.tariffId === tarif);
+      handleSelect(car);
+    }
+  }, [cars, tarif]);
+
+  useEffect(() => {
+    if (!tarif && !selectedItem) {
+      handleSelect(shortedCars[0]);
+    }
+  }, [cars]);
+
   return (
     <div className="flex flex-col flex-grow">
       <div className="w-full mx-auto bg-white flex-grow rounded-2xl">
         <div className="space-y-2">
-          {cars.map((car: any, i: number) => {
+          {shortedCars.map((car: any, i: number) => {
             return (
               <div
                 key={i}
@@ -41,7 +64,7 @@ const SelectTaxi = ({
                     ? "border-[#264388]"
                     : "border-transparent"
                 }`}
-                onClick={() => handleSelect(car.name)}
+                onClick={() => handleSelect(car)}
               >
                 <div className="flex flex-row gap-2 items-center justify-start">
                   <img
@@ -88,8 +111,8 @@ const SelectTaxi = ({
       </div>
       <div className="flex items-end justify-center pb-4">
         <button
+          onClick={handleClick}
           disabled={!selectedItem}
-          onClick={authorizeUser}
           className="w-full bg-[#264388] text-white font-semibold text-xl py-4 rounded-md"
         >
           {selectedItem ? "Book" + " " + selectedItem : "Select transportation"}
