@@ -8,7 +8,6 @@ import { json } from "stream/consumers";
 import CancelButton from "../CancelButton";
 import DriverDetails from "./DriverDetails";
 import MapTracking from "./MapTracking";
-import { screen } from "./Order";
 const personIcon = "/assets/booking-flow/personIcon.svg";
 const calendarIcon = "/assets/booking-flow/calendarIcon.svg";
 const arrow = "/assets/booking-flow/arrow.svg";
@@ -85,17 +84,17 @@ function OrderDetails({
 
   console.log(screen)
   return (
-    <div className="flex flex-col min-h-[85vh]">
+    <div className="flex flex-col min-h-[87vh]">
       {/* {(trackingData && trackingData?.status === "TRANSFERRING") ||
         (trackingData?.status === "STARTED" && ( */}
 
       {trackingData?.status === "STARTED" &&
-        <div className="h-[200px] md-h-[400px] w-full">
+        <div className="h-[200px] md-h-[400px] w-full -mt-3">
           <MapTracking orderDetails={orderData} tracking={trackingData} />
         </div>}
 
-      <div className="max-w-[500px] w-full mx-auto">
-        <div className="flex gap-2 items-center justify-center">
+      <div className="max-w-[500px] flex-1 flex flex-col w-full mx-auto">
+        <div className="flex gap-2 items-center mt-3 justify-center">
           <h1 className={style}>{screens[screen]}</h1>
           {screen === "reservation-confirmed" &&
             <svg
@@ -113,7 +112,7 @@ function OrderDetails({
         </div>
         {showOrderData && orderData && (
           <div>
-            <div className="flex  items-center justify-evenly mx-4 pt-3 pb-6 relative border-b-4 border-[#1218241a]">
+            <div className="flex  items-center justify-evenly mx-4 pt-3 pb-6 relative ">
               <div className="flex  max-w-[40%] border-l-4 border-[#47C69C] min-h-[70px] ps-2">
                 <div className="flex flex-col">
                   <p className="text-black text-[16px] font-bold">Pick up</p>
@@ -133,26 +132,28 @@ function OrderDetails({
                 </p>
               </div>
             </div>
-            <div className="flex items-center justify-center mt-4">
-              <div className="flex items-center">
-                <img
-                  src={calendarIcon}
-                  alt="Calendar Icon"
-                  className="w-[25px] h-[25px] me-2"
-                />
-                <p className="text-base font-semibold">
-                  {moment(orderData.pickupTime).format("ddd Do MMM [@] h:mm")}
-                </p>
+            <div className="flex flex-col justify-center gap-4 py-4 border-t-4 border-b-4 border-[#1218241a]">
+              <div className="flex items-center justify-center">
+                <div className="flex items-center">
+                  <img
+                    src={calendarIcon}
+                    alt="Calendar Icon"
+                    className="w-[25px] h-[25px] me-2"
+                  />
+                  <p className="text-base font-semibold">
+                    {moment(orderData.pickupTime).format("ddd Do MMM [@] h:mm")}
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className="flex items-center justify-center mx-4 mt-3 pb-4 border-b-4 border-[#1218241a]">
-              <div className="flex items-center">
-                <img
-                  src={personIcon}
-                  alt="Person Icon"
-                  className="w-[15px] h-[15px] me-4"
-                />
-                <p className="text-base font-semibold">{orderData.client.name}</p>
+              <div className="flex items-center justify-center mx-4 ">
+                <div className="flex items-center">
+                  <img
+                    src={personIcon}
+                    alt="Person Icon"
+                    className="w-[15px] h-[15px] me-4"
+                  />
+                  <p className="text-base font-semibold">{orderData.client.name}</p>
+                </div>
               </div>
             </div>
           </div>
@@ -180,7 +181,7 @@ function OrderDetails({
         )}
         {/* {orderData.car && <DriverDetails details={orderDetails} />} */}
         {showCancel && (
-          <div className="flex items-end justify-center px-2">
+          <div className="flex flex-grow items-end justify-center px-2">
             <CancelButton orderId={orderId} />
           </div>
         )}
@@ -223,7 +224,7 @@ const DriverOnTheWay = ({ orderDetails, screen }) => {
   const minutes = Math.floor((diffInMilliseconds % (1000 * 60 * 60)) / (1000 * 60));
 
 
-  return <div className="mt-4"
+  return <div className="mt-3"
   ><div className="flex items-center justify-center">
       {showTime && <p className="text-xl font-semibold text-gray-500">
         (Pick up in {minutes} min)
@@ -238,27 +239,25 @@ const DriverOnTheWay = ({ orderDetails, screen }) => {
         </p>
       </div>
       <div className="flex items-center justify-center mt-3">
-        <p className="text-lg font-semibold"> {orderDetails.car.color}      {orderDetails.car.model}</p>
+        <p className="text-lg "> {orderDetails.car.color}      {orderDetails.car.model}</p>
       </div>
       <div className="flex items-center justify-center mt-3">
-        <p className="text-xl font-bold text-blue-800">{orderDetails.driver.name} </p>
+        <p className="text-md font-semibold text-blue-800">{orderDetails.driver.name} </p>
       </div>
 
-      <div className="flex items-start justify-between w-full mt-3">
+      <div className="flex  items-center justify-between w-full mt-3 max-w-[300px] mx-auto">
         <div className="flex flex-col items-center justify-center">
-          <img
-            src={phoneiOS}
-            alt=" Device Icon"
-            className="w-[40px] h-[40px] rounded-full blob" />
-          <p className="text-xs text-black font-semibold">Phone</p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 47 47" fill="none">
+            <path d="M9.45222 20.3406C13.2122 27.73 19.27 33.7878 26.6594 37.5478L32.4039 31.8033C33.135 31.0722 34.1533 30.8633 35.0672 31.1506C37.9917 32.1167 41.125 32.6389 44.3889 32.6389C45.0814 32.6389 45.7455 32.914 46.2352 33.4037C46.7249 33.8933 47 34.5575 47 35.25V44.3889C47 45.0814 46.7249 45.7455 46.2352 46.2352C45.7455 46.7249 45.0814 47 44.3889 47C32.6162 47 21.3257 42.3233 13.0012 33.9988C4.67667 25.6743 0 14.3838 0 2.61111C0 1.9186 0.275098 1.25445 0.764777 0.764777C1.25445 0.275098 1.9186 0 2.61111 0H11.75C12.4425 0 13.1067 0.275098 13.5963 0.764777C14.086 1.25445 14.3611 1.9186 14.3611 2.61111C14.3611 5.875 14.8833 9.00833 15.8494 11.9328C16.1367 12.8467 15.9278 13.865 15.1967 14.5961L9.45222 20.3406Z" fill="#05C342" />
+          </svg>
         </div>
-        <p className="text-xl font-bold text-blue-800">{orderDetails.driver.phone}</p>
+        <p className="text-xl font-semibold text-blue-800 tracking-wide">{orderDetails.driver.phone}</p>
         <div className="flex flex-col items-center justify-center">
           <img
             src={whatsappiOS}
             alt="Whatsapp Icon"
-            className="w-[40px] h-[40px] bg-[#00D624] rounded-full blob green" />
-          <p className="text-xs text-black font-semibold">WhatsApp</p>
+            className="w-[40px] h-[40px] rounded-sm blob green" />
+          {/* <p className="text-xs text-black font-semibold">WhatsApp</p> */}
         </div>
       </div>
     </div>

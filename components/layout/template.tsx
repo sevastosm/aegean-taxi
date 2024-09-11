@@ -76,8 +76,8 @@ export default function MainTemplate({
           <Box>
             <CssBaseline />
             <DrawerAppBar />
-            <Box component="main" sx={{ mt: { xs: 2.5, md: 2.5 } }}>
-              <Toolbar />
+            <Box component="main" sx={{ mt: { xs: "85px", md: "100px" } }}>
+              {/* <Toolbar /> */}
               {children}
             </Box>
             <FooterLayout />
