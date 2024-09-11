@@ -15,6 +15,7 @@ export type screen =
   | "reservation-cancelled"
   | "ride-started"
   | "reservation-completed"
+  | "ride-transfering"
   | null;
 
 export interface orderData { }
@@ -73,7 +74,7 @@ const Order = () => {
       }
       if (result.status === "TRANSFERRING") {
         setTrackingData(result);
-        setScreen("ride-started");
+        setScreen("ride-transfering");
         getOrderDetails(orderId).then(setOrderDetails);
         clearTimeout(apiTimeout);
         apiTimeout = setTimeout(() => {
@@ -82,7 +83,9 @@ const Order = () => {
       }
       if (result.status === "ASSIGNED") {
         setScreen("reservation-confirmed");
+        getOrderDetails(orderId).then(setOrderDetails);
       }
+
       if (result.status.includes("CANCELLED")) {
         setScreen("reservation-cancelled");
         clearTimeout(apiTimeout);
