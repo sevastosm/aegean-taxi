@@ -86,7 +86,7 @@ const Order = () => {
         getOrderDetails(orderId).then(setOrderDetails);
       }
 
-      if (result.status.includes("CANCELLED")) {
+      if (result.status?.includes("CANCELLED")) {
         setScreen("reservation-cancelled");
         clearTimeout(apiTimeout);
       }

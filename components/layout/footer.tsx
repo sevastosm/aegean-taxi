@@ -34,7 +34,7 @@ import { locationDetails } from "@/utils/locationDetails";
 export default function FooterLayout() {
   const pathname = usePathname();
 
-  const showWhatsAppButton = pathname === "/book-online/" ? "none" : "initial";
+  const showWhatsAppButton = pathname === "/"
   const [showCookiesBanner, setShowCookiesBanner] = useState(true);
 
   const getCookieValue = (cname: string) => {
@@ -493,7 +493,8 @@ export default function FooterLayout() {
         </Box>
       </Container>
       {/* Floating whatsapp hideOnMobile*/}
-      <Box
+      {showWhatsAppButton && <Box
+
         className="no-gutter watchAppBottom"
         sx={{
           width: "100%",
@@ -525,7 +526,7 @@ export default function FooterLayout() {
         >
           <Image src={whatsApp} height="45" alt="Message us on WhatsApp" />
         </a>
-      </Box>
+      </Box>}
 
       {showCookiesBanner && (
         <Alert
