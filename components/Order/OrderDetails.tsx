@@ -84,12 +84,12 @@ function OrderDetails({
 
   console.log(screen)
   return (
-    <div className="flex flex-col min-h-[87vh]">
+    <div className="flex flex-col min-h-[87vh] -mt-3">
       {/* {(trackingData && trackingData?.status === "TRANSFERRING") ||
         (trackingData?.status === "STARTED" && ( */}
 
       {trackingData?.status === "STARTED" &&
-        <div className="h-[200px] md-h-[400px] w-full -mt-3">
+        <div className="h-[200px] md-h-[400px] w-full ">
           <MapTracking orderDetails={orderData} tracking={trackingData} />
         </div>}
 
