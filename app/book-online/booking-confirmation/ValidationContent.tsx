@@ -22,7 +22,6 @@ var CryptoJS = require("crypto-js");
 export default function ValidationContent({ handleCreateOrder }) {
   const router = useRouter();
   const [secCode, setSecCode] = useState<any>(null);
-  const cookieState = localStorage.getItem("bookinginfo");
   const [bookingState, setBookingState] = useState<BookingState>();
   const [invalidCode, setInvalidCode] = useState(false);
 
@@ -31,11 +30,12 @@ export default function ValidationContent({ handleCreateOrder }) {
     setSecCode(value);
   };
   useEffect(() => {
+    const cookieState = localStorage.getItem("bookinginfo");
     if (cookieState) {
       setBookingState(JSON.parse(cookieState));
     }
     return () => {};
-  }, [cookieState]);
+  }, []);
 
   async function onSubmit() {
     let securityCode = AES.decrypt(
@@ -77,7 +77,7 @@ export default function ValidationContent({ handleCreateOrder }) {
     <>
       <div className="flex px-4 max-w-[500px] m-auto otp-page">
         <div className="flex flex-col gap-4">
-          <div className="flex items-start flex-grow">
+          <div className="flex items-start flex-grow md:flex-grow-0 mt-4 md:hidden">
             <button
               onClick={handleGoBack}
               className="bg-[#264388] p-2 w-[50px] h-[50px] rounded-full text-white"
@@ -148,7 +148,7 @@ export default function ValidationContent({ handleCreateOrder }) {
             )}
           </div>
 
-          <div className="flex flex-grow flex-col items-center">
+          <div className="flex flex-grow  md:flex-grow-0 flex-col items-center">
             <div className="flex flex-grow mb-2 items-end gap-x-4">
               <img
                 src="/assets/whatsAppNew.svg"

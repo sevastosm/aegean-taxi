@@ -77,7 +77,7 @@ export default function BookOnline() {
       </div>
     </div>
   ) : (
-    <div className="flex relative md:gap-20 flex-col md:flex-row min-h-[200px] max-w-[1200px] mx-auto -mt-5 md:mt-1">
+    <div className="flex relative md:gap-20 flex-col md:flex-row min-h-[200px] max-w-[1200px]  mx-auto -mt-5 md:mt-1">
       <div className="absolute top-3 left-0 z-10 w-full">
         <ToolBar
           toggleDrawer={toggleDrawer}
@@ -94,30 +94,24 @@ export default function BookOnline() {
       >
         <MapComponent activeLocation={activeLocation} />
       </div>
-      {!selectcar && (
-        <div
-          className={classNames(
-            "flex flex-col gap-4 px-4 pb-4 min-w-auto md:min-w-[400px] ",
-            open && "px-4 mt-16 md:-mt-4 grow md:grow-0"
-          )}
-        >
-          <LocationSearch />
 
-          {origin && destination && (
-            <div className="flex-grow">
-              <BookActions
-                nextButtonHandler={nextButtonHandler}
-                calendars={<Calendars />}
-              />
-            </div>
-          )}
-        </div>
-      )}
-      {selectcar && (
-        <div className="flex-grow min-h-max flex flex-col">
-          <CarList />
-        </div>
-      )}
+      <div
+        className={classNames(
+          "flex flex-col gap-4 px-4 pb-4 min-w-auto md:min-w-[400px] ",
+          open && "px-4 mt-16 md:mt-0 grow md:grow-0"
+        )}
+      >
+        <LocationSearch />
+
+        {origin && destination && (
+          <div className="flex-grow">
+            <BookActions
+              nextButtonHandler={nextButtonHandler}
+              calendars={<Calendars />}
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 }

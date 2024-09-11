@@ -74,7 +74,7 @@ const LocationSearch = () => {
           <img
             src={"/assets/booking-flow/bottomArrow.svg"}
             alt="Bottom Pointing Arrow"
-            className="z-10 h-[67px] w-[20px] absolute top-[37px] left-[7px]"
+            className="z-10 h-[64px] w-[20px] absolute top-[37px] left-[5.8px]"
           />
         )}
         {/* Pickup Location Input */}
@@ -102,7 +102,7 @@ const LocationSearch = () => {
             //   getSuggestions(e, "pickUp");
             // }}
             className={`pl-8 pr-8 py-3 border-2 rounded font-semibold focus:outline-none ${
-              origin ? "bg-gray-300" : "bg-white border-blue-500"
+              origin ? "bg-gray-300" : "bg-white border-[#244284]"
             } w-full`}
             placeholder="Enter pick up location"
           />
@@ -149,7 +149,7 @@ const LocationSearch = () => {
               className={`pl-8 pr-8 py-3 border-2 rounded font-semibold focus:outline-none ${
                 destination ? "bg-gray-300" : "bg-white border-blue-500"
               } 
-            ${origin && !destination && "bg-white border-blue-500"}
+            ${origin && !destination && "bg-white border-[#244284]"}
             w-full`}
               placeholder="Enter drop off location"
             />

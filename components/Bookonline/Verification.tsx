@@ -151,38 +151,7 @@ export default function Verification({}: {}) {
         }, 15000);
       }
     });
-    // const token = await reCaptchaRef?.current.executeAsync();
-    // await verifyToken({
-    //   token,
-    //   firstName,
-    //   lastName,
-    //   mobileNumber,
-    // }).then((result: any) => {
-    //   if (result.data.success) {
-    //     sendSms(
-    //       `00${bookingState.phoneNumber.replace("+", "")}`,
-    //       `Your access code is ${smsCode}`
-    //     ).then(() => {
-    //       bookingContext.updateAppState(bookingState);
-    //       setItem("aegean", bookingState, "local");
-    //       router.push("/book-online/verification/validate");
-    //     });
-    //   } else {
-    //     setTimeout(() => {
-    //       setDisabledNext(false);
-    //     }, 15000);
-    //   }
-    // });
   }
-
-  // const visited = getItem("validationBeenVisited", "local");
-
-  // useEffect(() => {
-  //   if (visited) {
-  //     removeItem("validationBeenVisited", "local");
-  //     router.push("/book-online");
-  //   }
-  // }, [visited]);
 
   // Constant for the checkbox properties
   const termsCheckboxProps = {
@@ -201,7 +170,7 @@ export default function Verification({}: {}) {
 
   return (
     <>
-      <div className="flex flex-grow px-4 max-w-[500px] verification-container">
+      <div className="flex flex-grow px-4 max-w-[500px] mx-auto verification-container">
         <div className="flex flex-col gap-4 min-h-[85vh]">
           <div className="block md:hidden mb-5">
             <div className="flex items-start">
@@ -247,7 +216,7 @@ export default function Verification({}: {}) {
             />
           </div>
 
-          <div className="flex flex-row gap-4">
+          <div className="flex flex-row md:flex-grow-0 gap-4">
             <div className="inline-flex">
               <Select
                 labelId="demo-simple-select-standard-label"
@@ -349,11 +318,11 @@ export default function Verification({}: {}) {
             />
           </div>
 
-          <div className="flex flex-grow items-end justify-center">
+          <div className="flex flex-grow md:flex-grow-0  items-end justify-center">
             <CardPaymentBold />
           </div>
 
-          <div className="flex flex-col flex-grow justify-end my-4 w-full">
+          <div className="flex flex-col flex-grow md:flex-grow-0  justify-end my-4 w-full">
             <div className="flex items-center gap-2 my-4">
               <Checkbox
                 sx={{ p: 0, "& .MuiSvgIcon-root": { fontSize: 35 } }}
