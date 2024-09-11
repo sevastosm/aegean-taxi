@@ -75,7 +75,7 @@ export default function ValidationContent({ handleCreateOrder }) {
 
   return (
     <>
-      <div className="flex px-4 max-w-[500px] m-auto otp-page">
+      <div className="flex px-4 max-w-[500px] m-auto h-[calc(100vh-50px)]">
         <div className="flex flex-col gap-4">
           <div className="flex items-start flex-grow md:flex-grow-0 mt-4 md:hidden">
             <button
@@ -95,7 +95,7 @@ export default function ValidationContent({ handleCreateOrder }) {
               </svg>
             </button>
           </div>
-          <h1 className="font-semibold text-[18px] text-[#244284] text-center py-4">
+          <h1 className="font-semibold text-[18px] text-[#244284] text-center md:mt-[20px] pb-4">
             Enter the 5-digit code sent to you at <br />
           </h1>
 
@@ -148,8 +148,8 @@ export default function ValidationContent({ handleCreateOrder }) {
             )}
           </div>
 
-          <div className="flex flex-grow  md:flex-grow-0 flex-col items-center">
-            <div className="flex flex-grow mb-2 items-end gap-x-4">
+          <div className="flex flex-grow  md:flex-grow-0 flex-col items-center justify-center">
+            <div className="flex  mb-2 items-end gap-x-4">
               <img
                 src="/assets/whatsAppNew.svg"
                 alt="Wallet Icon"

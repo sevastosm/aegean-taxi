@@ -11,10 +11,8 @@ export default function Drivers() {
     setOpen(!open);
   };
 
-  console.log("RENDER DRIVERS");
-
   return (
-    <div className="flex relative md:gap-20 flex-col md:flex-row min-h-[200px] max-w-[1200px] mx-auto">
+    <div className="flex relative md:gap-20 flex-col md:flex-row min-h-[200px] max-w-[1200px] h-[calc(100vh-50px)] mx-auto">
       <div className="absolute top-3 left-0 z-10 w-full">
         <ToolBar toggleDrawer={toggleDrawer} isMapOpen={open} />
       </div>
@@ -23,7 +21,7 @@ export default function Drivers() {
         className={classNames(
           "w-full md:h-[700px] md:ml-4",
           "relative",
-          !open ? "flex flex-grow h-[280px] min-h-[280px]" : "hidden md:block"
+          !open ? "flex flex-grow h-[200px] min-h-[200px]" : "hidden md:block"
         )}
       >
         <MapComponent />,

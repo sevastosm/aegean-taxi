@@ -58,20 +58,6 @@ export default function Verification({}: {}) {
     }
   }, [aegeanState]);
 
-  // useEffect(() => {
-  //   if (aegeanState) {
-  //     bookingContext.updateAppState(aegeanState);
-  //   }
-
-  //   if (bookingState) {
-  //     setItem("aegean", bookingState, "local");
-  //   }
-  //   return () => {};
-  // }, [aegeanState, bookingContext, bookingState, setItem]);
-
-  // if (error) return <div>There was an error loading the app</div>;
-  // if (!data) return <div>Loading...</div>;
-
   const handleChange = (event: SelectChangeEvent) => {
     setCountryCode(event.target.value as string);
   };
@@ -170,9 +156,9 @@ export default function Verification({}: {}) {
 
   return (
     <>
-      <div className="flex flex-grow px-4 max-w-[500px] mx-auto verification-container">
+      <div className="flex flex-grow px-4 max-w-[500px] h-[calc(100vh-50px)] mx-auto verification-container">
         <div className="flex flex-col gap-4 min-h-[85vh]">
-          <div className="block md:hidden mb-5">
+          <div className="block md:hidden my-5">
             <div className="flex items-start">
               <button
                 onClick={handleGoBack}
