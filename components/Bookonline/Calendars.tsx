@@ -22,8 +22,8 @@ const Calendars = () => {
 
   const { updateUrl } = useUrl();
 
-  const [pickUpDate, setPickUpDate] = useState<string>("TODAY");
-  const [pickUpTime, setPickUpTime] = useState<string>("NOW");
+  const [pickUpDate, setPickUpDate] = useState<string>("DATE");
+  const [pickUpTime, setPickUpTime] = useState<string>("TIME");
   const [openDayPicker, setOpenDayPicker] = useState(false);
   const [openTimePicker, setOpenTimePicker] = useState(false);
 
@@ -111,12 +111,13 @@ const Calendars = () => {
                 // label=""
                 // open={openTimePicker}
                 timeStep={5}
-                disablePast={pickUpDate === "TODAY" ? true : false}
+                disablePast={pickUpDate === "DATE" ? true : false}
                 skipDisabled={true}
                 sx={{
+                  maxHeight: "350px",
                   position: "absolute",
                   zIndex: 0,
-                  top: { xs: "-240px", md: 45 },
+                  top: { xs: "-360px", md: 45 },
                   background: "#fafafa",
                 }}
                 // onClose={() => setOpenTimePicker(false)}
