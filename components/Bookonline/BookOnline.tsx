@@ -102,7 +102,7 @@ export default function BookOnline() {
         className={classNames(
           "flex flex-col gap-4 p-4 md:px-4 pb-4 min-w-auto md:pt-0 md:min-w-[400px] justify-between",
           open
-            ? "mt-12  md:mt-0 flex-grow md:flex-grow-0"
+            ? "mt-[56px] md:mt-0 flex-grow md:flex-grow-0"
             : "flex-grow md:flex-grow-0"
         )}
       >
