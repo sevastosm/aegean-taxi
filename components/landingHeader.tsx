@@ -41,9 +41,9 @@ export default function LandingHeader() {
               fontWeight: { xs: "700", md: "700" },
               fontSize: { xs: "1.9rem", md: "3.75rem" },
               lineHeight: { xs: "1", md: "1.2" },
-              // display: { xs: "block", md: "none" },
               textAlign: { xs: "center", md: "left" },
               mt: { xs: "0px", md: "48px" },
+              pt: 2,
             }}
           >
             Ride with Aegean Taxi

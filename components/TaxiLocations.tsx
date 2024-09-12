@@ -76,59 +76,63 @@ const santoriniOptions = taxi_locations[availableLocations[1]];
 
 function TaxiLocations() {
   return (
-    <div className="flex flex-grow flex-col max-w-[700px] w-full p-4 mx-auto">
-      <div className="text-center mb-6">
-        <h1 className="font-bold text-2xl leading-[28px] md:leading-[56px]">
-          Book a Taxi online 24/7
-        </h1>
-
-        <p className="font-normal text-xl">Select a location to begin</p>
-      </div>
+    <div className="flex flex-grow flex-col justify-between max-w-[700px] w-full p-4 mx-auto">
       <div>
-        <div className="grid grid-cols-2 gap-4 mb-6">
-          <div className="col-span-1">
-            <Link href={`/book-online?location=${mykonosOptions.location}`}>
-              <Location
-                locationName={mykonosOptions.slide.name}
-                riders={60}
-                imageUrl={mykonosOptions.mapUrl}
-                imageOptions={imageOptions[0]}
-              />
-            </Link>
-          </div>
-          <div className="col-span-1">
-            <Link href={`/book-online?location=${santoriniOptions.location}`}>
-              <Location
-                locationName={santoriniOptions.slide.name}
-                riders={60}
-                imageUrl={santoriniOptions.mapUrl}
-                imageOptions={imageOptions[1]}
-              />
-            </Link>
-          </div>
-        </div>
-        <div className="grid grid-cols-3 gap-4">
-          {availableLocations.map((location, i) => {
-            if (i > 1) {
-              const locationTaxi = taxi_locations[location];
+        <div className="text-center mb-6">
+          <h1 className="font-bold text-2xl leading-[28px] md:leading-[56px]">
+            Book a Taxi online 24/7
+          </h1>
 
-              return (
-                <div key={i} className="col-span-1 mb-2">
-                  <Link href={`/book-online?location=${locationTaxi.location}`}>
-                    <Location
-                      locationName={locationTaxi.slide.name}
-                      riders={60}
-                      imageUrl={locationTaxi.mapUrl}
-                      imageOptions={imageOptions[i]}
-                    />
-                  </Link>
-                </div>
-              );
-            }
-          })}
+          <p className="font-normal text-xl">Select a location to begin</p>
+        </div>
+        <div>
+          <div className="grid grid-cols-2 gap-4 mb-6">
+            <div className="col-span-1">
+              <Link href={`/book-online?location=${mykonosOptions.location}`}>
+                <Location
+                  locationName={mykonosOptions.slide.name}
+                  riders={60}
+                  imageUrl={mykonosOptions.mapUrl}
+                  imageOptions={imageOptions[0]}
+                />
+              </Link>
+            </div>
+            <div className="col-span-1">
+              <Link href={`/book-online?location=${santoriniOptions.location}`}>
+                <Location
+                  locationName={santoriniOptions.slide.name}
+                  riders={60}
+                  imageUrl={santoriniOptions.mapUrl}
+                  imageOptions={imageOptions[1]}
+                />
+              </Link>
+            </div>
+          </div>
+          <div className="grid grid-cols-3 gap-4">
+            {availableLocations.map((location, i) => {
+              if (i > 1) {
+                const locationTaxi = taxi_locations[location];
+
+                return (
+                  <div key={i} className="col-span-1 mb-2">
+                    <Link
+                      href={`/book-online?location=${locationTaxi.location}`}
+                    >
+                      <Location
+                        locationName={locationTaxi.slide.name}
+                        riders={60}
+                        imageUrl={locationTaxi.mapUrl}
+                        imageOptions={imageOptions[i]}
+                      />
+                    </Link>
+                  </div>
+                );
+              }
+            })}
+          </div>
         </div>
       </div>
-      <div className="flex flex-grow flex-col justify-center gap-x-4">
+      <div className="flexflex-col gap-x-4">
         <div className="flex items-end justify-center gap-x-4">
           <div className="flex w-full items-center bg-[#E8E8E8] rounded-xl px-4 py-3">
             <a href="tel:+302152154000">
