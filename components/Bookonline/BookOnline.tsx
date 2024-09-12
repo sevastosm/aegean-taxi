@@ -100,8 +100,8 @@ export default function BookOnline() {
 
       <div
         className={classNames(
-          "flex flex-col flex-grow  gap-4 px-4 md:px-4 pb-4 min-w-auto md:pt-0 md:min-w-[400px] ",
-          open && "mt-12  md:mt-0 grow md:grow-0"
+          "flex flex-col gap-4 px-4 md:px-4 pb-4 min-w-auto md:pt-0 md:min-w-[400px] ",
+          open && "mt-12  md:mt-0 flex-grow  md:flex-grow-0"
         )}
       >
         <LocationSearch />
