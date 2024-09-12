@@ -54,7 +54,8 @@ export default function BookOnline() {
   const selectcar = searchParams.get("selectcar");
 
   const wrapperStyle = classNames(
-    "h-[calc(100vh-70px)] flex relative md:gap-20 flex-col md:flex-row min-h-[200px] max-w-[1200px] md:pt-4  md:h-auto mx-auto"
+    "flex relative md:gap-20 flex-col md:flex-row min-h-[200px] max-w-[1200px] md:pt-4  md:h-auto mx-auto",
+    open ? "h-[calc(100vh-70px)]" : "h-[calc(100vh-125px)]"
   );
 
   const activeLocation =
