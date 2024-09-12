@@ -67,9 +67,9 @@ const LocationSearch = () => {
   }, [originParam, destinationParam]);
 
   return (
-    <div className="flex flex-col mt-4 relative">
+    <div className="flex flex-col relative">
       {/* Pick up */}
-      <div className="flex flex-col space-y-4 relative ">
+      <div className="flex flex-col mb-4 space-y-4 relative ">
         {originParam && (
           <img
             src={"/assets/booking-flow/bottomArrow.svg"}
