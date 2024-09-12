@@ -76,7 +76,7 @@ const santoriniOptions = taxi_locations[availableLocations[1]];
 
 function TaxiLocations() {
   return (
-    <div className="flex flex-grow flex-col max-w-[700px] px-4">
+    <div className="flex flex-grow flex-col max-w-[700px] p-4">
       <div className="text-center mb-6">
         <h1 className="font-bold text-2xl leading-[28px] md:leading-[56px]">
           Book a Taxi online 24/7
@@ -128,35 +128,37 @@ function TaxiLocations() {
           })}
         </div>
       </div>
-      <div className="flex flex-grow items-end justify-center gap-x-4">
-        <div className="flex w-full items-center bg-[#E8E8E8] rounded-xl px-4 py-3">
-          <a href="tel:+302152154000">
-            <Image
-              src="../assets/phoneIcon.svg"
-              className=" bg-white rounded-full p-1.5"
-              width={30}
-              height={30}
-              alt="whatsapp icon"
-            />
-          </a>
-          <a href="tel:+302152154000">
-            <p className="text-black font-semibold ms-2">Call us</p>
-          </a>
-        </div>
+      <div className="flex flex-grow flex-col justify-end gap-x-4">
+        <div className="flex items-end justify-center gap-x-4">
+          <div className="flex w-full items-center bg-[#E8E8E8] rounded-xl px-4 py-3">
+            <a href="tel:+302152154000">
+              <Image
+                src="../assets/phoneIcon.svg"
+                className=" bg-white rounded-full p-1.5"
+                width={30}
+                height={30}
+                alt="whatsapp icon"
+              />
+            </a>
+            <a href="tel:+302152154000">
+              <p className="text-black font-semibold ms-2">Call us</p>
+            </a>
+          </div>
 
-        <div className="flex w-full items-center bg-[#E8E8E8] rounded-xl px-4 py-3">
-          <a href="https://wa.me/+306943829494">
-            <Image
-              src="../assets/whatsapp.svg"
-              className="text-white"
-              width={30}
-              height={30}
-              alt="whatsapp icon"
-            />
-          </a>
-          <a href="https://wa.me/+306943829494">
-            <p className="text-black font-semibold ms-2">WhatsApp</p>
-          </a>
+          <div className="flex w-full items-center bg-[#E8E8E8] rounded-xl px-4 py-3">
+            <a href="https://wa.me/+306943829494">
+              <Image
+                src="../assets/whatsapp.svg"
+                className="text-white"
+                width={30}
+                height={30}
+                alt="whatsapp icon"
+              />
+            </a>
+            <a href="https://wa.me/+306943829494">
+              <p className="text-black font-semibold ms-2">WhatsApp</p>
+            </a>
+          </div>
         </div>
       </div>
     </div>

@@ -101,7 +101,10 @@ export default function DrawerAppBar(props: Props) {
   return (
     <>
       <CssBaseline />
-      <AppBar component="nav" sx={{ bgcolor: "#fff", height: "70px" }}>
+      <AppBar
+        component="nav"
+        sx={{ bgcolor: "#fff", height: "70px", justifyContent: "center" }}
+      >
         <Container disableGutters maxWidth="lg">
           <Toolbar>
             <IconButton
