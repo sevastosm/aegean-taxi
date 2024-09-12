@@ -54,8 +54,7 @@ export default function BookOnline() {
   const selectcar = searchParams.get("selectcar");
 
   const wrapperStyle = classNames(
-    "flex relative md:gap-20 flex-col md:flex-row min-h-[200px] max-w-[1200px]  md:h-auto mx-auto -mt-5 md:mt-1",
-    open ? "h-[calc(100vh-50px)]" : "h-[calc(100vh-100px)]"
+    "h-[calc(100vh-70px)] flex relative md:gap-20 flex-col md:flex-row min-h-[200px] max-w-[1200px] md:pt-4  md:h-auto mx-auto"
   );
 
   const activeLocation =
@@ -76,10 +75,8 @@ export default function BookOnline() {
   }, [locationSearch]);
 
   return !locationSearch ? (
-    <div className="flex flex-col min-h-screen">
-      <div className="px-4">
-        <TaxiLocations />
-      </div>
+    <div className="flex flex-col h-[calc(100vh-70px)]">
+      <TaxiLocations />
     </div>
   ) : (
     <div className={wrapperStyle}>
@@ -102,14 +99,14 @@ export default function BookOnline() {
 
       <div
         className={classNames(
-          "flex flex-col gap-4 px-4 pb-4 min-w-auto md:min-w-[400px] ",
-          open && "  mt-16  md:mt-0 grow md:grow-0"
+          "flex flex-col gap-4 p-4 md:px-4 pb-4 min-w-auto md:pt-0 md:min-w-[400px] ",
+          open && "mt-12  md:mt-0 grow md:grow-0"
         )}
       >
         <LocationSearch />
 
         {origin && destination && (
-          <div className="flex-grow">
+          <div className="flex-grow flex flex-col justify-end">
             <BookActions
               nextButtonHandler={nextButtonHandler}
               calendars={<Calendars />}

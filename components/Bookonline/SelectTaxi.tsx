@@ -53,7 +53,7 @@ const SelectTaxi = ({ cars }: any) => {
 
   return (
     <div className="flex flex-col flex-grow md:flex-grow-0">
-      <div className="w-full mx-auto bg-white flex-grow rounded-2xl pt-4">
+      <div className="w-full mx-auto bg-white flex-grow rounded-2xl pt-4 md:pt-0">
         <div className="">
           {shortedCars.map((car: any, i: number) => {
             return (

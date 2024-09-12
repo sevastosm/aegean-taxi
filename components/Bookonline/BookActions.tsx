@@ -90,7 +90,7 @@ const BookActions = ({ calendars }: any) => {
               onClick={handleClick}
               className="bg-[#264388]  flex items-center justify-center w-full rounded-lg py-3 font-bold text-lg text-white "
             >
-              Book
+              Book Later
             </button>
           )}
         </div>

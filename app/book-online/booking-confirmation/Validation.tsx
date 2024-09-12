@@ -28,7 +28,7 @@ export default function Validation() {
   };
 
   return (
-    <div className="mt-4">
+    <div className="flex felx-col p-4 max-w-[500px] m-auto h-[calc(100vh-70px)]">
       {viewBookingFlow ? (
         <BookingFlow
           orderId={orderId}

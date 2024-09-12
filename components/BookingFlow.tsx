@@ -63,11 +63,11 @@ const slides: slide[] = [
 ];
 
 interface Props {
-  handleSwipeFinished?:() => void;
-  orderId:string
+  handleSwipeFinished?: () => void;
+  orderId: string;
 }
 
-const BookingFlow = ({ handleSwipeFinished,orderId }: Props) => {
+const BookingFlow = ({ handleSwipeFinished, orderId = "" }: Props) => {
   const handleSwipeChange = (swipe: { isEnd: boolean }) => {
     if (swipe.isEnd) {
       setTimeout(() => {
@@ -77,7 +77,7 @@ const BookingFlow = ({ handleSwipeFinished,orderId }: Props) => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-grow  flex-col">
       <div className="swiper-container">
         <Swiper
           onSlideChange={handleSwipeChange}
@@ -94,7 +94,7 @@ const BookingFlow = ({ handleSwipeFinished,orderId }: Props) => {
         >
           {slides.map((slide, i) => (
             <SwiperSlide key={i}>
-              <div className="flex gap-4 flex-col">
+              <div className="flex gap-4 flex-col pt-4">
                 <div className="flex items-center justify-center">
                   <h1 className="font-bold text-2xl text-[#244284]">
                     {slide.title}
@@ -141,7 +141,9 @@ const BookingFlow = ({ handleSwipeFinished,orderId }: Props) => {
           ))}
         </Swiper>
       </div>
-      <CancelButton orderId={orderId}/>
+      <div className="flex-grow flex flex-col justify-end">
+        <CancelButton orderId={orderId} />
+      </div>
     </div>
   );
 };

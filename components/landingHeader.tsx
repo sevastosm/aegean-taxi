@@ -17,13 +17,7 @@ export default function LandingHeader() {
   const atlText = locationDetails.landing.alt_header;
   return (
     <Container maxWidth={"lg"}>
-      <Grid
-        sx={{
-          pt: "16px",
-        }}
-        container
-        spacing={0}
-      >
+      <Grid container spacing={0}>
         <Grid item xs={12} md={5}>
           {/* <Typography
             component="h1"

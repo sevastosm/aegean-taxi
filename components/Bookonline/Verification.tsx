@@ -155,232 +155,228 @@ export default function Verification({}: {}) {
   };
 
   return (
-    <>
-      <div className="flex flex-grow px-4 max-w-[500px] h-[calc(100vh-50px)] mx-auto verification-container">
-        <div className="flex flex-col gap-4 min-h-[85vh]">
-          <div className="block md:hidden my-5">
-            <div className="flex items-start">
-              <button
-                onClick={handleGoBack}
-                className="bg-[#264388] p-2 w-[50px] h-[50px] rounded-full text-white"
+    <div className="flex flex-col flex-grow px-4 max-w-[500px] h-[calc(100vh-70px)] mx-auto verification-container">
+      <div className="flex flex-col gap-4 flex-grow pt-4">
+        <div className="block md:hidden ">
+          <div className="flex items-start">
+            <button
+              onClick={handleGoBack}
+              className="bg-[#264388] p-2 w-[50px] h-[50px] rounded-full text-white"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 105 105"
+                fill="none"
               >
+                <circle cx="52.5" cy="52.5" r="52.5" fill="#264388" />
+                <path
+                  d="M22.8787 49.8787C21.7071 51.0503 21.7071 52.9497 22.8787 54.1213L41.9706 73.2132C43.1421 74.3848 45.0416 74.3848 46.2132 73.2132C47.3848 72.0416 47.3848 70.1421 46.2132 68.9706L29.2426 52L46.2132 35.0294C47.3848 33.8579 47.3848 31.9584 46.2132 30.7868C45.0416 29.6152 43.1421 29.6152 41.9706 30.7868L22.8787 49.8787ZM86 49L25 49V55L86 55V49Z"
+                  fill="white"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div className="mb-2 w-full">
+          <input
+            type="text"
+            id="firstName"
+            value={firstName}
+            onChange={handleFirstnameChange}
+            placeholder="Enter First Name"
+            aria-label="Firstname"
+            className="w-full bg-[#F6F6F6] placeholder:text-[#626262] p-2 py-4 border-0 focus:outline-none focus:ring-0"
+          />
+        </div>
+        <div className="w-full">
+          <input
+            type="text"
+            id="lastName"
+            value={lastName}
+            onChange={handleLastnameChange}
+            placeholder="Enter Surname "
+            aria-label="Lastname"
+            className="w-full bg-[#f6f6f6] placeholder:text-[#626262] p-2 py-4 border-0 focus:outline-none focus:ring-0"
+          />
+        </div>
+
+        <div className="flex flex-row md:flex-grow-0 gap-4">
+          <div className="inline-flex">
+            <Select
+              labelId="demo-simple-select-standard-label"
+              id="demo-simple-select-standard"
+              value={countryCode}
+              onChange={handleChange}
+              defaultValue={"0"}
+              native={false}
+              renderValue={renderValue}
+              name="countryCode"
+              classes={{
+                icon: styles.icon,
+                iconOpen: styles.iconOpen,
+                select: styles.selectSelect,
+                nativeInput: styles.fontSize,
+              }}
+              sx={{
+                width: "80px", // Adjust the width to your desired size
+                "& .MuiFilledInput-root": {
+                  borderBottom: "none", // Remove bottom border
+                },
+                "& .MuiInputBase-root:before, & .MuiInputBase-root:after": {
+                  borderBottom: "none", // Remove bottom border in focus and active states
+                },
+                "& .MuiInputBase-root.Mui-focused:before, & .MuiInputBase-root.Mui-focused:after":
+                  {
+                    borderBottom: "none", // Remove bottom border when focused
+                  },
+                "& fieldset": {
+                  border: "none", // Remove bottom border when focused
+                },
+              }}
+            >
+              <MenuItem
+                className={styles.MenuItem + "px-4"}
+                role="option"
+                value="0"
+              >
+                Choose country code
+              </MenuItem>
+              <MenuItem className={styles.MenuItem} role="option" value="1">
+                +1
+                <span className={styles.countryLabel}>
+                  United States/Canada
+                </span>
+              </MenuItem>
+              <MenuItem className={styles.MenuItem} role="option" value="44">
+                +44
+                <span className={styles.countryLabel}>United Kingdom</span>
+              </MenuItem>
+              <MenuItem className={styles.MenuItem} role="option" value="33">
+                +33
+                <span className={styles.countryLabel}>France</span>
+              </MenuItem>
+              <MenuItem className={styles.MenuItem} role="option" value="30">
+                +30
+                <span className={styles.countryLabel}>Greece</span>
+              </MenuItem>
+              <MenuItem className={styles.MenuItem} role="option" value="39">
+                +39
+                <span className={styles.countryLabel}>Italy</span>
+              </MenuItem>
+              <MenuItem className={styles.MenuItem} role="option" value="49">
+                +49
+                <span className={styles.countryLabel}>Germany</span>
+              </MenuItem>
+              <MenuItem className={styles.MenuItem} role="option" value="41">
+                +41
+                <span className={styles.countryLabel}>Switzerland</span>
+              </MenuItem>
+              <MenuItem className={styles.MenuItem} role="option" value="34">
+                +34
+                <span className={styles.countryLabel}>Spain</span>
+              </MenuItem>
+
+              {countryListExcluded.map((country, index) => (
+                <MenuItem
+                  className={styles.MenuItem}
+                  key={index}
+                  role="option"
+                  value={country.phone}
+                >
+                  +{country.phone}
+                  <span className={styles.countryLabel}>{country.label}</span>
+                </MenuItem>
+              ))}
+            </Select>
+          </div>
+          <input
+            type="text"
+            id="phoneNumber"
+            value={phone}
+            onChange={handlePhoneChange}
+            placeholder="Phone number"
+            aria-label="phone number"
+            inputmode="numeric"
+            pattern="[09]*"
+            className="w-full bg-[#F6F6F6] placeholder:text-[#626262] p-2 py-4 border-0 focus:outline-none focus:ring-0"
+          />
+        </div>
+
+        <div className="flex flex-grow md:flex-grow-0  items-end justify-center">
+          <CardPaymentBold />
+        </div>
+
+        <div className="flex flex-col flex-grow md:flex-grow-0 justify-end w-full">
+          <div className="flex items-center gap-2 my-4">
+            <Checkbox
+              sx={{ p: 0, "& .MuiSvgIcon-root": { fontSize: 35 } }}
+              onChange={() => setTerms(!terms)}
+              checked={terms}
+            />
+            <label className="flex items-center space-x-2">
+              {/* <input
+                type="checkbox"
+                name="termsCheckboxProps.name"
+                className="h-[35px] w-[35px]"
+              /> */}
+              <span className="text-sm text-gray-500">
+                <a
+                  href="termsCheckboxProps.termsLinkHref"
+                  className="text-[#BCBCBC]"
+                >
+                  {termsCheckboxProps.labelText}
+                  <span className="text-[#000]">
+                    {termsCheckboxProps.termsLinkText}
+                  </span>
+                  {" and "}
+                </a>
+                <a
+                  href="termsCheckboxProps.privacyLinkHref"
+                  className="text-[#000]"
+                >
+                  <span className="">{termsCheckboxProps.privacyLinkText}</span>
+                </a>
+              </span>
+            </label>
+          </div>
+
+          <button
+            onClick={handleSubmit}
+            disabled={
+              phone.length < 9 ||
+              !firstName ||
+              !lastName ||
+              countryCode === "0" ||
+              !terms
+            }
+            className="w-full !bg-[#264388] text-white font-semibold text-xl py-4 rounded-md disabled:opacity-50"
+          >
+            <div className="flex relative items-center">
+              <div className="w-full text-center">Request code</div>
+              <div className="w-[50px]  absolute rotate-180 right-0 mr-4">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 105 105"
                   fill="none"
                 >
-                  <circle cx="52.5" cy="52.5" r="52.5" fill="#264388" />
                   <path
                     d="M22.8787 49.8787C21.7071 51.0503 21.7071 52.9497 22.8787 54.1213L41.9706 73.2132C43.1421 74.3848 45.0416 74.3848 46.2132 73.2132C47.3848 72.0416 47.3848 70.1421 46.2132 68.9706L29.2426 52L46.2132 35.0294C47.3848 33.8579 47.3848 31.9584 46.2132 30.7868C45.0416 29.6152 43.1421 29.6152 41.9706 30.7868L22.8787 49.8787ZM86 49L25 49V55L86 55V49Z"
                     fill="white"
                   />
                 </svg>
-              </button>
-            </div>
-          </div>
-
-          <div className="mb-2 w-full">
-            <input
-              type="text"
-              id="firstName"
-              value={firstName}
-              onChange={handleFirstnameChange}
-              placeholder="Enter First Name"
-              aria-label="Firstname"
-              className="w-full bg-[#F6F6F6] placeholder:text-[#626262] p-2 py-4 border-0 focus:outline-none focus:ring-0"
-            />
-          </div>
-          <div className="w-full">
-            <input
-              type="text"
-              id="lastName"
-              value={lastName}
-              onChange={handleLastnameChange}
-              placeholder="Enter Surname "
-              aria-label="Lastname"
-              className="w-full bg-[#f6f6f6] placeholder:text-[#626262] p-2 py-4 border-0 focus:outline-none focus:ring-0"
-            />
-          </div>
-
-          <div className="flex flex-row md:flex-grow-0 gap-4">
-            <div className="inline-flex">
-              <Select
-                labelId="demo-simple-select-standard-label"
-                id="demo-simple-select-standard"
-                value={countryCode}
-                onChange={handleChange}
-                defaultValue={"0"}
-                native={false}
-                renderValue={renderValue}
-                name="countryCode"
-                classes={{
-                  icon: styles.icon,
-                  iconOpen: styles.iconOpen,
-                  select: styles.selectSelect,
-                  nativeInput: styles.fontSize,
-                }}
-                sx={{
-                  width: "80px", // Adjust the width to your desired size
-                  "& .MuiFilledInput-root": {
-                    borderBottom: "none", // Remove bottom border
-                  },
-                  "& .MuiInputBase-root:before, & .MuiInputBase-root:after": {
-                    borderBottom: "none", // Remove bottom border in focus and active states
-                  },
-                  "& .MuiInputBase-root.Mui-focused:before, & .MuiInputBase-root.Mui-focused:after":
-                    {
-                      borderBottom: "none", // Remove bottom border when focused
-                    },
-                  "& fieldset": {
-                    border: "none", // Remove bottom border when focused
-                  },
-                }}
-              >
-                <MenuItem
-                  className={styles.MenuItem + "px-4"}
-                  role="option"
-                  value="0"
-                >
-                  Choose country code
-                </MenuItem>
-                <MenuItem className={styles.MenuItem} role="option" value="1">
-                  +1
-                  <span className={styles.countryLabel}>
-                    United States/Canada
-                  </span>
-                </MenuItem>
-                <MenuItem className={styles.MenuItem} role="option" value="44">
-                  +44
-                  <span className={styles.countryLabel}>United Kingdom</span>
-                </MenuItem>
-                <MenuItem className={styles.MenuItem} role="option" value="33">
-                  +33
-                  <span className={styles.countryLabel}>France</span>
-                </MenuItem>
-                <MenuItem className={styles.MenuItem} role="option" value="30">
-                  +30
-                  <span className={styles.countryLabel}>Greece</span>
-                </MenuItem>
-                <MenuItem className={styles.MenuItem} role="option" value="39">
-                  +39
-                  <span className={styles.countryLabel}>Italy</span>
-                </MenuItem>
-                <MenuItem className={styles.MenuItem} role="option" value="49">
-                  +49
-                  <span className={styles.countryLabel}>Germany</span>
-                </MenuItem>
-                <MenuItem className={styles.MenuItem} role="option" value="41">
-                  +41
-                  <span className={styles.countryLabel}>Switzerland</span>
-                </MenuItem>
-                <MenuItem className={styles.MenuItem} role="option" value="34">
-                  +34
-                  <span className={styles.countryLabel}>Spain</span>
-                </MenuItem>
-
-                {countryListExcluded.map((country, index) => (
-                  <MenuItem
-                    className={styles.MenuItem}
-                    key={index}
-                    role="option"
-                    value={country.phone}
-                  >
-                    +{country.phone}
-                    <span className={styles.countryLabel}>{country.label}</span>
-                  </MenuItem>
-                ))}
-              </Select>
-            </div>
-            <input
-              type="text"
-              id="phoneNumber"
-              value={phone}
-              onChange={handlePhoneChange}
-              placeholder="Phone number"
-              aria-label="phone number"
-              inputmode="numeric"
-              pattern="[09]*"
-              className="w-full bg-[#F6F6F6] placeholder:text-[#626262] p-2 py-4 border-0 focus:outline-none focus:ring-0"
-            />
-          </div>
-
-          <div className="flex flex-grow md:flex-grow-0  items-end justify-center">
-            <CardPaymentBold />
-          </div>
-
-          <div className="flex flex-col flex-grow md:flex-grow-0  justify-end my-4 w-full">
-            <div className="flex items-center gap-2 my-4">
-              <Checkbox
-                sx={{ p: 0, "& .MuiSvgIcon-root": { fontSize: 35 } }}
-                onChange={() => setTerms(!terms)}
-                checked={terms}
-              />
-              <label className="flex items-center space-x-2">
-                {/* <input
-                type="checkbox"
-                name="termsCheckboxProps.name"
-                className="h-[35px] w-[35px]"
-              /> */}
-                <span className="text-sm text-gray-500">
-                  <a
-                    href="termsCheckboxProps.termsLinkHref"
-                    className="text-[#BCBCBC]"
-                  >
-                    {termsCheckboxProps.labelText}
-                    <span className="text-[#000]">
-                      {termsCheckboxProps.termsLinkText}
-                    </span>
-                    {" and "}
-                  </a>
-                  <a
-                    href="termsCheckboxProps.privacyLinkHref"
-                    className="text-[#000]"
-                  >
-                    <span className="">
-                      {termsCheckboxProps.privacyLinkText}
-                    </span>
-                  </a>
-                </span>
-              </label>
-            </div>
-
-            <button
-              onClick={handleSubmit}
-              disabled={
-                phone.length < 9 ||
-                !firstName ||
-                !lastName ||
-                countryCode === "0" ||
-                !terms
-              }
-              className="w-full !bg-[#264388] text-white font-semibold text-xl py-4 rounded-md disabled:opacity-50"
-            >
-              <div className="flex relative items-center">
-                <div className="w-full text-center">Request code</div>
-                <div className="w-[50px]  absolute rotate-180 right-0 mr-4">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 105 105"
-                    fill="none"
-                  >
-                    <path
-                      d="M22.8787 49.8787C21.7071 51.0503 21.7071 52.9497 22.8787 54.1213L41.9706 73.2132C43.1421 74.3848 45.0416 74.3848 46.2132 73.2132C47.3848 72.0416 47.3848 70.1421 46.2132 68.9706L29.2426 52L46.2132 35.0294C47.3848 33.8579 47.3848 31.9584 46.2132 30.7868C45.0416 29.6152 43.1421 29.6152 41.9706 30.7868L22.8787 49.8787ZM86 49L25 49V55L86 55V49Z"
-                      fill="white"
-                    />
-                  </svg>
-                </div>
               </div>
-            </button>
-          </div>
-
-          <ReCAPTCHA
-            ref={reCaptchaRef}
-            size="invisible"
-            sitekey="6Lc_Wq8pAAAAAIXLFQ8NtSy1YwvRYiaXC52e70NP"
-          />
+            </div>
+          </button>
         </div>
+
+        <ReCAPTCHA
+          ref={reCaptchaRef}
+          size="invisible"
+          sitekey="6Lc_Wq8pAAAAAIXLFQ8NtSy1YwvRYiaXC52e70NP"
+        />
       </div>
-    </>
+    </div>
   );
 }
 const countryListExcluded = [
