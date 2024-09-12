@@ -82,7 +82,6 @@ function TaxiLocations() {
           <h1 className="font-bold text-2xl leading-[28px] md:leading-[56px]">
             Book a Taxi online 24/7
           </h1>
-
           <p className="font-normal text-xl">Select a location to begin</p>
         </div>
         <div>
