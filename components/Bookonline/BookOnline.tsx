@@ -92,7 +92,7 @@ export default function BookOnline() {
         className={classNames(
           "w-full md:h-[700px] md:ml-4",
           "relative",
-          !open ? "flex flex-grow min-h-[250px]" : "hidden md:block"
+          !open ? "flex flex-grow h-[280px]" : "hidden md:block"
         )}
       >
         <MapComponent activeLocation={activeLocation} />
