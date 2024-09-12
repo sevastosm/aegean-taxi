@@ -28,7 +28,7 @@ export default function Drivers() {
       </div>
       <div
         className={classNames(
-          "flex flex-col gap-4 px-4 pb-4 min-w-auto md:min-w-[400px] md:h-[700px]",
+          "flex flex-col flex-grow gap-4 px-4 pb-4 min-w-auto md:min-w-[400px] md:h-[700px]",
           open && "mt-12  md:mt-0 grow md:grow-0"
         )}
       >
