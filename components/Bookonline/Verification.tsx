@@ -307,7 +307,7 @@ export default function Verification({}: {}) {
           <CardPaymentBold />
         </div>
 
-        <div className="flex flex-col flex-grow md:flex-grow-0 justify-end w-full">
+        <div className="flex flex-col flex-grow md:flex-grow-0 justify-center w-full">
           <div className="flex items-center gap-2 my-4">
             <Checkbox
               sx={{ p: 0, "& .MuiSvgIcon-root": { fontSize: 35 } }}

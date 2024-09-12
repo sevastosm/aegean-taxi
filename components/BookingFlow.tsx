@@ -141,7 +141,7 @@ const BookingFlow = ({ handleSwipeFinished, orderId = "" }: Props) => {
           ))}
         </Swiper>
       </div>
-      <div className="flex-grow flex flex-col justify-end">
+      <div className="flex-grow flex flex-col justify-center">
         <CancelButton orderId={orderId} />
       </div>
     </div>

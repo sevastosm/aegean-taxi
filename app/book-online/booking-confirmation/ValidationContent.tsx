@@ -146,7 +146,7 @@ export default function ValidationContent({ handleCreateOrder }) {
         )}
       </div>
 
-      <div className="flex flex-grow  md:flex-grow-0 flex-col items-center justify-end">
+      <div className="flex flex-grow  md:flex-grow-0 flex-col items-center justify-center">
         <div className="flex  mb-2 items-end gap-x-4">
           <img
             src="/assets/whatsAppNew.svg"
