@@ -13,39 +13,34 @@ import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import { updateStorage } from "@/heplers/updateStorage";
 
-
 type Props = {};
 
 const Calendars = () => {
-
   dayjs.extend(utc);
   dayjs.extend(timezone);
   dayjs.tz.setDefault("Europe/Athens");
 
-  const { updateUrl } = useUrl()
+  const { updateUrl } = useUrl();
 
   const [pickUpDate, setPickUpDate] = useState<string>("TODAY");
   const [pickUpTime, setPickUpTime] = useState<string>("NOW");
-  const [openDayPicker, setOpenDayPicker] = useState(false)
-  const [openTimePicker, setOpenTimePicker] = useState(false)
+  const [openDayPicker, setOpenDayPicker] = useState(false);
+  const [openTimePicker, setOpenTimePicker] = useState(false);
 
   const setPickUpDateHandler = (value: any) => {
     const dateString = dayjs(value).format("YYYY-MM-DD");
-    setPickUpDate(dateString)
-    updateUrl("pickupdate", dateString)
+    setPickUpDate(dateString);
+    updateUrl("pickupdate", dateString);
     updateStorage("pickupdate", dateString);
-
   };
 
   const setPickUpTimeHandler = (value: any) => {
     setOpenTimePicker(false);
     const timeString = dayjs(value).format("HH:mm");
-    setPickUpTime(timeString)
-    updateUrl("pickuptime", timeString)
+    setPickUpTime(timeString);
+    updateUrl("pickuptime", timeString);
     updateStorage("pickuptime", timeString);
-
   };
-
 
   return (
     <Grid container spacing={1} sx={{ minHeight: 50 }}>
@@ -110,7 +105,6 @@ const Calendars = () => {
           </Button>
 
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-
             {openTimePicker && (
               <DigitalClock
                 defaultValue={dayjs()}
@@ -121,8 +115,7 @@ const Calendars = () => {
                 skipDisabled={true}
                 sx={{
                   position: "absolute",
-                  zIndex: 99999,
-                  top: 45,
+                  zIndex: 0,
                   background: "#fafafa",
                 }}
                 // onClose={() => setOpenTimePicker(false)}
