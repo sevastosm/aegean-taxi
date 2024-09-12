@@ -153,8 +153,10 @@ const Places = ({
             onClick={() => {
               if (!originParam) {
                 updateUrl("origin", spot.destination_name);
+                setPredictions([]);
               } else {
                 updateUrl("destination", spot.destination_name);
+                setPredictions([]);
               }
             }}
           >
