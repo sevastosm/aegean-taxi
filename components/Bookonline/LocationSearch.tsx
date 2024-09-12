@@ -67,7 +67,7 @@ const LocationSearch = () => {
   }, [originParam, destinationParam]);
 
   return (
-    <div className="flex flex-col relative pt-4 md:pt-0">
+    <div className="flex flex-col relative">
       {/* Pick up */}
       <div className="flex flex-col mb-4 space-y-4 relative ">
         {originParam && (
