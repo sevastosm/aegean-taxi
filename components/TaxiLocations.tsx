@@ -128,7 +128,7 @@ function TaxiLocations() {
           })}
         </div>
       </div>
-      <div className="flex flex-grow flex-col justify-end gap-x-4">
+      <div className="flex flex-grow flex-col justify-center gap-x-4">
         <div className="flex items-end justify-center gap-x-4">
           <div className="flex w-full items-center bg-[#E8E8E8] rounded-xl px-4 py-3">
             <a href="tel:+302152154000">
