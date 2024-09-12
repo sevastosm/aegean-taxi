@@ -76,7 +76,7 @@ const santoriniOptions = taxi_locations[availableLocations[1]];
 
 function TaxiLocations() {
   return (
-    <div className="flex flex-grow flex-col max-w-[700px] p-4">
+    <div className="flex flex-grow flex-col max-w-[700px] w-full p-4 mx-auto">
       <div className="text-center mb-6">
         <h1 className="font-bold text-2xl leading-[28px] md:leading-[56px]">
           Book a Taxi online 24/7
