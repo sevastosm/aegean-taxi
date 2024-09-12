@@ -76,7 +76,7 @@ const santoriniOptions = taxi_locations[availableLocations[1]];
 
 function TaxiLocations() {
   return (
-    <div className="flex flex-col gap-6 max-w-[700px] m-auto">
+    <div className="flex flex-col gap-0 md:gap-6 max-w-[700px] m-auto">
       <div className="text-center">
         <h1 className="font-bold text-2xl leading-[28px] md:leading-[56px]">
           Book a Taxi online 24/7
@@ -84,7 +84,7 @@ function TaxiLocations() {
 
         <p className="font-normal text-xl">Select a location to begin</p>
       </div>
-      <div>
+      <div className="mt-4 md:mt-0">
         <div className="grid grid-cols-2 gap-4 mb-6">
           <div className="col-span-1">
             <Link href={`/book-online?location=${mykonosOptions.location}`}>

@@ -13,7 +13,7 @@ export default function Drivers() {
 
   return (
     <div className="flex relative md:gap-20 flex-col md:flex-row min-h-[200px] max-w-[1200px] h-[calc(100vh-50px)] mx-auto">
-      <div className="absolute top-3 left-0 z-10 w-full">
+      <div className="absolute top-0 pt-3  left-0 z-10 w-full">
         <ToolBar toggleDrawer={toggleDrawer} isMapOpen={open} />
       </div>
 

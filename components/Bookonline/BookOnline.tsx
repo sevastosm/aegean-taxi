@@ -53,6 +53,11 @@ export default function BookOnline() {
   const destination = searchParams.get("destination");
   const selectcar = searchParams.get("selectcar");
 
+  const wrapperStyle = classNames(
+    "flex relative md:gap-20 flex-col md:flex-row min-h-[200px] max-w-[1200px]  md:h-auto mx-auto -mt-5 md:mt-1",
+    open ? "h-[calc(100vh-50px)]" : "h-[calc(100vh-100px)]"
+  );
+
   const activeLocation =
     locationSearch && locationDetails.taxi_locations[locationSearch];
 
@@ -77,8 +82,8 @@ export default function BookOnline() {
       </div>
     </div>
   ) : (
-    <div className="flex relative md:gap-20 flex-col md:flex-row min-h-[200px] max-w-[1200px] h-[calc(100vh-50px)] md:h-auto mx-auto -mt-5 md:mt-1">
-      <div className="absolute top-8 left-0 z-10 w-full">
+    <div className={wrapperStyle}>
+      <div className="absolute top-0 pt-3 left-0 z-10 w-full">
         <ToolBar
           toggleDrawer={toggleDrawer}
           handleClick={handleBack}
