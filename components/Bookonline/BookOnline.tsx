@@ -76,7 +76,7 @@ export default function BookOnline() {
   }, [locationSearch]);
 
   return !locationSearch ? (
-    <div className="flex flex-col h-[calc(100vh-70px)]">
+    <div className="flex flex-col h-[calc(100vh-124px)]">
       <TaxiLocations />
     </div>
   ) : (
@@ -92,7 +92,7 @@ export default function BookOnline() {
         className={classNames(
           "w-full md:h-[700px] md:ml-4",
           "relative",
-          !open ? "flex flex-grow max-h-[300px] h-[60%]" : "hidden md:block"
+          !open ? "flex flex-grow min-h-[300px] h-[60%]" : "hidden md:block"
         )}
       >
         <MapComponent activeLocation={activeLocation} />
