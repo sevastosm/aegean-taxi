@@ -55,7 +55,7 @@ export default function BookOnline() {
   const wrapperStyle = classNames(
     "flex relative md:gap-2 flex-col md:flex-row min-h-[200px] max-w-[1200px] md:pt-4  md:h-auto mx-auto",
     // open ? "h-[calc(100vh-70px)]" : "h-[calc(100vh-125px)]"
-    "h-[calc(100vh-70px)]"
+    "h-[calc(100vh-124px)]"
   );
 
   const activeLocation =
