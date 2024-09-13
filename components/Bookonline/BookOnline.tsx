@@ -92,7 +92,7 @@ export default function BookOnline() {
         className={classNames(
           "w-full md:h-[700px] md:ml-4",
           "relative",
-          !open ? "flex flex-grow h-[280px]" : "hidden md:block"
+          !open ? "flex flex-grow max-h-[300px] h-[60%]" : "hidden md:block"
         )}
       >
         <MapComponent activeLocation={activeLocation} />
@@ -106,11 +106,13 @@ export default function BookOnline() {
             : "flex-grow md:flex-grow-0"
         )}
       >
-        <LocationSearch />
+        <div className="flex-grow">
+          <LocationSearch />
+        </div>
 
         {origin && destination && (
-          <div className="flex-grow flex flex-col relative">
-            <div className="w-full bottom-0 left-0 absolute">
+          <div className="flex flex-col">
+            <div className="w-full">
               <BookActions
                 nextButtonHandler={nextButtonHandler}
                 calendars={<Calendars />}
