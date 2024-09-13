@@ -1,6 +1,10 @@
 "use client";
 import { BookingStatus } from "@/types/bookingFlow";
-import { getOrderData, getOrderDetails, getOrderUpdate } from "@/utils/fetchers";
+import {
+  getOrderData,
+  getOrderDetails,
+  getOrderUpdate,
+} from "@/utils/fetchers";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import CancelButton from "../CancelButton";
@@ -18,7 +22,7 @@ export type screen =
   | "ride-transfering"
   | null;
 
-export interface orderData { }
+export interface orderData {}
 
 let apiTimeout: any;
 const Order = () => {
@@ -50,7 +54,6 @@ const Order = () => {
         setOrderData(data);
         handleOrderUpdate(orderId);
       }
-
     }
   };
 
@@ -72,6 +75,7 @@ const Order = () => {
           handleOrderUpdate(orderId);
         }, 10000);
       }
+      // addd has arived status
       if (result.status === "TRANSFERRING") {
         setTrackingData(result);
         setScreen("ride-transfering");
@@ -110,10 +114,6 @@ const Order = () => {
   }, [orderData]);
 
   if (orderData) {
-
-
-
-
     return (
       <>
         <OrderDetails

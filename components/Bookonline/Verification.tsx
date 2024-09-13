@@ -18,7 +18,6 @@ import { AppContext } from "@/context/appState";
 import { sendSms, verifyToken } from "@/utils/fetchers";
 
 // models
-import { BookingState } from "@/types/bookingState";
 // import CardPayment from "@/components/Bookonline/CardPayment";
 import CardPaymentBold from "@/components/Bookonline/CardPaymentBold";
 
@@ -44,8 +43,7 @@ export default function Verification({}: {}) {
   const [disabledNext, setDisabledNext] = useState(false);
   const [terms, setTerms] = useState(false);
 
-  const bookingContext = useContext<any>(AppContext);
-  const bookingState: BookingState = bookingContext.state;
+  const [bookingState, setBookingState] = useState<BookingState>();
 
   // const { data, error } = useSWR({}, tokenFetcher);
 
@@ -53,10 +51,12 @@ export default function Verification({}: {}) {
   const aegeanState = getItem("aegean", "local");
 
   useEffect(() => {
-    if (aegeanState && aegeanState.userVerified) {
-      router.push("/book-online");
+    const cookieState = localStorage.getItem("bookinginfo");
+    if (cookieState) {
+      setBookingState(JSON.parse(cookieState));
     }
-  }, [aegeanState]);
+    return () => {};
+  }, []);
 
   const handleChange = (event: SelectChangeEvent) => {
     setCountryCode(event.target.value as string);
@@ -108,11 +108,6 @@ export default function Verification({}: {}) {
       ).then(() => {
         router.push("/book-online/booking-confirmation");
       });
-      return;
-    } else {
-      setTimeout(() => {
-        setDisabledNext(false);
-      }, 15000);
     }
 
     const token = await reCaptchaRef?.current.executeAsync();
@@ -124,17 +119,11 @@ export default function Verification({}: {}) {
     }).then((result: any) => {
       if (result.data.success) {
         sendSms(
-          `00${bookingState.phoneNumber.replace("+", "")}`,
+          `00${mobileNumber.replace("+", "")}`,
           `Your access code is ${smsCode}`
         ).then(() => {
-          bookingContext.updateAppState(bookingState);
-          setItem("aegean", bookingState, "local");
           router.push("/book-online/booking-confirmation");
         });
-      } else {
-        setTimeout(() => {
-          setDisabledNext(false);
-        }, 15000);
       }
     });
   }
@@ -161,7 +150,7 @@ export default function Verification({}: {}) {
           <div className="flex items-start">
             <button
               onClick={handleGoBack}
-              className="bg-[#264388] p-2 w-[50px] h-[50px] rounded-full text-white"
+              className="bg-[#264388]  focus:ring focus:ring p-2 w-[50px] h-[50px] rounded-full text-white"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

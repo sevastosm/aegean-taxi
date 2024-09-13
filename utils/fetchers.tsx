@@ -123,7 +123,7 @@ export const createOrder = async (contextState: any) => {
             waypoints: contextState.waypoints,
             client: {
               name: `${contextState.firstName} ${contextState.lastName}`,
-              phone: contextState.phoneNumber,
+              phone: `+${contextState.countryCode}${contextState.phoneNumber}`,
             },
             notes: "From Aegean Taxi Web App",
             // pickupTime: encodeURIComponent(dayjsLocal.toISOString()),

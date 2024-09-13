@@ -2,6 +2,7 @@ import useUrl from "@/app/hooks/useUrl";
 import { updateStorage } from "@/heplers/updateStorage";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useState, useEffect, useCallback } from "react";
+import Aegeanbutton from "../ui/Aegeanbutton";
 import CardPayment from "./CardPayment";
 const uberCar = "/assets/booking-flow/uberCar.svg";
 const uberVan = "/assets/booking-flow/uberVan.svg";
@@ -52,7 +53,7 @@ const SelectTaxi = ({ cars }: any) => {
   }, [cars]);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col flex-grow relative">
       <div className="w-full mx-auto bg-white flex-grow rounded-2xl pt-4 md:pt-0">
         <div className="">
           {shortedCars.map((car: any, i: number) => {
@@ -106,17 +107,17 @@ const SelectTaxi = ({ cars }: any) => {
           })}
         </div>
       </div>
-      <div className="px-4">
-        <CardPayment />
-      </div>
-      <div className="flex items-end justify-center pb-4">
-        <button
+      <div className="flex flex-col bg-white items-end justify-center pb-4 absolute left-0 bottom-0 w-full">
+        <div className="px-4">
+          <CardPayment />
+        </div>
+        <Aegeanbutton
+          label={
+            selectedItem ? "Book" + " " + selectedItem : "Select transportation"
+          }
           onClick={handleClick}
           disabled={!selectedItem}
-          className="w-full bg-[#264388] text-white font-semibold text-xl py-4 rounded-md"
-        >
-          {selectedItem ? "Book" + " " + selectedItem : "Select transportation"}
-        </button>
+        />
       </div>
     </div>
   );

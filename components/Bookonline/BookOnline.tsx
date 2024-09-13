@@ -109,11 +109,13 @@ export default function BookOnline() {
         <LocationSearch />
 
         {origin && destination && (
-          <div className="flex-grow flex flex-col ">
-            <BookActions
-              nextButtonHandler={nextButtonHandler}
-              calendars={<Calendars />}
-            />
+          <div className="flex-grow flex flex-col relative">
+            <div className="w-full bottom-0 left-0 absolute">
+              <BookActions
+                nextButtonHandler={nextButtonHandler}
+                calendars={<Calendars />}
+              />
+            </div>
           </div>
         )}
       </div>

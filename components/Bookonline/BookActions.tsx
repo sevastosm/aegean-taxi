@@ -7,6 +7,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
+import Aegeanbutton from "../ui/Aegeanbutton";
 type Props = {};
 
 const calendarInput = "/assets/booking-flow/calendarInput.svg";
@@ -76,14 +77,9 @@ const BookActions = ({ calendars }: any) => {
 
   return (
     <div>
-      <div className="flex flex-grow justify-between">
+      <div className="flex flex-grow gap-2 justify-between">
         {!open && (
-          <button
-            onClick={handleBookNow}
-            className="bg-[#264388] mr-4 flex  items-center justify-center w-[80%] rounded-lg py-3 font-bold text-lg text-white "
-          >
-            Book for now
-          </button>
+          <Aegeanbutton onClick={handleBookNow} label={"Book for now"} />
         )}
 
         <div className={`flex flex-col gap-4 ${open && "w-full"}`}>
@@ -104,14 +100,7 @@ const BookActions = ({ calendars }: any) => {
             {open && <div className="ml-2 w-full">{calendars}</div>}
           </div>
           {msg && <div>Plase choose date and time</div>}
-          {open && (
-            <button
-              onClick={handleClick}
-              className="bg-[#264388]  flex items-center justify-center w-full rounded-lg py-3 font-bold text-lg text-white "
-            >
-              Book Later
-            </button>
-          )}
+          {open && <Aegeanbutton onClick={handleClick} label={" Book Later"} />}
         </div>
       </div>
     </div>

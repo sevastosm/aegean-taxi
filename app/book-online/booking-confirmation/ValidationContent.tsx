@@ -14,6 +14,7 @@ import { BookingState } from "@/types/bookingState";
 import AES from "crypto-js/aes";
 import { createOrder } from "@/utils/fetchers";
 import OtpInput from "react-otp-input";
+import Aegeanbutton from "@/components/ui/Aegeanbutton";
 
 // context
 
@@ -37,17 +38,20 @@ export default function ValidationContent({ handleCreateOrder }) {
     return () => {};
   }, []);
 
-  async function onSubmit() {
+  async function onSubmit(e) {
+    e.preventDefault();
     let securityCode = AES.decrypt(
       `${bookingState.securityCode}`,
       `${process.env.NEXT_PUBLIC_CRYPTO_KEY}`
     );
 
+    const mobileNumber = `+${bookingState.countryCode}${bookingState.phoneNumber}`;
+
     if (securityCode.toString(CryptoJS.enc.Utf8) === secCode) {
       // Create order
       await createOrder(bookingState).then((data) => {
         if (data.orderId) {
-          handleCreateOrder(data.orderId);
+          handleCreateOrder(data.orderId, mobileNumber);
         }
       });
     } else {
@@ -76,7 +80,7 @@ export default function ValidationContent({ handleCreateOrder }) {
   return (
     <div className="flex flex-col flex-grow gap-4">
       <div className="flex items-start flex-grow md:flex-grow-0  md:hidden">
-        <button
+        <Aegeanbutton
           onClick={handleGoBack}
           className="bg-[#264388] p-2 w-[50px] h-[50px] rounded-full text-white"
         >
@@ -91,7 +95,7 @@ export default function ValidationContent({ handleCreateOrder }) {
               fill="white"
             />
           </svg>
-        </button>
+        </Aegeanbutton>
       </div>
       <h1 className="font-semibold text-[18px] text-[#244284] text-center md:mt-[20px] pb-4">
         Enter the 5-digit code sent to you at <br />
@@ -164,7 +168,7 @@ export default function ValidationContent({ handleCreateOrder }) {
         <button
           disabled={!secCode || secCode?.length < 5}
           onClick={onSubmit}
-          className="w-full bg-[#264388] text-white font-semibold text-xl py-4 rounded-md"
+          className="w-full  focus:ring focus:ring bg-[#264388] text-white font-semibold text-xl py-4 rounded-md"
         >
           <div className="flex relative items-center">
             <div className="w-full text-center">Book ride</div>

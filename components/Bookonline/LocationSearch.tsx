@@ -1,6 +1,8 @@
 import useUrl from "@/app/hooks/useUrl";
+import { locationDetails } from "@/utils/locationDetails";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { useGoogleMaps } from "./GoogleMapsProvider";
 import Places from "./Places";
 
 const LocationSearch = () => {
@@ -8,22 +10,28 @@ const LocationSearch = () => {
   const [focused, setFocused] = useState(undefined);
   const [destination, setDestinaton] = useState(undefined);
   const searchParams = useSearchParams();
-
+  const map = useGoogleMaps();
   const { updateUrl } = useUrl(); // Get the updateUrl function from the hook
 
   const originParam = searchParams.get("origin");
   const destinationParam = searchParams.get("destination");
+  const locationSearch = searchParams.get("location");
+
+  const activeLocation =
+    locationSearch && locationDetails.taxi_locations[locationSearch];
+
+  const { mapOptions } = activeLocation;
 
   const [autocompleteService, setAutocompleteService] = useState<any>();
   const [predictions, setPredictions] = useState<any>([]);
 
   useEffect(() => {
-    if (google) {
+    if (map) {
       setAutocompleteService(
         () => new window.google.maps.places.AutocompleteService()
       );
     }
-  }, [google]);
+  }, [map]);
 
   const displaySuggestions = function (
     predictions: google.maps.places.QueryAutocompletePrediction[] | null,
@@ -39,13 +47,19 @@ const LocationSearch = () => {
 
     setPredictions(() => predictions);
   };
-
-  const getSuggestions = (value) => {
+  const getSuggestions = (value: string) => {
     if (value?.length) {
-      autocompleteService.getQueryPredictions(
-        { input: value },
-        displaySuggestions
-      );
+      // Define a specific location and radius to bias the predictions
+      const cords = { lat: mapOptions.lat, lng: mapOptions.lng };
+      const location = new google.maps.LatLng(cords.lat, cords.lng); // Example: San Francisco coordinates
+      const radius = 30000; // Example: 50 km
+
+      const request = {
+        input: value,
+        location, // Bias predictions based on this location
+        radius, // Limit results to places within this radius (in meters)
+      };
+      autocompleteService.getQueryPredictions(request, displaySuggestions);
     }
   };
 
