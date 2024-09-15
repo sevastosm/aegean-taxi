@@ -60,12 +60,16 @@ export default function FormComponent({
       <Paper
         elevation={elevation}
         sx={{
-          width: { xs: "100%", md: widthMD, background: "white", zIndex: 1 },
+          width: {
+            xs: "100%",
+            md: widthMD,
+            background: "white",
+            zIndex: 1,
+            position: "relative",
+          },
           padding: { xs: "0", md: 2 },
         }}
       >
-        <div className="absolute bg-transparent h-[400px] md:h-full w-full z-10 cursor-pointer left-0 top-0"></div>
-
         {displayTitle && (
           <Box
             sx={{
@@ -87,7 +91,13 @@ export default function FormComponent({
             </Typography>
           </Box>
         )}
-        <Box sx={{ position: "relative" }}>
+        <Box
+          sx={{
+            position: "relative",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
           <Box
             sx={{
               display: "flex",

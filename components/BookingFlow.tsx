@@ -80,7 +80,7 @@ const BookingFlow = ({ handleSwipeFinished, orderId = "" }: Props) => {
     <div className="flex flex-grow  flex-col">
       <div className="swiper-container">
         <Swiper
-          onSlideChange={handleSwipeChange}
+          // onSlideChange={handleSwipeChange}
           centeredSlides={true}
           autoplay={{
             delay: 5000,

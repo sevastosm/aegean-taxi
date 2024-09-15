@@ -20,19 +20,17 @@ import bg from "public/assets/airport-header.webp";
 import banner from "public/assets/banner.webp";
 import { SxImage } from "./ui/SxImage";
 import { locationDetails } from "@/utils/locationDetails";
-
-
+import Link from "next/link";
 
 export default function AirportHeader() {
   const params: any = useParams();
   let city;
-  let atlText = 'Airport Transfers'
+  let atlText = "Airport Transfers";
   let cover = bg;
 
-    atlText = locationDetails.airports.alt_header;
+  atlText = locationDetails.airports.alt_header;
 
   if (params.location) {
-    
     city = params.location.charAt(0).toUpperCase() + params.location.slice(1);
     atlText = locationDetails.airports[params.location].alt_header;
     // FIXME: No images available
@@ -48,6 +46,10 @@ export default function AirportHeader() {
     //     break;
     // }
   }
+
+  const locationUrl = params.location
+    ? `?location=${params.location}-taxi-app`
+    : "";
 
   return (
     <Container maxWidth={"lg"} sx={{ mb: { xs: 6, md: 40 } }}>
@@ -103,10 +105,13 @@ export default function AirportHeader() {
             position: "relative",
           }}
         >
+          <Link
+            href={`/book-online/${locationUrl}`}
+            className="absolute w-full h-[62%] md:h-full z-10 cursor-pointer left-0 top-0"
+          ></Link>
           <Box
             sx={{
               position: { xs: "relative", md: "absolute" },
-              
             }}
           >
             <SxImage

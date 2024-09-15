@@ -30,6 +30,7 @@ import Kea from "public/assets/taxi-locations/taxi-kea.webp";
 
 import { locationDetails } from "@/utils/locationDetails";
 import { SxImage } from "./ui/SxImage";
+import Link from "next/link";
 
 export default function TaxiHeader() {
   const params: any = useParams();
@@ -38,12 +39,14 @@ export default function TaxiHeader() {
   let atlText = "Taxi Transfers";
 
   let cover = bg;
-    atlText = locationDetails.taxi_locations.alt_header;
+  atlText = locationDetails.taxi_locations.alt_header;
 
   const data = locationDetails[params.location];
 
   if (params.location) {
     atlText = locationDetails.taxi_locations[params.location].alt_header;
+    console.log("params.location", params.location);
+
     const city = (
       params.location.charAt(0).toUpperCase() + params.location.slice(1)
     ).replace("-taxi-app", "");
@@ -97,6 +100,8 @@ export default function TaxiHeader() {
         break;
     }
   }
+
+  const locationUrl = params.location ? `?location=${params.location}` : "";
 
   // Your Athens Taxi App
   // The easiest way to book your taxi and transfer in Athens
@@ -160,6 +165,10 @@ export default function TaxiHeader() {
             position: "relative",
           }}
         >
+          <Link
+            href={`/book-online/${locationUrl}`}
+            className="absolute w-full h-[62%] md:h-full z-10 cursor-pointer left-0 top-0"
+          ></Link>
           <SxImage
             src={cover.src}
             width={200}
@@ -174,13 +183,14 @@ export default function TaxiHeader() {
               position: { xs: "relative", md: "absolute" },
             }}
           />
-          
+
           <Box
             justifyContent="center"
             alignItems="center"
             sx={{
               display: { xs: "block", md: "flex" },
               minHeight: { xs: "auto", md: "595px" },
+              position: "relative",
             }}
           >
             <BookingFormLanding />

@@ -90,7 +90,7 @@ function TaxiLocations() {
               <Link href={`/book-online?location=${mykonosOptions.location}`}>
                 <Location
                   locationName={mykonosOptions.slide.name}
-                  riders={60}
+                  riders={Math.floor(Math.random() * (76 - 52 + 1)) + 52}
                   imageUrl={mykonosOptions.mapUrl}
                   imageOptions={imageOptions[0]}
                 />
@@ -100,7 +100,7 @@ function TaxiLocations() {
               <Link href={`/book-online?location=${santoriniOptions.location}`}>
                 <Location
                   locationName={santoriniOptions.slide.name}
-                  riders={60}
+                  riders={Math.floor(Math.random() * (62 - 44 + 1)) + 44}
                   imageUrl={santoriniOptions.mapUrl}
                   imageOptions={imageOptions[1]}
                 />
@@ -119,7 +119,7 @@ function TaxiLocations() {
                     >
                       <Location
                         locationName={locationTaxi.slide.name}
-                        riders={60}
+                        riders={Math.floor(Math.random() * (40 - 30 + 1)) + 30}
                         imageUrl={locationTaxi.mapUrl}
                         imageOptions={imageOptions[i]}
                       />
