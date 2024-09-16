@@ -107,7 +107,7 @@ const SelectTaxi = ({ cars }: any) => {
           })}
         </div>
       </div>
-      <div className="flex flex-col bg-white items-end justify-center pb-4 absolute left-0 bottom-0 w-full">
+      <div className="flex flex-col bg-white gap-2 left-0 bottom-0 w-full">
         <div className="px-4">
           <CardPayment />
         </div>
