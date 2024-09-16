@@ -149,8 +149,8 @@ export default function Verification({}: {}) {
   };
 
   return (
-    <div className="flex flex-col flex-grow px-4 max-w-[500px] h-[calc(100dvh-70px)] mx-auto verification-container">
-      <div className="flex flex-col gap-4 flex-grow pt-4">
+    <div className="flex flex-col flex-grow px-4 max-w-[500px] py-4 h-[calc(100dvh-70px)] mx-auto verification-container">
+      <div className="flex flex-col gap-4 flex-grow ">
         <div className="block md:hidden ">
           <div className="flex items-start">
             <button
@@ -171,138 +171,139 @@ export default function Verification({}: {}) {
             </button>
           </div>
         </div>
-
-        <div className="mb-2 w-full">
-          <input
-            type="text"
-            id="firstName"
-            value={firstName}
-            onChange={handleFirstnameChange}
-            placeholder="Enter First Name"
-            aria-label="Firstname"
-            className="w-full bg-[#F6F6F6] placeholder:text-[#626262] p-2 py-4 border-0 focus:outline-none focus:ring-0"
-          />
-        </div>
-        <div className="w-full">
-          <input
-            type="text"
-            id="lastName"
-            value={lastName}
-            onChange={handleLastnameChange}
-            placeholder="Enter Surname "
-            aria-label="Lastname"
-            className="w-full bg-[#f6f6f6] placeholder:text-[#626262] p-2 py-4 border-0 focus:outline-none focus:ring-0"
-          />
-        </div>
-
-        <div className="flex flex-row md:flex-grow-0 gap-4">
-          <div className="inline-flex">
-            <Select
-              labelId="demo-simple-select-standard-label"
-              id="demo-simple-select-standard"
-              value={countryCode}
-              onChange={handleChange}
-              defaultValue={"0"}
-              native={false}
-              renderValue={renderValue}
-              name="countryCode"
-              classes={{
-                icon: styles.icon,
-                iconOpen: styles.iconOpen,
-                select: styles.selectSelect,
-                nativeInput: styles.fontSize,
-              }}
-              sx={{
-                width: "80px", // Adjust the width to your desired size
-                "& .MuiFilledInput-root": {
-                  borderBottom: "none", // Remove bottom border
-                },
-                "& .MuiInputBase-root:before, & .MuiInputBase-root:after": {
-                  borderBottom: "none", // Remove bottom border in focus and active states
-                },
-                "& .MuiInputBase-root.Mui-focused:before, & .MuiInputBase-root.Mui-focused:after":
-                  {
-                    borderBottom: "none", // Remove bottom border when focused
-                  },
-                "& fieldset": {
-                  border: "none", // Remove bottom border when focused
-                },
-              }}
-            >
-              <MenuItem
-                className={styles.MenuItem + "px-4"}
-                role="option"
-                value="0"
-              >
-                Choose country code
-              </MenuItem>
-              <MenuItem className={styles.MenuItem} role="option" value="1">
-                +1
-                <span className={styles.countryLabel}>
-                  United States/Canada
-                </span>
-              </MenuItem>
-              <MenuItem className={styles.MenuItem} role="option" value="44">
-                +44
-                <span className={styles.countryLabel}>United Kingdom</span>
-              </MenuItem>
-              <MenuItem className={styles.MenuItem} role="option" value="33">
-                +33
-                <span className={styles.countryLabel}>France</span>
-              </MenuItem>
-              <MenuItem className={styles.MenuItem} role="option" value="30">
-                +30
-                <span className={styles.countryLabel}>Greece</span>
-              </MenuItem>
-              <MenuItem className={styles.MenuItem} role="option" value="39">
-                +39
-                <span className={styles.countryLabel}>Italy</span>
-              </MenuItem>
-              <MenuItem className={styles.MenuItem} role="option" value="49">
-                +49
-                <span className={styles.countryLabel}>Germany</span>
-              </MenuItem>
-              <MenuItem className={styles.MenuItem} role="option" value="41">
-                +41
-                <span className={styles.countryLabel}>Switzerland</span>
-              </MenuItem>
-              <MenuItem className={styles.MenuItem} role="option" value="34">
-                +34
-                <span className={styles.countryLabel}>Spain</span>
-              </MenuItem>
-
-              {countryListExcluded.map((country, index) => (
-                <MenuItem
-                  className={styles.MenuItem}
-                  key={index}
-                  role="option"
-                  value={country.phone}
-                >
-                  +{country.phone}
-                  <span className={styles.countryLabel}>{country.label}</span>
-                </MenuItem>
-              ))}
-            </Select>
+        <div className="flex flex-col flex-grow gap-2">
+          <div className="mb-2 w-full">
+            <input
+              type="text"
+              id="firstName"
+              value={firstName}
+              onChange={handleFirstnameChange}
+              placeholder="Enter First Name"
+              aria-label="Firstname"
+              className="w-full bg-[#F6F6F6] placeholder:text-[#626262] p-2 py-4 border-0 focus:outline-none focus:ring-0"
+            />
           </div>
-          <input
-            type="text"
-            id="phoneNumber"
-            value={phone}
-            onChange={handlePhoneChange}
-            placeholder="Phone number"
-            aria-label="phone number"
-            inputmode="numeric"
-            pattern="[09]*"
-            className="w-full bg-[#F6F6F6] placeholder:text-[#626262] p-2 py-4 border-0 focus:outline-none focus:ring-0"
-          />
+          <div className="w-full">
+            <input
+              type="text"
+              id="lastName"
+              value={lastName}
+              onChange={handleLastnameChange}
+              placeholder="Enter Surname "
+              aria-label="Lastname"
+              className="w-full bg-[#f6f6f6] placeholder:text-[#626262] p-2 py-4 border-0 focus:outline-none focus:ring-0"
+            />
+          </div>
+
+          <div className="flex flex-row md:flex-grow-0 gap-4">
+            <div className="inline-flex">
+              <Select
+                labelId="demo-simple-select-standard-label"
+                id="demo-simple-select-standard"
+                value={countryCode}
+                onChange={handleChange}
+                defaultValue={"0"}
+                native={false}
+                renderValue={renderValue}
+                name="countryCode"
+                classes={{
+                  icon: styles.icon,
+                  iconOpen: styles.iconOpen,
+                  select: styles.selectSelect,
+                  nativeInput: styles.fontSize,
+                }}
+                sx={{
+                  width: "80px", // Adjust the width to your desired size
+                  "& .MuiFilledInput-root": {
+                    borderBottom: "none", // Remove bottom border
+                  },
+                  "& .MuiInputBase-root:before, & .MuiInputBase-root:after": {
+                    borderBottom: "none", // Remove bottom border in focus and active states
+                  },
+                  "& .MuiInputBase-root.Mui-focused:before, & .MuiInputBase-root.Mui-focused:after":
+                    {
+                      borderBottom: "none", // Remove bottom border when focused
+                    },
+                  "& fieldset": {
+                    border: "none", // Remove bottom border when focused
+                  },
+                }}
+              >
+                <MenuItem
+                  className={styles.MenuItem + "px-4"}
+                  role="option"
+                  value="0"
+                >
+                  Choose country code
+                </MenuItem>
+                <MenuItem className={styles.MenuItem} role="option" value="1">
+                  +1
+                  <span className={styles.countryLabel}>
+                    United States/Canada
+                  </span>
+                </MenuItem>
+                <MenuItem className={styles.MenuItem} role="option" value="44">
+                  +44
+                  <span className={styles.countryLabel}>United Kingdom</span>
+                </MenuItem>
+                <MenuItem className={styles.MenuItem} role="option" value="33">
+                  +33
+                  <span className={styles.countryLabel}>France</span>
+                </MenuItem>
+                <MenuItem className={styles.MenuItem} role="option" value="30">
+                  +30
+                  <span className={styles.countryLabel}>Greece</span>
+                </MenuItem>
+                <MenuItem className={styles.MenuItem} role="option" value="39">
+                  +39
+                  <span className={styles.countryLabel}>Italy</span>
+                </MenuItem>
+                <MenuItem className={styles.MenuItem} role="option" value="49">
+                  +49
+                  <span className={styles.countryLabel}>Germany</span>
+                </MenuItem>
+                <MenuItem className={styles.MenuItem} role="option" value="41">
+                  +41
+                  <span className={styles.countryLabel}>Switzerland</span>
+                </MenuItem>
+                <MenuItem className={styles.MenuItem} role="option" value="34">
+                  +34
+                  <span className={styles.countryLabel}>Spain</span>
+                </MenuItem>
+
+                {countryListExcluded.map((country, index) => (
+                  <MenuItem
+                    className={styles.MenuItem}
+                    key={index}
+                    role="option"
+                    value={country.phone}
+                  >
+                    +{country.phone}
+                    <span className={styles.countryLabel}>{country.label}</span>
+                  </MenuItem>
+                ))}
+              </Select>
+            </div>
+            <input
+              type="text"
+              id="phoneNumber"
+              value={phone}
+              onChange={handlePhoneChange}
+              placeholder="Phone number"
+              aria-label="phone number"
+              inputmode="numeric"
+              pattern="[09]*"
+              className="w-full bg-[#F6F6F6] placeholder:text-[#626262] p-2 py-4 border-0 focus:outline-none focus:ring-0"
+            />
+          </div>
+
+          <div className="flex flex-grow md:flex-grow-0  items-end justify-center">
+            <CardPaymentBold />
+          </div>
         </div>
 
-        <div className="flex flex-grow md:flex-grow-0  items-end justify-center">
-          <CardPaymentBold />
-        </div>
-
-        <div className="flex flex-col flex-grow md:flex-grow-0 justify-center w-full">
-          <div className="flex items-center gap-2 my-4">
+        <div className="flex flex-col gap-2 w-full">
+          <div className="flex items-center gap-2">
             <Checkbox
               sx={{ p: 0, "& .MuiSvgIcon-root": { fontSize: 35 } }}
               onChange={() => setTerms(!terms)}
@@ -334,7 +335,6 @@ export default function Verification({}: {}) {
               </span>
             </label>
           </div>
-
           <button
             onClick={handleSubmit}
             disabled={
@@ -345,7 +345,7 @@ export default function Verification({}: {}) {
               countryCode === "0" ||
               !terms
             }
-            className="w-full focus:ring focus:ring !bg-[#264388] text-white font-semibold text-xl py-4 rounded-md disabled:opacity-50"
+            className="w-full  focus:ring focus:ring !bg-[#264388] h-[52px] text-white font-semibold text-xl  rounded-md disabled:opacity-50"
           >
             <div className="flex relative items-center">
               <div className="w-full text-center">Request code</div>

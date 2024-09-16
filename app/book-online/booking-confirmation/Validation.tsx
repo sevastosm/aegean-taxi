@@ -25,7 +25,7 @@ export default function Validation() {
   };
 
   return (
-    <div className="flex felx-col p-4 max-w-[500px] m-auto h-[calc(100vh-70px)]">
+    <div className="flex felx-col p-4 max-w-[500px] m-auto h-[calc(100dvh-70px)]">
       <ValidationContent handleCreateOrder={handleCreateOrder} />
       {/* {viewBookingFlow ? (
         <BookingFlow orderId={orderId} />

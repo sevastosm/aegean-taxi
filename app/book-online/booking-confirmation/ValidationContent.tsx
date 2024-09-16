@@ -79,7 +79,7 @@ export default function ValidationContent({ handleCreateOrder }) {
 
   return (
     <div className="flex flex-col flex-grow gap-4">
-      <div className="flex items-start flex-grow md:flex-grow-0  md:hidden">
+      <div className="flex items-start md:flex-grow-0  md:hidden">
         <div className="block md:hidden ">
           <div className="flex items-start">
             <button
@@ -105,7 +105,7 @@ export default function ValidationContent({ handleCreateOrder }) {
         Enter the 5-digit code sent to you at <br />
       </h1>
 
-      <div className="flex flex-col items-center gap-2 px-4">
+      <div className="flex flex-col flex-grow items-center gap-2 px-4">
         <div className="flex gap-4 w-full max-w-md px-3">
           <div className="flex-shrink-0">
             <input
@@ -154,7 +154,7 @@ export default function ValidationContent({ handleCreateOrder }) {
         )}
       </div>
 
-      <div className="flex flex-grow  md:flex-grow-0 flex-col items-center justify-center">
+      <div className="flex  md:flex-grow-0 flex-col items-center justify-center">
         <div className="flex  mb-2 items-end gap-x-4">
           <img
             src="/assets/whatsAppNew.svg"
@@ -172,7 +172,7 @@ export default function ValidationContent({ handleCreateOrder }) {
         <button
           disabled={!secCode || secCode?.length < 5 || disabled}
           onClick={handleSubmit}
-          className="w-full focus:ring focus:ring !bg-[#264388] text-white font-semibold text-xl py-4 rounded-md disabled:opacity-50"
+          className="w-full focus:ring focus:ring !bg-[#264388] text-white font-semibold text-xl h-[52px] rounded-md disabled:opacity-50"
         >
           <div className="flex relative items-center">
             <div className="w-full text-center">Book ride</div>
