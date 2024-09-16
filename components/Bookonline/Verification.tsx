@@ -149,7 +149,7 @@ export default function Verification({}: {}) {
   };
 
   return (
-    <div className="flex flex-col flex-grow px-4 max-w-[500px] h-[calc(100vh-70px)] mx-auto verification-container">
+    <div className="flex flex-col flex-grow px-4 max-w-[500px] h-[calc(100dvh-70px)] mx-auto verification-container">
       <div className="flex flex-col gap-4 flex-grow pt-4">
         <div className="block md:hidden ">
           <div className="flex items-start">
