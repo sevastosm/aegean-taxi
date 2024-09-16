@@ -79,47 +79,49 @@ export default function LandingHeader() {
             position: "relative",
           }}
         >
-          <Link href="/book-online">
-            <SxImage
-              src={bg.src}
-              width={200}
-              height={200}
-              alt={atlText}
-              sx={{
-                width: "100%",
-                height: { xs: "200px", md: "100%" },
-                // backgroundColor: "primary.dark",
-                objectFit: { xs: "cover", md: "cover" },
-                objectPosition: { xs: "0 50%", md: "0 50%" },
-                position: { xs: "relative", md: "absolute" },
-              }}
-            />
+          <Link
+            href={`/book-online`}
+            className="absolute w-full h-[60%] md:h-full z-10 cursor-pointer left-0 top-0"
+          ></Link>
+          <SxImage
+            src={bg.src}
+            width={200}
+            height={200}
+            alt={atlText}
+            sx={{
+              width: "100%",
+              height: { xs: "200px", md: "100%" },
+              // backgroundColor: "primary.dark",
+              objectFit: { xs: "cover", md: "cover" },
+              objectPosition: { xs: "0 50%", md: "0 50%" },
+              position: { xs: "relative", md: "absolute" },
+            }}
+          />
 
-            <Box
-              justifyContent="center"
-              alignItems="center"
-              sx={{
-                display: { xs: "block", md: "flex" },
-                minHeight: { xs: "auto", md: "595px" },
-                marginBottom: "20px",
+          <Box
+            justifyContent="center"
+            alignItems="center"
+            sx={{
+              display: { xs: "block", md: "flex" },
+              minHeight: { xs: "auto", md: "595px" },
+              marginBottom: "20px",
+              width: "100%",
+            }}
+          >
+            <div
+              style={{
                 width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                gap: "5px",
+                alignItems: "center",
+                marginBottom: "20px",
+                background: "#fff",
               }}
             >
-              <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "5px",
-                  alignItems: "center",
-                  marginBottom: "20px",
-                  background: "#fff",
-                }}
-              >
-                <BookingFormLanding />
-              </div>
-            </Box>
-          </Link>
+              <BookingFormLanding />
+            </div>
+          </Box>
           {/* Download the app Button */}
         </Grid>
       </Grid>

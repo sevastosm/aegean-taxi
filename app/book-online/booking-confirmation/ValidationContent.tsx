@@ -25,8 +25,10 @@ export default function ValidationContent({ handleCreateOrder }) {
   const [secCode, setSecCode] = useState<any>(null);
   const [bookingState, setBookingState] = useState<BookingState>();
   const [invalidCode, setInvalidCode] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
   const handleChange = (value) => {
+    setDisabled(false);
     setInvalidCode(false);
     setSecCode(value);
   };
@@ -34,9 +36,17 @@ export default function ValidationContent({ handleCreateOrder }) {
     const cookieState = localStorage.getItem("bookinginfo");
     if (cookieState) {
       setBookingState(JSON.parse(cookieState));
+      setDisabled(false);
     }
     return () => {};
   }, []);
+
+  const handleSubmit = (e) => {
+    setDisabled(true);
+    e.preventDefault();
+
+    onSubmit(e);
+  };
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -53,6 +63,7 @@ export default function ValidationContent({ handleCreateOrder }) {
         if (data.orderId) {
           handleCreateOrder(data.orderId, mobileNumber);
         }
+        setDisabled(false);
       });
     } else {
       setInvalidCode(true);
@@ -64,38 +75,31 @@ export default function ValidationContent({ handleCreateOrder }) {
     router.back();
   };
 
-  // Function to handle input changes and focus the next input
-  const handleForm = (e, index) => {
-    const { value } = e.target;
-    if (value.length === 1) {
-      // Move to the next input if there is a value
-      if (index < inputRefs.length - 1) {
-        inputRefs[index + 1].current.focus();
-      }
-    }
-  };
-
   console.log("bookingState", bookingState);
 
   return (
     <div className="flex flex-col flex-grow gap-4">
       <div className="flex items-start flex-grow md:flex-grow-0  md:hidden">
-        <Aegeanbutton
-          onClick={handleGoBack}
-          className="bg-[#264388] p-2 w-[50px] h-[50px] rounded-full text-white"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 105 105"
-            fill="none"
-          >
-            <circle cx="52.5" cy="52.5" r="52.5" fill="#264388" />
-            <path
-              d="M22.8787 49.8787C21.7071 51.0503 21.7071 52.9497 22.8787 54.1213L41.9706 73.2132C43.1421 74.3848 45.0416 74.3848 46.2132 73.2132C47.3848 72.0416 47.3848 70.1421 46.2132 68.9706L29.2426 52L46.2132 35.0294C47.3848 33.8579 47.3848 31.9584 46.2132 30.7868C45.0416 29.6152 43.1421 29.6152 41.9706 30.7868L22.8787 49.8787ZM86 49L25 49V55L86 55V49Z"
-              fill="white"
-            />
-          </svg>
-        </Aegeanbutton>
+        <div className="block md:hidden ">
+          <div className="flex items-start">
+            <button
+              onClick={handleGoBack}
+              className="bg-[#264388]  focus:ring focus:ring p-2 w-[50px] h-[50px] rounded-full text-white"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 105 105"
+                fill="none"
+              >
+                <circle cx="52.5" cy="52.5" r="52.5" fill="#264388" />
+                <path
+                  d="M22.8787 49.8787C21.7071 51.0503 21.7071 52.9497 22.8787 54.1213L41.9706 73.2132C43.1421 74.3848 45.0416 74.3848 46.2132 73.2132C47.3848 72.0416 47.3848 70.1421 46.2132 68.9706L29.2426 52L46.2132 35.0294C47.3848 33.8579 47.3848 31.9584 46.2132 30.7868C45.0416 29.6152 43.1421 29.6152 41.9706 30.7868L22.8787 49.8787ZM86 49L25 49V55L86 55V49Z"
+                  fill="white"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
       </div>
       <h1 className="font-semibold text-[18px] text-[#244284] text-center md:mt-[20px] pb-4">
         Enter the 5-digit code sent to you at <br />
@@ -166,9 +170,9 @@ export default function ValidationContent({ handleCreateOrder }) {
           </a>
         </div>
         <button
-          disabled={!secCode || secCode?.length < 5}
-          onClick={onSubmit}
-          className="w-full  focus:ring focus:ring bg-[#264388] text-white font-semibold text-xl py-4 rounded-md"
+          disabled={!secCode || secCode?.length < 5 || disabled}
+          onClick={handleSubmit}
+          className="w-full focus:ring focus:ring !bg-[#264388] text-white font-semibold text-xl py-4 rounded-md disabled:opacity-50"
         >
           <div className="flex relative items-center">
             <div className="w-full text-center">Book ride</div>

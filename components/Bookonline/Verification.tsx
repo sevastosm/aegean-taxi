@@ -40,25 +40,25 @@ export default function Verification({}: {}) {
   const [phone, setPhone] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [disabledNext, setDisabledNext] = useState(false);
   const [terms, setTerms] = useState(false);
-
+  const [disabled, setDisabled] = useState(false);
   const [bookingState, setBookingState] = useState<BookingState>();
-
   // const { data, error } = useSWR({}, tokenFetcher);
 
   const { getItem, setItem, removeItem } = useStorage();
-  const aegeanState = getItem("aegean", "local");
 
   useEffect(() => {
     const cookieState = localStorage.getItem("bookinginfo");
     if (cookieState) {
       setBookingState(JSON.parse(cookieState));
+      setDisabled(false);
     }
     return () => {};
   }, []);
 
   const handleChange = (event: SelectChangeEvent) => {
+    setDisabled(false);
+
     setCountryCode(event.target.value as string);
   };
 
@@ -67,10 +67,14 @@ export default function Verification({}: {}) {
   };
 
   const handleFirstnameChange = (event: any) => {
+    setDisabled(false);
+
     setFirstName(event.target.value as string);
   };
 
   const handleLastnameChange = (event: any) => {
+    setDisabled(false);
+
     setLastName(event.target.value as string);
   };
 
@@ -78,9 +82,11 @@ export default function Verification({}: {}) {
     return option === "0" ? "Code" : `+${option}`;
   }
 
-  const reCaptchaRef = React.useRef<any>(null);
+  // const reCaptchaRef = React.useRef<any>(null);
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    setDisabled(true);
+    e.preventDefault();
     updateStorage("phoneNumber", phone);
     updateStorage("countryCode", countryCode);
     updateStorage("firstName", firstName);
@@ -90,7 +96,6 @@ export default function Verification({}: {}) {
   };
 
   async function onSubmit() {
-    setDisabledNext(true);
     let smsCode = Math.floor(Math.random() * 90000) + 10000;
     let securityCode = AES.encrypt(
       `${smsCode}`,
@@ -101,31 +106,31 @@ export default function Verification({}: {}) {
 
     const mobileNumber = `+${countryCode}${phone}`;
 
-    if (firstName && lastName === "testSeb@@") {
-      sendSms(
-        `00${mobileNumber.replace("+", "")}`,
-        `Your access code is ${smsCode}`
-      ).then(() => {
-        router.push("/book-online/booking-confirmation");
-      });
-    }
+    // if (firstName && lastName === "testSeb@@") {
+    //   sendSms(
+    //     `00${mobileNumber.replace("+", "")}`,
+    //     `Your access code is ${smsCode}`
+    //   ).then(() => {
+    //     router.push("/book-online/booking-confirmation");
+    //   });
+    // }
 
-    const token = await reCaptchaRef?.current.executeAsync();
-    await verifyToken({
-      token,
-      firstName,
-      lastName,
-      mobileNumber,
-    }).then((result: any) => {
-      if (result.data.success) {
-        sendSms(
-          `00${mobileNumber.replace("+", "")}`,
-          `Your access code is ${smsCode}`
-        ).then(() => {
-          router.push("/book-online/booking-confirmation");
-        });
-      }
+    // const token = await reCaptchaRef?.current.executeAsync();
+    // await verifyToken({
+    //   token,
+    //   firstName,
+    //   lastName,
+    //   mobileNumber,
+    // }).then((result: any) => {
+    //   if (result.data.success) {
+    sendSms(
+      `00${mobileNumber.replace("+", "")}`,
+      `Your access code is ${smsCode}`
+    ).then(() => {
+      router.push("/book-online/booking-confirmation");
     });
+    //   }
+    // });
   }
 
   // Constant for the checkbox properties
@@ -333,13 +338,14 @@ export default function Verification({}: {}) {
           <button
             onClick={handleSubmit}
             disabled={
+              disabled ||
               phone.length < 9 ||
               !firstName ||
               !lastName ||
               countryCode === "0" ||
               !terms
             }
-            className="w-full !bg-[#264388] text-white font-semibold text-xl py-4 rounded-md disabled:opacity-50"
+            className="w-full focus:ring focus:ring !bg-[#264388] text-white font-semibold text-xl py-4 rounded-md disabled:opacity-50"
           >
             <div className="flex relative items-center">
               <div className="w-full text-center">Request code</div>
@@ -359,11 +365,11 @@ export default function Verification({}: {}) {
           </button>
         </div>
 
-        <ReCAPTCHA
+        {/* <ReCAPTCHA
           ref={reCaptchaRef}
           size="invisible"
           sitekey="6Lc_Wq8pAAAAAIXLFQ8NtSy1YwvRYiaXC52e70NP"
-        />
+        /> */}
       </div>
     </div>
   );
