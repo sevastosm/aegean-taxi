@@ -170,9 +170,10 @@ export default function ValidationContent({ handleCreateOrder }) {
           </a>
         </div>
         <button
+          id="bookButton"
           disabled={!secCode || secCode?.length < 5 || disabled}
           onClick={handleSubmit}
-          className="w-full focus:ring focus:ring !bg-[#264388] text-white font-semibold text-xl h-[52px] rounded-md disabled:opacity-50"
+          className="book-ride w-full focus:ring focus:ring !bg-[#264388] text-white font-semibold text-xl h-[52px] rounded-md disabled:opacity-50"
         >
           <div className="flex relative items-center">
             <div className="w-full text-center">Book ride</div>

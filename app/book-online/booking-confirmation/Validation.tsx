@@ -19,9 +19,9 @@ export default function Validation() {
   const handleSwipeFinished = (phone, orderId) => {
     sendSms(
       `00${phone.replace("+", "")}`,
-      `Your taxi booking request has been received.Please check the below link to see the status of your reservation and your driver details once assigned. https://aegeantaxi.com/order?orderid=${orderId}`
+      `Your taxi booking request has been received.Please check the below link to see the status of your reservation and your driver details once assigned. https://aegeantaxi.com/reservation-confirmed/order?orderid=${orderId}`
     );
-    router.push(`/order?orderid=${orderId}`);
+    router.push(`/reservation-confirmed/order?orderid=${orderId}`);
   };
 
   return (

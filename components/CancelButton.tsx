@@ -15,8 +15,9 @@ const CancelButton = ({ orderId }: Props) => {
   return (
     <div className="flex flex-col items-center px-4">
       <button
+        id="cancelButton"
         onClick={handleClick}
-        className="bg-[#E8E8E8] rounded-lg py-3 font-bold text-lg text-red-500 w-full mx-2"
+        className="cancel-ride bg-[#E8E8E8] rounded-lg py-3 font-bold text-lg text-red-500 w-full mx-2"
       >
         Cancel Ride
       </button>
