@@ -15,10 +15,12 @@ import AES from "crypto-js/aes";
 import { createOrder } from "@/utils/fetchers";
 import OtpInput from "react-otp-input";
 import Aegeanbutton from "@/components/ui/Aegeanbutton";
+import BookingFlow from "@/components/BookingFlow"
 
 // context
 
 var CryptoJS = require("crypto-js");
+
 
 export default function ValidationContent({ handleCreateOrder }) {
   const router = useRouter();
@@ -26,6 +28,8 @@ export default function ValidationContent({ handleCreateOrder }) {
   const [bookingState, setBookingState] = useState<BookingState>();
   const [invalidCode, setInvalidCode] = useState(false);
   const [disabled, setDisabled] = useState(false);
+  const [viewBookingFlow, setViewBookingFlow] = useState<boolean>(false);
+
 
   const handleChange = (value) => {
     setDisabled(false);
@@ -77,7 +81,7 @@ export default function ValidationContent({ handleCreateOrder }) {
 
   console.log("bookingState", bookingState);
 
-  return (
+  return (viewBookingFlow?<BookingFlow orderId={orderId} />:
     <div className="flex flex-col flex-grow gap-4">
       <div className="flex items-start md:flex-grow-0  md:hidden">
         <div className="block md:hidden ">

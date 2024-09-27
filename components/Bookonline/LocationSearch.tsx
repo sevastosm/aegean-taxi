@@ -4,6 +4,9 @@ import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useGoogleMaps } from "./GoogleMapsProvider";
 import Places from "./Places";
+import { getSuggestions } from "@/heplers/googleMap";
+import { PlaceholderValue } from "next/dist/shared/lib/get-img-props";
+import { Place } from "@/types/types";
 
 const LocationSearch = () => {
   const [origin, setOrigin] = useState(undefined);
@@ -13,8 +16,8 @@ const LocationSearch = () => {
   const map = useGoogleMaps();
   const { updateUrl } = useUrl(); // Get the updateUrl function from the hook
 
-  const originParam = searchParams.get("origin");
-  const destinationParam = searchParams.get("destination");
+  const originParam: Place | null = JSON.parse(searchParams.get("origin"));
+  const destinationParam: Place | null = JSON.parse(searchParams.get("destination"));
   const locationSearch = searchParams.get("location");
 
   const activeLocation =
@@ -33,35 +36,14 @@ const LocationSearch = () => {
     }
   }, [map]);
 
-  const displaySuggestions = function (
-    predictions: google.maps.places.QueryAutocompletePrediction[] | null,
-    status: google.maps.places.PlacesServiceStatus
-  ) {
-    if (
-      (typeof window !== "undefined" &&
-        status != window.google.maps.places.PlacesServiceStatus.OK) ||
-      !predictions
-    ) {
-      return;
-    }
 
-    setPredictions(() => predictions);
-  };
-  const getSuggestions = (value: string) => {
+  const handlePlaceChange = (value: string) => {
     if (value?.length) {
-      // Define a specific location and radius to bias the predictions
-      const cords = { lat: mapOptions.lat, lng: mapOptions.lng };
-      const location = new google.maps.LatLng(cords.lat, cords.lng); // Example: San Francisco coordinates
-      const radius = 30000; // Example: 50 km
-
-      const request = {
-        input: value,
-        location, // Bias predictions based on this location
-        radius, // Limit results to places within this radius (in meters)
-      };
-      autocompleteService.getQueryPredictions(request, displaySuggestions);
-    }
-  };
+      const suggestions = getSuggestions(value, mapOptions)
+      console.log("suggestions", suggestions)
+      setPredictions(suggestions)
+    };
+  }
 
   const handleClearPickup = () => {
     updateUrl("origin", null);
@@ -76,8 +58,8 @@ const LocationSearch = () => {
   };
 
   useEffect(() => {
-    setOrigin(originParam);
-    setDestinaton(destinationParam);
+    setOrigin(originParam?.address || originParam?.name);
+    setDestinaton(destinationParam?.address || destinationParam?.name);
   }, [originParam, destinationParam]);
 
   return (
@@ -108,16 +90,15 @@ const LocationSearch = () => {
             // value={pickupValue}
             onChange={(e) => {
               setOrigin(e.target.value);
-              getSuggestions(e.target.value);
+              handlePlaceChange(e.target.value);
             }}
             value={origin}
             // onChange={(e) => {
             //   setPickUpLocation(e.target.value);
             //   getSuggestions(e, "pickUp");
             // }}
-            className={`pl-8 pr-8 py-3 border-2 rounded font-semibold focus:outline-none ${
-              origin ? "bg-gray-300" : "bg-white border-[#244284]"
-            } w-full`}
+            className={`pl-8 pr-8 py-3 border-2 rounded font-semibold focus:outline-none ${origin ? "bg-gray-300" : "bg-white border-[#244284]"
+              } w-full`}
             placeholder="Enter pick up location"
           />
 
@@ -154,15 +135,14 @@ const LocationSearch = () => {
               value={destination}
               onChange={(e) => {
                 setDestinaton(e.target.value);
-                getSuggestions(e.target.value);
+                handlePlaceChange(e.target.value);
               }}
               // onChange={(e) => {
               //   setDropLocation(e.target.value);
               //   getSuggestions(e, "dropOff");
               // }}
-              className={`pl-8 pr-8 py-3 border-2 rounded font-semibold focus:outline-none ${
-                destination ? "bg-gray-300" : "bg-white border-blue-500"
-              } 
+              className={`pl-8 pr-8 py-3 border-2 rounded font-semibold focus:outline-none ${destination ? "bg-gray-300" : "bg-white border-blue-500"
+                } 
             ${origin && !destination && "bg-white border-[#244284]"}
             w-full`}
               placeholder="Enter drop off location"

@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { GoogleMap, DirectionsRenderer } from "@react-google-maps/api";
+import { GoogleMap, DirectionsRenderer, Marker } from "@react-google-maps/api";
 import { AppContext } from "@/context/appState";
 import { useGoogleMaps } from "./GoogleMapsProvider";
 import { useSearchParams } from "next/navigation";
 import { debug } from "console";
 import { updateStorage } from "@/heplers/updateStorage";
 import { locationDetails } from "@/utils/locationDetails";
+import { Place } from "@/types/types";
 
 const containerStyle = {
   width: "100%",
@@ -26,29 +27,35 @@ function MapComponent({
   const google = useGoogleMaps();
 
   const locationSearch = searchParams.get("location");
+  const mylocation = searchParams.get("mylocation");
+
 
   const activeLocation =
     locationSearch && locationDetails.taxi_locations[locationSearch];
 
   const origin = searchParams.get("origin");
 
+  const { lat, lon, name, } = JSON.parse(origin) || {}
+
+
   const destination = searchParams.get("destination");
+
+  const originParam: Place | null = JSON.parse(searchParams.get("origin"));
+  const destinationParam: Place | null = JSON.parse(searchParams.get("destination"));
+
   const tarif = searchParams.get("tarif");
+  const { mapOptions } = activeLocation;
+  const center = {
+    lat: mapOptions.lat,
+    lng: mapOptions.lng,
+  };
 
   const [map, setMap] = useState(null);
   const [directionsResponse, setDirectionsResponse] = useState(null);
   const [originPosition, setOriginPosition] = useState(null);
   const [destinationPosition, setDestinationPosition] = useState(null);
-  const [zoom, setZoom] = useState(11);
-
+  const [markerPosition, setMarkerPosition] = useState(center);
   const [showMap, setShowMap] = useState(true); // Control map rendering
-
-  const { mapOptions } = activeLocation;
-
-  const center = {
-    lat: mapOptions.lat,
-    lng: mapOptions.lng,
-  };
   const [centerMap, setCenter] = useState(center);
 
   const options = {
@@ -60,7 +67,6 @@ function MapComponent({
     rotateControl: false,
     fullscreenControl: false,
     mapId: "c6b58f8fae8c27a7",
-    center: centerMap,
   };
 
   const mapRef = useRef(null);
@@ -95,23 +101,23 @@ function MapComponent({
     destinationContent.innerHTML = `
       <div class="flex max-w-[100px] gap-2 bg-white items-center mb-1">
         <div class="bg-black text-[10px] max-w-[40px] text-center p-1 text-white">${durationText}</div>
-        <div class="font-bold  text-[12px]">${destination}</div>
+        <div class="font-bold  text-[12px]">${destinationParam?.name}</div>
       </div>
     `;
     originContent.innerHTML = `
       <div class="flex max-w-[100px] bg-white  items-center mb-1">
-        <div class="font-bold p-2 text-[12px]">${origin}</div>
+        <div class="font-bold p-2 text-[12px]">${originParam?.name}</div>
       </div>
     `;
 
     // Create and store new markers
     const originMarker = new AdvancedMarkerElement({
-      position: originPosition,
+      position: { lat: originParam.lat, lng: originParam.lng },
       map,
       content: originContent,
     });
     const destinationMarker = new AdvancedMarkerElement({
-      position: destinationPosition,
+      position: { lat: destinationParam.lat, lng: destinationParam.lng },
       map,
       content: destinationContent,
     });
@@ -122,12 +128,12 @@ function MapComponent({
   };
 
   useEffect(() => {
-    if (origin && destination && isLoaded) {
+    if (originParam && destinationParam && isLoaded) {
       const geocoder = new window.google.maps.Geocoder();
 
       geocoder.geocode({ address: origin }, (results, status) => {
         if (status === "OK") {
-          setOriginPosition(results[0].geometry.location);
+          setOriginPosition({ lat: originParam.lat, lng: originParam.lng });
         } else {
           console.error(
             `Geocode was not successful for the following reason: ${status}`
@@ -137,7 +143,7 @@ function MapComponent({
 
       geocoder.geocode({ address: destination }, (results, status) => {
         if (status === "OK") {
-          setDestinationPosition(results[0].geometry.location);
+          setDestinationPosition({ lat: destinationParam.lat, lng: destinationParam.lng });
         } else {
           console.error(
             `Geocode was not successful for the following reason: ${status}`
@@ -148,8 +154,8 @@ function MapComponent({
       const directionsService = new window.google.maps.DirectionsService();
       directionsService.route(
         {
-          origin: origin,
-          destination: destination,
+          origin: originParam.name,
+          destination: destinationParam?.name,
           travelMode: window.google.maps.TravelMode.DRIVING,
         },
         (result, status) => {
@@ -168,12 +174,42 @@ function MapComponent({
     }
   }, [searchParams]);
 
+
+  const onMarkerDragEnd = (e) => {
+    const newLat = e.latLng.lat();
+    const newLng = e.latLng.lng();
+    setMarkerPosition({ lat: newLat, lng: newLng });
+    setCenter({ lat: newLat, lng: newLng });
+  };
+
+
+
+
   const handleReloadMap = () => {
     setShowMap(false); // Unmount the map
     setDirectionsResponse(null);
     setTimeout(() => {
       setShowMap(true); // Remount the map after a short delay
     }, 100);
+  };
+
+  // Get user's current location
+  const handleGetLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          const newLocation = { lat: latitude, lng: longitude };
+          setMarkerPosition(newLocation);
+          setCenter(newLocation);
+          if (map.current) {
+            map.current.panTo(newLocation);
+          }
+        }
+      );
+    } else {
+      alert("Geolocation is not supported by this browser.");
+    }
   };
 
   useEffect(() => {
@@ -207,7 +243,7 @@ function MapComponent({
 
         geocoder.geocode({ address: origin }, (results, status) => {
           if (status === "OK") {
-            map.panTo(results[0].geometry.location);
+            // map.panTo(results[0].geometry.location);
           } else {
             console.error(
               `Geocode was not successful for the following reason: ${status}`
@@ -247,30 +283,48 @@ function MapComponent({
     updateStorage("waypoints", waypoints);
   }, [originPosition, destinationPosition]);
 
+
+  useEffect(() => {
+    if (map && mylocation === '1') {
+      handleGetLocation()
+    }
+
+  }, [mylocation])
+
   console.log("MAP-RENDER");
 
   return (
     isLoaded &&
     showMap && (
-      <GoogleMap
-        ref={mapRef}
-        mapContainerStyle={containerStyle}
-        zoom={11}
-        onLoad={(mapInstance) => {
-          setMap(mapInstance);
-          mapRef.current = mapInstance;
-        }}
-        options={options}
-        onUnmount={() => setMap(null)}
-      >
-        {directionsResponse && (
-          <DirectionsRenderer
-            ref={directionsRef}
-            options={{ suppressMarkers: true, suppressInfoWindows: true }}
-            directions={directionsResponse}
+      <>
+        <button onClick={handleGetLocation}>Get Current Location</button>
+        <GoogleMap
+          ref={mapRef}
+          mapContainerStyle={containerStyle}
+          zoom={11}
+          center={centerMap}
+          onLoad={(mapInstance) => {
+            setMap(mapInstance);
+            mapRef.current = mapInstance;
+          }}
+          options={options}
+          onUnmount={() => setMap(null)}
+        >
+          {directionsResponse && (
+            <DirectionsRenderer
+              ref={directionsRef}
+              options={{ suppressMarkers: true, suppressInfoWindows: true }}
+              directions={directionsResponse}
+            />
+          )}
+
+          <Marker
+            position={markerPosition}
+            draggable={true}
+            onDragEnd={onMarkerDragEnd}
           />
-        )}
-      </GoogleMap>
+        </GoogleMap>
+      </>
     )
   );
 }

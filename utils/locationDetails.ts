@@ -653,9 +653,9 @@ export const locationDetails: any = {
           type: "airport",
         },
         {
-          destination_name: "Santorini Port",
-          lon: "36,3914312745408",
-          lat: "25,4364786477547",
+          destination_name: "Santorini Ferry Port",
+          lon: "36.3850246",
+          lat: "25.4285523",
           plus_code: "9CPH+CP Όρμος Αθηνιός",
           link: "https://maps.app.goo.gl/QtWKP3XYfK8NQVX39",
           type: "port",

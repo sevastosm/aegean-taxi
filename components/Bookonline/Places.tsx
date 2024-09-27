@@ -13,7 +13,7 @@ import {
   useSearchParams,
 } from "next/navigation";
 
-import error from "next/error";
+import { useGoogleMaps } from "./GoogleMapsProvider";
 import React, { useEffect, useState } from "react";
 import PredictionListItem from "../predictions-list";
 import HotSpot from "./HotSpot";
@@ -21,12 +21,13 @@ import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import MyLocationOutlinedIcon from "@mui/icons-material/MyLocationOutlined";
 import useUrl from "@/app/hooks/useUrl";
 import { locationDetails } from "@/utils/locationDetails";
+import { Place } from "../../types/types";
+import { getPlaceDetails } from "@/heplers/googleMap";
 
 type Props = {};
 
 const Places = ({
   currentLocationAddress,
-  setPickUpLocationHandler,
   nearbyLocations = [],
   displayHotSpots,
   locationHandler,
@@ -41,6 +42,8 @@ const Places = ({
   predictions = null,
   setPredictions,
 }: any) => {
+  const map = useGoogleMaps();
+
   const searchParams = useSearchParams();
   const { updateUrl } = useUrl(); // Get the updateUrl function from the hook
   const originParam = searchParams.get("origin");
@@ -58,6 +61,25 @@ const Places = ({
   if (selectedPickUp && selectedDropOff) {
     return null;
   }
+  const [service, setService] = useState(null);
+
+
+  // Get user's current location
+  const handleGetLocation = () => {
+    updateUrl("mylocation", "1")
+  };
+
+  // Function to get details of a selected prediction
+  const handlePredictionClick = async (place_id: string) => {
+    const locationData = await getPlaceDetails(place_id)
+    if (!originParam) {
+      updateUrl("origin", JSON.stringify(locationData));
+      setPredictions([]);
+    } else {
+      updateUrl("destination", JSON.stringify(locationData));
+      setPredictions([]);
+    }
+  };
 
   const hotSpotsList =
     hotSpots &&
@@ -71,35 +93,33 @@ const Places = ({
         bgcolor: "background.paper",
       }}
     >
-      {currentLocationAddress && currentLocationAddress != "unknown" && (
-        <>
-          <ListItem
-            alignItems="flex-start"
-            onClick={() => setPickUpLocationHandler(currentLocationAddress)}
-            key="currentLocation"
-          >
-            <ListItemAvatar>
-              <MyLocationOutlinedIcon />
-            </ListItemAvatar>
-            <ListItemText
-              primary={currentLocationAddress}
-              secondary={
-                <React.Fragment>
-                  <Typography
-                    sx={{ display: "inline" }}
-                    component="span"
-                    variant="body2"
-                    color="text.primary"
-                  >
-                    Your current location
-                  </Typography>
-                </React.Fragment>
-              }
-            />
-          </ListItem>
-          <Divider variant="inset" component="li" />
-        </>
-      )}
+      <>
+        <ListItem
+          onClick={handleGetLocation}
+          key="currentLocation"
+        >
+          <ListItemAvatar>
+            <MyLocationOutlinedIcon />
+          </ListItemAvatar>
+          <ListItemText
+            primary={currentLocationAddress}
+            secondary={
+              <React.Fragment>
+                <Typography
+                  sx={{ display: "inline" }}
+                  component="span"
+                  variant="body2"
+                  color="text.primary"
+                >
+                  Your current location
+                </Typography>
+              </React.Fragment>
+            }
+          />
+        </ListItem>
+        <Divider variant="inset" component="li" />
+      </>
+
 
       {currentLocationAddress && currentLocationAddress == "unknown" && (
         <>
@@ -136,11 +156,9 @@ const Places = ({
           <PredictionListItem
             key={`${prediction.place_id}-${Math.floor(Math.random() * 1000)}`}
             description={prediction.description}
-            locationHandler={(value) => {
-              focused === "pickup"
-                ? updateUrl("origin", value)
-                : updateUrl("destination", value);
-              setPredictions([]);
+            prediction={prediction}
+            locationHandler={() => {
+              handlePredictionClick(prediction.place_id)
             }}
           />
         ))}
@@ -151,11 +169,13 @@ const Places = ({
           <div
             className="cursor-pointer"
             onClick={() => {
+              const place: Place = { lat: spot.lat, lng: spot.lon, name: spot.destination_name }
+
               if (!originParam) {
-                updateUrl("origin", spot.destination_name);
+                updateUrl("origin", JSON.stringify(place));
                 setPredictions([]);
               } else {
-                updateUrl("destination", spot.destination_name);
+                updateUrl("destination", JSON.stringify(place));
                 setPredictions([]);
               }
             }}

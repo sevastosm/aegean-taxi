@@ -6,6 +6,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import CancelButton from "./CancelButton";
+import { sendSms } from "@/utils/fetchers";
+import { useRouter } from "next/navigation";
 const driversView = "/assets/booking-flow/driversView.png";
 const islandView = "/assets/booking-flow/islandView.png";
 const mobileView = "/assets/booking-flow/mobileView.png";
@@ -65,14 +67,21 @@ const slides: slide[] = [
 interface Props {
   handleSwipeFinished?: () => void;
   orderId: string;
+  phone: string;
 }
 
-const BookingFlow = ({ handleSwipeFinished, orderId = "" }: Props) => {
+const BookingFlow = ({ orderId = "", phone = "" }: Props) => {
+  const router = useRouter();
+
   const handleSwipeChange = (swipe: { isEnd: boolean }) => {
     if (swipe.isEnd) {
+      sendSms(
+        `00${phone.replace("+", "")}`,
+        `Your taxi booking request has been received.Please check the below link to see the status of your reservation and your driver details once assigned. https://aegeantaxi.com/reservation-confirmed/order?orderid=${orderId}`
+      );
       setTimeout(() => {
-        handleSwipeFinished && handleSwipeFinished();
-      }, 4500);
+        router.push(`/reservation-confirmed/order?orderid=${orderId}`);
+      }, 4000);
     }
   };
 
@@ -80,7 +89,7 @@ const BookingFlow = ({ handleSwipeFinished, orderId = "" }: Props) => {
     <div className="flex flex-grow  flex-col">
       <div className="swiper-container">
         <Swiper
-          // onSlideChange={handleSwipeChange}
+          onSlideChange={handleSwipeChange}
           centeredSlides={true}
           autoplay={{
             delay: 5000,

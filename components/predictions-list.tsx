@@ -17,9 +17,7 @@ export default function PredictionListItem(props: any) {
     description = descriptionString.join(",");
   }
 
-  const clickHandler = () => {
-    props.locationHandler(`${title}, ${description}`);
-  };
+
 
   return (
     <>
@@ -28,7 +26,7 @@ export default function PredictionListItem(props: any) {
           <ListItem
             key={`${Math.floor(Math.random() * 1000)}`}
             alignItems="flex-start"
-            onClick={clickHandler}
+            onClick={props.locationHandler}
             sx={{
               cursor: "pointer",
             }}
