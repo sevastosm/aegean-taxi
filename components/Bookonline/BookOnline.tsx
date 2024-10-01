@@ -21,11 +21,16 @@ import classNames from "classnames";
 import MapComponent from "./MapComponent";
 import { useGoogleMaps } from "./GoogleMapsProvider";
 import useUrl from "@/app/hooks/useUrl";
+import PinSearch from "./PinSearch";
 
 export default function BookOnline() {
   const searchParams = useSearchParams();
   const locationSearch = searchParams.get("location");
-  const [open, setOpen] = useState<boolean>(true);
+  const pinpickup = searchParams.get("pinpickup");
+  const mapopen = searchParams.get("mapopen");
+
+
+  const [open, setOpen] = useState<boolean>(false);
 
   const [displayHotSpots, setDisplayHotSpots] = useState<boolean>(true);
 
@@ -49,8 +54,10 @@ export default function BookOnline() {
   };
 
   const origin = searchParams.get("origin");
-
+  const pinSearch = searchParams.get("pinsearch");
   const destination = searchParams.get("destination");
+
+
 
   const wrapperStyle = classNames(
     "flex relative md:gap-2 flex-col md:flex-row min-h-[200px] max-w-[1200px] md:pt-4  md:h-auto mx-auto",
@@ -62,10 +69,8 @@ export default function BookOnline() {
     locationSearch && locationDetails.taxi_locations[locationSearch];
 
   useEffect(() => {
-    if (origin && destination) {
+    if (origin && destination && open) {
       setOpen(false);
-    } else {
-      setOpen(true);
     }
   }, [origin, destination]);
 
@@ -74,6 +79,16 @@ export default function BookOnline() {
       localStorage.removeItem("bookinginfo");
     }
   }, [locationSearch]);
+
+
+  useEffect(() => {
+    if (mapopen || pinpickup) {
+      setOpen(false)
+    }
+
+  }, [mapopen])
+
+
 
   return !locationSearch ? (
     <div className="flex flex-col h-[calc(100dvh-70px)]">
@@ -107,6 +122,7 @@ export default function BookOnline() {
         )}
       >
         <div className="flex-grow">
+          <PinSearch />
           <LocationSearch />
         </div>
 

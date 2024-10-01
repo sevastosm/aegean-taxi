@@ -66,7 +66,7 @@ const Places = ({
 
   // Get user's current location
   const handleGetLocation = () => {
-    updateUrl("mylocation", "1")
+    updateUrl("pinpickup", "pinpickup")
   };
 
   // Function to get details of a selected prediction
@@ -93,33 +93,34 @@ const Places = ({
         bgcolor: "background.paper",
       }}
     >
-      <>
-        <ListItem
-          onClick={handleGetLocation}
-          key="currentLocation"
-        >
-          <ListItemAvatar>
-            <MyLocationOutlinedIcon />
-          </ListItemAvatar>
-          <ListItemText
-            primary={currentLocationAddress}
-            secondary={
-              <React.Fragment>
-                <Typography
-                  sx={{ display: "inline" }}
-                  component="span"
-                  variant="body2"
-                  color="text.primary"
-                >
-                  Your current location
-                </Typography>
-              </React.Fragment>
-            }
-          />
-        </ListItem>
-        <Divider variant="inset" component="li" />
-      </>
-
+      {!originParam && !destinationParam &&
+        <>
+          <ListItem
+            onClick={handleGetLocation}
+            key="currentLocation"
+          >
+            <ListItemAvatar>
+              <MyLocationOutlinedIcon />
+            </ListItemAvatar>
+            <ListItemText
+              primary={currentLocationAddress}
+              secondary={
+                <React.Fragment>
+                  <Typography
+                    sx={{ display: "inline" }}
+                    component="span"
+                    variant="body2"
+                    color="text.primary"
+                  >
+                    Set locaton on map
+                  </Typography>
+                </React.Fragment>
+              }
+            />
+          </ListItem>
+          <Divider variant="inset" component="li" />
+        </>
+      }
 
       {currentLocationAddress && currentLocationAddress == "unknown" && (
         <>
@@ -169,7 +170,7 @@ const Places = ({
           <div
             className="cursor-pointer"
             onClick={() => {
-              const place: Place = { lat: spot.lat, lng: spot.lon, name: spot.destination_name }
+              const place: Place = { lat: spot.lon, lng: spot.lat, name: spot.destination_name, address: spot.destination_name }
 
               if (!originParam) {
                 updateUrl("origin", JSON.stringify(place));

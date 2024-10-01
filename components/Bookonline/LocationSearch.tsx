@@ -7,6 +7,7 @@ import Places from "./Places";
 import { getSuggestions } from "@/heplers/googleMap";
 import { PlaceholderValue } from "next/dist/shared/lib/get-img-props";
 import { Place } from "@/types/types";
+import { resetPickUp } from "../ui/helpers";
 
 const LocationSearch = () => {
   const [origin, setOrigin] = useState(undefined);
@@ -18,6 +19,8 @@ const LocationSearch = () => {
 
   const originParam: Place | null = JSON.parse(searchParams.get("origin"));
   const destinationParam: Place | null = JSON.parse(searchParams.get("destination"));
+  const setPinParm = searchParams.get("setPin")
+
   const locationSearch = searchParams.get("location");
 
   const activeLocation =
@@ -38,6 +41,7 @@ const LocationSearch = () => {
 
 
   const handlePlaceChange = (value: string) => {
+    resetPickUp()
     if (value?.length) {
       const suggestions = getSuggestions(value, mapOptions)
       console.log("suggestions", suggestions)
@@ -46,11 +50,8 @@ const LocationSearch = () => {
   }
 
   const handleClearPickup = () => {
-    updateUrl("origin", null);
-    // updateUrl("destination", null)
-
     setOrigin("");
-    // handleClearDropOff()
+    updateUrl("origin", null);
   };
   const handleClearDropOff = () => {
     updateUrl("destination", null);
@@ -63,7 +64,7 @@ const LocationSearch = () => {
   }, [originParam, destinationParam]);
 
   return (
-    <div className="flex flex-col relative">
+    <div className="flex flex-col relative" id="locationInputs">
       {/* Pick up */}
       <div className="flex flex-col mb-4 space-y-4 relative ">
         {originParam && (

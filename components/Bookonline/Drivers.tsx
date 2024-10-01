@@ -28,7 +28,7 @@ export default function Drivers() {
           !open ? "flex h-[200px] min-h-[200px]" : "hidden md:block"
         )}
       >
-        <MapComponent colapsed={false} />,
+        <MapComponent colapsed={false} page={'trasporation'} />,
       </div>
       <div
         className={classNames(

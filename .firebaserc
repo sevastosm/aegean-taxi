@@ -1,7 +1,8 @@
 {
   "projects": {
-    "demo": " aegean-2023-3f2a8",
-    "prod": "aegeantaxi-84ff2"
+    "demo": "aegean-2023-3f2a8",
+    "prod": "aegeantaxi-84ff2",
+    "default": "aegean-2023-3f2a8"
   },
   "targets": {},
   "etags": {}

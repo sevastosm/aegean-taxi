@@ -7,7 +7,11 @@ import { debug } from "console";
 import { updateStorage } from "@/heplers/updateStorage";
 import { locationDetails } from "@/utils/locationDetails";
 import { Place } from "@/types/types";
+import useUrl from "@/app/hooks/useUrl";
+import { activatePickUp } from "../ui/helpers";
+import { faMapPin } from "@fortawesome/free-solid-svg-icons";
 
+import { cordToNumber } from '../../heplers/googleMap'
 const containerStyle = {
   width: "100%",
   height: "100%",
@@ -18,6 +22,7 @@ const center1 = {
 };
 
 function MapComponent({
+  page = null,
   calculateAndDisplayRoute,
   setAutocompleteService,
 }: any) {
@@ -27,7 +32,8 @@ function MapComponent({
   const google = useGoogleMaps();
 
   const locationSearch = searchParams.get("location");
-  const mylocation = searchParams.get("mylocation");
+  const pinpickup = searchParams.get("pinpickup");
+  const { updateLocationUrl, updateUrl } = useUrl()
 
 
   const activeLocation =
@@ -35,7 +41,7 @@ function MapComponent({
 
   const origin = searchParams.get("origin");
 
-  const { lat, lon, name, } = JSON.parse(origin) || {}
+
 
 
   const destination = searchParams.get("destination");
@@ -57,6 +63,7 @@ function MapComponent({
   const [markerPosition, setMarkerPosition] = useState(center);
   const [showMap, setShowMap] = useState(true); // Control map rendering
   const [centerMap, setCenter] = useState(center);
+  const [address, setAddrees] = useState(null);
 
   const options = {
     disableDefaultUI: true,
@@ -73,31 +80,22 @@ function MapComponent({
   // Refs to store the markers
   const originMarkerRef = useRef(null);
   const destinationMarkerRef = useRef(null);
-  const directionsRef = useRef(null);
+  const directionsRendererRef = useRef(null);
+  const pinMarkerRef = useRef(null);
+
 
   // Function to clear directions
-  const clearDirections = () => {
-    if (directionsRef.current) {
-      directionsRef.current = null; // Clear directions
-      setDirectionsResponse(null); // Clear the directions response state
-    }
-  };
 
-  const addCustomMarker = async () => {
+  const addCustomMarker = async (origin, destination, durationText) => {
     originMarkerRef.current?.setMap(null);
-    destinationMarkerRef.current?.setMap(null);
+    destinationMarkerRef.current?.setMap(null)
     const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-
     // if (!directionsResponse) return;
-
-    // const origin = "San Francisco"; // Example origin text (you can dynamically change this)
-    const durationText = directionsResponse.routes[0].legs[0].duration.text;
+    // const origin = "San Francisco"; // Example origin text (you can dynami"cally change this)
     // Clear previous markers
-
     // Create a custom HTML element for the marker
     const originContent = document.createElement("div");
     const destinationContent = document.createElement("div");
-
     destinationContent.innerHTML = `
       <div class="flex max-w-[100px] gap-2 bg-white items-center mb-1">
         <div class="bg-black text-[10px] max-w-[40px] text-center p-1 text-white">${durationText}</div>
@@ -110,14 +108,15 @@ function MapComponent({
       </div>
     `;
 
+
     // Create and store new markers
     const originMarker = new AdvancedMarkerElement({
-      position: { lat: originParam.lat, lng: originParam.lng },
+      position: origin,
       map,
       content: originContent,
     });
     const destinationMarker = new AdvancedMarkerElement({
-      position: { lat: destinationParam.lat, lng: destinationParam.lng },
+      position: destination,
       map,
       content: destinationContent,
     });
@@ -125,86 +124,137 @@ function MapComponent({
     // Store the markers in refs for future cleanup
     originMarkerRef.current = originMarker;
     destinationMarkerRef.current = destinationMarker;
+
+
+
+
+
+
   };
 
-  useEffect(() => {
-    if (originParam && destinationParam && isLoaded) {
-      const geocoder = new window.google.maps.Geocoder();
 
-      geocoder.geocode({ address: origin }, (results, status) => {
-        if (status === "OK") {
-          setOriginPosition({ lat: originParam.lat, lng: originParam.lng });
+  const handleDirections = () => {
+    const directionsService = new window.google.maps.DirectionsService();
+    pinMarkerRef.current.setMap(null);
+    directionsRendererRef.current.setMap(map);
+    directionsRendererRef.current.setDirections({ routes: [] });
+
+    const originLat = cordToNumber(originParam.lat)
+    const originlng = cordToNumber(originParam.lng)
+    const destinationlat = cordToNumber(destinationParam.lat)
+    const destinationLng = cordToNumber(destinationParam.lng)
+    const latLng = new google.maps.LatLng({ lat: originLat, lng: originlng });
+    const destlatLng = new google.maps.LatLng({ lat: destinationlat, lng: destinationLng });
+
+    const waypoints = [
+      {
+        exactLatLng: latLng,
+        street: originParam?.address,
+        poiName: originParam?.address,
+        placeLatLng: latLng,
+      },
+      {
+        exactLatLng: destlatLng,
+        street: destinationParam?.address,
+        poiName: destinationParam?.address,
+        placeLatLng: destlatLng,
+      },
+    ];
+
+    updateStorage("waypoints", waypoints);
+
+    directionsService.route(
+      {
+        origin: latLng,// Replace with actual start location
+        destination: destlatLng, // Replace with actual end location
+        travelMode: window.google.maps.TravelMode.DRIVING,
+      },
+      (result, status) => {
+        if (status === window.google.maps.DirectionsStatus.OK) {
+          // Set directions result to the DirectionsRenderer instance
+          const durationText = result.routes[0].legs[0].duration.text;
+          addCustomMarker(latLng, destlatLng, durationText)
+          directionsRendererRef.current.setDirections(result);
+
         } else {
-          console.error(
-            `Geocode was not successful for the following reason: ${status}`
-          );
+          console.error(`Error fetching directions ${status}`);
         }
-      });
+      }
+    );
 
-      geocoder.geocode({ address: destination }, (results, status) => {
-        if (status === "OK") {
-          setDestinationPosition({ lat: destinationParam.lat, lng: destinationParam.lng });
+  }
+
+  const getAddressFromCoordinates = (newCenter) => {
+    console.log("newCenter", newCenter)
+    const geocoder = new google.maps.Geocoder();
+
+    geocoder.geocode({ location: newCenter }, (results, status) => {
+      if (status === "OK") {
+        if (results[0]) {
+          const address = results[0].formatted_address;
+          const lat = results[0].geometry.location.lat();
+          const lng = results[0].geometry.location.lng();
+
+
+          console.log(results[0])
+          setAddrees(address)
+          document.getElementById('pinAddress').value = address
+          document.getElementById('pinName').value = address
+          document.getElementById('pinLat').value = lat
+          document.getElementById('pinLng').value = lng
+
+          console.log("Address from dragged marker:", address);
         } else {
-          console.error(
-            `Geocode was not successful for the following reason: ${status}`
-          );
+          console.warn("No results found for the location.");
         }
-      });
-
-      const directionsService = new window.google.maps.DirectionsService();
-      directionsService.route(
-        {
-          origin: originParam.name,
-          destination: destinationParam?.name,
-          travelMode: window.google.maps.TravelMode.DRIVING,
-        },
-        (result, status) => {
-          if (status === window.google.maps.DirectionsStatus.OK) {
-            setDirectionsResponse(result);
-          } else {
-            console.error(`Error fetching directions: ${status}`);
-            // clearDirections()
-          }
-        }
-      );
-    }
-
-    if (!origin && !destination && isLoaded) {
-      handleReloadMap();
-    }
-  }, [searchParams]);
-
-
-  const onMarkerDragEnd = (e) => {
-    const newLat = e.latLng.lat();
-    const newLng = e.latLng.lng();
-    setMarkerPosition({ lat: newLat, lng: newLng });
-    setCenter({ lat: newLat, lng: newLng });
+      } else {
+        console.error("Geocoder failed due to:", status);
+      }
+    });
   };
 
-
-
-
-  const handleReloadMap = () => {
-    setShowMap(false); // Unmount the map
-    setDirectionsResponse(null);
-    setTimeout(() => {
-      setShowMap(true); // Remount the map after a short delay
-    }, 100);
-  };
 
   // Get user's current location
   const handleGetLocation = () => {
-    if (navigator.geolocation) {
+    originMarkerRef.current?.setMap(null);
+    destinationMarkerRef.current?.setMap(null);
+    activatePickUp()
+    if (navigator.geolocation && !originParam) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
           const newLocation = { lat: latitude, lng: longitude };
-          setMarkerPosition(newLocation);
-          setCenter(newLocation);
-          if (map.current) {
-            map.current.panTo(newLocation);
-          }
+          const pinMarker = new google.maps.Marker({
+            draggable: false,
+            position: newLocation,
+            map: map, // Use the existing map instance
+            icon: {
+              path: faMapPin.icon[4] as string,
+              fillColor: "#000000",
+              fillOpacity: 1,
+              anchor: new google.maps.Point(
+                faMapPin.icon[0] / 2, // width
+                faMapPin.icon[1] // height
+              ),
+              strokeWeight: 1,
+              strokeColor: "#ffffff",
+              scale: 0.075,
+            },
+          });
+
+          pinMarkerRef.current = pinMarker
+          getAddressFromCoordinates(newLocation)
+
+          map.setCenter(newLocation);
+          map.setZoom(16);
+          pinMarker.setPosition(newLocation);
+          map.addListener('drag', () => {
+            // Get the new center of the map after dragging
+            const newCenter = map.getCenter();
+            pinMarker.setPosition(newCenter);
+            getAddressFromCoordinates(newCenter)
+
+          })
         }
       );
     } else {
@@ -212,6 +262,8 @@ function MapComponent({
     }
   };
 
+
+  // initiliaze map
   useEffect(() => {
     if (map) {
       if (document.getElementById("centerMap")) {
@@ -255,41 +307,39 @@ function MapComponent({
       map.controls[window.google.maps.ControlPosition.RIGHT_BOTTOM].push(
         centerControlDiv
       );
+
+      if (!directionsRendererRef.current) {
+        // Initialize the DirectionsRenderer
+        directionsRendererRef.current = new window.google.maps.DirectionsRenderer({
+          suppressMarkers: true, // Hide default markers
+          uppressInfoWindows: true, // Hide info windows
+        });
+      }
+
     }
   }, [map]);
 
+
+
+
   useEffect(() => {
-    if (map && directionsResponse) {
-      addCustomMarker();
+    if (map && originParam && destinationParam && directionsRendererRef.current) {
+      handleDirections();
     }
-  }, [map, directionsResponse]);
 
-  useEffect(() => {
-    const waypoints = [
-      {
-        exactLatLng: originPosition,
-        street: origin,
-        poiName: origin,
-        placeLatLng: originPosition,
-      },
-      {
-        exactLatLng: destinationPosition,
-        street: destination,
-        poiName: destination,
-        placeLatLng: destinationPosition,
-      },
-    ];
+  }, [map, directionsRendererRef, originParam, destinationParam]);
 
-    updateStorage("waypoints", waypoints);
-  }, [originPosition, destinationPosition]);
 
 
   useEffect(() => {
-    if (map && mylocation === '1') {
+    if (page === "trasporation") {
+      return
+    }
+    if (map && pinpickup) {
       handleGetLocation()
     }
 
-  }, [mylocation])
+  }, [pinpickup, map, page])
 
   console.log("MAP-RENDER");
 
@@ -297,7 +347,6 @@ function MapComponent({
     isLoaded &&
     showMap && (
       <>
-        <button onClick={handleGetLocation}>Get Current Location</button>
         <GoogleMap
           ref={mapRef}
           mapContainerStyle={containerStyle}
@@ -306,32 +355,28 @@ function MapComponent({
           onLoad={(mapInstance) => {
             setMap(mapInstance);
             mapRef.current = mapInstance;
+
+
           }}
           options={options}
           onUnmount={() => setMap(null)}
         >
           {directionsResponse && (
             <DirectionsRenderer
-              ref={directionsRef}
+              ref={directionsRendererRef}
               options={{ suppressMarkers: true, suppressInfoWindows: true }}
               directions={directionsResponse}
             />
           )}
-
-          <Marker
-            position={markerPosition}
-            draggable={true}
-            onDragEnd={onMarkerDragEnd}
-          />
         </GoogleMap>
       </>
     )
   );
 }
-export default React.memo(MapComponent, (prevProps, nextProps) => {
-  return (
-    prevProps.origin === nextProps.origin &&
-    prevProps.destination === nextProps.destination
-  );
-});
-// export default MapComponent;
+// export default React.memo(MapComponent, (prevProps, nextProps) => {
+//   return (
+//     prevProps.origin === nextProps.origin &&
+//     prevProps.destination === nextProps.destination
+//   );
+// });
+export default MapComponent;

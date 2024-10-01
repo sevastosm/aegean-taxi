@@ -71,3 +71,10 @@ export const getPlaceDetails = (placeId: string): Promise<Place | null> => {
     });
   });
 };
+
+export const cordToNumber = (value: string | number) => {
+  if (typeof value === "string") {
+    return parseFloat(value.replace(",", "."));
+  }
+  return value;
+};
