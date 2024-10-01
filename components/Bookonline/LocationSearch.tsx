@@ -8,6 +8,7 @@ import { getSuggestions } from "@/heplers/googleMap";
 import { PlaceholderValue } from "next/dist/shared/lib/get-img-props";
 import { Place } from "@/types/types";
 import { resetPickUp } from "../ui/helpers";
+import LocationInput from "./LocationInput";
 
 const LocationSearch = () => {
   const [origin, setOrigin] = useState(undefined);
@@ -18,8 +19,10 @@ const LocationSearch = () => {
   const { updateUrl } = useUrl(); // Get the updateUrl function from the hook
 
   const originParam: Place | null = JSON.parse(searchParams.get("origin"));
-  const destinationParam: Place | null = JSON.parse(searchParams.get("destination"));
-  const setPinParm = searchParams.get("setPin")
+  const destinationParam: Place | null = JSON.parse(
+    searchParams.get("destination")
+  );
+  const setPinParm = searchParams.get("setPin");
 
   const locationSearch = searchParams.get("location");
 
@@ -39,29 +42,27 @@ const LocationSearch = () => {
     }
   }, [map]);
 
-
   const handlePlaceChange = (value: string) => {
-    resetPickUp()
+    resetPickUp();
+    updateUrl("origin", null);
     if (value?.length) {
-      const suggestions = getSuggestions(value, mapOptions)
-      console.log("suggestions", suggestions)
-      setPredictions(suggestions)
-    };
-  }
+      const suggestions = getSuggestions(value, mapOptions);
+      console.log("suggestions", suggestions);
+      setPredictions(suggestions);
+    }
+  };
 
   const handleClearPickup = () => {
-    setOrigin("");
     updateUrl("origin", null);
   };
   const handleClearDropOff = () => {
     updateUrl("destination", null);
-    setDestinaton("");
   };
 
-  useEffect(() => {
-    setOrigin(originParam?.address || originParam?.name);
-    setDestinaton(destinationParam?.address || destinationParam?.name);
-  }, [originParam, destinationParam]);
+  // useEffect(() => {
+  //   setOrigin(originParam?.address);
+  //   setDestinaton(destinationParam?.address);
+  // }, [originParam, destinationParam]);
 
   return (
     <div className="flex flex-col relative" id="locationInputs">
@@ -76,88 +77,35 @@ const LocationSearch = () => {
         )}
         {/* Pickup Location Input */}
 
-        <div className="relative flex items-center">
-          {/* Square placeholder */}
-          {originParam && (
-            <div className="absolute left-[0px] flex items-center justify-center h-full w-6">
-              <div className="w-3 h-3 bg-[#244284] ml-2 rounded-full"></div>
-            </div>
-          )}
-          {/* Input field */}
-          <input
-            onFocus={() => setFocused("pickup")}
-            // onBlur={toggleBlurLocation()}
-            type="text"
-            // value={pickupValue}
-            onChange={(e) => {
-              setOrigin(e.target.value);
-              handlePlaceChange(e.target.value);
-            }}
-            value={origin}
-            // onChange={(e) => {
-            //   setPickUpLocation(e.target.value);
-            //   getSuggestions(e, "pickUp");
-            // }}
-            className={`pl-8 pr-8 py-3 border-2 rounded font-semibold focus:outline-none ${origin ? "bg-gray-300" : "bg-white border-[#244284]"
-              } w-full`}
-            placeholder="Enter pick up location"
-          />
-
-          {/* Clear button */}
-          <button
-            // onClick={() => handleClear(setPickupValue)}
-            onClick={handleClearPickup}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-[#244284] text-white rounded-full w-[25px] h-[25px] flex items-center justify-center mr-2"
-          >
-            X
-          </button>
-        </div>
+        <LocationInput
+          direction="pickUp"
+          originParam={originParam}
+          destinationParam={destinationParam}
+          placeholder="Enter pick up location"
+          param={originParam}
+          onClear={handleClearPickup}
+          setFocused={setFocused}
+          onChange={handlePlaceChange}
+        />
       </div>
       {/* Drop of */}
 
       {originParam && (
         <div className="flex flex-col gap-4 relative ">
           {/* Pickup Location Input */}
-          <div className="relative flex items-center">
-            {/* Square placeholder */}
-            <div className="absolute left-0 flex items-center justify-center h-full w-6">
-              <div className="w-3 h-3 bg-[#244284] ml-2"></div>
-            </div>
-            {/* Input field */}
-            <input
-              id="dropOff"
-              onFocus={() => setFocused("dropoff")}
-              // onBlur={toggleBlurDestination()}
-              type="text"
-              // value={pickupValue}
-              // onChange={(e) =>
-              //   handleChange(e, setPickupValue)
-              // }
-              value={destination}
-              onChange={(e) => {
-                setDestinaton(e.target.value);
-                handlePlaceChange(e.target.value);
-              }}
-              // onChange={(e) => {
-              //   setDropLocation(e.target.value);
-              //   getSuggestions(e, "dropOff");
-              // }}
-              className={`pl-8 pr-8 py-3 border-2 rounded font-semibold focus:outline-none ${destination ? "bg-gray-300" : "bg-white border-blue-500"
-                } 
-            ${origin && !destination && "bg-white border-[#244284]"}
-            w-full`}
-              placeholder="Enter drop off location"
-            />
 
-            {/* Clear button */}
-            <button
-              // onClick={() => handleClear(setPickupValue)}
-              onClick={handleClearDropOff}
-              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-[#244284] text-white rounded-full w-[25px] h-[25px] flex items-center justify-center mr-2"
-            >
-              X
-            </button>
-          </div>
+          {/* Input field */}
+          <LocationInput
+            direction="dropOff"
+            originParam={originParam}
+            destinationParam={destinationParam}
+            placeholder="Enter drop off location"
+            param={destinationParam}
+            onClear={handleClearDropOff}
+            setFocused={setFocused}
+            onChange={handlePlaceChange}
+
+          />
         </div>
       )}
       <Places
@@ -166,6 +114,7 @@ const LocationSearch = () => {
         focused={focused}
         predictions={predictions}
         setPredictions={setPredictions}
+        setFocused={setFocused}
       />
     </div>
   );

@@ -41,12 +41,13 @@ const Places = ({
   focused = null,
   predictions = null,
   setPredictions,
+  setFocused
 }: any) => {
   const map = useGoogleMaps();
 
   const searchParams = useSearchParams();
   const { updateUrl } = useUrl(); // Get the updateUrl function from the hook
-  const originParam = searchParams.get("origin");
+  const originParam = JSON.parse(searchParams.get("origin"))
   const destinationParam = searchParams.get("destination");
 
   const locationSearch = searchParams.get("location");
@@ -56,8 +57,7 @@ const Places = ({
 
   const { hotSpots } = activeLocation;
 
-  const viewHotspots =
-    (!originParam && !destinationParam) || (originParam && !destinationParam);
+  const viewHotspots = true
   if (selectedPickUp && selectedDropOff) {
     return null;
   }
@@ -83,7 +83,10 @@ const Places = ({
 
   const hotSpotsList =
     hotSpots &&
-    hotSpots.filter((spot: any) => spot.destination_name !== originParam);
+    hotSpots.filter((spot: any) => spot.destination_name !== originParam?.name);
+
+
+  console.log("focused", focused)
 
   return (
     <List
@@ -93,7 +96,7 @@ const Places = ({
         bgcolor: "background.paper",
       }}
     >
-      {!originParam && !destinationParam &&
+      {focused === "pickUp" &&
         <>
           <ListItem
             onClick={handleGetLocation}
@@ -119,8 +122,8 @@ const Places = ({
             />
           </ListItem>
           <Divider variant="inset" component="li" />
-        </>
-      }
+        </>}
+
 
       {currentLocationAddress && currentLocationAddress == "unknown" && (
         <>
@@ -174,6 +177,7 @@ const Places = ({
 
               if (!originParam) {
                 updateUrl("origin", JSON.stringify(place));
+                setFocused('dropOff')
                 setPredictions([]);
               } else {
                 updateUrl("destination", JSON.stringify(place));

@@ -135,7 +135,10 @@ function MapComponent({
 
   const handleDirections = () => {
     const directionsService = new window.google.maps.DirectionsService();
-    pinMarkerRef.current.setMap(null);
+    if (pinMarkerRef?.current) {
+
+      pinMarkerRef?.current.setMap(null);
+    }
     directionsRendererRef.current.setMap(map);
     directionsRendererRef.current.setDirections({ routes: [] });
 
