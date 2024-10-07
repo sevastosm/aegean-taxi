@@ -18,9 +18,11 @@ const SelectTaxi = ({ cars }: any) => {
   const [selectedItem, setSelectedItem] = useState(null);
   const handleSelect = useCallback(
     (item: any) => {
-      updateStorage("traspontation", item);
-      setSelectedItem(item.name);
-      updateUrl("tarif", item.tariffId);
+      if (item?.name) {
+        updateStorage("traspontation", item);
+        setSelectedItem(item.name);
+        updateUrl("tarif", item.tariffId);
+      }
     },
     [tarif]
   );
@@ -60,11 +62,10 @@ const SelectTaxi = ({ cars }: any) => {
             return (
               <div
                 key={i}
-                className={`my-2.5 px-3 py-1 border-[3px] rounded-2xl cursor-pointer flex items-center justify-between ${
-                  selectedItem === car.name
-                    ? "border-[#264388]"
-                    : "border-transparent"
-                }`}
+                className={`my-2.5 px-3 py-1 border-[3px] rounded-2xl cursor-pointer flex items-center justify-between ${selectedItem === car.name
+                  ? "border-[#264388]"
+                  : "border-transparent"
+                  }`}
                 onClick={() => handleSelect(car)}
               >
                 <div className="flex flex-row gap-2 items-center justify-start">
@@ -107,7 +108,7 @@ const SelectTaxi = ({ cars }: any) => {
           })}
         </div>
       </div>
-      <div className="flex flex-col bg-white gap-2 left-0 bottom-0 w-full">
+      < div className="flex flex-col bg-white gap-2 left-0 bottom-0 w-full">
         <div className="px-4">
           <CardPayment />
         </div>
@@ -119,7 +120,8 @@ const SelectTaxi = ({ cars }: any) => {
           disabled={!selectedItem}
         />
       </div>
-    </div>
+
+    </div >
   );
 };
 
