@@ -26,11 +26,19 @@ const useUrl = () => {
     } else {
       params.delete(query);
     }
+    if (query === "origin") {
+      params.delete("pinpickup");
+      const place: Place = JSON.parse(term);
+      place && params.set("pickupvalue", place.address);
+    }
 
     if (term && typeof term === "string") {
       params.set(query, term);
     } else {
       params.delete(query);
+      if (query === "pickupvalue") {
+        params.delete("origin");
+      }
       if (query === "origin") {
         params.delete("pinpickup");
       }

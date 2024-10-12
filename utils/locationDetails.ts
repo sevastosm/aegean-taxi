@@ -438,9 +438,9 @@ export const locationDetails: any = {
         },
       ],
       mapOptions: {
-        zoom: 12,
-        lat: 37.451414,
-        lng: 25.2984466,
+        zoom: 11.2,
+        lat: 37.46455260671,
+        lng: 25.38343383486949,
       },
     },
     "santorini-taxi-app": {
@@ -670,9 +670,9 @@ export const locationDetails: any = {
         },
       ],
       mapOptions: {
-        zoom: 12,
-        lat: 36.4071255,
-        lng: 25.3382296,
+        zoom: 11.2,
+        lat: 36.41147381997778,
+        lng: 25.411361526631516,
       },
     },
     "corfu-taxi-app": {
@@ -883,9 +883,9 @@ export const locationDetails: any = {
         },
       ],
       mapOptions: {
-        zoom: 12,
-        lat: 39.5908338,
-        lng: 19.5459429,
+        zoom: 9.4,
+        lat: 39.609625359612,
+        lng: 19.847120328615837,
       },
     },
     "rhodes-taxi-app": {
@@ -1093,9 +1093,9 @@ export const locationDetails: any = {
         },
       ],
       mapOptions: {
-        zoom: 12,
-        lat: 36.1672113,
-        lng: 27.635861,
+        zoom: 9.5,
+        lat: 36.19230309589684,
+        lng: 27.96153397973971,
       },
     },
     "athens-taxi-app": {
@@ -2567,9 +2567,9 @@ export const locationDetails: any = {
         },
       ],
       mapOptions: {
-        zoom: 12,
-        lat: 36.7935627,
-        lng: 26.9716909,
+        zoom: 10.1,
+        lat: 36.832347106929426,
+        lng: 27.14085413108812,
       },
     },
 

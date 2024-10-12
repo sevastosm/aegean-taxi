@@ -9,6 +9,7 @@ import { PlaceholderValue } from "next/dist/shared/lib/get-img-props";
 import { Place } from "@/types/types";
 import { resetPickUp } from "../ui/helpers";
 import LocationInput from "./LocationInput";
+import { useStore } from "@/app/store/store";
 
 const LocationSearch = () => {
   const [origin, setOrigin] = useState(undefined);
@@ -52,59 +53,90 @@ const LocationSearch = () => {
     }
   };
 
+  const clearPickupValue = useStore((state: any) => state.clearPickupValue);
+  const clearDropOffValue = useStore((state: any) => state.clearDropOffValue);
+
   const handleClearPickup = () => {
-    updateUrl("origin", null);
+    clearPickupValue();
   };
   const handleClearDropOff = () => {
-    updateUrl("destination", null);
+    clearDropOffValue();
   };
+
+  const setPickupValue = useStore((state: any) => state.setPickupValue);
+  const pickupValue = useStore((state: any) => state.pickupValue);
+  const pickupLocation = useStore((state: any) => state.pickupLocation);
+  const dropOffValue = useStore((state: any) => state.dropOffValue);
+
+  const handlePickUpChange = (value: string) => {
+    setPickupValue(value);
+    const suggestions = getSuggestions(value, mapOptions);
+    console.log("suggestions", suggestions);
+    setPredictions(suggestions);
+  };
+
+  const { getState } = useStore;
+
+  console.log("getState", getState());
 
   // useEffect(() => {
   //   setOrigin(originParam?.address);
-  //   setDestinaton(destinationParam?.address);
+  //   setDestinaton(destinationParam?.addreconst { getState, setState, subscribe, getInitialState } = store
+
   // }, [originParam, destinationParam]);
 
+  const setActiveInput = useStore((state: any) => state.setActiveInput);
+  const handlePickupFocus = () => {
+    setActiveInput("pickUp");
+  };
+  const handleDropOffFocus = () => {
+    setActiveInput("dropOff");
+  };
+
   return (
-    <div className="flex flex-col relative" id="locationInputs">
+    <div className='flex flex-col relative' id='locationInputs'>
       {/* Pick up */}
-      <div className="flex flex-col mb-4 space-y-4 relative ">
-        {originParam && (
+      <div className='flex flex-col mb-4 space-y-4 relative '>
+        {pickupLocation && (
           <img
             src={"/assets/booking-flow/bottomArrow.svg"}
-            alt="Bottom Pointing Arrow"
-            className="z-10 h-[64px] w-[20px] absolute top-[37px] left-[5.8px]"
+            alt='Bottom Pointing Arrow'
+            className='z-10 h-[64px] w-[20px] absolute top-[37px] left-[5.8px]'
           />
         )}
         {/* Pickup Location Input */}
 
         <LocationInput
-          direction="pickUp"
+          direction='pickUp'
           originParam={originParam}
           destinationParam={destinationParam}
-          placeholder="Enter pick up location"
+          placeholder='Enter pick up location'
           param={originParam}
           onClear={handleClearPickup}
           setFocused={setFocused}
-          onChange={handlePlaceChange}
+          onChange={handlePickUpChange}
+          onFocus={handlePickupFocus}
+          value={pickupValue}
         />
       </div>
       {/* Drop of */}
 
-      {originParam && (
-        <div className="flex flex-col gap-4 relative ">
+      {pickupLocation && (
+        <div className='flex flex-col gap-4 relative '>
           {/* Pickup Location Input */}
 
           {/* Input field */}
           <LocationInput
-            direction="dropOff"
+            direction='dropOff'
             originParam={originParam}
             destinationParam={destinationParam}
-            placeholder="Enter drop off location"
+            placeholder='Enter drop off location'
             param={destinationParam}
             onClear={handleClearDropOff}
             setFocused={setFocused}
             onChange={handlePlaceChange}
-
+            onFocus={handleDropOffFocus}
+            value={dropOffValue}
           />
         </div>
       )}

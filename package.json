@@ -8,7 +8,6 @@
     "start": "next start",
     "lint": "next lint",
     "deploy-preview": "firebase hosting:channel:deploy test-pin"
-
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
@@ -48,7 +47,8 @@
     "slick-carousel": "^1.8.1",
     "swiper": "^11.1.5",
     "swr": "^2.1.5",
-    "typescript": "4.9.5"
+    "typescript": "4.9.5",
+    "zustand": "^5.0.0-rc.2"
   },
   "devDependencies": {
     "@types/crypto-js": "^4.1.1",

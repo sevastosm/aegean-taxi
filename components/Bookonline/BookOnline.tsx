@@ -22,13 +22,18 @@ import MapComponent from "./MapComponent";
 import { useGoogleMaps } from "./GoogleMapsProvider";
 import useUrl from "@/app/hooks/useUrl";
 import PinSearch from "./PinSearch";
+import { useStore } from "@/app/store/store";
 
 export default function BookOnline() {
   const searchParams = useSearchParams();
   const locationSearch = searchParams.get("location");
   const pinpickup = searchParams.get("pinpickup");
-  const mapopen = searchParams.get("mapopen");
+  // const mapopen = searchParams.get("mapopen");
+  const origin = searchParams.get("origin");
+  const destination = searchParams.get("destination");
 
+  const mapOpen = useStore((state) => state.mapOpen);
+  const setActiveLocation = useStore((state: any) => state.setActiveLocation);
 
   const [open, setOpen] = useState<boolean>(false);
 
@@ -53,12 +58,6 @@ export default function BookOnline() {
     setOpen(true);
   };
 
-  const origin = searchParams.get("origin");
-  const pinSearch = searchParams.get("pinsearch");
-  const destination = searchParams.get("destination");
-
-
-
   const wrapperStyle = classNames(
     "flex relative md:gap-2 flex-col md:flex-row min-h-[200px] max-w-[1200px] md:pt-4  md:h-auto mx-auto",
     // open ? "h-[calc(100vh-70px)]" : "h-[calc(100vh-125px)]"
@@ -69,10 +68,23 @@ export default function BookOnline() {
     locationSearch && locationDetails.taxi_locations[locationSearch];
 
   useEffect(() => {
-    if (origin && destination && open) {
+    setActiveLocation(activeLocation);
+  }, [locationSearch]);
+
+  useEffect(() => {
+    if (origin && !destination) {
+      setOpen(true);
+    }
+    if (origin && destination) {
       setOpen(false);
     }
   }, [origin, destination]);
+
+  useEffect(() => {
+    if (pinpickup) {
+      setOpen(false);
+    }
+  }, [pinpickup, origin]);
 
   useEffect(() => {
     if (!locationSearch) {
@@ -80,37 +92,26 @@ export default function BookOnline() {
     }
   }, [locationSearch]);
 
-
-  useEffect(() => {
-    if (mapopen || pinpickup) {
-      setOpen(false)
-    }
-
-  }, [mapopen])
-
-
-
   return !locationSearch ? (
-    <div className="flex flex-col h-[calc(100dvh-70px)]">
+    <div className='flex flex-col h-[calc(100dvh-70px)]'>
       <TaxiLocations />
     </div>
   ) : (
     <div className={wrapperStyle}>
-      <div className="absolute top-0 pt-3 left-0 z-10 w-full">
+      <div className='absolute top-0 pt-3 left-0 z-10 w-full'>
         <ToolBar
           toggleDrawer={toggleDrawer}
           handleClick={handleBack}
-          isMapOpen={open}
+          isMapOpen={mapOpen}
         />
       </div>
       <div
         className={classNames(
           "w-full md:h-[700px] md:ml-4",
           "relative",
-          !open ? "flex flex-grow min-h-[300px] h-[60%]" : "hidden md:block"
-        )}
-      >
-        <MapComponent activeLocation={activeLocation} />
+          !mapOpen ? "flex flex-grow min-h-[300px] h-[60%]" : "hidden md:block"
+        )}>
+        <MapComponent />
       </div>
 
       <div
@@ -119,16 +120,15 @@ export default function BookOnline() {
           open
             ? "mt-[56px] md:mt-0 flex-grow md:flex-grow-0"
             : "flex-grow md:flex-grow-0"
-        )}
-      >
-        <div className="flex-grow">
+        )}>
+        <div className='flex-grow'>
           <PinSearch />
           <LocationSearch />
         </div>
 
         {origin && destination && (
-          <div className="flex flex-col">
-            <div className="w-full">
+          <div className='flex flex-col'>
+            <div className='w-full'>
               <BookActions
                 nextButtonHandler={nextButtonHandler}
                 calendars={<Calendars />}
