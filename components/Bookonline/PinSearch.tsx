@@ -1,52 +1,42 @@
-import React from 'react'
-import Aegeanbutton from '../ui/Aegeanbutton'
-import { resetPickUp } from '../ui/helpers'
-import useUrl from "@/app/hooks/useUrl";
-import { Place } from '@/types/types';
-import { json } from 'stream/consumers';
+import React from "react";
+import Aegeanbutton from "../ui/Aegeanbutton";
+import { useRouter, useSearchParams } from "next/navigation";
 
+import { useStore } from "@/app/store/store";
 
-type Props = {}
+type Props = {};
 
 const PinSearch = (props: Props) => {
+  const router = useRouter();
 
-    const { updateUrl } = useUrl()
+  const searchParams = useSearchParams();
 
-    const handleClick = () => {
-        const address = document.getElementById("pinAddress").value
-        const lat = document.getElementById("pinLat").value
-        const lng = document.getElementById("pinLng").value
-        const name = document.getElementById("pinName").value
+  const locationSearch = searchParams.get("location");
 
+  const pinLocation = useStore((state: any) => state.pinLocation);
+  const setPickupLocation = useStore((state: any) => state.setPickupLocation);
 
-        const place: Place = {
-            address: address,
-            name: name,
-            lat: lat,
-            lng: lng
-        }
+  const handleClick = () => {
+    setPickupLocation(pinLocation);
+    router.push(`/book-online/?location=${locationSearch}`);
+  };
 
-        updateUrl("origin", JSON.stringify(place))
-        resetPickUp()
-    }
+  const handleCancel = () => {
+    router.push(`/book-online/?location=${locationSearch}`);
+  };
 
-    const handleCancel = () => {
-        resetPickUp();
-        updateUrl("pinpickup", null)
-    }
+  return (
+    <div className='flex flex-col gap-2'>
+      <div className='font-bold text-lg'>Choose your pick-up spot</div>
+      <input
+        id='pinAddress'
+        value={pinLocation?.address}
+        className='text-lg w-full'
+      />
+      <Aegeanbutton onClick={handleClick} label={"Confirm pickup"} />
+      <Aegeanbutton onClick={handleCancel} label={"Cancel"} />
+    </div>
+  );
+};
 
-
-    return (
-        <div id="pinAddressWrapper" className='flex-col gap-2 hidden'>
-            <div className='font-bold text-lg'>Choose your pick-up spot</div>
-            <input id="pinAddress" className='text-lg w-full' />
-            <input id="pinLat" className='hidden' />
-            <input id="pinLng" className='hidden' />
-            <input id="pinName" className='hidden' />
-            <Aegeanbutton onClick={handleClick} label={'Confirm pickup'} />
-            <Aegeanbutton onClick={handleCancel} label={'Cancel'} />
-        </div>
-    )
-}
-
-export default PinSearch
+export default PinSearch;

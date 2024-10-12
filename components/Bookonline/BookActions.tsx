@@ -8,10 +8,14 @@ import React, { useEffect, useState } from "react";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import Aegeanbutton from "../ui/Aegeanbutton";
+import { useStore } from "@/app/store/store";
 type Props = {};
 
 const calendarInput = "/assets/booking-flow/calendarInput.svg";
 const BookActions = ({ calendars }: any) => {
+  const pickUpDate = useStore((state: any) => state.pickUpDate);
+  const pickUpTime = useStore((state: any) => state.pickUpTime);
+
   dayjs.extend(utc);
   dayjs.extend(timezone);
   dayjs.tz.setDefault("Europe/Athens");
@@ -23,12 +27,9 @@ const BookActions = ({ calendars }: any) => {
 
   const router = useRouter();
 
-  const pickupdate = searchParams.get("pickupdate");
-  const pickuptime = searchParams.get("pickuptime");
-
   const handleClick = () => {
     const currentParams = Object.fromEntries(searchParams.entries());
-    if (pickupdate && pickuptime) {
+    if (pickUpDate && pickUpTime) {
       // Get current query parameters as an object
 
       // Define new parameters to be added or updated
@@ -47,10 +48,10 @@ const BookActions = ({ calendars }: any) => {
   };
 
   useEffect(() => {
-    if (pickupdate && pickuptime) {
+    if (pickUpDate && pickUpTime) {
       setMsg(false);
     }
-  }, [pickupdate, pickuptime]);
+  }, [pickUpDate, pickUpTime]);
 
   const handleBookNow = () => {
     const currentParams = Object.fromEntries(searchParams.entries());
@@ -77,27 +78,26 @@ const BookActions = ({ calendars }: any) => {
 
   return (
     <div>
-      <div className="flex flex-grow gap-2 justify-between">
+      <div className='flex flex-grow gap-2 justify-between'>
         {!open && (
           <Aegeanbutton onClick={handleBookNow} label={"Book for now"} />
         )}
 
         <div className={`flex flex-col gap-4 ${open && "w-full"}`}>
-          <div className="flex items-center">
+          <div className='flex items-center'>
             <button
               onClick={() => {
                 setOpen(!open);
                 setMsg(false);
               }}
-              className="bg-white w-[60px] flex items-center justify-center  border-2 border-[#264388] rounded-lg py-2 font-semibold text-lg text-white"
-            >
+              className='bg-white w-[60px] flex items-center justify-center  border-2 border-[#264388] rounded-lg py-2 font-semibold text-lg text-white'>
               <img
                 src={calendarInput}
-                alt="Calendar Input Icon"
-                className="w-[33px] h-[33px]"
+                alt='Calendar Input Icon'
+                className='w-[33px] h-[33px]'
               />
             </button>
-            {open && <div className="ml-2 w-full">{calendars}</div>}
+            {open && <div className='ml-2 w-full'>{calendars}</div>}
           </div>
           {msg && <div>Plase choose date and time</div>}
           {open && <Aegeanbutton onClick={handleClick} label={" Book Later"} />}

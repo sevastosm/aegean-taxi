@@ -1,3 +1,4 @@
+import React from "react";
 import {
   List,
   ListItem,
@@ -6,51 +7,27 @@ import {
   Typography,
   Divider,
 } from "@mui/material";
-import {
-  usePathname,
-  useParams,
-  useRouter,
-  useSearchParams,
-} from "next/navigation";
-
-import { useGoogleMaps } from "./GoogleMapsProvider";
-import React, { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import PredictionListItem from "../predictions-list";
 import HotSpot from "./HotSpot";
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import MyLocationOutlinedIcon from "@mui/icons-material/MyLocationOutlined";
-import useUrl from "@/app/hooks/useUrl";
 import { locationDetails } from "@/utils/locationDetails";
 import { Place } from "../../types/types";
 import { getPlaceDetails } from "@/heplers/googleMap";
 import { useStore } from "@/app/store/store";
 
-type Props = {};
-
 const Places = ({
   currentLocationAddress,
   nearbyLocations = [],
-  displayHotSpots,
   locationHandler,
-  setDropOffLocationHandler,
   selectedPickUp,
   selectedDropOff,
-  pickUpLocation,
-  dropLocation,
-  origin,
-  destination,
   focused = null,
-  predictions = null,
-  setPredictions,
-  setFocused,
 }: any) => {
-  const map = useGoogleMaps();
+  const router = useRouter();
 
   const searchParams = useSearchParams();
-  const { updateUrl } = useUrl(); // Get the updateUrl function from the hook
-  const originParam = JSON.parse(searchParams.get("origin"));
-  const destinationParam = searchParams.get("destination");
-
   const locationSearch = searchParams.get("location");
 
   const activeLocation =
@@ -58,21 +35,21 @@ const Places = ({
 
   const { hotSpots } = activeLocation;
 
-  const viewHotspots =
-    (!originParam && !destinationParam) || (originParam && !destinationParam);
   if (selectedPickUp && selectedDropOff) {
     return null;
   }
-  const [service, setService] = useState(null);
-
   // Get user's current location
   const handleGetLocation = () => {
-    updateUrl("pinpickup", "pinpickup");
+    router.push(`pin-selection?location=${locationSearch}`);
   };
 
   const activeInput = useStore((state: any) => state.activeInput);
+  const pickupLocation = useStore((state: any) => state.pickupLocation);
   const setPickupLocation = useStore((state: any) => state.setPickupLocation);
   const setDropOffocation = useStore((state: any) => state.setDropOffocation);
+  const placeSuggestions = useStore((state: any) => state.placeSuggestions);
+  const viewHotspots = useStore((state: any) => state.viewHotspots);
+
   // Function to get details of a selected prediction
   const handlePredictionClick = async (place_id: string) => {
     const locationData = await getPlaceDetails(place_id);
@@ -80,19 +57,6 @@ const Places = ({
     activeInput === "pickUp"
       ? setPickupLocation(locationData)
       : setDropOffocation(locationData);
-
-    setPredictions([]);
-    if (!originParam) {
-      updateUrl(
-        "origin",
-        JSON.stringify({ ...locationData, address: locationData.name })
-      );
-    } else {
-      updateUrl(
-        "destination",
-        JSON.stringify({ ...locationData, address: locationData.name })
-      );
-    }
   };
 
   const handleHotspotClick = (data) => {
@@ -103,7 +67,9 @@ const Places = ({
 
   const hotSpotsList =
     hotSpots &&
-    hotSpots.filter((spot: any) => spot.destination_name !== originParam?.name);
+    hotSpots.filter(
+      (spot: any) => spot.destination_name !== pickupLocation?.name
+    );
 
   console.log("focused", focused);
 
@@ -114,7 +80,7 @@ const Places = ({
         // maxWidth: 360,
         bgcolor: "background.paper",
       }}>
-      {!originParam && (
+      {activeInput === "pickUp" && (
         <>
           <ListItem onClick={handleGetLocation} key='currentLocation'>
             <ListItemAvatar>
@@ -151,7 +117,7 @@ const Places = ({
         </>
       )}
 
-      {nearbyLocations.length > 0 &&
+      {/* {nearbyLocations.length > 0 &&
         nearbyLocations.map((location: any, index: number) => (
           <>
             <ListItem
@@ -165,11 +131,11 @@ const Places = ({
             </ListItem>
             <Divider variant='inset' component='li' />
           </>
-        ))}
+        ))} */}
 
       {/* Populate suggestions */}
-      {predictions.length > 0 &&
-        predictions.map((prediction: any) => (
+      {placeSuggestions &&
+        placeSuggestions.map((prediction: any) => (
           <PredictionListItem
             key={`${prediction.place_id}-${Math.floor(Math.random() * 1000)}`}
             description={prediction.description}
@@ -179,12 +145,11 @@ const Places = ({
             }}
           />
         ))}
-      {hotSpots &&
+      {viewHotspots &&
         hotSpotsList.map((spot: any) => (
           <div
             className='cursor-pointer'
             onClick={() => {
-              setPredictions([]);
               const place: Place = {
                 lat: spot.lon,
                 lng: spot.lat,

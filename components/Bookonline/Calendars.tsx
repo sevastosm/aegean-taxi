@@ -11,35 +11,30 @@ import React, { useState } from "react";
 import useUrl from "@/app/hooks/useUrl";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
-import { updateStorage } from "@/heplers/updateStorage";
-
-type Props = {};
+import { useStore } from "@/app/store/store";
 
 const Calendars = () => {
+  const pickUpDate = useStore((state: any) => state.pickUpDate);
+  const setPickUpDate = useStore((state: any) => state.setPickUpDate);
+  const pickUpTime = useStore((state: any) => state.pickUpTime);
+  const setPickUpTime = useStore((state: any) => state.setPickUpTime);
+
   dayjs.extend(utc);
   dayjs.extend(timezone);
   dayjs.tz.setDefault("Europe/Athens");
 
-  const { updateUrl } = useUrl();
-
-  const [pickUpDate, setPickUpDate] = useState<string>("DATE");
-  const [pickUpTime, setPickUpTime] = useState<string>("TIME");
   const [openDayPicker, setOpenDayPicker] = useState(false);
   const [openTimePicker, setOpenTimePicker] = useState(false);
 
   const setPickUpDateHandler = (value: any) => {
     const dateString = dayjs(value).format("YYYY-MM-DD");
     setPickUpDate(dateString);
-    updateUrl("pickupdate", dateString);
-    updateStorage("pickupdate", dateString);
   };
 
   const setPickUpTimeHandler = (value: any) => {
     setOpenTimePicker(false);
     const timeString = dayjs(value).format("HH:mm");
     setPickUpTime(timeString);
-    updateUrl("pickuptime", timeString);
-    updateStorage("pickuptime", timeString);
   };
 
   return (
@@ -48,8 +43,8 @@ const Calendars = () => {
         <Box sx={{ position: "relative" }}>
           <Button
             // startIcon={<EventSharpIcon />}
-            variant="contained"
-            size="large"
+            variant='contained'
+            size='large'
             fullWidth={true}
             onClick={() => {
               setOpenTimePicker(false);
@@ -61,14 +56,13 @@ const Calendars = () => {
               background: "#fff !important",
               color: "#264388",
               fontWeight: "bold",
-            }}
-          >
+            }}>
             <Box sx={{ fontWeight: "bold" }}>{pickUpDate}</Box>
           </Button>
 
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
-              label=""
+              label=''
               open={openDayPicker}
               disablePast={true}
               sx={{
@@ -86,9 +80,9 @@ const Calendars = () => {
       <Grid item xs={6} md={6}>
         <Box sx={{ position: "relative" }}>
           <Button
-            variant="contained"
+            variant='contained'
             // endIcon={<AccessTimeIcon />}
-            size="large"
+            size='large'
             fullWidth={true}
             onClick={() => {
               setOpenTimePicker(true);
@@ -99,8 +93,7 @@ const Calendars = () => {
               background: "#fff !important",
               color: "#264388",
               fontWeight: "bold",
-            }}
-          >
+            }}>
             <Box sx={{ fontWeight: "bold" }}>{pickUpTime}</Box>
           </Button>
 

@@ -67,12 +67,23 @@ const LocationSearch = () => {
   const pickupValue = useStore((state: any) => state.pickupValue);
   const pickupLocation = useStore((state: any) => state.pickupLocation);
   const dropOffValue = useStore((state: any) => state.dropOffValue);
+  const setDropOffValue = useStore((state: any) => state.setDropOffValue);
+  const setPlaceSuggestions = useStore(
+    (state: any) => state.setPlaceSuggestions
+  );
 
   const handlePickUpChange = (value: string) => {
     setPickupValue(value);
     const suggestions = getSuggestions(value, mapOptions);
     console.log("suggestions", suggestions);
-    setPredictions(suggestions);
+    setPlaceSuggestions(suggestions);
+  };
+
+  const handleDropOffChange = (value: string) => {
+    setDropOffValue(value);
+    const suggestions = getSuggestions(value, mapOptions);
+    console.log("suggestions", suggestions);
+    setPlaceSuggestions(suggestions);
   };
 
   const { getState } = useStore;
@@ -134,7 +145,7 @@ const LocationSearch = () => {
             param={destinationParam}
             onClear={handleClearDropOff}
             setFocused={setFocused}
-            onChange={handlePlaceChange}
+            onChange={handleDropOffChange}
             onFocus={handleDropOffFocus}
             value={dropOffValue}
           />

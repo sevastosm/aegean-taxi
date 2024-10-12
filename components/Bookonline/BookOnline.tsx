@@ -1,25 +1,14 @@
 "use client";
-import React, { useState, useEffect, useContext } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import timezone from "dayjs/plugin/timezone";
-
-import { AppContext } from "@/context/appState";
-
-import useStorage from "@/hooks/useStorage";
-
+import React, { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import TaxiLocations from "../TaxiLocations";
 import { locationDetails } from "@/utils/locationDetails";
 import LocationSearch from "./LocationSearch";
 import BookActions from "./BookActions";
-import CarList from "./CarList";
 import Calendars from "./Calendars";
 import ToolBar from "./ToolBar";
 import classNames from "classnames";
 import MapComponent from "./MapComponent";
-import { useGoogleMaps } from "./GoogleMapsProvider";
 import useUrl from "@/app/hooks/useUrl";
 import PinSearch from "./PinSearch";
 import { useStore } from "@/app/store/store";
@@ -27,30 +16,19 @@ import { useStore } from "@/app/store/store";
 export default function BookOnline() {
   const searchParams = useSearchParams();
   const locationSearch = searchParams.get("location");
-  const pinpickup = searchParams.get("pinpickup");
-  // const mapopen = searchParams.get("mapopen");
-  const origin = searchParams.get("origin");
-  const destination = searchParams.get("destination");
-
   const mapOpen = useStore((state) => state.mapOpen);
-  const setActiveLocation = useStore((state: any) => state.setActiveLocation);
+  const pickupLocation = useStore((state: any) => state.pickupLocation);
+  const dropOffLocation = useStore((state: any) => state.dropOffLocation);
 
   const [open, setOpen] = useState<boolean>(false);
-
-  const [displayHotSpots, setDisplayHotSpots] = useState<boolean>(true);
 
   const toggleDrawer = () => {
     setOpen(!open);
   };
 
-  let apiTimeout: any;
-
   const { updateUrl } = useUrl(); // Get the updateUrl function from the hook
 
   const nextButtonHandler = async () => {
-    // setNextButton(false);
-    // setSelectCarStep(true);
-    // setOpen(true);
     updateUrl("selectcar", "selectcar");
   };
 
@@ -64,31 +42,10 @@ export default function BookOnline() {
     "h-[calc(100dvh-70px)]"
   );
 
-  const activeLocation =
-    locationSearch && locationDetails.taxi_locations[locationSearch];
-
-  useEffect(() => {
-    setActiveLocation(activeLocation);
-  }, [locationSearch]);
-
-  useEffect(() => {
-    if (origin && !destination) {
-      setOpen(true);
-    }
-    if (origin && destination) {
-      setOpen(false);
-    }
-  }, [origin, destination]);
-
-  useEffect(() => {
-    if (pinpickup) {
-      setOpen(false);
-    }
-  }, [pinpickup, origin]);
-
   useEffect(() => {
     if (!locationSearch) {
       localStorage.removeItem("bookinginfo");
+      useStore.persist.clearStorage();
     }
   }, [locationSearch]);
 
@@ -117,16 +74,15 @@ export default function BookOnline() {
       <div
         className={classNames(
           "flex flex-col gap-4 p-4 md:px-4 pb-4 min-w-auto md:pt-0 md:min-w-[400px] justify-between",
-          open
+          mapOpen
             ? "mt-[56px] md:mt-0 flex-grow md:flex-grow-0"
             : "flex-grow md:flex-grow-0"
         )}>
         <div className='flex-grow'>
-          <PinSearch />
           <LocationSearch />
         </div>
 
-        {origin && destination && (
+        {pickupLocation && dropOffLocation && (
           <div className='flex flex-col'>
             <div className='w-full'>
               <BookActions

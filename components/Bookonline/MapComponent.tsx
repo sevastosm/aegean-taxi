@@ -30,6 +30,8 @@ function MapComponent({ page = null }: any) {
 
   const pickupLocation = useStore((state: any) => state.pickupLocation);
   const dropOffLocation = useStore((state: any) => state.dropOffLocation);
+  const waypoints = useStore((state: any) => state.waypoints);
+  const setWaypoints = useStore((state: any) => state.setWaypoints);
 
   const locationSearch = searchParams.get("location");
   const pinpickup = searchParams.get("pinpickup");
@@ -155,8 +157,7 @@ function MapComponent({ page = null }: any) {
         placeLatLng: destlatLng,
       },
     ];
-
-    updateStorage("waypoints", waypoints);
+    setWaypoints(waypoints);
 
     directionsService.route(
       {

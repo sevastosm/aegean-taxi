@@ -6,21 +6,18 @@ import NavBack from "./NavBack";
 
 type Props = {};
 
-const ToolBar = ({
-  toggleDrawer = () => false,
-  isMapOpen,
-  colapsed = true,
-}: any) => {
+const ToolBar = ({ colapsed = true }: any) => {
+  const router = useRouter();
+  const toogleMap = useStore((state: any) => state.toogleMap);
+  const mapOpen = useStore((state: any) => state.mapOpen);
+
   const style = classNames(
     "pointer",
     "h-[50px] w-[50px]",
     "p-2",
     "bg-white border border-#3b82f6 rounded-full",
-    !isMapOpen && "rotate-180"
+    !mapOpen && "rotate-180"
   );
-  const router = useRouter();
-  const toogleMap = useStore((state: any) => state.toogleMap);
-
   const handleClick = () => {
     router.back(); // Go back to the previous page
   };

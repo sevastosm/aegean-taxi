@@ -1,6 +1,7 @@
 import useUrl from "@/app/hooks/useUrl";
+import { useStore } from "@/app/store/store";
 import { updateStorage } from "@/heplers/updateStorage";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React, { useState, useEffect, useCallback } from "react";
 import Aegeanbutton from "../ui/Aegeanbutton";
 import CardPayment from "./CardPayment";
@@ -9,19 +10,17 @@ const uberVan = "/assets/booking-flow/uberVan.svg";
 const personIcon = "/assets/booking-flow/personIcon.svg";
 
 const SelectTaxi = ({ cars }: any) => {
-  const searchParams = useSearchParams();
-  const tarif = searchParams.get("tarif");
-
+  const transpontation = useStore((state: any) => state.transpontation);
+  const setTransportation = useStore((state: any) => state.setTransportation);
+  const tarif = transpontation?.tariffId ?? null;
   const router = useRouter();
-
-  const { updateUrl } = useUrl(); // Get the updateUrl function from the hook
   const [selectedItem, setSelectedItem] = useState(null);
   const handleSelect = useCallback(
     (item: any) => {
       if (item?.name) {
         updateStorage("traspontation", item);
+        setTransportation(item);
         setSelectedItem(item.name);
-        updateUrl("tarif", item.tariffId);
       }
     },
     [tarif]
@@ -55,37 +54,37 @@ const SelectTaxi = ({ cars }: any) => {
   }, [cars]);
 
   return (
-    <div className="flex flex-col flex-grow relative">
-      <div className="w-full mx-auto bg-white flex-grow rounded-2xl pt-4 md:pt-0">
-        <div className="">
+    <div className='flex flex-col flex-grow relative'>
+      <div className='w-full mx-auto bg-white flex-grow rounded-2xl pt-4 md:pt-0'>
+        <div className=''>
           {shortedCars.map((car: any, i: number) => {
             return (
               <div
                 key={i}
-                className={`my-2.5 px-3 py-1 border-[3px] rounded-2xl cursor-pointer flex items-center justify-between ${selectedItem === car.name
-                  ? "border-[#264388]"
-                  : "border-transparent"
-                  }`}
-                onClick={() => handleSelect(car)}
-              >
-                <div className="flex flex-row gap-2 items-center justify-start">
+                className={`my-2.5 px-3 py-1 border-[3px] rounded-2xl cursor-pointer flex items-center justify-between ${
+                  selectedItem === car.name
+                    ? "border-[#264388]"
+                    : "border-transparent"
+                }`}
+                onClick={() => handleSelect(car)}>
+                <div className='flex flex-row gap-2 items-center justify-start'>
                   <img
                     src={carImages[car.name]}
-                    alt="Taxi Icon"
-                    className="w-[50px] h-[50px] mr-2"
+                    alt='Taxi Icon'
+                    className='w-[50px] h-[50px] mr-2'
                   />
-                  <div className="flex flex-col items-start justify-start">
-                    <div className="flex flex-col justify-start">
-                      <div className="text-[#264388] font-bold text-lg mx-1">
+                  <div className='flex flex-col items-start justify-start'>
+                    <div className='flex flex-col justify-start'>
+                      <div className='text-[#264388] font-bold text-lg mx-1'>
                         {car.name ? car.name : car.vehicleType}
                       </div>
-                      <div className="flex gap-2 items-center ">
+                      <div className='flex gap-2 items-center '>
                         <img
                           src={personIcon}
-                          alt="Person Icon"
-                          className="w-[15px] h-[15px] mr-1"
+                          alt='Person Icon'
+                          className='w-[15px] h-[15px] mr-1'
                         />
-                        <span className="text-base font-normal italic">
+                        <span className='text-base font-normal italic'>
                           1 - {car.numberOfSeats}
                         </span>
                       </div>
@@ -100,7 +99,7 @@ const SelectTaxi = ({ cars }: any) => {
                     </div> */}
                   </div>
                 </div>
-                <p className="font-bold text-[#264388] text-2xl">
+                <p className='font-bold text-[#264388] text-2xl'>
                   €{Math.ceil(car.cost)}
                 </p>
               </div>
@@ -108,8 +107,8 @@ const SelectTaxi = ({ cars }: any) => {
           })}
         </div>
       </div>
-      < div className="flex flex-col bg-white gap-2 left-0 bottom-0 w-full">
-        <div className="px-4">
+      <div className='flex flex-col bg-white gap-2 left-0 bottom-0 w-full'>
+        <div className='px-4'>
           <CardPayment />
         </div>
         <Aegeanbutton
@@ -120,8 +119,7 @@ const SelectTaxi = ({ cars }: any) => {
           disabled={!selectedItem}
         />
       </div>
-
-    </div >
+    </div>
   );
 };
 

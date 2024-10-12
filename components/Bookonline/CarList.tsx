@@ -1,3 +1,5 @@
+import { useStore } from "@/app/store/store";
+import { cordToNumber } from "@/heplers/googleMap";
 import { getAvailableRouteCars } from "@/utils/fetchers";
 import dayjs from "dayjs";
 import { useSearchParams } from "next/navigation";
@@ -7,24 +9,34 @@ import SelectTaxi from "./SelectTaxi";
 type Props = {};
 
 const CarList = () => {
-  const searchParams = useSearchParams();
   const [availableCars, setAvailableCars] = useState(null);
-  const origin = searchParams.get("origin");
-  const destination = searchParams.get("destination");
-  const pickuptime = searchParams.get("pickuptime");
-  const pickupdate = searchParams.get("pickupdate");
+  const pickupLocation = useStore((state: any) => state.pickupLocation);
+  const dropOffLocation = useStore((state: any) => state.dropOffLocation);
+
+  const pickUpDate = useStore((state: any) => state.pickUpDate);
+  const pickUpTime = useStore((state: any) => state.pickUpTime);
+
+  const pickupCoords = new google.maps.LatLng({
+    lat: cordToNumber(pickupLocation.lat),
+    lng: cordToNumber(pickupLocation.lng),
+  });
+  const dropOffCoords = new google.maps.LatLng({
+    lat: cordToNumber(dropOffLocation.lat),
+    lng: cordToNumber(dropOffLocation.lng),
+  });
+
   const calculateAndDisplayRoute = () => {
     const directionsService = new window.google.maps.DirectionsService();
     directionsService.route(
       {
-        origin: origin,
-        destination: destination,
+        origin: pickupCoords,
+        destination: dropOffCoords,
         travelMode: window.google.maps.TravelMode.DRIVING,
       },
       (response, status) => {
         if (status === window.google.maps.DirectionsStatus.OK) {
           if (response) {
-            let dayjsLocal = dayjs(`${pickupdate} ${pickuptime}`);
+            let dayjsLocal = dayjs(`${pickUpDate} ${pickUpTime}`);
             getAvailableRouteCars(
               response,
               dayjsLocal,
@@ -41,7 +53,7 @@ const CarList = () => {
 
   useEffect(() => {
     calculateAndDisplayRoute();
-  }, [pickuptime, pickuptime]);
+  }, [pickUpDate, pickUpTime]);
 
   return availableCars && <SelectTaxi cars={availableCars} />;
 };

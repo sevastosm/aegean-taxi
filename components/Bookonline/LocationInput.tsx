@@ -59,6 +59,7 @@ const LocationInput = ({
           originParam ? "bg-gray-300" : "bg-white border-[#244284]"
         } w-full`}
         placeholder={placeholder}
+        autoComplete='off'
       />
 
       {/* Clear button */}
