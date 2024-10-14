@@ -7,9 +7,21 @@ export interface Istate {
   activeInput: "pickUp" | "dropOff";
 }
 
+const initialState = {
+  mapOpen: false,
+  activeInput: "",
+  pickupValue: "",
+  pickupLocation: null,
+  dropOffValue: "",
+  dropOffLocation: null,
+};
+
 export const useStore = create(
   persist(
     (set, get) => ({
+      reset: () => {
+        set(initialState);
+      },
       mapOpen: false,
       toogleMap: () => set((state: Istate) => ({ mapOpen: !state.mapOpen })),
 
@@ -76,12 +88,18 @@ export const useStore = create(
       pickUpTime: null,
       setPickUpTime: (date: string) => set(() => ({ pickUpTime: date })),
 
-      transpontation: null,
+      transponrtation: null,
       setTransportation: (value: string) =>
-        set(() => ({ transpontation: value })),
+        set(() => ({ transponrtation: value })),
 
       waypoints: null,
       setWaypoints: (value: string) => set(() => ({ waypoints: value })),
+
+      client: null,
+      setClient: (value: string) => set(() => ({ client: value })),
+
+      notes: "",
+      setNotes: (data: string) => set(() => ({ notes: data })),
     }),
     {
       name: "aegean-storage", // name of the item in the storage (must be unique)

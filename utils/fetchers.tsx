@@ -104,12 +104,10 @@ export async function sendSms(phoneNumbers: string, message: string) {
 //   credentials: "include",
 // });
 
-export const createOrder = async (contextState: any) => {
+export const createOrder = async (bookigData: any) => {
   // new order
-  if (contextState) {
-    let dayjsLocal = dayjs(
-      `${contextState.pickupdate} ${contextState.pickuptime}`
-    );
+  if (bookigData) {
+    let dayjsLocal = dayjs(`${bookigData.pickUpDate} ${bookigData.pickUpTime}`);
 
     try {
       let res = await fetch(
@@ -120,21 +118,21 @@ export const createOrder = async (contextState: any) => {
             Authorization: `${process.env.NEXT_PUBLIC_ONDE_API_TOKEN}`,
           }),
           body: JSON.stringify({
-            waypoints: contextState.waypoints,
+            waypoints: bookigData.waypoints,
             client: {
-              name: `${contextState.firstName} ${contextState.lastName}`,
-              phone: `+${contextState.countryCode}${contextState.phoneNumber}`,
+              name: `${bookigData.client.firstName} ${bookigData.client.lastName}`,
+              phone: `+${bookigData.client.countryCode}${bookigData.client.phoneNumber}`,
             },
-            notes: "From Aegean Taxi Web App",
+            notes: `From Aegean Taxi Web App - ${bookigData.notes}`,
             // pickupTime: encodeURIComponent(dayjsLocal.toISOString()),
             pickupTime: dayjsLocal.format(),
             unitOfLength: "KILOMETER",
-            vehicleType: contextState.traspontation.vehicleType,
-            numberOfSeats: contextState.traspontation.numberOfSeats,
+            vehicleType: bookigData.transponrtation.vehicleType,
+            numberOfSeats: bookigData.transponrtation.numberOfSeats,
             // paymentMethods: contextState.selectedCar.paymentMethods,
             paymentMethods: ["CASH"],
             prepaid: false,
-            tariffId: contextState.traspontation.tariffId,
+            tariffId: bookigData.transponrtation.tariffId,
           }),
         }
       );

@@ -14,9 +14,9 @@ import timezone from "dayjs/plugin/timezone";
 import { useStore } from "@/app/store/store";
 
 const Calendars = () => {
-  const pickUpDate = useStore((state: any) => state.pickUpDate);
+  const pickUpDate = useStore((state: any) => state.pickUpDate || "DATE");
   const setPickUpDate = useStore((state: any) => state.setPickUpDate);
-  const pickUpTime = useStore((state: any) => state.pickUpTime);
+  const pickUpTime = useStore((state: any) => state.pickUpTime || "TIME");
   const setPickUpTime = useStore((state: any) => state.setPickUpTime);
 
   dayjs.extend(utc);

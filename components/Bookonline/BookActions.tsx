@@ -15,6 +15,8 @@ const calendarInput = "/assets/booking-flow/calendarInput.svg";
 const BookActions = ({ calendars }: any) => {
   const pickUpDate = useStore((state: any) => state.pickUpDate);
   const pickUpTime = useStore((state: any) => state.pickUpTime);
+  const setPickUpTime = useStore((state: any) => state.setPickUpTime);
+  const setPickUpDate = useStore((state: any) => state.setPickUpDate);
 
   dayjs.extend(utc);
   dayjs.extend(timezone);
@@ -65,13 +67,9 @@ const BookActions = ({ calendars }: any) => {
 
     const dateString = dayjs().format("YYYY-MM-DD");
     const timeString = dayjs().format("HH:mm");
+    setPickUpDate(dateString);
+    setPickUpTime(timeString);
 
-    // updateUrl("now", [dateString, timeString]);
-    updateStorage("pickupdate", dateString);
-    updateStorage("pickuptime", timeString);
-    params.set("pickupdate", dateString);
-    params.set("pickuptime", timeString);
-    params.set("now", "now");
     // Use router.push with a string for the full URL
     router.push(`/book-online/trasportation?${params.toString()}`);
   };

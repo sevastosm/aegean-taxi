@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 
 const car = "/assets/booking-flow/car.svg";
 import { locationDetails } from "@/utils/locationDetails";
 import Link from "next/link";
+import { useStore } from "@/app/store/store";
 
 type Props = {
   locationName: string;
@@ -43,28 +44,28 @@ const imageOptions = [
 ];
 
 const Location = ({ locationName, riders, imageUrl, imageOptions }: Props) => (
-  <div className="h-[90px] w-full flex flex-col relative bg-[#E8E8E8] rounded-xl">
+  <div className='h-[90px] w-full flex flex-col relative bg-[#E8E8E8] rounded-xl'>
     <img
       src={imageUrl}
       alt={locationName}
       width={imageOptions.width}
       height={imageOptions.height}
-      className="absolute inset-0 mx-auto my-auto"
+      className='absolute inset-0 mx-auto my-auto'
     />
-    <p className="text-[#121824] text-center font-bold text-sm absolute inset-x-0 bottom-0 pb-1">
+    <p className='text-[#121824] text-center font-bold text-sm absolute inset-x-0 bottom-0 pb-1'>
       {locationName}
     </p>
 
-    <div className="bg-[#108246] text-white absolute inset-x-0 top-0 w-3/4 rounded-full mx-auto -mt-3 py-1">
-      <div className="flex items-center justify-around px-2">
+    <div className='bg-[#108246] text-white absolute inset-x-0 top-0 w-3/4 rounded-full mx-auto -mt-3 py-1'>
+      <div className='flex items-center justify-around px-2'>
         <img
           src={car}
-          alt="Car Icon"
+          alt='Car Icon'
           width={12}
           height={12}
-          className="-mb-[2px] hidden"
+          className='-mb-[2px] hidden'
         />
-        <p className="text-center text-[12px] font-semibold">{riders} online</p>
+        <p className='text-center text-[12px] font-semibold'>{riders} online</p>
       </div>
     </div>
   </div>
@@ -76,17 +77,17 @@ const santoriniOptions = taxi_locations[availableLocations[1]];
 
 function TaxiLocations() {
   return (
-    <div className="flex flex-grow flex-col justify-between max-w-[700px] w-full p-4 mx-auto">
+    <div className='flex flex-grow flex-col justify-between max-w-[700px] w-full p-4 mx-auto'>
       <div>
-        <div className="text-center mb-6">
-          <h1 className="font-bold text-2xl leading-[28px] md:leading-[56px]">
+        <div className='text-center mb-6'>
+          <h1 className='font-bold text-2xl leading-[28px] md:leading-[56px]'>
             Book a Taxi online 24/7
           </h1>
-          <p className="font-normal text-xl">Select a location to begin</p>
+          <p className='font-normal text-xl'>Select a location to begin</p>
         </div>
         <div>
-          <div className="grid grid-cols-2 gap-4 mb-6">
-            <div className="col-span-1">
+          <div className='grid grid-cols-2 gap-4 mb-6'>
+            <div className='col-span-1'>
               <Link href={`/book-online?location=${mykonosOptions.location}`}>
                 <Location
                   locationName={mykonosOptions.slide.name}
@@ -96,7 +97,7 @@ function TaxiLocations() {
                 />
               </Link>
             </div>
-            <div className="col-span-1">
+            <div className='col-span-1'>
               <Link href={`/book-online?location=${santoriniOptions.location}`}>
                 <Location
                   locationName={santoriniOptions.slide.name}
@@ -107,16 +108,15 @@ function TaxiLocations() {
               </Link>
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-4">
+          <div className='grid grid-cols-3 gap-4'>
             {availableLocations.map((location, i) => {
               if (i > 1) {
                 const locationTaxi = taxi_locations[location];
 
                 return (
-                  <div key={i} className="col-span-1 mb-2">
+                  <div key={i} className='col-span-1 mb-2'>
                     <Link
-                      href={`/book-online?location=${locationTaxi.location}`}
-                    >
+                      href={`/book-online?location=${locationTaxi.location}`}>
                       <Location
                         locationName={locationTaxi.slide.name}
                         riders={Math.floor(Math.random() * (40 - 30 + 1)) + 30}
@@ -131,35 +131,35 @@ function TaxiLocations() {
           </div>
         </div>
       </div>
-      <div className="flexflex-col gap-x-4">
-        <div className="flex items-end justify-center gap-x-4">
-          <div className="flex w-full items-center bg-[#E8E8E8] rounded-xl px-4 py-3">
-            <a href="tel:+302152154000">
+      <div className='flexflex-col gap-x-4'>
+        <div className='flex items-end justify-center gap-x-4'>
+          <div className='flex w-full items-center bg-[#E8E8E8] rounded-xl px-4 py-3'>
+            <a href='tel:+302152154000'>
               <Image
-                src="../assets/phoneIcon.svg"
-                className=" bg-white rounded-full p-1.5"
+                src='../assets/phoneIcon.svg'
+                className=' bg-white rounded-full p-1.5'
                 width={30}
                 height={30}
-                alt="whatsapp icon"
+                alt='whatsapp icon'
               />
             </a>
-            <a href="tel:+302152154000">
-              <p className="text-black font-semibold ms-2">Call us</p>
+            <a href='tel:+302152154000'>
+              <p className='text-black font-semibold ms-2'>Call us</p>
             </a>
           </div>
 
-          <div className="flex w-full items-center bg-[#E8E8E8] rounded-xl px-4 py-3">
-            <a href="https://wa.me/+306943829494">
+          <div className='flex w-full items-center bg-[#E8E8E8] rounded-xl px-4 py-3'>
+            <a href='https://wa.me/+306943829494'>
               <Image
-                src="../assets/whatsapp.svg"
-                className="text-white"
+                src='../assets/whatsapp.svg'
+                className='text-white'
                 width={30}
                 height={30}
-                alt="whatsapp icon"
+                alt='whatsapp icon'
               />
             </a>
-            <a href="https://wa.me/+306943829494">
-              <p className="text-black font-semibold ms-2">WhatsApp</p>
+            <a href='https://wa.me/+306943829494'>
+              <p className='text-black font-semibold ms-2'>WhatsApp</p>
             </a>
           </div>
         </div>

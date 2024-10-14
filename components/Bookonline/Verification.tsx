@@ -2,36 +2,21 @@
 
 "use client";
 import React, { useEffect } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
 
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-
+import { useStore } from "@/app/store/store";
 import { SelectChangeEvent } from "@mui/material/Select";
-// hooks
 import useStorage from "@/hooks/useStorage";
-
-// context
-import { AppContext } from "@/context/appState";
-
-// fetchers
-import { sendSms, verifyToken } from "@/utils/fetchers";
-
-// models
-// import CardPayment from "@/components/Bookonline/CardPayment";
+import { sendSms } from "@/utils/fetchers";
 import CardPaymentBold from "@/components/Bookonline/CardPaymentBold";
-
 import Checkbox from "@mui/material/Checkbox";
-
-import FormControl from "@mui/material/FormControl";
 import MenuItem from "@mui/material/MenuItem";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import styles from "./styles.module.scss";
 
 // crypto
 import AES from "crypto-js/aes";
-import { setTimeout } from "timers";
-import CardPaymentBlack from "./CardPaymentBold";
 import { updateStorage } from "@/heplers/updateStorage";
 
 export default function Verification({}: {}) {
@@ -40,10 +25,16 @@ export default function Verification({}: {}) {
   const [phone, setPhone] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+
   const [terms, setTerms] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [bookingState, setBookingState] = useState<BookingState>();
   // const { data, error } = useSWR({}, tokenFetcher);
+
+  const setClient = useStore((state: any) => state.setClient);
+  const pickupLocation = useStore((state: any) => state.pickupLocation);
+  const notes = useStore((state: any) => state.notes);
+  const setNotes = useStore((state: any) => state.setNotes);
 
   const { getItem, setItem, removeItem } = useStorage();
 
@@ -78,6 +69,17 @@ export default function Verification({}: {}) {
     setLastName(event.target.value as string);
   };
 
+  const handleChangeNotes = (event: any) => {
+    setDisabled(false);
+
+    const value =
+      pickupLocation.type === "port"
+        ? `Vechel name ${event.target.value}`
+        : `Fliight number ${event.target.value}`;
+
+    setNotes(value);
+  };
+
   function renderValue(option: string) {
     return option === "0" ? "Code" : `+${option}`;
   }
@@ -87,10 +89,16 @@ export default function Verification({}: {}) {
   const handleSubmit = (e) => {
     setDisabled(true);
     e.preventDefault();
-    updateStorage("phoneNumber", phone);
-    updateStorage("countryCode", countryCode);
-    updateStorage("firstName", firstName);
-    updateStorage("lastName", lastName);
+    const clientData = {
+      name: `${firstName} ${lastName}`,
+      phone: `${countryCode}${phone}`,
+      countryCode: `${countryCode}`,
+      phoneNumber: `${phone}`,
+      firstName: `${firstName}`,
+      lastName: `${lastName}`,
+    };
+
+    setClient(clientData);
 
     onSubmit();
   };
@@ -148,64 +156,67 @@ export default function Verification({}: {}) {
     router.back();
   };
 
+  console.log("pickulocaton", pickupLocation);
+
+  const isPortOrAirPort =
+    pickupLocation.type === "port" || pickupLocation.type === "airport";
+
   return (
-    <div className="flex flex-col flex-grow px-4 max-w-[500px] py-4 h-[calc(100dvh-70px)] mx-auto verification-container">
-      <div className="flex flex-col gap-4 flex-grow ">
-        <div className="block md:hidden ">
-          <div className="flex items-start">
+    <div className='flex flex-col flex-grow px-4 max-w-[500px] py-4 h-[calc(100dvh-70px)] mx-auto verification-container'>
+      <div className='flex flex-col gap-4 flex-grow '>
+        <div className='block md:hidden '>
+          <div className='flex items-start'>
             <button
               onClick={handleGoBack}
-              className="bg-[#264388]  focus:ring focus:ring p-2 w-[50px] h-[50px] rounded-full text-white"
-            >
+              className='bg-[#264388]  focus:ring focus:ring p-2 w-[50px] h-[50px] rounded-full text-white'>
               <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 105 105"
-                fill="none"
-              >
-                <circle cx="52.5" cy="52.5" r="52.5" fill="#264388" />
+                xmlns='http://www.w3.org/2000/svg'
+                viewBox='0 0 105 105'
+                fill='none'>
+                <circle cx='52.5' cy='52.5' r='52.5' fill='#264388' />
                 <path
-                  d="M22.8787 49.8787C21.7071 51.0503 21.7071 52.9497 22.8787 54.1213L41.9706 73.2132C43.1421 74.3848 45.0416 74.3848 46.2132 73.2132C47.3848 72.0416 47.3848 70.1421 46.2132 68.9706L29.2426 52L46.2132 35.0294C47.3848 33.8579 47.3848 31.9584 46.2132 30.7868C45.0416 29.6152 43.1421 29.6152 41.9706 30.7868L22.8787 49.8787ZM86 49L25 49V55L86 55V49Z"
-                  fill="white"
+                  d='M22.8787 49.8787C21.7071 51.0503 21.7071 52.9497 22.8787 54.1213L41.9706 73.2132C43.1421 74.3848 45.0416 74.3848 46.2132 73.2132C47.3848 72.0416 47.3848 70.1421 46.2132 68.9706L29.2426 52L46.2132 35.0294C47.3848 33.8579 47.3848 31.9584 46.2132 30.7868C45.0416 29.6152 43.1421 29.6152 41.9706 30.7868L22.8787 49.8787ZM86 49L25 49V55L86 55V49Z'
+                  fill='white'
                 />
               </svg>
             </button>
           </div>
         </div>
-        <div className="flex flex-col flex-grow gap-2">
-          <div className="mb-2 w-full">
+        <div className='flex flex-col flex-grow gap-2'>
+          <div className='mb-2 w-full'>
             <input
-              type="text"
-              id="firstName"
+              type='text'
+              id='firstName'
               value={firstName}
               onChange={handleFirstnameChange}
-              placeholder="Enter First Name"
-              aria-label="Firstname"
-              className="w-full bg-[#F6F6F6] placeholder:text-[#626262] p-2 py-4 border-0 focus:outline-none focus:ring-0"
+              placeholder='Enter First Name'
+              aria-label='Firstname'
+              className='w-full bg-[#F6F6F6] placeholder:text-[#626262] p-2 py-4 border-0 focus:outline-none focus:ring-0'
             />
           </div>
-          <div className="w-full">
+          <div className='w-full'>
             <input
-              type="text"
-              id="lastName"
+              type='text'
+              id='lastName'
               value={lastName}
               onChange={handleLastnameChange}
-              placeholder="Enter Surname "
-              aria-label="Lastname"
-              className="w-full bg-[#f6f6f6] placeholder:text-[#626262] p-2 py-4 border-0 focus:outline-none focus:ring-0"
+              placeholder='Enter Surname '
+              aria-label='Lastname'
+              className='w-full bg-[#f6f6f6] placeholder:text-[#626262] p-2 py-4 border-0 focus:outline-none focus:ring-0'
             />
           </div>
 
-          <div className="flex flex-row md:flex-grow-0 gap-4">
-            <div className="inline-flex">
+          <div className='flex flex-row md:flex-grow-0 gap-4'>
+            <div className='inline-flex'>
               <Select
-                labelId="demo-simple-select-standard-label"
-                id="demo-simple-select-standard"
+                labelId='demo-simple-select-standard-label'
+                id='demo-simple-select-standard'
                 value={countryCode}
                 onChange={handleChange}
                 defaultValue={"0"}
                 native={false}
                 renderValue={renderValue}
-                name="countryCode"
+                name='countryCode'
                 classes={{
                   icon: styles.icon,
                   iconOpen: styles.iconOpen,
@@ -227,46 +238,44 @@ export default function Verification({}: {}) {
                   "& fieldset": {
                     border: "none", // Remove bottom border when focused
                   },
-                }}
-              >
+                }}>
                 <MenuItem
                   className={styles.MenuItem + "px-4"}
-                  role="option"
-                  value="0"
-                >
+                  role='option'
+                  value='0'>
                   Choose country code
                 </MenuItem>
-                <MenuItem className={styles.MenuItem} role="option" value="1">
+                <MenuItem className={styles.MenuItem} role='option' value='1'>
                   +1
                   <span className={styles.countryLabel}>
                     United States/Canada
                   </span>
                 </MenuItem>
-                <MenuItem className={styles.MenuItem} role="option" value="44">
+                <MenuItem className={styles.MenuItem} role='option' value='44'>
                   +44
                   <span className={styles.countryLabel}>United Kingdom</span>
                 </MenuItem>
-                <MenuItem className={styles.MenuItem} role="option" value="33">
+                <MenuItem className={styles.MenuItem} role='option' value='33'>
                   +33
                   <span className={styles.countryLabel}>France</span>
                 </MenuItem>
-                <MenuItem className={styles.MenuItem} role="option" value="30">
+                <MenuItem className={styles.MenuItem} role='option' value='30'>
                   +30
                   <span className={styles.countryLabel}>Greece</span>
                 </MenuItem>
-                <MenuItem className={styles.MenuItem} role="option" value="39">
+                <MenuItem className={styles.MenuItem} role='option' value='39'>
                   +39
                   <span className={styles.countryLabel}>Italy</span>
                 </MenuItem>
-                <MenuItem className={styles.MenuItem} role="option" value="49">
+                <MenuItem className={styles.MenuItem} role='option' value='49'>
                   +49
                   <span className={styles.countryLabel}>Germany</span>
                 </MenuItem>
-                <MenuItem className={styles.MenuItem} role="option" value="41">
+                <MenuItem className={styles.MenuItem} role='option' value='41'>
                   +41
                   <span className={styles.countryLabel}>Switzerland</span>
                 </MenuItem>
-                <MenuItem className={styles.MenuItem} role="option" value="34">
+                <MenuItem className={styles.MenuItem} role='option' value='34'>
                   +34
                   <span className={styles.countryLabel}>Spain</span>
                 </MenuItem>
@@ -275,9 +284,8 @@ export default function Verification({}: {}) {
                   <MenuItem
                     className={styles.MenuItem}
                     key={index}
-                    role="option"
-                    value={country.phone}
-                  >
+                    role='option'
+                    value={country.phone}>
                     +{country.phone}
                     <span className={styles.countryLabel}>{country.label}</span>
                   </MenuItem>
@@ -285,52 +293,68 @@ export default function Verification({}: {}) {
               </Select>
             </div>
             <input
-              type="text"
-              id="phoneNumber"
+              type='text'
+              id='phoneNumber'
               value={phone}
               onChange={handlePhoneChange}
-              placeholder="Phone number"
-              aria-label="phone number"
-              inputmode="numeric"
-              pattern="[09]*"
-              className="w-full bg-[#F6F6F6] placeholder:text-[#626262] p-2 py-4 border-0 focus:outline-none focus:ring-0"
+              placeholder='Phone number'
+              aria-label='phone number'
+              inputmode='numeric'
+              pattern='[09]*'
+              className='w-full bg-[#F6F6F6] placeholder:text-[#626262] p-2 py-4 border-0 focus:outline-none focus:ring-0'
             />
           </div>
 
-          <div className="flex flex-grow md:flex-grow-0  items-end justify-center">
+          {isPortOrAirPort && (
+            <div className='w-full pt-4'>
+              <input
+                type='text'
+                id='notes'
+                value={notes}
+                onChange={handleChangeNotes}
+                placeholder={
+                  pickupLocation.type === "port"
+                    ? "Enter vechel name"
+                    : pickupLocation.type === "airport" && "Enter flight number"
+                }
+                aria-label='Notes'
+                className='w-full bg-[#f6f6f6] placeholder:text-[#626262] p-2 py-4 border-0 focus:outline-none focus:ring-0'
+              />
+            </div>
+          )}
+
+          <div className='flex flex-grow md:flex-grow-0  items-end justify-center'>
             <CardPaymentBold />
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 w-full">
-          <div className="flex items-center gap-2">
+        <div className='flex flex-col gap-2 w-full'>
+          <div className='flex items-center gap-2'>
             <Checkbox
               sx={{ p: 0, "& .MuiSvgIcon-root": { fontSize: 35 } }}
               onChange={() => setTerms(!terms)}
               checked={terms}
             />
-            <label className="flex items-center space-x-2">
+            <label className='flex items-center space-x-2'>
               {/* <input
                 type="checkbox"
                 name="termsCheckboxProps.name"
                 className="h-[35px] w-[35px]"
               /> */}
-              <span className="text-sm text-gray-500">
+              <span className='text-sm text-gray-500'>
                 <a
-                  href="termsCheckboxProps.termsLinkHref"
-                  className="text-[#BCBCBC]"
-                >
+                  href='termsCheckboxProps.termsLinkHref'
+                  className='text-[#BCBCBC]'>
                   {termsCheckboxProps.labelText}
-                  <span className="text-[#000]">
+                  <span className='text-[#000]'>
                     {termsCheckboxProps.termsLinkText}
                   </span>
                   {" and "}
                 </a>
                 <a
-                  href="termsCheckboxProps.privacyLinkHref"
-                  className="text-[#000]"
-                >
-                  <span className="">{termsCheckboxProps.privacyLinkText}</span>
+                  href='termsCheckboxProps.privacyLinkHref'
+                  className='text-[#000]'>
+                  <span className=''>{termsCheckboxProps.privacyLinkText}</span>
                 </a>
               </span>
             </label>
@@ -345,19 +369,17 @@ export default function Verification({}: {}) {
               countryCode === "0" ||
               !terms
             }
-            className="w-full  focus:ring focus:ring !bg-[#264388] h-[52px] text-white font-semibold text-xl  rounded-md disabled:opacity-50"
-          >
-            <div className="flex relative items-center">
-              <div className="w-full text-center">Request code</div>
-              <div className="w-[50px]  absolute rotate-180 right-0 mr-4">
+            className='w-full  focus:ring focus:ring !bg-[#264388] h-[52px] text-white font-semibold text-xl  rounded-md disabled:opacity-50'>
+            <div className='flex relative items-center'>
+              <div className='w-full text-center'>Request code</div>
+              <div className='w-[50px]  absolute rotate-180 right-0 mr-4'>
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 105 105"
-                  fill="none"
-                >
+                  xmlns='http://www.w3.org/2000/svg'
+                  viewBox='0 0 105 105'
+                  fill='none'>
                   <path
-                    d="M22.8787 49.8787C21.7071 51.0503 21.7071 52.9497 22.8787 54.1213L41.9706 73.2132C43.1421 74.3848 45.0416 74.3848 46.2132 73.2132C47.3848 72.0416 47.3848 70.1421 46.2132 68.9706L29.2426 52L46.2132 35.0294C47.3848 33.8579 47.3848 31.9584 46.2132 30.7868C45.0416 29.6152 43.1421 29.6152 41.9706 30.7868L22.8787 49.8787ZM86 49L25 49V55L86 55V49Z"
-                    fill="white"
+                    d='M22.8787 49.8787C21.7071 51.0503 21.7071 52.9497 22.8787 54.1213L41.9706 73.2132C43.1421 74.3848 45.0416 74.3848 46.2132 73.2132C47.3848 72.0416 47.3848 70.1421 46.2132 68.9706L29.2426 52L46.2132 35.0294C47.3848 33.8579 47.3848 31.9584 46.2132 30.7868C45.0416 29.6152 43.1421 29.6152 41.9706 30.7868L22.8787 49.8787ZM86 49L25 49V55L86 55V49Z'
+                    fill='white'
                   />
                 </svg>
               </div>

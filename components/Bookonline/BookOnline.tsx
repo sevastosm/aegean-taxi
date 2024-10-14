@@ -19,6 +19,7 @@ export default function BookOnline() {
   const mapOpen = useStore((state) => state.mapOpen);
   const pickupLocation = useStore((state: any) => state.pickupLocation);
   const dropOffLocation = useStore((state: any) => state.dropOffLocation);
+  const reset = useStore((state: any) => state.reset);
 
   const [open, setOpen] = useState<boolean>(false);
 
@@ -44,8 +45,8 @@ export default function BookOnline() {
 
   useEffect(() => {
     if (!locationSearch) {
+      reset();
       localStorage.removeItem("bookinginfo");
-      useStore.persist.clearStorage();
     }
   }, [locationSearch]);
 

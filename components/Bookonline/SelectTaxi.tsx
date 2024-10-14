@@ -18,7 +18,6 @@ const SelectTaxi = ({ cars }: any) => {
   const handleSelect = useCallback(
     (item: any) => {
       if (item?.name) {
-        updateStorage("traspontation", item);
         setTransportation(item);
         setSelectedItem(item.name);
       }

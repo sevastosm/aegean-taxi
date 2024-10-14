@@ -155,6 +155,7 @@ const Places = ({
                 lng: spot.lat,
                 name: spot.destination_name,
                 address: spot.destination_name,
+                type: spot.type,
               };
               handleHotspotClick(place);
 
