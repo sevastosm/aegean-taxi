@@ -109,6 +109,11 @@ export const createOrder = async (bookigData: any) => {
   if (bookigData) {
     let dayjsLocal = dayjs(`${bookigData.pickUpDate} ${bookigData.pickUpTime}`);
 
+    const value =
+      bookigData.pickupLocation.type === "port"
+        ? `Vessel name :`
+        : `Flight number :`;
+
     try {
       let res = await fetch(
         `${process.env.NEXT_PUBLIC_ONDE_HOSTNAME}/dispatch/v1/order/`,
@@ -123,7 +128,7 @@ export const createOrder = async (bookigData: any) => {
               name: `${bookigData.client.firstName} ${bookigData.client.lastName}`,
               phone: `+${bookigData.client.countryCode}${bookigData.client.phoneNumber}`,
             },
-            notes: `From Aegean Taxi Web App - ${bookigData.notes}`,
+            notes: `From Aegean Taxi Web App - ${value} ${bookigData.notes}`,
             // pickupTime: encodeURIComponent(dayjsLocal.toISOString()),
             pickupTime: dayjsLocal.format(),
             unitOfLength: "KILOMETER",
@@ -136,11 +141,12 @@ export const createOrder = async (bookigData: any) => {
           }),
         }
       );
-
       if (res.ok) {
         return await res.json();
         //handle ok
       } else {
+        const err = await res.json();
+        throw Error(err);
         //handle err
       }
     } catch (error) {

@@ -20,6 +20,8 @@ export default function BookOnline() {
   const pickupLocation = useStore((state: any) => state.pickupLocation);
   const dropOffLocation = useStore((state: any) => state.dropOffLocation);
   const reset = useStore((state: any) => state.reset);
+  const setViewHotspots = useStore((state: any) => state.setViewHotspots);
+  const setActiveInput = useStore((state: any) => state.setActiveInput);
 
   const [open, setOpen] = useState<boolean>(false);
 
@@ -50,6 +52,13 @@ export default function BookOnline() {
     }
   }, [locationSearch]);
 
+  useEffect(() => {
+    if (locationSearch) {
+      setViewHotspots(true);
+      setActiveInput("pickUp");
+    }
+  }, [locationSearch]);
+
   return !locationSearch ? (
     <div className='flex flex-col h-[calc(100dvh-70px)]'>
       <TaxiLocations />
@@ -67,7 +76,8 @@ export default function BookOnline() {
         className={classNames(
           "w-full md:h-[700px] md:ml-4",
           "relative",
-          !mapOpen ? "flex flex-grow min-h-[300px] h-[60%]" : "hidden md:block"
+          "flex flex-grow min-h-[200px] h-[60%]"
+          // !mapOpen ? "flex flex-grow min-h-[300px] h-[60%]" : "hidden md:block"
         )}>
         <MapComponent />
       </div>
@@ -75,9 +85,10 @@ export default function BookOnline() {
       <div
         className={classNames(
           "flex flex-col gap-4 p-4 md:px-4 pb-4 min-w-auto md:pt-0 md:min-w-[400px] justify-between",
-          mapOpen
-            ? "mt-[56px] md:mt-0 flex-grow md:flex-grow-0"
-            : "flex-grow md:flex-grow-0"
+          "flex-grow md:flex-grow-0"
+          // mapOpen
+          //   ? "mt-[56px] md:mt-0 flex-grow md:flex-grow-0"
+          //   : "flex-grow md:flex-grow-0"
         )}>
         <div className='flex-grow'>
           <LocationSearch />

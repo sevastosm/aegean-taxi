@@ -1,23 +1,27 @@
 import { locationDetails } from "@/utils/locationDetails";
 import { MetadataRoute } from "next";
 
-const locationsAirportTransfers = Object.values(locationDetails.airports).map(
-  (innerObject: any) => {
-    return {
-      url: `https://aegeantaxi.com/airport-transfers/${innerObject.location}/`,
-      lastModified: new Date(),
-    };
-  }
-);
+const locationsAirportTransfers = Object.values(locationDetails.airports)
+  .map((innerObject: any) => {
+    return (
+      innerObject?.location && {
+        url: `https://aegeantaxi.com/airport-transfers/${innerObject.location}/`,
+        lastModified: new Date(),
+      }
+    );
+  })
+  .filter((data) => data && data);
 
-const locationsTaxi = Object.values(locationDetails.taxi_locations).map(
-  (innerObject: any) => {
-    return {
-      url: `https://aegeantaxi.com/taxi/${innerObject.location}/`,
-      lastModified: new Date(),
-    };
-  }
-);
+const locationsTaxi = Object.values(locationDetails.taxi_locations)
+  .map((innerObject: any) => {
+    return (
+      innerObject?.location && {
+        url: `https://aegeantaxi.com/taxi/${innerObject.location}/`,
+        lastModified: new Date(),
+      }
+    );
+  })
+  .filter((data) => data && data);
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -37,43 +41,43 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: "https://aegeantaxi.com/taxi/",
       lastModified: new Date(),
     },
-    {
-      url: "https://aegeantaxi.com/taxi/athens-taxi-app/",
-      lastModified: new Date(),
-    },
-    {
-      url: "https://aegeantaxi.com/taxi/mykonos-taxi-app/",
-      lastModified: new Date(),
-    },
-    {
-      url: "https://aegeantaxi.com/taxi/santorini-taxi-app/",
-      lastModified: new Date(),
-    },
-    {
-      url: "https://aegeantaxi.com/taxi/corfu-taxi-app/",
-      lastModified: new Date(),
-    },
-    {
-      url: "https://aegeantaxi.com/taxi/rhodes-taxi-app/",
-      lastModified: new Date(),
-    },
+    // {
+    //   url: "https://aegeantaxi.com/taxi/athens-taxi-app/",
+    //   lastModified: new Date(),
+    // },
+    // {
+    //   url: "https://aegeantaxi.com/taxi/mykonos-taxi-app/",
+    //   lastModified: new Date(),
+    // },
+    // {
+    //   url: "https://aegeantaxi.com/taxi/santorini-taxi-app/",
+    //   lastModified: new Date(),
+    // },
+    // {
+    //   url: "https://aegeantaxi.com/taxi/corfu-taxi-app/",
+    //   lastModified: new Date(),
+    // },
+    // {
+    //   url: "https://aegeantaxi.com/taxi/rhodes-taxi-app/",
+    //   lastModified: new Date(),
+    // },
     ...locationsTaxi,
-    {
-      url: "https://aegeantaxi.com/airport-transfers/",
-      lastModified: new Date(),
-    },
-    {
-      url: "https://aegeantaxi.com/airport-transfers/athens/",
-      lastModified: new Date(),
-    },
-    {
-      url: "https://aegeantaxi.com/airport-transfers/mykonos/",
-      lastModified: new Date(),
-    },
-    {
-      url: "https://aegeantaxi.com/airport-transfers/santorini/",
-      lastModified: new Date(),
-    },
+    // {
+    //   url: "https://aegeantaxi.com/airport-transfers/",
+    //   lastModified: new Date(),
+    // },
+    // {
+    //   url: "https://aegeantaxi.com/airport-transfers/athens/",
+    //   lastModified: new Date(),
+    // },
+    // {
+    //   url: "https://aegeantaxi.com/airport-transfers/mykonos/",
+    //   lastModified: new Date(),
+    // },
+    // {
+    //   url: "https://aegeantaxi.com/airport-transfers/santorini/",
+    //   lastModified: new Date(),
+    // },
     ...locationsAirportTransfers,
     {
       url: "https://aegeantaxi.com/tours/",

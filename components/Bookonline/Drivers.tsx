@@ -19,7 +19,7 @@ export default function Drivers() {
         className={classNames(
           "w-full md:h-[700px] md:ml-4",
           "relative",
-          !mapOpen ? "flex h-[200px] min-h-[200px]" : "hidden md:block"
+          !mapOpen ? "flex h-full max-h-[350px]" : "hidden md:block"
         )}>
         <MapComponent colapsed={false} page={"trasporation"} />,
       </div>

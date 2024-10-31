@@ -8,12 +8,15 @@ export interface Istate {
 }
 
 const initialState = {
-  mapOpen: false,
+  mapOpen: true,
   activeInput: "",
   pickupValue: "",
   pickupLocation: null,
   dropOffValue: "",
   dropOffLocation: null,
+  viewHotspots: false,
+
+  // viewHotspots: true,
 };
 
 export const useStore = create(
@@ -22,9 +25,7 @@ export const useStore = create(
       reset: () => {
         set(initialState);
       },
-      mapOpen: false,
       toogleMap: () => set((state: Istate) => ({ mapOpen: !state.mapOpen })),
-
       pickupValue: null,
       setPickupValue: (value: string) =>
         set(() => ({
@@ -72,8 +73,7 @@ export const useStore = create(
       setPlaceSuggestions: (value: string) =>
         set(() => ({ placeSuggestions: value })),
 
-      viewHotspots: false,
-      setViewHotspots: (value: string) => set(() => ({ viewHotspots: value })),
+      setViewHotspots: (value: boolean) => set(() => ({ viewHotspots: value })),
 
       activeLocation: null,
       setActiveLocation: (value: string) => set(() => ({ hotSpots: value })),

@@ -72,12 +72,7 @@ export default function Verification({}: {}) {
   const handleChangeNotes = (event: any) => {
     setDisabled(false);
 
-    const value =
-      pickupLocation.type === "port"
-        ? `Vechel name ${event.target.value}`
-        : `Fliight number ${event.target.value}`;
-
-    setNotes(value);
+    setNotes(event.target.value);
   };
 
   function renderValue(option: string) {
@@ -112,7 +107,7 @@ export default function Verification({}: {}) {
     // bookingState = aegeanState;
     updateStorage("securityCode", securityCode);
 
-    const mobileNumber = `+${countryCode}${phone}`;
+    const mobileNumber = `${countryCode}${phone}`;
 
     // if (firstName && lastName === "testSeb@@") {
     //   sendSms(
@@ -366,6 +361,7 @@ export default function Verification({}: {}) {
               phone.length < 9 ||
               !firstName ||
               !lastName ||
+              notes.length < 2 ||
               countryCode === "0" ||
               !terms
             }

@@ -55,7 +55,15 @@ const CarList = () => {
     calculateAndDisplayRoute();
   }, [pickUpDate, pickUpTime]);
 
-  return availableCars && <SelectTaxi cars={availableCars} />;
+  if (!availableCars) {
+    return <h3 className='text-center'>Searching for drivers ...</h3>;
+  }
+
+  return availableCars.length > 0 ? (
+    <SelectTaxi cars={availableCars} />
+  ) : (
+    <h3 className='text-center'>Available drivers not found</h3>
+  );
 };
 
 export default CarList;

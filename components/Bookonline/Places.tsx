@@ -146,6 +146,7 @@ const Places = ({
           />
         ))}
       {viewHotspots &&
+        hotSpotsList?.length > 0 &&
         hotSpotsList.map((spot: any) => (
           <div
             className='cursor-pointer'

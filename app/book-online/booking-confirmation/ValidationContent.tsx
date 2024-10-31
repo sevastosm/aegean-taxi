@@ -34,6 +34,7 @@ export default function ValidationContent({ handleCreateOrder }) {
   const pickUpDate = useStore((state: any) => state.pickUpDate);
   const pickUpTime = useStore((state: any) => state.pickUpTime);
   const transponrtation = useStore((state: any) => state.transponrtation);
+  const pickupLocation = useStore((state: any) => state.pickupLocation);
 
   const bookigData = {
     waypoints,
@@ -42,6 +43,7 @@ export default function ValidationContent({ handleCreateOrder }) {
     pickUpDate,
     pickUpTime,
     transponrtation,
+    pickupLocation,
   };
 
   const handleChange = (value) => {

@@ -24,13 +24,13 @@ const ToolBar = ({ colapsed = true }: any) => {
   return (
     <div className='flex md:hidden justify-between align-baseline px-4'>
       <NavBack handleClick={handleClick} />
-      {colapsed && (
+      {/* {colapsed && (
         <div onClick={toogleMap} className={style}>
           <svg viewBox='0 0 24 24' aria-hidden='true'>
             <path d='M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z'></path>
           </svg>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
