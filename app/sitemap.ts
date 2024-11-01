@@ -23,6 +23,17 @@ const locationsTaxi = Object.values(locationDetails.taxi_locations)
   })
   .filter((data) => data && data);
 
+const bookingTaxi = Object.values(locationDetails.taxi_locations)
+  .map((innerObject: any) => {
+    return (
+      innerObject?.location && {
+        url: `https://aegeantaxi.com/book-online/${innerObject.slug}/`,
+        lastModified: new Date(),
+      }
+    );
+  })
+  .filter((data) => data && data);
+
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
@@ -111,5 +122,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: "https://aegeantaxi.com/terms/",
       lastModified: new Date(),
     },
+    ...bookingTaxi,
   ];
 }
