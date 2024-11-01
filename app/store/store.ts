@@ -8,6 +8,7 @@ export interface Istate {
 }
 
 const initialState = {
+  activeLocation: null,
   mapOpen: true,
   activeInput: "",
   pickupValue: "",
@@ -25,6 +26,8 @@ export const useStore = create(
       reset: () => {
         set(initialState);
       },
+      setActiveLocation: (data: any) => set(() => ({ activeLocation: data })),
+
       toogleMap: () => set((state: Istate) => ({ mapOpen: !state.mapOpen })),
       pickupValue: null,
       setPickupValue: (value: string) =>
@@ -76,7 +79,6 @@ export const useStore = create(
       setViewHotspots: (value: boolean) => set(() => ({ viewHotspots: value })),
 
       activeLocation: null,
-      setActiveLocation: (value: string) => set(() => ({ hotSpots: value })),
 
       activeInput: null,
       setActiveInput: (value: string) =>

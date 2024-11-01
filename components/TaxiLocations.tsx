@@ -4,7 +4,6 @@ import Image from "next/image";
 const car = "/assets/booking-flow/car.svg";
 import { locationDetails } from "@/utils/locationDetails";
 import Link from "next/link";
-import { useStore } from "@/app/store/store";
 
 type Props = {
   locationName: string;
@@ -88,7 +87,11 @@ function TaxiLocations() {
         <div>
           <div className='grid grid-cols-2 gap-4 mb-6'>
             <div className='col-span-1'>
-              <Link href={`/book-online?location=${mykonosOptions.location}`}>
+              <Link
+                href={`/book-online/${mykonosOptions.location.replace(
+                  "-app",
+                  ""
+                )}`}>
                 <Location
                   locationName={mykonosOptions.slide.name}
                   riders={Math.floor(Math.random() * (76 - 52 + 1)) + 52}
@@ -98,7 +101,11 @@ function TaxiLocations() {
               </Link>
             </div>
             <div className='col-span-1'>
-              <Link href={`/book-online?location=${santoriniOptions.location}`}>
+              <Link
+                href={`/book-online/${santoriniOptions.location.replace(
+                  "-app",
+                  ""
+                )}`}>
                 <Location
                   locationName={santoriniOptions.slide.name}
                   riders={Math.floor(Math.random() * (62 - 44 + 1)) + 44}
@@ -115,8 +122,7 @@ function TaxiLocations() {
 
                 return (
                   <div key={i} className='col-span-1 mb-2'>
-                    <Link
-                      href={`/book-online?location=${locationTaxi.location}`}>
+                    <Link href={`/book-online/${locationTaxi.slug}`}>
                       <Location
                         locationName={locationTaxi.slide.name}
                         riders={Math.floor(Math.random() * (40 - 30 + 1)) + 30}

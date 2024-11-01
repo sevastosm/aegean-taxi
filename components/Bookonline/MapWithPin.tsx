@@ -21,10 +21,7 @@ function MapWithPin({ page = null }: any) {
   const google = useGoogleMaps();
   const setPinLocation = useStore((state: any) => state.setPinLocation);
   const dropOffLocation = useStore((state: any) => state.dropOffLocation);
-
-  const locationSearch = searchParams.get("location");
-  const activeLocation =
-    locationSearch && locationDetails.taxi_locations[locationSearch];
+  const activeLocation = useStore((state: any) => state.activeLocation);
 
   const { mapOptions } = activeLocation;
   const center = {

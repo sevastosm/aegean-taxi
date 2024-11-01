@@ -12,10 +12,6 @@ const containerStyle = {
   width: "100%",
   height: "100%",
 };
-const center1 = {
-  lat: 37.451414,
-  lng: 25.2984466,
-};
 
 function MapComponent({ page = null }: any) {
   const isLoaded = useGoogleMaps();
@@ -25,22 +21,17 @@ function MapComponent({ page = null }: any) {
 
   const pickupLocation = useStore((state: any) => state.pickupLocation);
   const dropOffLocation = useStore((state: any) => state.dropOffLocation);
-  const waypoints = useStore((state: any) => state.waypoints);
+  const activeLocation = useStore((state: any) => state.activeLocation);
+
   const setWaypoints = useStore((state: any) => state.setWaypoints);
 
-  const locationSearch = searchParams.get("location");
   const pinpickup = searchParams.get("pinpickup");
   const { updateLocationUrl, updateUrl } = useUrl();
-
-  const activeLocation =
-    locationSearch && locationDetails.taxi_locations[locationSearch];
-
   const origin = searchParams.get("origin");
-
   const originParam: Place | null = pickupLocation;
   const destinationParam: Place | null = dropOffLocation;
-
-  const { mapOptions } = activeLocation;
+  if (!activeLocation.mapOptions) return null;
+  const { mapOptions } = activeLocation || {};
   const center = {
     lat: mapOptions.lat,
     lng: mapOptions.lng,
@@ -69,7 +60,6 @@ function MapComponent({ page = null }: any) {
   const originMarkerRef = useRef(null);
   const destinationMarkerRef = useRef(null);
   const directionsRendererRef = useRef(null);
-  const pinMarkerRef = useRef(null);
 
   // Function to handle map click
   const handleMapClick = (event) => {

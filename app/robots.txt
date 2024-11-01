@@ -1,7 +1,8 @@
 User-Agent: *
 Allow: /
 Disallow: /order/*
-Disallow: /book-online/*
+Disallow: /book-online/booking-confirmation
+Disallow: /book-online/verification
 Disallow: /book-online/*
 
 

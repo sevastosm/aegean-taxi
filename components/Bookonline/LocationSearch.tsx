@@ -12,6 +12,8 @@ import LocationInput from "./LocationInput";
 import { useStore } from "@/app/store/store";
 
 const LocationSearch = () => {
+  const activeLocation = useStore((state: any) => state.activeLocation);
+
   const [origin, setOrigin] = useState(undefined);
   const [focused, setFocused] = useState(undefined);
   const [destination, setDestinaton] = useState(undefined);
@@ -23,12 +25,6 @@ const LocationSearch = () => {
   const destinationParam: Place | null = JSON.parse(
     searchParams.get("destination")
   );
-  const setPinParm = searchParams.get("setPin");
-
-  const locationSearch = searchParams.get("location");
-
-  const activeLocation =
-    locationSearch && locationDetails.taxi_locations[locationSearch];
 
   const { mapOptions } = activeLocation;
 

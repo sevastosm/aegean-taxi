@@ -1,5 +1,3 @@
-import zIndex from "@mui/material/styles/zIndex";
-
 export const locationDetails: any = {
   landing: {
     alt_header: "Aegean Taxi: Greek Taxi App",
@@ -184,6 +182,8 @@ export const locationDetails: any = {
     "mykonos-taxi-app": {
       alt_header: "Taxi Mykonos",
       location: "mykonos-taxi-app",
+      slug: "mykonos-taxi",
+
       prices: [
         {
           from: "Mykonos Airport",
@@ -446,6 +446,8 @@ export const locationDetails: any = {
     "santorini-taxi-app": {
       alt_header: "Taxi Santorini",
       location: "santorini-taxi-app",
+      slug: "santorini-taxi",
+
       prices: [
         {
           from: "Santorini Airport",
@@ -679,6 +681,8 @@ export const locationDetails: any = {
       alt_header: "Taxi Corfu",
 
       location: "corfu-taxi-app",
+      slug: "corfu-taxi",
+
       prices: [
         {
           from: "Corfu Airport",
@@ -892,6 +896,8 @@ export const locationDetails: any = {
       alt_header: "Taxi Rhodes",
 
       location: "rhodes-taxi-app",
+      slug: "rhodes-taxi",
+
       prices: [
         {
           from: "Rhodes Airport",
@@ -1101,6 +1107,8 @@ export const locationDetails: any = {
     "athens-taxi-app": {
       alt_header: "Taxi Athens",
       location: "athens-taxi-app",
+      slug: "athens-taxi",
+
       prices: [
         {
           from: "Athens Airport",
@@ -1293,11 +1301,12 @@ export const locationDetails: any = {
         lng: 23.6971397,
       },
     },
-
     "milos-taxi-app": {
       alt_header: "Taxi Milos",
 
       location: "milos-taxi-app",
+      slug: "milos-taxi",
+
       name: "Milos",
       prices: [
         {
@@ -1526,11 +1535,12 @@ export const locationDetails: any = {
         lng: 24.3500839,
       },
     },
-
     "bodrum-taxi-app": {
       alt_header: "Taxi Bodrum",
 
       location: "bodrum-taxi-app",
+      slug: "bodrum-taxi",
+
       name: "Bodrum",
       prices: [
         {
@@ -1733,11 +1743,12 @@ export const locationDetails: any = {
         lng: 27.3921743,
       },
     },
-
     "tinos-taxi-app": {
       alt_header: "Taxi Tinos",
 
       location: "tinos-taxi-app",
+      slug: "tinos-taxi",
+
       name: "Tinos",
       prices: [
         {
@@ -1929,11 +1940,11 @@ export const locationDetails: any = {
         lng: 25.03079,
       },
     },
-
     "paros-taxi-app": {
       alt_header: "Taxi Paros",
 
       location: "paros-taxi-app",
+      slug: "paros-taxi",
       name: "Paros",
       prices: [
         {
@@ -2152,11 +2163,12 @@ export const locationDetails: any = {
         lng: 25.1132057,
       },
     },
-
     "naxos-taxi-app": {
       alt_header: "Taxi Naxos",
 
       location: "naxos-taxi-app",
+      slug: "naxos-taxi",
+
       name: "Naxos",
       prices: [
         {
@@ -2349,11 +2361,12 @@ export const locationDetails: any = {
         lng: 25.3048476,
       },
     },
-
     "kos-taxi-app": {
       alt_header: "Taxi Kos",
 
       location: "kos-taxi-app",
+      slug: "kos-taxi",
+
       name: "Kos",
       prices: [
         {
@@ -2572,11 +2585,12 @@ export const locationDetails: any = {
         lng: 27.14085413108812,
       },
     },
-
     "heraklion-taxi-app": {
       alt_header: "Taxi Heraklion",
 
       location: "heraklion-taxi-app",
+      slug: "heraklion-taxi",
+
       name: "Heraklion",
       prices: [
         {
@@ -2769,11 +2783,12 @@ export const locationDetails: any = {
         lng: 25.0938711,
       },
     },
-
     "chalkidiki-taxi-app": {
       alt_header: "Taxi Chalkidiki",
 
       location: "chalkidiki-taxi-app",
+      slug: "chalkidiki-taxi",
+
       name: "Chalkidiki",
       prices: [
         {
@@ -2961,11 +2976,12 @@ export const locationDetails: any = {
         lng: 23.0269122,
       },
     },
-
     "kea-taxi-app": {
       alt_header: "Taxi Kea - Tzia",
 
       location: "kea-taxi-app",
+      slug: "kea-taxi",
+
       name: "Kea",
       prices: [
         {
@@ -3169,11 +3185,12 @@ export const locationDetails: any = {
         lng: 24.0909546,
       },
     },
-
     "kefalonia-taxi-app": {
       alt_header: "Taxi Kefalonia",
 
       location: "kefalonia-taxi-app",
+      slug: "kefalonia-taxi",
+
       name: "Kefalonia",
       prices: [
         {
@@ -3370,11 +3387,6 @@ export const locationDetails: any = {
           },
         ],
       },
-    },
-    mapOptions: {
-      zoom: 12,
-      lat: 38.2748003,
-      lng: 20.3952513,
     },
   },
   airports: {

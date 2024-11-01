@@ -7,19 +7,16 @@ import {
   Typography,
   Divider,
 } from "@mui/material";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import PredictionListItem from "../predictions-list";
 import HotSpot from "./HotSpot";
-import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import MyLocationOutlinedIcon from "@mui/icons-material/MyLocationOutlined";
-import { locationDetails } from "@/utils/locationDetails";
 import { Place } from "../../types/types";
 import { getPlaceDetails } from "@/heplers/googleMap";
 import { useStore } from "@/app/store/store";
 
 const Places = ({
   currentLocationAddress,
-  nearbyLocations = [],
   locationHandler,
   selectedPickUp,
   selectedDropOff,
@@ -27,20 +24,12 @@ const Places = ({
 }: any) => {
   const router = useRouter();
 
-  const searchParams = useSearchParams();
-  const locationSearch = searchParams.get("location");
-
-  const activeLocation =
-    locationSearch && locationDetails.taxi_locations[locationSearch];
-
-  const { hotSpots } = activeLocation;
-
   if (selectedPickUp && selectedDropOff) {
     return null;
   }
   // Get user's current location
   const handleGetLocation = () => {
-    router.push(`pin-selection?location=${locationSearch}`);
+    router.push(`./pin-selection`);
   };
 
   const activeInput = useStore((state: any) => state.activeInput);
@@ -49,6 +38,9 @@ const Places = ({
   const setDropOffocation = useStore((state: any) => state.setDropOffocation);
   const placeSuggestions = useStore((state: any) => state.placeSuggestions);
   const viewHotspots = useStore((state: any) => state.viewHotspots);
+  const activeLocation = useStore((state: any) => state.activeLocation);
+
+  const { hotSpots } = activeLocation;
 
   // Function to get details of a selected prediction
   const handlePredictionClick = async (place_id: string) => {

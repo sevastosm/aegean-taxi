@@ -43,7 +43,7 @@ const BookActions = ({ calendars }: any) => {
       const queryString = new URLSearchParams(newParams).toString();
 
       // Use router.push with a string for the full URL
-      router.push(`/book-online/trasportation?${queryString}`);
+      router.push(`./trasportation?${queryString}`);
     } else {
       setMsg(true);
     }
@@ -71,7 +71,7 @@ const BookActions = ({ calendars }: any) => {
     setPickUpTime(timeString);
 
     // Use router.push with a string for the full URL
-    router.push(`/book-online/trasportation?${params.toString()}`);
+    router.push(`./trasportation?${params.toString()}`);
   };
 
   return (

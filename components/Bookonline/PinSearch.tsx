@@ -8,6 +8,7 @@ type Props = {};
 
 const PinSearch = (props: Props) => {
   const router = useRouter();
+  const activeLocation = useStore((state: any) => state.activeLocation);
 
   const searchParams = useSearchParams();
 
@@ -18,11 +19,11 @@ const PinSearch = (props: Props) => {
 
   const handleClick = () => {
     setPickupLocation(pinLocation);
-    router.push(`/book-online/?location=${locationSearch}`);
+    router.push(`/book-online/${activeLocation.slug}`);
   };
 
   const handleCancel = () => {
-    router.push(`/book-online/?location=${locationSearch}`);
+    router.push(`/book-online/${activeLocation.slug}`);
   };
 
   return (

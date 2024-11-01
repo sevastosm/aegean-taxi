@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import TaxiLocations from "../TaxiLocations";
 import { locationDetails } from "@/utils/locationDetails";
 import LocationSearch from "./LocationSearch";
@@ -12,12 +12,17 @@ import MapComponent from "./MapComponent";
 import useUrl from "@/app/hooks/useUrl";
 import PinSearch from "./PinSearch";
 import { useStore } from "@/app/store/store";
+import { getLocationDetailsFromSlug } from "@/heplers/location";
 
 export default function BookOnline() {
   const searchParams = useSearchParams();
-  const locationSearch = searchParams.get("location");
+  const params = useParams();
+
   const mapOpen = useStore((state) => state.mapOpen);
+  const setActiveLocation = useStore((state: any) => state.setActiveLocation);
   const pickupLocation = useStore((state: any) => state.pickupLocation);
+  const activeLocation = useStore((state: any) => state.activeLocation);
+
   const dropOffLocation = useStore((state: any) => state.dropOffLocation);
   const reset = useStore((state: any) => state.reset);
   const setViewHotspots = useStore((state: any) => state.setViewHotspots);
@@ -31,10 +36,6 @@ export default function BookOnline() {
 
   const { updateUrl } = useUrl(); // Get the updateUrl function from the hook
 
-  const nextButtonHandler = async () => {
-    updateUrl("selectcar", "selectcar");
-  };
-
   const handleBack = () => {
     setOpen(true);
   };
@@ -46,24 +47,21 @@ export default function BookOnline() {
   );
 
   useEffect(() => {
-    if (!locationSearch) {
-      reset();
-      localStorage.removeItem("bookinginfo");
-    }
-  }, [locationSearch]);
-
-  useEffect(() => {
-    if (locationSearch) {
+    if (activeLocation) {
       setViewHotspots(true);
       setActiveInput("pickUp");
     }
-  }, [locationSearch]);
+  }, [activeLocation]);
 
-  return !locationSearch ? (
-    <div className='flex flex-col h-[calc(100dvh-70px)]'>
-      <TaxiLocations />
-    </div>
-  ) : (
+  useEffect(() => {
+    if (params.location) {
+      const locationDetails = getLocationDetailsFromSlug(params.location);
+      console.log("locationDetails", locationDetails);
+      setActiveLocation(locationDetails);
+    }
+  }, [params.location]);
+
+  return (
     <div className={wrapperStyle}>
       <div className='absolute top-0 pt-3 left-0 z-10 w-full'>
         <ToolBar
@@ -97,10 +95,7 @@ export default function BookOnline() {
         {pickupLocation && dropOffLocation && (
           <div className='flex flex-col'>
             <div className='w-full'>
-              <BookActions
-                nextButtonHandler={nextButtonHandler}
-                calendars={<Calendars />}
-              />
+              <BookActions calendars={<Calendars />} />
             </div>
           </div>
         )}
