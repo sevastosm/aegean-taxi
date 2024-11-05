@@ -16,9 +16,11 @@ const PinSearch = (props: Props) => {
 
   const pinLocation = useStore((state: any) => state.pinLocation);
   const setPickupLocation = useStore((state: any) => state.setPickupLocation);
+  const setActiveInput = useStore((state: any) => state.setActiveInput);
 
   const handleClick = () => {
     setPickupLocation(pinLocation);
+    setActiveInput("dropOff");
     router.push(`/book-online/${activeLocation.slug}`);
   };
 

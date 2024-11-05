@@ -151,13 +151,6 @@ const Places = ({
                 type: spot.type,
               };
               handleHotspotClick(place);
-
-              // if (!originParam) {
-              //   updateUrl("origin", JSON.stringify(place));
-              //   setFocused("dropOff");
-              // } else {
-              //   updateUrl("destination", JSON.stringify(place));
-              // }
             }}>
             <HotSpot
               destination_name={spot.destination_name}

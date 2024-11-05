@@ -22,6 +22,7 @@ export default function BookOnline() {
   const setActiveLocation = useStore((state: any) => state.setActiveLocation);
   const pickupLocation = useStore((state: any) => state.pickupLocation);
   const activeLocation = useStore((state: any) => state.activeLocation);
+  const pinLocation = useStore((state: any) => state.pinLocation);
 
   const dropOffLocation = useStore((state: any) => state.dropOffLocation);
   const reset = useStore((state: any) => state.reset);
@@ -49,9 +50,11 @@ export default function BookOnline() {
   useEffect(() => {
     if (activeLocation) {
       setViewHotspots(true);
-      setActiveInput("pickUp");
     }
   }, [activeLocation]);
+  useEffect(() => {
+    if (!pinLocation) setActiveInput("pickUp");
+  }, [pinLocation]);
 
   useEffect(() => {
     if (params.location) {

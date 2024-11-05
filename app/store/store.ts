@@ -52,10 +52,15 @@ export const useStore = create(
         set(() => ({
           pinLocation: data,
           mapOpen: false,
+          activeInput: "dropOff",
         })),
 
       clearPickupValue: () =>
-        set(() => ({ pickupValue: "", pickupLocation: null })),
+        set(() => ({
+          pickupValue: "",
+          pickupLocation: null,
+          pinLocation: null,
+        })),
       dropOffValue: null,
       setDropOffValue: (value: string) => set(() => ({ dropOffValue: value })),
       dropOffLocation: null,

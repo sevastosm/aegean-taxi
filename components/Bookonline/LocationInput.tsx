@@ -1,20 +1,20 @@
+import { useStore } from "@/app/store/store";
 import React, { useEffect, useState } from "react";
 
 type Props = {};
 
 const LocationInput = ({
   direction,
-  param,
   onClear,
   setFocused,
   placeholder,
-  originParam,
-  destinationParam,
   onChange,
   onFocus,
   value,
 }) => {
   //   const [value, setValue] = useState(undefined);
+  const activeInput = useStore((state) => state.activeInput);
+  const pickupLocation = useStore((state) => state.pickupLocation);
 
   const handleChange = (e) => {
     //   setValue(e.target.value);
@@ -35,7 +35,7 @@ const LocationInput = ({
   return (
     <div className='relative flex items-center'>
       {/* Square placeholder */}
-      {param === "origin" && (
+      {direction === "pickUp" && (
         <div className='absolute left-[0px] flex items-center justify-center h-full w-6'>
           <div className='w-3 h-3 bg-[#244284] ml-2 rounded-full'></div>
         </div>
@@ -56,7 +56,9 @@ const LocationInput = ({
         //   getSuggestions(e, "pickUp");
         // }}
         className={`pl-8 pr-8 py-3 border-2 rounded font-semibold focus:outline-none ${
-          originParam ? "bg-gray-300" : "bg-white border-[#244284]"
+          activeInput == "direction"
+            ? "bg-gray-300"
+            : "bg-white border-[#244284]"
         } w-full`}
         placeholder={placeholder}
         autoComplete='off'

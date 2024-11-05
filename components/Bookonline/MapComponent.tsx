@@ -30,7 +30,7 @@ function MapComponent({ page = null }: any) {
   const origin = searchParams.get("origin");
   const originParam: Place | null = pickupLocation;
   const destinationParam: Place | null = dropOffLocation;
-  if (!activeLocation.mapOptions) return null;
+  if (!activeLocation) return null;
   const { mapOptions } = activeLocation || {};
   const center = {
     lat: mapOptions.lat,

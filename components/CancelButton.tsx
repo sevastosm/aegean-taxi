@@ -10,15 +10,16 @@ const CancelButton = ({ orderId }: Props) => {
   const handleClick = async () => {
     await cancelOrder(orderId);
     localStorage.removeItem("aegean");
+    sessionStorage.removeItem("aegean-storage");
+
     router.push(`/`);
   };
   return (
-    <div className="flex flex-col items-center px-4">
+    <div className='flex flex-col items-center px-4'>
       <button
-        id="cancelButton"
+        id='cancelButton'
         onClick={handleClick}
-        className="cancel-ride bg-[#E8E8E8] rounded-lg py-3 font-bold text-lg text-red-500 w-full mx-2"
-      >
+        className='cancel-ride bg-[#E8E8E8] rounded-lg py-3 font-bold text-lg text-red-500 w-full mx-2'>
         Cancel Ride
       </button>
     </div>

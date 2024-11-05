@@ -22,6 +22,7 @@ function MapWithPin({ page = null }: any) {
   const setPinLocation = useStore((state: any) => state.setPinLocation);
   const dropOffLocation = useStore((state: any) => state.dropOffLocation);
   const activeLocation = useStore((state: any) => state.activeLocation);
+  if (!activeLocation) return null;
 
   const { mapOptions } = activeLocation;
   const center = {

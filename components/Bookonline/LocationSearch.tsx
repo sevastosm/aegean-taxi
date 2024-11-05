@@ -21,10 +21,7 @@ const LocationSearch = () => {
   const map = useGoogleMaps();
   const { updateUrl } = useUrl(); // Get the updateUrl function from the hook
 
-  const originParam: Place | null = JSON.parse(searchParams.get("origin"));
-  const destinationParam: Place | null = JSON.parse(
-    searchParams.get("destination")
-  );
+  if (!activeLocation) return null;
 
   const { mapOptions } = activeLocation;
 
@@ -86,12 +83,6 @@ const LocationSearch = () => {
 
   console.log("getState", getState());
 
-  // useEffect(() => {
-  //   setOrigin(originParam?.address);
-  //   setDestinaton(destinationParam?.addreconst { getState, setState, subscribe, getInitialState } = store
-
-  // }, [originParam, destinationParam]);
-
   const setActiveInput = useStore((state: any) => state.setActiveInput);
   const handlePickupFocus = () => {
     setActiveInput("pickUp");
@@ -115,10 +106,7 @@ const LocationSearch = () => {
 
         <LocationInput
           direction='pickUp'
-          originParam={originParam}
-          destinationParam={destinationParam}
           placeholder='Enter pick up location'
-          param={originParam}
           onClear={handleClearPickup}
           setFocused={setFocused}
           onChange={handlePickUpChange}
@@ -135,10 +123,7 @@ const LocationSearch = () => {
           {/* Input field */}
           <LocationInput
             direction='dropOff'
-            originParam={originParam}
-            destinationParam={destinationParam}
             placeholder='Enter drop off location'
-            param={destinationParam}
             onClear={handleClearDropOff}
             setFocused={setFocused}
             onChange={handleDropOffChange}
