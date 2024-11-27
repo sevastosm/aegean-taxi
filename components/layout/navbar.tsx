@@ -38,6 +38,7 @@ const navItems = [
   { display: "About Us", href: "/about-us" },
   { display: "Partners", href: "/partners" },
   { display: "Book Online", href: "/book-online" },
+  { display: "Blog", href: "/blog" },
 ];
 
 export default function DrawerAppBar(props: Props) {
@@ -51,22 +52,20 @@ export default function DrawerAppBar(props: Props) {
   const drawer = (
     <Box
       onClick={handleDrawerToggle}
-      sx={{ textAlign: "center", marginBottom: "1em" }}
-    >
-      <Typography variant="h6" sx={{ my: 2 }}>
+      sx={{ textAlign: "center", marginBottom: "1em" }}>
+      <Typography variant='h6' sx={{ my: 2 }}>
         <Link
-          underline="none"
-          href="/"
+          underline='none'
+          href='/'
           component={NextLink}
-          variant="body1"
+          variant='body1'
           sx={{
             mt: 3,
             lineHeight: 3,
             // borderBottom: `3px solid #000`,
             width: "75px",
-          }}
-        >
-          <Image src={logo} alt="Aegean logo" height={30} />
+          }}>
+          <Image src={logo} alt='Aegean logo' height={30} />
         </Link>
       </Typography>
       <Divider />
@@ -74,18 +73,17 @@ export default function DrawerAppBar(props: Props) {
       {navItems.map((item) => (
         <Box key={item.display}>
           <Link
-            underline="none"
+            underline='none'
             href={item.href}
-            rel="canonical"
+            rel='canonical'
             component={NextLink}
-            variant="body1"
+            variant='body1'
             sx={{
               mt: 3,
               lineHeight: 3,
               // borderBottom: `3px solid #000`,
               width: "75px",
-            }}
-          >
+            }}>
             {item.display}
           </Link>
         </Box>
@@ -102,44 +100,40 @@ export default function DrawerAppBar(props: Props) {
     <>
       <CssBaseline />
       <AppBar
-        component="nav"
-        sx={{ bgcolor: "#fff", height: "70px", justifyContent: "center" }}
-      >
-        <Container disableGutters maxWidth="lg">
+        component='nav'
+        sx={{ bgcolor: "#fff", height: "70px", justifyContent: "center" }}>
+        <Container disableGutters maxWidth='lg'>
           <Toolbar>
             <IconButton
-              color="primary"
-              aria-label="open drawer"
-              edge="start"
+              color='primary'
+              aria-label='open drawer'
+              edge='start'
               onClick={handleDrawerToggle}
-              sx={{ mr: 1, display: { sm: "none" } }}
-            >
+              sx={{ mr: 1, display: { sm: "none" } }}>
               <MenuIcon />
             </IconButton>
             <Box
-              component="div"
+              component='div'
               sx={{ flexGrow: 1 }}
-              display="flex"
-              justifyContent="start"
-              alignItems="center"
-            >
+              display='flex'
+              justifyContent='start'
+              alignItems='center'>
               <Link
-                underline="none"
-                href="/"
+                underline='none'
+                href='/'
                 component={NextLink}
-                variant="body1"
+                variant='body1'
                 sx={{
                   lineHeight: 3,
                   // borderBottom: `3px solid #000`,
                   width: "75px",
-                }}
-              >
+                }}>
                 <Image
                   src={logo}
-                  alt="Aegean logo"
+                  alt='Aegean logo'
                   height={30}
                   priority={true}
-                  className="aegean-logo-navbar"
+                  className='aegean-logo-navbar'
                 />
               </Link>
             </Box>
@@ -149,46 +143,43 @@ export default function DrawerAppBar(props: Props) {
                   component={NextLink}
                   href={item.href}
                   key={item.display}
-                  sx={{ color: "#000", textTransform: "unset" }}
-                >
+                  sx={{ color: "#000", textTransform: "unset" }}>
                   {item.display}
                 </Button>
               ))}
             </Box>
             <Box sx={{ display: { xs: "none", md: "block" }, pl: 6 }}>
               <Button
-                variant="contained"
-                color="primary"
+                variant='contained'
+                color='primary'
                 sx={{ textTransform: "unset" }}
                 component={Link}
                 onClick={(e) => {
                   window.location.href = `mailto:\u0063\u006f\u006e\u0074\u0061\u0063\u0074\u0040\u0061\u0065\u0067\u0065\u0061\u006e\u0074\u0061\u0078\u0069\u002e\u0063\u006f\u006d\u003f\u0073\u0075\u0062\u006a\u0065\u0063\u0074\u003d\u0041\u0065\u0067\u0065\u0061\u006e\u0020\u0043\u006f\u006e\u0074\u0061\u0063\u0074`;
                   e.preventDefault();
-                }}
-              >
+                }}>
                 Contact Us
               </Button>
             </Box>
             <Box sx={{ display: { xs: "block", md: "none" }, pl: 6 }}>
               <Button
                 component={Link}
-                color="primary"
+                color='primary'
                 sx={{ textTransform: "unset", fontSize: "13px" }}
                 startIcon={
-                  <Image src={phoneIcon} width="24" height="24" alt="Call us" />
+                  <Image src={phoneIcon} width='24' height='24' alt='Call us' />
                 }
-                href="tel:00302152154000"
-              >
+                href='tel:00302152154000'>
                 +30 215 215 4000
               </Button>
             </Box>
           </Toolbar>
         </Container>
       </AppBar>
-      <Box component="nav">
+      <Box component='nav'>
         <Drawer
           container={container}
-          variant="temporary"
+          variant='temporary'
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
@@ -200,8 +191,7 @@ export default function DrawerAppBar(props: Props) {
               boxSizing: "border-box",
               width: drawerWidth,
             },
-          }}
-        >
+          }}>
           {drawer}
         </Drawer>
       </Box>
