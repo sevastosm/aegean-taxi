@@ -3,7 +3,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useStore } from "@/app/store/store";
+import { useStore } from "@/app/(taxi)/store/store";
 
 // hooks
 

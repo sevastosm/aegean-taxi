@@ -1,5 +1,5 @@
-import useUrl from "@/app/hooks/useUrl";
-import { useStore } from "@/app/store/store";
+import useUrl from "@/app/(taxi)/hooks/useUrl";
+import { useStore } from "@/app/(taxi)/store/store";
 import { updateStorage } from "@/heplers/updateStorage";
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect, useCallback } from "react";

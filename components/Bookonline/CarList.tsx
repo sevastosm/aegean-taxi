@@ -1,4 +1,4 @@
-import { useStore } from "@/app/store/store";
+import { useStore } from "@/app/(taxi)/store/store";
 import { cordToNumber } from "@/heplers/googleMap";
 import { getAvailableRouteCars } from "@/utils/fetchers";
 import dayjs from "dayjs";

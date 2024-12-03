@@ -1,6 +1,6 @@
 "use client"; // Mark as client component
 
-import useUrl from "@/app/hooks/useUrl";
+import useUrl from "@/app/(taxi)/hooks/useUrl";
 import { updateStorage } from "@/heplers/updateStorage";
 import dayjs from "dayjs";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -8,7 +8,7 @@ import React, { useEffect, useState } from "react";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import Aegeanbutton from "../ui/Aegeanbutton";
-import { useStore } from "@/app/store/store";
+import { useStore } from "@/app/(taxi)/store/store";
 type Props = {};
 
 const calendarInput = "/assets/booking-flow/calendarInput.svg";

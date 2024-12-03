@@ -13,7 +13,7 @@ import HotSpot from "./HotSpot";
 import MyLocationOutlinedIcon from "@mui/icons-material/MyLocationOutlined";
 import { Place } from "../../types/types";
 import { getPlaceDetails } from "@/heplers/googleMap";
-import { useStore } from "@/app/store/store";
+import { useStore } from "@/app/(taxi)/store/store";
 
 const Places = ({
   currentLocationAddress,

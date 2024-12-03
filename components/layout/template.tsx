@@ -1,9 +1,5 @@
 "use client";
 import { useState, useEffect, useContext } from "react";
-import "./../../app/globals.css";
-// import "./../../app/tailwind.scss";
-
-// import { hotjar } from "react-hotjar";
 
 // MUI
 import Box from "@mui/material/Box";

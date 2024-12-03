@@ -8,7 +8,7 @@ import "swiper/css/navigation";
 import CancelButton from "./CancelButton";
 import { sendSms } from "@/utils/fetchers";
 import { useRouter } from "next/navigation";
-import { useStore } from "@/app/store/store";
+import { useStore } from "@/app/(taxi)/store/store";
 const driversView = "/assets/booking-flow/driversView.png";
 const islandView = "/assets/booking-flow/islandView.png";
 const mobileView = "/assets/booking-flow/mobileView.png";

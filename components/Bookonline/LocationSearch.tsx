@@ -1,4 +1,4 @@
-import useUrl from "@/app/hooks/useUrl";
+import useUrl from "@/app/(taxi)/hooks/useUrl";
 import { locationDetails } from "@/utils/locationDetails";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -9,7 +9,7 @@ import { PlaceholderValue } from "next/dist/shared/lib/get-img-props";
 import { Place } from "@/types/types";
 import { resetPickUp } from "../ui/helpers";
 import LocationInput from "./LocationInput";
-import { useStore } from "@/app/store/store";
+import { useStore } from "@/app/(taxi)/store/store";
 
 const LocationSearch = () => {
   const activeLocation = useStore((state: any) => state.activeLocation);

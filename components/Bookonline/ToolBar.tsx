@@ -1,4 +1,4 @@
-import { Istate, useStore } from "@/app/store/store";
+import { Istate, useStore } from "@/app/(taxi)/store/store";
 import classNames from "classnames";
 import { useRouter } from "next/navigation";
 import React from "react";

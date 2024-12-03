@@ -2,7 +2,7 @@ import React from "react";
 import Aegeanbutton from "../ui/Aegeanbutton";
 import { useRouter, useSearchParams } from "next/navigation";
 
-import { useStore } from "@/app/store/store";
+import { useStore } from "@/app/(taxi)/store/store";
 
 type Props = {};
 

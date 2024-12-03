@@ -5,7 +5,7 @@ import CarList from "./CarList";
 import ToolBar from "./ToolBar";
 import classNames from "classnames";
 import MapComponent from "./MapComponent";
-import { useStore } from "@/app/store/store";
+import { useStore } from "@/app/(taxi)/store/store";
 export default function Drivers() {
   const mapOpen = useStore((state: any) => state.mapOpen);
 

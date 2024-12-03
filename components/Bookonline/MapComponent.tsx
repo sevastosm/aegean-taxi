@@ -4,10 +4,10 @@ import { useGoogleMaps } from "./GoogleMapsProvider";
 import { useSearchParams } from "next/navigation";
 import { locationDetails } from "@/utils/locationDetails";
 import { Place } from "@/types/types";
-import useUrl from "@/app/hooks/useUrl";
+import useUrl from "@/app/(taxi)/hooks/useUrl";
 
 import { cordToNumber } from "../../heplers/googleMap";
-import { useStore } from "@/app/store/store";
+import { useStore } from "@/app/(taxi)/store/store";
 const containerStyle = {
   width: "100%",
   height: "100%",

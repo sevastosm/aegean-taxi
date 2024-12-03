@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { locationDetails } from "@/utils/locationDetails";
 import { activatePickUp, resetPickUp } from "../ui/helpers";
 import { faMapPin } from "@fortawesome/free-solid-svg-icons";
-import { useStore } from "@/app/store/store";
+import { useStore } from "@/app/(taxi)/store/store";
 const containerStyle = {
   width: "100%",
   height: "100%",

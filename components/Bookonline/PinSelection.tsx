@@ -1,6 +1,6 @@
 "use client";
 
-import { useStore } from "@/app/store/store";
+import { useStore } from "@/app/(taxi)/store/store";
 import React from "react";
 import PinSearch from "./PinSearch";
 import ToolBar from "./ToolBar";

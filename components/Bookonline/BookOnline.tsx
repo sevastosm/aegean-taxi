@@ -9,9 +9,9 @@ import Calendars from "./Calendars";
 import ToolBar from "./ToolBar";
 import classNames from "classnames";
 import MapComponent from "./MapComponent";
-import useUrl from "@/app/hooks/useUrl";
+import useUrl from "@/app/(taxi)/hooks/useUrl";
 import PinSearch from "./PinSearch";
-import { useStore } from "@/app/store/store";
+import { useStore } from "@/app/(taxi)/store/store";
 import { getLocationDetailsFromSlug } from "@/heplers/location";
 
 export default function BookOnline() {

@@ -8,10 +8,10 @@ import {
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import React, { useState } from "react";
-import useUrl from "@/app/hooks/useUrl";
+import useUrl from "@/app/(taxi)/hooks/useUrl";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
-import { useStore } from "@/app/store/store";
+import { useStore } from "@/app/(taxi)/store/store";
 
 const Calendars = () => {
   const pickUpDate = useStore((state: any) => state.pickUpDate || "DATE");

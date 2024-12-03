@@ -1,4 +1,4 @@
-import { useStore } from "@/app/store/store";
+import { useStore } from "@/app/(taxi)/store/store";
 import React, { useEffect, useState } from "react";
 
 type Props = {};

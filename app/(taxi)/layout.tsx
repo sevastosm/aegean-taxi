@@ -5,8 +5,7 @@ import { GoogleTagManager } from "@next/third-parties/google";
 import MainTemplate from "components/layout/template";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./tailwind.scss";
-
+import "../globals.css";
 
 export const metadata = {
   title:
