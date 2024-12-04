@@ -11,6 +11,7 @@ const urlFor = (source: SanityImageSource) =>
 
 
 export const getImageUrl = (image:any)=>{
+  console.log(image)
          return urlFor
           ? urlFor(image)?.url()
           : null;

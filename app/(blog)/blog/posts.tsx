@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 
 // Image imports
 import SearchIcon from "./assets/search.png";
@@ -29,7 +28,6 @@ import PopImg4 from "./assets/most_popular4.png";
 
 
 const Blog = () => {
-  const router = useRouter();
   
   // State to manage the selected section
   const [selectedSection, setSelectedSection] = useState("newest");
@@ -134,7 +132,7 @@ const Blog = () => {
                       </div>
                       <button
                         className="bg-black text-white px-4 py-2 rounded-full flex items-center space-x-2"
-                        onClick={() => router.push("/blog/blogPost")}
+                        // onClick={() => router.push("/blog/blogPost")}
                       >
                         <span>More</span>
                         <Image src={ArrowIcon} alt="Arrow" className="w-3.5 h-3.5" />
@@ -186,7 +184,7 @@ const Blog = () => {
                       </div>
                       <button
                         className="bg-[#0072E1] text-white px-4 py-2 rounded-full flex items-center space-x-2"
-                        onClick={() => router.push("/blog/blogPost")}
+                        // onClick={() => router.push("/blog/blogPost")}
                       >
                         <span>More</span>
                         <Image src={ArrowIcon} alt="Arrow" className="w-3.5 h-3.5" />
@@ -216,7 +214,7 @@ const Blog = () => {
                       </div>
                       <button
                         className="bg-black text-white px-4 py-2 rounded-full flex items-center space-x-2"
-                        onClick={() => router.push("/blog/blogPost")}
+                        // onClick={() => router.push("/blog/blogPost")}
                       >
                         <span>More</span>
                         <Image src={ArrowIcon} alt="Arrow" className="w-3.5 h-3.5" />
@@ -246,7 +244,7 @@ const Blog = () => {
                       </div>
                       <button
                         className="bg-[#0072E1] text-white px-4 py-2 rounded-full flex items-center space-x-2"
-                        onClick={() => router.push("/blog/blogPost")}
+                        // onClick={() => router.push("/blog/blogPost")}
                       >
                         <span>More</span>
                         <Image src={ArrowIcon} alt="Arrow" className="w-3.5 h-3.5" />

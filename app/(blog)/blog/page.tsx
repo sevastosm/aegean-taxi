@@ -6,20 +6,20 @@ import dayjs from "dayjs";
 
 import Blog from "./posts";
 
-import Card3Img from "./assets/card3.png";
-import TimeIconWhite from "./assets/clockW.png";
-import TimeIcon from "./assets/clock.png";
+import Card3Img from "public/assets/blog/card3.png";
+import TimeIconWhite from "public/assets/blog/clockW.png";
+import TimeIcon from "public/assets/blog/clock.png";
 
-import CalenderIconWhite from "./assets/calendarW.png";
-import CalendarIconBlack from "./assets/calendarB.png";
+import CalenderIconWhite from "public/assets/blog/calendarW.png";
+import CalendarIconBlack from "public/assets/blog/calendarB.png";
 
-import ArrowIcon from "./assets/arrow.png";
+import ArrowIcon from "public/assets/blog/arrow.png";
 import { getImageUrl } from "@/heplers/imageUrl";
 
 const POSTS_QUERY = `*[
   _type == "post"
   && defined(slug.current) && defined(description)
-]|order(publishedAt desc)[0...12]{_id, title, slug, publishedAt, description,image}`;
+]|order(publishedAt desc)[0...12]{_id, title, slug, publishedAt, description, image, duration}`;
 
 const options = { next: { revalidate: 30 } };
 
@@ -32,13 +32,18 @@ export default async function IndexPage() {
     const calendarIcon = index % 2 === 0 ? CalenderIconWhite : CalendarIconBlack
     const timeIcon = index % 2 === 0 ? TimeIconWhite : TimeIcon
 
+    console.log('post',post)
+
+
+
+
 
     return <li key={post._id}>
       <Link href={`/blog/${post.slug.current}`}>
         {/* <p>{new Date(post.publishedAt).toLocaleDateString()}</p> */}
         <div className={`${index % 2 === 0 ? 'bg-[#2B2B33]' : 'bg-[#F6F6F6]'}  rounded-lg`}>
           <div className="flex flex-col space-y-4">
-            <Image src={getImageUrl(post.image)} width={200} height={200} alt="Blog Visual" className="h-[200px] w-full" />
+            {post.image.asset._ref&&<Image src={getImageUrl(post.image)} width={200} height={200} alt="Blog Visual" className="h-[200px] w-full" />}
             <div className="pt-5 pb-5 p-8">
               <div className={`flex items-center text-sm  mb-2 ${index % 2 === 0 ? 'text-white' : 'text-grey-600'} `}>
                 <Image src={calendarIcon} alt="Calendar" className="w-5 h-5 mr-2" />
@@ -97,7 +102,7 @@ export default async function IndexPage() {
       </div>
       <ul className='flex flex-col gap-y-4'>
         {posts.map((post, i) => (
-          <PostPreview post={post} index={i} />
+          <PostPreview key={i} post={post} index={i} />
         ))}
       </ul>
       {/* <Blog/> */}

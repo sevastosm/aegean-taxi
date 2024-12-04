@@ -5,13 +5,53 @@ import dayjs from "dayjs";
 
 import { getImageUrl } from "@/heplers/imageUrl";
 
-import TimeIconWhite from "../assets/clockW.png";
-import CalendarIconBlack from "../assets/calendarB.png";
+import TimeIcon from "public/assets/blog/clock.png";
+import CalendarIconBlack from "public/assets/blog/calendarB.png";
+import PopImg1 from "public/assets/blog/most_popular1.png";
+import PopImg2 from "public/assets/blog/most_popular2.png";
+import PopImg3 from "public/assets/blog/most_popular3.png";
+import PopImg4 from "public/assets/blog/most_popular4.png";
 
 type Post = { slug: { current: string } }
 
+
+const articles = [
+  {
+    category: "Engineering, Data/ML",
+    date: "August 29",
+    region: "Global",
+    title: "Pinot for Low-Latency Offline Table Analytics",
+    image: PopImg1, // Add your image paths here
+  },
+  {
+    category: "Engineering, Data/ML",
+    date: "November 07",
+    region: "Global",
+    title: "Presto Express: Speeding up Query Processing with Minimal Resources",
+    image: PopImg2,
+  },
+  {
+    category: "Engineering, Data/ML",
+    date: "August 29",
+    region: "Global",
+    title: "Lucene: Uber’s Search Platform Version Upgrade",
+    image: PopImg3,
+  },
+  {
+    category: "Engineering, Backend, Mobile",
+    date: "August 29",
+    region: "Global",
+    title: "Unified Checkout: Streaming Uber’s Payment Ecosystem",
+    image: PopImg4,
+  },
+];
+
+
 export async function generateStaticParams() {
-  const posts = await client.fetch<Post[]>(`*[_type == "post"]`);
+  const posts = await client.fetch<Post[]>(`*[_type == "post"]`,{ cache: 'no-store'} );
+
+  console.log('posts',posts)
+
   return posts.map((post: Post) => ({
     slug:post.slug.current
   }));
@@ -72,7 +112,7 @@ export default async function PostPage({
               {dayjs(post.publishedAt).format("MMM DD YYYY")}
             </div>
             <div className="flex items-center text-sm">
-              <Image src={TimeIconWhite} alt="Clock" className="w-5 h-5 mr-2" />
+              <Image src={TimeIcon} alt="Clock" className="w-5 h-5 mr-2" />
               {post.duration} min read
             </div>
           </div>
@@ -83,6 +123,35 @@ export default async function PostPage({
 
 
       </div>
+      <div className="font-inter bg-white text-black max-w-3xl pt-4 mx-auto">
+                  {/* Heading */}
+                  <h1 className="text-2xl font-bold mb-6">Most popular</h1>
+                  <hr className="mb-4 border-gray-300" />
+
+                  {/* Article List */}
+                  <div className="space-y-6">
+                    {articles.map((article, index) => (
+                      <div key={index} className="flex justify-between items-center pb-4">
+                        {/* Left Section */}
+                        <div>
+                          <p className="text-sm text-gray-500">
+                            <span className="text-gray-800">{article.category}</span>{" "}
+                            <span>{article.date}</span> / {article.region}
+                          </p>
+                          <h2 className="text-base font-medium mt-1">{article.title}</h2>
+                        </div>
+                        {/* Image Section */}
+                        <Image
+                          src={article.image} // Dynamically add images
+                          alt={article.title}
+                          className="w-20 h-20 object-cover rounded-md"
+                          width={80}
+                          height={84}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
     </main>
   );
 }

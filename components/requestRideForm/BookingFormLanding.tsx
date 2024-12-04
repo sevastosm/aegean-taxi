@@ -151,7 +151,7 @@ export default function FormComponent({
                         <path
                           d="M9.40267 4.83582C9.40267 7.26165 7.56796 9.17164 5.37223 9.17164C3.17651 9.17164 1.3418 7.26165 1.3418 4.83582C1.3418 2.40999 3.17651 0.5 5.37223 0.5C7.56796 0.5 9.40267 2.40999 9.40267 4.83582Z"
                           stroke="black"
-                          stroke-opacity="0.6"
+                          strokeOpacity="0.6"
                         />
                       </svg>
                     </InputAdornment>
@@ -230,7 +230,7 @@ export default function FormComponent({
                           height="8.67164"
                           rx="0.5"
                           stroke="black"
-                          stroke-opacity="0.6"
+                          strokeOpacity="0.6"
                         />
                       </svg>
                     </InputAdornment>
