@@ -48,7 +48,11 @@ const articles = [
 
 
 export async function generateStaticParams() {
-  const posts = await client.fetch<Post[]>(`*[_type == "post"]`,{ cache: 'no-store'} );
+
+  const options = { next: { revalidate: 30 } };
+
+
+  const posts = await client.fetch<Post[]>(`*[_type == "post"]`,{},options );
 
   console.log('posts',posts)
 

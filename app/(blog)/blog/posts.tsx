@@ -85,7 +85,7 @@ const Blog = () => {
       </header>
 
       {/* Main Content */}
-      <main className="px-8 pt-10">
+      <main className="px-8 pt-10 max-w-xl">
         {/* Navigation Options */}
         <div className="flex space-x-8 mb-8">
           <button

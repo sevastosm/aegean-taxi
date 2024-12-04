@@ -23,6 +23,9 @@ const POSTS_QUERY = `*[
 
 const options = { next: { revalidate: 30 } };
 
+
+
+
 export default async function IndexPage() {
   const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, {}, options);
 
@@ -79,7 +82,7 @@ export default async function IndexPage() {
 
 
   return (
-    <main className="px-8 pt-10">
+    <main className="px-8 pt-10 max-w-screen-2xl m-a">
       <div className="flex space-x-8 mb-8">
         <button
           className={`font-bold "text-black" : "text-gray-500"}`}
