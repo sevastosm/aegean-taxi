@@ -11,7 +11,6 @@ const nextConfig = {
     // appDir: true,
     typedRoutes: true,
   },
-  output: "export",
   images: {
     unoptimized: true,
     domains: [
