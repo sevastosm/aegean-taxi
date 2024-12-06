@@ -24,3 +24,7 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
+
+// hosting to firebase ssr instuctions
+//https://firebase.google.com/docs/hosting/frameworks/nextjs
+
