@@ -38,7 +38,7 @@ const navItems = [
   { display: "About Us", href: "/about-us" },
   { display: "Partners", href: "/partners" },
   { display: "Book Online", href: "/book-online" },
-  { display: "Blog", href: "/blog" },
+  // { display: "Blog", href: "/blog" },
 ];
 
 export default function DrawerAppBar(props: Props) {
