@@ -54,8 +54,6 @@ export async function generateStaticParams() {
 
   const posts = await client.fetch<Post[]>(`*[_type == "post"]`,{},options );
 
-  console.log('posts',posts)
-
   return posts.map((post: Post) => ({
     slug:post.slug.current
   }));
@@ -77,7 +75,6 @@ export default async function PostPage({
   const post = await client.fetch<SanityDocument>(POST_QUERY, params, options);
   const postImageUrl = getImageUrl(post.image)
 
-  console.log(JSON.stringify(post))
 
   // Custom serializer for image components
   const components = {

@@ -19,7 +19,7 @@ import { getImageUrl } from "@/heplers/imageUrl";
 const POSTS_QUERY = `*[
   _type == "post"
   && defined(slug.current) && defined(description)
-]|order(publishedAt desc)[0...12]{_id, title, slug, publishedAt, description, image, duration}`;
+]|order(publishedAt desc)[0...12]{_id, title, slug, publishedAt, description, image, duration, locationApplied}`;
 
 const options = { next: { revalidate: 30 } };
 
@@ -35,18 +35,14 @@ export default async function IndexPage() {
     const calendarIcon = index % 2 === 0 ? CalenderIconWhite : CalendarIconBlack
     const timeIcon = index % 2 === 0 ? TimeIconWhite : TimeIcon
 
-    console.log('post',post)
-
-
-
-
-
     return <li key={post._id}>
       <Link href={`/blog/${post.slug.current}`}>
         {/* <p>{new Date(post.publishedAt).toLocaleDateString()}</p> */}
+        <code>
+          {JSON.stringify(post)}</code>
         <div className={`${index % 2 === 0 ? 'bg-[#2B2B33]' : 'bg-[#F6F6F6]'}  rounded-lg`}>
           <div className="flex flex-col space-y-4">
-            {post.image.asset._ref&&<Image src={getImageUrl(post.image)} width={200} height={200} alt="Blog Visual" className="h-[200px] w-full" />}
+            {post.image.asset._ref && <Image src={getImageUrl(post.image)} width={200} height={200} alt="Blog Visual" className="h-[200px] w-full" />}
             <div className="pt-5 pb-5 p-8">
               <div className={`flex items-center text-sm  mb-2 ${index % 2 === 0 ? 'text-white' : 'text-grey-600'} `}>
                 <Image src={calendarIcon} alt="Calendar" className="w-5 h-5 mr-2" />
